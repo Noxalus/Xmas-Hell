@@ -59,7 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
+    <Compile Include="Assets.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="XmasHell.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

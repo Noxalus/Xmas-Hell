@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using BulletML;
+using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
+using MonoGame.Extended.Screens;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.ViewportAdapters;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Screens;
 
 namespace Xmas_Hell
 {
@@ -15,10 +18,9 @@ namespace Xmas_Hell
     {
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
+        public ViewportAdapter ViewportAdapter;
 
-        private Player _player;
-        private Sprite _bulletSprite;
-        private BitmapFont _font;
+        private FramesPerSecondCounterComponent _fpsCounter;
 
         public XmasHell()
         {
@@ -26,8 +28,6 @@ namespace Xmas_Hell
             Content.RootDirectory = "Content";
 
             Graphics.IsFullScreen = true;
-            Graphics.PreferredBackBufferWidth = 720;
-            Graphics.PreferredBackBufferHeight = 1280;
             Graphics.SupportedOrientations = DisplayOrientation.Portrait;
         }
 
@@ -39,9 +39,15 @@ namespace Xmas_Hell
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Config.VirtualResolution.X, Config.VirtualResolution.Y);
 
-            _player = new Player(this);
+            ScreenComponent screenComponent;
+            Components.Add(screenComponent = new ScreenComponent(this));
+
+            //screenComponent.Register(new MainMenuScreen(this));
+            screenComponent.Register(new GameScreen(this));
+
+            Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(this));
 
             base.Initialize();
         }
@@ -55,18 +61,7 @@ namespace Xmas_Hell
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _player.LoadContent();
-
-            var bulletTexture = Content.Load<Texture2D>(@"Graphics/Sprites/bullet");
-
-            _bulletSprite = new Sprite(bulletTexture)
-            {
-                Origin = new Vector2(bulletTexture.Width / 2f, bulletTexture.Height / 2f),
-                Position = new Vector2(720f / 2f + (bulletTexture.Width / 2f), 150),
-                Scale = Vector2.One
-            };
-
-            _font = Content.Load<BitmapFont>(@"Graphics/Fonts/main");
+            Assets.Load(Content);
         }
 
         /// <summary>
@@ -75,7 +70,6 @@ namespace Xmas_Hell
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -88,8 +82,6 @@ namespace Xmas_Hell
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
@@ -101,17 +93,9 @@ namespace Xmas_Hell
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            SpriteBatch.Begin();
+            SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
-            _player.Draw();
-
-            _bulletSprite.Draw(SpriteBatch);
-
-            SpriteBatch.End();
-
-            SpriteBatch.Begin();
-
-            SpriteBatch.DrawString(_font, "COUCOU", Vector2.Zero, Color.White);
+            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.AverageFramesPerSecond:0}", Vector2.One, Color.White);
 
             SpriteBatch.End();
 
