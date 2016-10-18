@@ -1,26 +1,34 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using BulletML;
+using MonoGame.Extended.BitmapFonts;
+using MonoGame.Extended.Sprites;
+using Xmas_Hell.Entities;
 
 namespace Xmas_Hell
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class XmasHell : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager Graphics;
+        public SpriteBatch SpriteBatch;
 
-        public Game1()
+        private Player _player;
+        private Sprite _bulletSprite;
+        private BitmapFont _font;
+
+        public XmasHell()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.IsFullScreen = true;
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 480;
-            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            Graphics.IsFullScreen = true;
+            Graphics.PreferredBackBufferWidth = 720;
+            Graphics.PreferredBackBufferHeight = 1280;
+            Graphics.SupportedOrientations = DisplayOrientation.Portrait;
         }
 
         /// <summary>
@@ -33,6 +41,8 @@ namespace Xmas_Hell
         {
             // TODO: Add your initialization logic here
 
+            _player = new Player(this);
+
             base.Initialize();
         }
 
@@ -43,9 +53,20 @@ namespace Xmas_Hell
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _player.LoadContent();
+
+            var bulletTexture = Content.Load<Texture2D>(@"Graphics/Sprites/bullet");
+
+            _bulletSprite = new Sprite(bulletTexture)
+            {
+                Origin = new Vector2(bulletTexture.Width / 2f, bulletTexture.Height / 2f),
+                Position = new Vector2(720f / 2f + (bulletTexture.Width / 2f), 150),
+                Scale = Vector2.One
+            };
+
+            _font = Content.Load<BitmapFont>(@"Graphics/Fonts/main");
         }
 
         /// <summary>
@@ -80,7 +101,19 @@ namespace Xmas_Hell
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            SpriteBatch.Begin();
+
+            _player.Draw();
+
+            _bulletSprite.Draw(SpriteBatch);
+
+            SpriteBatch.End();
+
+            SpriteBatch.Begin();
+
+            SpriteBatch.DrawString(_font, "COUCOU", Vector2.Zero, Color.White);
+
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }
