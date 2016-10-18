@@ -1,6 +1,3 @@
-[submodule "Xmas-Hell/MonoGame.Extended"]
-	path = Xmas-Hell/MonoGame.Extended
-	url = ../../craftworkgames/MonoGame.Extended.git
 [submodule "Xmas-Hell/BulletML"]
 	path = Xmas-Hell/BulletML
 	url = ../BulletML.git
