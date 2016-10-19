@@ -71,7 +71,11 @@ namespace Xmas_Hell
         public void Draw(GameTime gameTime)
         {
             // TODO: Apply a bloom effect on all bullets
-            _game.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: _game.ViewportAdapter.GetScaleMatrix());
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                sortMode: SpriteSortMode.Immediate,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.ViewportAdapter.GetScaleMatrix());
 
             foreach (var bullet in _bullets)
                 bullet.Draw(gameTime);

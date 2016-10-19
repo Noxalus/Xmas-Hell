@@ -1,5 +1,4 @@
 using System;
-using Android.OS;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -86,8 +85,18 @@ namespace Xmas_Hell.Entities
             {
                 _bulletFrequence = TimeSpan.FromTicks(Config.PlayerShootFrequency.Ticks);
 
-                var bullet = new PlayerBullet(_game, _sprite.Position, 100f);
-                _game.GameManager.AddBullet(bullet);
+                var bulletSpeed = 750f;
+                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, bulletSpeed);
+                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, bulletSpeed);
+                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, bulletSpeed);
+                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, bulletSpeed);
+                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, bulletSpeed);
+
+                _game.GameManager.AddBullet(bullet1);
+                _game.GameManager.AddBullet(bullet2);
+                _game.GameManager.AddBullet(bullet3);
+                _game.GameManager.AddBullet(bullet4);
+                _game.GameManager.AddBullet(bullet5);
             }
         }
 
