@@ -21,6 +21,8 @@ namespace Xmas_Hell.Entities
         public Sprite Sprite;
         public float Speed;
 
+        public Vector2 Position => Sprite.Position;
+
         public Bullet(XmasHell game, Vector2 position, float speed)
         {
             _game = game;

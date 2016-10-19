@@ -17,10 +17,13 @@ namespace Xmas_Hell.Entities
         private Vector2 _initialTouchPosition;
         private Vector2 _currentTouchPosition;
 
+        private TimeSpan _bulletFrequence;
+
         public Player(XmasHell game)
         {
             _game = game;
             _speed = Config.PlayerSpeed;
+            _bulletFrequence = new TimeSpan(0);
         }
 
         public void LoadContent()
@@ -37,14 +40,14 @@ namespace Xmas_Hell.Entities
 
         public void Update(GameTime gameTime)
         {
-            var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            UpdatePosition(dt);
-            UpdateShoot(dt);
+            UpdatePosition(gameTime);
+            UpdateShoot(gameTime);
         }
 
-        private void UpdatePosition(float dt)
+        private void UpdatePosition(GameTime gameTime)
         {
+            var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             var currentTouchState = TouchPanel.GetState();
 
             if (currentTouchState.Count > 0)
@@ -75,13 +78,17 @@ namespace Xmas_Hell.Entities
             }
         }
 
-        private void UpdateShoot(float dt)
+        private void UpdateShoot(GameTime gameTime)
         {
-            // TODO: Choose shoot frequency
+            if (_bulletFrequence.TotalMilliseconds > 0)
+                _bulletFrequence -= gameTime.ElapsedGameTime;
+            else
+            {
+                _bulletFrequence = TimeSpan.FromTicks(Config.PlayerShootFrequency.Ticks);
 
-            var bullet = new PlayerBullet(_game, _sprite.Position, 100f);
-
-            _game.GameManager.AddPlayerBullet(bullet);
+                var bullet = new PlayerBullet(_game, _sprite.Position, 100f);
+                _game.GameManager.AddBullet(bullet);
+            }
         }
 
         public void Draw()

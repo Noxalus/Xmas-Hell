@@ -19,24 +19,43 @@ namespace Xmas_Hell
     {
         private XmasHell _game;
         private List<Bullet> _bullets;
-        private List<PlayerBullet> _playerBullets;
+
+        public List<Bullet> GetBossBullets()
+        {
+            return _bullets.Where(b => !(b is PlayerBullet)).ToList();
+        }
+
+        public List<Bullet> GetPlayerBullets()
+        {
+            return _bullets.Where(b => b is PlayerBullet).ToList();
+        }
 
         public GameManager(XmasHell game)
         {
             _game = game;
             _bullets = new List<Bullet>();
-            _playerBullets = new List<PlayerBullet>();
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (var bullet in _bullets)
+            for (int index = 0; index < _bullets.Count; index++)
+            {
+                var bullet = _bullets[index];
                 bullet.Update(gameTime);
 
-            foreach (var bullet in _playerBullets)
-                bullet.Update(gameTime);
+                CheckCollision(bullet);
+            }
+        }
 
+        private void CheckCollision(Bullet bullet)
+        {
             // TODO: Check collision
+
+            if (bullet.Position.X < 0 || bullet.Position.X > _game.ViewportAdapter.Viewport.Width ||
+                bullet.Position.Y < 0 || bullet.Position.Y > _game.ViewportAdapter.Viewport.Height)
+            {
+                RemoveBullet(bullet);
+            }
         }
 
         public void AddBullet(Bullet bullet)
@@ -44,9 +63,9 @@ namespace Xmas_Hell
             _bullets.Add(bullet);
         }
 
-        public void AddPlayerBullet(PlayerBullet bullet)
+        public void RemoveBullet(Bullet bullet)
         {
-            _playerBullets.Add(bullet);
+            _bullets.Remove(bullet);
         }
 
         public void Draw(GameTime gameTime)
@@ -55,9 +74,6 @@ namespace Xmas_Hell
             _game.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: _game.ViewportAdapter.GetScaleMatrix());
 
             foreach (var bullet in _bullets)
-                bullet.Draw(gameTime);
-
-            foreach (var bullet in _playerBullets)
                 bullet.Draw(gameTime);
 
             _game.SpriteBatch.End();
