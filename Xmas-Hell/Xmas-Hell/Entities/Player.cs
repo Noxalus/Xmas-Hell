@@ -38,6 +38,13 @@ namespace Xmas_Hell.Entities
         public void Update(GameTime gameTime)
         {
             var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            UpdatePosition(dt);
+            UpdateShoot(dt);
+        }
+
+        private void UpdatePosition(float dt)
+        {
             var currentTouchState = TouchPanel.GetState();
 
             if (currentTouchState.Count > 0)
@@ -52,6 +59,13 @@ namespace Xmas_Hell.Entities
 
                 var touchDelta = _currentTouchPosition - _initialTouchPosition;
 
+                //Console.WriteLine("Touch delta (before): " + touchDelta);
+
+                //touchDelta.X /= Config.VirtualResolution.X;
+                //touchDelta.Y /= Config.VirtualResolution.Y;
+
+                //Console.WriteLine("Touch delta (after): " + touchDelta);
+
                 _sprite.Position = _initialSpritePosition + (touchDelta * _speed) * dt;
             }
             else
@@ -59,6 +73,15 @@ namespace Xmas_Hell.Entities
                 _initialSpritePosition = Vector2.Zero;
                 _initialTouchPosition = Vector2.Zero;
             }
+        }
+
+        private void UpdateShoot(float dt)
+        {
+            // TODO: Choose shoot frequency
+
+            var bullet = new PlayerBullet(_game, _sprite.Position, 100f);
+
+            _game.GameManager.AddPlayerBullet(bullet);
         }
 
         public void Draw()

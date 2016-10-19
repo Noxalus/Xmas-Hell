@@ -61,7 +61,10 @@
     <Compile Include="Activity1.cs" />
     <Compile Include="Assets.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\PlayerBullet.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="XmasHell.cs" />

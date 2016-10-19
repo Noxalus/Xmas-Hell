@@ -19,6 +19,7 @@ namespace Xmas_Hell
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
         public ViewportAdapter ViewportAdapter;
+        public GameManager GameManager;
 
         private FramesPerSecondCounterComponent _fpsCounter;
 
@@ -40,6 +41,8 @@ namespace Xmas_Hell
         protected override void Initialize()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Config.VirtualResolution.X, Config.VirtualResolution.Y);
+
+            GameManager = new GameManager(this);
 
             ScreenComponent screenComponent;
             Components.Add(screenComponent = new ScreenComponent(this));
@@ -82,6 +85,8 @@ namespace Xmas_Hell
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 Exit();
 
+            GameManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -92,6 +97,8 @@ namespace Xmas_Hell
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            GameManager.Draw(gameTime);
 
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
