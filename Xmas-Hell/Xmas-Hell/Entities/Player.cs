@@ -10,18 +10,15 @@ namespace Xmas_Hell.Entities
     {
         private readonly XmasHell _game;
         private Sprite _sprite;
-        private float _speed;
 
         private Vector2 _initialSpritePosition;
-        private Vector2 _initialTouchPosition;
-        private Vector2 _currentTouchPosition;
+        private Point _initialTouchPosition;
 
         private TimeSpan _bulletFrequence;
 
         public Player(XmasHell game)
         {
             _game = game;
-            _speed = Config.PlayerSpeed;
             _bulletFrequence = new TimeSpan(0);
 
             var playerTexture = Assets.GetTexture2D("Graphics/Sprites/player");
@@ -50,29 +47,21 @@ namespace Xmas_Hell.Entities
 
             if (currentTouchState.Count > 0)
             {
-                if (_initialSpritePosition.Equals(Vector2.Zero))
+                if (currentTouchState[0].State == TouchLocationState.Pressed)
                 {
                     _initialSpritePosition = _sprite.Position;
-                    _initialTouchPosition = currentTouchState[0].Position;
+                    _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
                 }
 
-                _currentTouchPosition = currentTouchState[0].Position;
+                var currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
+                var touchDelta = (currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                var touchDelta = _currentTouchPosition - _initialTouchPosition;
-
-                //Console.WriteLine("Touch delta (before): " + touchDelta);
-
-                //touchDelta.X /= Config.VirtualResolution.X;
-                //touchDelta.Y /= Config.VirtualResolution.Y;
-
-                //Console.WriteLine("Touch delta (after): " + touchDelta);
-
-                _sprite.Position = _initialSpritePosition + (touchDelta * _speed) * dt;
+                _sprite.Position = _initialSpritePosition + (touchDelta * Config.PlayerMoveSensitivity);
             }
             else
             {
                 _initialSpritePosition = Vector2.Zero;
-                _initialTouchPosition = Vector2.Zero;
+                _initialTouchPosition = Point.Zero;
             }
         }
 
@@ -84,12 +73,11 @@ namespace Xmas_Hell.Entities
             {
                 _bulletFrequence = TimeSpan.FromTicks(Config.PlayerShootFrequency.Ticks);
 
-                var bulletSpeed = 750f;
-                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, bulletSpeed);
-                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, bulletSpeed);
-                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, bulletSpeed);
-                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, bulletSpeed);
-                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, bulletSpeed);
+                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, Config.PlayerBulletSpeed);
+                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, Config.PlayerBulletSpeed);
+                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, Config.PlayerBulletSpeed);
+                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, Config.PlayerBulletSpeed);
+                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, Config.PlayerBulletSpeed);
 
                 _game.GameManager.AddBullet(bullet1);
                 _game.GameManager.AddBullet(bullet2);

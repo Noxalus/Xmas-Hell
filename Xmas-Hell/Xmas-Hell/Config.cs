@@ -6,7 +6,8 @@ namespace Xmas_Hell
     public static class Config
     {
         public static Point VirtualResolution = new Point(720, 1280);
-        public static float PlayerSpeed = 50f; // Pixel / second
         public static readonly TimeSpan PlayerShootFrequency = TimeSpan.FromMilliseconds(100);
+        public static float PlayerMoveSensitivity = 1f;
+        public static float PlayerBulletSpeed = 2000f;
     }
 }
