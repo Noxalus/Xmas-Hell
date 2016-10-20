@@ -32,6 +32,7 @@ namespace Xmas_Hell.Screens
         public override void Update(GameTime gameTime)
         {
             _player.Update(gameTime);
+            _boss.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

@@ -15,6 +15,10 @@ namespace Xmas_Hell
             // Load sprites
             _textures = new List<Texture2D>()
             {
+                // Pictures
+                content.Load<Texture2D>("Graphics/Pictures/pixel"),
+
+                // Sprites
                 content.Load<Texture2D>("Graphics/Sprites/bullet"),
                 content.Load<Texture2D>("Graphics/Sprites/bullet2"),
                 content.Load<Texture2D>("Graphics/Sprites/player"),

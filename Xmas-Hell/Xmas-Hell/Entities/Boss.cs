@@ -18,9 +18,10 @@ namespace Xmas_Hell.Entities
     {
         private XmasHell _game;
         private Sprite _sprite;
+        private float _initialLife;
         private float _life;
 
-        public Boss(XmasHell game, Vector2 position, float life)
+        public Boss(XmasHell game, Vector2 position, float initialLife)
         {
             _game = game;
             _sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/boss"))
@@ -28,17 +29,25 @@ namespace Xmas_Hell.Entities
                 Position = position
             };
 
-            _life = _life;
+            _initialLife = initialLife;
+            _life = initialLife;
         }
 
         public void Update(GameTime gameTime)
         {
-
+            _life -= 0.01f;
         }
 
         public void Draw(GameTime gameTime)
         {
             _sprite.Draw(_game.SpriteBatch);
+
+            var percent = _life / _initialLife;
+            _game.SpriteBatch.Draw(
+                Assets.GetTexture2D("Graphics/Pictures/pixel"),
+                new Rectangle(0, 0, (int)(percent * Config.VirtualResolution.X), 20),
+                Color.Black
+            );
         }
     }
 }

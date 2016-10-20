@@ -74,6 +74,8 @@ namespace Xmas_Hell
 
             GameManager.Draw(gameTime);
 
+            base.Draw(gameTime);
+
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.AverageFramesPerSecond:0}", Vector2.Zero, Color.White);
@@ -81,8 +83,6 @@ namespace Xmas_Hell
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
             SpriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }
