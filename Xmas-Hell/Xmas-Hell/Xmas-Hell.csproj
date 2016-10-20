@@ -61,6 +61,7 @@
     <Compile Include="Activity1.cs" />
     <Compile Include="Assets.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Entities\Boss.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerBullet.cs" />

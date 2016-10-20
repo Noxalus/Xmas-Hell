@@ -36,6 +36,8 @@ namespace Xmas_Hell
 
             GameManager = new GameManager(this);
 
+            base.Initialize();
+
             ScreenComponent screenComponent;
             Components.Add(screenComponent = new ScreenComponent(this));
 
@@ -43,8 +45,6 @@ namespace Xmas_Hell
             screenComponent.Register(new GameScreen(this));
 
             Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(this));
-
-            base.Initialize();
         }
 
         protected override void LoadContent()

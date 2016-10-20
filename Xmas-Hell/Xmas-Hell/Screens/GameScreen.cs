@@ -10,33 +10,23 @@ namespace Xmas_Hell.Screens
     {
         private readonly XmasHell _game;
         private Player _player;
-        private Sprite _bulletSprite;
+        private Boss _boss;
 
         public GameScreen(XmasHell game)
         {
             _game = game;
-            _player = new Player(game);
         }
 
         public override void Initialize()
         {
             _player = new Player(_game);
+            var bossPosition = new Vector2(
+                Config.VirtualResolution.X / 2f,
+                150f
+            );
+            _boss = new Boss(_game, bossPosition, 100);
 
             base.Initialize();
-        }
-
-        public override void LoadContent()
-        {
-            _player.LoadContent();
-
-            var bulletTexture = _game.Content.Load<Texture2D>(@"Graphics/Sprites/bullet");
-
-            _bulletSprite = new Sprite(bulletTexture)
-            {
-                Origin = new Vector2(bulletTexture.Width / 2f, bulletTexture.Height / 2f),
-                Position = new Vector2(Config.VirtualResolution.X / 2f + (bulletTexture.Width / 2f), 150),
-                Scale = Vector2.One
-            };
         }
 
         public override void Update(GameTime gameTime)
@@ -48,8 +38,8 @@ namespace Xmas_Hell.Screens
         {
             _game.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: _game.ViewportAdapter.GetScaleMatrix());
 
-            _player.Draw();
-            _bulletSprite.Draw(_game.SpriteBatch);
+            _player.Draw(gameTime);
+            _boss.Draw(gameTime);
 
             _game.SpriteBatch.End();
         }

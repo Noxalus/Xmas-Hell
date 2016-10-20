@@ -23,23 +23,22 @@ namespace Xmas_Hell.Entities
             _game = game;
             _speed = Config.PlayerSpeed;
             _bulletFrequence = new TimeSpan(0);
-        }
 
-        public void LoadContent()
-        {
-            var playerTexture = _game.Content.Load<Texture2D>("Graphics/Sprites/player");
+            var playerTexture = Assets.GetTexture2D("Graphics/Sprites/player");
 
             _sprite = new Sprite(playerTexture)
             {
                 Origin = new Vector2(playerTexture.Width / 2f, playerTexture.Height / 2f),
-                Position = new Vector2(720f / 2f + (playerTexture.Width / 2f), 1280f - 150),
+                Position = new Vector2(
+                    Config.VirtualResolution.X / 2f,
+                    Config.VirtualResolution.Y - 150
+                ),
                 Scale = Vector2.One
             };
         }
 
         public void Update(GameTime gameTime)
         {
-
             UpdatePosition(gameTime);
             UpdateShoot(gameTime);
         }
@@ -100,7 +99,7 @@ namespace Xmas_Hell.Entities
             }
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime)
         {
             _game.SpriteBatch.Draw(_sprite);
         }

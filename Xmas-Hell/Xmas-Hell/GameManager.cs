@@ -51,8 +51,8 @@ namespace Xmas_Hell
         {
             // TODO: Check collision
 
-            if (bullet.Position.X < 0 || bullet.Position.X > _game.ViewportAdapter.Viewport.Width ||
-                bullet.Position.Y < 0 || bullet.Position.Y > _game.ViewportAdapter.Viewport.Height)
+            if (bullet.Position.X < 0 || bullet.Position.X > Config.VirtualResolution.X ||
+                bullet.Position.Y < 0 || bullet.Position.Y > Config.VirtualResolution.Y)
             {
                 RemoveBullet(bullet);
             }
