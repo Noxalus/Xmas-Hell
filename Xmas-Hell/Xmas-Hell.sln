@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmas-Hell", "Xmas-Hell\Xmas-Hell.csproj", "{44BB054B-9BC0-4A57-A9B2-1452BFB27E4C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{41724C52-3D50-45BB-81EB-3C8A247EAFD1} = {41724C52-3D50-45BB-81EB-3C8A247EAFD1}
+		{B7092DB7-57E9-455C-B974-CDC1E0F49518} = {B7092DB7-57E9-455C-B974-CDC1E0F49518}
+		{28CD24BD-432C-4987-9E9D-65CFCF120EA0} = {28CD24BD-432C-4987-9E9D-65CFCF120EA0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame.Extended", "MonoGame.Extended\Source\MonoGame.Extended\MonoGame.Extended.csproj", "{41724C52-3D50-45BB-81EB-3C8A247EAFD1}"
 EndProject
