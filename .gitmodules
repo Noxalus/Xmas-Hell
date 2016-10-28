@@ -4,3 +4,6 @@
 [submodule "Xmas-Hell/MonoGame.Extended"]
 	path = Xmas-Hell/MonoGame.Extended
 	url = ../MonoGame.Extended.git
+[submodule "Xmas-Hell/SpriterDotNet"]
+	path = Xmas-Hell/SpriterDotNet
+	url = ../SpriterDotNet.git
