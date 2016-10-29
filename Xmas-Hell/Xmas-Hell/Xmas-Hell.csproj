@@ -58,8 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity1.cs" />
+    <Compile Include="XmasHellActivity.cs" />
     <Compile Include="Assets.cs" />
+    <Compile Include="BulletML\Mover.cs" />
+    <Compile Include="BulletML\MoverManager.cs" />
     <Compile Include="GameConfig.cs" />
     <Compile Include="Entities\Boss.cs" />
     <Compile Include="Entities\Bullet.cs" />
@@ -112,6 +114,21 @@
       <Project>{10c1ed31-6945-4617-85ad-d2575550149d}</Project>
       <Name>SpriterDotNet.MonoGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Patterns\sample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Patterns\template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Patterns\test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

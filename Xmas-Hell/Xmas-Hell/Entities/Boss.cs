@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Java.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Sprites;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
@@ -19,9 +18,25 @@ namespace Xmas_Hell.Entities
         private float _life;
         private float _direction = 1f;
 
+        public Vector2 Position()
+        {
+            return _currentAnimator.Position;
+        }
+
+        public Vector2 ActionPointPosition()
+        {
+            if (_currentAnimator.FrameData != null && _currentAnimator.FrameData.PointData.ContainsKey("action_point"))
+            {
+                var actionPoint = _currentAnimator.FrameData.PointData["action_point"];
+                return Position() + new Vector2(actionPoint.X, -actionPoint.Y);
+            }
+
+            return Position();
+        }
+
         // Spriter
 
-        private static readonly Config config = new Config
+        private static readonly Config _animatorConfig = new Config
         {
             MetadataEnabled = true,
             EventsEnabled = true,
@@ -31,8 +46,8 @@ namespace Xmas_Hell.Entities
             SoundsEnabled = false
         };
 
-        private IList<MonoGameAnimator> animators = new List<MonoGameAnimator>();
-        private MonoGameAnimator currentAnimator;
+        private IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
+        private MonoGameAnimator _currentAnimator;
 
         public Boss(XmasHell game, Vector2 position, float initialLife)
         {
@@ -42,7 +57,7 @@ namespace Xmas_Hell.Entities
             _life = initialLife;
 
             // Spriter
-            DefaultProviderFactory<SpriterSprite, SoundEffect> factory = new DefaultProviderFactory<SpriterSprite, SoundEffect>(config, true);
+            DefaultProviderFactory<SpriterSprite, SoundEffect> factory = new DefaultProviderFactory<SpriterSprite, SoundEffect>(_animatorConfig, true);
 
             SpriterContentLoader loader = new SpriterContentLoader(_game.Content, "Graphics/Sprites/Bosses/XmasBall/xmas-ball");
             loader.Fill(factory);
@@ -50,12 +65,12 @@ namespace Xmas_Hell.Entities
             foreach (SpriterEntity entity in loader.Spriter.Entities)
             {
                 var animator = new MonoGameDebugAnimator(entity, _game.GraphicsDevice, factory);
-                animators.Add(animator);
+                _animators.Add(animator);
                 animator.Position = position;
             }
 
-            currentAnimator = animators.First();
-            currentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+            _currentAnimator = _animators.First();
+            _currentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
         }
 
         private void CurrentAnimator_EventTriggered(string obj)
@@ -68,19 +83,19 @@ namespace Xmas_Hell.Entities
             var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
             _life -= 0.01f;
 
-            if (currentAnimator.Position.X > GameConfig.VirtualResolution.X)
+            if (_currentAnimator.Position.X > GameConfig.VirtualResolution.X)
                 _direction = -1f;
-            else if (currentAnimator.Position.X < 0)
+            else if (_currentAnimator.Position.X < 0)
                 _direction = 1f;
 
-            currentAnimator.Position += new Vector2(500f * dt, 0f) * _direction;
+            _currentAnimator.Position += new Vector2(500f * dt, 0f) * _direction;
 
-            currentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
+            _currentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
         public void Draw(GameTime gameTime)
         {
-            currentAnimator.Draw(_game.SpriteBatch);
+            _currentAnimator.Draw(_game.SpriteBatch);
 
             var percent = _life / _initialLife;
             _game.SpriteBatch.Draw(

@@ -16,10 +16,15 @@ namespace Xmas_Hell.Entities
 
         private TimeSpan _bulletFrequence;
 
+        public Vector2 Position()
+        {
+            return _sprite.Position;
+        }
+
         public Player(XmasHell game)
         {
             _game = game;
-            _bulletFrequence = new TimeSpan(0);
+            _bulletFrequence = TimeSpan.Zero;
 
             var playerTexture = Assets.GetTexture2D("Graphics/Sprites/player");
 

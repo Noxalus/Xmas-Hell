@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-
+using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Xmas_Hell.Entities;
+using Bullet = Xmas_Hell.Entities.Bullet;
 
 namespace Xmas_Hell
 {
@@ -11,6 +12,7 @@ namespace Xmas_Hell
     {
         private XmasHell _game;
         private List<Bullet> _bullets;
+        static public FloatDelegate GameDifficulty;
 
         public List<Bullet> GetBossBullets()
         {

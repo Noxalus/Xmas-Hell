@@ -117,10 +117,10 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-10" y="0" angle="270"/>
+                    <object folder="0" file="3" x="-10" angle="270"/>
                 </key>
                 <key id="1" time="875" spin="0">
-                    <object folder="0" file="3" x="-10" y="0" angle="270"/>
+                    <object folder="0" file="3" x="-10" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="cheek">
@@ -165,9 +165,9 @@
                     <bone y="-5" angle="100"/>
                 </key>
             </timeline>
-            <timeline id="7" name="point_000" object_type="point">
+            <timeline id="7" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-10.318471" y="0" angle="180"/>
+                    <object x="-10.318471" angle="180"/>
                 </key>
             </timeline>
         </animation>

@@ -18,16 +18,19 @@ namespace Xmas_Hell
         public SpriteBatch SpriteBatch;
         public ViewportAdapter ViewportAdapter;
         public GameManager GameManager;
+        private XmasHellActivity _activity;
 
         private FramesPerSecondCounterComponent _fpsCounter;
 
-        public XmasHell()
+        public XmasHell(XmasHellActivity activity)
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             Graphics.IsFullScreen = true;
             Graphics.SupportedOrientations = DisplayOrientation.Portrait;
+
+            _activity = activity;
         }
 
         protected override void Initialize()
@@ -51,7 +54,7 @@ namespace Xmas_Hell
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Assets.Load(Content);
+            Assets.Load(_activity, Content);
         }
 
         protected override void UnloadContent()
