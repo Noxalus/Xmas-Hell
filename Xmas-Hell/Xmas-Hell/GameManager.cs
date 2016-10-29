@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Physics;
 using Bullet = Xmas_Hell.Entities.Bullet;
 
 namespace Xmas_Hell
@@ -16,6 +17,8 @@ namespace Xmas_Hell
 
         public MoverManager MoverManager;
         static public FloatDelegate GameDifficulty;
+
+        public CollisionWorld CollisionWorld;
 
         public List<Mover> GetBossBullets()
         {
@@ -31,31 +34,20 @@ namespace Xmas_Hell
         {
             _game = game;
             _bullets = new List<Bullet>();
-            MoverManager = new MoverManager();
+            MoverManager = new MoverManager(_game);
+            CollisionWorld = new CollisionWorld();
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int index = 0; index < _bullets.Count; index++)
-            {
-                var bullet = _bullets[index];
+            foreach (var bullet in _bullets)
                 bullet.Update(gameTime);
 
-                CheckCollision(bullet);
-            }
-
             MoverManager.Update();
-        }
 
-        private void CheckCollision(Bullet bullet)
-        {
-            // TODO: Check collision
+            CollisionWorld.Update(gameTime);
 
-            if (bullet.Position.X < 0 || bullet.Position.X > GameConfig.VirtualResolution.X ||
-                bullet.Position.Y < 0 || bullet.Position.Y > GameConfig.VirtualResolution.Y)
-            {
-                RemoveBullet(bullet);
-            }
+            _bullets.RemoveAll(b => !b.Used);
         }
 
         public void AddBullet(Bullet bullet)
@@ -80,10 +72,9 @@ namespace Xmas_Hell
             foreach (var bullet in _bullets)
                 bullet.Draw(gameTime);
 
-            foreach (var mover in MoverManager.Movers)
-            {
-                _game.SpriteBatch.Draw(Assets.GetTexture2D("Graphics/Sprites/bullet"), mover.Position, Color.White);
-            }
+            MoverManager.Draw(_game.SpriteBatch);
+
+            CollisionWorld.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
         }

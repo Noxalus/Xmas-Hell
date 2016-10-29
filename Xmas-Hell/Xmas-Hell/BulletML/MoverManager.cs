@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
 using BulletML;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Xmas_Hell.BulletML
 {
     public class MoverManager : IBulletManager
     {
+        private XmasHell _game;
         public readonly List<Mover> Movers = new List<Mover>();
         private readonly List<Mover> _topLevelMovers = new List<Mover>();
         private PositionDelegate _getPlayerPosition;
 
-        public MoverManager()
+        public MoverManager(XmasHell game)
         {
+            _game = game;
         }
 
         public void SetPlayerPositionDelegate(PositionDelegate playerDelegate)
@@ -26,8 +29,8 @@ namespace Xmas_Hell.BulletML
 
         public IBullet CreateBullet(bool topBullet = false)
         {
-            var mover = new Mover(this);
-            mover.Init();
+            var mover = new Mover(_game, this);
+            mover.Init(topBullet);
 
             if (topBullet)
                 _topLevelMovers.Add(mover);
@@ -81,6 +84,12 @@ namespace Xmas_Hell.BulletML
         {
             Movers.Clear();
             _topLevelMovers.Clear();
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (var mover in Movers)
+                mover.Draw(spriteBatch);
         }
     }
 }

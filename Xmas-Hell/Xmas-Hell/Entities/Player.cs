@@ -3,22 +3,35 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoGame.Extended.Sprites;
+using Xmas_Hell.Physics;
+using Xmas_Hell.Physics.Collision;
 
 namespace Xmas_Hell.Entities
 {
-    class Player
+    class Player : IPhysicsEntity
     {
         private readonly XmasHell _game;
         private Sprite _sprite;
 
         private Vector2 _initialSpritePosition;
         private Point _initialTouchPosition;
+        private Point _currentTouchPosition;
 
         private TimeSpan _bulletFrequence;
 
         public Vector2 Position()
         {
             return _sprite.Position;
+        }
+
+        public float Rotation()
+        {
+            return _sprite.Rotation;
+        }
+
+        public Vector2 Scale()
+        {
+            return _sprite.Scale;
         }
 
         public Player(XmasHell game)
@@ -31,15 +44,31 @@ namespace Xmas_Hell.Entities
             _sprite = new Sprite(playerTexture)
             {
                 Origin = new Vector2(playerTexture.Width / 2f, playerTexture.Height / 2f),
-                Position = new Vector2(
-                    GameConfig.VirtualResolution.X / 2f,
-                    GameConfig.VirtualResolution.Y - 150
-                ),
                 Scale = Vector2.One
             };
 
+            _game.GameManager.CollisionWorld.PlayerHitbox = new CollisionCircle(this, new Vector2(0f, 0f), 5f);
+
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
+
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            _sprite.Position = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                GameConfig.VirtualResolution.Y - 150
+            );
+
+            _initialSpritePosition = _sprite.Position;
+            _initialTouchPosition = _currentTouchPosition;
+        }
+
+        public void Destroy()
+        {
+            Initialize();
         }
 
         public void Update(GameTime gameTime)
@@ -50,7 +79,6 @@ namespace Xmas_Hell.Entities
 
         private void UpdatePosition(GameTime gameTime)
         {
-            var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             var currentTouchState = TouchPanel.GetState();
 
             if (currentTouchState.Count > 0)
@@ -59,10 +87,13 @@ namespace Xmas_Hell.Entities
                 {
                     _initialSpritePosition = _sprite.Position;
                     _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
+
+                    System.Console.WriteLine("Initial sprite position: " + _initialSpritePosition);
+                    System.Console.WriteLine("Initial touch position: " + _initialTouchPosition);
                 }
 
-                var currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
-                var touchDelta = (currentTouchPosition - _initialTouchPosition).ToVector2();
+                _currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
+                var touchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
                 _sprite.Position = _initialSpritePosition + (touchDelta * GameConfig.PlayerMoveSensitivity);
             }

@@ -4,16 +4,19 @@ using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using MonoGame.Extended.Shapes;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
 using Xmas_Hell.BulletML;
+using Xmas_Hell.Physics;
+using Xmas_Hell.Physics.Collision;
 using SpriterSprite = SpriterDotNet.MonoGame.Sprite;
 using Xmas_Hell.Spriter;
 
 namespace Xmas_Hell.Entities
 {
-    class Boss
+    class Boss : IPhysicsEntity
     {
         private XmasHell _game;
         private float _initialLife;
@@ -26,6 +29,16 @@ namespace Xmas_Hell.Entities
         public Vector2 Position()
         {
             return _currentAnimator.Position;
+        }
+
+        public float Rotation()
+        {
+            return _currentAnimator.Rotation;
+        }
+
+        public Vector2 Scale()
+        {
+            return _currentAnimator.Scale;
         }
 
         public Vector2 ActionPointPosition()
@@ -87,6 +100,9 @@ namespace Xmas_Hell.Entities
 
             var filename = "sample";
             pattern.ParseStream(filename, Assets.GetPattern(filename));
+
+            // Physics
+            _game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
         }
 
         private void CurrentAnimator_EventTriggered(string obj)
@@ -101,21 +117,34 @@ namespace Xmas_Hell.Entities
 
             // Add a new bullet in the center of the screen
             var mover = (Mover)_game.GameManager.MoverManager.CreateBullet(true);
-            mover.Position = ActionPointPosition();
+            mover.Texture = Assets.GetTexture2D("Graphics/Sprites/bullet");
+            mover.Position(ActionPointPosition());
             mover.InitTopNode(_bossPatterns[0].RootNode);
+        }
+
+        public void TakeDamage(float amount)
+        {
+            _life -= amount;
+
+            if (_life < 0f)
+                _life = _initialLife;
         }
 
         public void Update(GameTime gameTime)
         {
             var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
-            _life -= 0.01f;
 
-            if (_currentAnimator.Position.X > GameConfig.VirtualResolution.X)
+            //if (_currentAnimator.Position.X > GameConfig.VirtualResolution.X)
+            //    _direction = -1f;
+            //else if (_currentAnimator.Position.X < 0)
+            //    _direction = 1f;
+
+            if (_currentAnimator.Position.Y > GameConfig.VirtualResolution.Y)
                 _direction = -1f;
-            else if (_currentAnimator.Position.X < 0)
+            else if (_currentAnimator.Position.Y < 0)
                 _direction = 1f;
 
-            _currentAnimator.Position += new Vector2(500f * dt, 0f) * _direction;
+            _currentAnimator.Position += new Vector2(0f, 200f * dt) * _direction;
 
             _currentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 

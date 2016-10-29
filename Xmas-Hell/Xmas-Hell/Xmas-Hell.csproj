@@ -58,6 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Physics\IPhysicsEntity.cs" />
+    <Compile Include="Physics\CollisionWorld.cs" />
+    <Compile Include="Physics\Collision\CollisionCircle.cs" />
+    <Compile Include="Physics\Collision\CollisionConvexPolygon.cs" />
+    <Compile Include="Physics\Collision\CollisionElement.cs" />
+    <Compile Include="Physics\Shapes\CircleShape.cs" />
+    <Compile Include="Physics\Shapes\ConvexShape.cs" />
+    <Compile Include="Physics\Shapes\IShape.cs" />
     <Compile Include="XmasHellActivity.cs" />
     <Compile Include="Assets.cs" />
     <Compile Include="BulletML\Mover.cs" />

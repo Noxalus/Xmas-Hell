@@ -75,9 +75,9 @@ namespace Xmas_Hell
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            GameManager.Draw(gameTime);
-
             base.Draw(gameTime);
+
+            GameManager.Draw(gameTime);
 
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
