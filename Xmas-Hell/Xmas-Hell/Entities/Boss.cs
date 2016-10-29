@@ -7,7 +7,6 @@ using MonoGame.Extended.Sprites;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterSprite = SpriterDotNet.MonoGame.Sprite;
 using Xmas_Hell.Spriter;
 
@@ -16,9 +15,9 @@ namespace Xmas_Hell.Entities
     class Boss
     {
         private XmasHell _game;
-        private Sprite _sprite;
         private float _initialLife;
         private float _life;
+        private float _direction = 1f;
 
         // Spriter
 
@@ -42,15 +41,10 @@ namespace Xmas_Hell.Entities
             _initialLife = initialLife;
             _life = initialLife;
 
-            //_sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/boss"))
-            //{
-            //    Position = position
-            //};
-
             // Spriter
             DefaultProviderFactory<SpriterSprite, SoundEffect> factory = new DefaultProviderFactory<SpriterSprite, SoundEffect>(config, true);
 
-            SpriterContentLoader loader = new SpriterContentLoader(_game.Content, "Graphics/Sprites/Bosses/XmasBall/spriter");
+            SpriterContentLoader loader = new SpriterContentLoader(_game.Content, "Graphics/Sprites/Bosses/XmasBall/xmas-ball");
             loader.Fill(factory);
 
             foreach (SpriterEntity entity in loader.Spriter.Entities)
@@ -71,7 +65,15 @@ namespace Xmas_Hell.Entities
 
         public void Update(GameTime gameTime)
         {
+            var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
             _life -= 0.01f;
+
+            if (currentAnimator.Position.X > GameConfig.VirtualResolution.X)
+                _direction = -1f;
+            else if (currentAnimator.Position.X < 0)
+                _direction = 1f;
+
+            currentAnimator.Position += new Vector2(500f * dt, 0f) * _direction;
 
             currentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }

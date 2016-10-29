@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r9">
+    <folder id="0">
+        <file id="0" name="body.png" width="224" height="224" pivot_x="0.5" pivot_y="0.4"/>
+        <file id="1" name="cheek.png" width="11" height="7" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="eye.png" width="21" height="21" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="mouth.png" width="35" height="35" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <entity id="0" name="Xmas-Ball">
+        <obj_info name="bone_000" type="bone" w="84.8196" h="10"/>
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="6" key="0"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="1" time="125">
+                    <bone_ref id="0" timeline="6" key="1"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="2" time="250">
+                    <bone_ref id="0" timeline="6" key="2"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="3" time="375">
+                    <bone_ref id="0" timeline="6" key="3"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="4" time="500">
+                    <bone_ref id="0" timeline="6" key="4"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="5" time="625">
+                    <bone_ref id="0" timeline="6" key="5"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="6" time="750">
+                    <bone_ref id="0" timeline="6" key="6"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="7" time="875">
+                    <bone_ref id="0" timeline="6" key="7"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-0" y="-0" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="eye">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="25" y="15" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="eye_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="25" y="-15" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="mouth">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-10" y="-0" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="cheek">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="10" y="-30" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="cheek_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="10" y="35" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="6" obj="0" name="bone_000" object_type="bone">
+                <key id="0" spin="-1">
+                    <bone angle="90"/>
+                </key>
+                <key id="1" time="125">
+                    <bone y="5" angle="80"/>
+                </key>
+                <key id="2" time="250">
+                    <bone y="10" angle="90"/>
+                </key>
+                <key id="3" time="375" spin="-1">
+                    <bone y="5" angle="100"/>
+                </key>
+                <key id="4" time="500" spin="-1">
+                    <bone angle="90"/>
+                </key>
+                <key id="5" time="625">
+                    <bone y="-5" angle="80"/>
+                </key>
+                <key id="6" time="750">
+                    <bone y="-10" angle="90"/>
+                </key>
+                <key id="7" time="875" spin="-1">
+                    <bone y="-5" angle="100"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

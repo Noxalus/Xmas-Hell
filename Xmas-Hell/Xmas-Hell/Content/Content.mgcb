@@ -104,7 +104,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Pictures/pixel.png
 
-#begin Graphics/Sprites/Bosses/XmasBall/xmas-ball.png
+#begin Graphics/Sprites/Bosses/XmasBall/body.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -114,10 +114,46 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasBall/xmas-ball.png
+/build:Graphics/Sprites/Bosses/XmasBall/body.png
 
-#begin Graphics/Sprites/Bosses/XmasBall/spriter.scml
+#begin Graphics/Sprites/Bosses/XmasBall/cheek.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasBall/cheek.png
+
+#begin Graphics/Sprites/Bosses/XmasBall/eye.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasBall/eye.png
+
+#begin Graphics/Sprites/Bosses/XmasBall/mouth.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasBall/mouth.png
+
+#begin Graphics/Sprites/Bosses/XmasBall/xmas-ball.scml
 /importer:SpriterImporter
 /processor:PassThroughProcessor
-/build:Graphics/Sprites/Bosses/XmasBall/spriter.scml
+/build:Graphics/Sprites/Bosses/XmasBall/xmas-ball.scml
 
