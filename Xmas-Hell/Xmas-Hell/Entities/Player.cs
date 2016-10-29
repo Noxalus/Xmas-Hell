@@ -37,6 +37,9 @@ namespace Xmas_Hell.Entities
                 ),
                 Scale = Vector2.One
             };
+
+            // Don't forget to set the player position delegate to the MoverManager
+            _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
         }
 
         public void Update(GameTime gameTime)

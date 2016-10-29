@@ -8,9 +8,13 @@ namespace Xmas_Hell.BulletML
     {
         public readonly List<Mover> Movers = new List<Mover>();
         private readonly List<Mover> _topLevelMovers = new List<Mover>();
-        private readonly PositionDelegate _getPlayerPosition;
+        private PositionDelegate _getPlayerPosition;
 
-        public MoverManager(PositionDelegate playerDelegate)
+        public MoverManager()
+        {
+        }
+
+        public void SetPlayerPositionDelegate(PositionDelegate playerDelegate)
         {
             _getPlayerPosition = playerDelegate;
         }

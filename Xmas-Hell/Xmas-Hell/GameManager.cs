@@ -3,6 +3,7 @@ using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
 using Bullet = Xmas_Hell.Entities.Bullet;
 
@@ -12,11 +13,13 @@ namespace Xmas_Hell
     {
         private XmasHell _game;
         private List<Bullet> _bullets;
+
+        public MoverManager MoverManager;
         static public FloatDelegate GameDifficulty;
 
-        public List<Bullet> GetBossBullets()
+        public List<Mover> GetBossBullets()
         {
-            return _bullets.Where(b => !(b is PlayerBullet)).ToList();
+            return MoverManager.Movers;
         }
 
         public List<Bullet> GetPlayerBullets()
@@ -28,6 +31,7 @@ namespace Xmas_Hell
         {
             _game = game;
             _bullets = new List<Bullet>();
+            MoverManager = new MoverManager();
         }
 
         public void Update(GameTime gameTime)
@@ -39,6 +43,8 @@ namespace Xmas_Hell
 
                 CheckCollision(bullet);
             }
+
+            MoverManager.Update();
         }
 
         private void CheckCollision(Bullet bullet)
@@ -73,6 +79,11 @@ namespace Xmas_Hell
 
             foreach (var bullet in _bullets)
                 bullet.Draw(gameTime);
+
+            foreach (var mover in MoverManager.Movers)
+            {
+                _game.SpriteBatch.Draw(Assets.GetTexture2D("Graphics/Sprites/bullet"), mover.Position, Color.White);
+            }
 
             _game.SpriteBatch.End();
         }

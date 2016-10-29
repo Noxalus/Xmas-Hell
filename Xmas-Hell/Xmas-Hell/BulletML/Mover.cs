@@ -34,8 +34,8 @@ namespace Xmas_Hell.BulletML
         {
             base.Update();
 
-            //if (X < 0 || X > Config.GameAeraSize.X || Y < 0 || Y > Config.GameAeraSize.Y)
-            //    Used = false;
+            if (X < 0 || X > GameConfig.VirtualResolution.X || Y < 0 || Y > GameConfig.VirtualResolution.Y)
+                Used = false;
         }
     }
 }
