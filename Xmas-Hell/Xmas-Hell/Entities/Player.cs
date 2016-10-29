@@ -27,8 +27,8 @@ namespace Xmas_Hell.Entities
             {
                 Origin = new Vector2(playerTexture.Width / 2f, playerTexture.Height / 2f),
                 Position = new Vector2(
-                    Config.VirtualResolution.X / 2f,
-                    Config.VirtualResolution.Y - 150
+                    GameConfig.VirtualResolution.X / 2f,
+                    GameConfig.VirtualResolution.Y - 150
                 ),
                 Scale = Vector2.One
             };
@@ -56,7 +56,7 @@ namespace Xmas_Hell.Entities
                 var currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
                 var touchDelta = (currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                _sprite.Position = _initialSpritePosition + (touchDelta * Config.PlayerMoveSensitivity);
+                _sprite.Position = _initialSpritePosition + (touchDelta * GameConfig.PlayerMoveSensitivity);
             }
             else
             {
@@ -71,13 +71,13 @@ namespace Xmas_Hell.Entities
                 _bulletFrequence -= gameTime.ElapsedGameTime;
             else
             {
-                _bulletFrequence = TimeSpan.FromTicks(Config.PlayerShootFrequency.Ticks);
+                _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
 
-                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, Config.PlayerBulletSpeed);
-                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, Config.PlayerBulletSpeed);
-                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, Config.PlayerBulletSpeed);
-                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, Config.PlayerBulletSpeed);
-                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, Config.PlayerBulletSpeed);
+                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
+                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
+                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, GameConfig.PlayerBulletSpeed);
+                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
+                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
 
                 _game.GameManager.AddBullet(bullet1);
                 _game.GameManager.AddBullet(bullet2);

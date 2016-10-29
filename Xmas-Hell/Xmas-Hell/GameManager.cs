@@ -1,14 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Xmas_Hell.Entities;
@@ -51,8 +43,8 @@ namespace Xmas_Hell
         {
             // TODO: Check collision
 
-            if (bullet.Position.X < 0 || bullet.Position.X > Config.VirtualResolution.X ||
-                bullet.Position.Y < 0 || bullet.Position.Y > Config.VirtualResolution.Y)
+            if (bullet.Position.X < 0 || bullet.Position.X > GameConfig.VirtualResolution.X ||
+                bullet.Position.Y < 0 || bullet.Position.Y > GameConfig.VirtualResolution.Y)
             {
                 RemoveBullet(bullet);
             }

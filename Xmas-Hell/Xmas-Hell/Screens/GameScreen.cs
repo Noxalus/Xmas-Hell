@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Screens;
-using MonoGame.Extended.Sprites;
+using SpriterDotNet.MonoGame;
 using Xmas_Hell.Entities;
 
 namespace Xmas_Hell.Screens
@@ -21,7 +22,7 @@ namespace Xmas_Hell.Screens
         {
             _player = new Player(_game);
             var bossPosition = new Vector2(
-                Config.VirtualResolution.X / 2f,
+                GameConfig.VirtualResolution.X / 2f,
                 150f
             );
             _boss = new Boss(_game, bossPosition, 100);

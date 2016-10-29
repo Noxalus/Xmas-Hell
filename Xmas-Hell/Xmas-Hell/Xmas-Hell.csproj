@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="Activity1.cs" />
     <Compile Include="Assets.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="GameConfig.cs" />
     <Compile Include="Entities\Boss.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Player.cs" />
@@ -68,6 +68,8 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Spriter\MonoGameDebugAnimator.cs" />
+    <Compile Include="Spriter\TextureUtil.cs" />
     <Compile Include="XmasHell.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +107,10 @@
     <ProjectReference Include="..\MonoGame.Extended\Source\MonoGame.Extended\MonoGame.Extended.csproj">
       <Project>{41724c52-3d50-45bb-81eb-3c8a247eafd1}</Project>
       <Name>MonoGame.Extended</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpriterDotNet\SpriterDotNet.MonoGame\SpriterDotNet.MonoGame.csproj">
+      <Project>{10c1ed31-6945-4617-85ad-d2575550149d}</Project>
+      <Name>SpriterDotNet.MonoGame</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

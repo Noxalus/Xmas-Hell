@@ -32,7 +32,7 @@ namespace Xmas_Hell
 
         protected override void Initialize()
         {
-            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Config.VirtualResolution.X, Config.VirtualResolution.Y);
+            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
             GameManager = new GameManager(this);
 
