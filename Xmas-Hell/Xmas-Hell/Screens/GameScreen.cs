@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
-using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
 
 namespace Xmas_Hell.Screens
@@ -23,6 +20,7 @@ namespace Xmas_Hell.Screens
         public GameScreen(XmasHell game)
         {
             _game = game;
+            GameManager.GameDifficulty = GetRank;
         }
 
         public override void Initialize()
@@ -36,8 +34,10 @@ namespace Xmas_Hell.Screens
 
             base.Initialize();
 
-
-            GameManager.GameDifficulty = GetRank;
+            // Should play music (doesn't seem to work for now...)
+            MediaPlayer.Volume = 1f;
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Assets.GetMusic("Audio/BGM/boss-theme"));
         }
 
         public override void Update(GameTime gameTime)

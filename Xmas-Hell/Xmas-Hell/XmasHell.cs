@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
@@ -76,6 +77,10 @@ namespace Xmas_Hell
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             base.Draw(gameTime);
+
+            SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
+            SpriteBatch.Draw(Assets.GetTexture2D("Graphics/Pictures/background"), new Rectangle(0, 0, 720, 1280), Color.White);
+            SpriteBatch.End();
 
             GameManager.Draw(gameTime);
 

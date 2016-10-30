@@ -14,7 +14,10 @@ namespace Xmas_Hell.Spriter
 
         public MonoGameDebugAnimator(SpriterEntity entity, GraphicsDevice graphicsDevice, IProviderFactory<Sprite, SoundEffect> providerFactory = null) : base(entity, providerFactory)
         {
-            pointTexture = new Sprite { Texture = TextureUtil.CreateCircle(graphicsDevice, 5, Color.Cyan) };
+            pointTexture = new Sprite
+            {
+                Texture = TextureUtil.CreateCircle(graphicsDevice, 1, Color.Cyan)
+            };
 
             if (entity.ObjectInfos != null)
             {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Android.App;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.BitmapFonts;
 using Stream = System.IO.Stream;
 
@@ -12,6 +13,7 @@ namespace Xmas_Hell
         private static List<BitmapFont> _fonts;
         private static List<Texture2D> _textures;
         private static Dictionary<string, Stream> _patternSteams;
+        private static List<Song> _musics;
 
         public static void Load(Activity activity, ContentManager content)
         {
@@ -20,6 +22,7 @@ namespace Xmas_Hell
             {
                 // Pictures
                 content.Load<Texture2D>("Graphics/Pictures/pixel"),
+                content.Load<Texture2D>("Graphics/Pictures/background"),
 
                 // Sprites
                 content.Load<Texture2D>("Graphics/Sprites/bullet"),
@@ -39,6 +42,12 @@ namespace Xmas_Hell
             {
                 { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") }
             };
+
+            // Load musics
+            _musics = new List<Song>()
+            {
+                content.Load<Song>("Audio/BGM/boss-theme")
+            };
         }
 
         public static Texture2D GetTexture2D(string textureName)
@@ -54,6 +63,11 @@ namespace Xmas_Hell
         public static Stream GetPattern(string patternName)
         {
             return _patternSteams[patternName];
+        }
+
+        public static Song GetMusic(string musicName)
+        {
+            return _musics.Find(m => m.Name == musicName);
         }
     }
 }
