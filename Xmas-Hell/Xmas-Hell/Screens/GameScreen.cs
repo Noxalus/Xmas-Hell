@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Entities.Bosses;
 
 namespace Xmas_Hell.Screens
 {
@@ -26,13 +27,11 @@ namespace Xmas_Hell.Screens
         public override void Initialize()
         {
             _player = new Player(_game);
-            var bossPosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                150f
-            );
-            _boss = new Boss(_game, bossPosition, 100);
+            _boss = new XmasLog(_game);
 
             base.Initialize();
+
+            _boss.Initialize();
 
             // Should play music (doesn't seem to work for now...)
             MediaPlayer.Volume = 1f;

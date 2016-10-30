@@ -58,6 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Bosses\XmasBall.cs" />
+    <Compile Include="Entities\Bosses\XmasLog.cs" />
     <Compile Include="Particles\ParticleManager.cs" />
     <Compile Include="Physics\IPhysicsEntity.cs" />
     <Compile Include="Physics\CollisionWorld.cs" />
@@ -72,7 +74,7 @@
     <Compile Include="BulletML\Mover.cs" />
     <Compile Include="BulletML\MoverManager.cs" />
     <Compile Include="GameConfig.cs" />
-    <Compile Include="Entities\Boss.cs" />
+    <Compile Include="Entities\Bosses\Boss.cs" />
     <Compile Include="Entities\Bullet.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\PlayerBullet.cs" />
