@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,12 +5,11 @@ using MonoGame.Extended.Shapes;
 
 namespace Xmas_Hell.Physics.Collision
 {
-    class CollisionConvexPolygon : CollisionElement
+    public class CollisionConvexPolygon : CollisionElement
     {
         private Vector2 _relativePosition;
         // Local positions relative to the entity position
-        private List<Vector2> _vertices;
-
+        private readonly List<Vector2> _vertices;
 
         public CollisionConvexPolygon(IPhysicsEntity entity, Vector2 relativePosition, List<Vector2> vertices) : base(entity)
         {
@@ -21,6 +19,7 @@ namespace Xmas_Hell.Physics.Collision
 
         public Vector2 GetWorldPosition(Vector2 vertex)
         {
+            // TODO: Use the relative position
             var entityTransformMatrix = GetMatrix();
             var vertexPosition = new Vector3(vertex.X, vertex.Y, 0f);
             var transformedVertexPosition = Vector3.Transform(vertexPosition, entityTransformMatrix);
@@ -29,7 +28,85 @@ namespace Xmas_Hell.Physics.Collision
             return newPosition;
         }
 
-        public override bool Intersects(CollisionElement element)
+        public override bool Intersects(CollisionCircle circle)
+        {
+            var radiusSquared = circle.Radius * circle.Radius;
+            var vertex = GetWorldPosition(_vertices[_vertices.Count - 1]);
+            var circleCenter = circle.GetCenter();
+            var nearestDistance = float.MaxValue;
+            var nearestIsInside = false;
+            var nearestVertex = -1;
+            var lastIsInside = false;
+
+            for (var i = 0; i < _vertices.Count; i++)
+            {
+                var nextVertex = GetWorldPosition(_vertices[i]);
+                var axis = circleCenter - vertex;
+                var distance = axis.LengthSquared() - radiusSquared;
+
+                if (distance <= 0)
+                    return true;
+
+                var isInside = false;
+                var edge = nextVertex - vertex;
+                var edgeLengthSquared = edge.LengthSquared();
+
+                if (!edgeLengthSquared.Equals(0))
+                {
+                    var dot = Vector2.Dot(edge, axis);
+
+                    if (dot >= 0 && dot <= edgeLengthSquared)
+                    {
+                        var projection = vertex + (dot / edgeLengthSquared) * edge;
+
+                        axis = projection - circleCenter;
+
+                        if (axis.LengthSquared() <= radiusSquared)
+                            return true;
+
+                        if (edge.X > 0)
+                        {
+                            if (axis.Y > 0)
+                                return false;
+                        }
+                        else if (edge.X < 0)
+                        {
+                            if (axis.Y < 0)
+                                return false;
+                        }
+                        else if (edge.Y > 0)
+                        {
+                            if (axis.X < 0)
+                                return false;
+                        }
+                        else
+                        {
+                            if (axis.X > 0)
+                                return false;
+                        }
+
+                        isInside = true;
+                    }
+                }
+
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestIsInside = isInside || lastIsInside;
+                    nearestVertex = i;
+                }
+
+                vertex = nextVertex;
+                lastIsInside = isInside;
+            }
+
+            if (nearestVertex == 0)
+                return nearestIsInside || lastIsInside;
+
+            return nearestIsInside;
+        }
+
+        public override bool Intersects(CollisionConvexPolygon element)
         {
             throw new System.NotImplementedException();
         }

@@ -26,7 +26,21 @@ namespace Xmas_Hell.Physics.Collision
                 Matrix.CreateTranslation(position.X, position.Y, 0.0f);
         }
 
-        public abstract bool Intersects(CollisionElement element);
+        public abstract bool Intersects(CollisionCircle element);
+        public abstract bool Intersects(CollisionConvexPolygon element);
+
+        public bool Intersects(CollisionElement element)
+        {
+            var circle = element as CollisionCircle;
+            if (circle != null)
+                return Intersects(circle);
+
+            var convexPolygon = element as CollisionConvexPolygon;
+            if (convexPolygon != null)
+                return Intersects(convexPolygon);
+
+            throw new System.NotImplementedException();
+        }
 
         // For debug purpose
         public abstract void Draw(SpriteBatch spriteBatch);
