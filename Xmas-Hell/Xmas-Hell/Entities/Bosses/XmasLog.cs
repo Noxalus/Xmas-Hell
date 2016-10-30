@@ -14,6 +14,39 @@ namespace Xmas_Hell.Entities.Bosses
 {
     class XmasLog : Boss
     {
+        public override Vector2 Position()
+        {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return base.Position() + new Vector2(spriteData.X, -spriteData.Y);
+            }
+
+            return base.Position();
+        }
+
+        public override float Rotation()
+        {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return MathHelper.ToRadians(-spriteData.Angle);
+            }
+
+            return base.Rotation();
+        }
+
+        public override Vector2 Scale()
+        {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return new Vector2(spriteData.ScaleX, spriteData.ScaleY);
+            }
+
+            return base.Scale();
+        }
+
         public XmasLog(XmasHell game) : base(game)
         {
             Game = game;
@@ -47,7 +80,16 @@ namespace Xmas_Hell.Entities.Bosses
             pattern.ParseStream(filename, Assets.GetPattern(filename));
 
             // Physics
-            Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
+            var bossSpriteSize = new Vector2(119, 231);
+            var bossPivot = new Vector2(0.5f, 0.55f);
+            var bossCollisionBoxVertices = new List<Vector2>()
+            {
+                new Vector2(-(bossSpriteSize.X * bossPivot.X),  -(bossSpriteSize.Y * bossPivot.Y)),
+                new Vector2(bossSpriteSize.X * bossPivot.X, -(bossSpriteSize.Y * bossPivot.Y)),
+                new Vector2(bossSpriteSize.X * bossPivot.X, bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y)),
+                new Vector2(-(bossSpriteSize.X * bossPivot.X), bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y))
+            };
+            Game.GameManager.CollisionWorld.BossHitbox = new CollisionConvexPolygon(this, Vector2.Zero, bossCollisionBoxVertices);
         }
 
         public override void Update(GameTime gameTime)

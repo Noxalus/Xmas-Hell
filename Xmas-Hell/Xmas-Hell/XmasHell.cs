@@ -20,6 +20,8 @@ namespace Xmas_Hell
         public ViewportAdapter ViewportAdapter;
         public GameManager GameManager;
         private XmasHellActivity _activity;
+        private KeyboardState _oldKeyboardState;
+        private bool _pause;
 
         private FramesPerSecondCounterComponent _fpsCounter;
 
@@ -41,6 +43,8 @@ namespace Xmas_Hell
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
             base.Initialize();
+
+            _pause = false;
 
             GameManager.Initialize();
 
@@ -64,10 +68,21 @@ namespace Xmas_Hell
         {
         }
 
+        private bool IsPressed(Keys key)
+        {
+            KeyboardState state = Keyboard.GetState();
+            return _oldKeyboardState.IsKeyUp(key) && state.IsKeyDown(key);
+        }
+
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                Exit();
+            if (IsPressed(Keys.P))
+                _pause = !_pause;
+
+            _oldKeyboardState = Keyboard.GetState();
+
+            if (_pause)
+                return;
 
             GameManager.Update(gameTime);
 
@@ -76,6 +91,9 @@ namespace Xmas_Hell
 
         protected override void Draw(GameTime gameTime)
         {
+            if (_pause)
+                return;
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());

@@ -18,17 +18,17 @@ namespace Xmas_Hell.Entities
         protected float Life;
         protected float Direction = 1f;
 
-        public Vector2 Position()
+        public virtual Vector2 Position()
         {
             return CurrentAnimator.Position;
         }
 
-        public float Rotation()
+        public virtual float Rotation()
         {
             return CurrentAnimator.Rotation;
         }
 
-        public Vector2 Scale()
+        public virtual Vector2 Scale()
         {
             return CurrentAnimator.Scale;
         }
