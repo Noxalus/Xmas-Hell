@@ -10,5 +10,6 @@ namespace Xmas_Hell
         public static float PlayerMoveSensitivity = 1f;
         public static float PlayerBulletSpeed = 2000f;
         public static int BossDefaultLife = 1000;
+        public static bool DisplayCollisionBoxes = false;
     }
 }

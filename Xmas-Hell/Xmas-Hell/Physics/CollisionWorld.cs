@@ -67,14 +67,17 @@ namespace Xmas_Hell.Physics
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            PlayerHitbox?.Draw(spriteBatch);
-            BossHitbox?.Draw(spriteBatch);
+            if (GameConfig.DisplayCollisionBoxes)
+            {
+                PlayerHitbox?.Draw(spriteBatch);
+                BossHitbox?.Draw(spriteBatch);
 
-            foreach (var playerBulletHitbox in PlayerBulletHitboxes)
-                playerBulletHitbox.Draw(spriteBatch);
+                foreach (var playerBulletHitbox in PlayerBulletHitboxes)
+                    playerBulletHitbox.Draw(spriteBatch);
 
-            foreach (var bossBulletHitbox in BossBulletHitboxes)
-                bossBulletHitbox.Draw(spriteBatch);
+                foreach (var bossBulletHitbox in BossBulletHitboxes)
+                    bossBulletHitbox.Draw(spriteBatch);
+            }
         }
     }
 }
