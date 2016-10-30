@@ -15,13 +15,15 @@ namespace Xmas_Hell
         private static Dictionary<string, Stream> _patternSteams;
         private static List<Song> _musics;
 
-        public static void Load(Activity activity, ContentManager content)
+        public static void Load(Activity activity, ContentManager content, GraphicsDevice graphicsDevice)
         {
+            var pixel = new Texture2D(graphicsDevice, 1, 1) {Name = "pixel"};
+
             // Load sprites
             _textures = new List<Texture2D>()
             {
                 // Pictures
-                content.Load<Texture2D>("Graphics/Pictures/pixel"),
+                pixel,
                 content.Load<Texture2D>("Graphics/Pictures/background"),
 
                 // Sprites

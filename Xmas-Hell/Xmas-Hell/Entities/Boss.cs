@@ -163,7 +163,7 @@ namespace Xmas_Hell.Entities
 
             var percent = _life / _initialLife;
             _game.SpriteBatch.Draw(
-                Assets.GetTexture2D("Graphics/Pictures/pixel"),
+                Assets.GetTexture2D("pixel"),
                 new Rectangle(0, 0, (int)(percent * GameConfig.VirtualResolution.X), 20),
                 Color.Black
             );

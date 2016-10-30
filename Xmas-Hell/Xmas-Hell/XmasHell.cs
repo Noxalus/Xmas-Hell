@@ -55,7 +55,7 @@ namespace Xmas_Hell
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Assets.Load(_activity, Content);
+            Assets.Load(_activity, Content, GraphicsDevice);
         }
 
         protected override void UnloadContent()
