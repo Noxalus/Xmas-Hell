@@ -1,10 +1,13 @@
 using System;
+using Android.InputMethodServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoGame.Extended.Sprites;
 using Xmas_Hell.Physics;
 using Xmas_Hell.Physics.Collision;
+using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 
 namespace Xmas_Hell.Entities
 {
@@ -68,11 +71,17 @@ namespace Xmas_Hell.Entities
 
         public void Destroy()
         {
+            _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
             Initialize();
         }
 
         public void Update(GameTime gameTime)
         {
+            var keyboardState = Keyboard.GetState();
+
+            if (keyboardState.IsKeyDown(Keys.Enter))
+                _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
+
             UpdatePosition(gameTime);
             UpdateShoot(gameTime);
         }

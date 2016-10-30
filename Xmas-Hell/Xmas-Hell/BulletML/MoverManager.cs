@@ -82,6 +82,9 @@ namespace Xmas_Hell.BulletML
 
         public void Clear()
         {
+            foreach (var mover in Movers)
+                mover.Used = false;
+
             Movers.Clear();
             _topLevelMovers.Clear();
         }

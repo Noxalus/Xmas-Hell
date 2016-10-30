@@ -32,15 +32,17 @@ namespace Xmas_Hell
             Graphics.SupportedOrientations = DisplayOrientation.Portrait;
 
             _activity = activity;
+
+            GameManager = new GameManager(this);
         }
 
         protected override void Initialize()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
-            GameManager = new GameManager(this);
-
             base.Initialize();
+
+            GameManager.Initialize();
 
             ScreenComponent screenComponent;
             Components.Add(screenComponent = new ScreenComponent(this));

@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Particles\ParticleManager.cs" />
     <Compile Include="Physics\IPhysicsEntity.cs" />
     <Compile Include="Physics\CollisionWorld.cs" />
     <Compile Include="Physics\Collision\CollisionCircle.cs" />

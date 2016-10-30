@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Android.App;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -18,6 +19,7 @@ namespace Xmas_Hell
         public static void Load(Activity activity, ContentManager content, GraphicsDevice graphicsDevice)
         {
             var pixel = new Texture2D(graphicsDevice, 1, 1) {Name = "pixel"};
+            pixel.SetData(new[] { Color.White });
 
             // Load sprites
             _textures = new List<Texture2D>()

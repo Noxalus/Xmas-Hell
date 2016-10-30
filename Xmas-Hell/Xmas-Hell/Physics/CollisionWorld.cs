@@ -10,13 +10,15 @@ namespace Xmas_Hell.Physics
 {
     public class CollisionWorld
     {
+        private XmasHell _game;
         public CollisionCircle PlayerHitbox;
         public CollisionElement BossHitbox;
         public readonly List<CollisionCircle> PlayerBulletHitboxes = new List<CollisionCircle>();
         public readonly List<CollisionElement> BossBulletHitboxes = new List<CollisionElement>();
 
-        public CollisionWorld()
+        public CollisionWorld(XmasHell game)
         {
+            _game = game;
         }
 
         public void Update(GameTime gameTime)
@@ -28,8 +30,10 @@ namespace Xmas_Hell.Physics
                 {
                     if (playerBulletHitbox.Intersects(BossHitbox))
                     {
-                        ((Bullet) playerBulletHitbox.Entity).Destroy();
+                        var playerBullet = (Bullet) playerBulletHitbox.Entity;
+                        playerBullet.Destroy();
                         ((Boss) BossHitbox.Entity).TakeDamage(1);
+                        _game.GameManager.ParticleManager.EmitBossHitParticles(playerBullet.Position());
                     }
                 }
             }

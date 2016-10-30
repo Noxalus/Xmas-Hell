@@ -19,6 +19,7 @@ namespace Xmas_Hell.Entities
     class Boss : IPhysicsEntity
     {
         private XmasHell _game;
+        private Vector2 _initialPosition;
         private float _initialLife;
         private float _life;
         private float _direction = 1f;
@@ -70,9 +71,8 @@ namespace Xmas_Hell.Entities
         public Boss(XmasHell game, Vector2 position, float initialLife)
         {
             _game = game;
-
+            _initialPosition = position;
             _initialLife = initialLife;
-            _life = initialLife;
 
             // Spriter
             DefaultProviderFactory<SpriterSprite, SoundEffect> factory = new DefaultProviderFactory<SpriterSprite, SoundEffect>(_animatorConfig, true);
@@ -84,7 +84,6 @@ namespace Xmas_Hell.Entities
             {
                 var animator = new MonoGameDebugAnimator(entity, _game.GraphicsDevice, factory);
                 _animators.Add(animator);
-                animator.Position = position;
             }
 
             _currentAnimator = _animators.First();
@@ -103,6 +102,21 @@ namespace Xmas_Hell.Entities
 
             // Physics
             _game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
+
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            _game.GameManager.MoverManager.Clear();
+            _life = _initialLife;
+            _currentAnimator.Position = _initialPosition;
+        }
+
+        public void Destroy()
+        {
+            _game.GameManager.ParticleManager.EmitBossDestroyedParticles(_currentAnimator.Position);
+            Initialize();
         }
 
         private void CurrentAnimator_EventTriggered(string obj)
@@ -127,7 +141,7 @@ namespace Xmas_Hell.Entities
             _life -= amount;
 
             if (_life < 0f)
-                _life = _initialLife;
+                Destroy();
         }
 
         public void Update(GameTime gameTime)
