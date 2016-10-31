@@ -216,6 +216,7 @@ namespace Xmas_Hell.Entities
                     {
                         TargetingPosition = false;
                         _targetDirection = Vector2.Zero;
+                        CurrentAnimator.Position = _targetPosition;
                     }
                     else
                     {
@@ -235,6 +236,7 @@ namespace Xmas_Hell.Entities
                     {
                         TargetingPosition = false;
                         _targetPositionTimer = TimeSpan.Zero;
+                        CurrentAnimator.Position = _targetPosition;
                     }
                     else
                         _targetPositionTime -= gameTime.ElapsedGameTime;

@@ -27,7 +27,7 @@ namespace Xmas_Hell.Screens
         public override void Initialize()
         {
             _player = new Player(_game);
-            _boss = new XmasLog(_game);
+            _boss = new XmasBall(_game);
 
             base.Initialize();
 

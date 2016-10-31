@@ -23,6 +23,7 @@ namespace Xmas_Hell.Entities.Bosses
             Pattern4
         };
 
+        private BossState _previousPatternState;
         private BossState _currentPatternState;
         private TimeSpan _newPositionTime;
 
@@ -45,6 +46,14 @@ namespace Xmas_Hell.Entities.Bosses
             CurrentAnimator = Animators.First();
             CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
 
+            CurrentAnimator.AnimationFinished += delegate (string animationName)
+            {
+                if (animationName == "Breathe_In")
+                    CurrentAnimator.Play("Big_Idle");
+                else if (animationName == "Breathe_Out")
+                    CurrentAnimator.Play("Idle");
+            };
+
             // BulletML
             BossPatterns = new List<BulletPattern>();
             BossBulletFrequence = TimeSpan.Zero;
@@ -64,6 +73,8 @@ namespace Xmas_Hell.Entities.Bosses
         {
             base.Update(gameTime);
 
+            _previousPatternState = _currentPatternState;
+
             // Update boss state
             if (Life < InitialLife/4f)
                 _currentPatternState = BossState.Pattern4;
@@ -74,11 +85,16 @@ namespace Xmas_Hell.Entities.Bosses
             else if (Life <= InitialLife)
                 _currentPatternState = BossState.Pattern1;
 
+            if (_currentPatternState != _previousPatternState)
+                Game.GameManager.MoverManager.Clear();
+
+            //_currentPatternState = BossState.Pattern2;
+
             switch (_currentPatternState)
             {
                 case BossState.Pattern1:
                     Behaviour1(gameTime);
-                    break;
+                break;
 
                 case BossState.Pattern2:
                     Behaviour2(gameTime);
@@ -119,11 +135,10 @@ namespace Xmas_Hell.Entities.Bosses
             else
             {
                 _newPositionTime = TimeSpan.FromSeconds((Game.GameManager.Random.NextDouble() * 2.5) + 0.5);
-                _newPositionTime = TimeSpan.FromMilliseconds(30);
 
                 var newPosition = new Vector2(
                     Game.GameManager.Random.Next((int)(Width() / 2f), GameConfig.VirtualResolution.X - (int)(Width() / 2f)),
-                    Game.GameManager.Random.Next((int)(Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Height() / 2f))
+                    Game.GameManager.Random.Next((int)(Height() / 2f) + 42, 288 - (int)(Height() / 2f))
                 );
 
                 MoveTo(newPosition);
@@ -140,7 +155,32 @@ namespace Xmas_Hell.Entities.Bosses
 
         private void Behaviour2(GameTime gameTime)
         {
+            var screenCenter = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                GameConfig.VirtualResolution.Y / 2f
+            );
 
+            if (!TargetingPosition && !CurrentAnimator.Position.Equals(screenCenter))
+                MoveTo(screenCenter);
+            else if (CurrentAnimator.Position.Equals(screenCenter))
+            {
+                if (CurrentAnimator.CurrentAnimation.Name == "Idle")
+                    CurrentAnimator.Play("Breathe_In");
+                else if (CurrentAnimator.CurrentAnimation.Name == "Big_Idle")
+                {
+                    CurrentAnimator.Play("Breathe_Out");
+                }
+                else if (CurrentAnimator.CurrentAnimation.Name == "Breathe_Out")
+                {
+                    if (BossBulletFrequence.TotalMilliseconds > 0)
+                        BossBulletFrequence -= gameTime.ElapsedGameTime;
+                    else
+                    {
+                        BossBulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
+                        AddBullet();
+                    }
+                }
+            }
         }
 
         private void Behaviour3(GameTime gameTime)

@@ -4,12 +4,6 @@ using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using MonoGame.Extended.Particles;
-using MonoGame.Extended.Particles.Modifiers;
-using MonoGame.Extended.Particles.Modifiers.Containers;
-using MonoGame.Extended.Particles.Profiles;
-using MonoGame.Extended.TextureAtlases;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
 using Xmas_Hell.Particles;
@@ -22,6 +16,8 @@ namespace Xmas_Hell
     {
         private XmasHell _game;
         private List<Bullet> _bullets;
+
+        public Random Random;
 
         // BulletML
         public MoverManager MoverManager;
@@ -50,6 +46,9 @@ namespace Xmas_Hell
             MoverManager = new MoverManager(_game);
             CollisionWorld = new CollisionWorld(_game);
             ParticleManager = new ParticleManager(_game);
+
+            Random = new Random(GameConfig.RandomSeed);
+            //Random = new Random();
         }
 
         public void Initialize()
