@@ -24,6 +24,7 @@ namespace Xmas_Hell.Entities.Bosses
         };
 
         private BossState _currentPatternState;
+        private TimeSpan _newPositionTime;
 
         public XmasBall(XmasHell game) : base(game)
         {
@@ -108,7 +109,25 @@ namespace Xmas_Hell.Entities.Bosses
                 -(float)Math.Sin(Direction)
             );
 
-            CurrentAnimator.Position += new Vector2(Speed * gameTime.GetElapsedSeconds(), 0f) * direction;
+            //CurrentAnimator.Position += new Vector2(Speed * gameTime.GetElapsedSeconds(), 0f) * direction;
+
+            if (_newPositionTime.TotalMilliseconds > 0)
+            {
+                if (!TargetingPosition)
+                    _newPositionTime -= gameTime.ElapsedGameTime;
+            }
+            else
+            {
+                _newPositionTime = TimeSpan.FromSeconds((Game.GameManager.Random.NextDouble() * 2.5) + 0.5);
+                _newPositionTime = TimeSpan.FromMilliseconds(30);
+
+                var newPosition = new Vector2(
+                    Game.GameManager.Random.Next((int)(Width() / 2f), GameConfig.VirtualResolution.X - (int)(Width() / 2f)),
+                    Game.GameManager.Random.Next((int)(Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Height() / 2f))
+                );
+
+                MoveTo(newPosition);
+            }
 
             if (BossBulletFrequence.TotalMilliseconds > 0)
                 BossBulletFrequence -= gameTime.ElapsedGameTime;
