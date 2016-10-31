@@ -16,21 +16,61 @@ namespace Xmas_Hell.Entities
         protected Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
-        protected float Direction = 1f;
+        protected float Direction = 0; // angle in radians
+        protected float Speed = 100f;
 
         public virtual Vector2 Position()
         {
-            return CurrentAnimator.Position;
+            var currentPosition = CurrentAnimator.Position;
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return currentPosition + new Vector2(spriteData.X, -spriteData.Y);
+            }
+
+            return currentPosition;
         }
 
         public virtual float Rotation()
         {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return MathHelper.ToRadians(-spriteData.Angle);
+            }
+
             return CurrentAnimator.Rotation;
         }
 
         public virtual Vector2 Scale()
         {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return new Vector2(spriteData.ScaleX, spriteData.ScaleY);
+            }
+
             return CurrentAnimator.Scale;
+        }
+
+        public virtual float Width()
+        {
+            if (CurrentAnimator.SpriteProvider != null)
+            {
+                return CurrentAnimator.SpriteProvider.Get(0, 0).Width;
+            }
+
+            return 0f;
+        }
+
+        public virtual float Height()
+        {
+            if (CurrentAnimator.SpriteProvider != null)
+            {
+                return CurrentAnimator.SpriteProvider.Get(0, 0).Height;
+            }
+
+            return 0f;
         }
 
         public Vector2 ActionPointPosition()
