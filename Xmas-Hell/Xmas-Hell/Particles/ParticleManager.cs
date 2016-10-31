@@ -41,7 +41,13 @@ namespace Xmas_Hell.Particles
             {
                 Emitters = new[]
                 {
-                    new ParticleEmitter(pixelTextureRegion, 5000, TimeSpan.FromSeconds(2.5), Profile.Circle(30f, Profile.CircleRadiation.Out))
+                    new ParticleEmitter(
+                        pixelTextureRegion,
+                        5000,
+                        TimeSpan.FromSeconds(2.5),
+                        Profile.Circle(30f, Profile.CircleRadiation.Out),
+                        false
+                    )
                     {
                         Parameters = new ParticleReleaseParameters
                         {
@@ -62,7 +68,13 @@ namespace Xmas_Hell.Particles
             {
                 Emitters = new[]
                 {
-                    new ParticleEmitter(pixelTextureRegion, 500, TimeSpan.FromSeconds(2.5), Profile.Point())
+                    new ParticleEmitter(
+                        pixelTextureRegion,
+                        500,
+                        TimeSpan.FromSeconds(2.5),
+                        Profile.Point(),
+                        false
+                    )
                     {
                         Parameters = new ParticleReleaseParameters
                         {
@@ -96,7 +108,12 @@ namespace Xmas_Hell.Particles
             {
                 Emitters = new[]
                 {
-                    new ParticleEmitter(pixelTextureRegion, 500, TimeSpan.FromSeconds(2.5), Profile.Point())
+                    new ParticleEmitter(
+                        pixelTextureRegion,
+                        500,
+                        TimeSpan.FromSeconds(2.5),
+                        Profile.Point(),
+                        false)
                     {
                         Parameters = new ParticleReleaseParameters
                         {
