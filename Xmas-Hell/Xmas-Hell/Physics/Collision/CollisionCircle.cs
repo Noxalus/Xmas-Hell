@@ -20,8 +20,13 @@ namespace Xmas_Hell.Physics.Collision
 
         public Vector2 GetCenter()
         {
-            // Wrong: Use all data from the entity Transform (rotation + scale too)
-            return Entity.Position() + _relativePosition;
+            var entityTransformMatrix = GetMatrix();
+            var localCenter = _relativePosition;
+            var vertexPosition = new Vector3(localCenter.X, localCenter.Y, 0f);
+            var transformedVertexPosition = Vector3.Transform(vertexPosition, entityTransformMatrix);
+            var worldCenter = new Vector2(transformedVertexPosition.X, transformedVertexPosition.Y);
+
+            return worldCenter;
         }
 
         public override bool Intersects(CollisionCircle circle)
