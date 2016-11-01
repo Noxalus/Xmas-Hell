@@ -29,10 +29,10 @@ namespace Xmas_Hell
                 content.Load<Texture2D>("Graphics/Pictures/background"),
 
                 // Sprites
-                content.Load<Texture2D>("Graphics/Sprites/bullet"),
-                content.Load<Texture2D>("Graphics/Sprites/bullet2"),
-                content.Load<Texture2D>("Graphics/Sprites/player"),
-                content.Load<Texture2D>("Graphics/Sprites/boss")
+                content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet1"),
+                content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet2"),
+                content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet3"),
+                content.Load<Texture2D>("Graphics/Sprites/player")
             };
 
             // Load fonts
@@ -44,7 +44,8 @@ namespace Xmas_Hell
             // Load BulletML files
             _patternSteams = new Dictionary<string, Stream>
             {
-                { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") }
+                { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") },
+                { "XmasBall/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern1.xml") }
             };
 
             // Load musics

@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Xmas_Hell.BulletML;
 
 namespace Xmas_Hell.Entities.Bosses.XmasBall
 {
@@ -51,7 +52,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             else
             {
                 _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
-                Boss.AddBullet();
+                Boss.AddBullet("sample", BulletType.Type1);
             }
         }
     }

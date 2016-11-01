@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Text.Style;
 using BulletML;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
@@ -153,11 +154,16 @@ namespace Xmas_Hell.Entities
 
         public void Initialize()
         {
+            LoadBulletPatterns();
+
+            Reset();
+        }
+
+        private void Reset()
+        {
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
-
-            LoadBulletPatterns();
         }
 
         private void LoadBulletPatterns()
@@ -173,7 +179,7 @@ namespace Xmas_Hell.Entities
         public void Destroy()
         {
             Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
-            Initialize();
+            Reset();
         }
 
         // Move to a given position in "time" seconds
@@ -206,16 +212,17 @@ namespace Xmas_Hell.Entities
             System.Diagnostics.Debug.WriteLine(obj);
         }
 
-        public void AddBullet(bool clear = false)
+        public void AddBullet(string patternName,  BulletType type, bool clear = false)
         {
             if (clear)
                 Game.GameManager.MoverManager.Clear();
 
+            Game.GameManager.MoverManager.CurrentBulletType = type;
+
             // Add a new bullet in the center of the screen
             var mover = (Mover)Game.GameManager.MoverManager.CreateBullet(true);
-            mover.Texture = Assets.GetTexture2D("Graphics/Sprites/bullet");
             mover.Position(ActionPointPosition());
-            mover.InitTopNode(BossPatterns["sample"].RootNode);
+            mover.InitTopNode(BossPatterns[patternName].RootNode);
         }
 
         public void TakeDamage(float amount)

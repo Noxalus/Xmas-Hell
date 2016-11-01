@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Xmas_Hell.BulletML;
 
 namespace Xmas_Hell.Entities.Bosses.XmasBall
 {
@@ -7,6 +8,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
     {
         private Vector2 _screenCenter;
         private TimeSpan _bulletFrequence;
+        private bool _patternShot;
 
         public XmasBallBehaviour2(Boss boss) : base(boss)
         {
@@ -14,6 +16,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y / 2f
             );
+
+            _patternShot = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -32,12 +36,10 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 }
                 else if (Boss.CurrentAnimator.CurrentAnimation.Name == "Breathe_Out")
                 {
-                    if (_bulletFrequence.TotalMilliseconds > 0)
-                        _bulletFrequence -= gameTime.ElapsedGameTime;
-                    else
+                    if (!_patternShot)
                     {
-                        _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
-                        Boss.AddBullet();
+                        Boss.AddBullet("XmasBall/pattern1", BulletType.Type3);
+                        _patternShot = true;
                     }
                 }
             }

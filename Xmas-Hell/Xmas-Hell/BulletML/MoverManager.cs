@@ -11,6 +11,7 @@ namespace Xmas_Hell.BulletML
         public readonly List<Mover> Movers = new List<Mover>();
         private readonly List<Mover> _topLevelMovers = new List<Mover>();
         private PositionDelegate _getPlayerPosition;
+        public BulletType CurrentBulletType;
 
         public MoverManager(XmasHell game)
         {
@@ -29,7 +30,11 @@ namespace Xmas_Hell.BulletML
 
         public IBullet CreateBullet(bool topBullet = false)
         {
-            var mover = new Mover(_game, this);
+            var mover = new Mover(_game, this)
+            {
+                Texture = BulletTypeUtils.BulletTypeToTexture(CurrentBulletType)
+            };
+
             mover.Init(topBullet);
 
             if (topBullet)

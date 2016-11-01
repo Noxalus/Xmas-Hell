@@ -55,7 +55,7 @@ namespace Xmas_Hell.BulletML
         public Mover(XmasHell game, IBulletManager bulletManager) : base(bulletManager)
         {
             _game = game;
-            Texture = Assets.GetTexture2D("Graphics/Sprites/bullet");
+            //Texture = BulletTypeUtils.BulletTypeToTexture(BulletType.Type1);
         }
 
         public void Init(bool topBullet)

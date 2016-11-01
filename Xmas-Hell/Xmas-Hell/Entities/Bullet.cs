@@ -2,6 +2,7 @@ using System;
 using Android.Provider;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Sprites;
+using Xmas_Hell.BulletML;
 using Xmas_Hell.Physics;
 using Xmas_Hell.Physics.Collision;
 
@@ -32,10 +33,12 @@ namespace Xmas_Hell.Entities
         public Bullet(XmasHell game, Vector2 position, float rotation, float speed)
         {
             _game = game;
-            var defaultBulletTexture = Assets.GetTexture2D("Graphics/Sprites/bullet2");
-            Sprite = new Sprite(defaultBulletTexture);
-            Sprite.Position = position;
-            Sprite.Rotation = rotation;
+            var defaultBulletTexture = BulletTypeUtils.BulletTypeToTexture(BulletType.Type2);
+            Sprite = new Sprite(defaultBulletTexture)
+            {
+                Position = position,
+                Rotation = rotation
+            };
             Speed = speed;
             Used = true;
 

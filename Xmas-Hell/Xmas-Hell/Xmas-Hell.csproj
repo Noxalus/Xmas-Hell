@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BulletML\BulletType.cs" />
     <Compile Include="Entities\Bosses\AbstractBossBehaviour.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBall.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
@@ -139,6 +140,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Patterns\test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Patterns\XmasBall\pattern1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
   </ItemGroup>

@@ -48,6 +48,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             // BulletML
             BulletPatternFiles.Add("sample");
+            BulletPatternFiles.Add("XmasBall/pattern1");
 
             // Physics
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
@@ -66,7 +67,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             base.Update(gameTime);
 
             _previousBehaviourIndex = _currentBehaviourIndex;
-            _currentBehaviourIndex = (int)((1f - (Life / InitialLife)) * _behaviours.Count);
+            _currentBehaviourIndex = (int)((1f - (Life / InitialLife)) * (_behaviours.Count - 1));
 
             if (_currentBehaviourIndex != _previousBehaviourIndex)
                 Game.GameManager.MoverManager.Clear();
