@@ -318,7 +318,7 @@ namespace Xmas_Hell.Entities
             }
             else
             {
-                CurrentAnimator.Position += Speed * gameTime.GetElapsedSeconds() * Direction;
+                CurrentAnimator.Position += Speed * gameTime.GetElapsedSeconds() * Acceleration * Direction;
             }
         }
 

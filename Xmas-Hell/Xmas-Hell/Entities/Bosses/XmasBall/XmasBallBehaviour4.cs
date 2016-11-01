@@ -17,7 +17,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Boss.Direction = MathHelperExtension.AngleToDirection(
                 (float)Boss.Game.GameManager.Random.NextDouble() * MathHelper.Pi
             );
-            Boss.Speed = 1000f;
+
+            Boss.Speed = 500f;
         }
 
         public override void Update(GameTime gameTime)
@@ -25,14 +26,26 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             base.Update(gameTime);
 
             var currentPosition = Boss.CurrentAnimator.Position;
+            var collision = false;
             if (currentPosition.X < Boss.Width() / 2f || currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width() / 2f)
             {
                 Boss.Direction.X *= -(float)Boss.Game.GameManager.Random.NextDouble(1f, 1f);
+                collision = true;
             }
 
             if (currentPosition.Y < Boss.Height() / 2f || currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
             {
                 Boss.Direction.Y *= -(float)Boss.Game.GameManager.Random.NextDouble(1f, 1f);
+                collision = true;
+            }
+
+            if (collision)
+            {
+                Boss.Acceleration.X = MathHelper.Clamp(Boss.Acceleration.X + 0.1f, 0f, 10f);
+                Boss.Acceleration.Y = MathHelper.Clamp(Boss.Acceleration.Y + 0.1f, 0f, 10f);
+
+                // TODO: Add a Camera2D and shake the screen
+                // TODO: Spawn bullets on each collision
             }
         }
     }
