@@ -13,6 +13,9 @@ namespace Xmas_Hell.Entities
 {
     class Player : IPhysicsEntity
     {
+        public bool Invincible;
+        public TimeSpan _invincibleTimer;
+
         private readonly XmasHell _game;
         private Sprite _sprite;
 
@@ -60,6 +63,9 @@ namespace Xmas_Hell.Entities
 
         public void Initialize()
         {
+            Invincible = true;
+            _invincibleTimer = TimeSpan.FromSeconds(3f);
+
             _sprite.Position = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y - 150
@@ -81,6 +87,11 @@ namespace Xmas_Hell.Entities
 
             if (keyboardState.IsKeyDown(Keys.Enter))
                 _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
+
+            if (_invincibleTimer.TotalMilliseconds > 0)
+                _invincibleTimer -= gameTime.ElapsedGameTime;
+            else
+                Invincible = false;
 
             UpdatePosition(gameTime);
             UpdateShoot(gameTime);

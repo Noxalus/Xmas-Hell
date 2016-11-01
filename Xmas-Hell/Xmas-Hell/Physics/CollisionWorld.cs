@@ -50,12 +50,17 @@ namespace Xmas_Hell.Physics
             // Check collision between boss bullets and player's hitbox
             if (PlayerHitbox != null)
             {
-                foreach (var bossBulletHitbox in BossBulletHitboxes)
+                var player = (Player) PlayerHitbox.Entity;
+
+                if (player != null && !player.Invincible)
                 {
-                    if (PlayerHitbox.Intersects(bossBulletHitbox))
+                    foreach (var bossBulletHitbox in BossBulletHitboxes)
                     {
-                        ((Player) PlayerHitbox.Entity).Destroy();
-                        ((Mover) bossBulletHitbox.Entity).Used = false;
+                        if (PlayerHitbox.Intersects(bossBulletHitbox))
+                        {
+                            player.Destroy();
+                            ((Mover) bossBulletHitbox.Entity).Used = false;
+                        }
                     }
                 }
             }

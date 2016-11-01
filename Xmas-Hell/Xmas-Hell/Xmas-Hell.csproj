@@ -58,7 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Bosses\XmasBall.cs" />
+    <Compile Include="Entities\Bosses\AbstractBossBehaviour.cs" />
+    <Compile Include="Entities\Bosses\XmasBall\XmasBall.cs" />
+    <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
+    <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
     <Compile Include="Entities\Bosses\XmasLog.cs" />
     <Compile Include="Particles\ParticleManager.cs" />
     <Compile Include="Physics\IPhysicsEntity.cs" />

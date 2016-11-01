@@ -19,9 +19,8 @@ namespace Xmas_Hell.Physics.Collision
 
         public Vector2 GetWorldPosition(Vector2 vertex)
         {
-            // TODO: Use the relative position
             var entityTransformMatrix = GetMatrix();
-            var vertexPosition = new Vector3(vertex.X, vertex.Y, 0f);
+            var vertexPosition = new Vector3(vertex + _relativePosition, 0f);
             var transformedVertexPosition = Vector3.Transform(vertexPosition, entityTransformMatrix);
             var newPosition = new Vector2(transformedVertexPosition.X, transformedVertexPosition.Y);
 
@@ -128,7 +127,7 @@ namespace Xmas_Hell.Physics.Collision
                     position.X,
                     position.Y, Color.Red);
 
-                /*
+
                 Vector2 axis = Vector2.Normalize(position - previousPosition);
                 spriteBatch.DrawLine(
                     (previousPosition.X + position.X) / 2f,
@@ -136,7 +135,7 @@ namespace Xmas_Hell.Physics.Collision
                     (previousPosition.X) + axis.Y * 2000,
                     (previousPosition.Y) - axis.X * 2000,
                     Color.Red);
-                */
+
 
                 previousPosition = position;
             }
