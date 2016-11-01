@@ -47,15 +47,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             };
 
             // BulletML
-            BossPatterns = new List<BulletPattern>();
-            BossBulletFrequence = TimeSpan.Zero;
-
-            // Load the pattern
-            var pattern = new BulletPattern();
-            BossPatterns.Add(pattern);
-
-            var filename = "sample";
-            pattern.ParseStream(filename, Assets.GetPattern(filename));
+            BulletPatternFiles.Add("sample");
 
             // Physics
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
@@ -64,7 +56,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             _behaviours = new List<AbstractBossBehaviour>()
             {
                 new XmasBallBehaviour1(this),
-                new XmasBallBehaviour2(this)
+                new XmasBallBehaviour2(this),
+                new XmasBallBehaviour3(this)
             };
         }
 

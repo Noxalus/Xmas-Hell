@@ -4,6 +4,7 @@ using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Input;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
@@ -14,38 +15,8 @@ namespace Xmas_Hell.Entities.Bosses
 {
     class XmasLog : Boss
     {
-        public override Vector2 Position()
-        {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return base.Position() + new Vector2(spriteData.X, -spriteData.Y);
-            }
-
-            return base.Position();
-        }
-
-        public override float Rotation()
-        {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return MathHelper.ToRadians(-spriteData.Angle);
-            }
-
-            return base.Rotation();
-        }
-
-        public override Vector2 Scale()
-        {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return new Vector2(spriteData.ScaleX, spriteData.ScaleY);
-            }
-
-            return base.Scale();
-        }
+        private bool _pause = false;
+        private KeyboardState _oldKeyboardState;
 
         public XmasLog(XmasHell game) : base(game)
         {
@@ -66,18 +37,8 @@ namespace Xmas_Hell.Entities.Bosses
             CurrentAnimator = Animators.First();
             CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
 
-            CurrentAnimator.Play("Expand");
-
-            // BulletML
-            BossPatterns = new List<BulletPattern>();
-            BossBulletFrequence = TimeSpan.Zero;
-
-            // Load the pattern
-            var pattern = new BulletPattern();
-            BossPatterns.Add(pattern);
-
-            var filename = "sample";
-            pattern.ParseStream(filename, Assets.GetPattern(filename));
+            CurrentAnimator.Play("Whirligig");
+            CurrentAnimator.Speed = 0.25f;
 
             // Physics
             var bossSpriteSize = new Vector2(119, 231);
@@ -96,6 +57,14 @@ namespace Xmas_Hell.Entities.Bosses
         {
             base.Update(gameTime);
 
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && _oldKeyboardState.IsKeyUp(Keys.A))
+                _pause = !_pause;
+
+            _oldKeyboardState = Keyboard.GetState();
+
+            if (_pause)
+                return;
+
             var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //if (_currentAnimator.Position.X > GameConfig.VirtualResolution.X)
@@ -111,14 +80,6 @@ namespace Xmas_Hell.Entities.Bosses
             CurrentAnimator.Position += new Vector2(0f, 200f * dt) * Direction;
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
-
-            if (BossBulletFrequence.TotalMilliseconds > 0)
-                BossBulletFrequence -= gameTime.ElapsedGameTime;
-            else
-            {
-                BossBulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
-                AddBullet();
-            }
         }
     }
 }

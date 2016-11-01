@@ -29,6 +29,27 @@ namespace Xmas_Hell.Entities
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
 
+        // BulletML
+        protected Dictionary<string, BulletPattern> BossPatterns;
+        protected List<string> BulletPatternFiles;
+
+        // Spriter
+
+        protected static readonly Config DefaultAnimatorConfig = new Config
+        {
+            MetadataEnabled = false,
+            EventsEnabled = false,
+            PoolingEnabled = true,
+            TagsEnabled = false,
+            VarsEnabled = false,
+            SoundsEnabled = false
+        };
+
+        protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
+        public MonoGameAnimator CurrentAnimator;
+
+        #region Getters
+
         public virtual Vector2 Position()
         {
             var currentPosition = CurrentAnimator.Position;
@@ -63,6 +84,17 @@ namespace Xmas_Hell.Entities
             return CurrentAnimator.Scale;
         }
 
+        public Vector2 ActionPointPosition()
+        {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
+            {
+                var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
+                return Position() + new Vector2(actionPoint.X, -actionPoint.Y);
+            }
+
+            return Position();
+        }
+
         public virtual float Width()
         {
             if (CurrentAnimator.SpriteProvider != null)
@@ -83,6 +115,9 @@ namespace Xmas_Hell.Entities
             return 0f;
         }
 
+        #endregion
+
+        #region Setters
 
         public void Position(Vector2 value)
         {
@@ -99,35 +134,7 @@ namespace Xmas_Hell.Entities
             CurrentAnimator.Scale = value;
         }
 
-        public Vector2 ActionPointPosition()
-        {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
-            {
-                var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
-                return Position() + new Vector2(actionPoint.X, -actionPoint.Y);
-            }
-
-            return Position();
-        }
-
-        // BulletML
-        protected List<BulletPattern> BossPatterns;
-        protected TimeSpan BossBulletFrequence;
-
-        // Spriter
-
-        protected static readonly Config DefaultAnimatorConfig = new Config
-        {
-            MetadataEnabled = true,
-            EventsEnabled = true,
-            PoolingEnabled = true,
-            TagsEnabled = true,
-            VarsEnabled = true,
-            SoundsEnabled = false
-        };
-
-        protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
-        public MonoGameAnimator CurrentAnimator;
+        #endregion
 
         protected Boss(XmasHell game)
         {
@@ -138,6 +145,10 @@ namespace Xmas_Hell.Entities
                 GameConfig.VirtualResolution.X / 2f,
                 150f
             );
+
+            // BulletML
+            BossPatterns = new Dictionary<string, BulletPattern>();
+            BulletPatternFiles = new List<string>();
         }
 
         public void Initialize()
@@ -145,6 +156,18 @@ namespace Xmas_Hell.Entities
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
+
+            LoadBulletPatterns();
+        }
+
+        private void LoadBulletPatterns()
+        {
+            foreach (var bulletPatternFile in BulletPatternFiles)
+            {
+                var pattern = new BulletPattern();
+                pattern.ParseStream(bulletPatternFile, Assets.GetPattern(bulletPatternFile));
+                BossPatterns.Add(bulletPatternFile, pattern);
+            }
         }
 
         public void Destroy()
@@ -192,7 +215,7 @@ namespace Xmas_Hell.Entities
             var mover = (Mover)Game.GameManager.MoverManager.CreateBullet(true);
             mover.Texture = Assets.GetTexture2D("Graphics/Sprites/bullet");
             mover.Position(ActionPointPosition());
-            mover.InitTopNode(BossPatterns[0].RootNode);
+            mover.InitTopNode(BossPatterns["sample"].RootNode);
         }
 
         public void TakeDamage(float amount)

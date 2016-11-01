@@ -18,6 +18,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (!Boss.TargetingPosition && !Boss.CurrentAnimator.Position.Equals(_screenCenter))
                 Boss.MoveTo(_screenCenter);
             else if (Boss.CurrentAnimator.Position.Equals(_screenCenter))

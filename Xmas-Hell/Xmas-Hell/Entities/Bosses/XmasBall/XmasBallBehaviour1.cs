@@ -10,11 +10,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
         public XmasBallBehaviour1(Boss boss) : base(boss)
         {
-
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X - (Boss.Width() / 2f))
                 Boss.Direction = -(float)Math.PI;
             else if (Boss.CurrentAnimator.Position.X < Boss.Width() / 2f)

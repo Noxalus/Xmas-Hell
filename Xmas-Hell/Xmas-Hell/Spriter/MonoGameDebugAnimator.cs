@@ -37,7 +37,7 @@ namespace Xmas_Hell.Spriter
 
         protected override void ApplyBoxTransform(SpriterObjectInfo objInfo, SpriterObject info)
         {
-            ApplySpriteTransform(boxTextures[objInfo.Name], info);
+            ApplySpriteTransform(_boxTextures[objInfo.Name], info);
         }
     }
 }

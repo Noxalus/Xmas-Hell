@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Entities\Bosses\AbstractBossBehaviour.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBall.cs" />
+    <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
     <Compile Include="Entities\Bosses\XmasLog.cs" />
@@ -69,9 +70,6 @@
     <Compile Include="Physics\Collision\CollisionCircle.cs" />
     <Compile Include="Physics\Collision\CollisionConvexPolygon.cs" />
     <Compile Include="Physics\Collision\CollisionElement.cs" />
-    <Compile Include="Physics\Shapes\CircleShape.cs" />
-    <Compile Include="Physics\Shapes\ConvexShape.cs" />
-    <Compile Include="Physics\Shapes\IShape.cs" />
     <Compile Include="XmasHellActivity.cs" />
     <Compile Include="Assets.cs" />
     <Compile Include="BulletML\Mover.cs" />
