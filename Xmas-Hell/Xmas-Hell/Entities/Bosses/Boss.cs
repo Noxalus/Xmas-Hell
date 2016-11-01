@@ -13,17 +13,18 @@ namespace Xmas_Hell.Entities
 {
     public abstract class Boss : IPhysicsEntity
     {
-        protected XmasHell Game;
+        public XmasHell Game;
         protected Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
-        protected float Direction = 0; // angle in radians
-        protected float Speed = 200f;
-        protected Vector2 Acceleration = Vector2.One;
 
+        public float Direction = 0; // angle in radians
+        public float Speed = 200f;
+        public Vector2 Acceleration = Vector2.One;
+
+        public bool TargetingPosition = false;
         private Vector2 _initialPosition = Vector2.Zero;
         private Vector2 _targetPosition = Vector2.Zero;
-        protected bool TargetingPosition = false;
         private TimeSpan _targetPositionTimer = TimeSpan.Zero;
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
@@ -126,7 +127,7 @@ namespace Xmas_Hell.Entities
         };
 
         protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
-        protected MonoGameAnimator CurrentAnimator;
+        public MonoGameAnimator CurrentAnimator;
 
         protected Boss(XmasHell game)
         {
@@ -182,7 +183,7 @@ namespace Xmas_Hell.Entities
             System.Diagnostics.Debug.WriteLine(obj);
         }
 
-        protected void AddBullet(bool clear = false)
+        public void AddBullet(bool clear = false)
         {
             if (clear)
                 Game.GameManager.MoverManager.Clear();
