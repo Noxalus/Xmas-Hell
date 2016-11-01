@@ -65,6 +65,8 @@
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
     <Compile Include="Entities\Bosses\XmasLog.cs" />
+    <Compile Include="Geometry\Line.cs" />
+    <Compile Include="Geometry\MathHelperExtension.cs" />
     <Compile Include="Particles\ParticleManager.cs" />
     <Compile Include="Physics\IPhysicsEntity.cs" />
     <Compile Include="Physics\CollisionWorld.cs" />

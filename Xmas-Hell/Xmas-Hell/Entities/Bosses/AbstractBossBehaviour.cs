@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Xmas_Hell.Entities.Bosses
 {
@@ -16,6 +17,10 @@ namespace Xmas_Hell.Entities.Bosses
         }
 
         public virtual void Update(GameTime gameTime)
+        {
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
         }
     }

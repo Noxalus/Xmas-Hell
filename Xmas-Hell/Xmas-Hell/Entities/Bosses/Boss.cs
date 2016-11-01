@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Android.Text.Style;
 using BulletML;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
@@ -9,6 +7,7 @@ using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities.Bosses;
+using Xmas_Hell.Geometry;
 using Xmas_Hell.Physics;
 
 namespace Xmas_Hell.Entities
@@ -20,16 +19,19 @@ namespace Xmas_Hell.Entities
         protected float InitialLife;
         protected float Life;
 
-        public float Direction = 0; // angle in radians
+        public Vector2 Direction = Vector2.Zero; // values in radians
         public float Speed = 200f;
         public Vector2 Acceleration = Vector2.One;
 
+        // Relative to positioning
         public bool TargetingPosition = false;
         private Vector2 _initialPosition = Vector2.Zero;
         private Vector2 _targetPosition = Vector2.Zero;
         private TimeSpan _targetPositionTimer = TimeSpan.Zero;
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
+
+        private PositionDelegate _playerPositionDelegate;
 
         // Behaviours
         protected readonly List<AbstractBossBehaviour> Behaviours;
@@ -143,9 +145,10 @@ namespace Xmas_Hell.Entities
 
         #endregion
 
-        protected Boss(XmasHell game)
+        protected Boss(XmasHell game, PositionDelegate playerPositionDelegate)
         {
             Game = game;
+            _playerPositionDelegate = playerPositionDelegate;
 
             InitialLife = GameConfig.BossDefaultLife;
             InitialPosition = new Vector2(
@@ -219,6 +222,22 @@ namespace Xmas_Hell.Entities
             _targetPosition = position;
             _targetDirection = Vector2.Normalize(position - CurrentAnimator.Position);
             _initialPosition = CurrentAnimator.Position;
+        }
+
+        public Vector2 GetPlayerPosition()
+        {
+            return _playerPositionDelegate();
+        }
+
+        public Vector2 GetPlayerDirection()
+        {
+            var playerPosition = GetPlayerPosition();
+            var currentPosition = CurrentAnimator.Position;
+            var angle = (currentPosition - playerPosition).ToAngle();
+
+            angle += MathHelper.PiOver2;
+
+            return MathHelperExtension.AngleToDirection(angle);
         }
 
         protected void CurrentAnimator_EventTriggered(string obj)
@@ -301,19 +320,25 @@ namespace Xmas_Hell.Entities
 
         private void UpdateBehaviour(GameTime gameTime)
         {
+            UpdateBehaviourIndex();
+
+            Behaviours[CurrentBehaviourIndex].Update(gameTime);
+        }
+
+        protected virtual void UpdateBehaviourIndex()
+        {
             PreviousBehaviourIndex = CurrentBehaviourIndex;
             CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * (Behaviours.Count));
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
                 Game.GameManager.MoverManager.Clear();
-
-            var currentBehaviour = Behaviours[CurrentBehaviourIndex];
-            currentBehaviour.Update(gameTime);
         }
 
         public void Draw(GameTime gameTime)
         {
             CurrentAnimator.Draw(Game.SpriteBatch);
+
+            Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
 
             var percent = Life / InitialLife;
             Game.SpriteBatch.Draw(

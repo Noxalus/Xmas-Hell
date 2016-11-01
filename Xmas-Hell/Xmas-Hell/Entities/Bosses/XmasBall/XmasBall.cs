@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using SpriterDotNet;
@@ -13,7 +14,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 {
     class XmasBall : Boss
     {
-        public XmasBall(XmasHell game) : base(game)
+        public XmasBall(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
             Game = game;
 
@@ -61,6 +62,11 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+        }
+
+        protected override void UpdateBehaviourIndex()
+        {
+            CurrentBehaviourIndex = 2;
         }
     }
 }

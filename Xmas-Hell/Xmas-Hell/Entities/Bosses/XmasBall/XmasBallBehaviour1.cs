@@ -27,19 +27,6 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Update(gameTime);
 
-            if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X - (Boss.Width() / 2f))
-                Boss.Direction = -(float)Math.PI;
-            else if (Boss.CurrentAnimator.Position.X < Boss.Width() / 2f)
-                Boss.Direction = 0f;
-
-            // TODO: Add this to an extension of the MathHelper
-            var direction = new Vector2(
-                (float)Math.Cos(Boss.Direction),
-                -(float)Math.Sin(Boss.Direction)
-            );
-
-            //CurrentAnimator.Position += new Vector2(Speed * gameTime.GetElapsedSeconds(), 0f) * direction;
-
             if (_newPositionTime.TotalMilliseconds > 0)
             {
                 if (!Boss.TargetingPosition)

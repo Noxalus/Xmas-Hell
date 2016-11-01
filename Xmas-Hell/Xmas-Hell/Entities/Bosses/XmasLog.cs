@@ -18,7 +18,7 @@ namespace Xmas_Hell.Entities.Bosses
         private bool _pause = false;
         private KeyboardState _oldKeyboardState;
 
-        public XmasLog(XmasHell game) : base(game)
+        public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
             Game = game;
 
@@ -73,11 +73,11 @@ namespace Xmas_Hell.Entities.Bosses
             //    _direction = 1f;
 
             if (CurrentAnimator.Position.Y > GameConfig.VirtualResolution.Y)
-                Direction = -1f;
+                Direction = new Vector2(0f, -1f);
             else if (CurrentAnimator.Position.Y < 0)
-                Direction = 1f;
+                Direction = new Vector2(0f, 1f);
 
-            CurrentAnimator.Position += new Vector2(0f, 200f * dt) * Direction;
+            CurrentAnimator.Position += (Speed * dt) * Direction;
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
