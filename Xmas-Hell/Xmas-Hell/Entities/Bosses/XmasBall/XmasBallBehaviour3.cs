@@ -9,6 +9,11 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
         }
 
+        public override void Reset()
+        {
+            base.Reset();
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

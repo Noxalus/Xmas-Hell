@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using SpriterDotNet;
@@ -14,11 +13,6 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 {
     class XmasBall : Boss
     {
-        private int _previousBehaviourIndex;
-        private int _currentBehaviourIndex;
-
-        private readonly List<AbstractBossBehaviour> _behaviours;
-
         public XmasBall(XmasHell game) : base(game)
         {
             Game = game;
@@ -54,28 +48,19 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
 
             // Behaviours
-            _behaviours = new List<AbstractBossBehaviour>()
-            {
-                new XmasBallBehaviour1(this),
-                new XmasBallBehaviour2(this),
-                new XmasBallBehaviour3(this)
-            };
+            Behaviours.Add(new XmasBallBehaviour1(this));
+            Behaviours.Add(new XmasBallBehaviour2(this));
+            Behaviours.Add(new XmasBallBehaviour3(this));
+        }
+
+        protected override void Reset()
+        {
+            base.Reset();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            _previousBehaviourIndex = _currentBehaviourIndex;
-            _currentBehaviourIndex = (int)((1f - (Life / InitialLife)) * (_behaviours.Count - 1));
-
-            if (_currentBehaviourIndex != _previousBehaviourIndex)
-                Game.GameManager.MoverManager.Clear();
-
-            var currentBehaviour = _behaviours[_currentBehaviourIndex];
-            currentBehaviour.Update(gameTime);
-
-            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
     }
 }

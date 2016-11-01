@@ -11,9 +11,12 @@ namespace Xmas_Hell.Entities.Bosses
             Boss = boss;
         }
 
+        public virtual void Reset()
+        {
+        }
+
         public virtual void Update(GameTime gameTime)
         {
-
         }
     }
 }

@@ -8,6 +8,7 @@ using MonoGame.Extended;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using Xmas_Hell.BulletML;
+using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Physics;
 
 namespace Xmas_Hell.Entities
@@ -29,6 +30,11 @@ namespace Xmas_Hell.Entities
         private TimeSpan _targetPositionTimer = TimeSpan.Zero;
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
+
+        // Behaviours
+        protected readonly List<AbstractBossBehaviour> Behaviours;
+        protected int PreviousBehaviourIndex;
+        protected int CurrentBehaviourIndex;
 
         // BulletML
         protected Dictionary<string, BulletPattern> BossPatterns;
@@ -147,6 +153,11 @@ namespace Xmas_Hell.Entities
                 150f
             );
 
+            // Behaviours
+            Behaviours = new List<AbstractBossBehaviour>();
+            CurrentBehaviourIndex = 0;
+            PreviousBehaviourIndex = 0;
+
             // BulletML
             BossPatterns = new Dictionary<string, BulletPattern>();
             BulletPatternFiles = new List<string>();
@@ -159,11 +170,14 @@ namespace Xmas_Hell.Entities
             Reset();
         }
 
-        private void Reset()
+        protected virtual void Reset()
         {
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
+
+            foreach (var behaviour in Behaviours)
+                behaviour.Reset();
         }
 
         private void LoadBulletPatterns()
@@ -235,6 +249,14 @@ namespace Xmas_Hell.Entities
 
         public virtual void Update(GameTime gameTime)
         {
+            UpdatePosition(gameTime);
+            UpdateBehaviour(gameTime);
+
+            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
+        }
+
+        private void UpdatePosition(GameTime gameTime)
+        {
             if (TargetingPosition)
             {
                 if (!_targetDirection.Equals(Vector2.Zero))
@@ -275,6 +297,18 @@ namespace Xmas_Hell.Entities
                     CurrentAnimator.Position = newPosition;
                 }
             }
+        }
+
+        private void UpdateBehaviour(GameTime gameTime)
+        {
+            PreviousBehaviourIndex = CurrentBehaviourIndex;
+            CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * (Behaviours.Count));
+
+            if (CurrentBehaviourIndex != PreviousBehaviourIndex)
+                Game.GameManager.MoverManager.Clear();
+
+            var currentBehaviour = Behaviours[CurrentBehaviourIndex];
+            currentBehaviour.Update(gameTime);
         }
 
         public void Draw(GameTime gameTime)

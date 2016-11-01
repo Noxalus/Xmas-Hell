@@ -17,6 +17,13 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 GameConfig.VirtualResolution.Y / 2f
             );
 
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            Boss.CurrentAnimator.Play("Idle");
             _patternShot = false;
         }
 

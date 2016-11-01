@@ -13,6 +13,16 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
         }
 
+        public override void Reset()
+        {
+            base.Reset();
+
+            _newPositionTime = TimeSpan.Zero;
+            _bulletFrequence = TimeSpan.Zero;
+
+            Boss.CurrentAnimator.Play("Idle");
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
