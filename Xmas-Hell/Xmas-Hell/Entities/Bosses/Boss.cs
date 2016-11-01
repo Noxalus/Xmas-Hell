@@ -282,7 +282,7 @@ namespace Xmas_Hell.Entities
                 {
                     var currentPosition = CurrentAnimator.Position;
                     var distance = Vector2.Distance(currentPosition, _targetPosition);
-                    var deltaDistance = Speed * gameTime.GetElapsedSeconds();
+                    var deltaDistance = Speed*gameTime.GetElapsedSeconds();
 
                     if (distance < deltaDistance)
                     {
@@ -293,13 +293,13 @@ namespace Xmas_Hell.Entities
                     else
                     {
                         // TODO: Perform some cubic interpolation
-                        CurrentAnimator.Position = currentPosition + (_targetDirection * deltaDistance);
+                        CurrentAnimator.Position = currentPosition + (_targetDirection*deltaDistance);
                     }
                 }
                 else
                 {
                     var newPosition = Vector2.Zero;
-                    var lerpAmount = (float)(_targetPositionTime.TotalSeconds / _targetPositionTimer.TotalSeconds);
+                    var lerpAmount = (float) (_targetPositionTime.TotalSeconds/_targetPositionTimer.TotalSeconds);
 
                     newPosition.X = MathHelper.SmoothStep(_targetPosition.X, _initialPosition.X, lerpAmount);
                     newPosition.Y = MathHelper.SmoothStep(_targetPosition.Y, _initialPosition.Y, lerpAmount);
@@ -315,6 +315,10 @@ namespace Xmas_Hell.Entities
 
                     CurrentAnimator.Position = newPosition;
                 }
+            }
+            else
+            {
+                CurrentAnimator.Position += Speed * gameTime.GetElapsedSeconds() * Direction;
             }
         }
 

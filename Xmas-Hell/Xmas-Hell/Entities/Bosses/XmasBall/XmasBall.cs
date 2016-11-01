@@ -52,6 +52,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Behaviours.Add(new XmasBallBehaviour1(this));
             Behaviours.Add(new XmasBallBehaviour2(this));
             Behaviours.Add(new XmasBallBehaviour3(this));
+            Behaviours.Add(new XmasBallBehaviour4(this));
         }
 
         protected override void Reset()
@@ -66,7 +67,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
         protected override void UpdateBehaviourIndex()
         {
-            CurrentBehaviourIndex = 2;
+            CurrentBehaviourIndex = 3;
         }
     }
 }
