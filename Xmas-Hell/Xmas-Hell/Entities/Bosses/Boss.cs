@@ -178,9 +178,6 @@ namespace Xmas_Hell.Entities
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
-
-            foreach (var behaviour in Behaviours)
-                behaviour.Reset();
         }
 
         private void LoadBulletPatterns()
@@ -335,7 +332,10 @@ namespace Xmas_Hell.Entities
             CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * (Behaviours.Count));
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
+            {
                 Game.GameManager.MoverManager.Clear();
+                Behaviours[CurrentBehaviourIndex].Start();
+            }
         }
 
         public void Draw(GameTime gameTime)

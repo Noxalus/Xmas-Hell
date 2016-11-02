@@ -37,9 +37,9 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             );
         }
 
-        public override void Reset()
+        public override void Start()
         {
-            base.Reset();
+            base.Start();
 
             Boss.Speed = 500f;
         }

@@ -13,9 +13,9 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
         }
 
-        public override void Reset()
+        public override void Start()
         {
-            base.Reset();
+            base.Start();
 
             _newPositionTime = TimeSpan.Zero;
             _bulletFrequence = TimeSpan.Zero;
@@ -41,6 +41,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                     Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
                 );
 
+                System.Console.WriteLine("New position: " + newPosition);
+
                 Boss.MoveTo(newPosition);
             }
 
@@ -49,7 +51,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             else
             {
                 _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
-                Boss.AddBullet("sample", BulletType.Type1);
+                Boss.AddBullet("sample", BulletType.Type2);
             }
         }
     }
