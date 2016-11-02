@@ -44,7 +44,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 Boss.Acceleration.X = MathHelper.Clamp(Boss.Acceleration.X + 0.1f, 0f, 10f);
                 Boss.Acceleration.Y = MathHelper.Clamp(Boss.Acceleration.Y + 0.1f, 0f, 10f);
 
-                // TODO: Add a Camera2D and shake the screen
+                Boss.Game.Camera.Shake(0.25f, 20f);
                 // TODO: Spawn bullets on each collision
             }
         }

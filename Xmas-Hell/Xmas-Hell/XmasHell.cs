@@ -18,6 +18,7 @@ namespace Xmas_Hell
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
         public ViewportAdapter ViewportAdapter;
+        public Camera Camera;
         public GameManager GameManager;
         private XmasHellActivity _activity;
         private KeyboardState _oldKeyboardState;
@@ -41,6 +42,8 @@ namespace Xmas_Hell
         protected override void Initialize()
         {
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
+
+            Camera = new Camera(this, ViewportAdapter);
 
             base.Initialize();
 
@@ -85,6 +88,8 @@ namespace Xmas_Hell
                 return;
 
             GameManager.Update(gameTime);
+
+            Camera.Update(gameTime);
 
             base.Update(gameTime);
         }

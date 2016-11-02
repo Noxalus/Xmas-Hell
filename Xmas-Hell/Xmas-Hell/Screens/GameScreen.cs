@@ -48,7 +48,11 @@ namespace Xmas_Hell.Screens
 
         public override void Draw(GameTime gameTime)
         {
-            _game.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: _game.ViewportAdapter.GetScaleMatrix());
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.Camera.GetViewMatrix()
+            );
 
             _player.Draw(gameTime);
             _boss.Draw(gameTime);

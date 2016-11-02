@@ -107,9 +107,6 @@ namespace Xmas_Hell.Entities
                 {
                     _initialSpritePosition = _sprite.Position;
                     _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
-
-                    System.Console.WriteLine("Initial sprite position: " + _initialSpritePosition);
-                    System.Console.WriteLine("Initial touch position: " + _initialTouchPosition);
                 }
 
                 _currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());

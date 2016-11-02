@@ -80,7 +80,7 @@ namespace Xmas_Hell
                 samplerState: SamplerState.PointClamp,
                 sortMode: SpriteSortMode.Immediate,
                 blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
+                transformMatrix: _game.Camera.GetViewMatrix()
             );
 
             foreach (var bullet in _bullets)
@@ -94,7 +94,7 @@ namespace Xmas_Hell
                 samplerState: SamplerState.PointClamp,
                 sortMode: SpriteSortMode.Immediate,
                 blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
+                transformMatrix: _game.Camera.GetViewMatrix()
             );
 
             CollisionWorld.Draw(_game.SpriteBatch);
