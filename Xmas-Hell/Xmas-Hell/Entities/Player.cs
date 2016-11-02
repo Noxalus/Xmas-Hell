@@ -94,6 +94,7 @@ namespace Xmas_Hell.Entities
                 Invincible = false;
 
             UpdatePosition(gameTime);
+            CheckOutOfBounds();
             UpdateShoot(gameTime);
         }
 
@@ -119,6 +120,14 @@ namespace Xmas_Hell.Entities
                 _initialSpritePosition = Vector2.Zero;
                 _initialTouchPosition = Point.Zero;
             }
+        }
+
+        private void CheckOutOfBounds()
+        {
+            _sprite.Position = new Vector2(
+                MathHelper.Clamp(_sprite.Position.X, 0, GameConfig.VirtualResolution.X),
+                MathHelper.Clamp(_sprite.Position.Y, 0, GameConfig.VirtualResolution.Y)
+            );
         }
 
         private void UpdateShoot(GameTime gameTime)
