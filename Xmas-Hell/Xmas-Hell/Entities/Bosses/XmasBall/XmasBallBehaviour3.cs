@@ -15,6 +15,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         private readonly Line _upWallLine;
         private readonly Line _rightWallLine;
         private Vector2 _newPosition;
+        private TimeSpan _timeBeforeNextCharge;
 
         public XmasBallBehaviour3(Boss boss) : base(boss)
         {
@@ -44,7 +45,15 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             base.Start();
 
             _newPosition = Vector2.Zero;
-            Boss.Speed = 500f;
+            Boss.Speed = 100f;
+            _timeBeforeNextCharge = TimeSpan.Zero;
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+
+            Boss.Acceleration = Vector2.One;
         }
 
         public override void Update(GameTime gameTime)
@@ -53,15 +62,22 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             var currentPosition = Boss.CurrentAnimator.Position;
 
+            if (_timeBeforeNextCharge.TotalMilliseconds > 0)
+                _timeBeforeNextCharge -= gameTime.ElapsedGameTime;
+
             if (Boss.TargetingPosition)
             {
+                Boss.Acceleration += new Vector2(0.5f);
+
                 if (currentPosition.X < Boss.Width()/2f ||
                     currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width()/2f ||
                     currentPosition.Y < Boss.Height()/2f ||
                     currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height()/2f)
                 {
+                    Boss.Acceleration = Vector2.One;
                     Boss.TargetingPosition = false;
-                    Boss.Game.Camera.Shake(0.5f, 20f);
+                    Boss.Game.Camera.Shake(0.5f, 50f);
+                    Boss.CurrentAnimator.Transition("Stunned", 0.5f);
 
                     var patternPosition = currentPosition;
 
@@ -82,11 +98,20 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                         MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height()/2f,
                             GameConfig.VirtualResolution.Y - Boss.Height()/2f)
                     );
+
+                    _timeBeforeNextCharge = TimeSpan.FromSeconds(
+                        RandomExtension.RandomExtension.NextDouble(
+                            Boss.Game.GameManager.Random,
+                            1, 4
+                        )
+                    );
                 }
             }
 
-            if (!Boss.TargetingPosition)
+            if (!Boss.TargetingPosition && _timeBeforeNextCharge.TotalMilliseconds <= 0)
             {
+                Boss.CurrentAnimator.Transition("Idle", 0.5f);
+
                 var playerDirection = Boss.GetPlayerDirection();
                 var maxDistance = (float) Math.Sqrt(
                     GameConfig.VirtualResolution.X*GameConfig.VirtualResolution.X +

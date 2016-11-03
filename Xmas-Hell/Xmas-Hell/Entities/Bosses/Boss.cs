@@ -33,6 +33,8 @@ namespace Xmas_Hell.Entities
 
         private PositionDelegate _playerPositionDelegate;
 
+        private TimeSpan _hitTimer = TimeSpan.Zero;
+
         // Behaviours
         protected readonly List<AbstractBossBehaviour> Behaviours;
         protected int PreviousBehaviourIndex;
@@ -216,9 +218,9 @@ namespace Xmas_Hell.Entities
         }
 
         // Move to a given position keeping the actual speed
-        public void MoveTo(Vector2 position)
+        public void MoveTo(Vector2 position, bool force = false)
         {
-            if (TargetingPosition)
+            if (TargetingPosition && !force)
                 return;
 
             TargetingPosition = true;
@@ -272,12 +274,17 @@ namespace Xmas_Hell.Entities
 
             if (Life < 0f)
                 Destroy();
+
+            _hitTimer = TimeSpan.FromMilliseconds(20);
         }
 
         public virtual void Update(GameTime gameTime)
         {
             UpdatePosition(gameTime);
             UpdateBehaviour(gameTime);
+
+            if (_hitTimer.TotalMilliseconds > 0)
+                _hitTimer -= gameTime.ElapsedGameTime;
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
@@ -290,7 +297,7 @@ namespace Xmas_Hell.Entities
                 {
                     var currentPosition = CurrentAnimator.Position;
                     var distance = Vector2.Distance(currentPosition, _targetPosition);
-                    var deltaDistance = Speed*gameTime.GetElapsedSeconds();
+                    var deltaDistance = Speed * gameTime.GetElapsedSeconds();
 
                     if (distance < deltaDistance)
                     {
@@ -301,7 +308,7 @@ namespace Xmas_Hell.Entities
                     else
                     {
                         // TODO: Perform some cubic interpolation
-                        CurrentAnimator.Position = currentPosition + (_targetDirection*deltaDistance);
+                        CurrentAnimator.Position = currentPosition + (_targetDirection * deltaDistance) * Acceleration;
                     }
                 }
                 else
@@ -338,6 +345,9 @@ namespace Xmas_Hell.Entities
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {
+                if (PreviousBehaviourIndex > 0)
+                    Behaviours[PreviousBehaviourIndex].Stop();
+
                 Game.GameManager.MoverManager.Clear();
                 RestoreDefaultState();
                 Behaviours[CurrentBehaviourIndex].Start();
@@ -353,6 +363,8 @@ namespace Xmas_Hell.Entities
 
         public void Draw(GameTime gameTime)
         {
+            CurrentAnimator.Color = _hitTimer.TotalMilliseconds > 0 ? Color.Red : Color.White;
+
             CurrentAnimator.Draw(Game.SpriteBatch);
 
             Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);

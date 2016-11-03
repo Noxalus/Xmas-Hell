@@ -23,6 +23,11 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Boss.CurrentAnimator.Play("Idle");
         }
 
+        public override void Stop()
+        {
+            base.Stop();
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

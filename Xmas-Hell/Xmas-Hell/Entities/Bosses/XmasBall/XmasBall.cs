@@ -45,6 +45,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             BulletPatternFiles.Add("sample");
             BulletPatternFiles.Add("XmasBall/pattern1");
             BulletPatternFiles.Add("XmasBall/pattern3");
+            BulletPatternFiles.Add("XmasBall/pattern4");
 
             // Physics
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
@@ -69,7 +70,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            //CurrentBehaviourIndex = 3;
+            CurrentBehaviourIndex = 3;
         }
     }
 }

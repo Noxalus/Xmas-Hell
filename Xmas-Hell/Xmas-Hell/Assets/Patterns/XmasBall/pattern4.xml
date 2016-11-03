@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <repeat>
+      <times>10 + ($rand * 30)</times>
+      <action label="shoot">
+        <fire>
+          <bulletRef label="bullet1">
+            <param>10</param>
+          </bulletRef>
+        </fire>
+        <vanish/>
+      </action>
+    </repeat>
+  </action>
+
+  <bullet label="bullet1">
+    <direction type="aim">($rand * $1) - ($1/2)</direction>
+    <speed>5 + ($rand * 3)</speed>
+  </bullet>
+</bulletml>

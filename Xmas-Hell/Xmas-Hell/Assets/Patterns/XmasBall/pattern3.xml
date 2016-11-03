@@ -3,11 +3,11 @@
 <bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
   <action label="top">
     <repeat>
-      <times>36</times>
+      <times>14</times>
       <action>
         <fire>
           <bullet>
-            <direction type="sequence">10</direction>
+            <direction type="sequence">26</direction>
             <speed type="absolute">5</speed>
           </bullet>
         </fire>

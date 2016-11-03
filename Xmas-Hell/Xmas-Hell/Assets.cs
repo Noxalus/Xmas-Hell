@@ -46,7 +46,8 @@ namespace Xmas_Hell
             {
                 { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") },
                 { "XmasBall/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern1.xml") },
-                { "XmasBall/pattern3", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern3.xml") }
+                { "XmasBall/pattern3", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern3.xml") },
+                { "XmasBall/pattern4", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern4.xml") }
             };
 
             // Load musics

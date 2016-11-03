@@ -16,6 +16,10 @@ namespace Xmas_Hell.Entities.Bosses
         {
         }
 
+        public virtual void Stop()
+        {
+        }
+
         public virtual void Update(GameTime gameTime)
         {
         }

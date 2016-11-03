@@ -25,15 +25,20 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             Boss.CurrentAnimator.Play("Idle");
             _patternShot = false;
+
+            Boss.MoveTo(_screenCenter, true);
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (!Boss.TargetingPosition && !Boss.CurrentAnimator.Position.Equals(_screenCenter))
-                Boss.MoveTo(_screenCenter);
-            else if (Boss.CurrentAnimator.Position.Equals(_screenCenter))
+            if (Boss.CurrentAnimator.Position.Equals(_screenCenter))
             {
                 if (Boss.CurrentAnimator.CurrentAnimation.Name == "Idle")
                     Boss.CurrentAnimator.Play("Breathe_In");
