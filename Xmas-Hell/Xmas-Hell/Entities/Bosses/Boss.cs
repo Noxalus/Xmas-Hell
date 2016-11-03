@@ -159,7 +159,7 @@ namespace Xmas_Hell.Entities
             // Behaviours
             Behaviours = new List<AbstractBossBehaviour>();
             CurrentBehaviourIndex = 0;
-            PreviousBehaviourIndex = 0;
+            PreviousBehaviourIndex = -1;
 
             // BulletML
             BossPatterns = new Dictionary<string, BulletPattern>();
@@ -178,6 +178,12 @@ namespace Xmas_Hell.Entities
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
+        }
+
+        private void RestoreDefaultState()
+        {
+            Direction = Vector2.Zero;
+            CurrentAnimator.Play("Idle");
         }
 
         private void LoadBulletPatterns()
@@ -242,7 +248,7 @@ namespace Xmas_Hell.Entities
             System.Diagnostics.Debug.WriteLine(obj);
         }
 
-        public void AddBullet(string patternName,  BulletType type, bool clear = false)
+        public void TriggerPattern(string patternName,  BulletType type, bool clear = false, Vector2? position = null)
         {
             if (clear)
                 Game.GameManager.MoverManager.Clear();
@@ -251,7 +257,12 @@ namespace Xmas_Hell.Entities
 
             // Add a new bullet in the center of the screen
             var mover = (Mover)Game.GameManager.MoverManager.CreateBullet(true);
-            mover.Position(ActionPointPosition());
+
+            if (position != null)
+                mover.Position(position.Value);
+            else
+                mover.Position(ActionPointPosition());
+
             mover.InitTopNode(BossPatterns[patternName].RootNode);
         }
 
@@ -321,21 +332,23 @@ namespace Xmas_Hell.Entities
 
         private void UpdateBehaviour(GameTime gameTime)
         {
+            PreviousBehaviourIndex = CurrentBehaviourIndex;
+
             UpdateBehaviourIndex();
+
+            if (CurrentBehaviourIndex != PreviousBehaviourIndex)
+            {
+                Game.GameManager.MoverManager.Clear();
+                RestoreDefaultState();
+                Behaviours[CurrentBehaviourIndex].Start();
+            }
 
             Behaviours[CurrentBehaviourIndex].Update(gameTime);
         }
 
         protected virtual void UpdateBehaviourIndex()
         {
-            PreviousBehaviourIndex = CurrentBehaviourIndex;
-            CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * (Behaviours.Count));
-
-            if (CurrentBehaviourIndex != PreviousBehaviourIndex)
-            {
-                Game.GameManager.MoverManager.Clear();
-                Behaviours[CurrentBehaviourIndex].Start();
-            }
+            CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * Behaviours.Count) % Behaviours.Count;
         }
 
         public void Draw(GameTime gameTime)

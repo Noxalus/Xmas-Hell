@@ -47,8 +47,8 @@ namespace Xmas_Hell
             CollisionWorld = new CollisionWorld(_game);
             ParticleManager = new ParticleManager(_game);
 
-            Random = new Random(GameConfig.RandomSeed);
-            //Random = new Random();
+            //Random = new Random(GameConfig.RandomSeed);
+            Random = new Random();
         }
 
         public void Initialize()

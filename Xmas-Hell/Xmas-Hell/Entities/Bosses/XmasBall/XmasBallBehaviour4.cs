@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Xmas_Hell.Geometry;
 using RandomExtension;
 
 namespace Xmas_Hell.Entities.Bosses.XmasBall
@@ -14,9 +13,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Start();
 
-            Boss.Direction = MathHelperExtension.AngleToDirection(
-                (float)Boss.Game.GameManager.Random.NextDouble() * MathHelper.Pi
-            );
+            Boss.Direction = Boss.GetPlayerDirection();
 
             Boss.Speed = 500f;
         }
@@ -38,6 +35,13 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 Boss.Direction.Y *= -(float)Boss.Game.GameManager.Random.NextDouble(1f, 1f);
                 collision = true;
             }
+
+            Boss.CurrentAnimator.Position = new Vector2(
+                MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width() / 2f,
+                    GameConfig.VirtualResolution.X - Boss.Width() / 2f),
+                MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height() / 2f,
+                    GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
+            );
 
             if (collision)
             {

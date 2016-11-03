@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Shapes;
+using Xmas_Hell.BulletML;
 using Xmas_Hell.Geometry;
 
 namespace Xmas_Hell.Entities.Bosses.XmasBall
@@ -13,6 +14,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         private readonly Line _bottomWallLine;
         private readonly Line _upWallLine;
         private readonly Line _rightWallLine;
+        private Vector2 _newPosition;
 
         public XmasBallBehaviour3(Boss boss) : base(boss)
         {
@@ -41,6 +43,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Start();
 
+            _newPosition = Vector2.Zero;
             Boss.Speed = 500f;
         }
 
@@ -48,40 +51,75 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Update(gameTime);
 
-            // Compute the ray between boss position and player's position
             var currentPosition = Boss.CurrentAnimator.Position;
-            var playerDirection = Boss.GetPlayerDirection();
-            var maxDistance = (float)Math.Sqrt(
-                GameConfig.VirtualResolution.X*GameConfig.VirtualResolution.X +
-                GameConfig.VirtualResolution.Y*GameConfig.VirtualResolution.Y
-            );
 
-            var fartherPlayerPosition = currentPosition + (playerDirection * maxDistance);
+            if (Boss.TargetingPosition)
+            {
+                if (currentPosition.X < Boss.Width()/2f ||
+                    currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width()/2f ||
+                    currentPosition.Y < Boss.Height()/2f ||
+                    currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height()/2f)
+                {
+                    Boss.TargetingPosition = false;
+                    Boss.Game.Camera.Shake(0.5f, 20f);
 
-            _bossPlayerLine = new Line(
-                currentPosition,
-                fartherPlayerPosition
-            );
+                    var patternPosition = currentPosition;
 
-            var newPosition = Vector2.Zero;
+                    if (currentPosition.X < Boss.Width()/2f)
+                        patternPosition.X -= Boss.Width()/2f;
+                    else if (currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width()/2f)
+                        patternPosition.X += Boss.Width()/2f;
+                    else if (currentPosition.Y < Boss.Height()/2f)
+                        patternPosition.Y -= Boss.Height()/2f;
+                    else if (currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height()/2f)
+                        patternPosition.Y += Boss.Height()/2f;
 
-            var haveNewPosition =
-                MathHelperExtension.LinesIntersect(_bottomWallLine, _bossPlayerLine, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_leftWallLine, _bossPlayerLine, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_rightWallLine, _bossPlayerLine, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_upWallLine, _bossPlayerLine, ref newPosition);
+                    Boss.TriggerPattern("XmasBall/pattern3", BulletType.Type3, false, patternPosition);
 
-            if (haveNewPosition)
-                Boss.MoveTo(newPosition);
+                    Boss.CurrentAnimator.Position = new Vector2(
+                        MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width()/2f,
+                            GameConfig.VirtualResolution.X - Boss.Width()/2f),
+                        MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height()/2f,
+                            GameConfig.VirtualResolution.Y - Boss.Height()/2f)
+                    );
+                }
+            }
+
+            if (!Boss.TargetingPosition)
+            {
+                var playerDirection = Boss.GetPlayerDirection();
+                var maxDistance = (float) Math.Sqrt(
+                    GameConfig.VirtualResolution.X*GameConfig.VirtualResolution.X +
+                    GameConfig.VirtualResolution.Y*GameConfig.VirtualResolution.Y
+                );
+
+                var fartherPlayerPosition = currentPosition + (playerDirection*maxDistance);
+
+                _bossPlayerLine = new Line(
+                    currentPosition,
+                    fartherPlayerPosition
+                );
+
+                _newPosition = Vector2.Zero;
+
+                var hasNewPosition =
+                    MathHelperExtension.LinesIntersect(_bottomWallLine, _bossPlayerLine, ref _newPosition) ||
+                    MathHelperExtension.LinesIntersect(_leftWallLine, _bossPlayerLine, ref _newPosition) ||
+                    MathHelperExtension.LinesIntersect(_rightWallLine, _bossPlayerLine, ref _newPosition) ||
+                    MathHelperExtension.LinesIntersect(_upWallLine, _bossPlayerLine, ref _newPosition);
+
+                if (hasNewPosition)
+                    Boss.MoveTo(_newPosition);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawLine(_bossPlayerLine.First, _bossPlayerLine.Second, Color.Red, 5f);
-            spriteBatch.DrawLine(_leftWallLine.First, _leftWallLine.Second, Color.White, 5f);
-            spriteBatch.DrawLine(_bottomWallLine.First, _bottomWallLine.Second, Color.Yellow, 5f);
-            spriteBatch.DrawLine(_rightWallLine.First, _rightWallLine.Second, Color.Brown, 5f);
-            spriteBatch.DrawLine(_upWallLine.First, _upWallLine.Second, Color.Green, 5f);
+            //spriteBatch.DrawLine(_bossPlayerLine.First, _bossPlayerLine.Second, Color.Red, 5f);
+            //spriteBatch.DrawLine(_leftWallLine.First, _leftWallLine.Second, Color.White, 5f);
+            //spriteBatch.DrawLine(_bottomWallLine.First, _bottomWallLine.Second, Color.Yellow, 5f);
+            //spriteBatch.DrawLine(_rightWallLine.First, _rightWallLine.Second, Color.Brown, 5f);
+            //spriteBatch.DrawLine(_upWallLine.First, _upWallLine.Second, Color.Green, 5f);
         }
     }
 }

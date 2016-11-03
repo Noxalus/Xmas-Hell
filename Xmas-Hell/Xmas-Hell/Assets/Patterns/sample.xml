@@ -5,7 +5,7 @@
     <fire>
       <bullet>
         <direction type="aim">0</direction>
-        <speed>2</speed>
+        <speed>4</speed>
       </bullet>
     </fire>
   </action>

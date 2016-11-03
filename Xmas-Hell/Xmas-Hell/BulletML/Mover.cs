@@ -80,7 +80,7 @@ namespace Xmas_Hell.BulletML
             _sprite.Rotation = Direction;
             _sprite.Scale = Scale();
 
-            if (X < 0 || X > GameConfig.VirtualResolution.X || Y < 0 || Y > GameConfig.VirtualResolution.Y)
+            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 || Y < -100 || Y > GameConfig.VirtualResolution.Y + 100)
                 Used = false;
         }
 

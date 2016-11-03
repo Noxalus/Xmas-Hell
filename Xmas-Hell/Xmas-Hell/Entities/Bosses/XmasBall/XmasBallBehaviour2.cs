@@ -7,7 +7,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
     class XmasBallBehaviour2 : AbstractBossBehaviour
     {
         private Vector2 _screenCenter;
-        private TimeSpan _bulletFrequence;
+        //private TimeSpan _bulletFrequence;
         private bool _patternShot;
 
         public XmasBallBehaviour2(Boss boss) : base(boss)
@@ -45,7 +45,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 {
                     if (!_patternShot)
                     {
-                        Boss.AddBullet("XmasBall/pattern1", BulletType.Type3);
+                        Boss.TriggerPattern("XmasBall/pattern1", BulletType.Type3);
                         _patternShot = true;
                     }
                 }
