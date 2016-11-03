@@ -17,6 +17,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Start();
 
+            Boss.Speed = 500f;
             _newPositionTime = TimeSpan.Zero;
             _bulletFrequence = TimeSpan.Zero;
 
@@ -39,14 +40,14 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             }
             else
             {
-                _newPositionTime = TimeSpan.FromSeconds((Boss.Game.GameManager.Random.NextDouble() * 2.5) + 0.5);
+                _newPositionTime = TimeSpan.FromSeconds(0);
 
                 var newPosition = new Vector2(
                     Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
                     Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
                 );
 
-                Boss.MoveTo(newPosition);
+                Boss.MoveTo(newPosition, 2f);
             }
 
             if (_bulletFrequence.TotalMilliseconds > 0)

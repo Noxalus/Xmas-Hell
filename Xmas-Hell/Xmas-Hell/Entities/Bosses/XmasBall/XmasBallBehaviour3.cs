@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Shapes;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Geometry;
@@ -46,7 +47,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             _newPosition = Vector2.Zero;
             Boss.Speed = 100f;
-            _timeBeforeNextCharge = TimeSpan.Zero;
+            _timeBeforeNextCharge = TimeSpan.FromSeconds(2);
+            // TODO: RotateTo(PlayerDirection, 2f) (angular interpolation)
         }
 
         public override void Stop()
@@ -54,6 +56,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             base.Stop();
 
             Boss.Acceleration = Vector2.One;
+            Boss.CurrentAnimator.Rotation = 0f;
         }
 
         public override void Update(GameTime gameTime)
@@ -102,11 +105,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                     _timeBeforeNextCharge = TimeSpan.FromSeconds(
                         RandomExtension.RandomExtension.NextDouble(
                             Boss.Game.GameManager.Random,
-                            1, 4
+                            1, 2
                         )
                     );
                 }
             }
+
 
             if (!Boss.TargetingPosition && _timeBeforeNextCharge.TotalMilliseconds <= 0)
             {
@@ -117,6 +121,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                     GameConfig.VirtualResolution.X*GameConfig.VirtualResolution.X +
                     GameConfig.VirtualResolution.Y*GameConfig.VirtualResolution.Y
                 );
+
+                Boss.CurrentAnimator.Rotation = playerDirection.ToAngle();
 
                 var fartherPlayerPosition = currentPosition + (playerDirection*maxDistance);
 

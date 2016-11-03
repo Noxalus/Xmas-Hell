@@ -16,16 +16,9 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         {
             base.Start();
 
-            var possibleAngle = new List<float>()
-            {
-                45f,
-                135f,
-                225f,
-                315f
-            };
-
+            var possibleAngle = new float[4] { 45f, 135f, 225f, 315f };
             Boss.Direction = MathHelperExtension.AngleToDirection(
-                MathHelper.ToRadians(possibleAngle[Boss.Game.GameManager.Random.Next(possibleAngle.Count - 1)])
+                MathHelper.ToRadians(possibleAngle[Boss.Game.GameManager.Random.Next(possibleAngle.Length - 1)])
             );
 
             Boss.Speed = 500f;
@@ -35,6 +28,10 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         public override void Stop()
         {
             base.Stop();
+
+            Boss.Acceleration = Vector2.One;
+            Boss.CurrentAnimator.Rotation = 0f;
+            Boss.Direction = Vector2.Zero;
         }
 
         public override void Update(GameTime gameTime)
@@ -57,9 +54,9 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             Boss.CurrentAnimator.Position = new Vector2(
                 MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width() / 2f,
-                    GameConfig.VirtualResolution.X - Boss.Width() / 2f),
+                GameConfig.VirtualResolution.X - Boss.Width() / 2f),
                 MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height() / 2f,
-                    GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
+                GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
             );
 
             if (collision)

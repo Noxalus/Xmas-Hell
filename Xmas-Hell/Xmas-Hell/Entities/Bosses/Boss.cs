@@ -363,7 +363,7 @@ namespace Xmas_Hell.Entities
 
         public void Draw(GameTime gameTime)
         {
-            CurrentAnimator.Color = _hitTimer.TotalMilliseconds > 0 ? Color.Red : Color.White;
+            CurrentAnimator.Color = _hitTimer.TotalMilliseconds > 0 ? new Color(Color.White, 0.1f) : Color.White;
 
             CurrentAnimator.Draw(Game.SpriteBatch);
 
