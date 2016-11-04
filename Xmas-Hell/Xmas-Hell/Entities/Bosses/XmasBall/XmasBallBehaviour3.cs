@@ -2,7 +2,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Shapes;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Geometry;
 
@@ -16,7 +15,11 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         private readonly Line _upWallLine;
         private readonly Line _rightWallLine;
         private Vector2 _newPosition;
-        private TimeSpan _timeBeforeNextCharge;
+        private TimeSpan _stunnedTimer;
+        private bool _stunned;
+        private bool _lockingTarget;
+        private TimeSpan _lockingTargetTimer;
+        private bool _charging;
 
         public XmasBallBehaviour3(Boss boss) : base(boss)
         {
@@ -47,8 +50,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             _newPosition = Vector2.Zero;
             Boss.Speed = 100f;
-            _timeBeforeNextCharge = TimeSpan.FromSeconds(2);
-            // TODO: RotateTo(PlayerDirection, 2f) (angular interpolation)
+            _charging = false;
+            _stunned = false;
+
+            // Start to lock the player
+            _lockingTarget = true;
+            _lockingTargetTimer = TimeSpan.FromSeconds(2f);
         }
 
         public override void Stop()
@@ -65,55 +72,58 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             var currentPosition = Boss.CurrentAnimator.Position;
 
-            if (_timeBeforeNextCharge.TotalMilliseconds > 0)
-                _timeBeforeNextCharge -= gameTime.ElapsedGameTime;
-
-            if (Boss.TargetingPosition)
+            if (_stunned)
             {
-                Boss.Acceleration += new Vector2(0.5f);
-
-                if (currentPosition.X < Boss.Width()/2f ||
-                    currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width()/2f ||
-                    currentPosition.Y < Boss.Height()/2f ||
-                    currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height()/2f)
-                {
-                    Boss.Acceleration = Vector2.One;
-                    Boss.TargetingPosition = false;
-                    Boss.Game.Camera.Shake(0.5f, 50f);
+                if (Boss.CurrentAnimator.CurrentAnimation.Name != "Stunned")
                     Boss.CurrentAnimator.Transition("Stunned", 0.5f);
 
-                    var patternPosition = currentPosition;
+                if (_stunnedTimer.TotalMilliseconds <= 0)
+                {
+                    _stunned = false;
+                    _stunnedTimer = TimeSpan.Zero;
 
-                    if (currentPosition.X < Boss.Width()/2f)
-                        patternPosition.X -= Boss.Width()/2f;
-                    else if (currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width()/2f)
-                        patternPosition.X += Boss.Width()/2f;
-                    else if (currentPosition.Y < Boss.Height()/2f)
-                        patternPosition.Y -= Boss.Height()/2f;
-                    else if (currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height()/2f)
-                        patternPosition.Y += Boss.Height()/2f;
-
-                    Boss.TriggerPattern("XmasBall/pattern3", BulletType.Type3, false, patternPosition);
-
-                    Boss.CurrentAnimator.Position = new Vector2(
-                        MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width()/2f,
-                            GameConfig.VirtualResolution.X - Boss.Width()/2f),
-                        MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height()/2f,
-                            GameConfig.VirtualResolution.Y - Boss.Height()/2f)
-                    );
-
-                    _timeBeforeNextCharge = TimeSpan.FromSeconds(
+                    _lockingTarget = true;
+                    _lockingTargetTimer = TimeSpan.FromSeconds(
                         RandomExtension.RandomExtension.NextDouble(
                             Boss.Game.GameManager.Random,
-                            1, 2
+                            0.5f, 1.5f
                         )
                     );
                 }
+                else
+                    _stunnedTimer -= gameTime.ElapsedGameTime;
             }
 
-
-            if (!Boss.TargetingPosition && _timeBeforeNextCharge.TotalMilliseconds <= 0)
+            if (_lockingTarget && !_stunned)
             {
+                if (Boss.CurrentAnimator.CurrentAnimation.Name != "No_Animation")
+                    Boss.CurrentAnimator.Play("No_Animation");
+
+                Boss.RotateTo(Boss.GetPlayerDirection().ToAngle(), true);
+
+                if (_lockingTargetTimer.TotalMilliseconds <= 0)
+                {
+                    _lockingTarget = false;
+                    _lockingTargetTimer = TimeSpan.Zero;
+
+                    _charging = true;
+                }
+                else
+                {
+                    Boss.CurrentAnimator.Rotation =
+                        MathHelper.Lerp(
+                            Boss.CurrentAnimator.Rotation,
+                            Boss.GetPlayerDirection().ToAngle(),
+                            0.5f
+                        );
+
+                    _lockingTargetTimer -= gameTime.ElapsedGameTime;
+                }
+            }
+
+            if (!Boss.TargetingPosition && _charging)
+            {
+                _charging = false;
                 Boss.CurrentAnimator.Transition("Idle", 0.5f);
 
                 var playerDirection = Boss.GetPlayerDirection();
@@ -141,6 +151,50 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
                 if (hasNewPosition)
                     Boss.MoveTo(_newPosition);
+            }
+
+            if (Boss.TargetingPosition)
+            {
+                Boss.Acceleration += new Vector2(0.5f);
+
+                if (currentPosition.X < Boss.Width() / 2f ||
+                    currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width() / 2f ||
+                    currentPosition.Y < Boss.Height() / 2f ||
+                    currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
+                {
+                    Boss.Acceleration = Vector2.One;
+                    Boss.TargetingPosition = false;
+                    Boss.Game.Camera.Shake(0.5f, 50f);
+                    Boss.CurrentAnimator.Transition("Stunned", 0.5f);
+
+                    var patternPosition = currentPosition;
+
+                    if (currentPosition.X < Boss.Width() / 2f)
+                        patternPosition.X -= Boss.Width() / 2f;
+                    else if (currentPosition.X > GameConfig.VirtualResolution.X - Boss.Width() / 2f)
+                        patternPosition.X += Boss.Width() / 2f;
+                    else if (currentPosition.Y < Boss.Height() / 2f)
+                        patternPosition.Y -= Boss.Height() / 2f;
+                    else if (currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
+                        patternPosition.Y += Boss.Height() / 2f;
+
+                    Boss.TriggerPattern("XmasBall/pattern3", BulletType.Type3, false, patternPosition);
+
+                    Boss.CurrentAnimator.Position = new Vector2(
+                        MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width() / 2f,
+                            GameConfig.VirtualResolution.X - Boss.Width() / 2f),
+                        MathHelper.Clamp(Boss.CurrentAnimator.Position.Y, Boss.Height() / 2f,
+                            GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
+                    );
+
+                    _stunnedTimer = TimeSpan.FromSeconds(
+                        RandomExtension.RandomExtension.NextDouble(
+                            Boss.Game.GameManager.Random,
+                            1, 2
+                        )
+                    );
+                    _stunned = true;
+                }
             }
         }
 

@@ -23,14 +23,22 @@ namespace Xmas_Hell.Entities
         public Vector2 Direction = Vector2.Zero; // values in radians
         public float Speed;
         public Vector2 Acceleration = Vector2.One;
+        public float AngularVelocity = 1f;
 
-        // Relative to positioning
+        // Relative to position targeting
         public bool TargetingPosition = false;
         private Vector2 _initialPosition = Vector2.Zero;
         private Vector2 _targetPosition = Vector2.Zero;
         private TimeSpan _targetPositionTimer = TimeSpan.Zero;
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
+
+        // Relative to angle targeting
+        public bool TargetingAngle = false;
+        private float _initialAngle = 0f;
+        private float _targetAngle = 0f;
+        private TimeSpan _targetAngleTimer = TimeSpan.Zero;
+        private TimeSpan _targetAngleTime = TimeSpan.Zero;
 
         private readonly PositionDelegate _playerPositionDelegate;
 
@@ -153,6 +161,10 @@ namespace Xmas_Hell.Entities
             Game = game;
             _playerPositionDelegate = playerPositionDelegate;
 
+            InitialPosition = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                150f
+            );
             InitialLife = GameConfig.BossDefaultLife;
 
             // Behaviours
@@ -177,11 +189,6 @@ namespace Xmas_Hell.Entities
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
             Invincible = false;
-
-            InitialPosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                150f
-            );
 
             Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
@@ -233,7 +240,27 @@ namespace Xmas_Hell.Entities
             TargetingPosition = true;
             _targetPosition = position;
             _targetDirection = Vector2.Normalize(position - CurrentAnimator.Position);
-            _initialPosition = CurrentAnimator.Position;
+        }
+
+        public void RotateTo(float angle, float time, bool force = false)
+        {
+            if (TargetingAngle && !force)
+                return;
+
+            TargetingAngle = true;
+            _targetAngle = angle;
+            _initialAngle = CurrentAnimator.Rotation;
+            _targetAngleTimer = TimeSpan.FromSeconds(time);
+            _targetAngleTime = TimeSpan.FromSeconds(time);
+        }
+
+        public void RotateTo(float angle, bool force = false)
+        {
+            if (TargetingAngle && !force)
+                return;
+
+            TargetingAngle = true;
+            _targetAngle = angle;
         }
 
         public void StopMoving()
@@ -298,6 +325,7 @@ namespace Xmas_Hell.Entities
         public virtual void Update(GameTime gameTime)
         {
             UpdatePosition(gameTime);
+            UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
 
             if (_hitTimer.TotalMilliseconds > 0)
@@ -354,10 +382,49 @@ namespace Xmas_Hell.Entities
             }
         }
 
+        private void UpdateRotation(GameTime gameTime)
+        {
+            if (TargetingAngle)
+            {
+                // TODO: Add some logic to know if the boss has to turn to the left or to the right
+
+                if (_targetAngleTimer.TotalMilliseconds <= 0)
+                {
+                    var currentRotation = CurrentAnimator.Rotation;
+                    var distance = Math.Abs(currentRotation - _targetAngle);
+                    var deltaDistance = AngularVelocity*gameTime.GetElapsedSeconds();
+
+                    if (distance < deltaDistance)
+                    {
+                        TargetingAngle = false;
+                        CurrentAnimator.Rotation = _targetAngle;
+                    }
+                    else
+                    {
+                        CurrentAnimator.Rotation = currentRotation + deltaDistance;
+                    }
+                }
+                else
+                {
+                    var lerpAmount = (float)(_targetAngleTime.TotalSeconds / _targetAngleTimer.TotalSeconds);
+                    var newAngle = MathHelper.Lerp(_targetAngle, _initialAngle, lerpAmount);
+
+                    if (lerpAmount < 0.001f)
+                    {
+                        TargetingAngle = false;
+                        _targetAngleTimer = TimeSpan.Zero;
+                        CurrentAnimator.Rotation = _targetAngle;
+                    }
+                    else
+                        _targetAngleTime -= gameTime.ElapsedGameTime;
+
+                    CurrentAnimator.Rotation = newAngle;
+                }
+            }
+        }
+
         private void UpdateBehaviour(GameTime gameTime)
         {
-            PreviousBehaviourIndex = CurrentBehaviourIndex;
-
             UpdateBehaviourIndex();
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
@@ -371,6 +438,8 @@ namespace Xmas_Hell.Entities
             }
 
             Behaviours[CurrentBehaviourIndex].Update(gameTime);
+
+            PreviousBehaviourIndex = CurrentBehaviourIndex;
         }
 
         protected virtual void UpdateBehaviourIndex()

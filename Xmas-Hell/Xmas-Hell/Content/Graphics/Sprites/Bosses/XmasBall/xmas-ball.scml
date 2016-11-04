@@ -175,7 +175,61 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="Stunned" length="800" interval="100">
+        <animation id="1" name="No_Animation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="6" key="0"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" parent="0" timeline="5" key="0" z_index="5"/>
+                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="9.65" y="-0" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="eye">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="25" y="15" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="eye_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="25" y="-15" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="mouth">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-10" y="0" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="cheek">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="10" y="-30" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="cheek_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="10" y="35" angle="270"/>
+                </key>
+            </timeline>
+            <timeline id="6" obj="0" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone y="0.318471" angle="90"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="action_point" object_type="point">
+                <key id="0" spin="0">
+                    <object x="-10.318471" y="0" angle="180"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Stunned" length="800" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -260,7 +314,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="9.65" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="9.65" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="eye">
@@ -274,7 +328,7 @@
                     <object folder="0" file="2" x="25" y="15" angle="90"/>
                 </key>
                 <key id="3" time="750" spin="-1">
-                    <object folder="0" file="2" x="25" y="15"/>
+                    <object folder="0" file="2" x="25" y="15" angle="0"/>
                 </key>
             </timeline>
             <timeline id="2" name="eye_000">
@@ -282,7 +336,7 @@
                     <object folder="0" file="2" x="25" y="-15" angle="270"/>
                 </key>
                 <key id="1" time="250">
-                    <object folder="0" file="2" x="25" y="-15"/>
+                    <object folder="0" file="2" x="25" y="-15" angle="0"/>
                 </key>
                 <key id="2" time="500">
                     <object folder="0" file="2" x="25" y="-15" angle="90"/>
@@ -290,7 +344,7 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-10" y="0" angle="270"/>
+                    <object folder="0" file="3" x="-10" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="cheek">
@@ -322,11 +376,11 @@
             </timeline>
             <timeline id="7" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-10.318471" y="0" angle="180"/>
+                    <object x="-10.318471" angle="180"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="Big_Idle" length="1000" interval="100">
+        <animation id="3" name="Big_Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="5" key="0"/>
@@ -380,7 +434,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="Breathe_Out" length="1000" interval="100">
+        <animation id="4" name="Breathe_Out" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="5" key="0"/>
@@ -446,7 +500,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="4" name="Breathe_In" length="1000" interval="100">
+        <animation id="5" name="Breathe_In" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
