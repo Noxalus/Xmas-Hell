@@ -27,7 +27,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             _patternShot = false;
 
             Boss.Invincible = true;
-            Boss.MoveTo(_screenCenter, true);
+            Boss.MoveTo(_screenCenter, 2f, true);
         }
 
         public override void Stop()

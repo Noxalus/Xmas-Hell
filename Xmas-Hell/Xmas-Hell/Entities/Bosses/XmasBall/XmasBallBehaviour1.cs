@@ -47,7 +47,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                     Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
                 );
 
-                Boss.MoveTo(newPosition, 2f);
+                Boss.MoveTo(newPosition, 1.5f);
             }
 
             if (_bulletFrequence.TotalMilliseconds > 0)

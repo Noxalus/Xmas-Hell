@@ -212,9 +212,9 @@ namespace Xmas_Hell.Entities
         }
 
         // Move to a given position in "time" seconds
-        public void MoveTo(Vector2 position, float time)
+        public void MoveTo(Vector2 position, float time, bool force = false)
         {
-            if (TargetingPosition)
+            if (TargetingPosition && !force)
                 return;
 
             TargetingPosition = true;
@@ -234,6 +234,13 @@ namespace Xmas_Hell.Entities
             _targetPosition = position;
             _targetDirection = Vector2.Normalize(position - CurrentAnimator.Position);
             _initialPosition = CurrentAnimator.Position;
+        }
+
+        public void StopMoving()
+        {
+            TargetingPosition = false;
+            _targetPositionTimer = TimeSpan.Zero;
+            _targetDirection = Vector2.Zero;
         }
 
         public Vector2 GetPlayerPosition()
