@@ -18,9 +18,10 @@ namespace Xmas_Hell.Entities
         protected Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
+        public bool Invincible;
 
         public Vector2 Direction = Vector2.Zero; // values in radians
-        public float Speed = 200f;
+        public float Speed;
         public Vector2 Acceleration = Vector2.One;
 
         // Relative to positioning
@@ -31,7 +32,7 @@ namespace Xmas_Hell.Entities
         private TimeSpan _targetPositionTime = TimeSpan.Zero;
         private Vector2 _targetDirection = Vector2.Zero;
 
-        private PositionDelegate _playerPositionDelegate;
+        private readonly PositionDelegate _playerPositionDelegate;
 
         private TimeSpan _hitTimer = TimeSpan.Zero;
 
@@ -41,8 +42,8 @@ namespace Xmas_Hell.Entities
         protected int CurrentBehaviourIndex;
 
         // BulletML
-        protected Dictionary<string, BulletPattern> BossPatterns;
-        protected List<string> BulletPatternFiles;
+        protected readonly Dictionary<string, BulletPattern> BossPatterns;
+        protected readonly List<string> BulletPatternFiles;
 
         // Spriter
 
@@ -153,15 +154,10 @@ namespace Xmas_Hell.Entities
             _playerPositionDelegate = playerPositionDelegate;
 
             InitialLife = GameConfig.BossDefaultLife;
-            InitialPosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                150f
-            );
 
             // Behaviours
             Behaviours = new List<AbstractBossBehaviour>();
-            CurrentBehaviourIndex = 0;
-            PreviousBehaviourIndex = -1;
+
 
             // BulletML
             BossPatterns = new Dictionary<string, BulletPattern>();
@@ -180,6 +176,17 @@ namespace Xmas_Hell.Entities
             Game.GameManager.MoverManager.Clear();
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
+            Invincible = false;
+
+            InitialPosition = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                150f
+            );
+
+            Direction = Vector2.Zero;
+            Speed = GameConfig.BossDefaultSpeed;
+            CurrentBehaviourIndex = 0;
+            PreviousBehaviourIndex = -1;
         }
 
         private void RestoreDefaultState()
@@ -270,6 +277,9 @@ namespace Xmas_Hell.Entities
 
         public void TakeDamage(float amount)
         {
+            if (Invincible)
+                return;
+
             Life -= amount;
 
             if (Life < 0f)

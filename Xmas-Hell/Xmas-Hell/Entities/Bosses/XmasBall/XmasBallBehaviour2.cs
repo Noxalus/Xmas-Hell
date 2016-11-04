@@ -26,6 +26,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Boss.CurrentAnimator.Play("Idle");
             _patternShot = false;
 
+            Boss.Invincible = true;
             Boss.MoveTo(_screenCenter, true);
         }
 
@@ -40,6 +41,9 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             if (Boss.CurrentAnimator.Position.Equals(_screenCenter))
             {
+                if (Boss.Invincible)
+                    Boss.Invincible = false;
+
                 if (Boss.CurrentAnimator.CurrentAnimation.Name == "Idle")
                     Boss.CurrentAnimator.Play("Breathe_In");
                 else if (Boss.CurrentAnimator.CurrentAnimation.Name == "Big_Idle")
