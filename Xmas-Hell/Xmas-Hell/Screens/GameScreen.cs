@@ -56,6 +56,8 @@ namespace Xmas_Hell.Screens
                 transformMatrix: _game.Camera.GetViewMatrix()
             );
 
+            _game.GameManager.ParticleManager.DrawSnowFall();
+
             _player.Draw(gameTime);
             _boss.Draw(gameTime);
 

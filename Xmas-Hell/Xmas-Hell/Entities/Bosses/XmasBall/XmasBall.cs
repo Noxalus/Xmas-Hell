@@ -60,6 +60,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         protected override void Reset()
         {
             base.Reset();
+
+            //Life = InitialLife / 2f;
         }
 
         public override void Update(GameTime gameTime)
@@ -70,7 +72,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            //CurrentBehaviourIndex = 3;
+            //CurrentBehaviourIndex = 0;
         }
     }
 }

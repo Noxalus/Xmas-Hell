@@ -140,6 +140,8 @@ namespace Xmas_Hell
 
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
             // The next draw calls will be rendered in the first render target
             GraphicsDevice.SetRenderTarget(_renderTarget1);
             GraphicsDevice.Clear(Color.Transparent);
@@ -152,8 +154,6 @@ namespace Xmas_Hell
 
             // We want to render into the back buffer from now on
             GraphicsDevice.SetRenderTarget(null);
-
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
 
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
             SpriteBatch.Draw(

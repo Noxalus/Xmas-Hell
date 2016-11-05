@@ -19,6 +19,7 @@ namespace Xmas_Hell.Particles
         private ParticleEffect _bossHitParticles;
         private ParticleEffect _playerDestroyedParticles;
         private ParticleEffect _bossDestroyedParticles;
+        private ParticleEffect _snowFallParticles;
 
         public ParticleManager(XmasHell game)
         {
@@ -132,19 +133,49 @@ namespace Xmas_Hell.Particles
                 }
             };
 
+            var snowTextureRegion = new TextureRegion2D(Assets.GetTexture2D("Graphics/Pictures/snow"));
+
+            _snowFallParticles = new ParticleEffect
+            {
+                Emitters = new[]
+                {
+                    new ParticleEmitter(
+                        snowTextureRegion,
+                        5000,
+                        TimeSpan.FromSeconds(60),
+                        Profile.Spray(new Vector2(0f, -1f), 30f),
+                        true
+                    )
+                    {
+                        Parameters = new ParticleReleaseParameters
+                        {
+                            Speed = new Range<float>(70f, 100f),
+                            Scale = new Range<float>(30.0f, 60.0f),
+                            Color = (Color.White * 0.75f).ToHsl()
+                        }
+                    }
+                }
+            };
+
             _particleEffects.Add(_bossHitParticles);
             _particleEffects.Add(_playerDestroyedParticles);
             _particleEffects.Add(_bossDestroyedParticles);
+
+            for (int i = 0; i < 1000; i++)
+            {
+                _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
+                _snowFallParticles.Update(1 / 60f);
+            }
         }
 
         public void EmitBossHitParticles(Vector2 position)
         {
-            _bossHitParticles.Trigger(position);
+            //_bossHitParticles.Trigger(position);
         }
 
         public void EmitPlayerDestroyedParticles(Vector2 position)
         {
-            _playerDestroyedParticles.Trigger(position);
+            //_playerDestroyedParticles.Trigger(position);
         }
 
         public void EmitBossDestroyedParticles(Vector2 position)
@@ -156,6 +187,14 @@ namespace Xmas_Hell.Particles
         {
             foreach (var particleEffect in _particleEffects)
                 particleEffect.Update(gameTime.GetElapsedSeconds());
+
+            _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
+            _snowFallParticles.Update(gameTime.GetElapsedSeconds());
+        }
+
+        public void DrawSnowFall()
+        {
+            _game.SpriteBatch.Draw(_snowFallParticles);
         }
 
         public void Draw(SpriteBatch spriteBatch)
