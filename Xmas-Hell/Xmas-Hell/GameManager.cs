@@ -73,9 +73,22 @@ namespace Xmas_Hell
             _bullets.Add(bullet);
         }
 
+        public void DrawBloomedSprites(GameTime gameTime)
+        {
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                sortMode: SpriteSortMode.Immediate,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.Camera.GetViewMatrix()
+            );
+
+            MoverManager.Draw(_game.SpriteBatch);
+
+            _game.SpriteBatch.End();
+        }
+
         public void Draw(GameTime gameTime)
         {
-            // TODO: Apply a bloom effect on all bullets
             _game.SpriteBatch.Begin(
                 samplerState: SamplerState.PointClamp,
                 sortMode: SpriteSortMode.Immediate,
@@ -85,17 +98,6 @@ namespace Xmas_Hell
 
             foreach (var bullet in _bullets)
                 bullet.Draw(gameTime);
-
-            MoverManager.Draw(_game.SpriteBatch);
-
-            _game.SpriteBatch.End();
-
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                sortMode: SpriteSortMode.Immediate,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.Camera.GetViewMatrix()
-            );
 
             CollisionWorld.Draw(_game.SpriteBatch);
             ParticleManager.Draw(_game.SpriteBatch);

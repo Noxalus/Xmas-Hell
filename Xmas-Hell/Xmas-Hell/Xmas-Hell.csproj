@@ -44,6 +44,15 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+    <Debugger>Xamarin</Debugger>
+    <AotAssemblies>False</AotAssemblies>
+    <EnableLLVM>False</EnableLLVM>
+    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+    <EnableProguard>False</EnableProguard>
+    <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -76,6 +85,11 @@
     <Compile Include="Physics\Collision\CollisionConvexPolygon.cs" />
     <Compile Include="Physics\Collision\CollisionElement.cs" />
     <Compile Include="RandomExtension.cs" />
+    <Compile Include="Shaders\Bloom.cs" />
+    <Compile Include="Shaders\BloomSettings.cs" />
+    <Compile Include="Shaders\IBloomService.cs" />
+    <Compile Include="Sprites\AbstractSprite.cs" />
+    <Compile Include="Sprites\SpriteBatchManager.cs" />
     <Compile Include="XmasHellActivity.cs" />
     <Compile Include="Assets.cs" />
     <Compile Include="BulletML\Mover.cs" />

@@ -23,7 +23,7 @@ namespace Xmas_Hell.Screens
         {
             _game = game;
             GameManager.GameDifficulty = GetRank;
-        }
+      }
 
         public override void Initialize()
         {
@@ -44,6 +44,8 @@ namespace Xmas_Hell.Screens
         {
             _player.Update(gameTime);
             _boss.Update(gameTime);
+
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
@@ -58,6 +60,8 @@ namespace Xmas_Hell.Screens
             _boss.Draw(gameTime);
 
             _game.SpriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }
