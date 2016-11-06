@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Particles;
 using MonoGame.Extended.Sprites;
 using SpriterDotNet.MonoGame;
 using Xmas_Hell.BulletML;
@@ -35,9 +36,12 @@ namespace Xmas_Hell
         private XmasHell _game;
 
         public List<Sprite> BackgroundSprites;
+        public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
         public List<Mover> BossBullets;
         public List<Sprite> GameSprites;
+        public List<ParticleEffect> GameParticles;
+        public List<Sprite> DebugSprites;
 
         public Boss Boss;
         public Sprite Player;
@@ -53,9 +57,12 @@ namespace Xmas_Hell
             _game = game;
 
             BackgroundSprites = new List<Sprite>();
+            BackgroundParticles = new List<ParticleEffect>();
             UISprites = new List<Sprite>();
             BossBullets = new List<Mover>();
             GameSprites = new List<Sprite>();
+            GameParticles = new List<ParticleEffect>();
+            DebugSprites = new List<Sprite>();
         }
 
         public void Initialize()
@@ -83,10 +90,6 @@ namespace Xmas_Hell
             _bloom.UnloadContent();
             _renderTarget1.Dispose();
             _renderTarget2.Dispose();
-        }
-
-        public void AddSprite(AbstractSprite sprite, SpriteCategory category)
-        {
         }
 
         public void Update()
@@ -133,6 +136,17 @@ namespace Xmas_Hell
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            foreach (var particle in BackgroundParticles)
+                _game.SpriteBatch.Draw(particle);
+
+            _game.SpriteBatch.End();
+
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.Camera.GetViewMatrix()
+            );
+
             // Draw player
             if (Player != null)
                 _game.SpriteBatch.Draw(Player);
@@ -178,6 +192,9 @@ namespace Xmas_Hell
             // Draw game sprites
             foreach (var sprite in GameSprites)
                 sprite.Draw(_game.SpriteBatch);
+
+            foreach (var particle in GameParticles)
+                _game.SpriteBatch.Draw(particle);
 
             _game.SpriteBatch.End();
 

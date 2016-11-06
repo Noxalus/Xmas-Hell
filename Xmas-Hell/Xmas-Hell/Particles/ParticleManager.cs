@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Particles.Modifiers;
@@ -160,22 +159,28 @@ namespace Xmas_Hell.Particles
             _particleEffects.Add(_bossHitParticles);
             _particleEffects.Add(_playerDestroyedParticles);
             _particleEffects.Add(_bossDestroyedParticles);
+            _particleEffects.Add(_snowFallParticles);
 
             for (int i = 0; i < 1000; i++)
             {
                 _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
                 _snowFallParticles.Update(1 / 60f);
             }
+
+            _game.SpriteBatchManager.BackgroundParticles.Add(_snowFallParticles);
+            _game.SpriteBatchManager.GameParticles.Add(_playerDestroyedParticles);
+            _game.SpriteBatchManager.BackgroundParticles.Add(_bossHitParticles);
+            _game.SpriteBatchManager.BackgroundParticles.Add(_bossDestroyedParticles);
         }
 
         public void EmitBossHitParticles(Vector2 position)
         {
-            //_bossHitParticles.Trigger(position);
+            _bossHitParticles.Trigger(position);
         }
 
         public void EmitPlayerDestroyedParticles(Vector2 position)
         {
-            //_playerDestroyedParticles.Trigger(position);
+            _playerDestroyedParticles.Trigger(position);
         }
 
         public void EmitBossDestroyedParticles(Vector2 position)
@@ -189,18 +194,6 @@ namespace Xmas_Hell.Particles
                 particleEffect.Update(gameTime.GetElapsedSeconds());
 
             _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
-            _snowFallParticles.Update(gameTime.GetElapsedSeconds());
-        }
-
-        public void DrawSnowFall()
-        {
-            _game.SpriteBatch.Draw(_snowFallParticles);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (var particleEffect in _particleEffects)
-                _game.SpriteBatch.Draw(particleEffect);
         }
     }
 }

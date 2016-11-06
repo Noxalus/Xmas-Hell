@@ -47,20 +47,5 @@ namespace Xmas_Hell.Screens
 
             base.Update(gameTime);
         }
-
-        public override void Draw(GameTime gameTime)
-        {
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.Camera.GetViewMatrix()
-            );
-
-            _game.GameManager.ParticleManager.DrawSnowFall();
-
-            _game.SpriteBatch.End();
-
-            base.Draw(gameTime);
-        }
     }
 }

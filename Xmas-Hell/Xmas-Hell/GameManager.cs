@@ -86,7 +86,6 @@ namespace Xmas_Hell
                 bullet.Draw(gameTime);
 
             CollisionWorld.Draw(_game.SpriteBatch);
-            ParticleManager.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
         }
