@@ -71,11 +71,13 @@
     <Compile Include="BulletML\BulletType.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Entities\Bosses\AbstractBossBehaviour.cs" />
+    <Compile Include="Entities\Bosses\BossFactory.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBall.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour4.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
+    <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour1.cs" />
     <Compile Include="Entities\Bosses\XmasBell\XmasBell.cs" />
     <Compile Include="Entities\Bosses\XmasLog\XmasLog.cs" />

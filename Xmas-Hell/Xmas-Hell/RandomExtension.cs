@@ -8,5 +8,10 @@ namespace RandomExtension
         {
             return rand.NextDouble() * (max - min) + min;
         }
+
+        public static float NextFloat(this Random rand, float min, float max)
+        {
+            return (float)rand.NextDouble() * (max - min) + min;
+        }
     }
 }

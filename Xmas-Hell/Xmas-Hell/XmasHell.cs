@@ -7,6 +7,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
+using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Screens;
 using Xmas_Hell.Shaders;
 using Xmas_Hell.Sprites;
@@ -67,7 +68,7 @@ namespace Xmas_Hell
             Components.Add(screenComponent = new ScreenComponent(this));
 
             //screenComponent.Register(new MainMenuScreen(this));
-            screenComponent.Register(new GameScreen(this));
+            screenComponent.Register(new GameScreen(this, BossType.XmasBell));
 
             Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(this));
         }
