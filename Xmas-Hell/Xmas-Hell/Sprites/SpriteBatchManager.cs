@@ -12,7 +12,6 @@ using Sprite = MonoGame.Extended.Sprites.Sprite;
 namespace Xmas_Hell
 {
     // This class is used to batch the draw calls per category
-    // This will not work, it needs more reflexion...
     public class SpriteBatchManager
     {
         private XmasHell _game;

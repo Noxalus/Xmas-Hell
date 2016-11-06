@@ -79,10 +79,5 @@ namespace Xmas_Hell.Entities
                 Destroy();
             }
         }
-
-        public virtual void Draw(GameTime gameTime)
-        {
-            Sprite.Draw(_game.SpriteBatch);
-        }
     }
 }

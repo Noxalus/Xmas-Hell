@@ -89,7 +89,6 @@
     <Compile Include="Shaders\Bloom.cs" />
     <Compile Include="Shaders\BloomSettings.cs" />
     <Compile Include="Shaders\IBloomService.cs" />
-    <Compile Include="Sprites\AbstractSprite.cs" />
     <Compile Include="Sprites\SpriteBatchManager.cs" />
     <Compile Include="Sprites\StringSprite.cs" />
     <Compile Include="XmasHellActivity.cs" />

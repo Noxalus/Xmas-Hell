@@ -1,6 +1,4 @@
 using Microsoft.Xna.Framework;
-using MonoGame.Extended.Sprites;
-using Xmas_Hell.Physics;
 
 namespace Xmas_Hell.Entities
 {
@@ -16,11 +14,6 @@ namespace Xmas_Hell.Entities
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
         }
     }
 }
