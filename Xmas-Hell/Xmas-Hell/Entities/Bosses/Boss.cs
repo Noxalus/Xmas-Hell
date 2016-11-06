@@ -17,6 +17,20 @@ using Sprite = MonoGame.Extended.Sprites.Sprite;
 
 namespace Xmas_Hell.Entities.Bosses
 {
+    public enum BossType
+    {
+        XmasBall,
+        XmasBell,
+        XmasCandy,
+        XmasSnowflake,
+        XmasLog,
+        XmasTree,
+        XmasGift,
+        XmasReinder,
+        XmasSnowman,
+        XmasSanta
+    }
+
     public abstract class Boss : IPhysicsEntity
     {
         public XmasHell Game;

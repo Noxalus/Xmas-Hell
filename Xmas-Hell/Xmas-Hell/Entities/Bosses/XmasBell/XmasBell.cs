@@ -16,7 +16,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
 
             // Behaviours
             //Behaviours.Add(new XmasBellBehaviour1(this));
-            Behaviours.Add(new XmasBellBehaviour2(this));
+            //Behaviours.Add(new XmasBellBehaviour2(this));
+            Behaviours.Add(new XmasBellBehaviour3(this));
 
             // Physics
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 150f);

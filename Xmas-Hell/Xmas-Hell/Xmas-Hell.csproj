@@ -77,6 +77,7 @@
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
+    <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour3.cs" />
     <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour1.cs" />
     <Compile Include="Entities\Bosses\XmasBell\XmasBell.cs" />

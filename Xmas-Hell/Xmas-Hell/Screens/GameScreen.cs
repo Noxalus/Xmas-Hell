@@ -12,6 +12,7 @@ namespace Xmas_Hell.Screens
     {
         private readonly XmasHell _game;
         private Player _player;
+        private BossType _bossType;
         private Boss _boss;
 
         private float GetRank()
@@ -19,16 +20,17 @@ namespace Xmas_Hell.Screens
             return 1f;
         }
 
-        public GameScreen(XmasHell game)
+        public GameScreen(XmasHell game, BossType bossType)
         {
             _game = game;
+            _bossType = bossType;
             GameManager.GameDifficulty = GetRank;
       }
 
         public override void Initialize()
         {
             _player = new Player(_game);
-            _boss = new XmasBell(_game, _player.Position);
+            _boss = BossFactory.CreateBoss(_bossType, _game, _player.Position);
 
             base.Initialize();
 

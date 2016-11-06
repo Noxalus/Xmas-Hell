@@ -23,12 +23,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
 
             Boss.CurrentAnimator.Play("Idle");
 
-            Boss.CurrentAnimator.Position = new Vector2(
-                -(int)(Boss.Width() / 2f),
-                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Boss.Height() / 2f))
+            Boss.MoveTo(
+                new Vector2(
+                    -Boss.Width() - 10f,
+                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Boss.Height() / 2f))
+                )
             );
-
-            Boss.Direction = new Vector2(1f, 0f);
         }
 
         public override void Stop()
@@ -51,15 +51,18 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
             base.Update(gameTime);
 
             // TODO: Will go from a side to another side of the screen
-            if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X + Boss.Width())
+            if (!Boss.TargetingPosition)
             {
-                GetNewYRandomPosition();
-                Boss.Direction.X = -1;
-            }
-            else if (Boss.CurrentAnimator.Position.X < -Boss.Width())
-            {
-                GetNewYRandomPosition();
-                Boss.Direction.X = 1;
+                if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X + Boss.Width())
+                {
+                    GetNewYRandomPosition();
+                    Boss.Direction.X = -1;
+                }
+                else if (Boss.CurrentAnimator.Position.X < -Boss.Width())
+                {
+                    GetNewYRandomPosition();
+                    Boss.Direction.X = 1;
+                }
             }
 
             if (_bulletFrequence.TotalMilliseconds > 0)
