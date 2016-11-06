@@ -15,6 +15,7 @@ namespace Xmas_Hell
         public static readonly TimeSpan PlayerShootFrequency = TimeSpan.FromMilliseconds(100);
         public static float PlayerMoveSensitivity = 1f;
         public static float PlayerBulletSpeed = 2000f;
+        public static float PlayerHitboxRadius = 10f;
 
         // Boss
         public static int BossDefaultLife = 1000;

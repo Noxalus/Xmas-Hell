@@ -18,6 +18,8 @@ namespace Xmas_Hell.Entities
 
         private readonly XmasHell _game;
         private Sprite _sprite;
+        private CollisionCircle _hitbox;
+        private Sprite _hitboxSprite;
 
         private Vector2 _initialSpritePosition;
         private Point _initialTouchPosition;
@@ -46,6 +48,7 @@ namespace Xmas_Hell.Entities
             _bulletFrequence = TimeSpan.Zero;
 
             var playerTexture = Assets.GetTexture2D("Graphics/Sprites/player");
+            var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/hitbox");
 
             _sprite = new Sprite(playerTexture)
             {
@@ -53,7 +56,15 @@ namespace Xmas_Hell.Entities
                 Scale = Vector2.One
             };
 
-            _game.GameManager.CollisionWorld.PlayerHitbox = new CollisionCircle(this, new Vector2(0f, 0f), 5f);
+            _hitboxSprite = new Sprite(playerHitboxTexture)
+            {
+                Scale = new Vector2(
+                    GameConfig.PlayerHitboxRadius / playerHitboxTexture.Width,
+                    GameConfig.PlayerHitboxRadius / playerHitboxTexture.Height
+                )
+            };
+            _hitbox = new CollisionCircle(this, new Vector2(0f, 0f), GameConfig.PlayerHitboxRadius);
+            _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
@@ -61,6 +72,7 @@ namespace Xmas_Hell.Entities
             Initialize();
 
             _game.SpriteBatchManager.Player = _sprite;
+            _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
         }
 
         public void Initialize()
@@ -96,6 +108,8 @@ namespace Xmas_Hell.Entities
                 Invincible = false;
 
             UpdatePosition(gameTime);
+            _hitboxSprite.Position = _hitbox.GetCenter();
+
             CheckOutOfBounds();
             UpdateShoot(gameTime);
         }

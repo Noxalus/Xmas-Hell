@@ -37,12 +37,10 @@ namespace Xmas_Hell.Shaders
         // Independently control the color saturation of the bloom and
         // base images. Zero is totally desaturated, 1.0 leaves saturation
         // unchanged, while higher values increase the saturation level.
-        public readonly float BloomSaturation;
+        public float BloomSaturation;
         public readonly float BaseSaturation;
 
-
         #endregion
-
 
         /// <summary>
         /// Constructs a new bloom settings descriptor.

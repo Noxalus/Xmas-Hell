@@ -110,18 +110,18 @@ namespace Xmas_Hell
                 _pause = !_pause;
 
             // Switch to the next bloom settings preset?
-            //if (IsPressed(Keys.A))
-            //{
-            //    _bloomSettingsIndex = (_bloomSettingsIndex + 1) % BloomSettings.PresetSettings.Length;
-            //    _bloom.Settings = BloomSettings.PresetSettings[_bloomSettingsIndex];
-            //}
-            //// Cycle through the intermediate buffer debug display modes?
-            //if (IsPressed(Keys.X))
-            //{
-            //    _bloom.ShowBuffer++;
-            //    if (_bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
-            //        _bloom.ShowBuffer = 0;
-            //}
+            if (IsPressed(Keys.A))
+            {
+                SpriteBatchManager.BloomSettingsIndex = (SpriteBatchManager.BloomSettingsIndex + 1) % BloomSettings.PresetSettings.Length;
+                SpriteBatchManager.Bloom.Settings = BloomSettings.PresetSettings[SpriteBatchManager.BloomSettingsIndex];
+            }
+            // Cycle through the intermediate buffer debug display modes?
+            if (IsPressed(Keys.X))
+            {
+                SpriteBatchManager.Bloom.ShowBuffer++;
+                if (SpriteBatchManager.Bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
+                    SpriteBatchManager.Bloom.ShowBuffer = 0;
+            }
 
             _oldKeyboardState = Keyboard.GetState();
 
@@ -146,8 +146,8 @@ namespace Xmas_Hell
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Player's bullets: {GameManager.GetPlayerBullets().Count:0}", new Vector2(0, 20), Color.White);
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
-            //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + _bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
-            //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + _bloom.ShowBuffer.ToString() + ")", new Vector2(0, 80), Color.White);
+            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
+            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
 
             SpriteBatch.End();
         }

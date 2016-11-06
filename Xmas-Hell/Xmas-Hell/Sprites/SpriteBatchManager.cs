@@ -27,10 +27,14 @@ namespace Xmas_Hell
 
         public Boss Boss;
         public Sprite Player;
+        public Sprite PlayerHitbox;
 
         // Bloom
-        private Bloom _bloom;
-        private int _bloomSettingsIndex = 0;
+        public Bloom Bloom;
+        public int BloomSettingsIndex = 0;
+        private float _bloomSaturationPulse = 1f;
+        private float _bloomSaturationDirection = 0.09f;
+
         private RenderTarget2D _renderTarget1;
         private RenderTarget2D _renderTarget2;
 
@@ -49,7 +53,7 @@ namespace Xmas_Hell
 
         public void Initialize()
         {
-            _bloom = new Bloom(_game.GraphicsDevice, _game.SpriteBatch);
+            Bloom = new Bloom(_game.GraphicsDevice, _game.SpriteBatch);
 
             var pp = _game.GraphicsDevice.PresentationParameters;
 
@@ -64,78 +68,58 @@ namespace Xmas_Hell
 
         public void LoadContent()
         {
-            _bloom.LoadContent(_game.Content, _game.GraphicsDevice.PresentationParameters);
+            Bloom.LoadContent(_game.Content, _game.GraphicsDevice.PresentationParameters);
         }
 
         public void UnloadContent()
         {
-            _bloom.UnloadContent();
+            Bloom.UnloadContent();
             _renderTarget1.Dispose();
             _renderTarget2.Dispose();
         }
 
         public void Update()
         {
+            _bloomSaturationPulse += _bloomSaturationDirection;
+            if (_bloomSaturationPulse > 2.5f) _bloomSaturationDirection = -0.09f;
+            if (_bloomSaturationPulse < 0.1f) _bloomSaturationDirection = 0.09f;
+
+            Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
+
         }
 
-        public void Draw()
+        private void BeginDrawViewportSpace()
         {
-            _game.GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // Start by render the bloomed elements into a render target
-            if (!GameConfig.DisableBloom)
-            {
-                // The next draw calls will be rendered in the first render target
-                _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
-                _game.GraphicsDevice.Clear(Color.Transparent);
-
-                _game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: _game.Camera.GetViewMatrix()
-                );
-
-                foreach (var mover in BossBullets)
-                    _game.SpriteBatch.Draw(mover.Sprite);
-
-                _game.SpriteBatch.End();
-
-                // Apply bloom effect on the first render target and store the
-                // result into the second render target
-                _bloom.Draw(_renderTarget1, _renderTarget2);
-
-                // We want to render into the back buffer from now on
-                _game.GraphicsDevice.SetRenderTarget(null);
-            }
-
             _game.SpriteBatch.Begin(
                 samplerState: SamplerState.PointClamp,
                 blendState: BlendState.AlphaBlend,
                 transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
             );
+        }
 
-            // Draw background sprites
-            foreach (var sprite in BackgroundSprites)
-                sprite.Draw(_game.SpriteBatch);
-
-            foreach (var particle in BackgroundParticles)
-                _game.SpriteBatch.Draw(particle);
-
-            _game.SpriteBatch.End();
-
+        private void BeginDrawCameraSpace()
+        {
             _game.SpriteBatch.Begin(
                 samplerState: SamplerState.PointClamp,
                 blendState: BlendState.AlphaBlend,
                 transformMatrix: _game.Camera.GetViewMatrix()
             );
+        }
 
-            // Draw player
-            if (Player != null)
-                _game.SpriteBatch.Draw(Player);
+        private void DrawBloomedElements()
+        {
+            BeginDrawCameraSpace();
+
+            foreach (var mover in BossBullets)
+                _game.SpriteBatch.Draw(mover.Sprite);
+
+            PlayerHitbox?.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
+        }
 
-            // Draw boss
+        private void DrawBoss()
+        {
             if (Boss != null)
             {
                 if (Boss.Tinted)
@@ -152,23 +136,59 @@ namespace Xmas_Hell
                 }
                 else
                 {
-                    _game.SpriteBatch.Begin(
-                        samplerState: SamplerState.PointClamp,
-                        blendState: BlendState.AlphaBlend,
-                        transformMatrix: _game.Camera.GetViewMatrix()
-                    );
+                    BeginDrawCameraSpace();
                 }
 
                 Boss.CurrentAnimator.Draw(_game.SpriteBatch);
 
                 _game.SpriteBatch.End();
             }
+        }
 
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.Camera.GetViewMatrix()
-            );
+        public void Draw()
+        {
+            _game.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            // Start by render the bloomed elements into a render target
+            if (!GameConfig.DisableBloom)
+            {
+                // The next draw calls will be rendered in the first render target
+                _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
+                _game.GraphicsDevice.Clear(Color.Transparent);
+
+                DrawBloomedElements();
+
+                // Apply bloom effect on the first render target and store the
+                // result into the second render target
+                Bloom.Draw(_renderTarget1, _renderTarget2);
+
+                // We want to render into the back buffer from now on
+                _game.GraphicsDevice.SetRenderTarget(null);
+            }
+
+            BeginDrawViewportSpace();
+
+            // Draw background sprites
+            foreach (var sprite in BackgroundSprites)
+                sprite.Draw(_game.SpriteBatch);
+
+            foreach (var particle in BackgroundParticles)
+                _game.SpriteBatch.Draw(particle);
+
+            _game.SpriteBatch.End();
+
+            BeginDrawCameraSpace();
+
+            // Draw player
+            if (Player != null)
+                _game.SpriteBatch.Draw(Player);
+
+            _game.SpriteBatch.End();
+
+            // Draw boss
+            DrawBoss();
+
+            BeginDrawCameraSpace();
 
             // Draw game sprites
             foreach (var sprite in GameSprites)
@@ -199,26 +219,12 @@ namespace Xmas_Hell
             }
             else
             {
-                _game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: _game.Camera.GetViewMatrix()
-                );
-
-                foreach (var mover in BossBullets)
-                    _game.SpriteBatch.Draw(mover.Sprite);
-
-                _game.SpriteBatch.End();
+                DrawBloomedElements();
             }
 
             if (GameConfig.DisplayCollisionBoxes)
             {
-                _game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: _game.Camera.GetViewMatrix()
-                );
-
+                BeginDrawCameraSpace();
 
                 foreach (var collisionElement in DebugCollisionElements)
                     collisionElement.Draw(_game.SpriteBatch);
@@ -226,11 +232,7 @@ namespace Xmas_Hell
                 _game.SpriteBatch.End();
             }
 
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
-            );
+            BeginDrawViewportSpace();
 
             // Draw UI elements
             foreach (var sprite in UISprites)
