@@ -7,6 +7,7 @@ namespace Xmas_Hell.Physics.Collision
 {
     public class CollisionCircle : CollisionElement
     {
+        private float _initialRadius;
         public float Radius;
 
         private Vector2 _relativePosition;
@@ -15,11 +16,14 @@ namespace Xmas_Hell.Physics.Collision
         {
             Entity = entity;
             _relativePosition = relativePosition;
-            Radius = radius;
+            _initialRadius = radius;
         }
 
         public Vector2 GetCenter()
         {
+            // FIXME: Move that line in another method
+            Radius = _initialRadius * Entity.Scale().X;
+
             var entityTransformMatrix = GetMatrix();
             var localCenter = _relativePosition;
             var vertexPosition = new Vector3(localCenter.X, localCenter.Y, 0f);
