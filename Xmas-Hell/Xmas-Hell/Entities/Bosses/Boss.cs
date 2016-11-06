@@ -4,12 +4,14 @@ using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using MonoGame.Extended.TextureAtlases;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Geometry;
 using Xmas_Hell.Physics;
+using Sprite = MonoGame.Extended.Sprites.Sprite;
 
 namespace Xmas_Hell.Entities
 {
@@ -19,6 +21,8 @@ namespace Xmas_Hell.Entities
         protected Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
+        private Sprite _hpBar;
+
         public bool Invincible;
 
         public Vector2 Direction = Vector2.Zero; // values in radians
@@ -44,6 +48,8 @@ namespace Xmas_Hell.Entities
         private readonly PositionDelegate _playerPositionDelegate;
 
         private TimeSpan _hitTimer = TimeSpan.Zero;
+        public bool Tinted;
+        public Color HitColor;
 
         // Behaviours
         protected readonly List<AbstractBossBehaviour> Behaviours;
@@ -68,9 +74,6 @@ namespace Xmas_Hell.Entities
 
         protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
         public MonoGameAnimator CurrentAnimator;
-
-        // Shaders
-        private Effect _basicTintEffect;
 
         #region Getters
 
@@ -174,16 +177,31 @@ namespace Xmas_Hell.Entities
             // Behaviours
             Behaviours = new List<AbstractBossBehaviour>();
 
-
             // BulletML
             BossPatterns = new Dictionary<string, BulletPattern>();
             BulletPatternFiles = new List<string>();
+
+            HitColor = Color.White;
+
+            _hpBar = new Sprite(
+                new TextureRegion2D(
+                    Assets.GetTexture2D("pixel"),
+                    0, 0, GameConfig.VirtualResolution.X, 20
+                )
+            )
+            {
+                Origin = Vector2.Zero
+            };
+
+            _hpBar.Color = Color.Red;
+
+            Game.SpriteBatchManager.Boss = this;
+            Game.SpriteBatchManager.UISprites.Add(_hpBar);
         }
 
         public void Initialize()
         {
             LoadBulletPatterns();
-            LoadEffects();
 
             Reset();
         }
@@ -194,6 +212,7 @@ namespace Xmas_Hell.Entities
             Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
             Invincible = false;
+            Tinted = false;
 
             Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
@@ -215,12 +234,6 @@ namespace Xmas_Hell.Entities
                 pattern.ParseStream(bulletPatternFile, Assets.GetPattern(bulletPatternFile));
                 BossPatterns.Add(bulletPatternFile, pattern);
             }
-        }
-
-        private void LoadEffects()
-        {
-            _basicTintEffect = Game.Content.Load<Effect>("Graphics/Shaders/BasicTint");
-            _basicTintEffect.Parameters["tintColor"].SetValue(Vector3.One);
         }
 
         public void Destroy()
@@ -342,6 +355,8 @@ namespace Xmas_Hell.Entities
             if (_hitTimer.TotalMilliseconds > 0)
                 _hitTimer -= gameTime.ElapsedGameTime;
 
+            _hpBar.Scale = new Vector2(Life / InitialLife, 1f);
+
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
@@ -461,39 +476,30 @@ namespace Xmas_Hell.Entities
 
         public void Draw(GameTime gameTime)
         {
-            var tinted = _hitTimer.TotalMilliseconds > 0;
+            //var tinted = _hitTimer.TotalMilliseconds > 0;
 
-            if (tinted)
-            {
-                Game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: Game.Camera.GetViewMatrix(),
-                    effect: _basicTintEffect,
-                    sortMode: SpriteSortMode.Immediate
-                );
-            }
-            else
-            {
-                Game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: Game.Camera.GetViewMatrix()
-                );
-            }
+            //if (tinted)
+            //{
+            //    Game.SpriteBatch.Begin(
+            //        samplerState: SamplerState.PointClamp,
+            //        blendState: BlendState.AlphaBlend,
+            //        transformMatrix: Game.Camera.GetViewMatrix(),
+            //        effect: _basicTintEffect,
+            //        sortMode: SpriteSortMode.Immediate
+            //    );
+            //}
+            //else
+            //{
+            //    Game.SpriteBatch.Begin(
+            //        samplerState: SamplerState.PointClamp,
+            //        blendState: BlendState.AlphaBlend,
+            //        transformMatrix: Game.Camera.GetViewMatrix()
+            //    );
+            //}
 
-            CurrentAnimator.Draw(Game.SpriteBatch);
+            //CurrentAnimator.Draw(Game.SpriteBatch);
 
-            Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
-
-            var percent = Life / InitialLife;
-            Game.SpriteBatch.Draw(
-                Assets.GetTexture2D("pixel"),
-                new Rectangle(0, 0, (int)(percent * GameConfig.VirtualResolution.X), 20),
-                Color.Black
-            );
-
-            Game.SpriteBatch.End();
+            //Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
         }
     }
 }

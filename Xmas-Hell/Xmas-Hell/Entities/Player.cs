@@ -59,6 +59,8 @@ namespace Xmas_Hell.Entities
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
 
             Initialize();
+
+            _game.SpriteBatchManager.Player = _sprite;
         }
 
         public void Initialize()
@@ -150,11 +152,6 @@ namespace Xmas_Hell.Entities
                 _game.GameManager.AddBullet(bullet4);
                 _game.GameManager.AddBullet(bullet5);
             }
-        }
-
-        public void Draw(GameTime gameTime)
-        {
-            _game.SpriteBatch.Draw(_sprite);
         }
     }
 }

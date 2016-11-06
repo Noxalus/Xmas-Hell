@@ -58,11 +58,7 @@ namespace Xmas_Hell.Screens
 
             _game.GameManager.ParticleManager.DrawSnowFall();
 
-            _player.Draw(gameTime);
-
             _game.SpriteBatch.End();
-
-            _boss.Draw(gameTime);
 
             base.Draw(gameTime);
         }

@@ -15,7 +15,7 @@ namespace Xmas_Hell.BulletML
 
         private Vector2 _position;
         public Texture2D Texture;
-        private Sprite _sprite;
+        public Sprite Sprite;
 
         public Vector2 Position()
         {
@@ -55,14 +55,14 @@ namespace Xmas_Hell.BulletML
         public Mover(XmasHell game, IBulletManager bulletManager) : base(bulletManager)
         {
             _game = game;
-            //Texture = BulletTypeUtils.BulletTypeToTexture(BulletType.Type1);
         }
 
         public void Init(bool topBullet)
         {
             Used = true;
 
-            _sprite = new Sprite(Texture);
+            Sprite = new Sprite(Texture);
+            _game.SpriteBatchManager.BossBullets.Add(this);
 
             if (!topBullet)
             {
@@ -72,21 +72,27 @@ namespace Xmas_Hell.BulletML
             }
         }
 
+        public void Destroy()
+        {
+            Used = false;
+            _game.SpriteBatchManager.BossBullets.Remove(this);
+
+            // TODO: Animation or particles
+        }
+
         public override void Update()
         {
             base.Update();
 
-            _sprite.Position = _position;
-            _sprite.Rotation = Direction;
-            _sprite.Scale = Scale();
+            Sprite.Position = _position;
+            Sprite.Rotation = Direction;
+            Sprite.Scale = Scale();
 
-            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 || Y < -100 || Y > GameConfig.VirtualResolution.Y + 100)
-                Used = false;
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            _sprite.Draw(spriteBatch);
+            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 || Y < -100 ||
+                Y > GameConfig.VirtualResolution.Y + 100)
+            {
+                Destroy();
+            }
         }
     }
 }

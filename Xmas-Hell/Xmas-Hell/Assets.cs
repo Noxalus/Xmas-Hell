@@ -15,6 +15,7 @@ namespace Xmas_Hell
         private static List<Texture2D> _textures;
         private static Dictionary<string, Stream> _patternSteams;
         private static List<Song> _musics;
+        private static List<Effect> _effects;
 
         public static void Load(Activity activity, ContentManager content, GraphicsDevice graphicsDevice)
         {
@@ -56,6 +57,12 @@ namespace Xmas_Hell
             {
                 content.Load<Song>("Audio/BGM/boss-theme")
             };
+
+            // Load custom shaders
+            _effects = new List<Effect>()
+            {
+                content.Load<Effect>("Graphics/Shaders/BasicTint")
+            };
         }
 
         public static Texture2D GetTexture2D(string textureName)
@@ -76,6 +83,11 @@ namespace Xmas_Hell
         public static Song GetMusic(string musicName)
         {
             return _musics.Find(m => m.Name == musicName);
+        }
+
+        public static Effect GetShader(string shaderName)
+        {
+            return _effects.Find(s => s.Name == shaderName);
         }
     }
 }

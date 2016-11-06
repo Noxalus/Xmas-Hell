@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended;
 using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
+using MonoGame.Extended.Sprites;
+using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
 using Xmas_Hell.Screens;
 using Xmas_Hell.Shaders;
@@ -18,6 +20,7 @@ namespace Xmas_Hell
     {
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
+        public SpriteBatchManager SpriteBatchManager;
         public ViewportAdapter ViewportAdapter;
         public Camera Camera;
         public GameManager GameManager;
@@ -25,11 +28,7 @@ namespace Xmas_Hell
         private KeyboardState _oldKeyboardState;
         private bool _pause;
 
-        // Bloom
-        private Bloom _bloom;
-        private int _bloomSettingsIndex = 0;
-        private RenderTarget2D _renderTarget1;
-        private RenderTarget2D _renderTarget2;
+        private Sprite _backgroundSprite;
 
         private FramesPerSecondCounterComponent _fpsCounter;
 
@@ -47,6 +46,7 @@ namespace Xmas_Hell
             _activity = activity;
 
             GameManager = new GameManager(this);
+            SpriteBatchManager = new SpriteBatchManager(this);
         }
 
         protected override void Initialize()
@@ -55,17 +55,7 @@ namespace Xmas_Hell
 
             Camera = new Camera(this, ViewportAdapter);
 
-            _bloom = new Bloom(GraphicsDevice, SpriteBatch);
-
-            var pp = GraphicsDevice.PresentationParameters;
-
-            _renderTarget1 = new RenderTarget2D(
-                GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
-                pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
-            );
-            _renderTarget2 = new RenderTarget2D(GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
-                pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
-            );
+            SpriteBatchManager.Initialize();
 
             base.Initialize();
 
@@ -88,14 +78,24 @@ namespace Xmas_Hell
 
             Assets.Load(_activity, Content, GraphicsDevice);
 
-            _bloom.LoadContent(Content, GraphicsDevice.PresentationParameters);
+            SpriteBatchManager.LoadContent();
+
+            _backgroundSprite = new Sprite(
+                new TextureRegion2D(
+                    Assets.GetTexture2D("Graphics/Pictures/background"),
+                    0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y
+                )
+            )
+            {
+                Origin = Vector2.Zero
+            };
+
+            SpriteBatchManager.BackgroundSprites.Add(_backgroundSprite);
         }
 
         protected override void UnloadContent()
         {
-            _bloom.UnloadContent();
-            _renderTarget1.Dispose();
-            _renderTarget2.Dispose();
+            SpriteBatchManager.UnloadContent();
         }
 
         private bool IsPressed(Keys key)
@@ -110,24 +110,25 @@ namespace Xmas_Hell
                 _pause = !_pause;
 
             // Switch to the next bloom settings preset?
-            if (IsPressed(Keys.A))
-            {
-                _bloomSettingsIndex = (_bloomSettingsIndex + 1) % BloomSettings.PresetSettings.Length;
-                _bloom.Settings = BloomSettings.PresetSettings[_bloomSettingsIndex];
-            }
-            // Cycle through the intermediate buffer debug display modes?
-            if (IsPressed(Keys.X))
-            {
-                _bloom.ShowBuffer++;
-                if (_bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
-                    _bloom.ShowBuffer = 0;
-            }
+            //if (IsPressed(Keys.A))
+            //{
+            //    _bloomSettingsIndex = (_bloomSettingsIndex + 1) % BloomSettings.PresetSettings.Length;
+            //    _bloom.Settings = BloomSettings.PresetSettings[_bloomSettingsIndex];
+            //}
+            //// Cycle through the intermediate buffer debug display modes?
+            //if (IsPressed(Keys.X))
+            //{
+            //    _bloom.ShowBuffer++;
+            //    if (_bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
+            //        _bloom.ShowBuffer = 0;
+            //}
 
             _oldKeyboardState = Keyboard.GetState();
 
             if (_pause)
                 return;
 
+            SpriteBatchManager.Update();
             GameManager.Update(gameTime);
 
             Camera.Update(gameTime);
@@ -137,41 +138,20 @@ namespace Xmas_Hell
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            SpriteBatchManager.Draw();
 
-            // The next draw calls will be rendered in the first render target
-            GraphicsDevice.SetRenderTarget(_renderTarget1);
-            GraphicsDevice.Clear(Color.Transparent);
 
-            GameManager.DrawBloomedSprites(gameTime);
+            //SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
+            //SpriteBatch.Draw(
+            //    Assets.GetTexture2D("Graphics/Pictures/background"),
+            //    new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y),
+            //    Color.White
+            //);
+            //SpriteBatch.End();
 
-            // Apply bloom effect on the first render target and store the
-            // result into the second render target
-            _bloom.Draw(_renderTarget1, _renderTarget2);
+            //base.Draw(gameTime);
 
-            // We want to render into the back buffer from now on
-            GraphicsDevice.SetRenderTarget(null);
-
-            SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
-            SpriteBatch.Draw(
-                Assets.GetTexture2D("Graphics/Pictures/background"),
-                new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y),
-                Color.White
-            );
-            SpriteBatch.End();
-
-            base.Draw(gameTime);
-
-            GameManager.Draw(gameTime);
-
-            // Draw the second render target on top of everything
-            SpriteBatch.Begin(0, BlendState.AlphaBlend);
-            SpriteBatch.Draw(_renderTarget2, new Rectangle(
-                0, 0,
-                GraphicsDevice.PresentationParameters.BackBufferWidth,
-                GraphicsDevice.PresentationParameters.BackBufferHeight
-            ), Color.White);
-            SpriteBatch.End();
+            //GameManager.Draw(gameTime);
 
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
@@ -179,8 +159,8 @@ namespace Xmas_Hell
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Player's bullets: {GameManager.GetPlayerBullets().Count:0}", new Vector2(0, 20), Color.White);
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + _bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + _bloom.ShowBuffer.ToString() + ")", new Vector2(0, 80), Color.White);
+            //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + _bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
+            //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + _bloom.ShowBuffer.ToString() + ")", new Vector2(0, 80), Color.White);
 
             SpriteBatch.End();
         }

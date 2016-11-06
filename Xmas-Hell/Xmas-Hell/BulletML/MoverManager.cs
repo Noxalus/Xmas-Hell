@@ -48,9 +48,7 @@ namespace Xmas_Hell.BulletML
         public void RemoveBullet(IBullet deadBullet)
         {
             var mover = deadBullet as Mover;
-
-            if (mover != null)
-                mover.Used = false;
+            mover?.Destroy();
         }
 
         public void Update()
@@ -70,7 +68,9 @@ namespace Xmas_Hell.BulletML
             {
                 if (!Movers[i].Used)
                 {
-                    Movers.Remove(Movers[i]);
+                    Movers[i].Destroy();
+
+                    Movers.RemoveAt(i);
                     i--;
                 }
             }
@@ -79,6 +79,8 @@ namespace Xmas_Hell.BulletML
             {
                 if (_topLevelMovers[i].TasksFinished())
                 {
+                    _topLevelMovers[i].Destroy();
+
                     _topLevelMovers.RemoveAt(i);
                     i--;
                 }
@@ -88,16 +90,13 @@ namespace Xmas_Hell.BulletML
         public void Clear()
         {
             foreach (var mover in Movers)
-                mover.Used = false;
+                mover.Destroy();
+
+            foreach (var topLevelMover in _topLevelMovers)
+                topLevelMover.Destroy();
 
             Movers.Clear();
             _topLevelMovers.Clear();
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (var mover in Movers)
-                mover.Draw(spriteBatch);
         }
     }
 }

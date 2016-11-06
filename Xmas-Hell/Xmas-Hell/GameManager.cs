@@ -73,20 +73,6 @@ namespace Xmas_Hell
             _bullets.Add(bullet);
         }
 
-        public void DrawBloomedSprites(GameTime gameTime)
-        {
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                sortMode: SpriteSortMode.Immediate,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.Camera.GetViewMatrix()
-            );
-
-            MoverManager.Draw(_game.SpriteBatch);
-
-            _game.SpriteBatch.End();
-        }
-
         public void Draw(GameTime gameTime)
         {
             _game.SpriteBatch.Begin(

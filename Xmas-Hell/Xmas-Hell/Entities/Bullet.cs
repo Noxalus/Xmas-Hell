@@ -45,12 +45,15 @@ namespace Xmas_Hell.Entities
             _game.GameManager.CollisionWorld.PlayerBulletHitboxes.Add(
                 new CollisionCircle(this, Vector2.Zero, defaultBulletTexture.Width / 2f)
             );
+
+            _game.SpriteBatchManager.GameSprites.Add(Sprite);
         }
 
         public void Destroy()
         {
-            // TODO: Launch an animation
+            // TODO: Launch an animation (or particles)
             Used = false;
+            _game.SpriteBatchManager.GameSprites.Remove(Sprite);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -70,7 +73,7 @@ namespace Xmas_Hell.Entities
             if (Position().X < 0 || Position().X > GameConfig.VirtualResolution.X ||
                 Position().Y < 0 || Position().Y > GameConfig.VirtualResolution.Y)
             {
-                Used = false;
+                Destroy();
             }
         }
 

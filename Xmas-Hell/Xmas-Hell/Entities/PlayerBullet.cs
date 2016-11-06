@@ -10,6 +10,7 @@ namespace Xmas_Hell.Entities
             base(game, position, rotation, speed)
         {
             Sprite.Color = Color.White * 0.2f;
+
         }
 
         public override void Update(GameTime gameTime)
