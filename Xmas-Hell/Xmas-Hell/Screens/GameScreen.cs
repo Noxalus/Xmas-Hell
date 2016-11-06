@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using Xmas_Hell.Entities;
-using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Entities.Bosses.XmasBall;
 
 namespace Xmas_Hell.Screens
