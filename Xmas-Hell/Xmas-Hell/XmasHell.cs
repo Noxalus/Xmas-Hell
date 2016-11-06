@@ -29,6 +29,10 @@ namespace Xmas_Hell
         private KeyboardState _oldKeyboardState;
         private bool _pause;
 
+        // Screens
+        public MainMenuScreen MainMenuScreen;
+        public GameScreen GameScreen;
+
         private Sprite _backgroundSprite;
 
         private FramesPerSecondCounterComponent _fpsCounter;
@@ -64,11 +68,15 @@ namespace Xmas_Hell
 
             GameManager.Initialize();
 
+            // Screens
             ScreenComponent screenComponent;
             Components.Add(screenComponent = new ScreenComponent(this));
 
-            //screenComponent.Register(new MainMenuScreen(this));
-            screenComponent.Register(new GameScreen(this, BossType.XmasBell));
+            MainMenuScreen = new MainMenuScreen(this);
+            GameScreen = new GameScreen(this);
+
+            screenComponent.Register(MainMenuScreen);
+            screenComponent.Register(GameScreen);
 
             Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(this));
         }

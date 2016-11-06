@@ -56,6 +56,7 @@ namespace Xmas_Hell
 
                 // Xmas Bell
                 { "XmasBell/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBell/pattern1.xml") },
+                { "XmasBell/pattern2", activity.ApplicationContext.Assets.Open("Patterns/XmasBell/pattern2.xml") },
 
                 // Xmas Candy
 

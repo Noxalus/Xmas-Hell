@@ -27,7 +27,8 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
                 new Vector2(
                     -Boss.Width() - 10f,
                     Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Boss.Height() / 2f))
-                )
+                ),
+                true
             );
         }
 
@@ -63,14 +64,14 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
                     GetNewYRandomPosition();
                     Boss.Direction.X = 1;
                 }
-            }
 
-            if (_bulletFrequence.TotalMilliseconds > 0)
-                _bulletFrequence -= gameTime.ElapsedGameTime;
-            else
-            {
-                _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                Boss.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
+                if (_bulletFrequence.TotalMilliseconds > 0)
+                    _bulletFrequence -= gameTime.ElapsedGameTime;
+                else
+                {
+                    _bulletFrequence = TimeSpan.FromSeconds(0.5f);
+                    Boss.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
+                }
             }
         }
     }
