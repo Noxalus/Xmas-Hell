@@ -110,18 +110,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
                 }
                 else
                 {
-                    Boss.CurrentAnimator.Rotation =
-                        MathHelper.Lerp(
-                            Boss.CurrentAnimator.Rotation,
-                            Boss.GetPlayerDirection().ToAngle(),
-                            0.5f
-                        );
-
+                    Boss.RotateTo(Boss.GetPlayerDirection().ToAngle(), true);
                     _lockingTargetTimer -= gameTime.ElapsedGameTime;
                 }
             }
 
-            if (!Boss.TargetingPosition && _charging)
+            if (!Boss.TargetingPosition && !Boss.TargetingAngle && _charging)
             {
                 _charging = false;
                 Boss.CurrentAnimator.Transition("Idle", 0.5f);

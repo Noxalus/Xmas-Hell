@@ -23,7 +23,7 @@ namespace Xmas_Hell.Entities
         public Vector2 Direction = Vector2.Zero; // values in radians
         public float Speed;
         public Vector2 Acceleration = Vector2.One;
-        public float AngularVelocity = 1f;
+        public float AngularVelocity = 5f;
 
         // Relative to position targeting
         public bool TargetingPosition = false;
@@ -401,7 +401,8 @@ namespace Xmas_Hell.Entities
                     }
                     else
                     {
-                        CurrentAnimator.Rotation = currentRotation + deltaDistance;
+                        var factor = (currentRotation < _targetAngle) ? 1 : -1;
+                        CurrentAnimator.Rotation = currentRotation + (factor * deltaDistance);
                     }
                 }
                 else
