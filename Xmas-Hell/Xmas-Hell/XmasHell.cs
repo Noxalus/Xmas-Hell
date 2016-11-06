@@ -55,10 +55,7 @@ namespace Xmas_Hell
 
             Camera = new Camera(this, ViewportAdapter);
 
-            _bloom = new Bloom(GraphicsDevice, SpriteBatch)
-            {
-                //Settings = new BloomSettings(null, 0.25f, 4, 2, 1, 1.5f, 1)
-            };
+            _bloom = new Bloom(GraphicsDevice, SpriteBatch);
 
             var pp = GraphicsDevice.PresentationParameters;
 

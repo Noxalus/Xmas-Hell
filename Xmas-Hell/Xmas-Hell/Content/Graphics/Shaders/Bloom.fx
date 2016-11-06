@@ -1,7 +1,7 @@
 //BLOOM.FX
 
 //Original image (not bloomed)
-sampler TextureSampler : register(s0); 
+sampler TextureSampler : register(s0);
 
 //Bloomed image
 sampler BloomSampler : register(s1);
@@ -31,10 +31,10 @@ static const float2 offsets[12] = {
    -0.791559, -0.597705,
 };
 
-struct PixelShaderInput 
-{ 
-    float2 TexCoord : TEXCOORD0; 
-}; 
+struct PixelShaderInput
+{
+    float2 TexCoord : TEXCOORD0;
+};
 
 float4 AdjustSaturation(float4 color, float saturation) {
     // The constants 0.3, 0.59, and 0.11 are chosen because the
@@ -44,34 +44,34 @@ float4 AdjustSaturation(float4 color, float saturation) {
     return lerp(grey, color, saturation);
 }
 
-float4 bloomEffect(PixelShaderInput Input) : COLOR0 { 
+float4 bloomEffect(PixelShaderInput Input) : COLOR0 {
 
-	//Get base color (from render target)
+    //Get base color (from render target)
     float4 original = tex2D(TextureSampler, Input.TexCoord);
-    
+
     //Compute bloom color after gaussian filtering
     float4 sum = tex2D(BloomSampler, Input.TexCoord);
     for(int i = 0; i < 12; i++){
         sum += tex2D(BloomSampler, Input.TexCoord + BlurPower * offsets[i]);
     }
     sum /= 13;
-    
+
     //Adjust intensity
     original = AdjustSaturation(original, BaseSaturation) * BaseIntensity;
     sum = AdjustSaturation(sum, BloomSaturation) * BloomIntensity;
-    
+
     return sum + original;
 }
 
 
-technique Bloom { 
-    pass P0{ 
-		#if SM4
-			PixelShader = compile ps_4_0_level_9_1 bloomEffect();
-		#elif SM3
-			PixelShader = compile ps_3_0 bloomEffect();
-		#else
-			PixelShader = compile ps_2_0 bloomEffect();
-		#endif
-    } 
+technique Bloom {
+    pass P0{
+        #if SM4
+            PixelShader = compile ps_4_0_level_9_1 bloomEffect();
+        #elif SM3
+            PixelShader = compile ps_3_0 bloomEffect();
+        #else
+            PixelShader = compile ps_2_0 bloomEffect();
+        #endif
+    }
 }

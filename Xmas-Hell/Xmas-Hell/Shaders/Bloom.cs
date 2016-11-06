@@ -29,7 +29,7 @@ namespace Xmas_Hell.Shaders
             set { _settings = value; }
         }
 
-        BloomSettings _settings = BloomSettings.PresetSettings[0];
+        BloomSettings _settings = BloomSettings.PresetSettings[1];
 
 
         // Optionally displays one of the intermediate buffers used
@@ -281,6 +281,5 @@ namespace Xmas_Hell.Shaders
 
 
         #endregion
-
     }
 }

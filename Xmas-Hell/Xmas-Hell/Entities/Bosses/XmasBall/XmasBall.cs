@@ -72,7 +72,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            //CurrentBehaviourIndex = 0;
+            //CurrentBehaviourIndex = 2;
         }
     }
 }

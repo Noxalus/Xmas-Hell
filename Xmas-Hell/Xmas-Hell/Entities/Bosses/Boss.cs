@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using BulletML;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
@@ -67,6 +68,9 @@ namespace Xmas_Hell.Entities
 
         protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
         public MonoGameAnimator CurrentAnimator;
+
+        // Shaders
+        private Effect _basicTintEffect;
 
         #region Getters
 
@@ -179,6 +183,7 @@ namespace Xmas_Hell.Entities
         public void Initialize()
         {
             LoadBulletPatterns();
+            LoadEffects();
 
             Reset();
         }
@@ -210,6 +215,12 @@ namespace Xmas_Hell.Entities
                 pattern.ParseStream(bulletPatternFile, Assets.GetPattern(bulletPatternFile));
                 BossPatterns.Add(bulletPatternFile, pattern);
             }
+        }
+
+        private void LoadEffects()
+        {
+            _basicTintEffect = Game.Content.Load<Effect>("Graphics/Shaders/BasicTint");
+            _basicTintEffect.Parameters["tintColor"].SetValue(Vector3.One);
         }
 
         public void Destroy()
@@ -450,7 +461,26 @@ namespace Xmas_Hell.Entities
 
         public void Draw(GameTime gameTime)
         {
-            CurrentAnimator.Color = _hitTimer.TotalMilliseconds > 0 ? new Color(Color.White, 0.1f) : Color.White;
+            var tinted = _hitTimer.TotalMilliseconds > 0;
+
+            if (tinted)
+            {
+                Game.SpriteBatch.Begin(
+                    samplerState: SamplerState.PointClamp,
+                    blendState: BlendState.AlphaBlend,
+                    transformMatrix: Game.Camera.GetViewMatrix(),
+                    effect: _basicTintEffect,
+                    sortMode: SpriteSortMode.Immediate
+                );
+            }
+            else
+            {
+                Game.SpriteBatch.Begin(
+                    samplerState: SamplerState.PointClamp,
+                    blendState: BlendState.AlphaBlend,
+                    transformMatrix: Game.Camera.GetViewMatrix()
+                );
+            }
 
             CurrentAnimator.Draw(Game.SpriteBatch);
 
@@ -462,6 +492,8 @@ namespace Xmas_Hell.Entities
                 new Rectangle(0, 0, (int)(percent * GameConfig.VirtualResolution.X), 20),
                 Color.Black
             );
+
+            Game.SpriteBatch.End();
         }
     }
 }
