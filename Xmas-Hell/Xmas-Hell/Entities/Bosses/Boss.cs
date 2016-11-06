@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended;
 using MonoGame.Extended.TextureAtlases;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
+using SpriterDotNet.Providers;
 using Xmas_Hell.BulletML;
-using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Geometry;
 using Xmas_Hell.Physics;
+using Xmas_Hell.Spriter;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 
-namespace Xmas_Hell.Entities
+namespace Xmas_Hell.Entities.Bosses
 {
     public abstract class Boss : IPhysicsEntity
     {
@@ -61,7 +63,7 @@ namespace Xmas_Hell.Entities
         protected readonly List<string> BulletPatternFiles;
 
         // Spriter
-
+        protected string SpriterFilename;
         protected static readonly Config DefaultAnimatorConfig = new Config
         {
             MetadataEnabled = false,
@@ -120,6 +122,17 @@ namespace Xmas_Hell.Entities
             }
 
             return Position();
+        }
+
+        public float ActionPointDirection()
+        {
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
+            {
+                var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
+                return actionPoint.Angle;
+            }
+
+            return Rotation();
         }
 
         public virtual float Width()
@@ -202,8 +215,28 @@ namespace Xmas_Hell.Entities
         public void Initialize()
         {
             LoadBulletPatterns();
+            LoadSpriterSprite();
 
             Reset();
+        }
+
+        protected virtual void LoadSpriterSprite()
+        {
+            if (SpriterFilename == string.Empty)
+                throw new Exception("You need to specify a path to the spriter file of this boss");
+
+            var factory = new DefaultProviderFactory<SpriterDotNet.MonoGame.Sprite, SoundEffect>(DefaultAnimatorConfig, true);
+
+            var loader = new SpriterContentLoader(Game.Content, SpriterFilename);
+            loader.Fill(factory);
+
+            foreach (var entity in loader.Spriter.Entities)
+            {
+                var animator = new MonoGameDebugAnimator(entity, Game.GraphicsDevice, factory);
+                Animators.Add(animator);
+            }
+
+            CurrentAnimator = Animators.First();
         }
 
         protected virtual void Reset()
@@ -325,10 +358,8 @@ namespace Xmas_Hell.Entities
             // Add a new bullet in the center of the screen
             var mover = (Mover)Game.GameManager.MoverManager.CreateBullet(true);
 
-            if (position != null)
-                mover.Position(position.Value);
-            else
-                mover.Position(ActionPointPosition());
+            mover.Position(position ?? ActionPointPosition());
+            mover.Direction = ActionPointDirection();
 
             mover.InitTopNode(BossPatterns[patternName].RootNode);
         }
@@ -467,16 +498,22 @@ namespace Xmas_Hell.Entities
 
                 Game.GameManager.MoverManager.Clear();
                 RestoreDefaultState();
-                Behaviours[CurrentBehaviourIndex].Start();
+
+                if (Behaviours.Count > 0)
+                    Behaviours[CurrentBehaviourIndex].Start();
             }
 
-            Behaviours[CurrentBehaviourIndex].Update(gameTime);
+            if (Behaviours.Count > 0)
+                Behaviours[CurrentBehaviourIndex].Update(gameTime);
 
             PreviousBehaviourIndex = CurrentBehaviourIndex;
         }
 
         protected virtual void UpdateBehaviourIndex()
         {
+            if (Behaviours.Count == 0)
+                return;
+
             CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * Behaviours.Count) % Behaviours.Count;
         }
     }

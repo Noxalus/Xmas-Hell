@@ -76,6 +76,8 @@
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
     <Compile Include="Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
+    <Compile Include="Entities\Bosses\XmasBell\XmasBellBehaviour1.cs" />
+    <Compile Include="Entities\Bosses\XmasBell\XmasBell.cs" />
     <Compile Include="Entities\Bosses\XmasLog\XmasLog.cs" />
     <Compile Include="Geometry\Line.cs" />
     <Compile Include="Geometry\MathHelperExtension.cs" />
@@ -177,6 +179,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Patterns\XmasBall\pattern4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Patterns\XmasBell\pattern1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
   </ItemGroup>

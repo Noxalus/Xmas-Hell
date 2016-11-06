@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Physics.Collision;
 
 namespace Xmas_Hell.Physics

@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Sprites;
 using Xmas_Hell.BulletML;
-using Xmas_Hell.Entities;
+using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Physics.Collision;
 using Xmas_Hell.Shaders;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 
-namespace Xmas_Hell
+namespace Xmas_Hell.Sprites
 {
     // This class is used to batch the draw calls per category
     public class SpriteBatchManager

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using BulletML;
@@ -11,7 +10,7 @@ using SpriterDotNet.Providers;
 using Xmas_Hell.Physics.Collision;
 using Xmas_Hell.Spriter;
 
-namespace Xmas_Hell.Entities.Bosses
+namespace Xmas_Hell.Entities.Bosses.XmasLog
 {
     class XmasLog : Boss
     {
@@ -20,25 +19,7 @@ namespace Xmas_Hell.Entities.Bosses
 
         public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
-            Game = game;
-
-            // Spriter
-            DefaultProviderFactory<Sprite, SoundEffect> factory = new DefaultProviderFactory<Sprite, SoundEffect>(DefaultAnimatorConfig, true);
-
-            SpriterContentLoader loader = new SpriterContentLoader(Game.Content, "Graphics/Sprites/Bosses/XmasLog/xmas-log");
-            loader.Fill(factory);
-
-            foreach (SpriterEntity entity in loader.Spriter.Entities)
-            {
-                var animator = new MonoGameDebugAnimator(entity, Game.GraphicsDevice, factory);
-                Animators.Add(animator);
-            }
-
-            CurrentAnimator = Animators.First();
-            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
-
-            CurrentAnimator.Play("Whirligig");
-            CurrentAnimator.Speed = 0.25f;
+            SpriterFilename = "Graphics/Sprites/Bosses/XmasLog/xmas-log";
 
             // Physics
             var bossSpriteSize = new Vector2(119, 231);
@@ -50,7 +31,18 @@ namespace Xmas_Hell.Entities.Bosses
                 new Vector2(bossSpriteSize.X * bossPivot.X, bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y)),
                 new Vector2(-(bossSpriteSize.X * bossPivot.X), bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y))
             };
+
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionConvexPolygon(this, Vector2.Zero, bossCollisionBoxVertices);
+        }
+
+        protected override void LoadSpriterSprite()
+        {
+            base.LoadSpriterSprite();
+
+            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+
+            CurrentAnimator.Play("Whirligig");
+            CurrentAnimator.Speed = 0.25f;
         }
 
         public override void Update(GameTime gameTime)

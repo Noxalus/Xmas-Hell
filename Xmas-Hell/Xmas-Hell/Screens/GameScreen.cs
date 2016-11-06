@@ -2,7 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Entities.Bosses;
 using Xmas_Hell.Entities.Bosses.XmasBall;
+using Xmas_Hell.Entities.Bosses.XmasBell;
 
 namespace Xmas_Hell.Screens
 {
@@ -26,7 +28,7 @@ namespace Xmas_Hell.Screens
         public override void Initialize()
         {
             _player = new Player(_game);
-            _boss = new XmasBall(_game, _player.Position);
+            _boss = new XmasBell(_game, _player.Position);
 
             base.Initialize();
 

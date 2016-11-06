@@ -16,31 +16,6 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
     {
         public XmasBall(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
-            Game = game;
-
-            // Spriter
-            DefaultProviderFactory<Sprite, SoundEffect> factory = new DefaultProviderFactory<Sprite, SoundEffect>(DefaultAnimatorConfig, true);
-
-            SpriterContentLoader loader = new SpriterContentLoader(Game.Content, "Graphics/Sprites/Bosses/XmasBall/xmas-ball");
-            loader.Fill(factory);
-
-            foreach (SpriterEntity entity in loader.Spriter.Entities)
-            {
-                var animator = new MonoGameDebugAnimator(entity, Game.GraphicsDevice, factory);
-                Animators.Add(animator);
-            }
-
-            CurrentAnimator = Animators.First();
-            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
-
-            CurrentAnimator.AnimationFinished += delegate (string animationName)
-            {
-                if (animationName == "Breathe_In")
-                    CurrentAnimator.Play("Big_Idle");
-                else if (animationName == "Breathe_Out")
-                    CurrentAnimator.Play("Idle");
-            };
-
             // BulletML
             BulletPatternFiles.Add("sample");
             BulletPatternFiles.Add("XmasBall/pattern1");
@@ -55,6 +30,23 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
             Behaviours.Add(new XmasBallBehaviour2(this));
             Behaviours.Add(new XmasBallBehaviour3(this));
             Behaviours.Add(new XmasBallBehaviour4(this));
+
+            SpriterFilename = "Graphics/Sprites/Bosses/XmasBall/xmas-ball";
+        }
+
+        protected override void LoadSpriterSprite()
+        {
+            base.LoadSpriterSprite();
+
+            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+
+            CurrentAnimator.AnimationFinished += delegate (string animationName)
+            {
+                if (animationName == "Breathe_In")
+                    CurrentAnimator.Play("Big_Idle");
+                else if (animationName == "Breathe_Out")
+                    CurrentAnimator.Play("Idle");
+            };
         }
 
         protected override void Reset()
