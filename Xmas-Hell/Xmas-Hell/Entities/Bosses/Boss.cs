@@ -355,6 +355,8 @@ namespace Xmas_Hell.Entities
             if (_hitTimer.TotalMilliseconds > 0)
                 _hitTimer -= gameTime.ElapsedGameTime;
 
+            Tinted = _hitTimer.TotalMilliseconds > 0;
+
             _hpBar.Scale = new Vector2(Life / InitialLife, 1f);
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
@@ -472,34 +474,6 @@ namespace Xmas_Hell.Entities
         protected virtual void UpdateBehaviourIndex()
         {
             CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * Behaviours.Count) % Behaviours.Count;
-        }
-
-        public void Draw(GameTime gameTime)
-        {
-            //var tinted = _hitTimer.TotalMilliseconds > 0;
-
-            //if (tinted)
-            //{
-            //    Game.SpriteBatch.Begin(
-            //        samplerState: SamplerState.PointClamp,
-            //        blendState: BlendState.AlphaBlend,
-            //        transformMatrix: Game.Camera.GetViewMatrix(),
-            //        effect: _basicTintEffect,
-            //        sortMode: SpriteSortMode.Immediate
-            //    );
-            //}
-            //else
-            //{
-            //    Game.SpriteBatch.Begin(
-            //        samplerState: SamplerState.PointClamp,
-            //        blendState: BlendState.AlphaBlend,
-            //        transformMatrix: Game.Camera.GetViewMatrix()
-            //    );
-            //}
-
-            //CurrentAnimator.Draw(Game.SpriteBatch);
-
-            //Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
         }
     }
 }

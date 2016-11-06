@@ -147,8 +147,7 @@ namespace Xmas_Hell
                         samplerState: SamplerState.PointClamp,
                         blendState: BlendState.AlphaBlend,
                         transformMatrix: _game.Camera.GetViewMatrix(),
-                        effect: basicTintEffect,
-                        sortMode: SpriteSortMode.Immediate
+                        effect: basicTintEffect
                     );
                 }
                 else
