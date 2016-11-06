@@ -15,6 +15,9 @@ namespace Xmas_Hell.Entities
         public float Speed;
         public bool Used;
 
+        protected CollisionElement Hitbox;
+
+
         public Vector2 Position()
         {
             return Sprite.Position;
@@ -42,9 +45,8 @@ namespace Xmas_Hell.Entities
             Speed = speed;
             Used = true;
 
-            _game.GameManager.CollisionWorld.PlayerBulletHitboxes.Add(
-                new CollisionCircle(this, Vector2.Zero, defaultBulletTexture.Width / 2f)
-            );
+            Hitbox = new CollisionCircle(this, Vector2.Zero, defaultBulletTexture.Width/2f);
+            _game.GameManager.CollisionWorld.AddPlayerBulletHitbox(Hitbox);
 
             _game.SpriteBatchManager.GameSprites.Add(Sprite);
         }
@@ -54,6 +56,7 @@ namespace Xmas_Hell.Entities
             // TODO: Launch an animation (or particles)
             Used = false;
             _game.SpriteBatchManager.GameSprites.Remove(Sprite);
+            _game.GameManager.CollisionWorld.RemovePlayerBulletHitbox(Hitbox);
         }
 
         public virtual void Update(GameTime gameTime)

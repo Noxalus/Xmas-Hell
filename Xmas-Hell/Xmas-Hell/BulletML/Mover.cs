@@ -17,6 +17,8 @@ namespace Xmas_Hell.BulletML
         public Texture2D Texture;
         public Sprite Sprite;
 
+        private CollisionElement _hitbox;
+
         public Vector2 Position()
         {
             return _position;
@@ -66,9 +68,8 @@ namespace Xmas_Hell.BulletML
 
             if (!topBullet)
             {
-                _game.GameManager.CollisionWorld.BossBulletHitboxes.Add(
-                    new CollisionCircle(this, Vector2.Zero, Texture.Width / 2f)
-                );
+                _hitbox = new CollisionCircle(this, Vector2.Zero, Texture.Width/2f);
+                _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
             }
         }
 
@@ -76,6 +77,7 @@ namespace Xmas_Hell.BulletML
         {
             Used = false;
             _game.SpriteBatchManager.BossBullets.Remove(this);
+            _game.GameManager.CollisionWorld.RemoveBossBulletHitbox(_hitbox);
 
             // TODO: Animation or particles
         }

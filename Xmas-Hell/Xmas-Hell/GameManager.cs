@@ -72,22 +72,5 @@ namespace Xmas_Hell
         {
             _bullets.Add(bullet);
         }
-
-        public void Draw(GameTime gameTime)
-        {
-            _game.SpriteBatch.Begin(
-                samplerState: SamplerState.PointClamp,
-                sortMode: SpriteSortMode.Immediate,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.Camera.GetViewMatrix()
-            );
-
-            foreach (var bullet in _bullets)
-                bullet.Draw(gameTime);
-
-            CollisionWorld.Draw(_game.SpriteBatch);
-
-            _game.SpriteBatch.End();
-        }
     }
 }

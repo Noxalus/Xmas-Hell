@@ -21,7 +21,7 @@ namespace Xmas_Hell
         public static float BossDefaultSpeed = 200f;
 
         // Debug
-        public static bool DisplayCollisionBoxes = false;
+        public static bool DisplayCollisionBoxes = true;
         public static bool DisableBloom = false;
     }
 }

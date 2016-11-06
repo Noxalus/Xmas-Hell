@@ -45,7 +45,7 @@ namespace Xmas_Hell.Physics.Collision
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, Radius, 10, Color.White);
+            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, Radius, 10, Color.Red);
         }
     }
 }

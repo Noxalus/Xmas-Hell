@@ -53,7 +53,10 @@ namespace Xmas_Hell.Entities
                 Scale = Vector2.One
             };
 
-            _game.GameManager.CollisionWorld.PlayerHitbox = new CollisionCircle(this, new Vector2(0f, 0f), 5f);
+            if (GameConfig.DisplayCollisionBoxes)
+            {
+                _game.GameManager.CollisionWorld.PlayerHitbox = new CollisionCircle(this, new Vector2(0f, 0f), 5f);
+            }
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);

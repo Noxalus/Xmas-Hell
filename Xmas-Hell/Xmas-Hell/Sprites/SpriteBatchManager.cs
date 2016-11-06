@@ -3,11 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Sprites;
-using SpriterDotNet.MonoGame;
 using Xmas_Hell.BulletML;
 using Xmas_Hell.Entities;
+using Xmas_Hell.Physics.Collision;
 using Xmas_Hell.Shaders;
-using Xmas_Hell.Sprites;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 
 namespace Xmas_Hell
@@ -41,7 +40,7 @@ namespace Xmas_Hell
         public List<Mover> BossBullets;
         public List<Sprite> GameSprites;
         public List<ParticleEffect> GameParticles;
-        public List<Sprite> DebugSprites;
+        public List<CollisionElement> DebugCollisionElements;
 
         public Boss Boss;
         public Sprite Player;
@@ -62,7 +61,7 @@ namespace Xmas_Hell
             BossBullets = new List<Mover>();
             GameSprites = new List<Sprite>();
             GameParticles = new List<ParticleEffect>();
-            DebugSprites = new List<Sprite>();
+            DebugCollisionElements = new List<CollisionElement>();
         }
 
         public void Initialize()
@@ -196,6 +195,12 @@ namespace Xmas_Hell
             foreach (var particle in GameParticles)
                 _game.SpriteBatch.Draw(particle);
 
+            if (GameConfig.DisplayCollisionBoxes)
+            {
+                foreach (var collisionElement in DebugCollisionElements)
+                    collisionElement.Draw(_game.SpriteBatch);
+            }
+
             _game.SpriteBatch.End();
 
             if (!GameConfig.DisableBloom)
@@ -220,6 +225,21 @@ namespace Xmas_Hell
 
                 foreach (var mover in BossBullets)
                     _game.SpriteBatch.Draw(mover.Sprite);
+
+                _game.SpriteBatch.End();
+            }
+
+            if (GameConfig.DisplayCollisionBoxes)
+            {
+                _game.SpriteBatch.Begin(
+                    samplerState: SamplerState.PointClamp,
+                    blendState: BlendState.AlphaBlend,
+                    transformMatrix: _game.Camera.GetViewMatrix()
+                );
+
+
+                foreach (var collisionElement in DebugCollisionElements)
+                    collisionElement.Draw(_game.SpriteBatch);
 
                 _game.SpriteBatch.End();
             }

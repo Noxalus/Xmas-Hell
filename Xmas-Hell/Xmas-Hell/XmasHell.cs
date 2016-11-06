@@ -140,19 +140,6 @@ namespace Xmas_Hell
         {
             SpriteBatchManager.Draw();
 
-
-            //SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
-            //SpriteBatch.Draw(
-            //    Assets.GetTexture2D("Graphics/Pictures/background"),
-            //    new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y),
-            //    Color.White
-            //);
-            //SpriteBatch.End();
-
-            //base.Draw(gameTime);
-
-            //GameManager.Draw(gameTime);
-
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
 
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.AverageFramesPerSecond:0}", Vector2.Zero, Color.White);
