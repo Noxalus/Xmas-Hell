@@ -357,7 +357,11 @@ namespace Xmas_Hell.Entities
 
             Tinted = _hitTimer.TotalMilliseconds > 0;
 
-            _hpBar.Scale = new Vector2(Life / InitialLife, 1f);
+            var portion = (InitialLife/Behaviours.Count);
+            var value = Life - (InitialLife - (CurrentBehaviourIndex + 1)*portion);
+
+            _hpBar.Scale = new Vector2(value / portion, 1f);
+            _hpBar.Color = GameConfig.BossHPBarColors[CurrentBehaviourIndex];
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }

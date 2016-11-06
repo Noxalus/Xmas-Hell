@@ -21,6 +21,14 @@ namespace Xmas_Hell
         public static int BossDefaultLife = 1000;
         public static float BossDefaultSpeed = 200f;
 
+        public static Color[] BossHPBarColors = new Color[]
+        {
+            Color.Green,
+            Color.Orange,
+            Color.OrangeRed,
+            Color.Red
+        };
+
         // Debug
         public static bool DisplayCollisionBoxes = false;
         public static bool DisableBloom = false;

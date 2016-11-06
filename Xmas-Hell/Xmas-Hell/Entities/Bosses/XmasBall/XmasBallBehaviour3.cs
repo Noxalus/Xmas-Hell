@@ -55,7 +55,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBall
 
             // Start to lock the player
             _lockingTarget = true;
-            _lockingTargetTimer = TimeSpan.FromSeconds(2f);
+            _lockingTargetTimer = TimeSpan.Zero;
         }
 
         public override void Stop()
