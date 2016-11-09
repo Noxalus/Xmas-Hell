@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell.BulletML
+namespace XmasHell.BulletML
 {
     public enum BulletType
     {

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace Xmas_Hell.Shaders
+namespace XmasHell.Shaders
 {
     public class Bloom
     {

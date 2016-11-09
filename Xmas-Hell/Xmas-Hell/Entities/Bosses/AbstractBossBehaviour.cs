@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell.Entities.Bosses
+namespace XmasHell.Entities.Bosses
 {
     public abstract class AbstractBossBehaviour
     {

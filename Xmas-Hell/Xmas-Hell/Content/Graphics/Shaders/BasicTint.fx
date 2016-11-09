@@ -12,7 +12,7 @@ float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
     float4 color = tex2D(TextureSampler, input.TexCoord);
     float3 tint = tintColor * color.a;
 
-    return float4(tint, color.a);
+    return float4(tint, 1.0f) * color;
 }
 
 technique BasicTint {

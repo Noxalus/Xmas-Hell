@@ -2,10 +2,10 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using Xmas_Hell.BulletML;
-using Xmas_Hell.Geometry;
+using XmasHell.BulletML;
+using XmasHell.Geometry;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBall
+namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBallBehaviour3 : AbstractBossBehaviour
     {

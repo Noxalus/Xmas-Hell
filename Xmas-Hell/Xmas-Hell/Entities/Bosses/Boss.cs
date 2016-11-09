@@ -9,13 +9,13 @@ using MonoGame.Extended.TextureAtlases;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
-using Xmas_Hell.BulletML;
-using Xmas_Hell.Geometry;
-using Xmas_Hell.Physics;
-using Xmas_Hell.Spriter;
+using XmasHell.BulletML;
+using XmasHell.Geometry;
+using XmasHell.Physics;
+using XmasHell.Spriter;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 
-namespace Xmas_Hell.Entities.Bosses
+namespace XmasHell.Entities.Bosses
 {
     public enum BossType
     {
@@ -116,6 +116,19 @@ namespace Xmas_Hell.Entities.Bosses
             return CurrentAnimator.Rotation;
         }
 
+        public virtual Vector2 Pivot()
+        {
+            var currentPosition = CurrentAnimator.Position;
+
+            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
+            {
+                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
+                return new Vector2(spriteData.PivotX, spriteData.PivotY);
+            }
+
+            return currentPosition;
+        }
+
         public virtual Vector2 Scale()
         {
             if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
@@ -208,7 +221,7 @@ namespace Xmas_Hell.Entities.Bosses
             BossPatterns = new Dictionary<string, BulletPattern>();
             BulletPatternFiles = new List<string>();
 
-            HitColor = Color.White;
+            HitColor = Color.White * 0.5f;
 
             _hpBar = new Sprite(
                 new TextureRegion2D(

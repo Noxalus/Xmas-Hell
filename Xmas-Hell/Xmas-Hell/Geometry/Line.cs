@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Xmas_Hell.Geometry
+namespace XmasHell.Geometry
 {
     public class Line
     {

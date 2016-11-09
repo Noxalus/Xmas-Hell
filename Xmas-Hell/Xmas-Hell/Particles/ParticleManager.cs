@@ -9,7 +9,7 @@ using MonoGame.Extended.Particles.Modifiers.Interpolators;
 using MonoGame.Extended.Particles.Profiles;
 using MonoGame.Extended.TextureAtlases;
 
-namespace Xmas_Hell.Particles
+namespace XmasHell.Particles
 {
     public class ParticleManager
     {
@@ -19,6 +19,15 @@ namespace Xmas_Hell.Particles
         private ParticleEffect _playerDestroyedParticles;
         private ParticleEffect _bossDestroyedParticles;
         private ParticleEffect _snowFallParticles;
+
+        public int ActiveParticlesCount()
+        {
+            var counter = 0;
+            foreach (var particleEffect in _particleEffects)
+                counter += particleEffect.ActiveParticles;
+
+            return counter;
+        }
 
         public ParticleManager(XmasHell game)
         {
@@ -140,18 +149,23 @@ namespace Xmas_Hell.Particles
                 {
                     new ParticleEmitter(
                         snowTextureRegion,
-                        5000,
-                        TimeSpan.FromSeconds(60),
-                        Profile.Spray(new Vector2(0f, -1f), 30f),
-                        true
+                        120,
+                        TimeSpan.FromSeconds(10),
+                        Profile.Spray(new Vector2(0f, 1f), 30f),
+                        false
                     )
                     {
                         Parameters = new ParticleReleaseParameters
                         {
-                            Speed = new Range<float>(70f, 100f),
-                            Scale = new Range<float>(30.0f, 60.0f),
+                            Speed = new Range<float>(50f, 100f),
+                            Scale = new Range<float>(30.0f, 100.0f),
                             Color = (Color.White * 0.75f).ToHsl()
                         }
+                        //,
+                        //Modifiers = new IModifier[]
+                        //{
+                        //    new OpacityFastFadeModifier(),
+                        //}
                     }
                 }
             };
@@ -161,11 +175,11 @@ namespace Xmas_Hell.Particles
             _particleEffects.Add(_bossDestroyedParticles);
             _particleEffects.Add(_snowFallParticles);
 
-            for (int i = 0; i < 1000; i++)
-            {
-                _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
-                _snowFallParticles.Update(1 / 60f);
-            }
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
+            //    _snowFallParticles.Update(1 / 60f);
+            //}
 
             _game.SpriteBatchManager.BackgroundParticles.Add(_snowFallParticles);
             _game.SpriteBatchManager.GameParticles.Add(_playerDestroyedParticles);
@@ -193,7 +207,7 @@ namespace Xmas_Hell.Particles
             foreach (var particleEffect in _particleEffects)
                 particleEffect.Update(gameTime.GetElapsedSeconds());
 
-            _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, -10f));
+            _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f));
         }
     }
 }

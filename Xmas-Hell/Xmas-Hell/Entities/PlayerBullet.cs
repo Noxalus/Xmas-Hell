@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace Xmas_Hell.Entities
+namespace XmasHell.Entities
 {
     public class PlayerBullet : Bullet
     {

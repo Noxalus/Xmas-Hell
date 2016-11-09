@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoGame.Extended.Screens;
-using Xmas_Hell.Entities.Bosses;
+using XmasHell.Entities.Bosses;
 
-namespace Xmas_Hell.Screens
+namespace XmasHell.Screens
 {
     public class MainMenuScreen : Screen
     {

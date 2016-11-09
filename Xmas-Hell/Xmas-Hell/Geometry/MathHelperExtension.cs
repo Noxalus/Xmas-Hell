@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Xmas_Hell.Geometry
+namespace XmasHell.Geometry
 {
     public static class MathHelperExtension
     {

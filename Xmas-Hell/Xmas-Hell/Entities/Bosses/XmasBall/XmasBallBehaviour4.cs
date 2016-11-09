@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using RandomExtension;
-using Xmas_Hell.Geometry;
+using XmasHell.Geometry;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBall
+namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBallBehaviour4 : AbstractBossBehaviour
     {

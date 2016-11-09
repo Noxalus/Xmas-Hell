@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     public class Camera : Camera2D
     {

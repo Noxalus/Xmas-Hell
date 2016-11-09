@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.BitmapFonts;
 
-namespace Xmas_Hell.Sprites
+namespace XmasHell.Sprites
 {
     class StringSprite
     {

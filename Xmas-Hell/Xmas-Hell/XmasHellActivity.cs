@@ -3,7 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     [Activity(Label = "Xmas-Hell"
         , MainLauncher = true

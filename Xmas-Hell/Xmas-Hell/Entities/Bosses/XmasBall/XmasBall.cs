@@ -7,10 +7,10 @@ using Microsoft.Xna.Framework.Audio;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
-using Xmas_Hell.Physics.Collision;
-using Xmas_Hell.Spriter;
+using XmasHell.Physics.Collision;
+using XmasHell.Spriter;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBall
+namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBall : Boss
     {

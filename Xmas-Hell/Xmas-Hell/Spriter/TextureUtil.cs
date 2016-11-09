@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell.Spriter
+namespace XmasHell.Spriter
 {
     public static class TextureUtil
     {

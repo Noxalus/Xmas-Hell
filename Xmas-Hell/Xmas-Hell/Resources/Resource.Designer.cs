@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Xmas_Hell.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("XmasHell.Resource", IsApplication=true)]
 
-namespace Xmas_Hell
+namespace XmasHell
 {
 	
 	

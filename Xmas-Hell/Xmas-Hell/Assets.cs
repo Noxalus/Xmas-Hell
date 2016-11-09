@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.BitmapFonts;
 using Stream = System.IO.Stream;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     public static class Assets
     {

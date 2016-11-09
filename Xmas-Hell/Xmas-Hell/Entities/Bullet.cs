@@ -2,11 +2,11 @@ using System;
 using Android.Provider;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Sprites;
-using Xmas_Hell.BulletML;
-using Xmas_Hell.Physics;
-using Xmas_Hell.Physics.Collision;
+using XmasHell.BulletML;
+using XmasHell.Physics;
+using XmasHell.Physics.Collision;
 
-namespace Xmas_Hell.Entities
+namespace XmasHell.Entities
 {
     public class Bullet : IPhysicsEntity
     {
@@ -23,9 +23,19 @@ namespace Xmas_Hell.Entities
             return Sprite.Position;
         }
 
+        public virtual Vector2 LocalPosition()
+        {
+            return Vector2.Zero;
+        }
+
         public float Rotation()
         {
             return Sprite.Rotation;
+        }
+
+        public Vector2 Pivot()
+        {
+            return Sprite.Origin;
         }
 
         public Vector2 Scale()

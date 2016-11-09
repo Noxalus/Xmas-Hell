@@ -5,11 +5,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoGame.Extended.Sprites;
-using Xmas_Hell.Physics;
-using Xmas_Hell.Physics.Collision;
+using XmasHell.Physics;
+using XmasHell.Physics.Collision;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 
-namespace Xmas_Hell.Entities
+namespace XmasHell.Entities
 {
     class Player : IPhysicsEntity
     {
@@ -32,9 +32,19 @@ namespace Xmas_Hell.Entities
             return _sprite.Position;
         }
 
+        public virtual Vector2 LocalPosition()
+        {
+            return Vector2.Zero;
+        }
+
         public float Rotation()
         {
             return _sprite.Rotation;
+        }
+
+        public Vector2 Pivot()
+        {
+            return _sprite.Origin;
         }
 
         public Vector2 Scale()

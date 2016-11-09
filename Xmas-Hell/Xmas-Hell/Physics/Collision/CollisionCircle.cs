@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Shapes;
 
-namespace Xmas_Hell.Physics.Collision
+namespace XmasHell.Physics.Collision
 {
     public class CollisionCircle : CollisionElement
     {

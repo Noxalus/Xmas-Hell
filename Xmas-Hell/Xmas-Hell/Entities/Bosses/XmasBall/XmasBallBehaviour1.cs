@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Xna.Framework;
-using Xmas_Hell.BulletML;
+using XmasHell.BulletML;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBall
+namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBallBehaviour1 : AbstractBossBehaviour
     {

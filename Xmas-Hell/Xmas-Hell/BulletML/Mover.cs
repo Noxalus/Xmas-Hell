@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Shapes;
 using MonoGame.Extended.Sprites;
-using Xmas_Hell.Physics;
-using Xmas_Hell.Physics.Collision;
+using XmasHell.Physics;
+using XmasHell.Physics.Collision;
 
-namespace Xmas_Hell.BulletML
+namespace XmasHell.BulletML
 {
     public class Mover : Bullet, IPhysicsEntity
     {
@@ -23,10 +23,20 @@ namespace Xmas_Hell.BulletML
         {
             return _position;
         }
+        public virtual Vector2 LocalPosition()
+        {
+            return Vector2.Zero;
+        }
 
         public float Rotation()
         {
             return Direction;
+        }
+
+        public Vector2 Pivot()
+        {
+            // TODO: Get the proper pivot
+            return Vector2.Zero;
         }
 
         public Vector2 Scale()

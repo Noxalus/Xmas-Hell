@@ -1,7 +1,7 @@
 using System;
 using BulletML;
 
-namespace Xmas_Hell.Entities.Bosses
+namespace XmasHell.Entities.Bosses
 {
     public static class BossFactory
     {

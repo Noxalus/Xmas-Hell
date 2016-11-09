@@ -1,8 +1,8 @@
 using BulletML;
 using Microsoft.Xna.Framework;
-using Xmas_Hell.Physics.Collision;
+using XmasHell.Physics.Collision;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBell
+namespace XmasHell.Entities.Bosses.XmasBell
 {
     class XmasBell : Boss
     {
@@ -18,11 +18,12 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
             // Behaviours
             //Behaviours.Add(new XmasBellBehaviour1(this));
             //Behaviours.Add(new XmasBellBehaviour2(this));
-            Behaviours.Add(new XmasBellBehaviour3(this));
-            //Behaviours.Add(new XmasBellBehaviour4(this));
+            //Behaviours.Add(new XmasBellBehaviour3(this));
+            Behaviours.Add(new XmasBellBehaviour4(this));
 
             // Physics
-            Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 150f);
+            //Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, new Vector2(0f, 80f), 80f);
+            Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 80f);
         }
     }
 }

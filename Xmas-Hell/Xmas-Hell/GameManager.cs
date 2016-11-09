@@ -4,13 +4,13 @@ using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Xmas_Hell.BulletML;
-using Xmas_Hell.Entities;
-using Xmas_Hell.Particles;
-using Xmas_Hell.Physics;
-using Bullet = Xmas_Hell.Entities.Bullet;
+using XmasHell.BulletML;
+using XmasHell.Entities;
+using XmasHell.Particles;
+using XmasHell.Physics;
+using Bullet = XmasHell.Entities.Bullet;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     public class GameManager
     {

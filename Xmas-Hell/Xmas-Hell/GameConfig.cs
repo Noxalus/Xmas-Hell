@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     public static class GameConfig
     {
@@ -30,7 +30,7 @@ namespace Xmas_Hell
         };
 
         // Debug
-        public static bool DisplayCollisionBoxes = false;
+        public static bool DisplayCollisionBoxes = true;
         public static bool DisableBloom = false;
     }
 }

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using RandomExtension;
-using Xmas_Hell.BulletML;
+using XmasHell.BulletML;
 
-namespace Xmas_Hell.Entities.Bosses.XmasBell
+namespace XmasHell.Entities.Bosses.XmasBell
 {
     class XmasBellBehaviour4 : AbstractBossBehaviour
     {
@@ -31,9 +31,15 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
                 Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f), GameConfig.VirtualResolution.Y - (int)(Boss.Height() / 2f))
             );
 
+
+            //Boss.CurrentAnimator.Position = new Vector2(
+            //    GameConfig.VirtualResolution.X / 2f - (int)(Boss.Width() / 4f),
+            //    GameConfig.VirtualResolution.Y / 2f - (int)(Boss.Height() / 4f)
+            //);
+
             Boss.CurrentAnimator.Play("Troll");
 
-            Boss.CurrentAnimator.AnimationFinished += delegate(string animationName)
+            Boss.CurrentAnimator.AnimationFinished += delegate (string animationName)
             {
                 if (animationName == "Troll")
                 {
@@ -60,7 +66,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
             float newXPosition;
             float newYPosition;
 
-            switch (side[randomSideIndex])
+            switch (side[0])
             {
                 case ScreenSide.Left:
                     Boss.CurrentAnimator.Rotation = 0;
@@ -80,6 +86,7 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
                     break;
                 case ScreenSide.Right:
                     Boss.CurrentAnimator.Rotation = MathHelper.ToRadians(180f);
+                    //Boss.CurrentAnimator.Scale = new Vector2(-1, -1);
                     newXPosition = GameConfig.VirtualResolution.X + (Boss.Width() / 2f);
                     newYPosition = Boss.Game.GameManager.Random.NextFloat(
                         Boss.Height() / 2f,
@@ -97,6 +104,19 @@ namespace Xmas_Hell.Entities.Bosses.XmasBell
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            //var xScale = 1f;
+            //if (Boss.Game.GameManager.Random.NextDouble(0, 1) < 0.5)
+            //    xScale = -1f;
+            //Boss.CurrentAnimator.Scale = new Vector2(xScale, 1f);
+
+            Boss.CurrentAnimator.Rotation = 0f;
+
+            //if (Boss.Game.GameManager.Random.NextDouble(0, 1) < 0.5)
+                Boss.CurrentAnimator.Rotation = MathHelper.ToRadians(90f);
+
+            newXPosition = GameConfig.VirtualResolution.X / 2f;
+            newYPosition = GameConfig.VirtualResolution.Y / 2f;
 
             Boss.CurrentAnimator.Position = new Vector2(newXPosition, newYPosition);
         }

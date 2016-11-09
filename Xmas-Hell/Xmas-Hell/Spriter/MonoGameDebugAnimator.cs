@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 
-namespace Xmas_Hell.Spriter
+namespace XmasHell.Spriter
 {
     public class MonoGameDebugAnimator : MonoGameAnimator
     {

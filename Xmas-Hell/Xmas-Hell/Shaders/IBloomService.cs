@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell.Shaders
+namespace XmasHell.Shaders
 {
     public interface IBloomService
     {

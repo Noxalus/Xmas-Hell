@@ -3,7 +3,7 @@ using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell.BulletML
+namespace XmasHell.BulletML
 {
     public class MoverManager : IBulletManager
     {

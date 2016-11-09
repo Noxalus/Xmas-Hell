@@ -7,12 +7,12 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
-using Xmas_Hell.Entities.Bosses;
-using Xmas_Hell.Screens;
-using Xmas_Hell.Shaders;
-using Xmas_Hell.Sprites;
+using XmasHell.Entities.Bosses;
+using XmasHell.Screens;
+using XmasHell.Shaders;
+using XmasHell.Sprites;
 
-namespace Xmas_Hell
+namespace XmasHell
 {
     /// <summary>
     /// This is the main type for your game.
@@ -159,6 +159,8 @@ namespace Xmas_Hell
 
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
             SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
+
+            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 100), Color.White);
 
             SpriteBatch.End();
         }

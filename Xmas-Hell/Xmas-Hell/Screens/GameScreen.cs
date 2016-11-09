@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
-using Xmas_Hell.Entities;
-using Xmas_Hell.Entities.Bosses;
+using XmasHell.Entities;
+using XmasHell.Entities.Bosses;
 
-namespace Xmas_Hell.Screens
+namespace XmasHell.Screens
 {
     public class GameScreen : Screen
     {

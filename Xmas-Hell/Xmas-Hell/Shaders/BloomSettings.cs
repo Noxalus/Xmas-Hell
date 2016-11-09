@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Xmas_Hell.Shaders
+namespace XmasHell.Shaders
 {
     /// <summary>
     /// Class holds all the settings used to tweak the bloom effect.
