@@ -10,8 +10,8 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\MonoGame.Extended\Source\MonoGame.Extended.Content.Pipeline\bin\MonoGame.Extended.Content.Pipeline.dll
-/reference:..\..\SpriterDotNet\SpriterDotNet.MonoGame.Importer\bin\Release\SpriterDotNet.MonoGame.Importer.dll
+/reference:..\..\Libraries\MonoGame.Extended.Content.Pipeline.dll
+/reference:..\..\Libraries\SpriterDotNet.MonoGame.Importer.dll
 
 #---------------------------------- Content ---------------------------------#
 
