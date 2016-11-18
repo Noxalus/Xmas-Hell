@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Sprites;
 using XmasHell.BulletML;
+using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using XmasHell.Physics.Collision;
 using XmasHell.Shaders;
@@ -25,7 +26,7 @@ namespace XmasHell.Sprites
         public List<CollisionElement> DebugCollisionElements;
 
         public Boss Boss;
-        public Sprite Player;
+        public Player Player;
         public Sprite PlayerHitbox;
 
         // Bloom
@@ -179,8 +180,7 @@ namespace XmasHell.Sprites
             BeginDrawCameraSpace();
 
             // Draw player
-            if (Player != null)
-                _game.SpriteBatch.Draw(Player);
+            Player?.CurrentAnimator.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
 

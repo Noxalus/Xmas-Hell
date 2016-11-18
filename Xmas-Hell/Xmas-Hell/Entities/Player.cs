@@ -1,25 +1,32 @@
 using System;
-using Android.InputMethodServices;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using MonoGame.Extended.Sprites;
+using SpriterDotNet.MonoGame;
+using SpriterDotNet.Providers;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
+using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
+using Sprite = MonoGame.Extended.Sprites.Sprite;
+using SpriterDotNet;
 
 namespace XmasHell.Entities
 {
-    class Player : IPhysicsEntity
+    public class Player : IPhysicsEntity
     {
         public bool Invincible;
         public TimeSpan _invincibleTimer;
 
         private readonly XmasHell _game;
-        private Sprite _sprite;
         private CollisionCircle _hitbox;
         private Sprite _hitboxSprite;
+
+        private IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
+        public MonoGameAnimator CurrentAnimator;
 
         private Vector2 _initialSpritePosition;
         private Point _initialTouchPosition;
@@ -29,7 +36,7 @@ namespace XmasHell.Entities
 
         public Vector2 Position()
         {
-            return _sprite.Position;
+            return CurrentAnimator.Position;
         }
 
         public virtual Vector2 LocalPosition()
@@ -39,17 +46,17 @@ namespace XmasHell.Entities
 
         public float Rotation()
         {
-            return _sprite.Rotation;
+            return CurrentAnimator.Rotation;
         }
 
         public Vector2 Pivot()
         {
-            return _sprite.Origin;
+            return Vector2.Zero;
         }
 
         public Vector2 Scale()
         {
-            return _sprite.Scale;
+            return CurrentAnimator.Scale;
         }
 
         public Player(XmasHell game)
@@ -57,14 +64,33 @@ namespace XmasHell.Entities
             _game = game;
             _bulletFrequence = TimeSpan.Zero;
 
-            var playerTexture = Assets.GetTexture2D("Graphics/Sprites/player");
             var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/hitbox");
 
-            _sprite = new Sprite(playerTexture)
+            var animatorConfig = new Config
             {
-                Origin = new Vector2(playerTexture.Width / 2f, playerTexture.Height / 2f),
-                Scale = Vector2.One
+                MetadataEnabled = false,
+                EventsEnabled = false,
+                PoolingEnabled = true,
+                TagsEnabled = false,
+                VarsEnabled = false,
+                SoundsEnabled = false
             };
+
+            var factory = new DefaultProviderFactory<SpriterDotNet.MonoGame.Sprite, SoundEffect>(animatorConfig, true);
+
+            var loader = new SpriterContentLoader(_game.Content, "Graphics/Sprites/Player/player");
+            loader.Fill(factory);
+
+            foreach (var entity in loader.Spriter.Entities)
+            {
+                var animator = new MonoGameDebugAnimator(entity, _game.GraphicsDevice, factory);
+                _animators.Add(animator);
+            }
+
+            CurrentAnimator = _animators.First();
+            var spriteSize = new Vector2(60, 82);
+            CurrentAnimator.Position = new Vector2(spriteSize.X / 2f, spriteSize.Y / 2f);
+            CurrentAnimator.Play("Idle");
 
             _hitboxSprite = new Sprite(playerHitboxTexture)
             {
@@ -81,7 +107,7 @@ namespace XmasHell.Entities
 
             Initialize();
 
-            _game.SpriteBatchManager.Player = _sprite;
+            _game.SpriteBatchManager.Player = this;
             _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
         }
 
@@ -90,12 +116,12 @@ namespace XmasHell.Entities
             Invincible = true;
             _invincibleTimer = TimeSpan.FromSeconds(3f);
 
-            _sprite.Position = new Vector2(
+            _initialSpritePosition = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y - 150
             );
 
-            _initialSpritePosition = _sprite.Position;
+            CurrentAnimator.Position = _initialSpritePosition;
             _initialTouchPosition = _currentTouchPosition;
         }
 
@@ -117,6 +143,8 @@ namespace XmasHell.Entities
             else
                 Invincible = false;
 
+            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
             UpdatePosition(gameTime);
             _hitboxSprite.Position = _hitbox.GetCenter();
 
@@ -132,14 +160,14 @@ namespace XmasHell.Entities
             {
                 if (currentTouchState[0].State == TouchLocationState.Pressed)
                 {
-                    _initialSpritePosition = _sprite.Position;
+                    _initialSpritePosition = Position();
                     _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
                 }
 
                 _currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
                 var touchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                _sprite.Position = _initialSpritePosition + (touchDelta * GameConfig.PlayerMoveSensitivity);
+                CurrentAnimator.Position = _initialSpritePosition + (touchDelta * GameConfig.PlayerMoveSensitivity);
             }
             else
             {
@@ -150,9 +178,9 @@ namespace XmasHell.Entities
 
         private void CheckOutOfBounds()
         {
-            _sprite.Position = new Vector2(
-                MathHelper.Clamp(_sprite.Position.X, 0, GameConfig.VirtualResolution.X),
-                MathHelper.Clamp(_sprite.Position.Y, 0, GameConfig.VirtualResolution.Y)
+            CurrentAnimator.Position = new Vector2(
+                MathHelper.Clamp(CurrentAnimator.Position.X, 0, GameConfig.VirtualResolution.X),
+                MathHelper.Clamp(CurrentAnimator.Position.Y, 0, GameConfig.VirtualResolution.Y)
             );
         }
 
@@ -164,11 +192,11 @@ namespace XmasHell.Entities
             {
                 _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
 
-                var bullet1 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
-                var bullet2 = new PlayerBullet(_game, _sprite.Position, -MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
-                var bullet3 = new PlayerBullet(_game, _sprite.Position, 0f, GameConfig.PlayerBulletSpeed);
-                var bullet4 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
-                var bullet5 = new PlayerBullet(_game, _sprite.Position, MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
+                var bullet1 = new PlayerBullet(_game, CurrentAnimator.Position, -MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
+                var bullet2 = new PlayerBullet(_game, CurrentAnimator.Position, -MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
+                var bullet3 = new PlayerBullet(_game, CurrentAnimator.Position, 0f, GameConfig.PlayerBulletSpeed);
+                var bullet4 = new PlayerBullet(_game, CurrentAnimator.Position, MathHelper.PiOver4 / 8f, GameConfig.PlayerBulletSpeed);
+                var bullet5 = new PlayerBullet(_game, CurrentAnimator.Position, MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
 
                 _game.GameManager.AddBullet(bullet1);
                 _game.GameManager.AddBullet(bullet2);

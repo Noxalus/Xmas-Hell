@@ -34,7 +34,6 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet2"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet3"),
-                content.Load<Texture2D>("Graphics/Sprites/player"),
                 content.Load<Texture2D>("Graphics/Sprites/hitbox")
             };
 
