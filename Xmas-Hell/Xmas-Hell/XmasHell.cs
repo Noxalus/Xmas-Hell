@@ -151,18 +151,29 @@ namespace XmasHell
 
             base.Draw(gameTime);
 
-            SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend, transformMatrix: ViewportAdapter.GetScaleMatrix());
+            if (GameConfig.ShowDebugInfo)
+            {
+                SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend,
+                    transformMatrix: ViewportAdapter.GetScaleMatrix());
 
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.FramesPerSecond:0}", Vector2.Zero, Color.White);
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Player's bullets: {GameManager.GetPlayerBullets().Count:0}", new Vector2(0, 20), Color.White);
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.FramesPerSecond:0}",
+                    Vector2.Zero, Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    $"Player's bullets: {GameManager.GetPlayerBullets().Count:0}", new Vector2(0, 20), Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
 
-            SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 100), Color.White);
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 100),
+                    Color.White);
 
-            SpriteBatch.End();
+                SpriteBatch.End();
+            }
         }
     }
 }
