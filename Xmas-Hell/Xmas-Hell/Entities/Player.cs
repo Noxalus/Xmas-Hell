@@ -31,6 +31,7 @@ namespace XmasHell.Entities
         private Vector2 _initialSpritePosition;
         private Point _initialTouchPosition;
         private Point _currentTouchPosition;
+        private Point _previousTouchPosition;
 
         private TimeSpan _bulletFrequence;
 
@@ -92,6 +93,8 @@ namespace XmasHell.Entities
             CurrentAnimator.Position = new Vector2(spriteSize.X / 2f, spriteSize.Y / 2f);
             CurrentAnimator.Play("Idle");
 
+            CurrentAnimator.AnimationFinished += AnimationFinished;
+
             _hitboxSprite = new Sprite(playerHitboxTexture)
             {
                 Scale = new Vector2(
@@ -131,6 +134,14 @@ namespace XmasHell.Entities
             Initialize();
         }
 
+        private void AnimationFinished(string animationName)
+        {
+            if (animationName == "Left")
+                CurrentAnimator.Play("LeftIdle");
+            else if (animationName == "Right")
+                CurrentAnimator.Play("RightIdle");
+        }
+
         public void Update(GameTime gameTime)
         {
             var keyboardState = Keyboard.GetState();
@@ -164,15 +175,37 @@ namespace XmasHell.Entities
                     _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
                 }
 
+                _previousTouchPosition = _currentTouchPosition;
                 _currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
-                var touchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
+                var touchDelta = _currentTouchPosition - _previousTouchPosition;
+                var globalTouchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                CurrentAnimator.Position = _initialSpritePosition + (touchDelta * GameConfig.PlayerMoveSensitivity);
+                Console.WriteLine("Touch delta: " + touchDelta);
+
+                if (touchDelta.X < -10)
+                {
+                    if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
+                        CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
+                        CurrentAnimator.Play("Left");
+                }
+                else if (touchDelta.X > 10)
+                {
+                    if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
+                        CurrentAnimator.CurrentAnimation.Name != "RightIdle")
+                        CurrentAnimator.Play("Right");
+                }
+                else
+                {
+                    //CurrentAnimator.Play("Idle");
+                }
+
+                CurrentAnimator.Position = _initialSpritePosition + (globalTouchDelta * GameConfig.PlayerMoveSensitivity);
             }
             else
             {
                 _initialSpritePosition = Vector2.Zero;
                 _initialTouchPosition = Point.Zero;
+                CurrentAnimator.Play("Idle");
             }
         }
 
