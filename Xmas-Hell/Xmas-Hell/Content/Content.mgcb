@@ -395,7 +395,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Player/arm.png
 
-#begin Graphics/Sprites/Player/body.png
+#begin Graphics/Sprites/Player/bunch.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -405,7 +405,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Player/body.png
+/build:Graphics/Sprites/Player/bunch.png
 
 #begin Graphics/Sprites/Player/collar.png
 /importer:TextureImporter
@@ -419,7 +419,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Player/collar.png
 
-#begin Graphics/Sprites/Player/dress.png
+#begin Graphics/Sprites/Player/dress-bottom.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -429,7 +429,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Player/dress.png
+/build:Graphics/Sprites/Player/dress-bottom.png
+
+#begin Graphics/Sprites/Player/dress-top.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Player/dress-top.png
 
 #begin Graphics/Sprites/Player/hat.png
 /importer:TextureImporter
@@ -442,6 +454,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Player/hat.png
+
+#begin Graphics/Sprites/Player/head.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Player/head.png
 
 #begin Graphics/Sprites/Player/leg.png
 /importer:TextureImporter

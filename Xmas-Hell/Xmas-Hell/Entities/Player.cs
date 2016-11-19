@@ -140,6 +140,10 @@ namespace XmasHell.Entities
                 CurrentAnimator.Play("LeftIdle");
             else if (animationName == "Right")
                 CurrentAnimator.Play("RightIdle");
+            else if (animationName == "Up")
+                CurrentAnimator.Play("UpIdle");
+            else if (animationName == "Down")
+                CurrentAnimator.Play("DownIdle");
         }
 
         public void Update(GameTime gameTime)
@@ -182,21 +186,32 @@ namespace XmasHell.Entities
 
                 Console.WriteLine("Touch delta: " + touchDelta);
 
-                if (touchDelta.X < -10)
+                if (touchDelta.Y > 50)
                 {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
-                        CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
-                        CurrentAnimator.Play("Left");
+                    if (CurrentAnimator.CurrentAnimation.Name != "Down" &&
+                        CurrentAnimator.CurrentAnimation.Name != "DownIdle")
+                        CurrentAnimator.Play("Down");
                 }
-                else if (touchDelta.X > 10)
+                else if (touchDelta.Y < -50)
                 {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
-                        CurrentAnimator.CurrentAnimation.Name != "RightIdle")
-                        CurrentAnimator.Play("Right");
+                    if (CurrentAnimator.CurrentAnimation.Name != "Up" &&
+                        CurrentAnimator.CurrentAnimation.Name != "UpIdle")
+                        CurrentAnimator.Play("Up");
                 }
                 else
                 {
-                    //CurrentAnimator.Play("Idle");
+                    if (touchDelta.X < -10)
+                    {
+                        if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
+                            CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
+                            CurrentAnimator.Play("Left");
+                    }
+                    else if (touchDelta.X > 10)
+                    {
+                        if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
+                            CurrentAnimator.CurrentAnimation.Name != "RightIdle")
+                            CurrentAnimator.Play("Right");
+                    }
                 }
 
                 CurrentAnimator.Position = _initialSpritePosition + (globalTouchDelta * GameConfig.PlayerMoveSensitivity);
