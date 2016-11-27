@@ -47,6 +47,7 @@ namespace XmasHell
             _patternSteams = new Dictionary<string, Stream>
             {
                 { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") },
+                { "MainMenu/snowflake", activity.ApplicationContext.Assets.Open("Patterns/MainMenu/snowflake.xml") },
 
                 // Xmas Ball
                 { "XmasBall/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern1.xml") },
