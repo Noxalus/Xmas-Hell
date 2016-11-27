@@ -55,7 +55,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
             else
             {
                 _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                Boss.TriggerPattern("sample", BulletType.Type2);
+                Boss.Game.GameManager.MoverManager.TriggerPattern("sample", BulletType.Type2, false, Boss.Position());
             }
         }
     }

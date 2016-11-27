@@ -12,6 +12,8 @@ namespace XmasHell.BulletML
         private readonly List<Mover> _topLevelMovers = new List<Mover>();
         private PositionDelegate _getPlayerPosition;
         public BulletType CurrentBulletType;
+        private Dictionary<string, BulletPattern> _patterns = new Dictionary<string, BulletPattern>();
+
 
         public MoverManager(XmasHell game)
         {
@@ -49,6 +51,29 @@ namespace XmasHell.BulletML
         {
             var mover = deadBullet as Mover;
             mover?.Destroy();
+        }
+
+        public void AddPattern(string patternName, BulletPattern pattern)
+        {
+            _patterns.Add(patternName, pattern);
+        }
+
+        public void TriggerPattern(string patternName, BulletType type, bool clear = false, Vector2? position = null, float? direction = null)
+        {
+            if (clear)
+                Clear();
+
+            CurrentBulletType = type;
+
+            // Add a new bullet in the center of the screen
+            var mover = (Mover)CreateBullet(true);
+
+            if (position.HasValue)
+                mover.Position(position.Value);
+            if (direction.HasValue)
+                mover.Direction = direction.Value;
+
+            mover.InitTopNode(_patterns[patternName].RootNode);
         }
 
         public void Update()

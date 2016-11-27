@@ -1,6 +1,9 @@
+using System;
+using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 using MonoGame.Extended.Screens;
+using XmasHell.BulletML;
 using XmasHell.Entities.Bosses;
 
 namespace XmasHell.Screens
@@ -9,6 +12,8 @@ namespace XmasHell.Screens
     {
         private XmasHell _game;
         private TouchCollection _previousTouchState;
+        private string _patternFile = "MainMenu/snowflake";
+        private TimeSpan _shootFrequency;
 
         public MainMenuScreen(XmasHell game)
         {
@@ -17,6 +22,13 @@ namespace XmasHell.Screens
 
         public override void Initialize()
         {
+            var pattern = new BulletPattern();
+            pattern.ParseStream(_patternFile, Assets.GetPattern(_patternFile));
+
+            _game.GameManager.MoverManager.AddPattern(_patternFile, pattern);
+
+            _shootFrequency = TimeSpan.Zero;
+
             base.Initialize();
         }
 
@@ -28,7 +40,7 @@ namespace XmasHell.Screens
             {
                 var touchPosition = _game.ViewportAdapter.PointToScreen(_previousTouchState[0].Position.ToPoint());
 
-                if (touchPosition.X < GameConfig.VirtualResolution.X/2f)
+                if (touchPosition.X < GameConfig.VirtualResolution.X / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasBall);
                 else
                     _game.GameScreen.LoadBoss(BossType.XmasBell);
@@ -37,6 +49,16 @@ namespace XmasHell.Screens
             }
 
             _previousTouchState = currentTouchState;
+
+            if (_shootFrequency.TotalMilliseconds < 0)
+            {
+                _game.GameManager.MoverManager.TriggerPattern(_patternFile, BulletType.Type1, false);
+                _shootFrequency = TimeSpan.FromSeconds(1);
+            }
+            else
+            {
+                _shootFrequency -= gameTime.ElapsedGameTime;
+            }
 
             base.Update(gameTime);
         }

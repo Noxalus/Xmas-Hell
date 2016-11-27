@@ -22,7 +22,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Behaviours.Add(new XmasBellBehaviour4(this));
 
             // Physics
-            //Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, new Vector2(0f, 80f), 80f);
+            Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, new Vector2(0f, 80f), 80f);
             Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 80f);
         }
     }

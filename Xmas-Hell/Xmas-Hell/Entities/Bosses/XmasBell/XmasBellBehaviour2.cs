@@ -70,7 +70,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 else
                 {
                     _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                    Boss.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
+                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
                 }
             }
         }

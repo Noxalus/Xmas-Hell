@@ -54,7 +54,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 {
                     if (!_patternShot)
                     {
-                        Boss.TriggerPattern("XmasBall/pattern1", BulletType.Type3);
+                        Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBall/pattern1", BulletType.Type3, false, Boss.Position());
                         _patternShot = true;
                     }
                 }

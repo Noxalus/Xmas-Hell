@@ -172,7 +172,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
                     else if (currentPosition.Y > GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
                         patternPosition.Y += Boss.Height() / 2f;
 
-                    Boss.TriggerPattern("XmasBall/pattern3", BulletType.Type3, false, patternPosition);
+                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBall/pattern3", BulletType.Type3, false, patternPosition);
 
                     Boss.CurrentAnimator.Position = new Vector2(
                         MathHelper.Clamp(Boss.CurrentAnimator.Position.X, Boss.Width() / 2f,

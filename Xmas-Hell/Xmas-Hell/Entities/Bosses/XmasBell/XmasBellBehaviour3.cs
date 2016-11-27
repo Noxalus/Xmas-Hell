@@ -57,9 +57,9 @@ namespace XmasHell.Entities.Bosses.XmasBell
                         Boss.Game.GameManager.Random.NextFloat(0.5f, 5f)
                     );
 
-                    Boss.CurrentAnimator.Transition("Shoot", 0.5f);
+                    //Boss.CurrentAnimator.Transition("Shoot", 0.5f);
 
-                    Boss.TriggerPattern("XmasBell/pattern2", BulletType.Type3);
+                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern2", BulletType.Type3, false, Boss.Position());
                 }
                 else
                 {
