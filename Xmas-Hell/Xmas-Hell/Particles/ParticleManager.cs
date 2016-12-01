@@ -151,7 +151,7 @@ namespace XmasHell.Particles
                         snowTextureRegion,
                         120,
                         TimeSpan.FromSeconds(10),
-                        Profile.Spray(new Vector2(0f, 1f), 30f),
+                        Profile.Line(new Vector2(0f, -1f), 30f),
                         false
                     )
                     {
@@ -207,7 +207,7 @@ namespace XmasHell.Particles
             foreach (var particleEffect in _particleEffects)
                 particleEffect.Update(gameTime.GetElapsedSeconds());
 
-            _snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f));
+            //_snowFallParticles.Trigger(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f));
         }
     }
 }

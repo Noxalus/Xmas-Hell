@@ -2,6 +2,7 @@ using System;
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using XmasHell.BulletML;
 using XmasHell.Entities.Bosses;
@@ -14,6 +15,8 @@ namespace XmasHell.Screens
         private TouchCollection _previousTouchState;
         private string _patternFile = "MainMenu/snowflake";
         private TimeSpan _shootFrequency;
+        private Song _introSong;
+        private Song _mainSong;
 
         public MainMenuScreen(XmasHell game)
         {
@@ -30,10 +33,40 @@ namespace XmasHell.Screens
             _shootFrequency = TimeSpan.Zero;
 
             base.Initialize();
+
+            // Should play music (doesn't seem to work for now...)
+            MediaPlayer.Volume = 1f;
+            _introSong = Assets.GetMusic("boss-theme-intro");
+            _mainSong = Assets.GetMusic("boss-theme-main");
+
+            MediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
+            MediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
+
+            //MediaPlayer.Stop();
+
+            MediaPlayer.Play(_introSong);
+            MediaPlayer.Play(_mainSong);
+        }
+
+        private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void MediaPlayerOnMediaStateChanged(object sender, EventArgs eventArgs)
+        {
+            if (MediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
+                MediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(_mainSong);
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
+            //Console.WriteLine("Position: " + _introSong.Position + " | Duration: " + _introSong.Duration);
+
             var currentTouchState = TouchPanel.GetState();
 
             if (currentTouchState.Count == 0 && _previousTouchState.Count == 1)

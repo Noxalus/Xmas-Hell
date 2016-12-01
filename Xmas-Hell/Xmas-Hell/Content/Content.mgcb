@@ -282,12 +282,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Pictures/snow.png
 
-#begin Audio/BGM/boss-theme.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audio/BGM/boss-theme.mp3
-
 #begin Graphics/Shaders/BasicTint.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -519,4 +513,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasBell/clapper-ball.png
+
+#begin Audio/BGM/boss-theme-intro.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/boss-theme-intro.ogg
+
+#begin Audio/BGM/boss-theme-main.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/boss-theme-main.ogg
 

@@ -73,7 +73,6 @@ namespace XmasHell.Entities.Bosses
         protected int CurrentBehaviourIndex;
 
         // BulletML
-        protected readonly Dictionary<string, BulletPattern> BossPatterns;
         protected readonly List<string> BulletPatternFiles;
 
         // Spriter
@@ -218,7 +217,6 @@ namespace XmasHell.Entities.Bosses
             Behaviours = new List<AbstractBossBehaviour>();
 
             // BulletML
-            BossPatterns = new Dictionary<string, BulletPattern>();
             BulletPatternFiles = new List<string>();
 
             HitColor = Color.White * 0.5f;
@@ -292,7 +290,7 @@ namespace XmasHell.Entities.Bosses
             {
                 var pattern = new BulletPattern();
                 pattern.ParseStream(bulletPatternFile, Assets.GetPattern(bulletPatternFile));
-                BossPatterns.Add(bulletPatternFile, pattern);
+                Game.GameManager.MoverManager.AddPattern(bulletPatternFile, pattern);
             }
         }
 
@@ -373,22 +371,6 @@ namespace XmasHell.Entities.Bosses
         protected void CurrentAnimator_EventTriggered(string obj)
         {
             System.Diagnostics.Debug.WriteLine(obj);
-        }
-
-        public void TriggerPattern(string patternName,  BulletType type, bool clear = false, Vector2? position = null)
-        {
-            if (clear)
-                Game.GameManager.MoverManager.Clear();
-
-            Game.GameManager.MoverManager.CurrentBulletType = type;
-
-            // Add a new bullet in the center of the screen
-            var mover = (Mover)Game.GameManager.MoverManager.CreateBullet(true);
-
-            mover.Position(position ?? ActionPointPosition());
-            mover.Direction = ActionPointDirection();
-
-            mover.InitTopNode(BossPatterns[patternName].RootNode);
         }
 
         public void TakeDamage(float amount)

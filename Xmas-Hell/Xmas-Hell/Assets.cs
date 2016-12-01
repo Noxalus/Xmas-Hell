@@ -62,13 +62,18 @@ namespace XmasHell
 
                 // Xmas Snowflake
 
+                // Xmas Gift
+
                 // Xmas Log
+
+                // Xmas Tree
             };
 
             // Load musics
             _musics = new List<Song>()
             {
-                content.Load<Song>("Audio/BGM/boss-theme")
+                content.Load<Song>("Audio/BGM/boss-theme-intro"),
+                content.Load<Song>("Audio/BGM/boss-theme-main")
             };
 
             // Load custom shaders
