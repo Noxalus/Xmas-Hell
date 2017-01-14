@@ -29,7 +29,7 @@ namespace XmasHell.Physics.Collision
 
         public override bool Intersects(CollisionCircle circle)
         {
-            var radiusSquared = circle.Radius * circle.Radius;
+            var radiusSquared = circle.GetRadius() * circle.GetRadius();
             var vertex = GetWorldPosition(_vertices[_vertices.Count - 1]);
             var circleCenter = circle.GetCenter();
             var nearestDistance = float.MaxValue;

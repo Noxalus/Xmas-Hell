@@ -6,7 +6,6 @@ namespace XmasHell.Physics
     {
         Vector2 Position();
         float Rotation();
-        Vector2 Pivot();
         Vector2 Scale();
     }
 }

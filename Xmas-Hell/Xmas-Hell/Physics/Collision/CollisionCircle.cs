@@ -8,22 +8,25 @@ namespace XmasHell.Physics.Collision
     public class CollisionCircle : CollisionElement
     {
         private float _initialRadius;
-        public float Radius;
-
         private Vector2 _relativePosition;
 
         public CollisionCircle(IPhysicsEntity entity, Vector2 relativePosition, float radius) : base(entity)
         {
-            Entity = entity;
             _relativePosition = relativePosition;
             _initialRadius = radius;
         }
 
-        public Vector2 GetCenter()
+        protected CollisionCircle(IPhysicsEntity entity) : base(entity)
         {
-            // FIXME: Move that line in another method
-            Radius = _initialRadius * Entity.Scale().X;
+        }
 
+        public virtual float GetRadius()
+        {
+            return _initialRadius * Entity.Scale().X;
+        }
+
+        public virtual Vector2 GetCenter()
+        {
             var entityTransformMatrix = GetMatrix();
             var localCenter = _relativePosition;
             var vertexPosition = new Vector3(localCenter.X, localCenter.Y, 0f);
@@ -37,7 +40,7 @@ namespace XmasHell.Physics.Collision
         {
             float dx = circle.GetCenter().X - GetCenter().X;
             float dy = circle.GetCenter().Y - GetCenter().Y;
-            float radii = Radius + circle.Radius;
+            float radii = GetRadius() + circle.GetRadius();
 
             return (dx * dx) + (dy * dy) < radii * radii;
         }
@@ -49,7 +52,7 @@ namespace XmasHell.Physics.Collision
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, Radius, 10, Color.Red);
+            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, GetRadius(), 10, Color.Red);
         }
     }
 }

@@ -50,10 +50,6 @@ namespace XmasHell.Entities
             return CurrentAnimator.Rotation;
         }
 
-        public Vector2 Pivot()
-        {
-            return Vector2.Zero;
-        }
 
         public Vector2 Scale()
         {

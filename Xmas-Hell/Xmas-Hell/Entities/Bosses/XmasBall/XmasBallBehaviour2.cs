@@ -16,7 +16,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y / 2f
             );
-
         }
 
         public override void Start()

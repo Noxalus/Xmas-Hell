@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using SpriterDotNet;
-using SpriterDotNet.MonoGame;
-using SpriterDotNet.Providers;
+using XmasHell.Physics;
 using XmasHell.Physics.Collision;
-using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasBall
 {
@@ -23,7 +16,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
             BulletPatternFiles.Add("XmasBall/pattern4");
 
             // Physics
-            Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 86f);
+            Game.GameManager.CollisionWorld.BossHitbox = new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f);
 
             // Behaviours
             Behaviours.Add(new XmasBallBehaviour1(this));
@@ -64,7 +57,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            //CurrentBehaviourIndex = 2;
+            //CurrentBehaviourIndex = 1;
         }
     }
 }

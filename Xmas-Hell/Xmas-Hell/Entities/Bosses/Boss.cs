@@ -9,7 +9,6 @@ using MonoGame.Extended.TextureAtlases;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
-using XmasHell.BulletML;
 using XmasHell.Geometry;
 using XmasHell.Physics;
 using XmasHell.Spriter;
@@ -31,7 +30,7 @@ namespace XmasHell.Entities.Bosses
         XmasSanta
     }
 
-    public abstract class Boss : IPhysicsEntity
+    public abstract class Boss : ISpriterPhysicsEntity
     {
         public XmasHell Game;
         protected Vector2 InitialPosition;
@@ -94,49 +93,22 @@ namespace XmasHell.Entities.Bosses
 
         public virtual Vector2 Position()
         {
-            var currentPosition = CurrentAnimator.Position;
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return currentPosition + new Vector2(spriteData.X, -spriteData.Y);
-            }
-
-            return currentPosition;
+            return CurrentAnimator.Position;
         }
 
         public virtual float Rotation()
         {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return MathHelper.ToRadians(-spriteData.Angle);
-            }
-
             return CurrentAnimator.Rotation;
-        }
-
-        public virtual Vector2 Pivot()
-        {
-            var currentPosition = CurrentAnimator.Position;
-
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return new Vector2(spriteData.PivotX, spriteData.PivotY);
-            }
-
-            return currentPosition;
         }
 
         public virtual Vector2 Scale()
         {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.SpriteData.Count > 0)
-            {
-                var spriteData = CurrentAnimator.FrameData.SpriteData[0];
-                return new Vector2(spriteData.ScaleX, spriteData.ScaleY);
-            }
-
             return CurrentAnimator.Scale;
+        }
+
+        public MonoGameAnimator GetCurrentAnimator()
+        {
+            return CurrentAnimator;
         }
 
         public Vector2 ActionPointPosition()
