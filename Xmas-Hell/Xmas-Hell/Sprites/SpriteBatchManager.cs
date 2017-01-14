@@ -53,22 +53,26 @@ namespace XmasHell.Sprites
 
         public void Initialize()
         {
-            Bloom = new Bloom(_game.GraphicsDevice, _game.SpriteBatch);
+            if (!GameConfig.DisableBloom)
+            {
+                Bloom = new Bloom(_game.GraphicsDevice, _game.SpriteBatch);
 
-            var pp = _game.GraphicsDevice.PresentationParameters;
+                var pp = _game.GraphicsDevice.PresentationParameters;
 
-            _renderTarget1 = new RenderTarget2D(
-                _game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
-                pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
-            );
-            _renderTarget2 = new RenderTarget2D(_game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
-                pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
-            );
+                _renderTarget1 = new RenderTarget2D(
+                    _game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
+                    pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
+                );
+                _renderTarget2 = new RenderTarget2D(_game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
+                    pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
+                );
+            }
         }
 
         public void LoadContent()
         {
-            Bloom.LoadContent(_game.Content, _game.GraphicsDevice.PresentationParameters);
+            if (!GameConfig.DisableBloom)
+                Bloom.LoadContent(_game.Content, _game.GraphicsDevice.PresentationParameters);
         }
 
         public void UnloadContent()
@@ -80,12 +84,14 @@ namespace XmasHell.Sprites
 
         public void Update()
         {
-            _bloomSaturationPulse += _bloomSaturationDirection;
-            if (_bloomSaturationPulse > 2.5f) _bloomSaturationDirection = -0.09f;
-            if (_bloomSaturationPulse < 0.1f) _bloomSaturationDirection = 0.09f;
+            if (!GameConfig.DisableBloom)
+            {
+                _bloomSaturationPulse += _bloomSaturationDirection;
+                if (_bloomSaturationPulse > 2.5f) _bloomSaturationDirection = -0.09f;
+                if (_bloomSaturationPulse < 0.1f) _bloomSaturationDirection = 0.09f;
 
-            Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
-
+                Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
+            }
         }
 
         private void BeginDrawViewportSpace()
@@ -147,8 +153,6 @@ namespace XmasHell.Sprites
 
         public void Draw()
         {
-            _game.GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // Start by render the bloomed elements into a render target
             if (!GameConfig.DisableBloom)
             {

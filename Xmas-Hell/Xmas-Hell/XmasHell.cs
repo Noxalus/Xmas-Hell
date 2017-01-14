@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -37,6 +39,11 @@ namespace XmasHell
 
         private FramesPerSecondCounterComponent _fpsCounter;
 
+        // Performance
+        private Stopwatch _stopWatch;
+        private TimeSpan _updateTime;
+        private TimeSpan _drawTime;
+
         public XmasHell(XmasHellActivity activity)
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -59,6 +66,8 @@ namespace XmasHell
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
             Camera = new Camera(this, ViewportAdapter);
+
+            _stopWatch = new Stopwatch();
 
             SpriteBatchManager.Initialize();
 
@@ -115,6 +124,9 @@ namespace XmasHell
 
         protected override void Update(GameTime gameTime)
         {
+            _stopWatch.Reset();
+            _stopWatch.Start();
+
             if (IsPressed(Keys.P))
                 _pause = !_pause;
 
@@ -143,18 +155,30 @@ namespace XmasHell
             Camera.Update(gameTime);
 
             base.Update(gameTime);
+
+            _updateTime = _stopWatch.Elapsed;
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            _stopWatch.Reset();
+            _stopWatch.Start();
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _drawTime = _stopWatch.Elapsed;
+
             SpriteBatchManager.Draw();
 
             base.Draw(gameTime);
 
             if (GameConfig.ShowDebugInfo)
             {
-                SpriteBatch.Begin(samplerState: SamplerState.PointClamp, blendState: BlendState.AlphaBlend,
-                    transformMatrix: ViewportAdapter.GetScaleMatrix());
+                SpriteBatch.Begin(
+                    samplerState: SamplerState.PointClamp,
+                    blendState: BlendState.AlphaBlend,
+                    transformMatrix: ViewportAdapter.GetScaleMatrix()
+                );
 
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.FramesPerSecond:0}",
                     Vector2.Zero, Color.White);
@@ -163,14 +187,21 @@ namespace XmasHell
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                     $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
+                //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                //    "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
+                //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                //    "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
 
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                     "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 100),
                     Color.White);
+
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    $"Update time: {_updateTime.TotalMilliseconds} ms", new Vector2(0, 120f), Color.White
+                );
+                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                    $"Draw time: { _drawTime.TotalMilliseconds } ms", new Vector2(0, 140f), Color.White
+                );
 
                 SpriteBatch.End();
             }
