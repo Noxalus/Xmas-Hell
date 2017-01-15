@@ -80,10 +80,16 @@ namespace XmasHell.Screens
                 var position = _game.ViewportAdapter.PointToScreen(InputManager.ClickPosition());
 #endif
 
-                if (position.X < GameConfig.VirtualResolution.X / 2f)
+                if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasBall);
-                else
+                else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasBell);
+                else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
+                    _game.GameScreen.LoadBoss(BossType.XmasGift);
+                else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
+                {
+
+                }
 
                 Show<GameScreen>();
             }

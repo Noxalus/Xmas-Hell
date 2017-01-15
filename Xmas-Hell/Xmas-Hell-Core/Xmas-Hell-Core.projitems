@@ -29,6 +29,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour4.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour5.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />

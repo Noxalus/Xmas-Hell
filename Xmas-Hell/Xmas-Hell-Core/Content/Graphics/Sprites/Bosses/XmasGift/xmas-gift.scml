@@ -50,5 +50,47 @@
                 </key>
             </timeline>
         </animation>
+        <animation id="1" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ribbon2">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" y="1"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="left_eye">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-70" y="-5"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="right_eye">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="70" y="-5"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="mouth">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" y="-45"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="ribbon">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="3" y="136"/>
+                </key>
+            </timeline>
+        </animation>
     </entity>
 </spriter_data>

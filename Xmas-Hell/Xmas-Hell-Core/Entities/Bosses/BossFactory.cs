@@ -22,6 +22,7 @@ namespace XmasHell.Entities.Bosses
                 case BossType.XmasTree:
                     break;
                 case BossType.XmasGift:
+                    return new XmasGift.XmasGift(game, playerPositionDelegate);
                     break;
                 case BossType.XmasReinder:
                     break;
