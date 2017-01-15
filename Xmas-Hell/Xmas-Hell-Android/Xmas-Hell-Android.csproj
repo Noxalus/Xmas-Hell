@@ -46,7 +46,8 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BulletML">
+    <Reference Include="BulletML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\BulletML.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />

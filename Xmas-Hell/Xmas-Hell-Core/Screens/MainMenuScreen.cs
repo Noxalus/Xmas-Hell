@@ -66,6 +66,9 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             //Console.WriteLine("Position: " + _introSong.Position + " | Duration: " + _introSong.Duration);
+            _game.GameScreen.LoadBoss(BossType.XmasBall);
+            Show<GameScreen>();
+            return;
 
             var currentTouchState = TouchPanel.GetState();
 

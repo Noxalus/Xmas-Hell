@@ -60,14 +60,20 @@ namespace XmasHell
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            Graphics.IsFullScreen = true;
+#if ANDROID
             Graphics.SupportedOrientations = DisplayOrientation.Portrait;
+            _activity = activity;
 
             // Used for bloom effect
             Graphics.PreferredDepthStencilFormat = DepthFormat.Depth16;
+#else
+            Graphics.IsFullScreen = false;
+            Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.X;
+            Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.Y;
 
-#if ANDROID
-            _activity = activity;
+            // Unlock FPS
+            //IsFixedTimeStep = false;
+            //Graphics.SynchronizeWithVerticalRetrace = false;
 #endif
 
             GameManager = new GameManager(this);

@@ -82,17 +82,17 @@ namespace XmasHell
             _patternSteams = new Dictionary<string, Stream>
             {
                 // General
-                { "sample", File.Open("Patterns/sample.xml", FileMode.Open) },
-                { "MainMenu/snowflake", File.Open("Patterns/MainMenu/snowflake.xml", FileMode.Open) },
+                { "sample", File.Open("Assets/Patterns/sample.xml", FileMode.Open) },
+                { "MainMenu/snowflake", File.Open("Assets/Patterns/MainMenu/snowflake.xml", FileMode.Open) },
 
                 // Xmas Ball
-                { "XmasBall/pattern1", File.Open("Patterns/XmasBall/pattern1.xml", FileMode.Open) },
-                { "XmasBall/pattern3", File.Open("Patterns/XmasBall/pattern3.xml", FileMode.Open) },
-                { "XmasBall/pattern4", File.Open("Patterns/XmasBall/pattern4.xml", FileMode.Open) },
+                { "XmasBall/pattern1", File.Open("Assets/Patterns/XmasBall/pattern1.xml", FileMode.Open) },
+                { "XmasBall/pattern3", File.Open("Assets/Patterns/XmasBall/pattern3.xml", FileMode.Open) },
+                { "XmasBall/pattern4", File.Open("Assets/Patterns/XmasBall/pattern4.xml", FileMode.Open) },
 
                 // Xmas Bell
-                { "XmasBell/pattern1", File.Open("Patterns/XmasBell/pattern1.xml", FileMode.Open) },
-                { "XmasBell/pattern2", File.Open("Patterns/XmasBell/pattern2.xml", FileMode.Open) },
+                { "XmasBell/pattern1", File.Open("Assets/Patterns/XmasBell/pattern1.xml", FileMode.Open) },
+                { "XmasBell/pattern2", File.Open("Assets/Patterns/XmasBell/pattern2.xml", FileMode.Open) },
             };
 #endif
 
