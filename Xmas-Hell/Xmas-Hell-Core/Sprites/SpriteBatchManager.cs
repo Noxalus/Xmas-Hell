@@ -77,9 +77,12 @@ namespace XmasHell.Sprites
 
         public void UnloadContent()
         {
-            Bloom.UnloadContent();
-            _renderTarget1.Dispose();
-            _renderTarget2.Dispose();
+            if (!GameConfig.DisableBloom)
+            {
+                Bloom.UnloadContent();
+                _renderTarget1.Dispose();
+                _renderTarget2.Dispose();
+            }
         }
 
         public void Update()
