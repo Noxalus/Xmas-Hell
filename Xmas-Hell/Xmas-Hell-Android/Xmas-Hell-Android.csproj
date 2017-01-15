@@ -97,7 +97,7 @@
   <ItemGroup>
 	<AndroidAsset Include="..\Xmas-Hell-Core\Assets\**\*.*">
 	  <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</AndroidAsset>
   </ItemGroup>
   <ItemGroup>

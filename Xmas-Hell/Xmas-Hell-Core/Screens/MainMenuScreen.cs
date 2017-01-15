@@ -44,7 +44,7 @@ namespace XmasHell.Screens
 
             //MediaPlayer.Stop();
 
-            MediaPlayer.Play(_introSong);
+            //MediaPlayer.Play(_introSong);
             //MediaPlayer.Play(_mainSong);
         }
 
@@ -65,11 +65,6 @@ namespace XmasHell.Screens
 
         public override void Update(GameTime gameTime)
         {
-            //Console.WriteLine("Position: " + _introSong.Position + " | Duration: " + _introSong.Duration);
-            //_game.GameScreen.LoadBoss(BossType.XmasBall);
-            //Show<GameScreen>();
-            //return;
-
             var currentTouchState = TouchPanel.GetState();
 
             if (currentTouchState.Count == 0 && _previousTouchState.Count == 1)

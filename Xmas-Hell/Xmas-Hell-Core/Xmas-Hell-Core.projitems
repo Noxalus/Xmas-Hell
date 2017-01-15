@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\Mover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\MoverManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\InputManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\AbstractBossBehaviour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Boss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossFactory.cs" />
