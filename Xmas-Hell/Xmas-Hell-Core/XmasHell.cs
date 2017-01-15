@@ -151,18 +151,23 @@ namespace XmasHell
             if (InputManager.KeyPressed(Keys.P))
                 _pause = !_pause;
 
-            // Switch to the next bloom settings preset?
-            if (InputManager.KeyPressed(Keys.A))
+            if (!GameConfig.DisableBloom)
             {
-                SpriteBatchManager.BloomSettingsIndex = (SpriteBatchManager.BloomSettingsIndex + 1) % BloomSettings.PresetSettings.Length;
-                SpriteBatchManager.Bloom.Settings = BloomSettings.PresetSettings[SpriteBatchManager.BloomSettingsIndex];
-            }
-            // Cycle through the intermediate buffer debug display modes?
-            if (InputManager.KeyPressed(Keys.X))
-            {
-                SpriteBatchManager.Bloom.ShowBuffer++;
-                if (SpriteBatchManager.Bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
-                    SpriteBatchManager.Bloom.ShowBuffer = 0;
+                // Switch to the next bloom settings preset?
+                if (InputManager.KeyPressed(Keys.A))
+                {
+                    SpriteBatchManager.BloomSettingsIndex = (SpriteBatchManager.BloomSettingsIndex + 1) %
+                                                            BloomSettings.PresetSettings.Length;
+                    SpriteBatchManager.Bloom.Settings =
+                        BloomSettings.PresetSettings[SpriteBatchManager.BloomSettingsIndex];
+                }
+                // Cycle through the intermediate buffer debug display modes?
+                if (InputManager.KeyPressed(Keys.X))
+                {
+                    SpriteBatchManager.Bloom.ShowBuffer++;
+                    if (SpriteBatchManager.Bloom.ShowBuffer > Bloom.IntermediateBuffer.FinalResult)
+                        SpriteBatchManager.Bloom.ShowBuffer = 0;
+                }
             }
 
             base.Update(gameTime);
@@ -205,11 +210,6 @@ namespace XmasHell
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                     $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
 
-                //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                //    "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 60), Color.White);
-                //SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                //    "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 80), Color.White);
-
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                     "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 60),
                     Color.White);
@@ -220,6 +220,16 @@ namespace XmasHell
                 SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                     $"Draw time: { _drawTime.TotalMilliseconds } ms", new Vector2(0, 100), Color.White
                 );
+
+                if (!GameConfig.DisableBloom)
+                {
+                    SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                        "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 120),
+                        Color.White);
+                    SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
+                        "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 140),
+                        Color.White);
+                }
 
                 SpriteBatch.End();
             }

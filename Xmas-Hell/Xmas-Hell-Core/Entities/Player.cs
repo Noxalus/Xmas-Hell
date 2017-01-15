@@ -34,6 +34,8 @@ namespace XmasHell.Entities
         private Point _currentTouchPosition;
         private Point _previousTouchPosition;
 
+        private Vector2 _previousPosition;
+
         private TimeSpan _bulletFrequence;
 
         public Vector2 Position()
@@ -157,14 +159,21 @@ namespace XmasHell.Entities
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
-            UpdatePosition(gameTime);
+#if ANDROID
+            UpdatePositionFromTouch(gameTime);
+#else
+            UpdatePositionFromKeyboard(gameTime);
+#endif
+
+            UpdateAnimation();
+
             _hitboxSprite.Position = _hitbox.GetCenter();
 
             CheckOutOfBounds();
             UpdateShoot(gameTime);
         }
 
-        private void UpdatePosition(GameTime gameTime)
+        private void UpdatePositionFromTouch(GameTime gameTime)
         {
             if (InputManager.TouchCount() > 0)
             {
@@ -176,39 +185,9 @@ namespace XmasHell.Entities
 
                 _previousTouchPosition = _currentTouchPosition;
                 _currentTouchPosition = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
-                var touchDelta = _currentTouchPosition - _previousTouchPosition;
                 var globalTouchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                Console.WriteLine("Touch delta: " + touchDelta);
-
-                if (touchDelta.Y > 50)
-                {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Down" &&
-                        CurrentAnimator.CurrentAnimation.Name != "DownIdle")
-                        CurrentAnimator.Play("Down");
-                }
-                else if (touchDelta.Y < -50)
-                {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Up" &&
-                        CurrentAnimator.CurrentAnimation.Name != "UpIdle")
-                        CurrentAnimator.Play("Up");
-                }
-                else
-                {
-                    if (touchDelta.X < -10)
-                    {
-                        if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
-                            CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
-                            CurrentAnimator.Play("Left");
-                    }
-                    else if (touchDelta.X > 10)
-                    {
-                        if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
-                            CurrentAnimator.CurrentAnimation.Name != "RightIdle")
-                            CurrentAnimator.Play("Right");
-                    }
-                }
-
+                _previousPosition = CurrentAnimator.Position;
                 CurrentAnimator.Position = _initialSpritePosition + (globalTouchDelta * GameConfig.PlayerMoveSensitivity);
             }
             else
@@ -216,6 +195,62 @@ namespace XmasHell.Entities
                 _initialSpritePosition = Vector2.Zero;
                 _initialTouchPosition = Point.Zero;
                 CurrentAnimator.Play("Idle");
+            }
+        }
+
+        private void UpdatePositionFromKeyboard(GameTime gameTime)
+        {
+            var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            var direction = Vector2.Zero;
+
+            if (InputManager.KeyDown(Keys.Up))
+                direction.Y -= 1;
+            if (InputManager.KeyDown(Keys.Down))
+                direction.Y += 1;
+            if (InputManager.KeyDown(Keys.Left))
+                direction.X -= 1;
+            if (InputManager.KeyDown(Keys.Right))
+                direction.X += 1;
+
+            if (direction.X != 0 && direction.Y != 0)
+                direction /= 1.5f;
+
+            var speed = 500;
+            CurrentAnimator.Position += direction * speed * dt;
+        }
+
+        private void UpdateAnimation()
+        {
+            var deltaPosition = CurrentAnimator.Position - _previousPosition;
+
+            Console.WriteLine("Delta position: " + deltaPosition);
+
+            if (deltaPosition.Y > 50)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Down" &&
+                    CurrentAnimator.CurrentAnimation.Name != "DownIdle")
+                    CurrentAnimator.Play("Down");
+            }
+            else if (deltaPosition.Y < -50)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Up" &&
+                    CurrentAnimator.CurrentAnimation.Name != "UpIdle")
+                    CurrentAnimator.Play("Up");
+            }
+            else
+            {
+                if (deltaPosition.X < -10)
+                {
+                    if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
+                        CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
+                        CurrentAnimator.Play("Left");
+                }
+                else if (deltaPosition.X > 10)
+                {
+                    if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
+                        CurrentAnimator.CurrentAnimation.Name != "RightIdle")
+                        CurrentAnimator.Play("Right");
+                }
             }
         }
 
