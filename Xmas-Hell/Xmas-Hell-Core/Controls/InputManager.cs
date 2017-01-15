@@ -120,9 +120,31 @@ namespace Xmas_Hell_Core.Controls
             return KeyPressed(Keys.Escape);
         }
 
-#endregion
+        #endregion
 
-#region Mouse Region
+        #region Mouse Region
+
+        public static bool LeftClickReleased()
+        {
+            return _lastMouseState.LeftButton == ButtonState.Pressed &&
+                   _mouseState.LeftButton == ButtonState.Released;
+        }
+
+        public static bool Clicked()
+        {
+            return _mouseState.LeftButton == ButtonState.Pressed &&
+                   _lastMouseState.LeftButton == ButtonState.Released;
+        }
+
+        public static bool LeftClickDown()
+        {
+            return _mouseState.LeftButton == ButtonState.Pressed;
+        }
+
+        public static Point ClickPosition()
+        {
+            return new Point(_mouseState.X, _mouseState.Y);
+        }
 
         public static bool Scroll()
         {
@@ -170,25 +192,30 @@ namespace Xmas_Hell_Core.Controls
             return _keyboardState.GetPressedKeys();
         }
 
-#endregion
+        #endregion
 
-#region Touch Region
+        #region Touch Region
+
+        public static int TouchCount()
+        {
+            return _touchState.Count;
+        }
 
         public static bool TouchUp()
         {
-            return _lastTouchState.Count > 0 && _touchState.Count == 0;
+            return _lastTouchState.Count > 0 && _touchState.Count == 0 && _lastTouchState[0].State == TouchLocationState.Released;
         }
 
         public static bool TouchDown()
         {
-            return _touchState.Count > 0 && _lastTouchState.Count == 0;
+            return _touchState.Count > 0 && _lastTouchState.Count == 0 && _touchState[0].State == TouchLocationState.Pressed;
         }
 
-        public static Vector2 GetTouchPosition()
+        public static Point TouchPosition()
         {
-            return _lastTouchState[0].Position;
+            return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : _lastTouchState[0].Position.ToPoint();
         }
 
-#endregion
+        #endregion
     }
 }

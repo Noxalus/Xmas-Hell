@@ -1,18 +1,17 @@
 using System;
 using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using XmasHell.BulletML;
 using XmasHell.Entities.Bosses;
+using Xmas_Hell_Core.Controls;
 
 namespace XmasHell.Screens
 {
     public class MainMenuScreen : Screen
     {
         private XmasHell _game;
-        private TouchCollection _previousTouchState;
         private string _patternFile = "MainMenu/snowflake";
         private TimeSpan _shootFrequency;
         private Song _introSong;
@@ -55,6 +54,9 @@ namespace XmasHell.Screens
 
         private void MediaPlayerOnMediaStateChanged(object sender, EventArgs eventArgs)
         {
+            if (MediaPlayer.Queue.ActiveSong == null)
+                return;
+
             if (MediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
                 MediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
             {
@@ -65,21 +67,21 @@ namespace XmasHell.Screens
 
         public override void Update(GameTime gameTime)
         {
-            var currentTouchState = TouchPanel.GetState();
-
-            if (currentTouchState.Count == 0 && _previousTouchState.Count == 1)
+            if (InputManager.TouchUp() || InputManager.Clicked())
             {
-                var touchPosition = _game.ViewportAdapter.PointToScreen(_previousTouchState[0].Position.ToPoint());
+#if ANDROID
+                var position = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
+#else
+                var position = _game.ViewportAdapter.PointToScreen(InputManager.ClickPosition());
+#endif
 
-                if (touchPosition.X < GameConfig.VirtualResolution.X / 2f)
+                if (position.X < GameConfig.VirtualResolution.X / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasBall);
                 else
                     _game.GameScreen.LoadBoss(BossType.XmasBell);
 
                 Show<GameScreen>();
             }
-
-            _previousTouchState = currentTouchState;
 
             if (_shootFrequency.TotalMilliseconds < 0)
             {

@@ -13,6 +13,7 @@ using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
+using Xmas_Hell_Core.Controls;
 
 namespace XmasHell.Entities
 {
@@ -165,18 +166,16 @@ namespace XmasHell.Entities
 
         private void UpdatePosition(GameTime gameTime)
         {
-            var currentTouchState = TouchPanel.GetState();
-
-            if (currentTouchState.Count > 0)
+            if (InputManager.TouchCount() > 0)
             {
-                if (currentTouchState[0].State == TouchLocationState.Pressed)
+                if (InputManager.TouchDown())
                 {
                     _initialSpritePosition = Position();
-                    _initialTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
+                    _initialTouchPosition = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
                 }
 
                 _previousTouchPosition = _currentTouchPosition;
-                _currentTouchPosition = _game.ViewportAdapter.PointToScreen(currentTouchState[0].Position.ToPoint());
+                _currentTouchPosition = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
                 var touchDelta = _currentTouchPosition - _previousTouchPosition;
                 var globalTouchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
