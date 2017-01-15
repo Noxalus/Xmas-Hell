@@ -43,5 +43,16 @@ namespace XmasHell.Geometry
             }
             return false;
         }
+
+        public static Vector2 RotatePoint(Vector2 point, float angle, Vector2? origin)
+        {
+            if (!origin.HasValue)
+                origin = Vector2.Zero;
+
+            return new Vector2(
+                origin.Value.X + (float)((point.X - origin.Value.X) * Math.Cos(angle) - (point.Y - origin.Value.Y) * Math.Sin(angle)),
+                origin.Value.Y + (float)((point.X - origin.Value.X) * Math.Sin(angle) + (point.Y - origin.Value.Y) * Math.Cos(angle))
+            );
+        }
     }
 }

@@ -45,10 +45,10 @@ namespace XmasHell.Screens
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             _player.Update(gameTime);
             _boss.Update(gameTime);
-
-            base.Update(gameTime);
         }
     }
 }

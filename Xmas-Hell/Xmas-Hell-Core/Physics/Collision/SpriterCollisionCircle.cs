@@ -1,9 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Shapes;
 using SpriterDotNet;
-using SpriterDotNet.MonoGame;
+using XmasHell.Geometry;
 
 namespace XmasHell.Physics.Collision
 {
@@ -81,11 +79,17 @@ namespace XmasHell.Physics.Collision
                 var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
                 var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
 
-                return
+                var centerPosition =
                     currentAnimator.Position +
                     new Vector2(pivotX, pivotY) -
                     new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f) +
                     _relativePosition;
+
+                centerPosition = MathHelperExtension.RotatePoint(
+                    centerPosition, currentAnimator.Rotation, currentAnimator.Position
+                );
+
+                return centerPosition;
             }
 
             return currentAnimator.Position;
