@@ -1,4 +1,5 @@
 using System;
+using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 using XmasHell.BulletML;
 
@@ -8,9 +9,12 @@ namespace XmasHell.Entities.Bosses.XmasGift
     {
         private TimeSpan _newPositionTime;
         private TimeSpan _bulletFrequence;
+        private World _world;
 
-        public XmasGiftBehaviour1(Boss boss) : base(boss)
+
+        public XmasGiftBehaviour1(Boss boss, World world) : base(boss)
         {
+            _world = world;
         }
 
         public override void Start()
@@ -33,30 +37,30 @@ namespace XmasHell.Entities.Bosses.XmasGift
         {
             base.Update(gameTime);
 
-            if (_newPositionTime.TotalMilliseconds > 0)
-            {
-                if (!Boss.TargetingPosition)
-                    _newPositionTime -= gameTime.ElapsedGameTime;
-            }
-            else
-            {
-                _newPositionTime = TimeSpan.FromSeconds(0);
+            //if (_newPositionTime.TotalMilliseconds > 0)
+            //{
+            //    if (!Boss.TargetingPosition)
+            //        _newPositionTime -= gameTime.ElapsedGameTime;
+            //}
+            //else
+            //{
+            //    _newPositionTime = TimeSpan.FromSeconds(0);
 
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
-                );
+            //    var newPosition = new Vector2(
+            //        Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
+            //        Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
+            //    );
 
-                Boss.MoveTo(newPosition, 1.5f);
-            }
+            //    Boss.MoveTo(newPosition, 1.5f);
+            //}
 
-            if (_bulletFrequence.TotalMilliseconds > 0)
-                _bulletFrequence -= gameTime.ElapsedGameTime;
-            else
-            {
-                _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                Boss.Game.GameManager.MoverManager.TriggerPattern("sample", BulletType.Type2, false, Boss.Position());
-            }
+            //if (_bulletFrequence.TotalMilliseconds > 0)
+            //    _bulletFrequence -= gameTime.ElapsedGameTime;
+            //else
+            //{
+            //    _bulletFrequence = TimeSpan.FromSeconds(0.5f);
+            //    Boss.Game.GameManager.MoverManager.TriggerPattern("sample", BulletType.Type2, false, Boss.Position());
+            //}
         }
     }
 }

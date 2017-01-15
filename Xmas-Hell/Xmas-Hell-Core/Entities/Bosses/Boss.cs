@@ -209,7 +209,7 @@ namespace XmasHell.Entities.Bosses
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
             LoadBulletPatterns();
             LoadSpriterSprite();
@@ -496,6 +496,11 @@ namespace XmasHell.Entities.Bosses
                 return;
 
             CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * Behaviours.Count) % Behaviours.Count;
+        }
+
+        public virtual void Draw()
+        {
+            CurrentAnimator.Draw(Game.SpriteBatch);
         }
     }
 }

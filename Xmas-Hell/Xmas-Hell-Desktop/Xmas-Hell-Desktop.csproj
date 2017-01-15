@@ -45,6 +45,9 @@
     <Reference Include="BulletML">
       <HintPath>..\Libraries\BulletML.dll</HintPath>
     </Reference>
+    <Reference Include="FarseerPhysics.Portable">
+      <HintPath>..\Libraries\FarseerPhysics.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Extended">
       <HintPath>..\Libraries\MonoGame.Extended.dll</HintPath>
     </Reference>

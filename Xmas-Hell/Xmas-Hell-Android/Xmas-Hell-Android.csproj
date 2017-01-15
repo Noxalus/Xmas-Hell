@@ -50,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\BulletML.dll</HintPath>
     </Reference>
+    <Reference Include="FarseerPhysics.Portable">
+      <HintPath>..\Libraries\FarseerPhysics.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="MonoGame.Extended">
       <HintPath>..\Libraries\MonoGame.Extended.dll</HintPath>
@@ -83,6 +86,7 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\" />
     <Folder Include="Resources\Layout\" />
   </ItemGroup>
   <ItemGroup>

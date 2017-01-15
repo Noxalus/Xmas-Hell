@@ -148,7 +148,7 @@ namespace XmasHell.Sprites
                     BeginDrawCameraSpace();
                 }
 
-                Boss.CurrentAnimator.Draw(_game.SpriteBatch);
+                Boss.Draw();
 
                 _game.SpriteBatch.End();
             }
