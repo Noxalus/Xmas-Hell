@@ -10,6 +10,7 @@ namespace XmasHell.Physics.Collision
         private ISpriterPhysicsEntity _spriterPhysicsEntity;
         private String _spritePartName;
         private SpriterFile _spriterPartFile;
+        private int _spriterFileId;
         private Vector2 _relativePosition;
         private float _scale;
 
@@ -29,12 +30,12 @@ namespace XmasHell.Physics.Collision
             if (currentAnimator == null)
                 return null;
 
-            var foundIndex = Array.FindIndex(currentAnimator.Entity.Spriter.Folders[0].Files, (file) => file.Name == fileName);
+            _spriterFileId = Array.FindIndex(currentAnimator.Entity.Spriter.Folders[0].Files, (file) => file.Name == fileName);
 
-            if (foundIndex == -1)
+            if (_spriterFileId == -1)
                 return null;
 
-            return currentAnimator.Entity.Spriter.Folders[0].Files[foundIndex];
+            return currentAnimator.Entity.Spriter.Folders[0].Files[_spriterFileId];
         }
 
         public override float GetRadius()
@@ -51,7 +52,7 @@ namespace XmasHell.Physics.Collision
 
             if (currentAnimator.FrameData != null)
             {
-                var spriteData = currentAnimator.FrameData.SpriteData[0];
+                var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
                 var widthRadius = _spriterPartFile.Width * spriteData.ScaleX;
                 var heightRadius = _spriterPartFile.Height * spriteData.ScaleY;
 
@@ -75,7 +76,7 @@ namespace XmasHell.Physics.Collision
 
             if (currentAnimator.FrameData != null)
             {
-                var spriteData = currentAnimator.FrameData.SpriteData[0];
+                var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
                 var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
                 var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
 
