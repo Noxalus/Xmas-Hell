@@ -5,7 +5,15 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmas-Hell", "Xmas-Hell\Xmas-Hell.csproj", "{44BB054B-9BC0-4A57-A9B2-1452BFB27E4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xmas-Hell-Android", "Xmas-Hell-Android\Xmas-Hell-Android.csproj", "{FCA4CED1-62B1-4658-9214-3F3FB71E1579}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xmas-Hell-Core", "Xmas-Hell-Core\Xmas-Hell-Core.shproj", "{9C2E5315-1DDD-45E0-8601-196B4559004D}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Xmas-Hell-Core\Xmas-Hell-Core.projitems*{9c2e5315-1ddd-45e0-8601-196b4559004d}*SharedItemsImports = 13
+		Xmas-Hell-Core\Xmas-Hell-Core.projitems*{fca4ced1-62b1-4658-9214-3f3fb71e1579}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -17,6 +25,12 @@ Global
 		{44BB054B-9BC0-4A57-A9B2-1452BFB27E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44BB054B-9BC0-4A57-A9B2-1452BFB27E4C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44BB054B-9BC0-4A57-A9B2-1452BFB27E4C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA4CED1-62B1-4658-9214-3F3FB71E1579}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

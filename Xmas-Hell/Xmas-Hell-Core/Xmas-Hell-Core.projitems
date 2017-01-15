@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>9c2e5315-1ddd-45e0-8601-196b4559004d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Xmas_Hell_Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Assets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BulletML\BulletType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BulletML\Mover.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BulletML\MoverManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\AbstractBossBehaviour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Boss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour5.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geometry\MathHelperExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\ParticleManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionWorld.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionCircle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionConvexPolygon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\SpriterCollisionCircle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\IPhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RandomExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\MainMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shaders\IBloomService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Spriter\MonoGameDebugAnimator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XmasHell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutAssets.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\MainMenu\snowflake.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\sample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern4.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBell\pattern1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBell\pattern2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
