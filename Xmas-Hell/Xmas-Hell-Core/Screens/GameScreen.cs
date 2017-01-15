@@ -47,6 +47,9 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
+            if (_game.Pause)
+                return;
+
             _player.Update(gameTime);
             _boss.Update(gameTime);
         }

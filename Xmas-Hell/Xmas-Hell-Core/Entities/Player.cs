@@ -97,8 +97,8 @@ namespace XmasHell.Entities
             _hitboxSprite = new Sprite(playerHitboxTexture)
             {
                 Scale = new Vector2(
-                    GameConfig.PlayerHitboxRadius / playerHitboxTexture.Width,
-                    GameConfig.PlayerHitboxRadius / playerHitboxTexture.Height
+                    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Width,
+                    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Height
                 )
             };
             _hitbox = new CollisionCircle(this, new Vector2(0f, 0f), GameConfig.PlayerHitboxRadius);

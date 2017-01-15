@@ -70,7 +70,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="..\Xmas-Hell-Android\Content\Content.mgcb">
+    <MonoGameContentReference Include="..\Xmas-Hell-Core\Content\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
     </MonoGameContentReference>
   </ItemGroup>

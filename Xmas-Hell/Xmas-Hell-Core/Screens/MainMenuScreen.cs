@@ -67,6 +67,11 @@ namespace XmasHell.Screens
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
+            if (_game.Pause)
+                return;
+
             if (InputManager.TouchUp() || InputManager.Clicked())
             {
 #if ANDROID
@@ -92,8 +97,6 @@ namespace XmasHell.Screens
             {
                 _shootFrequency -= gameTime.ElapsedGameTime;
             }
-
-            base.Update(gameTime);
         }
     }
 }

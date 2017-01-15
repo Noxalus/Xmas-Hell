@@ -32,6 +32,8 @@ namespace XmasHell
         public Camera Camera;
         public GameManager GameManager;
 
+        public bool Pause;
+
         // Screens
         public MainMenuScreen MainMenuScreen;
         public GameScreen GameScreen;
@@ -41,7 +43,6 @@ namespace XmasHell
 #endif
 
         private Sprite _backgroundSprite;
-        private bool _pause;
 
         // Performance
         private FramesPerSecondCounterComponent _fpsCounter;
@@ -92,7 +93,7 @@ namespace XmasHell
 
             base.Initialize();
 
-            _pause = false;
+            Pause = false;
 
             GameManager.Initialize();
 
@@ -149,7 +150,7 @@ namespace XmasHell
             _stopWatch.Start();
 
             if (InputManager.KeyPressed(Keys.P))
-                _pause = !_pause;
+                Pause = !Pause;
 
             if (!GameConfig.DisableBloom)
             {
@@ -172,7 +173,7 @@ namespace XmasHell
 
             base.Update(gameTime);
 
-            if (_pause)
+            if (Pause)
                 return;
 
             SpriteBatchManager.Update();

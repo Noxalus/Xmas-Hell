@@ -92,13 +92,15 @@
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="..\Xmas-Hell-Core\Content\Content.mgcb">
+      <Link>Content\Content.mgcb</Link>
+    </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
-	<AndroidAsset Include="..\Xmas-Hell-Core\Assets\**\*.*">
-	  <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</AndroidAsset>
+    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\**\*.*">
+      <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
