@@ -1,11 +1,15 @@
 using System.Collections.Generic;
-using Android.App;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.BitmapFonts;
 using Stream = System.IO.Stream;
+
+#if ANDROID
+using Android.App;
+#endif
 
 namespace XmasHell
 {
@@ -51,6 +55,7 @@ namespace XmasHell
 #if ANDROID
             _patternSteams = new Dictionary<string, Stream>
             {
+                // General
                 { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") },
                 { "MainMenu/snowflake", activity.ApplicationContext.Assets.Open("Patterns/MainMenu/snowflake.xml") },
 
@@ -74,7 +79,21 @@ namespace XmasHell
                 // Xmas Tree
             };
 #else
+            _patternSteams = new Dictionary<string, Stream>
+            {
+                // General
+                { "sample", File.Open("Patterns/sample.xml", FileMode.Open) },
+                { "MainMenu/snowflake", File.Open("Patterns/MainMenu/snowflake.xml", FileMode.Open) },
 
+                // Xmas Ball
+                { "XmasBall/pattern1", File.Open("Patterns/XmasBall/pattern1.xml", FileMode.Open) },
+                { "XmasBall/pattern3", File.Open("Patterns/XmasBall/pattern3.xml", FileMode.Open) },
+                { "XmasBall/pattern4", File.Open("Patterns/XmasBall/pattern4.xml", FileMode.Open) },
+
+                // Xmas Bell
+                { "XmasBell/pattern1", File.Open("Patterns/XmasBell/pattern1.xml", FileMode.Open) },
+                { "XmasBell/pattern2", File.Open("Patterns/XmasBell/pattern2.xml", FileMode.Open) },
+            };
 #endif
 
             // Load musics

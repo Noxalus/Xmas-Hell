@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using Java.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;

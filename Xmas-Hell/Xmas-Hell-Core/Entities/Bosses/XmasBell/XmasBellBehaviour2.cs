@@ -1,5 +1,4 @@
 using System;
-using Android.Graphics;
 using Microsoft.Xna.Framework;
 using RandomExtension;
 using XmasHell.BulletML;

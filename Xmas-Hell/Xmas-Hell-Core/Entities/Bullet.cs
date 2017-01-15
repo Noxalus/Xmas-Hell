@@ -1,5 +1,4 @@
 using System;
-using Android.Provider;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Sprites;
 using XmasHell.BulletML;
