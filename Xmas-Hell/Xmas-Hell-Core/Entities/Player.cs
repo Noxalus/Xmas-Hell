@@ -215,7 +215,11 @@ namespace XmasHell.Entities
             if (direction.X != 0 && direction.Y != 0)
                 direction /= 1.5f;
 
-            var speed = 500;
+            var speed = 750;
+
+            if (InputManager.KeyDown(Keys.LeftShift))
+                speed = 250;
+
             CurrentAnimator.Position += direction * speed * dt;
         }
 
