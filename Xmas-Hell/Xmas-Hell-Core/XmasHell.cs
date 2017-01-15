@@ -31,6 +31,10 @@ namespace XmasHell
         public Camera Camera;
         public GameManager GameManager;
 
+        private BoxingViewportAdapter _boxingViewportAdapter;
+        private DefaultViewportAdapter _defaultViewportAdapter;
+        private ScalingViewportAdapter _scalingViewportAdapter;
+
 #if ANDROID
         private XmasHellActivity _activity;
 #endif
@@ -67,9 +71,13 @@ namespace XmasHell
             // Used for bloom effect
             Graphics.PreferredDepthStencilFormat = DepthFormat.Depth16;
 #else
-            Graphics.IsFullScreen = false;
+            //Graphics.IsFullScreen = false;
+            Window.AllowUserResizing = true;
+            IsMouseVisible = true;
             Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.X;
             Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.Y;
+
+            Window.ClientSizeChanged += new EventHandler<EventArgs>(Window_ClientSizeChanged);
 
             // Unlock FPS
             //IsFixedTimeStep = false;
@@ -80,9 +88,23 @@ namespace XmasHell
             SpriteBatchManager = new SpriteBatchManager(this);
         }
 
+        void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            //GraphicsDevice.Viewport = new Viewport(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
+            //ViewportAdapter.Reset();
+
+            //Graphics.PreferredBackBufferWidth = Window.ClientBounds.Width;
+            //Graphics.PreferredBackBufferHeight = Window.ClientBounds.Height;
+            //Graphics.ApplyChanges();
+        }
+
         protected override void Initialize()
         {
-            ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
+            _defaultViewportAdapter = new DefaultViewportAdapter(GraphicsDevice);
+            _scalingViewportAdapter = new ScalingViewportAdapter(GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
+            _boxingViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
+
+            ViewportAdapter = _boxingViewportAdapter;
 
             Camera = new Camera(this, ViewportAdapter);
 
@@ -114,10 +136,10 @@ namespace XmasHell
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 #if ANDROID
-            Assets.Load(_activity, Content, GraphicsDevice);
-#else
-            Assets.Load(Content, GraphicsDevice);
+            Assets.SetActivity(_activity);
 #endif
+
+            Assets.Load(Content, GraphicsDevice);
 
             SpriteBatchManager.LoadContent();
 
@@ -149,6 +171,15 @@ namespace XmasHell
         {
             _stopWatch.Reset();
             _stopWatch.Start();
+
+            if (IsPressed(Keys.D))
+                ViewportAdapter = _defaultViewportAdapter;
+
+            if (IsPressed(Keys.S))
+                ViewportAdapter = _scalingViewportAdapter;
+
+            if (IsPressed(Keys.B))
+                ViewportAdapter = _boxingViewportAdapter;
 
             if (IsPressed(Keys.P))
                 _pause = !_pause;

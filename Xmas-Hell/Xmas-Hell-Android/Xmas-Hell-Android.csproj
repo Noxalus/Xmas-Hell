@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,9 +83,7 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MainMenu\" />
     <Folder Include="Resources\Layout\" />
-    <Folder Include="XmasBall\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Splash.png" />
@@ -97,45 +94,11 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <!-- Copy all BulletML pattern files -->
   <ItemGroup>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\MainMenu\snowflake.xml">
-      <Link>Patterns\MainMenu\snowflake.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\sample.xml">
-      <Link>Patterns\sample.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\template.xml">
-      <Link>Patterns\template.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\test.xml">
-      <Link>Patterns\test.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\XmasBall\pattern1.xml">
-      <Link>Patterns\XmasBall\pattern1.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\XmasBall\pattern3.xml">
-      <Link>Patterns\XmasBall\pattern3.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\XmasBall\pattern4.xml">
-      <Link>Patterns\XmasBall\pattern4.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\XmasBell\pattern1.xml">
-      <Link>Patterns\XmasBell\pattern1.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
-    <AndroidAsset Include="..\Xmas-Hell-Core\Assets\Patterns\XmasBell\pattern2.xml">
-      <Link>Patterns\XmasBell\pattern2.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
+	<AndroidAsset Include="..\Xmas-Hell-Core\Assets\**\*.*">
+	  <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</AndroidAsset>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -143,6 +106,10 @@
   <Import Project="..\Xmas-Hell-Core\Xmas-Hell-Core.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

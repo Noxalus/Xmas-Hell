@@ -22,7 +22,39 @@ namespace XmasHell
         private static List<Effect> _effects;
 
 #if ANDROID
-        public static void Load(Activity activity, ContentManager content, GraphicsDevice graphicsDevice)
+        private static Activity _activity;
+
+        public static void SetActivity(Activity activity)
+        {
+            _activity = activity;
+        }
+#endif
+
+        private static string GetPatternsFolder()
+        {
+#if ANDROID
+            return "Patterns/";
+#else
+            return "Assets/Patterns/";
+#endif
+        }
+
+        private static Stream OpenRawFile(string path)
+        {
+#if ANDROID
+            return _activity.ApplicationContext.Assets.Open(path);
+#else
+            return File.Open(path, FileMode.Open);
+#endif
+        }
+
+        private static string BuildRawAssetPath(string path)
+        {
+            return GetPatternsFolder() + path;
+        }
+
+#if ANDROID
+        public static void Load(ContentManager content, GraphicsDevice graphicsDevice)
 #else
         public static void Load(ContentManager content, GraphicsDevice graphicsDevice)
 #endif
@@ -52,21 +84,20 @@ namespace XmasHell
             };
 
             // Load BulletML files
-#if ANDROID
             _patternSteams = new Dictionary<string, Stream>
             {
                 // General
-                { "sample", activity.ApplicationContext.Assets.Open("Patterns/sample.xml") },
-                { "MainMenu/snowflake", activity.ApplicationContext.Assets.Open("Patterns/MainMenu/snowflake.xml") },
+                { "sample", OpenRawFile(BuildRawAssetPath("sample.xml")) },
+                { "MainMenu/snowflake", OpenRawFile(BuildRawAssetPath("MainMenu/snowflake.xml")) },
 
                 // Xmas Ball
-                { "XmasBall/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern1.xml") },
-                { "XmasBall/pattern3", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern3.xml") },
-                { "XmasBall/pattern4", activity.ApplicationContext.Assets.Open("Patterns/XmasBall/pattern4.xml") },
+                { "XmasBall/pattern1", OpenRawFile(BuildRawAssetPath("XmasBall/pattern1.xml")) },
+                { "XmasBall/pattern3", OpenRawFile(BuildRawAssetPath("XmasBall/pattern3.xml")) },
+                { "XmasBall/pattern4", OpenRawFile(BuildRawAssetPath("XmasBall/pattern4.xml")) },
 
                 // Xmas Bell
-                { "XmasBell/pattern1", activity.ApplicationContext.Assets.Open("Patterns/XmasBell/pattern1.xml") },
-                { "XmasBell/pattern2", activity.ApplicationContext.Assets.Open("Patterns/XmasBell/pattern2.xml") },
+                { "XmasBell/pattern1", OpenRawFile(BuildRawAssetPath("XmasBell/pattern1.xml")) },
+                { "XmasBell/pattern2", OpenRawFile(BuildRawAssetPath("XmasBell/pattern2.xml")) },
 
                 // Xmas Candy
 
@@ -78,23 +109,6 @@ namespace XmasHell
 
                 // Xmas Tree
             };
-#else
-            _patternSteams = new Dictionary<string, Stream>
-            {
-                // General
-                { "sample", File.Open("Assets/Patterns/sample.xml", FileMode.Open) },
-                { "MainMenu/snowflake", File.Open("Assets/Patterns/MainMenu/snowflake.xml", FileMode.Open) },
-
-                // Xmas Ball
-                { "XmasBall/pattern1", File.Open("Assets/Patterns/XmasBall/pattern1.xml", FileMode.Open) },
-                { "XmasBall/pattern3", File.Open("Assets/Patterns/XmasBall/pattern3.xml", FileMode.Open) },
-                { "XmasBall/pattern4", File.Open("Assets/Patterns/XmasBall/pattern4.xml", FileMode.Open) },
-
-                // Xmas Bell
-                { "XmasBell/pattern1", File.Open("Assets/Patterns/XmasBell/pattern1.xml", FileMode.Open) },
-                { "XmasBell/pattern2", File.Open("Assets/Patterns/XmasBell/pattern2.xml", FileMode.Open) },
-            };
-#endif
 
             // Load musics
             _musics = new List<Song>()
