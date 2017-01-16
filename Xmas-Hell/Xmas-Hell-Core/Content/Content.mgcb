@@ -608,3 +608,9 @@
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasGift/xmas-gift.scml
 
+#begin Graphics/Fonts/debug.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Graphics/Fonts/debug.spritefont
+

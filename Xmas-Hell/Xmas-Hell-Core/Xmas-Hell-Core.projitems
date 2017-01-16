@@ -45,6 +45,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionConvexPolygon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\SpriterCollisionCircle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Debug\DebugView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Debug\DebugViewXna.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics\Debug\PrimitiveBatch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ICollidable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\IPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />

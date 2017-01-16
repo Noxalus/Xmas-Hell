@@ -6,7 +6,10 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using XmasHell.Physics.Collision;
+using Xmas_Hell_Core.Controls;
+using Xmas_Hell_Core.Physics.Debug;
 
 namespace XmasHell.Entities.Bosses.XmasGift
 {
@@ -20,6 +23,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
         private Body _rightWallBody;
         private Body _bottomWallBody;
 
+        private DebugView _debugView;
+
         public XmasGift(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
             // Spriter
@@ -32,6 +37,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
             Game.GameManager.CollisionWorld.BossHitbox = new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f);
             var gravity = new Vector2(0f, 9.82f);
             _world = new World(gravity);
+
+            _debugView = new DebugView(_world, Game, 1f);
 
             // Behaviours
             Behaviours.Add(new XmasGiftBehaviour1(this, _world));
@@ -100,6 +107,12 @@ namespace XmasHell.Entities.Bosses.XmasGift
         {
             base.Update(gameTime);
 
+            if (InputManager.KeyDown(Keys.Space))
+            {
+                _giftBody.ApplyLinearImpulse(new Vector2(1000, 10));
+                //_giftBody.ApplyAngularImpulse(10f);
+            }
+
             _world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             // Update graphics from physics
@@ -109,6 +122,11 @@ namespace XmasHell.Entities.Bosses.XmasGift
         public override void Draw()
         {
             base.Draw();
+
+            var projection = Matrix.CreateOrthographicOffCenter(0f, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height, 0f, 0f, 1f);
+            var view = Game.Camera.GetViewMatrix();
+
+            _debugView.Draw(ref projection, ref view);
         }
     }
 }
