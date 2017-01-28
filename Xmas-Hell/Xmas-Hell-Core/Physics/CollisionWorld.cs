@@ -11,7 +11,7 @@ namespace XmasHell.Physics
     {
         private XmasHell _game;
         private CollisionCircle _playerHitbox;
-        private CollisionElement _bossHitbox;
+        private List<CollisionElement> BossHitboxes = new List<CollisionElement>();
         private readonly List<CollisionElement> _playerBulletHitboxes = new List<CollisionElement>();
         private readonly List<CollisionElement> _bossBulletHitboxes = new List<CollisionElement>();
 
@@ -30,18 +30,10 @@ namespace XmasHell.Physics
             }
         }
 
-        public CollisionElement BossHitbox
+        public void AddBossHitBox(CollisionElement element)
         {
-            get
-            {
-                return _bossHitbox;
-            }
-
-            set
-            {
-                _bossHitbox = value;
-                _game.SpriteBatchManager.DebugCollisionElements.Add(_bossHitbox);
-            }
+            BossHitboxes.Add(element);
+            _game.SpriteBatchManager.DebugCollisionElements.AddRange(BossHitboxes);
         }
 
         public void AddPlayerBulletHitbox(CollisionElement element)
@@ -54,6 +46,12 @@ namespace XmasHell.Physics
         {
             _bossBulletHitboxes.Add(element);
             _game.SpriteBatchManager.DebugCollisionElements.Add(element);
+        }
+
+        public void RemoveBossHitBox(CollisionElement element)
+        {
+            BossHitboxes.Remove(element);
+            _game.SpriteBatchManager.DebugCollisionElements.Remove(element);
         }
 
         public void RemovePlayerBulletHitbox(CollisionElement element)
@@ -76,27 +74,34 @@ namespace XmasHell.Physics
         public void Update(GameTime gameTime)
         {
             // Check collision between player's bullets and boss hitbox
-            if (BossHitbox != null)
+            if (BossHitboxes != null)
             {
                 for (int index = 0; index < _playerBulletHitboxes.Count; index++)
                 {
                     var playerBulletHitbox = _playerBulletHitboxes[index];
-                    if (playerBulletHitbox.Intersects(BossHitbox))
+
+                    foreach (var bossHitBox in BossHitboxes)
                     {
-                        var playerBullet = (Bullet) playerBulletHitbox.Entity;
-                        playerBullet.Destroy();
-                        ((Boss) BossHitbox.Entity).TakeDamage(1);
-                        _game.GameManager.ParticleManager.EmitBossHitParticles(playerBullet.Position());
+                        if (playerBulletHitbox.Intersects(bossHitBox))
+                        {
+                            var playerBullet = (Bullet) playerBulletHitbox.Entity;
+                            playerBullet.Destroy();
+                            ((Boss)bossHitBox.Entity).TakeDamage(1);
+                            _game.GameManager.ParticleManager.EmitBossHitParticles(playerBullet.Position());
+                        }
                     }
                 }
             }
 
             // Check collision between player's hitbox and boss hitbox
-            if (PlayerHitbox != null && BossHitbox != null)
+            if (PlayerHitbox != null && BossHitboxes != null)
             {
-                if (PlayerHitbox.Intersects(BossHitbox))
+                foreach (var bossHitBox in BossHitboxes)
                 {
-                    ((Player) PlayerHitbox.Entity).Destroy();
+                    if (PlayerHitbox.Intersects(bossHitBox))
+                    {
+                        ((Player) PlayerHitbox.Entity).Destroy();
+                    }
                 }
             }
 

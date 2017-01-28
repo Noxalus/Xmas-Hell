@@ -16,7 +16,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
             BulletPatternFiles.Add("XmasBall/pattern4");
 
             // Physics
-            Game.GameManager.CollisionWorld.BossHitbox = new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f);
+            Game.GameManager.CollisionWorld.AddBossBulletHitbox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
 
             // Behaviours
             Behaviours.Add(new XmasBallBehaviour1(this));

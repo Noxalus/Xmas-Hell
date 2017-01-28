@@ -32,7 +32,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
                 new Vector2(-(bossSpriteSize.X * bossPivot.X), bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y))
             };
 
-            Game.GameManager.CollisionWorld.BossHitbox = new CollisionConvexPolygon(this, Vector2.Zero, bossCollisionBoxVertices);
+            Game.GameManager.CollisionWorld.AddBossHitBox(new CollisionConvexPolygon(this, Vector2.Zero, bossCollisionBoxVertices));
         }
 
         protected override void LoadSpriterSprite()

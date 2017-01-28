@@ -20,11 +20,16 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Behaviours.Add(new XmasBellBehaviour2(this));
             Behaviours.Add(new XmasBellBehaviour3(this));
             Behaviours.Add(new XmasBellBehaviour4(this));
+        }
 
-            // Physics
-            //Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, new Vector2(0f, 80f), 80f);
-            //Game.GameManager.CollisionWorld.BossHitbox = new CollisionCircle(this, Vector2.Zero, 80f);
-            Game.GameManager.CollisionWorld.BossHitbox = new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f);
+        protected override void LoadSpriterSprite()
+        {
+            base.LoadSpriterSprite();
+
+            // Setup the physics
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper.png", Vector2.Zero, 1f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper-ball.png", Vector2.Zero, 1f));
         }
     }
 }

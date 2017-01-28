@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using XmasHell.Physics.Collision;
 using Xmas_Hell_Core.Controls;
-using Xmas_Hell_Core.Physics.Debug;
+//using Xmas_Hell_Core.Physics.Debug;
 
 namespace XmasHell.Entities.Bosses.XmasGift
 {
@@ -23,7 +23,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
         private Body _rightWallBody;
         private Body _bottomWallBody;
 
-        private DebugView _debugView;
+        //private DebugView _debugView;
 
         public XmasGift(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
@@ -34,11 +34,11 @@ namespace XmasHell.Entities.Bosses.XmasGift
             BulletPatternFiles.Add("sample");
 
             // Physics
-            Game.GameManager.CollisionWorld.BossHitbox = new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f);
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
             var gravity = new Vector2(0f, 9.82f);
             _world = new World(gravity);
 
-            _debugView = new DebugView(_world, Game, 1f);
+            //_debugView = new DebugView(_world, Game, 1f);
 
             // Behaviours
             Behaviours.Add(new XmasGiftBehaviour1(this, _world));
@@ -126,7 +126,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
             var projection = Matrix.CreateOrthographicOffCenter(0f, Game.GraphicsDevice.Viewport.Width, Game.GraphicsDevice.Viewport.Height, 0f, 0f, 1f);
             var view = Game.Camera.GetViewMatrix();
 
-            _debugView.Draw(ref projection, ref view);
+            //_debugView.Draw(ref projection, ref view);
         }
     }
 }
