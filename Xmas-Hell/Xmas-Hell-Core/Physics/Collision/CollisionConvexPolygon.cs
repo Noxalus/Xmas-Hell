@@ -9,15 +9,19 @@ namespace XmasHell.Physics.Collision
     {
         private Vector2 _relativePosition;
         // Local positions relative to the entity position
-        private readonly List<Vector2> _vertices;
+        protected readonly List<Vector2> Vertices = new List<Vector2>();
 
         public CollisionConvexPolygon(IPhysicsEntity entity, Vector2 relativePosition, List<Vector2> vertices) : base(entity)
         {
             _relativePosition = relativePosition;
-            _vertices = vertices;
+            Vertices = vertices;
         }
 
-        public Vector2 GetWorldPosition(Vector2 vertex)
+        protected CollisionConvexPolygon(IPhysicsEntity entity) : base(entity)
+        {
+        }
+
+        public virtual Vector2 GetWorldPosition(Vector2 vertex)
         {
             var entityTransformMatrix = GetMatrix();
             var vertexPosition = new Vector3(vertex + _relativePosition, 0f);
@@ -30,16 +34,16 @@ namespace XmasHell.Physics.Collision
         public override bool Intersects(CollisionCircle circle)
         {
             var radiusSquared = circle.GetRadius() * circle.GetRadius();
-            var vertex = GetWorldPosition(_vertices[_vertices.Count - 1]);
+            var vertex = GetWorldPosition(Vertices[Vertices.Count - 1]);
             var circleCenter = circle.GetCenter();
             var nearestDistance = float.MaxValue;
             var nearestIsInside = false;
             var nearestVertex = -1;
             var lastIsInside = false;
 
-            for (var i = 0; i < _vertices.Count; i++)
+            for (var i = 0; i < Vertices.Count; i++)
             {
-                var nextVertex = GetWorldPosition(_vertices[i]);
+                var nextVertex = GetWorldPosition(Vertices[i]);
                 var axis = circleCenter - vertex;
                 var distance = axis.LengthSquared() - radiusSquared;
 
@@ -112,14 +116,14 @@ namespace XmasHell.Physics.Collision
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (_vertices.Count == 0)
+            if (Vertices.Count == 0)
                 return;
 
-            var previousPosition = GetWorldPosition(_vertices[0]);
+            var previousPosition = GetWorldPosition(Vertices[0]);
 
-            for (int i = 1; i <= _vertices.Count; i++)
+            for (int i = 1; i <= Vertices.Count; i++)
             {
-                var position = GetWorldPosition(i == _vertices.Count ? _vertices[0] : _vertices[i]);
+                var position = GetWorldPosition(i == Vertices.Count ? Vertices[0] : Vertices[i]);
 
                 spriteBatch.DrawLine(
                     previousPosition.X,
