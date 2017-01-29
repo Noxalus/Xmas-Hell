@@ -46,8 +46,12 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BulletML">
+    <Reference Include="BulletML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\BulletML.dll</HintPath>
+    </Reference>
+    <Reference Include="FarseerPhysics.Portable">
+      <HintPath>..\Libraries\FarseerPhysics.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="MonoGame.Extended">
@@ -68,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,9 +86,8 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MainMenu\" />
+    <Folder Include="Content\" />
     <Folder Include="Resources\Layout\" />
-    <Folder Include="XmasBall\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Splash.png" />
@@ -94,18 +96,26 @@
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <MonoGameContentReference Include="..\Xmas-Hell-Core\Content\Content.mgcb">
+      <Link>Content\Content.mgcb</Link>
+    </MonoGameContentReference>
   </ItemGroup>
-  <!-- Copy all BulletML pattern files -->
   <ItemGroup>
     <AndroidAsset Include="..\Xmas-Hell-Core\Assets\**\*.*">
-      <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Assets\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="..\Xmas-Hell-Core\Xmas-Hell-Core.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

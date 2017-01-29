@@ -598,11 +598,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasGift/ribbon2.png
 
-#begin Graphics/Sprites/Bosses/XmasGift/xmas-gift.autosave.scml
-/importer:SpriterImporter
-/processor:PassThroughProcessor
-/build:Graphics/Sprites/Bosses/XmasGift/xmas-gift.autosave.scml
-
 #begin Graphics/Sprites/Bosses/XmasGift/xmas-gift.scml
 /importer:SpriterImporter
 /processor:PassThroughProcessor
