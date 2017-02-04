@@ -27,17 +27,20 @@ namespace XmasHell.Physics.Collision
             Vertices.Add(new Vector2(0, _spriterPartFile.Height) * scale);
         }
 
-        private SpriterFile FindSpriterFile(String fileName)
+        private SpriterFile FindSpriterFile(string fileName)
         {
             var currentAnimator = _spriterPhysicsEntity.GetCurrentAnimator();
 
             if (currentAnimator == null)
-                return null;
+                throw new ArgumentException("Please make sure that a Spriter animator is linked to the given entity.");
 
             _spriterFileId = Array.FindIndex(currentAnimator.Entity.Spriter.Folders[0].Files,
                 (file) => file.Name == fileName);
 
-            return _spriterFileId == -1 ? null : currentAnimator.Entity.Spriter.Folders[0].Files[_spriterFileId];
+            if (_spriterFileId == -1)
+                throw new ArgumentException("Please make sure that the given Spriter entity has a sprite part named: " + _spritePartName);
+
+            return currentAnimator.Entity.Spriter.Folders[0].Files[_spriterFileId];
         }
 
         public override Vector2 GetWorldPosition(Vector2 vertex)

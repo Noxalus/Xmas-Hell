@@ -19,20 +19,10 @@ namespace XmasHell.Entities.Bosses.XmasLog
 
         public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
+            // BulletML
+            BulletPatternFiles.Add("sample");
+
             SpriterFilename = "Graphics/Sprites/Bosses/XmasLog/xmas-log";
-
-            // Physics
-            var bossSpriteSize = new Vector2(119, 231);
-            var bossPivot = new Vector2(0.5f, 0.55f);
-            var bossCollisionBoxVertices = new List<Vector2>()
-            {
-                new Vector2(-(bossSpriteSize.X * bossPivot.X),  -(bossSpriteSize.Y * bossPivot.Y)),
-                new Vector2(bossSpriteSize.X * bossPivot.X, -(bossSpriteSize.Y * bossPivot.Y)),
-                new Vector2(bossSpriteSize.X * bossPivot.X, bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y)),
-                new Vector2(-(bossSpriteSize.X * bossPivot.X), bossSpriteSize.Y - (bossSpriteSize.Y * bossPivot.Y))
-            };
-
-            Game.GameManager.CollisionWorld.AddBossHitBox(new CollisionConvexPolygon(this, Vector2.Zero, bossCollisionBoxVertices));
         }
 
         protected override void LoadSpriterSprite()
@@ -43,6 +33,8 @@ namespace XmasHell.Entities.Bosses.XmasLog
 
             CurrentAnimator.Play("Whirligig");
             CurrentAnimator.Speed = 0.25f;
+
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png", Vector2.Zero));
         }
 
         public override void Update(GameTime gameTime)

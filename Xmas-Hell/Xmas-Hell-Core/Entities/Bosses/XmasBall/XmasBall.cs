@@ -15,9 +15,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
             BulletPatternFiles.Add("XmasBall/pattern3");
             BulletPatternFiles.Add("XmasBall/pattern4");
 
-            // Physics
-            Game.GameManager.CollisionWorld.AddBossBulletHitbox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
-
             // Behaviours
             Behaviours.Add(new XmasBallBehaviour1(this));
             Behaviours.Add(new XmasBallBehaviour2(this));
@@ -40,6 +37,9 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 else if (animationName == "Breathe_Out")
                     CurrentAnimator.Play("Idle");
             };
+
+            // Physics
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
         }
 
         protected override void Reset()

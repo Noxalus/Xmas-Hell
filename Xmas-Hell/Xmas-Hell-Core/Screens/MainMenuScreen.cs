@@ -86,10 +86,8 @@ namespace XmasHell.Screens
                     _game.GameScreen.LoadBoss(BossType.XmasBell);
                 else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasGift);
-                else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
-                {
-
-                }
+                else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
+                    _game.GameScreen.LoadBoss(BossType.XmasLog);
 
                 Show<GameScreen>();
             }
