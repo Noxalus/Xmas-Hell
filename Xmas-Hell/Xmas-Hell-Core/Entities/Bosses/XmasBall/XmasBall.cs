@@ -27,18 +27,12 @@ namespace XmasHell.Entities.Bosses.XmasBall
         protected override void LoadSpriterSprite()
         {
             base.LoadSpriterSprite();
+        }
 
-            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+        protected override void InitializePhysics()
+        {
+            base.InitializePhysics();
 
-            CurrentAnimator.AnimationFinished += delegate (string animationName)
-            {
-                if (animationName == "Breathe_In")
-                    CurrentAnimator.Play("Big_Idle");
-                else if (animationName == "Breathe_Out")
-                    CurrentAnimator.Play("Idle");
-            };
-
-            // Physics
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
         }
 

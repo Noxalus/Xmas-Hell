@@ -27,11 +27,28 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
             Boss.Invincible = true;
             Boss.MoveTo(_screenCenter, 2f, true);
+
+            Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
         }
 
         public override void Stop()
         {
             base.Stop();
+
+            Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
+        }
+
+        private void AnimationFinishedHandler(string animationName)
+        {
+            switch (animationName)
+            {
+                case "Breathe_In":
+                    Boss.CurrentAnimator.Play("Big_Idle");
+                    break;
+                case "Breathe_Out":
+                    Boss.CurrentAnimator.Play("Idle");
+                    break;
+            }
         }
 
         public override void Update(GameTime gameTime)

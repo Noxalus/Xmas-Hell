@@ -22,9 +22,9 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Behaviours.Add(new XmasBellBehaviour4(this));
         }
 
-        protected override void LoadSpriterSprite()
+        protected override void InitializePhysics()
         {
-            base.LoadSpriterSprite();
+            base.InitializePhysics();
 
             // Setup the physics
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));

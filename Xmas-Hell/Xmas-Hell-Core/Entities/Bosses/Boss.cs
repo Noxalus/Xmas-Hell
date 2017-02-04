@@ -153,6 +153,28 @@ namespace XmasHell.Entities.Bosses
             return 0f;
         }
 
+        protected float GetSpritePartWidth(string name)
+        {
+            if (CurrentAnimator != null)
+            {
+                var spriteBodyPart = Array.Find(CurrentAnimator.Entity.Spriter.Folders[0].Files, (file) => file.Name == name);
+                return spriteBodyPart.Width;
+            }
+
+            return 0f;
+        }
+
+        protected float GetSpritePartHeight(string name)
+        {
+            if (CurrentAnimator != null)
+            {
+                var spriteBodyPart = Array.Find(CurrentAnimator.Entity.Spriter.Folders[0].Files, (file) => file.Name == name);
+                return spriteBodyPart.Height;
+            }
+
+            return 0f;
+        }
+
         #endregion
 
         #region Setters
@@ -213,6 +235,7 @@ namespace XmasHell.Entities.Bosses
         {
             LoadBulletPatterns();
             LoadSpriterSprite();
+            InitializePhysics();
 
             Reset();
         }
@@ -234,6 +257,13 @@ namespace XmasHell.Entities.Bosses
             }
 
             CurrentAnimator = Animators.First();
+            CurrentAnimator.Position = InitialPosition;
+
+            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+        }
+
+        protected virtual void InitializePhysics()
+        {
         }
 
         protected virtual void Reset()
