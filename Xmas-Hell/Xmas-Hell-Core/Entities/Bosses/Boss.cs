@@ -326,6 +326,16 @@ namespace XmasHell.Entities.Bosses
             _targetDirection = Vector2.Normalize(position - CurrentAnimator.Position);
         }
 
+        public void MoveToCenter(float time, bool force = false)
+        {
+            MoveTo(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f), time, force);
+        }
+
+        public void MoveToCenter(bool force = false)
+        {
+            MoveTo(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f), force);
+        }
+
         public void RotateTo(float angle, float time, bool force = false)
         {
             if (TargetingAngle && !force)

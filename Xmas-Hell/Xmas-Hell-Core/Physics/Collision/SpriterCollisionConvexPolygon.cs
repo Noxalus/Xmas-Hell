@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Shapes;
 using SpriterDotNet;
 using XmasHell.Geometry;
 
@@ -58,21 +60,15 @@ namespace XmasHell.Physics.Collision
                 vertex.Y *= spriteData.ScaleY;
 
                 var spriteCenter = new Vector2(
-                    _spriterPartFile.Width * (1 - spriteData.PivotX),
-                    _spriterPartFile.Height * (1 - spriteData.PivotY)
+                    _spriterPartFile.Width * (1 - spriteData.PivotX) * spriteData.ScaleX + spriteData.X,
+                    _spriterPartFile.Height * (1 - spriteData.PivotY) * spriteData.ScaleY - spriteData.Y
                 );
                 var worldTopLeftCornerPosition = currentAnimator.Position - spriteCenter;
 
                 worldPosition = worldTopLeftCornerPosition + vertex + animationOffset + _relativePosition;
 
                 // Compute rotation
-                var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
-                var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
-
-                var origin =
-                    currentAnimator.Position +
-                    new Vector2(pivotX, pivotY) -
-                    new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f);
+                var origin = currentAnimator.Position;
 
                 var rotation = -spriteData.Angle;
                 rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
