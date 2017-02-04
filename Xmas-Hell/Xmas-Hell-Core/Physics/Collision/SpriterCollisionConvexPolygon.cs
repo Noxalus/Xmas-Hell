@@ -21,7 +21,7 @@ namespace XmasHell.Physics.Collision
             _spriterPartFile = FindSpriterFile(spritePartName);
             _relativePosition = relativePosition ?? Vector2.Zero;
 
-            Vertices.Add(Vector2.Zero * scale);
+            Vertices.Add(Vector2.Zero);
             Vertices.Add(new Vector2(_spriterPartFile.Width, 0) * scale);
             Vertices.Add(new Vector2(_spriterPartFile.Width, _spriterPartFile.Height) * scale);
             Vertices.Add(new Vector2(0, _spriterPartFile.Height) * scale);
@@ -46,37 +46,32 @@ namespace XmasHell.Physics.Collision
         public override Vector2 GetWorldPosition(Vector2 vertex)
         {
             var currentAnimator = _spriterPhysicsEntity.GetCurrentAnimator();
-
-            if (_spriterPartFile == null)
-            {
-                _spriterPartFile = FindSpriterFile(_spritePartName);
-
-                if (_spriterPartFile == null)
-                    return currentAnimator.Position;
-            }
+            var worldPosition = currentAnimator.Position + vertex;
 
             if (currentAnimator.FrameData != null)
             {
+                // Compute translation
                 var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
-                var offset = new Vector2(spriteData.X, -spriteData.Y);
+                var animationOffset = new Vector2(spriteData.X, -spriteData.Y);
 
                 vertex.X *= spriteData.ScaleX;
                 vertex.Y *= spriteData.ScaleY;
 
-                // Compute origin point
+                var spriteCenter = new Vector2(
+                    _spriterPartFile.Width * (1 - spriteData.PivotX),
+                    _spriterPartFile.Height * (1 - spriteData.PivotY)
+                );
+                var worldTopLeftCornerPosition = currentAnimator.Position - spriteCenter;
+
+                worldPosition = worldTopLeftCornerPosition + vertex + animationOffset + _relativePosition;
+
+                // Compute rotation
                 var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
                 var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
 
                 var origin =
                     currentAnimator.Position +
                     new Vector2(pivotX, pivotY) -
-                    new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f);
-
-                var worldPosition =
-                    currentAnimator.Position +
-                    offset +
-                    vertex +
-                    _relativePosition -
                     new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f);
 
                 var rotation = -spriteData.Angle;
@@ -91,12 +86,9 @@ namespace XmasHell.Physics.Collision
                 worldPosition = MathHelperExtension.RotatePoint(
                     worldPosition, currentAnimator.Rotation, currentAnimator.Position
                 );
-
-
-                return worldPosition;
             }
 
-            return currentAnimator.Position + vertex;
+            return worldPosition;
         }
     }
 }

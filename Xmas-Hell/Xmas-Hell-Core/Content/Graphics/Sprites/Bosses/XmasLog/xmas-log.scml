@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r9">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r10">
     <folder id="0">
         <file id="0" name="body.png" width="119" height="231" pivot_x="0.5" pivot_y="0.45"/>
         <file id="1" name="eye.png" width="21" height="18" pivot_x="0.5" pivot_y="0.5"/>
@@ -8,7 +8,6 @@
     </folder>
     <entity id="0" name="xmas-log">
         <obj_info name="bone_000" type="bone" w="224.887" h="10"/>
-        <obj_info name="collision_box" type="box" w="122.857" h="231.905" pivot_x="0" pivot_y="0"/>
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -19,7 +18,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="1" time="250">
                     <bone_ref id="0" timeline="5" key="1"/>
@@ -29,7 +27,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="2" time="500">
                     <bone_ref id="0" timeline="5" key="2"/>
@@ -39,7 +36,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="3" time="750">
                     <bone_ref id="0" timeline="5" key="3"/>
@@ -49,7 +45,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
             </mainline>
             <timeline id="0" name="body">
@@ -91,12 +86,7 @@
                     <bone y="-90" angle="90"/>
                 </key>
             </timeline>
-            <timeline id="6" obj="1" name="collision_box" object_type="box">
-                <key id="0" spin="0">
-                    <object x="227.102919" y="59.52381" pivot_x="0" pivot_y="1" angle="270" scale_x="0.974522" scale_y="0.999252"/>
-                </key>
-            </timeline>
-            <timeline id="7" name="action_point" object_type="point">
+            <timeline id="6" name="action_point" object_type="point">
                 <key id="0" spin="0">
                     <object x="60" y="-0" angle="180"/>
                 </key>
@@ -112,7 +102,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="1" time="250">
                     <bone_ref id="0" timeline="5" key="0"/>
@@ -122,7 +111,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="2" time="500">
                     <bone_ref id="0" timeline="5" key="1"/>
@@ -131,8 +119,7 @@
                     <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
-                    <object_ref id="5" parent="0" timeline="6" key="1" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
+                    <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
                 </key>
                 <key id="3" time="750">
                     <bone_ref id="0" timeline="5" key="1"/>
@@ -141,8 +128,7 @@
                     <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
-                    <object_ref id="5" parent="0" timeline="6" key="1" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
+                    <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
                 </key>
                 <key id="4" time="1000">
                     <bone_ref id="0" timeline="5" key="2"/>
@@ -151,19 +137,18 @@
                     <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
-                    <object_ref id="5" parent="0" timeline="6" key="2" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
+                    <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
                 </key>
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="100" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="100" angle="270"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object folder="0" file="0" x="100" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="100" angle="270"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="0" x="100" y="-0" angle="270" scale_y="2"/>
+                    <object folder="0" file="0" x="100" angle="270" scale_y="2"/>
                 </key>
             </timeline>
             <timeline id="1" name="mouth">
@@ -197,18 +182,7 @@
                     <bone x="-110" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="6" obj="1" name="collision_box" object_type="box">
-                <key id="0" spin="0">
-                    <object x="227.629234" y="59.52381" pivot_x="0" pivot_y="1" angle="270" scale_x="0.974522" scale_y="0.999252"/>
-                </key>
-                <key id="1" time="500" spin="0">
-                    <object x="226.629234" y="59.52381" pivot_x="0" pivot_y="1" angle="270" scale_x="0.974522" scale_y="0.998787"/>
-                </key>
-                <key id="2" time="1000" spin="0">
-                    <object x="353.629234" y="59.52381" pivot_x="0" pivot_y="1" angle="270" scale_x="0.974522" scale_y="1.991403"/>
-                </key>
-            </timeline>
-            <timeline id="7" name="action_point" object_type="point">
+            <timeline id="6" name="action_point" object_type="point">
                 <key id="0" spin="0">
                     <object x="60" y="-0" angle="180"/>
                 </key>
@@ -224,7 +198,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
                 <key id="1" time="1000">
                     <bone_ref id="0" timeline="5" key="0"/>
@@ -234,7 +207,6 @@
                     <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
                     <object_ref id="4" parent="0" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" parent="0" timeline="6" key="0" z_index="5"/>
-                    <object_ref id="6" parent="0" timeline="7" key="0" z_index="6"/>
                 </key>
             </mainline>
             <timeline id="0" name="body">
@@ -267,12 +239,7 @@
                     <bone x="-110" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="6" obj="1" name="collision_box" object_type="box">
-                <key id="0" spin="0">
-                    <object x="353.629234" y="59.52381" pivot_x="0" pivot_y="1" angle="270" scale_x="0.974522" scale_y="1.991403"/>
-                </key>
-            </timeline>
-            <timeline id="7" name="action_point" object_type="point">
+            <timeline id="6" name="action_point" object_type="point">
                 <key id="0" spin="0">
                     <object x="60" y="-0" angle="180"/>
                 </key>
@@ -328,12 +295,12 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-0" y="-0" angle="270" scale_y="2"/>
+                    <object folder="0" file="0" angle="270" scale_y="2"/>
                 </key>
             </timeline>
             <timeline id="1" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-35" y="0" angle="270"/>
+                    <object folder="0" file="2" x="-35" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="eye">
@@ -367,7 +334,7 @@
             </timeline>
             <timeline id="6" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="60" y="-0" angle="180"/>
+                    <object x="60" angle="180"/>
                 </key>
             </timeline>
         </animation>
