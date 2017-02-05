@@ -33,7 +33,7 @@ namespace XmasHell.Physics
         public void AddBossHitBox(CollisionElement element)
         {
             BossHitboxes.Add(element);
-            _game.SpriteBatchManager.DebugCollisionElements.AddRange(BossHitboxes);
+            _game.SpriteBatchManager.DebugCollisionElements.Add(element);
         }
 
         public void AddPlayerBulletHitbox(CollisionElement element)
@@ -52,6 +52,18 @@ namespace XmasHell.Physics
         {
             BossHitboxes.Remove(element);
             _game.SpriteBatchManager.DebugCollisionElements.Remove(element);
+        }
+
+        public void ClearBossHitboxes()
+        {
+            BossHitboxes.ForEach(hb => _game.SpriteBatchManager.DebugCollisionElements.Remove(hb));
+            BossHitboxes.Clear();
+        }
+
+        public void ClearBossBullets()
+        {
+            _bossBulletHitboxes.ForEach(hb => _game.SpriteBatchManager.DebugCollisionElements.Remove(hb));
+            _bossBulletHitboxes.Clear();
         }
 
         public void RemovePlayerBulletHitbox(CollisionElement element)
@@ -122,7 +134,7 @@ namespace XmasHell.Physics
             }
 
             // Clean destroyed elements
-            _playerBulletHitboxes.RemoveAll(hb => !((Bullet) hb.Entity).Used);
+            _playerBulletHitboxes.RemoveAll(hb => !((Bullet)hb.Entity).Used);
             _bossBulletHitboxes.RemoveAll(hb => !((Mover)hb.Entity).Used);
         }
     }

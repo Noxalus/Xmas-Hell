@@ -58,6 +58,11 @@ namespace XmasHell.BulletML
             _patterns.Add(patternName, pattern);
         }
 
+        public BulletPattern FindPattern(string patternName)
+        {
+            return _patterns.ContainsKey(patternName) ? _patterns[patternName] : null;
+        }
+
         public void TriggerPattern(string patternName, BulletType type, bool clear = false, Vector2? position = null, float? direction = null)
         {
             if (clear)

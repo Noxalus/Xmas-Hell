@@ -8,13 +8,13 @@ namespace XmasHell.Physics.Collision
     public class SpriterCollisionCircle : CollisionCircle
     {
         private ISpriterPhysicsEntity _spriterPhysicsEntity;
-        private String _spritePartName;
+        private string _spritePartName;
         private SpriterFile _spriterPartFile;
         private int _spriterFileId;
         private Vector2 _relativePosition;
         private float _scale;
 
-        public SpriterCollisionCircle(ISpriterPhysicsEntity entity, String spritePartName, Vector2? relativePosition = null, float scale = 1f) : base(entity)
+        public SpriterCollisionCircle(ISpriterPhysicsEntity entity, string spritePartName, Vector2? relativePosition = null, float scale = 1f) : base(entity)
         {
             _spriterPhysicsEntity = entity;
             _spritePartName = spritePartName;

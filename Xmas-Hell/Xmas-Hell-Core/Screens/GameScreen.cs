@@ -1,8 +1,11 @@
+using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
+using Xmas_Hell_Core.Controls;
 
 namespace XmasHell.Screens
 {
@@ -43,9 +46,24 @@ namespace XmasHell.Screens
             _boss.Initialize();
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            _boss.Dispose();
+
+            Console.WriteLine("Dispose GameScreen");
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (InputManager.KeyDown(Keys.Escape))
+            {
+                Dispose();
+                Show<MainMenuScreen>();
+            }
 
             if (_game.Pause)
                 return;

@@ -30,7 +30,7 @@ namespace XmasHell.Entities.Bosses
         XmasSanta
     }
 
-    public abstract class Boss : ISpriterPhysicsEntity
+    public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
         public XmasHell Game;
         protected Vector2 InitialPosition;
@@ -86,7 +86,7 @@ namespace XmasHell.Entities.Bosses
             SoundsEnabled = false
         };
 
-        protected IList<MonoGameAnimator> Animators = new List<MonoGameAnimator>();
+        private readonly IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
         public MonoGameAnimator CurrentAnimator;
 
         #region Getters
@@ -222,10 +222,10 @@ namespace XmasHell.Entities.Bosses
                 )
             )
             {
-                Origin = Vector2.Zero
+                Origin = Vector2.Zero,
+                Color = Color.Red
             };
 
-            _hpBar.Color = Color.Red;
 
             Game.SpriteBatchManager.Boss = this;
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
@@ -238,6 +238,16 @@ namespace XmasHell.Entities.Bosses
             InitializePhysics();
 
             Reset();
+        }
+
+        public void Dispose()
+        {
+            Game.SpriteBatchManager.Boss = null;
+            Game.SpriteBatchManager.UISprites.Remove(_hpBar);
+            Game.SpriteBatchManager.BossBullets.Clear();
+
+            Game.GameManager.CollisionWorld.ClearBossHitboxes();
+            Game.GameManager.CollisionWorld.ClearBossBullets();
         }
 
         protected virtual void LoadSpriterSprite()
@@ -253,10 +263,10 @@ namespace XmasHell.Entities.Bosses
             foreach (var entity in loader.Spriter.Entities)
             {
                 var animator = new MonoGameDebugAnimator(entity, Game.GraphicsDevice, factory);
-                Animators.Add(animator);
+                _animators.Add(animator);
             }
 
-            CurrentAnimator = Animators.First();
+            CurrentAnimator = _animators.First();
             CurrentAnimator.Position = InitialPosition;
 
             CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
@@ -290,9 +300,13 @@ namespace XmasHell.Entities.Bosses
         {
             foreach (var bulletPatternFile in BulletPatternFiles)
             {
-                var pattern = new BulletPattern();
-                pattern.ParseStream(bulletPatternFile, Assets.GetPattern(bulletPatternFile));
-                Game.GameManager.MoverManager.AddPattern(bulletPatternFile, pattern);
+                if (Game.GameManager.MoverManager.FindPattern(bulletPatternFile) == null)
+                {
+                    var pattern = new BulletPattern();
+                    var stream = Assets.GetPattern(bulletPatternFile);
+                    pattern.ParseStream(bulletPatternFile, stream);
+                    Game.GameManager.MoverManager.AddPattern(bulletPatternFile, pattern);
+                }
             }
         }
 
