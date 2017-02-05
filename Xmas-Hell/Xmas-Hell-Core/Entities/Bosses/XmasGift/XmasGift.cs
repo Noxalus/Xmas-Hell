@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BulletML;
+using FarseerPhysics;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
@@ -8,6 +9,7 @@ using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using XmasHell.Geometry;
 using XmasHell.Physics.Collision;
 using Xmas_Hell_Core.Controls;
 using Xmas_Hell_Core.Physics.DebugView;
@@ -46,7 +48,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             // Physics
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png"));
-            var gravity = new Vector2(0f, 9.82f);
+            var gravity = Vector2.UnitY * 9.82f;
+            //gravity = Vector2.Zero;
 
             _world = new World(gravity);
 
@@ -58,57 +61,45 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         private void SetupPhysicsWorld()
         {
-            _giftBody = BodyFactory.CreateBody(_world);
-            _giftBody.BodyType = BodyType.Dynamic;
-            _giftBody.Position = Position();
-            //_giftBody.LinearDamping = -10f;
-            //_giftBody.AngularDamping = 0f;
-            //_giftBody.LinearVelocity = new Vector2(0, 100);
-            //_giftBody.Mass = 250f;
-
             var width = GetSpritePartWidth("body.png");
             var height = GetSpritePartHeight("body.png");
+            var position = new Vector2(ConvertUnits.ToSimUnits(Position().X), ConvertUnits.ToSimUnits(Position().Y));
 
-            var giftShape = new PolygonShape(new Vertices(new List<Vector2>
-            {
-                new Vector2(-width / 2f, -height / 2f),
-                new Vector2(width / 2f, -height / 2f),
-                new Vector2(width / 2f, height / 2f),
-                new Vector2(-width / 2f, height / 2f)
-            }), 1f);
+            _giftBody = BodyFactory.CreateRectangle(
+                _world,
+                ConvertUnits.ToSimUnits(width),
+                ConvertUnits.ToSimUnits(height),
+                10f,
+                position
+            );
+
+            _giftBody.BodyType = BodyType.Dynamic;
+
 
             // Walls
-            _bottomWallBody = BodyFactory.CreateBody(_world);
-            _leftWallBody = BodyFactory.CreateBody(_world);
-            _rightWallBody = BodyFactory.CreateBody(_world);
-            _topWallBody = BodyFactory.CreateBody(_world);
-
-            var bottomWallShape = new EdgeShape(
-                new Vector2(0, GameConfig.VirtualResolution.Y),
-                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            _bottomWallBody = BodyFactory.CreateEdge(
+                _world,
+                ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
             );
 
-            var leftWallShape = new EdgeShape(
-                new Vector2(0, 0),
-                new Vector2(0, GameConfig.VirtualResolution.Y)
+            _leftWallBody = BodyFactory.CreateEdge(
+                _world,
+                ConvertUnits.ToSimUnits(0, 0),
+                ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y)
             );
 
-            var rightWallShape = new EdgeShape(
-                new Vector2(GameConfig.VirtualResolution.X, 0),
-                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            _rightWallBody = BodyFactory.CreateEdge(
+                _world,
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
             );
 
-            var topWallShape = new EdgeShape(
-                new Vector2(0, 0),
-                new Vector2(0, GameConfig.VirtualResolution.Y)
+            _topWallBody = BodyFactory.CreateEdge(
+                _world,
+                ConvertUnits.ToSimUnits(0, 0),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0)
             );
-
-            // Fixtures
-            _giftFixture = _giftBody.CreateFixture(giftShape);
-            var bottomWallFixture = _bottomWallBody.CreateFixture(bottomWallShape);
-            var leftWallFixture = _leftWallBody.CreateFixture(leftWallShape);
-            var rightWallFixture = _rightWallBody.CreateFixture(rightWallShape);
-            var topWallFixture = _topWallBody.CreateFixture(topWallShape);
         }
 
         public override void Update(GameTime gameTime)
@@ -117,20 +108,25 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             if (InputManager.KeyDown(Keys.Space))
             {
-                //_giftBody.ApplyLinearImpulse(new Vector2(1000, 10));
-                //_giftBody.ApplyAngularImpulse(10f);
-                var forceVector = new Vector2(0.5f, 0.5f);
-                var strength = 100f;
-                forceVector.Normalize();
-                _giftBody.ApplyForce(forceVector * strength);
-                _giftBody.ApplyAngularImpulse(strength);
+                //var forceVector = new Vector2(0.5f, 0.5f);
+                //var strength = 10f;
+
+                //forceVector.Normalize();
+                //_giftBody.ApplyForce(forceVector * strength);
+                //_giftBody.ApplyLinearImpulse(new Vector2(100, 10));
+                _giftBody.ApplyAngularImpulse(5f);
 
             }
 
-            _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            _world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
-            // Update graphics from physics
-            Position(_giftBody.Position);
+            SynchronizeGraphicsWithPhysics();
+        }
+
+        private void SynchronizeGraphicsWithPhysics()
+        {
+            Position(ConvertUnits.ToDisplayUnits(_giftBody.Position));
+            Rotation(_giftBody.Rotation);
         }
 
         public override void Draw()
@@ -142,8 +138,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
                 var view = Game.Camera.GetViewMatrix();
                 var projection = Matrix.CreateOrthographicOffCenter(
                     0f,
-                    Game.GraphicsDevice.Viewport.Width,
-                    Game.GraphicsDevice.Viewport.Height, 0f, 0f, 1f
+                    ConvertUnits.ToSimUnits(Game.GraphicsDevice.Viewport.Width),
+                    ConvertUnits.ToSimUnits(Game.GraphicsDevice.Viewport.Height), 0f, 0f, 1f
                 );
 
                 _debugView.Draw(ref projection, ref view);

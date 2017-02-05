@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.BitmapFonts;
+using XmasHell;
 
 namespace Xmas_Hell_Core.Physics.DebugView
 {
@@ -48,7 +49,7 @@ namespace Xmas_Hell_Core.Physics.DebugView
         private ContactPoint[] _points = new ContactPoint[MaxContactPoints];
 
         //Debug panel
-        public Vector2 DebugPanelPosition = new Vector2(0, 120);
+        public Vector2 DebugPanelPosition = new Vector2(0, GameConfig.VirtualResolution.Y - 120);
         private float _max;
         private float _avg;
         private float _min;
