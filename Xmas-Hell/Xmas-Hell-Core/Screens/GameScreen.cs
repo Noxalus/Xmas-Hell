@@ -59,7 +59,7 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            if (InputManager.KeyDown(Keys.Escape))
+            if (InputManager.PressedCancel())
             {
                 Dispose();
                 Show<MainMenuScreen>();

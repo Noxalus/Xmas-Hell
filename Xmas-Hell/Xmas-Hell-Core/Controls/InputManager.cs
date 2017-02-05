@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -17,6 +19,13 @@ namespace Xmas_Hell_Core.Controls
 
         static KeyboardState _keyboardState;
         static KeyboardState _lastKeyboardState;
+
+        #endregion
+
+        #region Game Pad Field Region
+
+        static GamePadState[] _gamePadStates;
+        static GamePadState[] _lastGamePadStates;
 
         #endregion
 
@@ -41,6 +50,20 @@ namespace Xmas_Hell_Core.Controls
 
         #endregion
 
+        #region Game Pad Property Region
+
+        public static GamePadState[] GamePadStates
+        {
+            get { return _gamePadStates; }
+        }
+
+        public static GamePadState[] LastGamePadStates
+        {
+            get { return _lastGamePadStates; }
+        }
+
+        #endregion
+
         #region Touch Property Region
 
         public static TouchCollection TouchState => _touchState;
@@ -55,6 +78,10 @@ namespace Xmas_Hell_Core.Controls
             _mouseState = Mouse.GetState();
             _keyboardState = Keyboard.GetState();
             _touchState = TouchPanel.GetState();
+            _gamePadStates = new GamePadState[Enum.GetValues(typeof(PlayerIndex)).Length];
+
+            foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
+                _gamePadStates[(int)index] = GamePad.GetState(index);
         }
 
         #endregion
@@ -77,6 +104,10 @@ namespace Xmas_Hell_Core.Controls
             _lastTouchState = _touchState;
             _touchState = TouchPanel.GetState();
 
+            _lastGamePadStates = (GamePadState[])_gamePadStates.Clone();
+            foreach (PlayerIndex index in Enum.GetValues(typeof(PlayerIndex)))
+                _gamePadStates[(int)index] = GamePad.GetState(index);
+
             base.Update(gameTime);
         }
 
@@ -90,34 +121,83 @@ namespace Xmas_Hell_Core.Controls
             _lastKeyboardState = _keyboardState;
         }
 
+        public static bool Up()
+        {
+            return
+                (KeyDown(Keys.Up) ||
+                ButtonDown(Buttons.DPadUp, PlayerIndex.One) ||
+                ButtonDown(Buttons.LeftThumbstickUp, PlayerIndex.One));
+        }
+
+        public static bool Down()
+        {
+            return
+                (KeyDown(Keys.Down) ||
+                ButtonDown(Buttons.DPadDown, PlayerIndex.One) ||
+                ButtonDown(Buttons.LeftThumbstickDown, PlayerIndex.One));
+        }
+
+        public static bool Left()
+        {
+            return
+                (KeyDown(Keys.Left) ||
+                ButtonDown(Buttons.DPadLeft, PlayerIndex.One) ||
+                ButtonDown(Buttons.LeftThumbstickLeft, PlayerIndex.One));
+        }
+
+        public static bool Right()
+        {
+            return
+                (KeyDown(Keys.Right) ||
+                ButtonDown(Buttons.DPadRight, PlayerIndex.One) ||
+                ButtonDown(Buttons.LeftThumbstickRight, PlayerIndex.One));
+        }
+
         public static bool PressedUp()
         {
-            return (KeyPressed(Keys.Up));
+            return
+                (KeyPressed(Keys.Up) ||
+                ButtonPressed(Buttons.DPadUp, PlayerIndex.One) ||
+                ButtonPressed(Buttons.LeftThumbstickUp, PlayerIndex.One));
         }
 
         public static bool PressedDown()
         {
-            return KeyPressed(Keys.Down);
+            return
+                (KeyPressed(Keys.Down) ||
+                ButtonPressed(Buttons.DPadDown, PlayerIndex.One) ||
+                ButtonPressed(Buttons.LeftThumbstickDown, PlayerIndex.One));
         }
 
         public static bool PressedLeft()
         {
-            return KeyPressed(Keys.Left);
+            return
+                (KeyPressed(Keys.Left) ||
+                ButtonPressed(Buttons.DPadLeft, PlayerIndex.One) ||
+                ButtonPressed(Buttons.LeftThumbstickLeft, PlayerIndex.One));
         }
 
         public static bool PressedRight()
         {
-            return KeyPressed(Keys.Right);
+            return
+                (KeyPressed(Keys.Right) ||
+                ButtonPressed(Buttons.DPadRight, PlayerIndex.One) ||
+                ButtonPressed(Buttons.LeftThumbstickRight, PlayerIndex.One));
         }
 
         public static bool PressedAction()
         {
-            return KeyPressed(Keys.Enter);
+            return
+                (KeyPressed(Keys.Enter) ||
+                ButtonPressed(Buttons.A, PlayerIndex.One));
         }
 
         public static bool PressedCancel()
         {
-            return KeyPressed(Keys.Escape);
+            return
+                (KeyPressed(Keys.Escape) ||
+                ButtonPressed(Buttons.B, PlayerIndex.One) ||
+                ButtonPressed(Buttons.Back, PlayerIndex.One));
         }
 
         #endregion
@@ -214,6 +294,37 @@ namespace Xmas_Hell_Core.Controls
         public static Point TouchPosition()
         {
             return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : _lastTouchState[0].Position.ToPoint();
+        }
+
+        #endregion
+
+        #region Game Pad Region
+
+        public static bool ButtonReleased(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonUp(button) &&
+                _lastGamePadStates[(int)index].IsButtonDown(button);
+        }
+
+        public static bool ButtonPressed(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonDown(button) &&
+                _lastGamePadStates[(int)index].IsButtonUp(button);
+        }
+
+        public static bool ButtonDown(Buttons button, PlayerIndex index)
+        {
+            return _gamePadStates[(int)index].IsButtonDown(button);
+        }
+
+        public static bool HavePressedButton(PlayerIndex index)
+        {
+            return _gamePadStates[(int)index] != _lastGamePadStates[(int)index];
+        }
+
+        public static Buttons[] GetPressedButton(PlayerIndex index)
+        {
+            return Enum.GetValues(typeof(Buttons)).Cast<Buttons>().Where(button => ButtonPressed(button, index)).ToArray();
         }
 
         #endregion
