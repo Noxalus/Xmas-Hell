@@ -196,6 +196,9 @@ namespace XmasHell
 
             base.Draw(gameTime);
 
+            if (GameConfig.DisplayCollisionBoxes)
+                GameManager.CollisionWorld.Draw();
+
             if (GameConfig.ShowDebugInfo)
             {
                 SpriteBatch.Begin(

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
@@ -25,7 +26,6 @@ namespace XmasHell.Physics
             set
             {
                 _playerHitbox = value;
-                _game.SpriteBatchManager.DebugCollisionElements.Add(_playerHitbox);
 
             }
         }
@@ -33,49 +33,41 @@ namespace XmasHell.Physics
         public void AddBossHitBox(CollisionElement element)
         {
             BossHitboxes.Add(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Add(element);
         }
 
         public void AddPlayerBulletHitbox(CollisionElement element)
         {
             _playerBulletHitboxes.Add(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Add(element);
         }
 
         public void AddBossBulletHitbox(CollisionElement element)
         {
             _bossBulletHitboxes.Add(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Add(element);
         }
 
         public void RemoveBossHitBox(CollisionElement element)
         {
             BossHitboxes.Remove(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Remove(element);
         }
 
         public void ClearBossHitboxes()
         {
-            BossHitboxes.ForEach(hb => _game.SpriteBatchManager.DebugCollisionElements.Remove(hb));
             BossHitboxes.Clear();
         }
 
         public void ClearBossBullets()
         {
-            _bossBulletHitboxes.ForEach(hb => _game.SpriteBatchManager.DebugCollisionElements.Remove(hb));
             _bossBulletHitboxes.Clear();
         }
 
         public void RemovePlayerBulletHitbox(CollisionElement element)
         {
             _playerBulletHitboxes.Remove(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Remove(element);
         }
 
         public void RemoveBossBulletHitbox(CollisionElement element)
         {
             _bossBulletHitboxes.Remove(element);
-            _game.SpriteBatchManager.DebugCollisionElements.Remove(element);
         }
 
         public CollisionWorld(XmasHell game)
@@ -136,6 +128,27 @@ namespace XmasHell.Physics
             // Clean destroyed elements
             _playerBulletHitboxes.RemoveAll(hb => !((Bullet)hb.Entity).Used);
             _bossBulletHitboxes.RemoveAll(hb => !((Mover)hb.Entity).Used);
+        }
+
+        // For Debug purpose only
+        public void Draw()
+        {
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.Camera.GetViewMatrix()
+            );
+
+            // Draw hitboxes
+            _playerHitbox.Draw(_game.SpriteBatch);
+            BossHitboxes.ForEach(hb => hb.Draw(_game.SpriteBatch));
+
+            // Draw bullet's colliders
+            _playerBulletHitboxes.ForEach(hb => hb.Draw(_game.SpriteBatch));
+            _bossBulletHitboxes.ForEach(hb => hb.Draw(_game.SpriteBatch));
+
+            _game.SpriteBatch.End();
+
         }
     }
 }

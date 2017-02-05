@@ -23,7 +23,6 @@ namespace XmasHell.Sprites
         public List<Mover> BossBullets;
         public List<Sprite> GameSprites;
         public List<ParticleEffect> GameParticles;
-        public List<CollisionElement> DebugCollisionElements;
 
         public Boss Boss;
         public Player Player;
@@ -48,7 +47,6 @@ namespace XmasHell.Sprites
             BossBullets = new List<Mover>();
             GameSprites = new List<Sprite>();
             GameParticles = new List<ParticleEffect>();
-            DebugCollisionElements = new List<CollisionElement>();
         }
 
         public void Initialize()
@@ -203,12 +201,6 @@ namespace XmasHell.Sprites
             foreach (var particle in GameParticles)
                 _game.SpriteBatch.Draw(particle);
 
-            if (GameConfig.DisplayCollisionBoxes)
-            {
-                foreach (var collisionElement in DebugCollisionElements)
-                    collisionElement.Draw(_game.SpriteBatch);
-            }
-
             _game.SpriteBatch.End();
 
             if (!GameConfig.DisableBloom)
@@ -226,16 +218,6 @@ namespace XmasHell.Sprites
             else
             {
                 DrawBloomedElements();
-            }
-
-            if (GameConfig.DisplayCollisionBoxes)
-            {
-                BeginDrawCameraSpace();
-
-                foreach (var collisionElement in DebugCollisionElements)
-                    collisionElement.Draw(_game.SpriteBatch);
-
-                _game.SpriteBatch.End();
             }
 
             BeginDrawViewportSpace();
