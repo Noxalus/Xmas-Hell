@@ -1,6 +1,7 @@
 using System;
 using BulletML;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 using XmasHell.BulletML;
@@ -24,10 +25,13 @@ namespace XmasHell.Screens
 
         public override void Initialize()
         {
-            var pattern = new BulletPattern();
-            pattern.ParseStream(_patternFile, Assets.GetPattern(_patternFile));
+            if (_game.GameManager.MoverManager.FindPattern(_patternFile) == null)
+            {
+                var pattern = new BulletPattern();
+                pattern.ParseStream(_patternFile, Assets.GetPattern(_patternFile));
 
-            _game.GameManager.MoverManager.AddPattern(_patternFile, pattern);
+                _game.GameManager.MoverManager.AddPattern(_patternFile, pattern);
+            }
 
             _shootFrequency = TimeSpan.Zero;
 
