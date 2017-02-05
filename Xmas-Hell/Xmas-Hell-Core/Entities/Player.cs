@@ -203,13 +203,13 @@ namespace XmasHell.Entities
             var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
             var direction = Vector2.Zero;
 
-            if (InputManager.KeyDown(Keys.Up))
+            if (InputManager.Up())
                 direction.Y -= 1;
-            if (InputManager.KeyDown(Keys.Down))
+            if (InputManager.Down())
                 direction.Y += 1;
-            if (InputManager.KeyDown(Keys.Left))
+            if (InputManager.Left())
                 direction.X -= 1;
-            if (InputManager.KeyDown(Keys.Right))
+            if (InputManager.Right())
                 direction.X += 1;
 
             if (direction.X != 0 && direction.Y != 0)
