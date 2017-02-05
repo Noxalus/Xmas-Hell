@@ -55,20 +55,26 @@ namespace XmasHell.Physics.Collision
                 // Compute translation
                 var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
                 var animationOffset = new Vector2(spriteData.X, -spriteData.Y);
+                var scale = new Vector2(spriteData.ScaleX, spriteData.ScaleY);
+                var realPivotPosition = new Vector2(1 - spriteData.PivotX, 1 - spriteData.PivotY);
 
-                vertex.X *= spriteData.ScaleX;
-                vertex.Y *= spriteData.ScaleY;
+                vertex *= scale;
 
                 var spriteCenter = new Vector2(
-                    _spriterPartFile.Width * (1 - spriteData.PivotX) * spriteData.ScaleX + spriteData.X,
-                    _spriterPartFile.Height * (1 - spriteData.PivotY) * spriteData.ScaleY - spriteData.Y
+                    _spriterPartFile.Width * realPivotPosition.X,
+                    _spriterPartFile.Height * realPivotPosition.Y
                 );
-                var worldTopLeftCornerPosition = currentAnimator.Position - spriteCenter;
+                var worldTopLeftCornerPosition = currentAnimator.Position - (spriteCenter * scale);
 
                 worldPosition = worldTopLeftCornerPosition + vertex + animationOffset + _relativePosition;
 
                 // Compute rotation
-                var origin = currentAnimator.Position;
+                var pivot = new Vector2(
+                    (_spriterPartFile.Width * realPivotPosition.X) + spriteData.X,
+                    (_spriterPartFile.Height * realPivotPosition.Y) - spriteData.Y
+                );
+
+                var origin = currentAnimator.Position + pivot - spriteCenter;
 
                 var rotation = -spriteData.Angle;
                 rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
