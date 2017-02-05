@@ -51,17 +51,17 @@ namespace XmasHell.Sprites
 
         public void Initialize()
         {
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 Bloom = new Bloom(_game.GraphicsDevice, _game.SpriteBatch);
 
                 var pp = _game.GraphicsDevice.PresentationParameters;
 
                 _renderTarget1 = new RenderTarget2D(
-                    _game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
+                    _game.GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y, false,
                     pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
                 );
-                _renderTarget2 = new RenderTarget2D(_game.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight, false,
+                _renderTarget2 = new RenderTarget2D(_game.GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y, false,
                     pp.BackBufferFormat, pp.DepthStencilFormat, pp.MultiSampleCount, RenderTargetUsage.DiscardContents
                 );
             }
@@ -69,13 +69,13 @@ namespace XmasHell.Sprites
 
         public void LoadContent()
         {
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
                 Bloom.LoadContent(_game.Content, _game.GraphicsDevice.PresentationParameters);
         }
 
         public void UnloadContent()
         {
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 Bloom.UnloadContent();
                 _renderTarget1.Dispose();
@@ -85,7 +85,7 @@ namespace XmasHell.Sprites
 
         public void Update()
         {
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 _bloomSaturationPulse += _bloomSaturationDirection;
                 if (_bloomSaturationPulse > 2.5f) _bloomSaturationDirection = -0.09f;
@@ -117,10 +117,10 @@ namespace XmasHell.Sprites
         {
             BeginDrawCameraSpace();
 
+            PlayerHitbox?.Draw(_game.SpriteBatch);
+
             foreach (var mover in BossBullets)
                 _game.SpriteBatch.Draw(mover.Sprite);
-
-            PlayerHitbox?.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
         }
@@ -155,7 +155,7 @@ namespace XmasHell.Sprites
         public void Draw()
         {
             // Start by render the bloomed elements into a render target
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 // The next draw calls will be rendered in the first render target
                 _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
@@ -169,6 +169,9 @@ namespace XmasHell.Sprites
 
                 // We want to render into the back buffer from now on
                 _game.GraphicsDevice.SetRenderTarget(null);
+
+                // Reset the viewport
+                _game.ViewportAdapter.Reset();
             }
 
             BeginDrawViewportSpace();
@@ -203,15 +206,16 @@ namespace XmasHell.Sprites
 
             _game.SpriteBatch.End();
 
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 // Draw bloom render target
                 // Draw the second render target on top of everything
-                _game.SpriteBatch.Begin(0, BlendState.AlphaBlend);
+                BeginDrawViewportSpace();
+
                 _game.SpriteBatch.Draw(_renderTarget2, new Rectangle(
                     0, 0,
-                    _game.GraphicsDevice.PresentationParameters.BackBufferWidth,
-                    _game.GraphicsDevice.PresentationParameters.BackBufferHeight
+                    GameConfig.VirtualResolution.X,
+                    GameConfig.VirtualResolution.Y
                 ), Color.White);
                 _game.SpriteBatch.End();
             }

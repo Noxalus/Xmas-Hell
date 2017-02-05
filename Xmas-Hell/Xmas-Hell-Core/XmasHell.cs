@@ -152,10 +152,10 @@ namespace XmasHell
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
 
-            if (!GameConfig.DisableBloom)
+            if (GameConfig.EnableBloom)
             {
                 // Switch to the next bloom settings preset?
-                if (InputManager.KeyPressed(Keys.A))
+                if (InputManager.KeyPressed(Keys.C))
                 {
                     SpriteBatchManager.BloomSettingsIndex = (SpriteBatchManager.BloomSettingsIndex + 1) %
                                                             BloomSettings.PresetSettings.Length;
@@ -225,10 +225,10 @@ namespace XmasHell
                     $"Draw time: { _drawTime.TotalMilliseconds } ms", new Vector2(0, 100), Color.White
                 );
 
-                if (!GameConfig.DisableBloom)
+                if (GameConfig.EnableBloom)
                 {
                     SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                        "A = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 120),
+                        "C = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 120),
                         Color.White);
                     SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
                         "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 140),
