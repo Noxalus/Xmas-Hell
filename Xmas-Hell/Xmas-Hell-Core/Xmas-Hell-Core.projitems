@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
@@ -65,36 +67,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmasHell.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutAssets.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\MainMenu\snowflake.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\sample.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\template.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\test.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern1.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern3.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBall\pattern4.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBell\pattern1.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\Patterns\XmasBell\pattern2.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

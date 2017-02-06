@@ -51,7 +51,6 @@ namespace XmasHell.Screens
             base.Dispose();
 
             _boss.Dispose();
-
             Console.WriteLine("Dispose GameScreen");
         }
 

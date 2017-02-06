@@ -32,6 +32,6 @@ namespace XmasHell
         // Debug
         public static bool DisplayCollisionBoxes = true;
         public static bool EnableBloom = true;
-        public static bool ShowDebugInfo = true;
+        public static bool ShowDebugInfo = false;
     }
 }

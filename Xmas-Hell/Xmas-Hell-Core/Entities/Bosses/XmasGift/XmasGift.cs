@@ -19,14 +19,12 @@ namespace XmasHell.Entities.Bosses.XmasGift
     class XmasGift : Boss
     {
         // Physics World
-        private World _world;
-        private Body _giftBody;
-        private Body _leftWallBody;
-        private Body _topWallBody;
-        private Body _rightWallBody;
-        private Body _bottomWallBody;
-
-        private Fixture _giftFixture;
+        protected World World;
+        protected Body GiftBody;
+        protected Body LeftWallBody;
+        protected Body TopWallBody;
+        protected Body RightWallBody;
+        protected Body BottomWallBody;
 
         private DebugView _debugView;
 
@@ -39,7 +37,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
             BulletPatternFiles.Add("sample");
 
             // Behaviours
-            Behaviours.Add(new XmasGiftBehaviour1(this, _world));
+            Behaviours.Add(new XmasGiftBehaviour1(this, World));
         }
 
         protected override void InitializePhysics()
@@ -51,10 +49,10 @@ namespace XmasHell.Entities.Bosses.XmasGift
             var gravity = Vector2.UnitY * 9.82f;
             //gravity = Vector2.Zero;
 
-            _world = new World(gravity);
+            World = new World(gravity);
 
             if (GameConfig.DisplayCollisionBoxes)
-                _debugView = new DebugView(_world, Game, 1f);
+                _debugView = new DebugView(World, Game, 1f);
 
             SetupPhysicsWorld();
         }
@@ -65,38 +63,39 @@ namespace XmasHell.Entities.Bosses.XmasGift
             var height = GetSpritePartHeight("body.png");
             var position = new Vector2(ConvertUnits.ToSimUnits(Position().X), ConvertUnits.ToSimUnits(Position().Y));
 
-            _giftBody = BodyFactory.CreateRectangle(
-                _world,
+            GiftBody = BodyFactory.CreateRectangle(
+                World,
                 ConvertUnits.ToSimUnits(width),
                 ConvertUnits.ToSimUnits(height),
                 10f,
                 position
             );
 
-            _giftBody.BodyType = BodyType.Dynamic;
-
+            GiftBody.BodyType = BodyType.Dynamic;
+            GiftBody.Restitution = 1.01f;
+            GiftBody.Friction = 0.1f;
 
             // Walls
-            _bottomWallBody = BodyFactory.CreateEdge(
-                _world,
+            BottomWallBody = BodyFactory.CreateEdge(
+                World,
                 ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y),
                 ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
             );
 
-            _leftWallBody = BodyFactory.CreateEdge(
-                _world,
+            LeftWallBody = BodyFactory.CreateEdge(
+                World,
                 ConvertUnits.ToSimUnits(0, 0),
                 ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y)
             );
 
-            _rightWallBody = BodyFactory.CreateEdge(
-                _world,
+            RightWallBody = BodyFactory.CreateEdge(
+                World,
                 ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0),
                 ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
             );
 
-            _topWallBody = BodyFactory.CreateEdge(
-                _world,
+            TopWallBody = BodyFactory.CreateEdge(
+                World,
                 ConvertUnits.ToSimUnits(0, 0),
                 ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0)
             );
@@ -106,7 +105,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
         {
             base.Update(gameTime);
 
-            if (InputManager.KeyDown(Keys.Space))
+            //if (InputManager.KeyDown(Keys.Space))
             {
                 //var forceVector = new Vector2(0.5f, 0.5f);
                 //var strength = 10f;
@@ -114,19 +113,19 @@ namespace XmasHell.Entities.Bosses.XmasGift
                 //forceVector.Normalize();
                 //_giftBody.ApplyForce(forceVector * strength);
                 //_giftBody.ApplyLinearImpulse(new Vector2(100, 10));
-                _giftBody.ApplyAngularImpulse(5f);
+                GiftBody.ApplyAngularImpulse(0.5f);
 
             }
 
-            _world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
+            World.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             SynchronizeGraphicsWithPhysics();
         }
 
         private void SynchronizeGraphicsWithPhysics()
         {
-            Position(ConvertUnits.ToDisplayUnits(_giftBody.Position));
-            Rotation(_giftBody.Rotation);
+            Position(ConvertUnits.ToDisplayUnits(GiftBody.Position));
+            Rotation(GiftBody.Rotation);
         }
 
         public override void Draw()

@@ -91,7 +91,7 @@ namespace XmasHell.Screens
                 else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasGift);
                 else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
-                    _game.GameScreen.LoadBoss(BossType.XmasLog);
+                    _game.GameScreen.LoadBoss(BossType.XmasSnowflake);
 
                 Show<GameScreen>();
             }
@@ -105,6 +105,18 @@ namespace XmasHell.Screens
             {
                 _shootFrequency -= gameTime.ElapsedGameTime;
             }
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            _game.SpriteBatch.Begin(transformMatrix: _game.Camera.GetViewMatrix());
+            _game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(0, 0, GameConfig.VirtualResolution.X / 2, GameConfig.VirtualResolution.Y / 2), null, Color.Red);
+            _game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(GameConfig.VirtualResolution.X / 2, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2), null, Color.Green);
+            _game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(0, GameConfig.VirtualResolution.Y / 2, GameConfig.VirtualResolution.X / 2, GameConfig.VirtualResolution.Y / 2), null, Color.Yellow);
+            _game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(GameConfig.VirtualResolution.X / 2, GameConfig.VirtualResolution.Y / 2, GameConfig.VirtualResolution.X / 2, GameConfig.VirtualResolution.Y / 2), null, Color.Blue);
+            _game.SpriteBatch.End();
         }
     }
 }

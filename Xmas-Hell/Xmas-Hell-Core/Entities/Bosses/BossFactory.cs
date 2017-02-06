@@ -1,5 +1,6 @@
 using System;
 using BulletML;
+using XmasHell.Entities.Bosses.XmasBall;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -16,6 +17,7 @@ namespace XmasHell.Entities.Bosses
                 case BossType.XmasCandy:
                     break;
                 case BossType.XmasSnowflake:
+                    return new XmasSnowflake.XmasSnowflake(game, playerPositionDelegate);
                     break;
                 case BossType.XmasLog:
                     return new XmasLog.XmasLog(game, playerPositionDelegate);
