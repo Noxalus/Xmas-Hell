@@ -606,6 +606,7 @@
 #begin Graphics/Fonts/debug.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Graphics/Fonts/debug.spritefont
 

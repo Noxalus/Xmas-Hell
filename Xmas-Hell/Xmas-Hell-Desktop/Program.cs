@@ -1,5 +1,4 @@
 ﻿using System;
-using XmasHell;
 
 namespace Xmas_Hell_Desktop
 {
