@@ -74,6 +74,8 @@ namespace XmasHell.BulletML
             Used = true;
 
             Sprite = new Sprite(Texture);
+            Sprite.Alpha = 0f;
+
             _game.SpriteBatchManager.BossBullets.Add(this);
 
             if (!topBullet)
@@ -95,6 +97,8 @@ namespace XmasHell.BulletML
         public override void Update()
         {
             base.Update();
+
+            Sprite.Alpha = MathHelper.Lerp(Sprite.Alpha, 1f, 0.05f);
 
             Sprite.Position = _position;
             Sprite.Rotation = Direction;
