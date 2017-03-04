@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using SpriterDotNet.MonoGame;
 
@@ -8,6 +5,8 @@ namespace XmasHell.Physics
 {
     class SpriterPhysicsEntity : IPhysicsEntity
     {
+        private readonly MonoGameAnimator _animator;
+
         public virtual Vector2 Position()
         {
             var currentPosition = _animator.Position;
@@ -42,7 +41,10 @@ namespace XmasHell.Physics
             return _animator.Scale;
         }
 
-        private readonly MonoGameAnimator _animator;
+        public void TakeDamage(float damage)
+        {
+            // Nothing
+        }
 
         public SpriterPhysicsEntity(MonoGameAnimator animator)
         {

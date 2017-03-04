@@ -10,10 +10,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
     class XmasBallBehaviour3 : AbstractBossBehaviour
     {
         private Line _bossPlayerLine;
-        private readonly Line _leftWallLine;
-        private readonly Line _bottomWallLine;
-        private readonly Line _upWallLine;
-        private readonly Line _rightWallLine;
         private Vector2 _newPosition;
         private TimeSpan _stunnedTimer;
         private bool _stunned;
@@ -23,25 +19,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
         public XmasBallBehaviour3(Boss boss) : base(boss)
         {
-            _bottomWallLine = new Line(
-                new Vector2(0f, GameConfig.VirtualResolution.Y),
-                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
-            );
-
-            _leftWallLine = new Line(
-                new Vector2(0f, 0f),
-                new Vector2(0f, GameConfig.VirtualResolution.Y)
-            );
-
-            _rightWallLine = new Line(
-                new Vector2(GameConfig.VirtualResolution.X, 0f),
-                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
-            );
-
-            _upWallLine = new Line(
-                new Vector2(0f, 0f),
-                new Vector2(GameConfig.VirtualResolution.X, 0f)
-            );
         }
 
         public override void Start()
@@ -122,13 +99,13 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
                 var playerDirection = Boss.GetPlayerDirection();
                 var maxDistance = (float) Math.Sqrt(
-                    GameConfig.VirtualResolution.X*GameConfig.VirtualResolution.X +
-                    GameConfig.VirtualResolution.Y*GameConfig.VirtualResolution.Y
+                    GameConfig.VirtualResolution.X * GameConfig.VirtualResolution.X +
+                    GameConfig.VirtualResolution.Y * GameConfig.VirtualResolution.Y
                 );
 
                 Boss.CurrentAnimator.Rotation = playerDirection.ToAngle();
 
-                var fartherPlayerPosition = currentPosition + (playerDirection*maxDistance);
+                var fartherPlayerPosition = currentPosition + (playerDirection * maxDistance);
 
                 _bossPlayerLine = new Line(
                     currentPosition,
@@ -137,11 +114,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
                 _newPosition = Vector2.Zero;
 
-                var hasNewPosition =
-                    MathHelperExtension.LinesIntersect(_bottomWallLine, _bossPlayerLine, ref _newPosition) ||
-                    MathHelperExtension.LinesIntersect(_leftWallLine, _bossPlayerLine, ref _newPosition) ||
-                    MathHelperExtension.LinesIntersect(_rightWallLine, _bossPlayerLine, ref _newPosition) ||
-                    MathHelperExtension.LinesIntersect(_upWallLine, _bossPlayerLine, ref _newPosition);
+                var hasNewPosition = Boss.GetLineWallIntersectionPosition(_bossPlayerLine, ref _newPosition);
 
                 if (hasNewPosition)
                     Boss.MoveTo(_newPosition);

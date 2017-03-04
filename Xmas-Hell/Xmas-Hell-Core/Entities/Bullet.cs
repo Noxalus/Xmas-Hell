@@ -88,5 +88,10 @@ namespace XmasHell.Entities
                 Destroy();
             }
         }
+
+        public void TakeDamage(float damage)
+        {
+            // Nothing
+        }
     }
 }

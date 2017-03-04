@@ -9,10 +9,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             // BulletML
             BulletPatternFiles.Add("XmasSnowflake/pattern1");
+            BulletPatternFiles.Add("XmasSnowflake/pattern2");
 
             // Behaviours
             Behaviours.Add(new XmasSnowflakeBehaviour1(this));
-
+            Behaviours.Add(new XmasSnowflakeBehaviour2(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowflake/xmas-snowflake";
         }
@@ -27,6 +28,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             base.InitializePhysics();
 
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png"));
+        }
+
+        protected override void UpdateBehaviourIndex()
+        {
+            CurrentBehaviourIndex = 1;
         }
     }
 }

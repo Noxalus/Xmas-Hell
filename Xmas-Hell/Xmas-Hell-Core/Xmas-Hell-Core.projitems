@@ -6,7 +6,7 @@
     <SharedGUID>9c2e5315-1ddd-45e0-8601-196b4559004d</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Xmas_Hell_Core</Import_RootNamespace>
+    <Import_RootNamespace>XmasHell</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Assets.cs" />
@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\MoverManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Camera.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\AbstractDrawableEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\AbstractEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\AbstractBossBehaviour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Boss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossFactory.cs" />
@@ -33,8 +35,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflake.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBranch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\IBloomService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\MonoGameDebugAnimator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />

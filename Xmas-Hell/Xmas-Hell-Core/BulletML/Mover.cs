@@ -75,6 +75,7 @@ namespace XmasHell.BulletML
 
             Sprite = new Sprite(Texture);
             Sprite.Alpha = 0f;
+            Sprite.Scale = new Vector2(2.5f);
 
             _game.SpriteBatchManager.BossBullets.Add(this);
 
@@ -99,16 +100,25 @@ namespace XmasHell.BulletML
             base.Update();
 
             Sprite.Alpha = MathHelper.Lerp(Sprite.Alpha, 1f, 0.05f);
+            Sprite.Scale = new Vector2(
+                MathHelper.Lerp(Sprite.Scale.X, 1f, 0.05f),
+                MathHelper.Lerp(Sprite.Scale.Y, 1f, 0.05f)
+            );
 
             Sprite.Position = _position;
             Sprite.Rotation = Direction;
-            Sprite.Scale = Scale();
+            //Sprite.Scale = Scale();
 
             if (X < -100 || X > GameConfig.VirtualResolution.X + 100 || Y < -100 ||
                 Y > GameConfig.VirtualResolution.Y + 100)
             {
                 Destroy();
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            // Nothing
         }
     }
 }

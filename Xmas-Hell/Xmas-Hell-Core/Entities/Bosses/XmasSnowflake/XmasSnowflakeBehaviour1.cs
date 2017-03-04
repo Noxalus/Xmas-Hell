@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended.Timers;
 using XmasHell.BulletML;
 
 namespace XmasHell.Entities.Bosses.XmasSnowflake
@@ -7,7 +8,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
     class XmasSnowflakeBehaviour1 : AbstractBossBehaviour
     {
         private TimeSpan _newPositionTime;
-        private TimeSpan _bulletFrequence;
+        private CountdownTimer _shootBulletTimer;
 
         public XmasSnowflakeBehaviour1(Boss boss) : base(boss)
         {
@@ -19,7 +20,16 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
             Boss.Speed = 500f;
             _newPositionTime = TimeSpan.Zero;
-            _bulletFrequence = TimeSpan.Zero;
+
+            _shootBulletTimer = new CountdownTimer(1);
+
+            _shootBulletTimer.Completed += (sender, args) =>
+            {
+                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasSnowflake/pattern1", BulletType.Type2, false, Boss.Position());
+
+                //_shootBulletTimer.Interval = TimeSpan.FromSeconds(5);
+                _shootBulletTimer.Restart();
+            };
 
             Boss.CurrentAnimator.Play("Idle");
         }
@@ -32,6 +42,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            _shootBulletTimer.Update(gameTime);
 
             if (_newPositionTime.TotalMilliseconds > 0)
             {
@@ -48,14 +60,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
                 );
 
                 Boss.MoveTo(newPosition, 1.5f);
-            }
-
-            if (_bulletFrequence.TotalMilliseconds > 0)
-                _bulletFrequence -= gameTime.ElapsedGameTime;
-            else
-            {
-                _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasSnowflake/pattern1", BulletType.Type2, false, Boss.Position());
             }
         }
     }

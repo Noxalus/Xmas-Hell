@@ -74,7 +74,11 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet2"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet3"),
-                content.Load<Texture2D>("Graphics/Sprites/hitbox")
+                content.Load<Texture2D>("Graphics/Sprites/hitbox"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch1"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch3"),
+
+
             };
 
             // Load fonts
@@ -103,6 +107,7 @@ namespace XmasHell
 
                 // Xmas Snowflake
                 { "XmasSnowflake/pattern1", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern1.xml")) },
+                { "XmasSnowflake/pattern2", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern2.xml")) },
 
                 // Xmas Gift
 

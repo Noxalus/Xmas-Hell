@@ -30,6 +30,7 @@ namespace XmasHell.Entities.Bosses
         XmasSanta
     }
 
+    // TODO: Inherit from AbstractEntity
     public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
         public XmasHell Game;
@@ -65,6 +66,11 @@ namespace XmasHell.Entities.Bosses
         private TimeSpan _hitTimer = TimeSpan.Zero;
         public bool Tinted;
         public Color HitColor;
+
+        private readonly Line _leftWallLine;
+        private readonly Line _bottomWallLine;
+        private readonly Line _upWallLine;
+        private readonly Line _rightWallLine;
 
         // Behaviours
         protected readonly List<AbstractBossBehaviour> Behaviours;
@@ -226,9 +232,29 @@ namespace XmasHell.Entities.Bosses
                 Color = Color.Red
             };
 
-
             Game.SpriteBatchManager.Boss = this;
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
+
+            // To compute line/wall intersection
+            _bottomWallLine = new Line(
+                new Vector2(0f, GameConfig.VirtualResolution.Y),
+                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            );
+
+            _leftWallLine = new Line(
+                new Vector2(0f, 0f),
+                new Vector2(0f, GameConfig.VirtualResolution.Y)
+            );
+
+            _rightWallLine = new Line(
+                new Vector2(GameConfig.VirtualResolution.X, 0f),
+                new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            );
+
+            _upWallLine = new Line(
+                new Vector2(0f, 0f),
+                new Vector2(GameConfig.VirtualResolution.X, 0f)
+            );
         }
 
         public virtual void Initialize()
@@ -394,6 +420,23 @@ namespace XmasHell.Entities.Bosses
             return MathHelperExtension.AngleToDirection(angle);
         }
 
+        public bool GetLineWallIntersectionPosition(Line line, ref Vector2 newPosition)
+        {
+            // Make sure the line go out of the screen
+            var maxDistance = (float) Math.Sqrt(
+                GameConfig.VirtualResolution.X * GameConfig.VirtualResolution.X +
+                GameConfig.VirtualResolution.Y * GameConfig.VirtualResolution.Y
+            );
+            var direction = Vector2.Normalize(line.Second - line.First);
+            line.Second += (direction * maxDistance);
+
+            return
+                MathHelperExtension.LinesIntersect(_bottomWallLine, line, ref newPosition) ||
+                MathHelperExtension.LinesIntersect(_leftWallLine, line, ref newPosition) ||
+                MathHelperExtension.LinesIntersect(_rightWallLine, line, ref newPosition) ||
+                MathHelperExtension.LinesIntersect(_upWallLine, line, ref newPosition);
+        }
+
         protected void CurrentAnimator_EventTriggered(string obj)
         {
             System.Diagnostics.Debug.WriteLine(obj);
@@ -555,6 +598,7 @@ namespace XmasHell.Entities.Bosses
         public virtual void Draw()
         {
             CurrentAnimator.Draw(Game.SpriteBatch);
+            Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace XmasHell.Screens
             MediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
             MediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
 
-            //MediaPlayer.Stop();
+            MediaPlayer.Stop();
 
             //MediaPlayer.Play(_introSong);
             //MediaPlayer.Play(_mainSong);

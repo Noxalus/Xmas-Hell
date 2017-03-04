@@ -90,7 +90,7 @@ namespace XmasHell.Physics
                         {
                             var playerBullet = (Bullet) playerBulletHitbox.Entity;
                             playerBullet.Destroy();
-                            ((Boss)bossHitBox.Entity).TakeDamage(1);
+                            bossHitBox.Entity.TakeDamage(1);
                             _game.GameManager.ParticleManager.EmitBossHitParticles(playerBullet.Position());
                         }
                     }

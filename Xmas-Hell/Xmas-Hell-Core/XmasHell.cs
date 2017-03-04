@@ -66,11 +66,14 @@ namespace XmasHell
             // Used for bloom effect
             Graphics.PreferredDepthStencilFormat = DepthFormat.Depth16;
 #else
-            //Graphics.IsFullScreen = false;
+            Graphics.IsFullScreen = false;
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
-            Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.X;
-            Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.Y;
+            //Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.X;
+            //Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.Y;
+
+            Graphics.PreferredBackBufferWidth = 480;
+            Graphics.PreferredBackBufferHeight = 853;
 
             // Unlock FPS
             //IsFixedTimeStep = false;

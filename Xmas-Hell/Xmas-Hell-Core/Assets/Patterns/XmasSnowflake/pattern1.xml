@@ -5,16 +5,16 @@
     <fire>
       <bullet>
         <direction type="aim">0</direction>
-        <speed>10</speed>
+        <speed>20</speed>
         <action>
-          <wait>50 + ($rand * 20)</wait>
+          <wait>10 + ($rand * 40)</wait>
           <action>
             <changeSpeed>
               <speed>0</speed>
-              <term>60</term>
+              <term>20</term>
             </changeSpeed>
           </action>
-          <wait>70</wait>
+          <wait>30</wait>
           <vanish />
           <repeat>
             <times>6</times>

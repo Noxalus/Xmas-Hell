@@ -227,7 +227,7 @@ namespace XmasHell.Entities
         {
             var deltaPosition = CurrentAnimator.Position - _previousPosition;
 
-            Console.WriteLine("Delta position: " + deltaPosition);
+            //Console.WriteLine("Delta position: " + deltaPosition);
 
             if (deltaPosition.Y > 50)
             {
@@ -286,6 +286,11 @@ namespace XmasHell.Entities
                 _game.GameManager.AddBullet(bullet4);
                 _game.GameManager.AddBullet(bullet5);
             }
+        }
+
+        public void TakeDamage(float damage)
+        {
+            // Nothing => is killed on the first touch
         }
     }
 }
