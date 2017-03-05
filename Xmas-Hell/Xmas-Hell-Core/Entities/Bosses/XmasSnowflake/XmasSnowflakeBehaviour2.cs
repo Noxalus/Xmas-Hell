@@ -39,6 +39,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         public override void Stop()
         {
             base.Stop();
+
+            foreach (var branch in _branches)
+            {
+                branch.Dispose();
+            }
         }
 
         private void AnimationFinishedHandler(string animationName)
@@ -117,7 +122,10 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
                 branch.Update(gameTime);
 
                 if (!branch.Alive())
+                {
+                    branch.Dispose();
                     _branches.Remove(branch);
+                }
             }
 
             if (_initialized && _branches.Count == 0 && Boss.CurrentAnimator.CurrentAnimation.Name != "RespawnBranches")

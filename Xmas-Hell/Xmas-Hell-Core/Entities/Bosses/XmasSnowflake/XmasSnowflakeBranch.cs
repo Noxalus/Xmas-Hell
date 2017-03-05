@@ -40,7 +40,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
         public void TakeDamage(float damage)
         {
-            //_boss.TakeDamage(damage * 2);
+            _boss.TakeDamage(damage * 0.125f);
         }
 
         public bool Alive()
@@ -103,11 +103,15 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
         }
 
+        public void Dispose()
+        {
+            _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(_boundingBox);
+        }
+
         private void Destroy()
         {
             // Shake the camera + trigger a simple bullet pattern
             _boss.Game.Camera.Shake(1f, 10f);
-            _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(_boundingBox);
             _boss.Game.GameManager.MoverManager.TriggerPattern("XmasSnowflake/pattern2", BulletType.Type3, false, Position());
 
             _destroyed = true;
@@ -132,16 +136,12 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
             var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
 
-            //_branchPlayerLine.First = Position();
-            //_branchPlayerLine.Second = _boss.GetPlayerPosition();
-
             _canRushTimer.Update(gameTime);
             _rushTimer.Update(gameTime);
 
             if (!TargetingPosition && !_rushing)
             {
                 // Follow the player
-                //Sprite.Rotation = Vector2.Normalize(_boss.GetPlayerPosition() - Position()).ToAngle() + (float)Math.PI;
                 Sprite.Rotation += _angularSpeed * dt;
 
                 if (_canRush)
@@ -165,13 +165,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
                 Destroy();
             }
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-
-            //spriteBatch.DrawLine(_branchPlayerLine.First, _branchPlayerLine.Second, Color.Red, 5f);
         }
     }
 }
