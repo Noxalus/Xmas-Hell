@@ -7,6 +7,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
     {
         public XmasSnowflake(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
+            InitialLife = 500f;
+
             // BulletML
             BulletPatternFiles.Add("XmasSnowflake/pattern1");
             BulletPatternFiles.Add("XmasSnowflake/pattern2");
@@ -32,6 +34,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             base.InitializePhysics();
 
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png"));
+        }
+
+        protected override void UpdateBehaviourIndex()
+        {
+            base.UpdateBehaviourIndex();
+
+            //CurrentBehaviourIndex = 3;
         }
     }
 }

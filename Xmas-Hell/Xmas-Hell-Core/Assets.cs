@@ -77,8 +77,6 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/hitbox"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch3"),
-
-
             };
 
             // Load fonts

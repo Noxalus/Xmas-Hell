@@ -19,9 +19,10 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             base.Start();
 
+            //Boss.Speed = 500f;
             Boss.CurrentAnimator.Play("Idle");
 
-            _shootBulletTimer = new CountdownTimer(0.1);
+            _shootBulletTimer = new CountdownTimer(0.2);
 
             _shootBulletTimer.Completed += (sender, args) =>
             {
@@ -72,10 +73,10 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             var newPosition = new Vector2(
                 Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, 288 - (int)(Boss.Height() / 2f))
+                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 42, GameConfig.VirtualResolution.Y - (int)(Boss.Height() / 2f))
             );
 
-            Boss.MoveTo(newPosition, 1.5f);
+            Boss.MoveTo(newPosition, 3f);
 
             UpdateActionPointPosition();
             _shootBulletTimer.Update(gameTime);

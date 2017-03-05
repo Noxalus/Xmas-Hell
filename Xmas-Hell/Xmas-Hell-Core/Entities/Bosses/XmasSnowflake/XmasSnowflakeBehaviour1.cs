@@ -25,9 +25,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
             _shootBulletTimer.Completed += (sender, args) =>
             {
-                //Boss.Game.GameManager.MoverManager.TriggerPattern("XmasSnowflake/pattern1", BulletType.Type2, false, Boss.Position());
-
-                //_shootBulletTimer.Interval = TimeSpan.FromSeconds(5);
+                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasSnowflake/pattern1", BulletType.Type2, false, Boss.Position());
                 _shootBulletTimer.Restart();
             };
 

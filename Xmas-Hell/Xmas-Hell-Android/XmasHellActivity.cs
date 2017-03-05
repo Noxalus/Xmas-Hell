@@ -5,7 +5,7 @@ using Android.Views;
 
 namespace Xmas_Hell_Android
 {
-    [Activity(Label = "Xmas-Hell-Android"
+    [Activity(Label = "Xmas Hell"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"
