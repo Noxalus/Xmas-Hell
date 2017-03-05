@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 
 namespace XmasHell.Entities
 {
     abstract class AbstractEntity
     {
-        protected Vector2 Position;
+        private Vector2 _position;
         protected Vector2 Acceleration;
         protected float Speed;
         protected Vector2 TargetPosition;
@@ -21,14 +19,14 @@ namespace XmasHell.Entities
             Acceleration = Vector2.One;
         }
 
-        public virtual Vector2 GetPosition()
+        public virtual Vector2 Position()
         {
-            return Position;
+            return _position;
         }
 
-        public virtual void SetPosition(Vector2 value)
+        public virtual void Position(Vector2 value)
         {
-            Position = value;
+            _position = value;
         }
 
         public void MoveTo(Vector2 position, bool force = false)
@@ -38,14 +36,14 @@ namespace XmasHell.Entities
 
             TargetingPosition = true;
             TargetPosition = position;
-            TargetDirection = Vector2.Normalize(position - GetPosition());
+            TargetDirection = Vector2.Normalize(position - Position());
         }
 
         public virtual void Update(GameTime gameTime)
         {
             if (!TargetDirection.Equals(Vector2.Zero))
             {
-                var currentPosition = GetPosition();
+                var currentPosition = Position();
                 var distance = Vector2.Distance(currentPosition, TargetPosition);
                 var deltaDistance = Speed * gameTime.GetElapsedSeconds();
 
@@ -53,12 +51,12 @@ namespace XmasHell.Entities
                 {
                     TargetingPosition = false;
                     TargetDirection = Vector2.Zero;
-                    SetPosition(TargetPosition);
+                    Position(TargetPosition);
                 }
                 else
                 {
                     // TODO: Perform some cubic interpolation
-                    SetPosition(currentPosition + (TargetDirection * deltaDistance) * Acceleration);
+                    Position(currentPosition + (TargetDirection * deltaDistance) * Acceleration);
                 }
             }
             else

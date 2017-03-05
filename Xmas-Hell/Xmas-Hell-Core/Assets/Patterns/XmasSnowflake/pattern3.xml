@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml.dtd">
+<bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+  <action label="top">
+      <fire>
+        <bullet>
+          <direction type="absolute">120 + ($rand * 20)</direction>
+          <speed>5</speed>
+<!--           <action>
+            <accel>
+              <vertical>10</vertical>
+              <term>120</term>
+            </accel>
+          </action> -->
+        </bullet>
+      </fire>
+  </action>
+</bulletml>

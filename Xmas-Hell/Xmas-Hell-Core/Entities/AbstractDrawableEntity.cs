@@ -11,12 +11,12 @@ namespace XmasHell.Entities
     {
         protected Sprite Sprite;
 
-        public override Vector2 GetPosition()
+        public override Vector2 Position()
         {
             return Sprite.Position;
         }
 
-        public override void SetPosition(Vector2 value)
+        public override void Position(Vector2 value)
         {
             Sprite.Position = value;
         }

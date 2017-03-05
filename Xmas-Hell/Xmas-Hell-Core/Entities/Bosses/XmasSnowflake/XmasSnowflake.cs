@@ -10,10 +10,12 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             // BulletML
             BulletPatternFiles.Add("XmasSnowflake/pattern1");
             BulletPatternFiles.Add("XmasSnowflake/pattern2");
+            BulletPatternFiles.Add("XmasSnowflake/pattern3");
 
             // Behaviours
             Behaviours.Add(new XmasSnowflakeBehaviour1(this));
             Behaviours.Add(new XmasSnowflakeBehaviour2(this));
+            Behaviours.Add(new XmasSnowflakeBehaviour3(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowflake/xmas-snowflake";
         }
@@ -32,7 +34,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
         protected override void UpdateBehaviourIndex()
         {
-            CurrentBehaviourIndex = 1;
+            CurrentBehaviourIndex = 2;
         }
     }
 }

@@ -28,11 +28,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         private bool _destroyed;
         private float _angularSpeed;
 
-        public Vector2 Position()
-        {
-            return Sprite.Position;
-        }
-
         public float Rotation()
         {
             return Sprite.Rotation;
