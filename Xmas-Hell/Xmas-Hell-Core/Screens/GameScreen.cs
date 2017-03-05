@@ -30,14 +30,7 @@ namespace XmasHell.Screens
 
         public override void Initialize()
         {
-            _player.Initialize();
-
             base.Initialize();
-
-            // Should play music (doesn't seem to work for now...)
-            MediaPlayer.Volume = 1f;
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(Assets.GetMusic("Audio/BGM/boss-theme"));
         }
 
         public void LoadBoss(BossType bossType)
@@ -46,11 +39,23 @@ namespace XmasHell.Screens
             _boss.Initialize();
         }
 
+        // TODO: This should be handled by the ScreenManager
+        public void Show()
+        {
+            _player.Initialize();
+            // Should play music (doesn't seem to work for now...)
+            //MediaPlayer.Volume = 1f;
+            //MediaPlayer.IsRepeating = true;
+            //MediaPlayer.Play(Assets.GetMusic("Audio/BGM/boss-theme"));
+        }
+
         public override void Dispose()
         {
             base.Dispose();
 
             _boss.Dispose();
+            _player.Dispose();
+
             Console.WriteLine("Dispose GameScreen");
         }
 
@@ -67,8 +72,13 @@ namespace XmasHell.Screens
             if (_game.Pause)
                 return;
 
-            _player.Update(gameTime);
-            _boss.Update(gameTime);
+            if (!_game.GameManager.EndGame())
+            {
+                if (_player.Alive())
+                    _player.Update(gameTime);
+
+                _boss.Update(gameTime);
+            }
         }
     }
 }

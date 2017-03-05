@@ -93,6 +93,7 @@ namespace XmasHell.Screens
                 else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
                     _game.GameScreen.LoadBoss(BossType.XmasSnowflake);
 
+                _game.GameScreen.Show();
                 Show<GameScreen>();
             }
 

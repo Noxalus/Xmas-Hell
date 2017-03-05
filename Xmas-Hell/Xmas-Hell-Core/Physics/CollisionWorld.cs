@@ -121,6 +121,7 @@ namespace XmasHell.Physics
                     {
                         player.Destroy();
                         ((Mover) bossBulletHitbox.Entity).Used = false;
+                        break;
                     }
                 }
             }
@@ -140,7 +141,9 @@ namespace XmasHell.Physics
             );
 
             // Draw hitboxes
-            _playerHitbox.Draw(_game.SpriteBatch);
+            if(_playerHitbox != null)
+                _playerHitbox.Draw(_game.SpriteBatch);
+
             BossHitboxes.ForEach(hb => hb.Draw(_game.SpriteBatch));
 
             // Draw bullet's colliders

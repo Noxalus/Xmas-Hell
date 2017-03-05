@@ -179,9 +179,12 @@ namespace XmasHell
             if (Pause)
                 return;
 
-            SpriteBatchManager.Update();
-            GameManager.Update(gameTime);
             Camera.Update(gameTime);
+
+            if (!GameManager.EndGame())
+                SpriteBatchManager.Update();
+
+            GameManager.Update(gameTime);
 
             _updateTime = _stopWatch.Elapsed;
         }

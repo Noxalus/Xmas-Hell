@@ -21,6 +21,7 @@ namespace XmasHell.Entities
     {
         public bool Invincible;
         public TimeSpan _invincibleTimer;
+        private bool _destroyed;
 
         private readonly XmasHell _game;
         private CollisionCircle _hitbox;
@@ -53,16 +54,19 @@ namespace XmasHell.Entities
             return CurrentAnimator.Rotation;
         }
 
-
         public Vector2 Scale()
         {
             return CurrentAnimator.Scale;
         }
 
+        public bool Alive()
+        {
+            return !_destroyed;
+        }
+
         public Player(XmasHell game)
         {
             _game = game;
-            _bulletFrequence = TimeSpan.Zero;
 
             var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/hitbox");
 
@@ -102,21 +106,18 @@ namespace XmasHell.Entities
                 )
             };
             _hitbox = new CollisionCircle(this, new Vector2(0f, 0f), GameConfig.PlayerHitboxRadius);
-            _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
-
-            Initialize();
-
-            _game.SpriteBatchManager.Player = this;
-            _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
         }
 
         public void Initialize()
         {
-            Invincible = true;
+            Invincible = false;
             _invincibleTimer = TimeSpan.FromSeconds(3f);
+
+            _bulletFrequence = TimeSpan.Zero;
+            _destroyed = false;
 
             _initialSpritePosition = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
@@ -125,12 +126,28 @@ namespace XmasHell.Entities
 
             CurrentAnimator.Position = _initialSpritePosition;
             _initialTouchPosition = _currentTouchPosition;
+
+            _game.SpriteBatchManager.Player = this;
+            _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
+            _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
+        }
+
+        public void Dispose()
+        {
+            _game.SpriteBatchManager.Player = null;
+            _game.SpriteBatchManager.PlayerHitbox = null;
+            _game.GameManager.CollisionWorld.PlayerHitbox = null;
         }
 
         public void Destroy()
         {
             _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
-            Initialize();
+            _game.Camera.ZoomTo(3f, 0.25, Position());
+            _game.GameManager.EndGame(true);
+
+            _destroyed = true;
+
+            Dispose();
         }
 
         private void AnimationFinished(string animationName)
@@ -151,6 +168,14 @@ namespace XmasHell.Entities
 
             if (keyboardState.IsKeyDown(Keys.Enter))
                 _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
+
+            if (InputManager.KeyPressed(Keys.Z))
+            {
+                if (_game.Camera.Zoom == 1f)
+                    _game.Camera.ZoomTo(5f, 0.5, Position());
+                else
+                    _game.Camera.ZoomTo(1f, 0.5, Position());
+            }
 
             if (_invincibleTimer.TotalMilliseconds > 0)
                 _invincibleTimer -= gameTime.ElapsedGameTime;
