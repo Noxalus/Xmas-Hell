@@ -109,6 +109,7 @@ namespace XmasHell
                 { "XmasSnowflake/pattern1", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern1.xml")) },
                 { "XmasSnowflake/pattern2", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern2.xml")) },
                 { "XmasSnowflake/pattern3", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern3.xml")) },
+                { "XmasSnowflake/pattern4", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern4.xml")) },
 
                 // Xmas Gift
 
