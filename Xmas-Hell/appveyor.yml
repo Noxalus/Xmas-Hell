@@ -38,7 +38,7 @@ before_build:
   - xamarin-component.exe restore Xmas-Hell\Xmas-Hell.sln
 build:
   project: Xmas-Hell\Xmas-Hell.sln
-  verbosity: normal
+  verbosity: detailed
 
 # artifacts
 artifacts:
