@@ -12,6 +12,7 @@ environment:
     secure: j0zM29SX82jirzfqpDjMKLVDuGCtnnhjAlfCW9VW13WihwhSyfJTzRmmqb4pjojM
   ANDROID_KEYSTORE_ALIAS:
     secure: n8AJ+/2dLtjovNej5PHJ1g==
+  ANDROID_KEYSTORE_PATH: Keystore\KawaiiGames.keystore
   ANDROID_PROJECT_PATH: Xmas-Hell\Xmas-Hell-Android
   ANDROID_PROJECT_FILENAME: Xmas-Hell-Android.csproj
 install:
@@ -20,7 +21,7 @@ before_build:
   - xamarin-component.exe restore "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
-  - msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:Platform=AnyCPU" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
+  - msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:Platform=AnyCPU" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=%APPVEYOR_BUILD_FOLDER%\%ANDROID_KEYSTORE_PATH%" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
   - rename "%APPVEYOR_BUILD_FOLDER%\%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
 artifacts:
   - path: '%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk'
