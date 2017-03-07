@@ -17,7 +17,7 @@ environment:
 install:
 - ps: '& ./Scripts/InstallDependencies.ps1'
 before_build:
--cmd: >-
+- cmd: >-
     xamarin-component.exe restore Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj
 build_script:
 - cmd: >-
