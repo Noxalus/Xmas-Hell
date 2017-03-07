@@ -21,7 +21,7 @@ before_build:
     xamarin-component.exe restore Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj
 build_script:
 - cmd: >-
-    msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
+    msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=\"%ANDROID_KEYSTORE_ALIAS%\"" "/p:AndroidSigningKeyPass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
     echo "Build folder: %APPVEYOR_BUILD_FOLDER%"
     echo "Commit message: %APPVEYOR_REPO_COMMIT_MESSAGE%"
     echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
