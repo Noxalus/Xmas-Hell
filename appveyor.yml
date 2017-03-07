@@ -17,7 +17,7 @@ environment:
 install:
   - ps: '& ./Scripts/InstallDependencies.ps1'
 before_build:
-  - xamarin-component.exe restore "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
+  - xamarin-component.exe restore "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
   - msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
