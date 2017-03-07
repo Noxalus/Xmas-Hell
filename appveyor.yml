@@ -20,14 +20,13 @@ before_build:
   - xamarin-component.exe restore "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
-  - msbuild "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%" "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=\"%ANDROID_KEYSTORE_ALIAS%\"" "/p:AndroidSigningKeyPass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=\"%ANDROID_KEYSTORE_PASSWORD%\""
-  - echo "Build folder: %APPVEYOR_BUILD_FOLDER%"
-  - echo "Commit message: %APPVEYOR_REPO_COMMIT_MESSAGE%"
-  - echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
-  - rename "%APPVEYOR_BUILD_FOLDER%\%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
+  - msbuild "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%" "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%\" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%"
+  - cmd: echo "Build folder: %APPVEYOR_BUILD_FOLDER%"
+  - cmd: echo "Commit message: %APPVEYOR_REPO_COMMIT_MESSAGE%"
+  - cmd: echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
+  - cmd: rename "%APPVEYOR_BUILD_FOLDER%\%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
 artifacts:
   - path: '%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk'
     name: Xmas Hell
 deploy_script:
-  - ps: >-
-      '& ./Scripts/AndroidDeploy.ps1'
+  - ps: '& ./Scripts/AndroidDeploy.ps1'
