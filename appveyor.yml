@@ -20,7 +20,9 @@ before_build:
   - xamarin-component.exe restore "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
-  - msbuild "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%" "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%\" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%"
+  - msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%\" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" ".
+\Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
+  - echo "COUCOU"
   - rename "%APPVEYOR_BUILD_FOLDER%\%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
 artifacts:
   - path: '%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk'
