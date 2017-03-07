@@ -1,0 +1,63 @@
+version: 0.0.{build}
+configuration: Release
+platform: Any CPU
+environment:
+  XAMARIN_COOKIE:
+    secure: Ut8C5dcSVEh3A8IZHlj39DBV/bP4KCxzsnovjgt55gYc0OYlWQwP/fAwl7DFtdR4
+  ANDROID_KEYSTORE_PASSWORD:
+    secure: kqNvlXuEMjTTsonPIgasYJ9XH9AUFedR9TR67W2FFLc=
+  APP_ID:
+    secure: qbJ09dkcmcsS8wznuDU6lNgt4h2htHhGLhGj1/V6SyIg97j31U51BNb5t3pDuMVF
+  HOCKEYAPP_API_TOKEN:
+    secure: j0zM29SX82jirzfqpDjMKLVDuGCtnnhjAlfCW9VW13WihwhSyfJTzRmmqb4pjojM
+  ANDROID_KEYSTORE_ALIAS:
+    secure: n8AJ+/2dLtjovNej5PHJ1g==
+  ANDROID_PROJECT_PATH: Xmas-Hell\Xmas-Hell-Android
+  ANDROID_PROJECT_FILENAME: Xmas-Hell-Android.csproj
+install:
+- ps: >-
+    # Install Xamarin
+
+    $zipPath = "$($env:APPVEYOR_BUILD_FOLDER)\xpkg.zip"
+
+    (New-Object Net.WebClient).DownloadFile('https://components.xamarin.com/submit/xpkg', $zipPath)
+
+    7z x $zipPath | Out-Null
+
+    Set-Content -path "$env:USERPROFILE\.xamarin-credentials" -value "xamarin.com,$env:XAMARIN_COOKIE"
+
+
+    # Install MonoGame
+
+    (New-Object Net.WebClient).DownloadFile('http://www.monogame.net/releases/v3.6/MonoGameSetup.exe', 'C:\MonoGameSetup.exe')
+
+    Invoke-Command -ScriptBlock {C:\MonoGameSetup.exe /S /v/qn}
+
+
+    Start-Sleep -s 10
+
+
+    Get-ChildItem "C:\Program Files (x86)\MSBuild\"
+
+    Get-ChildItem "C:\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools"
+build_script:
+- cmd: >-
+    xamarin-component.exe restore Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj
+
+
+    msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=%ANDROID_KEYSTORE_ALIAS%" "/p:AndroidSigningKeyPass=%ANDROID_KEYSTORE_PASSWORD%" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=%ANDROID_KEYSTORE_PASSWORD%" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
+
+
+    echo "Build folder: %APPVEYOR_BUILD_FOLDER%"
+
+    echo "Commit message: %APPVEYOR_REPO_COMMIT_MESSAGE%"
+
+    echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
+
+
+    rename "%APPVEYOR_BUILD_FOLDER%\Xmas-Hell\Xmas-Hell-Android\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
+artifacts:
+- path: Xmas-Hell\Xmas-Hell-Android\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk
+  name: Xmas Hell
+deploy_script:
+- ps: '& ./Scripts/AndroidDeploy.ps1'
