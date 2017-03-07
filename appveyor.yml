@@ -15,13 +15,16 @@ environment:
   ANDROID_PROJECT_PATH: Xmas-Hell\Xmas-Hell-Android
   ANDROID_PROJECT_FILENAME: Xmas-Hell-Android.csproj
 install:
-- ps: '& ./Scripts/InstallDependencies.ps1'
+- ps: >-
+    '& ./Scripts/InstallDependencies.ps1'
 before_build:
 - cmd: >-
     xamarin-component.exe restore Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj
+- ps: >-
+    '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
 - cmd: >-
-    msbuild "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=\"%ANDROID_KEYSTORE_ALIAS%\"" "/p:AndroidSigningKeyPass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
+    msbuild "$env:ANDROID_PROJECT_PATH\$env:ANDROID_PROJECT_FILENAME" "/t:SignAndroidPackage" "/p:Configuration=Release" "/p:AndroidKeyStore=true" "/p:AndroidSigningKeyAlias=\"%ANDROID_KEYSTORE_ALIAS%\"" "/p:AndroidSigningKeyPass=\"%ANDROID_KEYSTORE_PASSWORD%\"" "/p:AndroidSigningKeyStore=C:\projects\xmas-hell\Keystore\KawaiiGames.keystore" "/p:AndroidSigningStorePass=\"%ANDROID_KEYSTORE_PASSWORD%\""
     echo "Build folder: %APPVEYOR_BUILD_FOLDER%"
     echo "Commit message: %APPVEYOR_REPO_COMMIT_MESSAGE%"
     echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
@@ -30,4 +33,5 @@ artifacts:
 - path: Xmas-Hell\Xmas-Hell-Android\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk
   name: Xmas Hell
 deploy_script:
-- ps: '& ./Scripts/AndroidDeploy.ps1'
+- ps: >-
+    '& ./Scripts/AndroidDeploy.ps1'
