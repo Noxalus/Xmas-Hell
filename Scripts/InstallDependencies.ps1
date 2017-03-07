@@ -11,7 +11,7 @@ Write-Host ("Installing MonoGame...")
 Invoke-Command -ScriptBlock {C:\MonoGameSetup.exe /S /v/qn}
 
 # Make sure all dependencies are fully installed
-Start-Sleep -s 10
+Start-Sleep -s 5
 
 Get-ChildItem "C:\Program Files (x86)\MSBuild\"
 Get-ChildItem "C:\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools"
