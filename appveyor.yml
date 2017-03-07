@@ -30,7 +30,7 @@ build_script:
       echo "Commit message extended: %APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED%"
       rename "%APPVEYOR_BUILD_FOLDER%\%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk" "XmasHell-%APPVEYOR_BUILD_NUMBER%.apk"
 artifacts:
-  - path: %ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk
+  - path: '%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk'
     name: Xmas Hell
 deploy_script:
   - ps: >-
