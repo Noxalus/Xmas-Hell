@@ -1,7 +1,7 @@
 # Open Source under MIT License http://nrm.mit-license.org/2012
 
 $uri = "https://rink.hockeyapp.net/api/2/apps/$env:APP_ID/app_versions/upload"
-$filePath = "C:\projects\xmas-hell\Xmas-Hell\Xmas-Hell-Android\bin\Android\AnyCPU\Release\XmasHell-$env:APPVEYOR_BUILD_NUMBER.apk"
+$filePath = "C:\projects\xmas-hell\Xmas-Hell\Xmas-Hell-Android\bin\Android\AnyCPU\Release\io.noxalus.XmasHell.apk"
 $method = "POST"
 $param = "ipa"
 $header = @{"X-HockeyAppToken"="$env:HOCKEYAPP_API_TOKEN"}
