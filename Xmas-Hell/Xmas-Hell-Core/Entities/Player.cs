@@ -184,6 +184,7 @@ namespace XmasHell.Entities
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
+            _hitboxSprite.Position = _hitbox.GetCenter();
 #if ANDROID
             UpdatePositionFromTouch(gameTime);
 #else
@@ -192,10 +193,9 @@ namespace XmasHell.Entities
 
             UpdateAnimation();
 
-            _hitboxSprite.Position = _hitbox.GetCenter();
-
             CheckOutOfBounds();
             UpdateShoot(gameTime);
+
         }
 
         private void UpdatePositionFromTouch(GameTime gameTime)
