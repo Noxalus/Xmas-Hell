@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using MonoGame.Extended.Timers;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
 using XmasHell.Physics;
@@ -29,11 +29,14 @@ namespace XmasHell.Entities
 
         private IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
         public MonoGameAnimator CurrentAnimator;
+        private CountdownTimer _idleAnimationTimer;
 
         private Vector2 _initialSpritePosition;
         private Point _initialTouchPosition;
         private Point _currentTouchPosition;
         private Point _previousTouchPosition;
+
+        private Vector2 _currentDirection;
 
         private Vector2 _previousPosition;
 
@@ -67,6 +70,15 @@ namespace XmasHell.Entities
         public Player(XmasHell game)
         {
             _game = game;
+            _currentDirection = Vector2.Zero;
+
+            _idleAnimationTimer = new CountdownTimer(5);
+            _idleAnimationTimer.Stop();
+            _idleAnimationTimer.Completed += (sender, args) =>
+            {
+                Console.WriteLine("PLAY IDLE");
+                CurrentAnimator.Play("Idle");
+            };
 
             var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/hitbox");
 
@@ -187,15 +199,14 @@ namespace XmasHell.Entities
             _hitboxSprite.Position = _hitbox.GetCenter();
 #if ANDROID
             UpdatePositionFromTouch(gameTime);
+            UpdateAnimationFromTouch();
 #else
             UpdatePositionFromKeyboard(gameTime);
+            UpdateAnimationFromKeyboard();
 #endif
-
-            UpdateAnimation();
 
             CheckOutOfBounds();
             UpdateShoot(gameTime);
-
         }
 
         private void UpdatePositionFromTouch(GameTime gameTime)
@@ -219,67 +230,131 @@ namespace XmasHell.Entities
             {
                 _initialSpritePosition = Vector2.Zero;
                 _initialTouchPosition = Point.Zero;
-                CurrentAnimator.Play("Idle");
+                //CurrentAnimator.Play("Idle");
             }
         }
 
         private void UpdatePositionFromKeyboard(GameTime gameTime)
         {
             var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
-            var direction = Vector2.Zero;
+            _currentDirection = Vector2.Zero;
 
             if (InputManager.Up())
-                direction.Y -= 1;
+                _currentDirection.Y -= 1;
             if (InputManager.Down())
-                direction.Y += 1;
+                _currentDirection.Y += 1;
             if (InputManager.Left())
-                direction.X -= 1;
+                _currentDirection.X -= 1;
             if (InputManager.Right())
-                direction.X += 1;
+                _currentDirection.X += 1;
 
-            if (direction.X != 0 && direction.Y != 0)
-                direction /= 1.5f;
+            var speed = 750f;
 
-            var speed = 750;
+            if (_currentDirection != Vector2.Zero)
+                speed /= 1.5f;
 
             if (InputManager.KeyDown(Keys.LeftShift))
-                speed = 250;
+                speed = 250f;
 
-            CurrentAnimator.Position += direction * speed * dt;
+            CurrentAnimator.Position += _currentDirection * speed * dt;
         }
 
-        private void UpdateAnimation()
+        private void UpdateAnimationFromTouch()
         {
+            // For touch motion
             var deltaPosition = CurrentAnimator.Position - _previousPosition;
 
             //Console.WriteLine("Delta position: " + deltaPosition);
 
-            if (deltaPosition.Y > 50)
+            if (deltaPosition == Vector2.Zero)
+            {
+                if (_idleAnimationTimer.State == TimerState.Stopped)
+                {
+                    Console.WriteLine("Restart idle timer");
+                    _idleAnimationTimer.Restart();
+                }
+            }
+            else
+            {
+                if (_idleAnimationTimer.State == TimerState.Started)
+                {
+                    Console.WriteLine("Stop idle timer");
+                    _idleAnimationTimer.Stop();
+                }
+            }
+
+            if (deltaPosition.Y > 0f)
             {
                 if (CurrentAnimator.CurrentAnimation.Name != "Down" &&
                     CurrentAnimator.CurrentAnimation.Name != "DownIdle")
                     CurrentAnimator.Play("Down");
             }
-            else if (deltaPosition.Y < -50)
+            else if (deltaPosition.Y < 0f)
             {
                 if (CurrentAnimator.CurrentAnimation.Name != "Up" &&
                     CurrentAnimator.CurrentAnimation.Name != "UpIdle")
                     CurrentAnimator.Play("Up");
             }
-            else
+            else if (deltaPosition.X < 0f)
             {
-                if (deltaPosition.X < -10)
+                if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
+                    CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
+                    CurrentAnimator.Play("Left");
+            }
+            else if (deltaPosition.X > 0f)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
+                    CurrentAnimator.CurrentAnimation.Name != "RightIdle")
+                    CurrentAnimator.Play("Right");
+            }
+        }
+
+        private void UpdateAnimationFromKeyboard()
+        {
+            // For keyboard
+            // Down
+            if (_currentDirection.Y > 0f)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Down" &&
+                    CurrentAnimator.CurrentAnimation.Name != "DownIdle")
                 {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
-                        CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
-                        CurrentAnimator.Play("Left");
+                    Console.WriteLine("Play down animation");
+                    CurrentAnimator.Play("Down");
                 }
-                else if (deltaPosition.X > 10)
+            }
+            // Up
+            else if (_currentDirection.Y < 0f)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Up" &&
+                    CurrentAnimator.CurrentAnimation.Name != "UpIdle")
                 {
-                    if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
-                        CurrentAnimator.CurrentAnimation.Name != "RightIdle")
-                        CurrentAnimator.Play("Right");
+                    Console.WriteLine("Play up animation");
+                    CurrentAnimator.Play("Up");
                 }
+            }
+            // Left
+            else if (_currentDirection.X < 0f)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Left" &&
+                    CurrentAnimator.CurrentAnimation.Name != "LeftIdle")
+                {
+                    Console.WriteLine("Play Left animation");
+                    CurrentAnimator.Play("Left");
+                }
+            }
+            // Right
+            else if (_currentDirection.X > 0f)
+            {
+                if (CurrentAnimator.CurrentAnimation.Name != "Right" &&
+                    CurrentAnimator.CurrentAnimation.Name != "RightIdle")
+                {
+                    Console.WriteLine("Play Right animation");
+                    CurrentAnimator.Play("Right");
+                }
+            }
+            else if (_currentDirection == Vector2.Zero)
+            {
+                CurrentAnimator.Play("Idle");
             }
         }
 
