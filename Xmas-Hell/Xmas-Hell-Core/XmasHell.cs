@@ -65,6 +65,9 @@ namespace XmasHell
 
             // Used for bloom effect
             Graphics.PreferredDepthStencilFormat = DepthFormat.Depth16;
+
+            Graphics.IsFullScreen = true;
+            Graphics.ApplyChanges();
 #else
             Graphics.IsFullScreen = false;
             Window.AllowUserResizing = true;
