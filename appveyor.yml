@@ -1,6 +1,4 @@
 version: 0.0.{build}
-configuration: Release
-platform: Any CPU
 environment:
   XAMARIN_COOKIE:
     secure: Ut8C5dcSVEh3A8IZHlj39DBV/bP4KCxzsnovjgt55gYc0OYlWQwP/fAwl7DFtdR4
@@ -27,4 +25,4 @@ artifacts:
   - path: '%ANDROID_PROJECT_PATH%\bin\Android\AnyCPU\Release\XmasHell-%APPVEYOR_BUILD_NUMBER%.apk'
     name: Xmas Hell
 deploy_script:
-  - ps: '& ./Scripts/AndroidDeploy.ps1'
+  - ps: '& ./Scripts/AndroidHockeyAppUpload.ps1'
