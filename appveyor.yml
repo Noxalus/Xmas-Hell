@@ -19,8 +19,9 @@ before_build:
   - xamarin-component.exe restore "Xmas-Hell\Xmas-Hell-Android\Xmas-Hell-Android.csproj"
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
-  - >
+  - cmd: >-
       msbuild "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
+        /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
         /verbosity:minimal
         /t:SignAndroidPackage
         /p:Configuration=Release
