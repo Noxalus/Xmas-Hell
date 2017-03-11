@@ -598,7 +598,9 @@ namespace XmasHell.Entities.Bosses
         public virtual void Draw()
         {
             CurrentAnimator.Draw(Game.SpriteBatch);
-            Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
+
+            if (CurrentBehaviourIndex < Behaviours.Count)
+                Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
         }
     }
 }

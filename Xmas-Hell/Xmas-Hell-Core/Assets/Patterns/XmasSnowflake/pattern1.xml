@@ -12,7 +12,7 @@
   </action>
 
   <action label="snowflake">
-    <wait>($rand * 30)</wait>
+    <wait>($rand * 25)</wait>
     <action>
       <changeSpeed>
         <speed>0</speed>
@@ -20,6 +20,12 @@
       </changeSpeed>
     </action>
     <wait>20</wait>
+    <action>
+      <changeDirection>
+        <direction type="absolute">30</direction>
+        <term>0</term>
+      </changeDirection>
+    </action>
     <vanish />
     <repeat>
       <times>6</times>

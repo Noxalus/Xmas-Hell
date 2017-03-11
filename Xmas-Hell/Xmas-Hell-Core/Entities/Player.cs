@@ -153,6 +153,9 @@ namespace XmasHell.Entities
 
         public void Destroy()
         {
+            if (GameConfig.GodMode)
+                return;
+
             _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
             _game.Camera.ZoomTo(3f, 0.25, Position());
             _game.GameManager.EndGame(true);

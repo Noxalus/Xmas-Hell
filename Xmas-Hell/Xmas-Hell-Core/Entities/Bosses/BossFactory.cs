@@ -15,7 +15,7 @@ namespace XmasHell.Entities.Bosses
                 case BossType.XmasBell:
                     return new XmasBell.XmasBell(game, playerPositionDelegate);
                 case BossType.XmasCandy:
-                    break;
+                    return new XmasCandy.XmasCandy(game, playerPositionDelegate);
                 case BossType.XmasSnowflake:
                     return new XmasSnowflake.XmasSnowflake(game, playerPositionDelegate);
                 case BossType.XmasLog:
