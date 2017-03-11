@@ -2,7 +2,7 @@ version: 0.0.{build}
 environment:
   XAMARIN_COOKIE:
     secure: Ut8C5dcSVEh3A8IZHlj39DBV/bP4KCxzsnovjgt55gYc0OYlWQwP/fAwl7DFtdR4
-  APP_ID:
+  HOCKEYAPP_APP_ID:
     secure: qbJ09dkcmcsS8wznuDU6lNgt4h2htHhGLhGj1/V6SyIg97j31U51BNb5t3pDuMVF
   HOCKEYAPP_API_TOKEN:
     secure: j0zM29SX82jirzfqpDjMKLVDuGCtnnhjAlfCW9VW13WihwhSyfJTzRmmqb4pjojM

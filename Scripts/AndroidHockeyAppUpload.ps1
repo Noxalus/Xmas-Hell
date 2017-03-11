@@ -1,4 +1,4 @@
-$uri = "https://rink.hockeyapp.net/api/2/apps/$env:APP_ID/app_versions/upload"
+$uri = "https://rink.hockeyapp.net/api/2/apps/$env:HOCKEYAPP_APP_ID/app_versions/upload"
 $filePath = "$env:APPVEYOR_BUILD_FOLDER\$env:ANDROID_PROJECT_PATH\bin\Android\AnyCPU\Release\XmasHell-$env:APPVEYOR_BUILD_NUMBER.apk"
 $method = "POST"
 $param = "ipa"
