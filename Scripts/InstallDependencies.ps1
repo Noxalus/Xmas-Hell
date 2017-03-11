@@ -8,7 +8,7 @@ Set-Content -path "$env:USERPROFILE\.xamarin-credentials" -value "xamarin.com,$e
 # Install MonoGame
 Write-Host ("Installing MonoGame...")
 (New-Object Net.WebClient).DownloadFile('http://www.monogame.net/releases/v3.6/MonoGameSetup.exe', 'C:\MonoGameSetup.exe')
-Invoke-Command -ScriptBlock {C:\MonoGameSetup.exe /S /v/qn}
+Start-Process -FilePath "C:\MonoGameSetup.exe" -ArgumentList "/S /v /qn"
 
 # Make sure all dependencies are fully installed
 Start-Sleep -s 5
