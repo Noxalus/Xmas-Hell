@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
@@ -16,7 +15,10 @@
    id="svg4857"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="xmas-bell.svg">
+   sodipodi:docname="xmas-bell.svg"
+   inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\xmas-bell.png"
+   inkscape:export-xdpi="45.207443"
+   inkscape:export-ydpi="45.207443">
   <defs
      id="defs4859">
     <inkscape:path-effect
@@ -31,9 +33,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="157.83571"
-     inkscape:cy="637.43333"
+     inkscape:zoom="0.50000001"
+     inkscape:cx="-8.2500569"
+     inkscape:cy="548.31408"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -58,41 +60,52 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <image
-       y="452.87097"
-       x="454.68759"
-       id="image5480"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAACXCAMAAABX0vWvAAAAAXNSR0IArs4c6QAAAARnQU1BAACx jwv8YQUAAAMAUExURQAAAMSjAP/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMfevv0AAAEAdFJOU/////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// /////////////////////////////wBT9wclAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRT b2Z0d2FyZQBwYWludC5uZXQgNC4wLjEyQwRr7AAAAytJREFUeF7t1OGS00gMhdGB939nkIdjImEn YxIn3VPRqdqidolb3/2zH78e9nEmbz6iJ+0Rcw5vPuKRN1Q8gwt36UmF88/gwl16UnC0+lH8/Jpf Vh6rnD2uJwWXKk3IvsUvK49Vzh73f1+4koipZB/gg8rTF64f1JM2VFR6D/BB5ekL1w9670nex/lK 6D28kDiEiAN60oW7lbx7eCFxCBEHHPmpR3HwQtMJPFg5i6RbelJw6ULPCTxYOYukW95+kisIOZWn K9cXkm7pSYWKU3m6cn0h6ZavfuOlhfcvVJzO85WIoOyqnlQoOJ3nKxFB2VXvNskbwbuJ80/iSKVl IXBXT7pw+0kcqbQsBO46MsmLF+4+mWOVJIG7etIfbj6ZY5Ukgbt6UnDwJZxMJAnc1ZOCay/hZCJJ 4K6rf+nbhddw7WWcRVLQudWTgksv4yySgs6tN5zkJVx5NddRpnOrJ43hOsp0bn2LSQsFQZnOrZ40 joKgTOfWe0/y9jg6lOnc6klD6VCmc2v/b3wVPLPw8Dg6lC3kVj1pKB3KFnKrd5vkDTw8lhaBcque NJwWgXKrnjScFoFyq540nBaBcqvtf/Xrhe+DB8fTIzCoTnrScHoEBtXJ1Um+xYPj6Qk6VSc9aTg9 QafqpCcNpyfoVJ30pOH0BJ2qk540nJ6gU3XSk4bTE3SqTnrScHqCTtVJTxpOT9CpOulJw+kJOlUn bzrJa1OQFHSqTnrScJKCTtVJTxpOUtCpOulJw0kKOlUnPWk4SUGn6qQnDScp6FSd9KThJAWdqpOe NJykoFN10pOGkxR0qk560nCSgk7VSU8aTlLQqTrpScNJCjpVJ284yUszUaZTddKTZqBMp+qkJ81A mU7VSU+agTKdqpOeNANlOlUnPWkGynSqTnrSDJTpVJ30pBko06k66UkzUKZTddKTZqBMp+qkJ81A mU7VyT//ye/C8pU3JvM56O+khXh60gw+B/Wkmf/fEMQt5IqnJ81A3EKueNZ/9Zf4YnpyWaesfxa+ mJ5c1inrn4UvpieXdcr6Z+GL6cllnbL8U/j1d6GanjQn1XxOaq211qbx8fEbu4UVv3JKKF4AAAAA SUVORK5CYII= "
-       preserveAspectRatio="none"
-       height="141.5625"
-       width="196.875"
-       style="opacity:0.28500001;fill:#000000;fill-opacity:1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 250.31579,462.63518 0,118.08682"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.3005867;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 360.12465,297.34833 0,432.2116"
        id="path4704"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-xdpi="41.012386"
+       inkscape:export-ydpi="41.012386"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\clapper.png" />
     <circle
-       style="opacity:1;fill:#ffd800;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffd800;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:18.3005867;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path4712"
-       cx="250.46223"
-       cy="588.73914"
-       r="9.3350592" />
-    <path
-       style="opacity:1;fill:#c4a300;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 250.11784,446.22401 0,0.002 c -18.37086,-0.002 -14.47203,-0.0319 -24.61328,0.27148 -4.45349,0.13324 -24.67332,2.01025 -35.83398,17.31055 -18.94186,27.12671 -16.25851,63.68893 -17.45508,98.99414 -0.83528,11.79662 -26.96802,18.35937 -13.99219,18.35937 30.67018,0 92.00977,0.37891 92.00977,0.37891 l 0,0.004 0.38476,-0.002 0.38281,0.002 0,-0.004 c 0,0 37.75354,-0.37891 92.00977,-0.37891 7.6945,0 -13.15691,-6.56275 -13.99219,-18.35937 -1.19657,-35.30521 1.48678,-71.86743 -17.45508,-98.99414 -11.16066,-15.3003 -31.38049,-17.17731 -35.83398,-17.31055 -10.14129,-0.30341 -6.24219,-0.2734 -24.61328,-0.27148 l 0,-0.002 c -0.30773,0 -0.20184,2e-5 -0.49805,0 -0.29729,2e-5 -0.1911,0 -0.5,0 z"
-       id="path5470"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccsccscccccsccscccc" />
-    <path
-       id="path5527"
-       d="m 250.21141,454.35574 0,0.002 c -14.92626,-0.002 -11.75847,-0.0281 -19.9982,0.23885 -3.61845,0.11723 -20.04699,1.76865 -29.11499,15.23009 -15.39019,23.86649 -13.20998,56.03448 -14.18219,87.09654 -0.67866,10.37884 -11.3686,16.15285 -11.3686,16.15285 l 74.75761,0.33337 0,0.003 0.31262,-0.002 0.31103,0.002 0,-0.003 74.75761,-0.33337 c 0,0 -10.68994,-5.77401 -11.3686,-16.15285 -0.97221,-31.06206 1.208,-63.23005 -14.18219,-87.09654 -9.068,-13.46144 -25.49654,-15.11286 -29.11499,-15.23009 -8.23976,-0.26694 -5.07175,-0.24054 -19.9982,-0.23885 l 0,-0.002 c -0.25003,0 -0.16399,2e-5 -0.40466,0 -0.24155,2e-5 -0.15527,0 -0.40625,0 z"
-       style="opacity:1;fill:#ffd800;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:connector-curvature="0" />
+       cx="355.65332"
+       cy="772.25647"
+       r="34.167412"
+       inkscape:export-xdpi="41"
+       inkscape:export-ydpi="41"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\clapper-ball.png" />
+    <g
+       id="g4707"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\body.png"
+       inkscape:export-xdpi="41.02"
+       inkscape:export-ydpi="41.02"
+       transform="matrix(1.5130639,0,0,1.5130639,-189.7386,-287.54749)">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         sodipodi:nodetypes="ccsccscccccsccscccc"
+         inkscape:connector-curvature="0"
+         id="path5470"
+         d="m 367.0284,388.10804 0,0.004 c -40.28447,-0.004 -31.73494,-0.0699 -53.97314,0.59532 -9.76581,0.29217 -54.10479,4.40817 -78.57839,37.95936 -41.53658,59.4847 -35.6524,139.66001 -38.2763,217.0789 -1.83164,25.86816 -59.13671,40.25927 -30.68272,40.25927 67.25498,0 201.76325,0.83089 201.76325,0.83089 l 0,0.009 0.84371,-0.004 0.83945,0.004 0,-0.009 c 0,0 82.7877,-0.83089 201.76324,-0.83089 16.87285,0 -28.85107,-14.39111 -30.6827,-40.25927 -2.62391,-77.41889 3.26027,-157.5942 -38.27631,-217.0789 -24.47361,-33.55119 -68.81258,-37.66719 -78.57839,-37.95936 -22.23829,-0.66533 -13.68816,-0.59953 -53.97314,-0.59532 l 0,-0.004 c -0.67481,0 -0.4426,4e-5 -1.09215,0 -0.65191,4e-5 -0.41904,0 -1.09641,0 z"
+         style="opacity:1;fill:#c4a300;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.96399975;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:connector-curvature="0"
+         style="opacity:1;fill:#ffd800;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 367.23358,405.93966 0,0.004 c -32.73099,-0.004 -25.78451,-0.0616 -43.85297,0.52376 -7.9347,0.25707 -43.95997,3.87838 -63.84469,33.39724 -33.74831,52.33553 -28.96745,122.87499 -31.09936,190.98929 -1.48819,22.7592 -24.92958,35.42071 -24.92958,35.42071 l 163.93192,0.73104 0,0.006 0.68553,-0.004 0.68203,0.004 0,-0.006 163.93192,-0.73104 c 0,0 -23.44139,-12.66151 -24.92958,-35.42071 -2.13191,-68.1143 2.64895,-138.65376 -31.09937,-190.98929 -19.88473,-29.51886 -55.90998,-33.14017 -63.84468,-33.39724 -18.06852,-0.58536 -11.12157,-0.52747 -43.85297,-0.52376 l 0,-0.004 c -0.54827,0 -0.3596,5e-5 -0.88735,0 -0.52968,5e-5 -0.34049,0 -0.89085,0 z"
+         id="path5527" />
+    </g>
     <g
        id="g5388"
-       transform="translate(-178.27669,17.977921)">
+       transform="matrix(3.3279446,0,0,3.3279446,-1064.6072,-1156.9676)"
+       inkscape:export-xdpi="40.929317"
+       inkscape:export-ydpi="40.929317"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\ribbon.png">
       <path
          sodipodi:nodetypes="cssscc"
          inkscape:connector-curvature="0"
@@ -136,55 +149,70 @@
          id="path5307"
          style="opacity:1;fill:#df4b4b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Calque 2"
+     style="display:inline">
     <circle
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path5531"
-       cx="227.79192"
-       cy="514.40167"
-       r="6.3639612" />
+       cx="272.06985"
+       cy="494.9281"
+       r="23.292843"
+       inkscape:export-xdpi="41.919903"
+       inkscape:export-ydpi="41.919903"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\eye.png" />
     <circle
-       r="6.3639612"
-       cy="514.40167"
-       cx="269.51123"
+       r="23.292843"
+       cy="494.9281"
+       cx="424.76736"
        id="circle5533"
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <image
-       y="305.39346"
-       x="359.375"
-       id="image5553"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAABpCAMAAADflzs9AAAABGdBTUEAALGPC/xhBQAAAwBQTFRF AAAA30tLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaTvnbQAAAQB0Uk5T//////////////////////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// ////////////AFP3ByUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHBhaW50 Lm5ldCA0LjAuMTJDBGvsAAAC5ElEQVRoQ+3WQW4jQQwDwOz/H50N0CUMGHAM5d51aUgmbZ2CfH2H rw9E/ky9EuEe8xDhHvMQ4R7zEGFGH/77QERhQUG9EpnCvIdMJaKwoKBeiUxh3kOmElFYUFCvRKYw 7yFTiSgsKKhXIlOY95CpRBQWFNQrkSnMe8hUIgoLCuqVyBTmPWQqEYUFBfVKJAsfG0lBvxJRWFAY tgsKfrcSUVhQGLYLCn63ElFYUBi2Cwp+txJRWFAYtgsKfrcSUVhQGLYLCn63ElFYUBi2Cwp+txJR WFAYtlVGTAtZMFUiw7bKiGkhC6ZKZNhWGTEtZMFUiQzbKiOmhSyYKpFhW2XEtJAFUyUybKuMmBay YKpEhm2VEdNCFkyVyPy9MPmwEsGyEsGyEpkj5j1kKhEsKxEsK5E5Yt5DphLBshLBshKZI+Y9ZCoR LCsRLCuROWLeQ6YSwbISwbISmSPmPWQqESwrESwrkTli3kOmEsGyEsGyEskjNo06VRnJqRIZtlVG cqoyklMlMmyrjORUZSSnSmTYVhnJqcpITpXIsK0yklOVkZwqkWFbZSSnKiM5VSLDtspITlVGcqpE hu3CorCIJIVhu7AoLCJJYdguLAqLSFIYtguLwiKSFIbtwqKwiCSFYbuwKCwiSWHYLiwKi0hS+Pu/ EDlVGTFVInPEvIdMlRFTlRFTJTJHzHvIVBkxVRkxVSJzxLyHTJURU5URUyUyR8x7yFQZMVUZMVUi c8S8h0yVEVOVEVMlMkfMe8hUGTFVGTFVInOEFx9+Ur8Gy4x8osc95qHHPeahxz3mocevsVL0E1iK YCmCpcgn95g395g395g3HzO+xpcmn0liKZJ8JlndY97cY97cY970DxV9TfKZZCWikHwmme4xPyTT PeaHZLrH/JBMv7aiyddgqVCJKGCZFLjHPBS4xzwUuMc8FPj4pSjml/qsEtkXuMe8uce8uce8+cMx WC4oYPnJPebNPebNPab7/v4PoQ3pgJmS7p8AAAAASUVORK5CYII= "
-       preserveAspectRatio="none"
-       height="98.4375"
-       width="131.25"
-       style="opacity:0.27" />
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0"
-       d="m 435,354.73721 0,19.5 6.75,5.625 0,14.75 5.75,5.875 7,0 0,-7.5 6.625,-5.75 13.375,0 -27.125,-26.125 0,-8.75 -6.875,-3.5 z"
-       id="path5566"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:#df4b4b;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;opacity:1"
-       d="m 441.625,354.07084 0,-19.45863 c 0,-4.33333 -0.97078,-8.77681 0,-13 0.75413,-3.28071 2.06467,-6.67015 4.4098,-9.08514 2.15215,-2.21627 5.21493,-3.55367 8.2152,-4.28986 6.51507,-1.59862 13.63699,-1.70514 20.125,0 3.40144,0.89394 6.76806,2.635 9.1875,5.1875 2.03181,2.14355 3.26346,5.06195 3.9375,7.9375 0.58956,2.51516 0.69804,5.26276 0,7.75 -0.40203,1.43249 -1.20203,2.83276 -2.32244,3.8117 -1.21323,1.06003 -8.6702,4.32479 -8.6702,4.32479 0,0 7.30809,4.50938 8.46882,5.57786 1.18477,1.09061 2.08678,2.5694 2.52382,4.11928 0.63327,2.24576 0.64326,4.75709 0,7 -0.75856,2.64495 -2.48071,5.0043 -4.375,7 -2.45101,2.58222 -5.35446,5.05465 -8.75,6.125 -8.50416,2.6807 -18.62702,3.67751 -26.75,0 -2.07105,-0.93763 -3.50857,-3.07916 -4.5,-5.125 -1.15474,-2.38283 -1.4375,-7.8125 -1.4375,-7.8125 z"
-       id="path5564"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csassssssscssssssscc" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 243.22329,522.34015 c 0,0 -2.42366,13.14876 0,19 1.28534,3.10309 3.7668,7.18604 7.125,7.125 3.24251,-0.0589 5.44358,-4.1048 6.625,-7.125 2.29962,-5.87876 -0.0625,-18.9375 -0.0625,-18.9375"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.3005867;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 328.55044,523.98383 c 0,0 -8.87089,48.12603 0,69.54225 4.70451,11.35767 13.78693,26.30175 26.07832,26.07832 11.86798,-0.21557 19.92416,-15.02403 24.24829,-26.07832 8.41688,-21.51695 -0.22875,-69.31348 -0.22875,-69.31348"
        id="path4698"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csssc" />
+       sodipodi:nodetypes="csssc"
+       inkscape:export-xdpi="40.931202"
+       inkscape:export-ydpi="40.931202"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\mouth.png" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Calque 3"
+     style="display:none">
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 441.58817,334.38369 c 0,0 3.65881,0.64857 5.3033,0 3.41295,-1.34603 8.04334,-7.51301 8.04334,-7.51301"
-       id="path5290"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 302.64169,575.77225 c 45.25483,-17.44197 45.25483,-33.94113 0,-49.49748"
+       id="path4718"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cac" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\path4718.png"
+       inkscape:export-xdpi="40.808186"
+       inkscape:export-ydpi="40.808186" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 441.56447,334.05624 c 0,0 3.65881,-0.64857 5.3033,0 3.41295,1.34603 8.04334,7.51301 8.04334,7.51301"
-       id="path5290-7"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 412.91666,573.6497 c -45.25483,-17.44197 -45.25483,-33.94113 0,-49.49748"
+       id="path4718-4"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cac" />
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\eye2.png"
+       inkscape:export-xdpi="40.808186"
+       inkscape:export-ydpi="40.808186" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 324.20846,604.9404 c 0,0 9.05929,9.4688 14.90245,9.25304 5.15085,-0.1902 8.64155,-9.11879 12.49945,-9.10335 4.59732,0.0184 7.78604,9.15557 13.09888,9.08311 5.99409,-0.0817 8.50094,-10.49097 14.49355,-10.64702 6.43445,-0.16755 9.73283,11.26169 16.13603,10.6066 4.8484,-0.49603 10.33856,-10.33883 10.33856,-10.33883"
+       id="path4735"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="casaaac"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBell\mouth2.png"
+       inkscape:export-xdpi="39.177021"
+       inkscape:export-ydpi="39.177021" />
   </g>
 </svg>
