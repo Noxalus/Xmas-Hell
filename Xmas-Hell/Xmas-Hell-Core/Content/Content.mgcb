@@ -634,18 +634,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasSnowflake/branch1.png
 
-#begin Graphics/Sprites/Bosses/XmasSnowflake/branch2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasSnowflake/branch2.png
-
 #begin Graphics/Sprites/Bosses/XmasSnowflake/left_eye.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -686,18 +674,6 @@
 /importer:SpriterImporter
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasSnowflake/xmas-snowflake.scml
-
-#begin Graphics/Sprites/Bosses/XmasSnowflake/game-area.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasSnowflake/game-area.png
 
 #begin Graphics/Sprites/Bosses/XmasSnowflake/branch3.png
 /importer:TextureImporter
