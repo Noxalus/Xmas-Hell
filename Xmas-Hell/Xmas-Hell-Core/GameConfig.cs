@@ -1,3 +1,5 @@
+#define RELEASE_VERSION
+
 using System;
 using Microsoft.Xna.Framework;
 
@@ -22,6 +24,9 @@ namespace XmasHell
         public static int BossDefaultLife = 1000;
         public static float BossDefaultSpeed = 200f;
 
+        // Bullet manager
+        public static int MaximumBullets = 500;
+
         public static Color[] BossHPBarColors = new Color[]
         {
             Color.Green,
@@ -31,6 +36,7 @@ namespace XmasHell
         };
 
         // Debug
+        public static bool DebugScreen = true;
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
         public static bool EnableBloom = true;

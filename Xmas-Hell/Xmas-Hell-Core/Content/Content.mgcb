@@ -752,3 +752,20 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasSnowflake/branch2.png
 
+#begin Graphics/Sprites/Bosses/DebugBoss/body.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/DebugBoss/body.png
+
+#begin Graphics/Sprites/Bosses/DebugBoss/debug-boss.scml
+/importer:SpriterImporter
+/processor:PassThroughProcessor
+/build:Graphics/Sprites/Bosses/DebugBoss/debug-boss.scml
+

@@ -35,6 +35,7 @@ namespace XmasHell
         public bool Pause;
 
         // Screens
+        public DebugScreen DebugScreen;
         public MainMenuScreen MainMenuScreen;
         public GameScreen GameScreen;
 
@@ -45,7 +46,7 @@ namespace XmasHell
         private Sprite _backgroundSprite;
 
         // Performance
-        private FramesPerSecondCounterComponent _fpsCounter;
+        public FramesPerSecondCounterComponent _fpsCounter;
         private Stopwatch _stopWatch;
         private TimeSpan _updateTime;
         private TimeSpan _drawTime;
@@ -107,11 +108,21 @@ namespace XmasHell
             ScreenComponent screenComponent;
             Components.Add(screenComponent = new ScreenComponent(this));
 
-            MainMenuScreen = new MainMenuScreen(this);
-            GameScreen = new GameScreen(this);
+            if (GameConfig.DebugScreen)
+            {
+                DebugScreen = new DebugScreen(this);
+                screenComponent.Register(DebugScreen);
 
-            screenComponent.Register(MainMenuScreen);
-            screenComponent.Register(GameScreen);
+                DebugScreen.Show();
+            }
+            else
+            {
+                MainMenuScreen = new MainMenuScreen(this);
+                GameScreen = new GameScreen(this);
+
+                screenComponent.Register(MainMenuScreen);
+                screenComponent.Register(GameScreen);
+            }
 
             // Input manager
             Components.Add(new InputManager(this));

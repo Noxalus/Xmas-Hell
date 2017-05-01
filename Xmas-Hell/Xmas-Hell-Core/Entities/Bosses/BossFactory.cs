@@ -1,15 +1,33 @@
 using System;
+using System.Diagnostics;
 using BulletML;
 using XmasHell.Entities.Bosses.XmasBall;
 
 namespace XmasHell.Entities.Bosses
 {
+    public enum BossType
+    {
+        Debug,
+        XmasBall,
+        XmasBell,
+        XmasCandy,
+        XmasSnowflake,
+        XmasLog,
+        XmasTree,
+        XmasGift,
+        XmasReinder,
+        XmasSnowman,
+        XmasSanta
+    }
+
     public static class BossFactory
     {
         public static Boss CreateBoss(BossType type, XmasHell game, PositionDelegate playerPositionDelegate)
         {
             switch (type)
             {
+                case BossType.Debug:
+                    return new DebugBoss.DebugBoss(game, playerPositionDelegate);
                 case BossType.XmasBall:
                     return new XmasBall.XmasBall(game, playerPositionDelegate);
                 case BossType.XmasBell:

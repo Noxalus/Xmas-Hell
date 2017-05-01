@@ -20,6 +20,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\AbstractBossBehaviour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Boss.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Debug\DebugBoss.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\Debug\DebugBossBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBall.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RandomExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\DebugScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\MainMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />
