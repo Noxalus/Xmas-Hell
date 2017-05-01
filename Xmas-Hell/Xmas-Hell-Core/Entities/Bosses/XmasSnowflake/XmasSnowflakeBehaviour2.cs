@@ -90,7 +90,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
             foreach (var branch2Sprite in branch2Sprites)
             {
-                var branchTexture = Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasSnowflake/branch3");
+                var branchTexture = Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasSnowflake/branch2");
                 var worldPosition = SpriterUtils.GetSpriterWorldPosition(branch2Sprite, Boss.CurrentAnimator);
                 var angle = MathHelper.ToRadians(branch2Sprite.Angle);
 

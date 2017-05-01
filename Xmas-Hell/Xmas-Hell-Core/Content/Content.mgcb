@@ -288,18 +288,6 @@
 /processorParam:DebugMode=Auto
 /build:Graphics/Shaders/BasicTint.fx
 
-#begin Graphics/Sprites/hitbox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/hitbox.png
-
 #begin Graphics/Sprites/Bosses/XmasBell/body.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -675,18 +663,6 @@
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasSnowflake/xmas-snowflake.scml
 
-#begin Graphics/Sprites/Bosses/XmasSnowflake/branch3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasSnowflake/branch3.png
-
 #begin Graphics/Sprites/Bosses/XmasCandy/body.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -751,4 +727,28 @@
 /importer:SpriterImporter
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasCandy/xmas-candy.scml
+
+#begin Graphics/Sprites/Player/hitbox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Player/hitbox.png
+
+#begin Graphics/Sprites/Bosses/XmasSnowflake/branch2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasSnowflake/branch2.png
 

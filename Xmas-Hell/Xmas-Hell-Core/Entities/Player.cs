@@ -80,7 +80,7 @@ namespace XmasHell.Entities
                 CurrentAnimator.Play("Idle");
             };
 
-            var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/hitbox");
+            var playerHitboxTexture = Assets.GetTexture2D("Graphics/Sprites/Player/hitbox");
 
             var animatorConfig = new Config
             {
@@ -112,10 +112,10 @@ namespace XmasHell.Entities
 
             _hitboxSprite = new Sprite(playerHitboxTexture)
             {
-                Scale = new Vector2(
-                    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Width,
-                    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Height
-                )
+                //Scale = new Vector2(
+                //    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Width,
+                //    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Height
+                //)
             };
             _hitbox = new CollisionCircle(this, new Vector2(0f, 0f), GameConfig.PlayerHitboxRadius);
 

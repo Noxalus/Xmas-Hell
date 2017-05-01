@@ -6,7 +6,7 @@ namespace XmasHell
     public static class GameConfig
     {
         // Graphics
-        public static Point VirtualResolution = new Point(720, 1280);
+        public static Point VirtualResolution = new Point(1080, 1920);
 
         // Game
         public static int RandomSeed = 42;
@@ -31,7 +31,7 @@ namespace XmasHell
 
         // Debug
         public static bool GodMode = true;
-        public static bool DisplayCollisionBoxes = true;
+        public static bool DisplayCollisionBoxes = false;
         public static bool EnableBloom = true;
         public static bool ShowDebugInfo = false;
     }

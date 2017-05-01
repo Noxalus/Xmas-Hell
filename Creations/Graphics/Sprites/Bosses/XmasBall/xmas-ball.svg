@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="xmas-ball.svg"
+   inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\eye.png"
+   inkscape:export-xdpi="50"
+   inkscape:export-ydpi="50">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient5452"
+       inkscape:collect="always">
+      <stop
+         id="stop5454"
+         offset="0"
+         style="stop-color:#ea2c3c;stop-opacity:1" />
+      <stop
+         id="stop5456"
+         offset="1"
+         style="stop-color:#b7222f;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5452"
+       id="radialGradient5450"
+       cx="171.41696"
+       cy="242.14754"
+       fx="171.41696"
+       fy="242.14754"
+       r="259.28571"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3305787,1.1239671,-0.64530391,0.76392595,160.06904,-57.354043)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5452"
+       id="radialGradient5563"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3305787,1.1239671,-0.64530391,0.76392595,160.06904,-57.354043)"
+       cx="171.41696"
+       cy="242.14754"
+       fx="171.41696"
+       fy="242.14754"
+       r="259.28571" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-295.29386"
+     inkscape:cy="813.67975"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#ff0000"
+       id="path3342-2"
+       cx="289.98032"
+       cy="331.26688"
+       r="0" />
+    <circle
+       style="fill:#ff0000"
+       id="path3342-7"
+       cx="289.98032"
+       cy="331.26688"
+       r="0" />
+    <circle
+       style="fill:#ff0000"
+       id="path3342-0"
+       cx="289.98032"
+       cy="331.26688"
+       r="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Calque 2">
+    <g
+       id="g4830" />
+    <g
+       id="g5334"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <ellipse
+         style="fill:#262626;fill-opacity:0.72033901;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path4849"
+         cx="388.91068"
+         cy="203.18016"
+         rx="26.263966"
+         ry="39.901024" />
+      <path
+         sodipodi:nodetypes="sssss"
+         inkscape:connector-curvature="0"
+         id="path4883"
+         d="m 379.69436,200.43399 c -0.70904,15.57368 0.81109,26.23363 -4.79692,26.71455 -5.60799,0.48088 -3.29966,-12.76562 -2.23466,-28.14356 1.0662,-15.3951 11.03715,-27.61849 16.64515,-25.77801 5.34796,1.75515 -8.91249,11.80816 -9.61357,27.20702 z"
+         style="fill:#ffffff;fill-opacity:0.72033901;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         style="fill:url(#radialGradient5450);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path3342"
+         cx="379.83679"
+         cy="461.64536"
+         r="254.28572" />
+      <path
+         sodipodi:nodetypes="sssss"
+         inkscape:connector-curvature="0"
+         id="path6144"
+         d="m 247.47954,294.49301 c -28.44546,23.5163 -34.18277,54.65048 -45.33424,48.17611 -11.15146,-6.47434 2.86808,-30.78658 31.31354,-54.30288 28.44546,-23.51629 60.54511,-37.33152 71.6966,-30.85716 11.15147,6.47435 -29.23043,13.46763 -57.6759,36.98393 z"
+         style="opacity:0.77399998;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       inkscape:export-ydpi="50"
+       inkscape:export-xdpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\body.png"
+       id="g5553"
+       transform="translate(-688.57143,-557.14285)">
+      <ellipse
+         ry="39.901024"
+         rx="26.263966"
+         cy="203.18016"
+         cx="388.91068"
+         id="ellipse5555"
+         style="fill:#262626;fill-opacity:0.72033901;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:#ffffff;fill-opacity:0.72033901;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 379.69436,200.43399 c -0.70904,15.57368 0.81109,26.23363 -4.79692,26.71455 -5.60799,0.48088 -3.29966,-12.76562 -2.23466,-28.14356 1.0662,-15.3951 11.03715,-27.61849 16.64515,-25.77801 5.34796,1.75515 -8.91249,11.80816 -9.61357,27.20702 z"
+         id="path5557"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sssss" />
+      <circle
+         r="254.28572"
+         cy="461.64536"
+         cx="379.83679"
+         id="circle5559"
+         style="fill:url(#radialGradient5563);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="opacity:0.77399998;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 247.47954,294.49301 c -28.44546,23.5163 -34.18277,54.65048 -45.33424,48.17611 -11.15146,-6.47434 2.86808,-30.78658 31.31354,-54.30288 28.44546,-23.51629 60.54511,-37.33152 71.6966,-30.85716 11.15147,6.47435 -29.23043,13.46763 -57.6759,36.98393 z"
+         id="path5561"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sssss" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Calque 3">
+    <g
+       id="g4885"
+       transform="matrix(0.73703335,0,0,0.73703335,95.933783,86.26376)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <ellipse
+         ry="64.144684"
+         rx="54.548237"
+         cy="559.91284"
+         cx="389.91888"
+         id="path4822"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         ry="25.75889"
+         rx="40.406101"
+         cy="587.18695"
+         cx="389.91888"
+         id="path4826"
+         style="fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4216"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <circle
+         r="37.375641"
+         cy="402.32648"
+         cx="324.97327"
+         id="path4789"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         ry="13.768468"
+         rx="15.861668"
+         cy="422.17676"
+         cx="324.30484"
+         id="path4795"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <ellipse
+       style="fill:#de8787;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4836"
+       cx="274.46564"
+       cy="463.54224"
+       rx="27.274118"
+       ry="11.616755"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50" />
+    <ellipse
+       ry="11.616755"
+       rx="27.274118"
+       cy="463.54224"
+       cx="506.80072"
+       id="ellipse4847"
+       style="fill:#de8787;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png" />
+    <g
+       id="g5365"
+       transform="translate(-520.71429,-230)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth2.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <ellipse
+         inkscape:export-ydpi="29"
+         inkscape:export-xdpi="29"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth2.png"
+         ry="59.700317"
+         rx="39.770271"
+         cy="885.87262"
+         cx="168.01965"
+         id="path4822-9"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.23752785;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="29"
+         inkscape:export-xdpi="29"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\mouth3.png"
+         ry="13.270875"
+         rx="29.780643"
+         cy="924.54602"
+         cx="168.01965"
+         id="path4826-7"
+         style="fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.69926739;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4822-9-8"
+       cx="-340.50467"
+       cy="1032.2666"
+       rx="39.539402"
+       ry="66.969444"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth4.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50" />
+    <g
+       id="g4743"
+       transform="translate(-748.57144,678.57143)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth5.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <path
+         inkscape:export-ydpi="29"
+         inkscape:export-xdpi="29"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\g4231.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4256"
+         d="m 362.12443,504.48714 c 14.05407,-8.85898 30.30812,-5.40121 41.4957,0"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:15;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="29"
+         inkscape:export-xdpi="29"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\g4231.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4227"
+         d="m 349.82999,482.84132 c 16.44674,23.66036 15.49085,17.82622 3.53553,45.96194"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:15;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="29"
+         inkscape:export-xdpi="29"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\g4231.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4227-5"
+         d="m 416.42329,482.88344 c -16.44674,23.66036 -15.49085,17.82622 -3.53553,45.96194"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:15;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4231"
+       transform="translate(117.14286,0)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle4233"
+         cx="324.97327"
+         cy="402.32648"
+         r="37.375641" />
+      <ellipse
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse4235"
+         cx="324.30484"
+         cy="422.17676"
+         rx="15.861668"
+         ry="13.768468" />
+    </g>
+    <g
+       id="g5385"
+       transform="translate(-765.71429,-31.428571)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth3.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.23752785;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse5379"
+         cx="426.20624"
+         cy="893.0155"
+         rx="39.770271"
+         ry="59.700317"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth2.png"
+         inkscape:export-xdpi="29"
+         inkscape:export-ydpi="29" />
+      <ellipse
+         style="fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse5373"
+         cx="425.81119"
+         cy="947.13708"
+         rx="14.628356"
+         ry="5.6947308"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\mouth3.png"
+         inkscape:export-xdpi="29"
+         inkscape:export-ydpi="29" />
+    </g>
+    <g
+       inkscape:export-ydpi="50"
+       inkscape:export-xdpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\eye.png"
+       id="g5547"
+       transform="translate(-677.14286,-145.71429)">
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle5549"
+         cx="324.97327"
+         cy="402.32648"
+         r="37.375641" />
+      <ellipse
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse5551"
+         cx="324.30484"
+         cy="422.17676"
+         rx="15.861668"
+         ry="13.768468" />
+    </g>
+    <ellipse
+       inkscape:export-ydpi="50"
+       inkscape:export-xdpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\cheek.png"
+       ry="11.616755"
+       rx="27.274118"
+       cy="366.39938"
+       cx="-345.53436"
+       id="ellipse5565"
+       style="fill:#de8787;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       inkscape:export-ydpi="50"
+       inkscape:export-xdpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\mouth.png"
+       transform="matrix(0.73703335,0,0,0.73703335,-632.63764,63.406619)"
+       id="g5567">
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse5569"
+         cx="389.91888"
+         cy="559.91284"
+         rx="54.548237"
+         ry="64.144684" />
+      <ellipse
+         style="fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse5571"
+         cx="389.91888"
+         cy="587.18695"
+         rx="40.406101"
+         ry="25.75889" />
+    </g>
+  </g>
+</svg>
