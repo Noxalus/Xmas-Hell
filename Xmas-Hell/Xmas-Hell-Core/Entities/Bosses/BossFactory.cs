@@ -27,7 +27,7 @@ namespace XmasHell.Entities.Bosses
             switch (type)
             {
                 case BossType.Debug:
-                    return new DebugBoss.DebugBoss(game, playerPositionDelegate);
+                    return new DebugBoss.BossDebug(game, playerPositionDelegate);
                 case BossType.XmasBall:
                     return new XmasBall.XmasBall(game, playerPositionDelegate);
                 case BossType.XmasBell:

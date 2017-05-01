@@ -93,7 +93,7 @@ namespace XmasHell
                 { "MainMenu/snowflake", OpenRawFile(BuildRawAssetPath("MainMenu/snowflake.xml")) },
 
                 // Debug
-                { "DebugBoss/pattern1", OpenRawFile(BuildRawAssetPath("DebugBoss/pattern1.xml")) },
+                { "BossDebug/pattern1", OpenRawFile(BuildRawAssetPath("BossDebug/pattern1.xml")) },
 
                 // Xmas Ball
                 { "XmasBall/pattern1", OpenRawFile(BuildRawAssetPath("XmasBall/pattern1.xml")) },

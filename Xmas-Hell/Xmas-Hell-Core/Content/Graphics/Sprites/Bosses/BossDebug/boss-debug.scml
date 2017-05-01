@@ -3,7 +3,7 @@
     <folder id="0">
         <file id="0" name="body.png" width="294" height="294" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
-    <entity id="0" name="DebugBoss">
+    <entity id="0" name="BossDebug">
         <obj_info name="body-bone" type="bone" w="59.8897" h="10"/>
         <animation id="0" name="Idle" length="1600" interval="100">
             <mainline>
@@ -74,7 +74,7 @@
             </timeline>
             <timeline id="2" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-0" y="-0" angle="180"/>
+                    <object angle="180"/>
                 </key>
             </timeline>
         </animation>
