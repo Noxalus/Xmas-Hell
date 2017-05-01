@@ -12,6 +12,7 @@ namespace XmasHell
         public static int RandomSeed = 42;
 
         // Player
+        public static float PlayerSpeed = 1125f;
         public static readonly TimeSpan PlayerShootFrequency = TimeSpan.FromMilliseconds(100);
         public static float PlayerMoveSensitivity = 1f;
         public static float PlayerBulletSpeed = 2000f;
@@ -33,6 +34,6 @@ namespace XmasHell
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
         public static bool EnableBloom = true;
-        public static bool ShowDebugInfo = false;
+        public static bool ShowDebugInfo = true;
     }
 }

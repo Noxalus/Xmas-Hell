@@ -200,12 +200,13 @@ namespace XmasHell.Entities
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
             _hitboxSprite.Position = _hitbox.GetCenter();
+
 #if ANDROID
             UpdatePositionFromTouch(gameTime);
-            UpdateAnimationFromTouch();
+            //UpdateAnimationFromTouch();
 #else
             UpdatePositionFromKeyboard(gameTime);
-            UpdateAnimationFromKeyboard();
+            //UpdateAnimationFromKeyboard();
 #endif
 
             CheckOutOfBounds();
@@ -251,7 +252,7 @@ namespace XmasHell.Entities
             if (InputManager.Right())
                 _currentDirection.X += 1;
 
-            var speed = 750f;
+            var speed = GameConfig.PlayerSpeed;
 
             if (_currentDirection != Vector2.Zero)
                 speed /= 1.5f;
