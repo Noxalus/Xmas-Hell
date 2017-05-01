@@ -31,7 +31,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
 
             _branch1File = SpriterUtils.GetSpriterFile("branch1.png", Boss.CurrentAnimator);
-            _branch2File = SpriterUtils.GetSpriterFile("branch3.png", Boss.CurrentAnimator);
+            _branch2File = SpriterUtils.GetSpriterFile("branch2.png", Boss.CurrentAnimator);
 
             _branches = new List<XmasSnowflakeBranch>(8);
         }
