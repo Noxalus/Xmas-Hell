@@ -1,14 +1,11 @@
-using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
-using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
+using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
 using XmasHell.Sprites;
@@ -46,10 +43,7 @@ namespace XmasHell
         private Sprite _backgroundSprite;
 
         // Performance
-        public FramesPerSecondCounterComponent _fpsCounter;
-        private Stopwatch _stopWatch;
-        private TimeSpan _updateTime;
-        private TimeSpan _drawTime;
+        public PerformanceManager PerformanceManager;
 
 #if ANDROID
         public XmasHell(XmasHellActivity activity)
@@ -86,6 +80,7 @@ namespace XmasHell
 
             GameManager = new GameManager(this);
             SpriteBatchManager = new SpriteBatchManager(this);
+            PerformanceManager = new PerformanceManager(this);
         }
 
         protected override void Initialize()
@@ -93,8 +88,6 @@ namespace XmasHell
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
             Camera = new Camera(this, ViewportAdapter);
-
-            _stopWatch = new Stopwatch();
 
             SpriteBatchManager.Initialize();
 
@@ -127,8 +120,7 @@ namespace XmasHell
             // Input manager
             Components.Add(new InputManager(this));
 
-            // FPS counter
-            Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(this));
+            PerformanceManager.Initialize();
         }
 
         protected override void LoadContent()
@@ -163,8 +155,7 @@ namespace XmasHell
 
         protected override void Update(GameTime gameTime)
         {
-            _stopWatch.Reset();
-            _stopWatch.Start();
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalUpdate);
 
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
@@ -200,63 +191,27 @@ namespace XmasHell
 
             GameManager.Update(gameTime);
 
-            _updateTime = _stopWatch.Elapsed;
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
+
+            PerformanceManager.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            _stopWatch.Reset();
-            _stopWatch.Start();
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalDraw);
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            _drawTime = _stopWatch.Elapsed;
 
             SpriteBatchManager.Draw();
 
             base.Draw(gameTime);
 
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalDraw);
+
             if (GameConfig.DisplayCollisionBoxes)
                 GameManager.CollisionWorld.Draw();
 
-            if (GameConfig.ShowDebugInfo)
-            {
-                SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: ViewportAdapter.GetScaleMatrix()
-                );
-
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), $"FPS: {_fpsCounter.FramesPerSecond:0}",
-                    Vector2.Zero, Color.White);
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    $"Player's bullets: {GameManager.GetPlayerBullets().Count:0}", new Vector2(0, 20), Color.White);
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    $"Boss' bullets: {GameManager.GetBossBullets().Count:0}", new Vector2(0, 40), Color.White);
-
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    "Active particles: " + GameManager.ParticleManager.ActiveParticlesCount(), new Vector2(0, 60),
-                    Color.White);
-
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    $"Update time: {_updateTime.TotalMilliseconds} ms", new Vector2(0, 80), Color.White
-                );
-                SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                    $"Draw time: { _drawTime.TotalMilliseconds } ms", new Vector2(0, 100), Color.White
-                );
-
-                if (GameConfig.EnableBloom)
-                {
-                    SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                        "C = settings (" + SpriteBatchManager.Bloom.Settings.Name + ")", new Vector2(0, 120),
-                        Color.White);
-                    SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"),
-                        "X = show buffer (" + SpriteBatchManager.Bloom.ShowBuffer + ")", new Vector2(0, 140),
-                        Color.White);
-                }
-
-                SpriteBatch.End();
-            }
+            PerformanceManager.Draw(gameTime);
         }
     }
 }

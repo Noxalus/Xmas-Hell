@@ -53,6 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\MathHelperExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\ParticleManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Performance\PerformanceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\CollisionWorld.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionCircle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\Collision\CollisionConvexPolygon.cs" />
