@@ -15,30 +15,37 @@
                 <key id="1" time="100">
                     <bone_ref id="0" timeline="1" key="1"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="2" time="399">
                     <bone_ref id="0" timeline="1" key="2"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="3" time="500">
                     <bone_ref id="0" timeline="1" key="3"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="4" time="800">
                     <bone_ref id="0" timeline="1" key="4"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="5" time="900">
                     <bone_ref id="0" timeline="1" key="5"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="6" time="1200">
                     <bone_ref id="0" timeline="1" key="6"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
                 <key id="7" time="1300">
                     <bone_ref id="0" timeline="1" key="7"/>
                     <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="2" key="0" z_index="1"/>
                 </key>
             </mainline>
             <timeline id="0" name="body">
