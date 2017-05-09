@@ -39,15 +39,15 @@ namespace XmasHell.Entities.Bosses.DebugBoss
 
             //FindNewPosition(gameTime);
 
-            if (Boss.Game._fpsCounter.FramesPerSecond > 30)
-            {
-                _maxBossBullets = Boss.Game.GameManager.GetBossBullets().Count;
-                ShootBullet(gameTime);
-            }
-            else
-            {
-                Debug.WriteLine("Max boss bullets: " + _maxBossBullets);
-            }
+            //if (Boss.Game._fpsCounter.FramesPerSecond > 30)
+            //{
+            //    _maxBossBullets = Boss.Game.GameManager.GetBossBullets().Count;
+            ShootBullet(gameTime);
+            //}
+            //else
+            //{
+            //    Debug.WriteLine("Max boss bullets: " + _maxBossBullets);
+            //}
         }
 
         private void FindNewPosition(GameTime gameTime)

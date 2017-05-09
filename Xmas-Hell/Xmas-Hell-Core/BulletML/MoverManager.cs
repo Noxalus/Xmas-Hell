@@ -2,6 +2,7 @@
 using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using XmasHell.Performance;
 
 namespace XmasHell.BulletML
 {
@@ -83,6 +84,8 @@ namespace XmasHell.BulletML
 
         public void Update()
         {
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BossBulletUpdate);
+
             for (int i = 0; i < Movers.Count; i++)
                 Movers[i].Update();
 
@@ -90,6 +93,8 @@ namespace XmasHell.BulletML
                 _topLevelMovers[i].Update();
 
             FreeMovers();
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletUpdate);
         }
 
         private void FreeMovers()

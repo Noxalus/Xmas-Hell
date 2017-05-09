@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
+using XmasHell.Performance;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.Physics
@@ -77,6 +78,8 @@ namespace XmasHell.Physics
 
         public void Update(GameTime gameTime)
         {
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.CollisionUpdate);
+
             // Check collision between player's bullets and boss hitbox
             if (BossHitboxes != null)
             {
@@ -130,6 +133,8 @@ namespace XmasHell.Physics
             // Clean destroyed elements
             _playerBulletHitboxes.RemoveAll(hb => !((Bullet)hb.Entity).Used);
             _bossBulletHitboxes.RemoveAll(hb => !((Mover)hb.Entity).Used);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.CollisionUpdate);
         }
 
         // For Debug purpose only

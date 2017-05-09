@@ -40,6 +40,7 @@ namespace XmasHell
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
         public static bool EnableBloom = true;
-        public static bool ShowDebugInfo = true;
+        public static bool ShowPerformanceInfo = true;
+        public static bool ShowPerformanceGraph = true;
     }
 }
