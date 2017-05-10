@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
@@ -27,8 +25,23 @@ namespace XmasHell.Performance
 
     public class PerformanceManager
     {
+        private struct PerformanceStringData
+        {
+            public Color TextColor;
+            public string Text;
+            public Color? DotColor;
+
+            public PerformanceStringData(string text, Color? textColor = null, Color? dotColor = null)
+            {
+                Text = text;
+                TextColor = textColor ?? Color.White;
+                DotColor = dotColor;
+            }
+        }
+
         private XmasHell _game;
-        private StringBuilder _performanceInfo;
+        private List<PerformanceStringData> _performanceInfo;
+        private Vector2 _performanceInfoPosition;
         private FramesPerSecondCounterComponent _fpsCounter;
         private Dictionary<PerformanceStopwatchType, Stopwatch> _stopWatches;
         private Graph _performanceGraph;
@@ -38,19 +51,24 @@ namespace XmasHell.Performance
         public PerformanceManager(Game game)
         {
             _game = (XmasHell) game;
-            _performanceInfo = new StringBuilder();
+            _performanceInfo = new List<PerformanceStringData>();
             _stopWatches = new Dictionary<PerformanceStopwatchType, Stopwatch>();
             _maxPerformanceSample = 200;
             _performanceData = new Dictionary<PerformanceStopwatchType, Queue<float>>();
+            _performanceInfoPosition = Vector2.Zero;
         }
 
         public void Initialize()
         {
             _game.Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(_game));
-            _performanceGraph = new Graph(_game.GraphicsDevice, new Point(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2), _game.ViewportAdapter.GetScaleMatrix());
-            _performanceGraph.Position = new Vector2(0, GameConfig.VirtualResolution.Y);
-            _performanceGraph.Type = Graph.GraphType.Line;
-            _performanceGraph.MaxValue = 16f; // 16ms = 60FPS
+            _performanceGraph = new Graph(_game.GraphicsDevice,
+                new Point(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2),
+                _game.ViewportAdapter.GetScaleMatrix())
+            {
+                Position = new Vector2(0, GameConfig.VirtualResolution.Y),
+                Type = Graph.GraphType.Line,
+                MaxValue = 16f // 16ms = 60FPS
+            };
         }
 
         public void StartStopwatch(PerformanceStopwatchType type)
@@ -100,22 +118,23 @@ namespace XmasHell.Performance
         {
             _performanceInfo.Clear();
 
-            _performanceInfo.AppendLine($"FPS: {_fpsCounter.FramesPerSecond:0}");
-            _performanceInfo.AppendLine($"Player's bullets: {_game.GameManager.GetPlayerBullets().Count:0}");
-            _performanceInfo.AppendLine($"Boss' bullets: {_game.GameManager.GetBossBullets().Count:0}");
-            _performanceInfo.AppendLine($"Active particles: {_game.GameManager.ParticleManager.ActiveParticlesCount()}");
+            _performanceInfo.Add(new PerformanceStringData($"FPS: {_fpsCounter.FramesPerSecond:0}"));
+            _performanceInfo.Add(new PerformanceStringData($"Player's bullets: {_game.GameManager.GetPlayerBullets().Count:0}"));
+            _performanceInfo.Add(new PerformanceStringData($"Boss' bullets: {_game.GameManager.GetBossBullets().Count:0}"));
+            _performanceInfo.Add(new PerformanceStringData($"Active particles: {_game.GameManager.ParticleManager.ActiveParticlesCount()}"));
 
-            if (_stopWatches.ContainsKey(PerformanceStopwatchType.GlobalUpdate))
-                _performanceInfo.AppendLine($"Update time: {_stopWatches[PerformanceStopwatchType.GlobalUpdate].Elapsed.TotalMilliseconds} ms");
-
-            if (_stopWatches.ContainsKey(PerformanceStopwatchType.BossBulletUpdate))
-                _performanceInfo.AppendLine($"  Boss' bullets update time: {_stopWatches[PerformanceStopwatchType.BossBulletUpdate].Elapsed.TotalMilliseconds} ms");
-
-            if (_stopWatches.ContainsKey(PerformanceStopwatchType.CollisionUpdate))
-                _performanceInfo.AppendLine($"  Collision update time: {_stopWatches[PerformanceStopwatchType.CollisionUpdate].Elapsed.TotalMilliseconds} ms");
-
-            if (_stopWatches.ContainsKey(PerformanceStopwatchType.GlobalDraw))
-                _performanceInfo.AppendLine($"Draw time: {_stopWatches[PerformanceStopwatchType.GlobalDraw].Elapsed.TotalMilliseconds} ms");
+            foreach (PerformanceStopwatchType type in Enum.GetValues(typeof(PerformanceStopwatchType)))
+            {
+                if (_stopWatches.ContainsKey(type))
+                {
+                    _performanceInfo.Add(
+                        new PerformanceStringData(
+                            $"{type.ToString()}: {_stopWatches[type].Elapsed.TotalMilliseconds} ms",
+                            Color.White, PerformanceStopwatchTypeToColor(type)
+                        )
+                    );
+                }
+            }
         }
 
         public void Draw(GameTime gameTime)
@@ -128,9 +147,7 @@ namespace XmasHell.Performance
             if (GameConfig.ShowPerformanceGraph)
             {
                 foreach (var performanceData in _performanceData)
-                {
                     _performanceGraph.Draw(performanceData.Value.ToList(), PerformanceStopwatchTypeToColor(performanceData.Key));
-                }
             }
         }
 
@@ -144,7 +161,32 @@ namespace XmasHell.Performance
                     transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
                 );
 
-                _game.SpriteBatch.DrawString(Assets.GetFont("Graphics/Fonts/main"), _performanceInfo.ToString(), Vector2.Zero, Color.White);
+                var mainFont = Assets.GetFont("Graphics/Fonts/main");
+
+                for (int i = 0; i < _performanceInfo.Count; i++)
+                {
+                    var performanceInfo = _performanceInfo[i];
+                    var textPosition = _performanceInfoPosition;
+
+                    textPosition.Y += mainFont.LineHeight * i;
+
+                    if (performanceInfo.DotColor.HasValue)
+                    {
+                        _game.SpriteBatch.Draw(
+                            Assets.GetTexture2D("pixel"),
+                            new Rectangle(
+                                (int)textPosition.X,
+                                (int)textPosition.Y + (int)(mainFont.LineHeight / 2f) - (20 / 2),
+                                20, 20
+                            ),
+                            null,
+                            performanceInfo.DotColor.Value
+                        );
+                        textPosition.X += 20;
+                    }
+
+                    _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition, performanceInfo.TextColor);
+                }
 
                 _game.SpriteBatch.End();
             }
@@ -156,23 +198,14 @@ namespace XmasHell.Performance
             {
               case PerformanceStopwatchType.GlobalUpdate:
                     return Color.Red;
-                    break;
-
                 case PerformanceStopwatchType.GlobalDraw:
                     return Color.Green;
-                    break;
-
                 case PerformanceStopwatchType.BossBulletUpdate:
                     return Color.Orange;
-                    break;
-
                 case PerformanceStopwatchType.CollisionUpdate:
                     return Color.Yellow;
-                    break;
-
                 default:
                     return Color.White;
-                    break;
             }
         }
     }
