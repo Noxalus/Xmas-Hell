@@ -1,7 +1,9 @@
 #define RELEASE_VERSION
 
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using XmasHell.Performance;
 
 namespace XmasHell
 {
@@ -25,7 +27,7 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
-        public static int MaximumBullets = 500;
+        public static int MaximumBullets = 10;
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -38,9 +40,13 @@ namespace XmasHell
         // Debug
         public static bool DebugScreen = true;
         public static bool GodMode = true;
-        public static bool DisplayCollisionBoxes = false;
+        public static bool DisplayCollisionBoxes = true;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = true;
         public static bool ShowPerformanceGraph = true;
+        public static List<PerformanceStopwatchType> DisabledGraph = new List<PerformanceStopwatchType>()
+        {
+            PerformanceStopwatchType.UIDraw
+        };
     }
 }

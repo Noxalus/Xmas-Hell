@@ -200,9 +200,13 @@ namespace XmasHell
         {
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalDraw);
 
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.ClearColorDraw);
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.ClearColorDraw);
 
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
             SpriteBatchManager.Draw();
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
 
             base.Draw(gameTime);
 

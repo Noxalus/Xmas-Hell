@@ -18,10 +18,15 @@ namespace XmasHell.Performance
         PlayerBulletUpdate,
         BossBehaviourUpdate,
         GlobalDraw,
-        ParticleDraw,
+        ClearColorDraw,
+        SpriteBatchManagerDraw,
+        BackgroundParticleDraw,
+        GameParticleDraw,
         BossBulletDraw,
         PlayerBulletDraw,
         BloomDraw,
+        BloomRenderTargetDraw,
+        UIDraw
     }
 
     public class PerformanceManager
@@ -50,6 +55,7 @@ namespace XmasHell.Performance
         private Dictionary<PerformanceStopwatchType, Queue<float>> _performanceData;
         private Queue<float> _fpsData;
         private Graph _fpsGraph;
+        private Color _fpsGraphColor;
 
         public PerformanceManager(Game game)
         {
@@ -82,6 +88,8 @@ namespace XmasHell.Performance
                 Type = Graph.GraphType.Line,
                 MaxValue = 60f
             };
+
+            _fpsGraphColor = Color.LightBlue;
         }
 
         public void StartStopwatch(PerformanceStopwatchType type)
@@ -94,7 +102,9 @@ namespace XmasHell.Performance
             else
             {
                 _stopWatches.Add(type, new Stopwatch());
-                _performanceData.Add(type, new Queue<float>(_maxPerformanceSample));
+
+                if (!GameConfig.DisabledGraph.Contains(type))
+                    _performanceData.Add(type, new Queue<float>(_maxPerformanceSample));
             }
 
             _stopWatches[type].Start();
@@ -136,14 +146,14 @@ namespace XmasHell.Performance
         {
             _performanceInfo.Clear();
 
-            _performanceInfo.Add(new PerformanceStringData($"FPS: {_fpsCounter.FramesPerSecond:0}"));
+            _performanceInfo.Add(new PerformanceStringData($"FPS: {_fpsCounter.FramesPerSecond:0}", Color.White, _fpsGraphColor));
             _performanceInfo.Add(new PerformanceStringData($"Player's bullets: {_game.GameManager.GetPlayerBullets().Count:0}"));
             _performanceInfo.Add(new PerformanceStringData($"Boss' bullets: {_game.GameManager.GetBossBullets().Count:0}"));
             _performanceInfo.Add(new PerformanceStringData($"Active particles: {_game.GameManager.ParticleManager.ActiveParticlesCount()}"));
 
             foreach (PerformanceStopwatchType type in Enum.GetValues(typeof(PerformanceStopwatchType)))
             {
-                if (_stopWatches.ContainsKey(type))
+                if (_stopWatches.ContainsKey(type) && !GameConfig.DisabledGraph.Contains(type))
                 {
                     _performanceInfo.Add(
                         new PerformanceStringData(
@@ -164,7 +174,7 @@ namespace XmasHell.Performance
 
             if (GameConfig.ShowPerformanceGraph)
             {
-                _fpsGraph.Draw(_fpsData.ToList(), Color.Red);
+                _fpsGraph.Draw(_fpsData.ToList(), _fpsGraphColor);
 
                 foreach (var performanceData in _performanceData)
                     _performanceGraph.Draw(performanceData.Value.ToList(), PerformanceStopwatchTypeToColor(performanceData.Key));

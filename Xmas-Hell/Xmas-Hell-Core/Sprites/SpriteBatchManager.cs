@@ -6,6 +6,7 @@ using MonoGame.Extended.Sprites;
 using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
+using XmasHell.Performance;
 using XmasHell.Physics.Collision;
 using XmasHell.Shaders;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
@@ -119,8 +120,12 @@ namespace XmasHell.Sprites
 
             PlayerHitbox?.Draw(_game.SpriteBatch);
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BossBulletDraw);
+
             foreach (var mover in BossBullets)
                 _game.SpriteBatch.Draw(mover.Sprite);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletDraw);
 
             _game.SpriteBatch.End();
         }
@@ -157,6 +162,8 @@ namespace XmasHell.Sprites
             // Start by render the bloomed elements into a render target
             if (GameConfig.EnableBloom)
             {
+                _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BloomDraw);
+
                 // The next draw calls will be rendered in the first render target
                 _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
                 _game.GraphicsDevice.Clear(Color.Transparent);
@@ -172,6 +179,8 @@ namespace XmasHell.Sprites
 
                 // Reset the viewport
                 _game.ViewportAdapter.Reset();
+
+                _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BloomDraw);
             }
 
             BeginDrawViewportSpace();
@@ -180,8 +189,12 @@ namespace XmasHell.Sprites
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundParticleDraw);
+
             foreach (var particle in BackgroundParticles)
                 _game.SpriteBatch.Draw(particle);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundParticleDraw);
 
             _game.SpriteBatch.End();
 
@@ -201,13 +214,19 @@ namespace XmasHell.Sprites
             foreach (var sprite in GameSprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.GameParticleDraw);
+
             foreach (var particle in GameParticles)
                 _game.SpriteBatch.Draw(particle);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.GameParticleDraw);
 
             _game.SpriteBatch.End();
 
             if (GameConfig.EnableBloom)
             {
+                _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BloomRenderTargetDraw);
+
                 // Draw bloom render target
                 // Draw the second render target on top of everything
                 BeginDrawViewportSpace();
@@ -217,12 +236,17 @@ namespace XmasHell.Sprites
                     GameConfig.VirtualResolution.X,
                     GameConfig.VirtualResolution.Y
                 ), Color.White);
+
                 _game.SpriteBatch.End();
+
+                _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BloomRenderTargetDraw);
             }
             else
             {
                 DrawBloomedElements();
             }
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UIDraw);
 
             BeginDrawViewportSpace();
 
@@ -231,6 +255,8 @@ namespace XmasHell.Sprites
                 sprite.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UIDraw);
 
             // Draw strings
             // TODO: Think to a good way to do that
