@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -47,6 +48,8 @@ namespace XmasHell.Performance
         private Graph _performanceGraph;
         private int _maxPerformanceSample;
         private Dictionary<PerformanceStopwatchType, Queue<float>> _performanceData;
+        private Queue<float> _fpsData;
+        private Graph _fpsGraph;
 
         public PerformanceManager(Game game)
         {
@@ -55,6 +58,7 @@ namespace XmasHell.Performance
             _stopWatches = new Dictionary<PerformanceStopwatchType, Stopwatch>();
             _maxPerformanceSample = 200;
             _performanceData = new Dictionary<PerformanceStopwatchType, Queue<float>>();
+            _fpsData = new Queue<float>(_maxPerformanceSample);
             _performanceInfoPosition = Vector2.Zero;
         }
 
@@ -68,6 +72,15 @@ namespace XmasHell.Performance
                 Position = new Vector2(0, GameConfig.VirtualResolution.Y),
                 Type = Graph.GraphType.Line,
                 MaxValue = 16f // 16ms = 60FPS
+            };
+
+            _fpsGraph = new Graph(_game.GraphicsDevice,
+                new Point(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2),
+                _game.ViewportAdapter.GetScaleMatrix())
+            {
+                Position = new Vector2(0, GameConfig.VirtualResolution.Y),
+                Type = Graph.GraphType.Line,
+                MaxValue = 60f
             };
         }
 
@@ -111,6 +124,11 @@ namespace XmasHell.Performance
 
                     performanceData.Value.Enqueue((float)_stopWatches[performanceData.Key].Elapsed.TotalMilliseconds);
                 }
+
+                if (_fpsData.Count >= _maxPerformanceSample)
+                    _fpsData.Dequeue();
+
+                _fpsData.Enqueue(_fpsCounter.FramesPerSecond);
             }
         }
 
@@ -146,6 +164,8 @@ namespace XmasHell.Performance
 
             if (GameConfig.ShowPerformanceGraph)
             {
+                _fpsGraph.Draw(_fpsData.ToList(), Color.Red);
+
                 foreach (var performanceData in _performanceData)
                     _performanceGraph.Draw(performanceData.Value.ToList(), PerformanceStopwatchTypeToColor(performanceData.Key));
             }

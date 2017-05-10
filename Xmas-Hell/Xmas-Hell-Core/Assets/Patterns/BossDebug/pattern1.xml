@@ -6,6 +6,22 @@
       <bullet>
         <direction type="absolute">$rand * 360</direction>
         <speed type="absolute">1</speed>
+        <action>
+          <fire>
+            <bullet>
+              <direction type="absolute">$rand * 360</direction>
+              <speed type="absolute">2</speed>
+              <action>
+                <fire>
+                  <bullet>
+                    <direction type="absolute">$rand * 360</direction>
+                    <speed type="absolute">1</speed>
+                  </bullet>
+                </fire>
+              </action>
+            </bullet>
+          </fire>
+        </action>
       </bullet>
     </fire>
   </action>
