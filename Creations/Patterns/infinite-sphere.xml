@@ -24,35 +24,28 @@
     <fire>
       <bulletRef label="randomBullet" />
     </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
     <wait>1</wait>
   </action>
 
   <bullet label="randomBullet">
     <direction type="absolute">$rand * 360</direction>
-    <speed type="absolute">5</speed>
+    <speed type="absolute">3</speed>
     <action>
-      <changeSpeed>
-        <speed>0</speed>
-        <term>100</term>
-      </changeSpeed>
+      <repeat>
+        <times>0</times>
+        <action>
+          <wait>50</wait>
+          <changeDirection>
+            <direction type="relative">180</direction>
+            <term>50</term>
+          </changeDirection>
+<!--           <wait>100</wait>
+          <changeSpeed>
+            <speed type="relative">1</speed>
+            <term>0</term>
+          </changeSpeed> -->
+        </action>
+      </repeat>
     </action>
   </bullet>
 </bulletml>

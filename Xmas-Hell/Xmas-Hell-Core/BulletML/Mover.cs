@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using BulletML;
+﻿using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Shapes;
 using MonoGame.Extended.Sprites;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
@@ -12,8 +10,8 @@ namespace XmasHell.BulletML
     public class Mover : Bullet, IPhysicsEntity
     {
         private XmasHell _game;
-
         private Vector2 _position;
+        public bool TopBullet;
         public Texture2D Texture;
         public Sprite Sprite;
 
@@ -64,9 +62,10 @@ namespace XmasHell.BulletML
 
         public bool Used { get; set; }
 
-        public Mover(XmasHell game, IBulletManager bulletManager) : base(bulletManager)
+        public Mover(XmasHell game, IBulletManager bulletManager, bool topBullet = false) : base(bulletManager)
         {
             _game = game;
+            TopBullet = topBullet;
         }
 
         public void Init(bool topBullet)
@@ -107,10 +106,10 @@ namespace XmasHell.BulletML
 
             Sprite.Position = _position;
             Sprite.Rotation = Direction;
-            //Sprite.Scale = Scale();
+            Sprite.Scale = Scale();
 
-            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 || Y < -100 ||
-                Y > GameConfig.VirtualResolution.Y + 100)
+            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 ||
+                Y < -100 || Y > GameConfig.VirtualResolution.Y + 100)
             {
                 Destroy();
             }

@@ -134,11 +134,11 @@ namespace XmasHell.Physics
                 for (int index = 0; index < _bossBulletHitboxes.Count; index++)
                 {
                     var bossBulletHitbox = _bossBulletHitboxes[index];
+
                     if (PlayerHitbox.Intersects(bossBulletHitbox))
                     {
                         player.Destroy();
                         ((Mover)bossBulletHitbox.Entity).Used = false;
-                        break;
                     }
                 }
             }

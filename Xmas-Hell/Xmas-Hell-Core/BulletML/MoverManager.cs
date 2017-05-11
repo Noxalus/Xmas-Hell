@@ -10,7 +10,6 @@ namespace XmasHell.BulletML
     {
         private XmasHell _game;
         public readonly List<Mover> Movers = new List<Mover>();
-        private readonly List<Mover> _topLevelMovers = new List<Mover>();
         private PositionDelegate _getPlayerPosition;
         public BulletType CurrentBulletType;
         private Dictionary<string, BulletPattern> _patterns = new Dictionary<string, BulletPattern>();
@@ -33,15 +32,16 @@ namespace XmasHell.BulletML
 
         public IBullet CreateBullet(bool topBullet = false)
         {
-            var mover = new Mover(_game, this)
+            var mover = new Mover(_game, this, topBullet)
             {
                 Texture = BulletTypeUtils.BulletTypeToTexture(CurrentBulletType)
             };
 
             mover.Init(topBullet);
 
-            if (topBullet)
-                _topLevelMovers.Add(mover);
+            // Limit the number of bullet
+            if (Movers.Count >= GameConfig.MaximumBullets)
+                mover.Destroy();
             else
                 Movers.Add(mover);
 
@@ -74,12 +74,15 @@ namespace XmasHell.BulletML
             // Add a new bullet in the center of the screen
             var mover = (Mover)CreateBullet(true);
 
-            if (position.HasValue)
-                mover.Position(position.Value);
-            if (direction.HasValue)
-                mover.Direction = direction.Value;
+            if (mover.Used)
+            {
+                if (position.HasValue)
+                    mover.Position(position.Value);
+                if (direction.HasValue)
+                    mover.Direction = direction.Value;
 
-            mover.InitTopNode(_patterns[patternName].RootNode);
+                mover.InitTopNode(_patterns[patternName].RootNode);
+            }
         }
 
         public void Update()
@@ -88,9 +91,6 @@ namespace XmasHell.BulletML
 
             for (int i = 0; i < Movers.Count; i++)
                 Movers[i].Update();
-
-            for (int i = 0; i < _topLevelMovers.Count; i++)
-                _topLevelMovers[i].Update();
 
             FreeMovers();
 
@@ -101,22 +101,10 @@ namespace XmasHell.BulletML
         {
             for (int i = 0; i < Movers.Count; i++)
             {
-                if (!Movers[i].Used)
+                if (!Movers[i].Used || (Movers[i].TopBullet && Movers[i].TasksFinished()))
                 {
                     Movers[i].Destroy();
-
                     Movers.RemoveAt(i);
-                    i--;
-                }
-            }
-
-            for (int i = 0; i < _topLevelMovers.Count; i++)
-            {
-                if (_topLevelMovers[i].TasksFinished())
-                {
-                    _topLevelMovers[i].Destroy();
-
-                    _topLevelMovers.RemoveAt(i);
                     i--;
                 }
             }
@@ -127,11 +115,7 @@ namespace XmasHell.BulletML
             foreach (var mover in Movers)
                 mover.Destroy();
 
-            foreach (var topLevelMover in _topLevelMovers)
-                topLevelMover.Destroy();
-
             Movers.Clear();
-            _topLevelMovers.Clear();
         }
     }
 }

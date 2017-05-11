@@ -27,7 +27,7 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
-        public static int MaximumBullets = 10;
+        public static int MaximumBullets = 2500;
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -41,7 +41,7 @@ namespace XmasHell
         public static bool DebugScreen = true;
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
-        public static bool DisableCollision = true;
+        public static bool DisableCollision = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = true;
         public static bool ShowPerformanceGraph = false;
@@ -52,12 +52,12 @@ namespace XmasHell
             PerformanceStopwatchType.ParticleUpdate,
             //PerformanceStopwatchType.GlobalCollisionUpdate,
             //PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate,
-            //PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate,
-            //PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate,
+            PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate,
+            PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate,
             //PerformanceStopwatchType.BossBulletUpdate,
             PerformanceStopwatchType.PlayerBulletUpdate,
             PerformanceStopwatchType.BossBehaviourUpdate,
-            //PerformanceStopwatchType.PerformanceManagerUpdate,
+            PerformanceStopwatchType.PerformanceManagerUpdate,
             //PerformanceStopwatchType.GlobalDraw,
             PerformanceStopwatchType.ClearColorDraw,
             PerformanceStopwatchType.SpriteBatchManagerDraw,
@@ -68,7 +68,7 @@ namespace XmasHell
             PerformanceStopwatchType.BloomDraw,
             PerformanceStopwatchType.BloomRenderTargetDraw,
             PerformanceStopwatchType.UIDraw,
-            //PerformanceStopwatchType.PerformanceManagerDraw
+            PerformanceStopwatchType.PerformanceManagerDraw
         };
     }
 }
