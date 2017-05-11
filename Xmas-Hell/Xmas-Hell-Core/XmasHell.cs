@@ -191,7 +191,9 @@ namespace XmasHell
 
             GameManager.Update(gameTime);
 
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
 
             PerformanceManager.Update(gameTime);
         }
@@ -215,7 +217,9 @@ namespace XmasHell
             if (GameConfig.DisplayCollisionBoxes)
                 GameManager.CollisionWorld.Draw();
 
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);
             PerformanceManager.Draw(gameTime);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);
         }
     }
 }

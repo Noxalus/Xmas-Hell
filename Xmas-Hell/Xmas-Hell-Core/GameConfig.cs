@@ -40,13 +40,35 @@ namespace XmasHell
         // Debug
         public static bool DebugScreen = true;
         public static bool GodMode = true;
-        public static bool DisplayCollisionBoxes = true;
+        public static bool DisplayCollisionBoxes = false;
+        public static bool DisableCollision = true;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = true;
-        public static bool ShowPerformanceGraph = true;
-        public static List<PerformanceStopwatchType> DisabledGraph = new List<PerformanceStopwatchType>()
+        public static bool ShowPerformanceGraph = false;
+        public static int PerformanceGraphMaxSample = 500;
+        public static readonly List<PerformanceStopwatchType> DisabledGraph = new List<PerformanceStopwatchType>()
         {
-            PerformanceStopwatchType.UIDraw
+            //PerformanceStopwatchType.GlobalUpdate,
+            PerformanceStopwatchType.ParticleUpdate,
+            //PerformanceStopwatchType.GlobalCollisionUpdate,
+            //PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate,
+            //PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate,
+            //PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate,
+            //PerformanceStopwatchType.BossBulletUpdate,
+            PerformanceStopwatchType.PlayerBulletUpdate,
+            PerformanceStopwatchType.BossBehaviourUpdate,
+            //PerformanceStopwatchType.PerformanceManagerUpdate,
+            //PerformanceStopwatchType.GlobalDraw,
+            PerformanceStopwatchType.ClearColorDraw,
+            PerformanceStopwatchType.SpriteBatchManagerDraw,
+            PerformanceStopwatchType.BackgroundParticleDraw,
+            PerformanceStopwatchType.GameParticleDraw,
+            PerformanceStopwatchType.BossBulletDraw,
+            PerformanceStopwatchType.PlayerBulletDraw,
+            PerformanceStopwatchType.BloomDraw,
+            PerformanceStopwatchType.BloomRenderTargetDraw,
+            PerformanceStopwatchType.UIDraw,
+            //PerformanceStopwatchType.PerformanceManagerDraw
         };
     }
 }

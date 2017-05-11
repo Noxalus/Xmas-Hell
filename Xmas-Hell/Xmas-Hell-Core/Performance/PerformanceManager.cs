@@ -13,10 +13,14 @@ namespace XmasHell.Performance
     {
         GlobalUpdate,
         ParticleUpdate,
-        CollisionUpdate,
+        GlobalCollisionUpdate,
+        PlayerHitboxBossBulletsCollisionUpdate,
+        PlayerHitboxBossHitboxesCollisionUpdate,
+        PlayerBulletsBossHitboxesCollisionUpdate,
         BossBulletUpdate,
         PlayerBulletUpdate,
         BossBehaviourUpdate,
+        PerformanceManagerUpdate,
         GlobalDraw,
         ClearColorDraw,
         SpriteBatchManagerDraw,
@@ -26,7 +30,8 @@ namespace XmasHell.Performance
         PlayerBulletDraw,
         BloomDraw,
         BloomRenderTargetDraw,
-        UIDraw
+        UIDraw,
+        PerformanceManagerDraw
     }
 
     public class PerformanceManager
@@ -62,7 +67,7 @@ namespace XmasHell.Performance
             _game = (XmasHell) game;
             _performanceInfo = new List<PerformanceStringData>();
             _stopWatches = new Dictionary<PerformanceStopwatchType, Stopwatch>();
-            _maxPerformanceSample = 200;
+            _maxPerformanceSample = GameConfig.PerformanceGraphMaxSample;
             _performanceData = new Dictionary<PerformanceStopwatchType, Queue<float>>();
             _fpsData = new Queue<float>(_maxPerformanceSample);
             _performanceInfoPosition = Vector2.Zero;
@@ -72,7 +77,7 @@ namespace XmasHell.Performance
         {
             _game.Components.Add(_fpsCounter = new FramesPerSecondCounterComponent(_game));
             _performanceGraph = new Graph(_game.GraphicsDevice,
-                new Point(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2),
+                new Point(GameConfig.VirtualResolution.X + 120, GameConfig.VirtualResolution.Y / 2),
                 _game.ViewportAdapter.GetScaleMatrix())
             {
                 Position = new Vector2(0, GameConfig.VirtualResolution.Y),
@@ -81,11 +86,11 @@ namespace XmasHell.Performance
             };
 
             _fpsGraph = new Graph(_game.GraphicsDevice,
-                new Point(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2),
+                new Point(GameConfig.VirtualResolution.X + 120, GameConfig.VirtualResolution.Y / 2),
                 _game.ViewportAdapter.GetScaleMatrix())
             {
                 Position = new Vector2(0, GameConfig.VirtualResolution.Y),
-                Type = Graph.GraphType.Line,
+                Type = Graph.GraphType.Fill,
                 MaxValue = 60f
             };
 
@@ -101,10 +106,11 @@ namespace XmasHell.Performance
                 _stopWatches[type].Reset();
             else
             {
-                _stopWatches.Add(type, new Stopwatch());
+                if (GameConfig.DisabledGraph.Contains(type))
+                    return;
 
-                if (!GameConfig.DisabledGraph.Contains(type))
-                    _performanceData.Add(type, new Queue<float>(_maxPerformanceSample));
+                _stopWatches.Add(type, new Stopwatch());
+                _performanceData.Add(type, new Queue<float>(_maxPerformanceSample));
             }
 
             _stopWatches[type].Start();
@@ -153,7 +159,7 @@ namespace XmasHell.Performance
 
             foreach (PerformanceStopwatchType type in Enum.GetValues(typeof(PerformanceStopwatchType)))
             {
-                if (_stopWatches.ContainsKey(type) && !GameConfig.DisabledGraph.Contains(type))
+                if (_stopWatches.ContainsKey(type))
                 {
                     _performanceInfo.Add(
                         new PerformanceStringData(
@@ -183,43 +189,44 @@ namespace XmasHell.Performance
 
         private void DrawText(GameTime gameTime)
         {
-            if (GameConfig.ShowPerformanceInfo)
+            _game.SpriteBatch.Begin(
+                samplerState: SamplerState.PointClamp,
+                blendState: BlendState.AlphaBlend,
+                transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
+            );
+
+            var mainFont = Assets.GetFont("Graphics/Fonts/main");
+
+            for (int i = 0; i < _performanceInfo.Count; i++)
             {
-                _game.SpriteBatch.Begin(
-                    samplerState: SamplerState.PointClamp,
-                    blendState: BlendState.AlphaBlend,
-                    transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
-                );
+                var performanceInfo = _performanceInfo[i];
+                var textPosition = _performanceInfoPosition;
 
-                var mainFont = Assets.GetFont("Graphics/Fonts/main");
+                textPosition.Y += mainFont.LineHeight * i;
 
-                for (int i = 0; i < _performanceInfo.Count; i++)
+                if (performanceInfo.DotColor.HasValue && GameConfig.ShowPerformanceGraph)
                 {
-                    var performanceInfo = _performanceInfo[i];
-                    var textPosition = _performanceInfoPosition;
-
-                    textPosition.Y += mainFont.LineHeight * i;
-
-                    if (performanceInfo.DotColor.HasValue)
-                    {
-                        _game.SpriteBatch.Draw(
-                            Assets.GetTexture2D("pixel"),
-                            new Rectangle(
-                                (int)textPosition.X,
-                                (int)textPosition.Y + (int)(mainFont.LineHeight / 2f) - (20 / 2),
-                                20, 20
-                            ),
-                            null,
-                            performanceInfo.DotColor.Value
-                        );
-                        textPosition.X += 20;
-                    }
-
-                    _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition, performanceInfo.TextColor);
+                    _game.SpriteBatch.Draw(
+                        Assets.GetTexture2D("pixel"),
+                        new Rectangle(
+                            (int)textPosition.X,
+                            (int)textPosition.Y + (int)(mainFont.LineHeight / 2f) - (20 / 2),
+                            20, 20
+                        ),
+                        null,
+                        performanceInfo.DotColor.Value
+                    );
+                    textPosition.X += 20;
                 }
 
-                _game.SpriteBatch.End();
+                // Add shadow to make the text easier to read
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition + Vector2.One, Color.Black);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition - Vector2.One, Color.Black);
+
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition, performanceInfo.TextColor);
             }
+
+            _game.SpriteBatch.End();
         }
 
         private Color PerformanceStopwatchTypeToColor(PerformanceStopwatchType type)
@@ -232,8 +239,10 @@ namespace XmasHell.Performance
                     return Color.Green;
                 case PerformanceStopwatchType.BossBulletUpdate:
                     return Color.Orange;
-                case PerformanceStopwatchType.CollisionUpdate:
+                case PerformanceStopwatchType.GlobalCollisionUpdate:
                     return Color.Yellow;
+                case PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate:
+                    return Color.Pink;
                 default:
                     return Color.White;
             }

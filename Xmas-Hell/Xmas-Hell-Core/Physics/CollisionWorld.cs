@@ -78,7 +78,12 @@ namespace XmasHell.Physics
 
         public void Update(GameTime gameTime)
         {
-            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.CollisionUpdate);
+            if (GameConfig.DisableCollision)
+                return;
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalCollisionUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate);
 
             // Check collision between player's bullets and boss hitbox
             if (BossHitboxes != null)
@@ -100,6 +105,10 @@ namespace XmasHell.Physics
                 }
             }
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate);
+
             // Check collision between player's hitbox and boss hitbox
             if (PlayerHitbox != null && BossHitboxes != null)
             {
@@ -113,8 +122,12 @@ namespace XmasHell.Physics
                 }
             }
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate);
+
             // Check collision between boss bullets and player's hitbox
-            var player = (Player) PlayerHitbox?.Entity;
+            var player = (Player)PlayerHitbox?.Entity;
 
             if (player != null && !player.Invincible)
             {
@@ -124,17 +137,19 @@ namespace XmasHell.Physics
                     if (PlayerHitbox.Intersects(bossBulletHitbox))
                     {
                         player.Destroy();
-                        ((Mover) bossBulletHitbox.Entity).Used = false;
+                        ((Mover)bossBulletHitbox.Entity).Used = false;
                         break;
                     }
                 }
             }
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate);
+
             // Clean destroyed elements
             _playerBulletHitboxes.RemoveAll(hb => !((Bullet)hb.Entity).Used);
             _bossBulletHitboxes.RemoveAll(hb => !((Mover)hb.Entity).Used);
 
-            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.CollisionUpdate);
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalCollisionUpdate);
         }
 
         // For Debug purpose only
