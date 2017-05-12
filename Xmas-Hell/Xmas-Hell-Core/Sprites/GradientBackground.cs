@@ -8,81 +8,35 @@ namespace XmasHell.Sprites
     {
         private XmasHell _game;
         private Effect _animatedGradientEffect;
-
-        private Vector2 _gradientPoint0Position;
-        private Color _gradientPoint0Color;
-        private TimeSpan _newPositionTimer;
-        private bool _targetingPosition;
-        private Vector2 _targetPosition;
-        private Vector2 _initialPosition;
-        private TimeSpan _targetPositionTime;
-        private TimeSpan _targetPositionTimer;
+        private Vector2[] _metaballs;
 
         public GradientBackground(XmasHell game)
         {
             _game = game;
-            _animatedGradientEffect = Assets.GetShader("Graphics/Shaders/AnimatedGradient");
-
-            _newPositionTimer = TimeSpan.Zero;
-            _targetingPosition = false;
-            _targetPosition = Vector2.Zero;
-            _initialPosition = Vector2.Zero;
-            _targetPositionTime = TimeSpan.FromSeconds(5);
-            _targetPositionTimer = TimeSpan.FromSeconds(5);
-
-            _gradientPoint0Color = Color.Black;
-            _gradientPoint0Position = new Vector2(0.5f, 1f);
-
-            _animatedGradientEffect.Parameters["gradientPoint0Color"].SetValue(_gradientPoint0Color.ToVector3());
-            _animatedGradientEffect.Parameters["gradientPoint1Color"].SetValue(new Color(0, 22, 83).ToVector3());
-            _animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(new Vector2(0.5f, 0f));
-            _animatedGradientEffect.Parameters["gradientPoint1Position"].SetValue(new Vector2(0.5f, 1f));
+            _animatedGradientEffect = Assets.GetShader("Graphics/Shaders/Theter");
+            _metaballs = new Vector2[4];
         }
 
         public void Update(GameTime gameTime)
         {
-            if (_newPositionTimer.TotalMilliseconds > 0)
-            {
-                _newPositionTimer -= gameTime.ElapsedGameTime;
-            }
-            else
-            {
-                if (!_targetingPosition)
-                {
-                    _newPositionTimer = TimeSpan.FromSeconds(0);
-                    _targetPosition = _game.GameManager.GetRandomPosition(true);
-                    _initialPosition = _gradientPoint0Position;
-                    _targetPositionTime = TimeSpan.FromSeconds(5);
-                    _targetingPosition = true;
-                }
-            }
+            // time / speed
+            var time = (float) gameTime.TotalGameTime.TotalSeconds / 2f;
+            var c = (float)Math.Cos(time);
+            var s = (float)Math.Sin(time);
 
-            if (_targetingPosition)
-            {
-                var newPosition = Vector2.Zero;
-                var lerpAmount = (float)(_targetPositionTime.TotalSeconds / _targetPositionTimer.TotalSeconds);
+            _metaballs[0].X = c * 0.4f + 0.6f;
+            _metaballs[0].Y = s * 0.3f + 0.4f;
 
-                newPosition.X = MathHelper.SmoothStep(_targetPosition.X, _initialPosition.X, lerpAmount);
-                newPosition.Y = MathHelper.SmoothStep(_targetPosition.Y, _initialPosition.Y, lerpAmount);
+            _metaballs[1].X = c * 0.5f + 0.70f;
+            _metaballs[1].Y = (float)Math.Sin(time * 0.25) * 0.2f + 0.4f;
 
-                if (lerpAmount < 0.001f)
-                {
-                    _targetingPosition = false;
-                    _targetPositionTime = TimeSpan.Zero;
-                    _gradientPoint0Position = _targetPosition;
-                }
-                else
-                    _targetPositionTime -= gameTime.ElapsedGameTime;
+            _metaballs[2].X = (float)Math.Cos(time * 0.33) * 0.6f + 0.7f;
+            _metaballs[2].Y = (float)Math.Sin(time * 1.5) * 0.3f + 0.4f;
 
-                _gradientPoint0Position = newPosition;
-            }
+            _metaballs[3].X = s * 0.4f + 0.6f;
+            _metaballs[3].Y = c * 0.3f + 0.4f;
 
-            _animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(_gradientPoint0Position);
-
-            //_animatedGradientEffect.Parameters["gradientPoint0Color"].SetValue(_game.GameManager.Random.NextColor().ToVector3());
-            //_animatedGradientEffect.Parameters["gradientPoint1Color"].SetValue(_game.GameManager.Random.NextColor().ToVector3());
-            //_animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(_game.GameManager.GetRandomPosition());
-            //_animatedGradientEffect.Parameters["gradientPoint1Position"].SetValue(_game.GameManager.GetRandomPosition());
+            _animatedGradientEffect.Parameters["uMetaBalls"].SetValue(_metaballs);
         }
 
         public void Draw()

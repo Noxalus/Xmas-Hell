@@ -763,3 +763,9 @@
 /processorParam:DebugMode=Auto
 /build:Graphics/Shaders/AnimatedGradient.fx
 
+#begin Graphics/Shaders/Theter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Graphics/Shaders/Theter.fx
+
