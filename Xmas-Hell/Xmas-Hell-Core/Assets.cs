@@ -67,7 +67,6 @@ namespace XmasHell
             {
                 // Pictures
                 pixel,
-                content.Load<Texture2D>("Graphics/Pictures/background"),
                 content.Load<Texture2D>("Graphics/Pictures/snow"),
 
                 // Sprites

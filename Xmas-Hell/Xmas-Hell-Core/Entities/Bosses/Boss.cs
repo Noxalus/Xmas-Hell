@@ -386,7 +386,7 @@ namespace XmasHell.Entities.Bosses
         public void StopMoving()
         {
             TargetingPosition = false;
-            _targetPositionTimer = TimeSpan.Zero;
+            _targetPositionTime = TimeSpan.Zero;
             _targetDirection = Vector2.Zero;
         }
 
@@ -494,7 +494,7 @@ namespace XmasHell.Entities.Bosses
                     if (lerpAmount < 0.001f)
                     {
                         TargetingPosition = false;
-                        _targetPositionTimer = TimeSpan.Zero;
+                        _targetPositionTime = TimeSpan.Zero;
                         CurrentAnimator.Position = _targetPosition;
                     }
                     else

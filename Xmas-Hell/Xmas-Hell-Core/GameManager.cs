@@ -120,12 +120,18 @@ namespace XmasHell
             _bullets.Add(bullet);
         }
 
-        public Vector2 GetRandomPosition()
+        public Vector2 GetRandomPosition(bool normalized = false)
         {
-            return new Vector2(
-                Random.Next(0, GameConfig.VirtualResolution.X),
-                Random.Next(0, GameConfig.VirtualResolution.Y)
-            );
+            float randomX = Random.Next(0, GameConfig.VirtualResolution.X);
+            float randomY = Random.Next(0, GameConfig.VirtualResolution.Y);
+
+            if (normalized)
+            {
+                randomX /= (float)GameConfig.VirtualResolution.X;
+                randomY /= (float)GameConfig.VirtualResolution.Y;
+            }
+
+            return new Vector2(randomX, randomY);
         }
     }
 }
