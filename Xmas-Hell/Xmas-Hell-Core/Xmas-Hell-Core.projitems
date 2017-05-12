@@ -79,6 +79,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\MonoGameDebugAnimator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\GradientBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmasHell.cs" />

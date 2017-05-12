@@ -40,8 +40,6 @@ namespace XmasHell
         private XmasHellActivity _activity;
 #endif
 
-        private Sprite _backgroundSprite;
-
         // Performance
         public PerformanceManager PerformanceManager;
 
@@ -135,17 +133,7 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
-            _backgroundSprite = new Sprite(
-                new TextureRegion2D(
-                    Assets.GetTexture2D("Graphics/Pictures/background"),
-                    0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y
-                )
-            )
-            {
-                Origin = Vector2.Zero
-            };
-
-            SpriteBatchManager.BackgroundSprites.Add(_backgroundSprite);
+            SpriteBatchManager.GradientBackground = new GradientBackground(this);
         }
 
         protected override void UnloadContent()
@@ -187,7 +175,7 @@ namespace XmasHell
             Camera.Update(gameTime);
 
             if (!GameManager.EndGame())
-                SpriteBatchManager.Update();
+                SpriteBatchManager.Update(gameTime);
 
             GameManager.Update(gameTime);
 
@@ -212,14 +200,14 @@ namespace XmasHell
 
             base.Draw(gameTime);
 
-            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalDraw);
-
             if (GameConfig.DisplayCollisionBoxes)
                 GameManager.CollisionWorld.Draw();
 
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);
             PerformanceManager.Draw(gameTime);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);
+
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalDraw);
         }
     }
 }

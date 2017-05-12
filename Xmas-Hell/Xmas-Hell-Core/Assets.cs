@@ -129,7 +129,8 @@ namespace XmasHell
             // Load custom shaders
             _effects = new List<Effect>()
             {
-                content.Load<Effect>("Graphics/Shaders/BasicTint")
+                content.Load<Effect>("Graphics/Shaders/BasicTint"),
+                content.Load<Effect>("Graphics/Shaders/AnimatedGradient"),
             };
         }
 

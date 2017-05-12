@@ -27,7 +27,7 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
-        public static int MaximumBullets = 2500;
+        public static int MaximumBullets = 500;
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -50,11 +50,11 @@ namespace XmasHell
         {
             //PerformanceStopwatchType.GlobalUpdate,
             PerformanceStopwatchType.ParticleUpdate,
-            //PerformanceStopwatchType.GlobalCollisionUpdate,
-            //PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate,
+            PerformanceStopwatchType.GlobalCollisionUpdate,
+            PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate,
             PerformanceStopwatchType.PlayerHitboxBossHitboxesCollisionUpdate,
             PerformanceStopwatchType.PlayerBulletsBossHitboxesCollisionUpdate,
-            //PerformanceStopwatchType.BossBulletUpdate,
+            PerformanceStopwatchType.BossBulletUpdate,
             PerformanceStopwatchType.PlayerBulletUpdate,
             PerformanceStopwatchType.BossBehaviourUpdate,
             PerformanceStopwatchType.PerformanceManagerUpdate,

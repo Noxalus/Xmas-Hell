@@ -18,6 +18,7 @@ namespace XmasHell.Sprites
     {
         private XmasHell _game;
 
+        public GradientBackground GradientBackground;
         public List<Sprite> BackgroundSprites;
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
@@ -84,7 +85,7 @@ namespace XmasHell.Sprites
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             if (GameConfig.EnableBloom)
             {
@@ -94,6 +95,8 @@ namespace XmasHell.Sprites
 
                 Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
             }
+
+            GradientBackground?.Update(gameTime);
         }
 
         private void BeginDrawViewportSpace()
@@ -182,6 +185,8 @@ namespace XmasHell.Sprites
 
                 _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BloomDraw);
             }
+
+            GradientBackground?.Draw();
 
             BeginDrawViewportSpace();
 
