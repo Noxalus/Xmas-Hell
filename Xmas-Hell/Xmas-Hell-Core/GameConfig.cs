@@ -43,7 +43,7 @@ namespace XmasHell
         public static bool DisplayCollisionBoxes = false;
         public static bool DisableCollision = false;
         public static bool EnableBloom = true;
-        public static bool ShowPerformanceInfo = true;
+        public static bool ShowPerformanceInfo = false;
         public static bool ShowPerformanceGraph = false;
         public static int PerformanceGraphMaxSample = 500;
         public static readonly List<PerformanceStopwatchType> DisabledGraph = new List<PerformanceStopwatchType>()

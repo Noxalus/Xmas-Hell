@@ -3,13 +3,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Sprites;
+using XmasHell.Background;
 using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using XmasHell.Performance;
-using XmasHell.Physics.Collision;
 using XmasHell.Shaders;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
 
 namespace XmasHell.Sprites
 {
@@ -18,7 +17,7 @@ namespace XmasHell.Sprites
     {
         private XmasHell _game;
 
-        public GradientBackground GradientBackground;
+        public AbstractBackground Background;
         public List<Sprite> BackgroundSprites;
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
@@ -96,7 +95,7 @@ namespace XmasHell.Sprites
                 Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
             }
 
-            GradientBackground?.Update(gameTime);
+            Background?.Update(gameTime);
         }
 
         private void BeginDrawViewportSpace()
@@ -186,7 +185,7 @@ namespace XmasHell.Sprites
                 _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BloomDraw);
             }
 
-            GradientBackground?.Draw();
+            Background?.Draw();
 
             BeginDrawViewportSpace();
 

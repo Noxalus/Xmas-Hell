@@ -2,9 +2,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
-using MonoGame.Extended.Sprites;
-using MonoGame.Extended.TextureAtlases;
 using MonoGame.Extended.ViewportAdapters;
+using XmasHell.Background;
 using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
@@ -133,7 +132,7 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
-            SpriteBatchManager.GradientBackground = new GradientBackground(this);
+            SpriteBatchManager.Background = new StarBackground(this);
         }
 
         protected override void UnloadContent()

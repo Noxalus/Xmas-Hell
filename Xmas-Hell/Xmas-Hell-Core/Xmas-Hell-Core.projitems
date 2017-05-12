@@ -10,6 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Assets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Background\AbstractBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Background\StarBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Background\GradientBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\BulletType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\Mover.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\MoverManager.cs" />
@@ -79,7 +82,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\MonoGameDebugAnimator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sprites\GradientBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmasHell.cs" />

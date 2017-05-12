@@ -2,22 +2,20 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace XmasHell.Sprites
+namespace XmasHell.Background
 {
-    public class GradientBackground
+    public class GradientBackground : AbstractBackground
     {
-        private XmasHell _game;
         private Effect _animatedGradientEffect;
         private Vector2[] _metaballs;
 
-        public GradientBackground(XmasHell game)
+        public GradientBackground(XmasHell game) : base(game)
         {
-            _game = game;
             _animatedGradientEffect = Assets.GetShader("Graphics/Shaders/Theter");
             _metaballs = new Vector2[4];
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             // time / speed
             var time = (float) gameTime.TotalGameTime.TotalSeconds / 2f;
@@ -39,18 +37,18 @@ namespace XmasHell.Sprites
             _animatedGradientEffect.Parameters["uMetaBalls"].SetValue(_metaballs);
         }
 
-        public void Draw()
+        public override void Draw()
         {
-            _game.SpriteBatch.Begin(
+            Game.SpriteBatch.Begin(
                 effect: _animatedGradientEffect,
                 samplerState: SamplerState.PointClamp,
                 blendState: BlendState.AlphaBlend,
-                transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
+                transformMatrix: Game.ViewportAdapter.GetScaleMatrix()
             );
 
-            _game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y), null, Color.White);
+            Game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y), null, Color.White);
 
-            _game.SpriteBatch.End();
+            Game.SpriteBatch.End();
         }
     }
 }

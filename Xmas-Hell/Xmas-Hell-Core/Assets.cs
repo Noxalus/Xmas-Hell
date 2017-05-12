@@ -131,6 +131,7 @@ namespace XmasHell
                 content.Load<Effect>("Graphics/Shaders/BasicTint"),
                 content.Load<Effect>("Graphics/Shaders/AnimatedGradient"),
                 content.Load<Effect>("Graphics/Shaders/Theter"),
+                content.Load<Effect>("Graphics/Shaders/StarBackground"),
             };
         }
 
