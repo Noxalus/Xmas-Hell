@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 
 namespace RandomExtension
 {
@@ -12,6 +13,15 @@ namespace RandomExtension
         public static float NextFloat(this Random rand, float min, float max)
         {
             return (float)rand.NextDouble() * (max - min) + min;
+        }
+
+        public static Color NextColor(this Random rand)
+        {
+            return new Color(
+                (byte) rand.Next(0, 255),
+                (byte) rand.Next(0, 255),
+                (byte) rand.Next(0, 255)
+            );
         }
     }
 }

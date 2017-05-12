@@ -119,5 +119,13 @@ namespace XmasHell
         {
             _bullets.Add(bullet);
         }
+
+        public Vector2 GetRandomPosition()
+        {
+            return new Vector2(
+                Random.Next(0, GameConfig.VirtualResolution.X),
+                Random.Next(0, GameConfig.VirtualResolution.Y)
+            );
+        }
     }
 }

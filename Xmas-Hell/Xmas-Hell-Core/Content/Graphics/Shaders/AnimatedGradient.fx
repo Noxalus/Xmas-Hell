@@ -21,7 +21,7 @@ float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
     // Gradient color interpolation
     float3 color = lerp(gradientPoint0Color, gradientPoint1Color, s);
     // sRGB gamma encode
-    color = pow(color, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
+    // color = pow(color, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
 
     return float4(color, 1.0);
 }

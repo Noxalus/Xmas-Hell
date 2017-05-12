@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RandomExtension;
 
 namespace XmasHell.Sprites
 {
@@ -12,20 +13,28 @@ namespace XmasHell.Sprites
         {
             _game = game;
             _animatedGradientEffect = Assets.GetShader("Graphics/Shaders/AnimatedGradient");
+
+            _animatedGradientEffect.Parameters["gradientPoint0Color"].SetValue(Color.Black.ToVector3());
+            _animatedGradientEffect.Parameters["gradientPoint1Color"].SetValue(new Color(0, 22, 83).ToVector3());
+            _animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(new Vector2(0.5f, 0f));
+            _animatedGradientEffect.Parameters["gradientPoint1Position"].SetValue(new Vector2(0.5f, 1f));
+        }
+
+        private Vector2 GetNextPosition()
+        {
+            return _game.GameManager.GetRandomPosition();
         }
 
         public void Update(GameTime gameTime)
         {
-            _animatedGradientEffect.Parameters["gradientPoint0Color"].SetValue(Color.Green.ToVector3());
-            _animatedGradientEffect.Parameters["gradientPoint1Color"].SetValue(Color.Red.ToVector3());
-
-            _animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(Vector2.Zero);
-            _animatedGradientEffect.Parameters["gradientPoint1Position"].SetValue(Vector2.One);
+            //_animatedGradientEffect.Parameters["gradientPoint0Color"].SetValue(_game.GameManager.Random.NextColor().ToVector3());
+            //_animatedGradientEffect.Parameters["gradientPoint1Color"].SetValue(_game.GameManager.Random.NextColor().ToVector3());
+            //_animatedGradientEffect.Parameters["gradientPoint0Position"].SetValue(_game.GameManager.GetRandomPosition());
+            //_animatedGradientEffect.Parameters["gradientPoint1Position"].SetValue(_game.GameManager.GetRandomPosition());
         }
 
         public void Draw()
         {
-
             _game.SpriteBatch.Begin(
                 effect: _animatedGradientEffect,
                 samplerState: SamplerState.PointClamp,
