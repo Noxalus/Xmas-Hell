@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <fire>
+      <bullet>
+        <direction type="aim">0</direction>
+        <speed>5</speed>
+        <actionRef label="sinus">
+          <param>10</param>
+        </actionRef>
+      </bullet>
+    </fire>
+  </action>
+
+  <action label="sinus">
+    <action>
+      <changeDirection>
+          <direction type="relative">-90</direction>
+          <term>0</term>
+        </changeDirection>
+    </action>
+    <repeat>
+      <times>0</times>
+      <action>
+        <changeDirection>
+          <direction type="relative">180</direction>
+          <term>$1</term>
+        </changeDirection>
+        <wait>$1</wait>
+        <changeDirection>
+          <direction type="relative">-180</direction>
+          <term>$1</term>
+        </changeDirection>
+        <wait>$1</wait>
+      </action>
+    </repeat>
+  </action>
+</bulletml>
