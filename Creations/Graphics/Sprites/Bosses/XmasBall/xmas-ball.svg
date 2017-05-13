@@ -64,9 +64,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-295.29386"
-     inkscape:cy="813.67975"
+     inkscape:zoom="0.7"
+     inkscape:cx="259.98644"
+     inkscape:cy="565.6027"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -413,5 +413,21 @@
          rx="40.406101"
          ry="25.75889" />
     </g>
+    <ellipse
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4193"
+       cx="440.43686"
+       cy="178.5788"
+       rx="77.5"
+       ry="21.428572"
+       transform="matrix(0.89244657,0.4511531,-0.4511531,0.89244657,0,0)" />
+    <ellipse
+       transform="matrix(-0.89244657,0.4511531,0.4511531,0.89244657,0,0)"
+       ry="21.428572"
+       rx="77.5"
+       cy="522.43597"
+       cx="-242.92924"
+       id="ellipse4195"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

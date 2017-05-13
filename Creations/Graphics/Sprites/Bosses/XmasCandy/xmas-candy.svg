@@ -44,9 +44,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="164.96226"
-     inkscape:cy="546.57645"
+     inkscape:zoom="0.7"
+     inkscape:cx="-150.40161"
+     inkscape:cy="695.50353"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -199,6 +199,22 @@
        d="m -404.11957,943.13073 c 0,0 5.09421,24.70699 14.64142,24.61797 6.68578,-0.0622 9.92996,-17.42774 9.92996,-17.42774 0,0 3.63665,16.63801 10.04771,16.41374 8.68131,-0.30367 12.01946,-23.12247 12.01946,-23.12247"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10.03805065;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasCandy\mouth.png" />
+    <ellipse
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path5339"
+       cx="377.84924"
+       cy="-11.808102"
+       rx="26.160715"
+       ry="7.9464283"
+       transform="matrix(0.879524,0.47585454,-0.47585454,0.879524,0,0)" />
+    <ellipse
+       transform="matrix(-0.879524,0.47585454,0.47585454,0.879524,0,0)"
+       ry="7.9464283"
+       rx="26.160715"
+       cy="343.96521"
+       cx="-279.35287"
+       id="ellipse5341"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      inkscape:groupmode="layer"

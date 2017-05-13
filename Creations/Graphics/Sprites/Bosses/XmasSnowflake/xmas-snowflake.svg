@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="-807.23468"
-     inkscape:cy="744.98041"
+     inkscape:cx="-607.28498"
+     inkscape:cy="740.65416"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -310,15 +310,15 @@
     <circle
        style="opacity:1;fill:#b3e5fc;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="circle6058"
-       cx="-903.69403"
-       cy="789.1795"
+       cx="-907.73462"
+       cy="781.09827"
        r="82.480377"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\body.png"
        inkscape:export-xdpi="45"
        inkscape:export-ydpi="45" />
     <g
        id="g4182"
-       transform="translate(11.111678,3.5355335)">
+       transform="translate(7.0710766,-4.5456843)">
       <circle
          transform="scale(-1,1)"
          r="17.765646"
@@ -336,42 +336,52 @@
     </g>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7.52550411;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -910.82506,733.10265 c -12.66715,-2.9132 -20.0524,-1.61966 -30.77808,5.10001"
+       d="m -914.86567,725.02143 c -12.66715,-2.9132 -20.0524,-1.61966 -30.77808,5.10001"
        id="path6074"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -881.04646,800.08074 c 0,0 -12.60769,23.21429 -23.21429,23.21429 -10.6066,0 -22.79586,-22.79586 -22.79586,-22.79586"
+       d="m -885.08707,791.99952 c 0,0 -12.60769,23.21429 -23.21429,23.21429 -10.6066,0 -22.79586,-22.79586 -22.79586,-22.79586"
        id="path6076"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="czc"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\mouth.png"
        inkscape:export-xdpi="45"
        inkscape:export-ydpi="45" />
-    <g
-       transform="translate(56.568542,4.0406101)"
-       id="g4198">
-      <circle
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="circle4200"
-         cx="938.3335"
-         cy="763.58002"
-         r="17.765646"
-         transform="scale(-1,1)" />
-      <circle
-         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="circle4202"
-         cx="938.43921"
-         cy="775.74109"
-         r="5.4988909"
-         transform="scale(-1,1)" />
-    </g>
+    <circle
+       transform="scale(-1,1)"
+       r="17.765646"
+       cy="759.53937"
+       cx="885.80554"
+       id="circle4200"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <circle
+       transform="scale(-1,1)"
+       r="5.4988909"
+       cy="765.70044"
+       cx="885.91125"
+       id="circle4202"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path4210"
-       d="m -897.65473,733.60773 c 12.66715,-2.9132 20.0524,-1.61966 30.77808,5.10001"
+       d="m -901.69534,725.52651 c 12.66715,-2.9132 20.0524,-1.61966 30.77808,5.10001"
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:7.52550411;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <circle
+       transform="scale(-1,1)"
+       r="17.765646"
+       cy="759.0343"
+       cx="931.26239"
+       id="circle5932"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <circle
+       transform="scale(-1,1)"
+       r="5.4988909"
+       cy="765.19537"
+       cx="931.3681"
+       id="circle5934"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
