@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Assets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\AbstractBackground.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Background\BackgroundSnowflake.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Background\SnowRainBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\StarBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\GradientBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BulletML\BulletType.cs" />

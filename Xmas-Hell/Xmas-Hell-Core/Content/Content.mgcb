@@ -775,3 +775,15 @@
 /processorParam:DebugMode=Auto
 /build:Graphics/Shaders/StarBackground.fx
 
+#begin Graphics/Shaders/SnowRainBackground.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Graphics/Shaders/SnowRainBackground.fx
+
+#begin Graphics/Shaders/Snowflake.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Graphics/Shaders/Snowflake.fx
+

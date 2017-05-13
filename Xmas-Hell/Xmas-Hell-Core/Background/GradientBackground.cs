@@ -6,12 +6,11 @@ namespace XmasHell.Background
 {
     public class GradientBackground : AbstractBackground
     {
-        private Effect _animatedGradientEffect;
         private Vector2[] _metaballs;
 
         public GradientBackground(XmasHell game) : base(game)
         {
-            _animatedGradientEffect = Assets.GetShader("Graphics/Shaders/Theter");
+            BackgroundEffect = Assets.GetShader("Graphics/Shaders/Theter");
             _metaballs = new Vector2[4];
         }
 
@@ -34,21 +33,7 @@ namespace XmasHell.Background
             _metaballs[3].X = s * 0.4f + 0.6f;
             _metaballs[3].Y = c * 0.3f + 0.4f;
 
-            _animatedGradientEffect.Parameters["uMetaBalls"].SetValue(_metaballs);
-        }
-
-        public override void Draw()
-        {
-            Game.SpriteBatch.Begin(
-                effect: _animatedGradientEffect,
-                samplerState: SamplerState.PointClamp,
-                blendState: BlendState.AlphaBlend,
-                transformMatrix: Game.ViewportAdapter.GetScaleMatrix()
-            );
-
-            Game.SpriteBatch.Draw(Assets.GetTexture2D("pixel"), new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y), null, Color.White);
-
-            Game.SpriteBatch.End();
+            BackgroundEffect.Parameters["uMetaBalls"].SetValue(_metaballs);
         }
     }
 }
