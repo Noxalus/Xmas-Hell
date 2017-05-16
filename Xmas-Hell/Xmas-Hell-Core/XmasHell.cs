@@ -132,7 +132,9 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
-            SpriteBatchManager.Background = new GradientBackground(this);
+            var gradientBackground = new GradientBackground(this);
+            gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item1, GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item2);
+            SpriteBatchManager.Background = gradientBackground;
         }
 
         protected override void UnloadContent()

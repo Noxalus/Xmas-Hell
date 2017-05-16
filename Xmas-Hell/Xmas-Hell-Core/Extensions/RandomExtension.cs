@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace RandomExtension
+namespace XmasHell.Extensions
 {
     public static class RandomExtension
     {

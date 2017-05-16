@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using RandomExtension;
+using XmasHell.Extensions;
 using XmasHell.Geometry;
 
 namespace XmasHell.Entities.Bosses.XmasBall

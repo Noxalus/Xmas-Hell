@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using XmasHell.BulletML;
 using XmasHell.Geometry;
+using XmasHell.Extensions;
 
 namespace XmasHell.Entities.Bosses.XmasBall
 {
@@ -61,7 +62,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
                     _lockingTarget = true;
                     _lockingTargetTimer = TimeSpan.FromSeconds(
-                        RandomExtension.RandomExtension.NextDouble(
+                        RandomExtension.NextDouble(
                             Boss.Game.GameManager.Random,
                             0.5f, 1.5f
                         )
@@ -155,7 +156,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
                     );
 
                     _stunnedTimer = TimeSpan.FromSeconds(
-                        RandomExtension.RandomExtension.NextDouble(
+                        RandomExtension.NextDouble(
                             Boss.Game.GameManager.Random,
                             1, 2
                         )

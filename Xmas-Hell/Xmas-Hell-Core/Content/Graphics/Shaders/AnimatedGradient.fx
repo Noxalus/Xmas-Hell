@@ -3,7 +3,8 @@ sampler TextureSampler : register(s0);
 float4 uGradientPoint0Color;
 float4 uGradientPoint1Color;
 float uSpeed;
-float uAmplitude;
+float uInnerAmplitude;
+float uOuterAmplitude;
 float2 uResolution;
 float uTime;
 
@@ -14,13 +15,14 @@ struct PixelShaderInput
 
 float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
 {
-    float amplitude = 1. / uAmplitude;
-
     float ratio = uResolution.x / uResolution.y;
     float2 coord = input.TexCoord.xy;
+
     // Make sure to have a round circle
     coord.y /= ratio;
-    float d = distance(float2(0.5, 0.5 / ratio), coord) * (sin(uTime * uSpeed) + amplitude);
+
+    float d = distance(float2(0.5, 0.5 / ratio), coord) * (cos(uTime * uSpeed) + uInnerAmplitude) * uOuterAmplitude;
+
     return lerp(uGradientPoint0Color, uGradientPoint1Color, d);
 }
 

@@ -12,12 +12,19 @@ namespace XmasHell.Background
         {
             BackgroundEffect = Assets.GetShader("Graphics/Shaders/AnimatedGradient");
 
-            BackgroundEffect.Parameters["uGradientPoint0Color"].SetValue(new Color(0.53f, 0.8f, 0.88f, 1f).ToVector4());
-            BackgroundEffect.Parameters["uGradientPoint1Color"].SetValue(new Color(0.24f, 0.67f, 0.82f, 1f).ToVector4());
-            BackgroundEffect.Parameters["uSpeed"].SetValue(0.1f);
-            BackgroundEffect.Parameters["uAmplitude"].SetValue(1f);
+            BackgroundEffect.Parameters["uGradientPoint0Color"].SetValue(Color.White.ToVector4());
+            BackgroundEffect.Parameters["uGradientPoint1Color"].SetValue(Color.Black.ToVector4());
+            BackgroundEffect.Parameters["uSpeed"].SetValue(0.5f);
+            BackgroundEffect.Parameters["uInnerAmplitude"].SetValue(1.5f);
+            BackgroundEffect.Parameters["uOuterAmplitude"].SetValue(1f);
             BackgroundEffect.Parameters["uResolution"].SetValue(GameConfig.VirtualResolution.ToVector2());
 
+        }
+
+        public void ChangeGradientColors(Color brightColor, Color darkColor)
+        {
+            BackgroundEffect.Parameters["uGradientPoint0Color"].SetValue(brightColor.ToVector4());
+            BackgroundEffect.Parameters["uGradientPoint1Color"].SetValue(darkColor.ToVector4());
         }
 
         public override void Update(GameTime gameTime)

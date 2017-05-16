@@ -9,39 +9,14 @@
   </action>
 
   <action label="infinity">
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
-    <fire>
-      <bulletRef label="randomBullet" />
-    </fire>
+    <repeat>
+      <times>500</times>
+      <action>
+        <fire>
+          <bulletRef label="randomBullet" />
+        </fire>
+      </action>
+    </repeat>
     <wait>1</wait>
   </action>
 

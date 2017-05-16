@@ -3,6 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace XmasHell.Background
 {
+    public enum BackgroundLevel
+    {
+        Level1,
+        Level2,
+        Level3,
+        Level4,
+        Level5
+    };
+
     public abstract class AbstractBackground
     {
         protected XmasHell Game;

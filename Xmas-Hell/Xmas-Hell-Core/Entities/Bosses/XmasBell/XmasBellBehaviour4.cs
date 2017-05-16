@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using RandomExtension;
+using XmasHell.Extensions;
 using XmasHell.BulletML;
 
 namespace XmasHell.Entities.Bosses.XmasBell

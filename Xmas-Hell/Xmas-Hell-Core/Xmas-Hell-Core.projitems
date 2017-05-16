@@ -53,6 +53,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ColorExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\RandomExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
@@ -73,7 +75,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\IPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RandomExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\DebugScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\MainMenuScreen.cs" />
