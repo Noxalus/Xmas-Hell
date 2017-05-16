@@ -28,7 +28,7 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
-        public static int MaximumBullets = 500;
+        public static int MaximumBullets = 250;
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -37,7 +37,6 @@ namespace XmasHell
             Color.OrangeRed,
             Color.Red
         };
-
 
         public static Dictionary<BackgroundLevel, Tuple<Color, Color>> BackgroundGradients = new Dictionary<BackgroundLevel, Tuple<Color, Color>>
         {

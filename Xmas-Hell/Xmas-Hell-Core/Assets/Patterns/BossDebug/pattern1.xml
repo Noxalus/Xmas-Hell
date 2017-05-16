@@ -10,7 +10,7 @@
 
   <action label="infinity">
     <repeat>
-      <times>500</times>
+      <times>10</times>
       <action>
         <fire>
           <bulletRef label="randomBullet" />

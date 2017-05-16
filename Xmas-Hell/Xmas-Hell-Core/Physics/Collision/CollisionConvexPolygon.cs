@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Shapes;
+using MonoGame.Extended;
 
 namespace XmasHell.Physics.Collision
 {
@@ -129,8 +130,9 @@ namespace XmasHell.Physics.Collision
                     previousPosition.X,
                     previousPosition.Y,
                     position.X,
-                    position.Y, Color.Red);
-
+                    position.Y, 
+                    Color.Red
+                );
 
                 Vector2 axis = Vector2.Normalize(position - previousPosition);
                 spriteBatch.DrawLine(
