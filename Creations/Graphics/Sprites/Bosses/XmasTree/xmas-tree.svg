@@ -14,7 +14,7 @@
    viewBox="0 0 744.09448819 1052.3622047"
    id="svg4811"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.1 r15371"
    sodipodi:docname="xmas-tree.svg">
   <defs
      id="defs4813" />
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="66.897685"
-     inkscape:cy="802.50049"
+     inkscape:zoom="1.4"
+     inkscape:cx="402.80522"
+     inkscape:cy="590.75228"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -388,7 +388,7 @@
     </g>
     <path
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 339.26568,561.67401 a 32.577419,20.834396 0 0 0 -0.0254,0.31445 32.577419,20.834396 0 0 0 32.57617,20.83399 32.577419,20.834396 0 0 0 32.57813,-20.83399 32.577419,20.834396 0 0 0 -0.0176,-0.31445 l -65.11133,0 z"
+       d="m 337.59157,575.06687 a 32.577419,20.834396 0 0 0 -0.0254,0.31445 32.577419,20.834396 0 0 0 32.57617,20.83399 32.577419,20.834396 0 0 0 32.57813,-20.83399 32.577419,20.834396 0 0 0 -0.0176,-0.31445 h -65.11133 z"
        id="path6373"
        inkscape:connector-curvature="0" />
     <ellipse
@@ -401,20 +401,20 @@
     <ellipse
        style="opacity:1;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path6384"
-       cx="371.39694"
-       cy="574.61572"
+       cx="369.72284"
+       cy="588.00861"
        rx="16.036171"
        ry="3.7249374" />
     <circle
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path6386"
-       cx="311.31653"
-       cy="548.49493"
+       cx="574.48615"
+       cy="428.29404"
        r="13.571428" />
     <circle
        r="13.571428"
-       cy="548.49493"
-       cx="428.81653"
+       cy="428.29404"
+       cx="691.98615"
        id="circle6388"
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
@@ -487,5 +487,77 @@
        id="path6520"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="sssss" />
+    <g
+       transform="matrix(3.5433071,0,0,3.5433071,1049.6718,-2.0106429)"
+       id="g4623">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -125.62294,152.91517 c 0,-12.00344 12.36121,-11.83636 12.36121,0"
+         id="path4547"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4549"
+         d="m -98.40865,153.67113 c 0,-12.00344 12.36121,-11.83636 12.36121,0"
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(3.5433071,0,0,3.5433071,1022.8153,240.61283)"
+       id="g4637">
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path4499"
+         d="m -119.54208,21.082466 11.66774,5.863476 -11.6458,6.723704"
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -90.387454,21.216101 -11.667746,5.863476 11.645802,6.723704"
+         id="path4501"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccc" />
+    </g>
+    <g
+       transform="matrix(0.49833636,0,0,0.49833636,166.84865,345.61829)"
+       id="g4216"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50">
+      <circle
+         r="37.375641"
+         cy="402.32648"
+         cx="324.97327"
+         id="path4789"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         ry="13.768468"
+         rx="15.861668"
+         cy="422.17676"
+         cx="324.30484"
+         id="path4795"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       inkscape:export-ydpi="50"
+       inkscape:export-xdpi="50"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasBall\xmas-ball-hd.png"
+       id="g252"
+       transform="matrix(0.49833636,0,0,0.49833636,249.88436,345.61829)">
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle248"
+         cx="324.97327"
+         cy="402.32648"
+         r="37.375641" />
+      <ellipse
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse250"
+         cx="324.30484"
+         cy="422.17676"
+         rx="15.861668"
+         ry="13.768468" />
+    </g>
   </g>
 </svg>

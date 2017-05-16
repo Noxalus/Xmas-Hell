@@ -3,12 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
+using MonoGame.Extended.Gui;
 using XmasHell.Background;
 using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
 using XmasHell.Sprites;
 using Xmas_Hell_Core.Controls;
+using XmasHell.Screens.GUI;
 
 #if ANDROID
 using Xmas_Hell_Android;
@@ -27,6 +29,8 @@ namespace XmasHell
         public ViewportAdapter ViewportAdapter;
         public Camera Camera;
         public GameManager GameManager;
+
+        public GuiSystem GuiSystem;
 
         public bool Pause;
 
@@ -95,24 +99,24 @@ namespace XmasHell
             GameManager.Initialize();
 
             // Screens
-            ScreenComponent screenComponent;
-            Components.Add(screenComponent = new ScreenComponent(this));
+            //ScreenComponent screenComponent;
+            //Components.Add(screenComponent = new ScreenComponent(this));
 
-            if (GameConfig.DebugScreen)
-            {
-                DebugScreen = new DebugScreen(this);
-                screenComponent.Register(DebugScreen);
+            //if (GameConfig.DebugScreen)
+            //{
+            //    DebugScreen = new DebugScreen(this);
+            //    screenComponent.Register(DebugScreen);
 
-                DebugScreen.Show();
-            }
-            else
-            {
-                MainMenuScreen = new MainMenuScreen(this);
-                GameScreen = new GameScreen(this);
+            //    DebugScreen.Show();
+            //}
+            //else
+            //{
+            //    MainMenuScreen = new MainMenuScreen(this);
+            //    GameScreen = new GameScreen(this);
 
-                screenComponent.Register(MainMenuScreen);
-                screenComponent.Register(GameScreen);
-            }
+            //    screenComponent.Register(MainMenuScreen);
+            //    screenComponent.Register(GameScreen);
+            //}
 
             // Input manager
             Components.Add(new InputManager(this));
@@ -131,6 +135,15 @@ namespace XmasHell
             Assets.Load(Content, GraphicsDevice);
 
             SpriteBatchManager.LoadContent();
+
+            // GUI
+            var skin = GuiSkin.FromFile(Content, @"Assets/GUI/xmas-hell-menu-skin.json");
+            var guiRenderer = new GuiSpriteBatchRenderer(GraphicsDevice, ViewportAdapter.GetScaleMatrix);
+
+            GuiSystem = new GuiSystem(ViewportAdapter, guiRenderer)
+            {
+                Screen = new GuiMainMenuScreen(skin)
+            };
 
             var gradientBackground = new GradientBackground(this);
             gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item1, GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item2);
@@ -180,6 +193,8 @@ namespace XmasHell
 
             GameManager.Update(gameTime);
 
+            GuiSystem.Update(gameTime);
+
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
@@ -198,6 +213,8 @@ namespace XmasHell
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
             SpriteBatchManager.Draw();
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
+
+            GuiSystem.Draw(gameTime);
 
             base.Draw(gameTime);
 

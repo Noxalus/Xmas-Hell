@@ -5,14 +5,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Timers;
+using Sprite = MonoGame.Extended.Sprites.Sprite;
+using SpriterDotNet;
 using SpriterDotNet.MonoGame;
+using SpriterDotNet.MonoGame.Content;
 using SpriterDotNet.Providers;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
-using SpriterDotNet;
 using Xmas_Hell_Core.Controls;
 
 namespace XmasHell.Entities
@@ -92,14 +93,16 @@ namespace XmasHell.Entities
                 SoundsEnabled = false
             };
 
-            var factory = new DefaultProviderFactory<SpriterDotNet.MonoGame.Sprite, SoundEffect>(animatorConfig, true);
+            var factory = new DefaultProviderFactory<ISprite, SoundEffect>(animatorConfig, true);
 
             var loader = new SpriterContentLoader(_game.Content, "Graphics/Sprites/Player/player");
             loader.Fill(factory);
 
+            Stack<SpriteDrawInfo> drawInfoPool = new Stack<SpriteDrawInfo>();
+
             foreach (var entity in loader.Spriter.Entities)
             {
-                var animator = new MonoGameDebugAnimator(entity, _game.GraphicsDevice, factory);
+                var animator = new MonoGameDebugAnimator(entity, _game.GraphicsDevice, factory, drawInfoPool);
                 _animators.Add(animator);
             }
 

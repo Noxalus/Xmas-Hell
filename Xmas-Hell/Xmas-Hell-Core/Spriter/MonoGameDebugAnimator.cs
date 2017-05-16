@@ -4,27 +4,30 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
+using SpriterDotNet.MonoGame.Sprites;
 
 namespace XmasHell.Spriter
 {
     public class MonoGameDebugAnimator : MonoGameAnimator
     {
-        private readonly IDictionary<string, Sprite> _boxTextures = new Dictionary<string, Sprite>();
-        private readonly Sprite _pointTexture;
+        private readonly IDictionary<string, ISprite> _boxTextures = new Dictionary<string, ISprite>();
+        private readonly ISprite _pointTexture;
 
-        public MonoGameDebugAnimator(SpriterEntity entity, GraphicsDevice graphicsDevice, IProviderFactory<Sprite, SoundEffect> providerFactory = null) : base(entity, providerFactory)
+        public MonoGameDebugAnimator(
+            SpriterEntity entity, 
+            GraphicsDevice graphicsDevice, 
+            IProviderFactory<ISprite, SoundEffect> providerFactory = null,
+            Stack<SpriteDrawInfo> drawInfoPool = null
+        ) : base(entity, providerFactory, drawInfoPool)
         {
-            _pointTexture = new Sprite
-            {
-                Texture = TextureUtil.CreateCircle(graphicsDevice, 1, Color.Cyan)
-            };
+            _pointTexture = new TextureSprite(TextureUtil.CreateCircle(graphicsDevice, 1, Color.Cyan));
 
             if (entity.ObjectInfos != null)
             {
                 foreach (SpriterObjectInfo objInfo in entity.ObjectInfos)
                 {
                     if (objInfo.ObjectType != SpriterObjectType.Box) continue;
-                    _boxTextures[objInfo.Name] = new Sprite { Texture = TextureUtil.CreateRectangle(graphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan) };
+                    _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(graphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
                 }
             }
         }

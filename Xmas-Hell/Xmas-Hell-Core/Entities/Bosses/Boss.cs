@@ -13,6 +13,8 @@ using XmasHell.Geometry;
 using XmasHell.Physics;
 using XmasHell.Spriter;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
+using SpriterDotNet.MonoGame.Sprites;
+using SpriterDotNet.MonoGame.Content;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -129,7 +131,7 @@ namespace XmasHell.Entities.Bosses
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return CurrentAnimator.SpriteProvider.Get(0, 0).Width;
+                return CurrentAnimator.SpriteProvider.Get(0, 0).Width();
             }
 
             return 0f;
@@ -139,7 +141,7 @@ namespace XmasHell.Entities.Bosses
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return CurrentAnimator.SpriteProvider.Get(0, 0).Height;
+                return CurrentAnimator.SpriteProvider.Get(0, 0).Height();
             }
 
             return 0f;
@@ -267,7 +269,7 @@ namespace XmasHell.Entities.Bosses
             if (SpriterFilename == string.Empty)
                 throw new Exception("You need to specify a path to the spriter file of this boss");
 
-            var factory = new DefaultProviderFactory<SpriterDotNet.MonoGame.Sprite, SoundEffect>(DefaultAnimatorConfig, true);
+            var factory = new DefaultProviderFactory<ISprite, SoundEffect>(DefaultAnimatorConfig, true);
 
             var loader = new SpriterContentLoader(Game.Content, SpriterFilename);
             loader.Fill(factory);

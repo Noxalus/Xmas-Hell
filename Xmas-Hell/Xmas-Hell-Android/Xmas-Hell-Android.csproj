@@ -62,26 +62,28 @@
       <HintPath>..\Libraries\FarseerPhysics.Portable.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
-    <Reference Include="MonoGame.Extended, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.0.6.377\lib\MonoGame.Extended.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoGame.Extended">
+      <HintPath>..\Libraries\MonoGame.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended.Graphics, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.0.6.377\lib\MonoGame.Extended.Graphics.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoGame.Extended.Graphics">
+      <HintPath>..\Libraries\MonoGame.Extended.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended.Particles, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Particles.0.6.377\lib\MonoGame.Extended.Particles.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MonoGame.Extended.Gui">
+      <HintPath>..\Libraries\MonoGame.Extended.Gui.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Input">
+      <HintPath>..\Libraries\MonoGame.Extended.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Particles">
+      <HintPath>..\Libraries\MonoGame.Extended.Particles.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.Android.3.6.0.1625\lib\MonoAndroid\MonoGame.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK-1.0" />
     <Reference Include="SpriterDotNet.MonoGame">

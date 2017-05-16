@@ -11,7 +11,7 @@
 #-------------------------------- References --------------------------------#
 
 /reference:..\..\Libraries\SpriterDotNet.MonoGame.Importer.dll
-/reference:..\..\packages\MonoGame.Extended.Content.Pipeline.0.6.377\tools\MonoGame.Extended.Content.Pipeline.dll
+/reference:..\..\Libraries\MonoGame.Extended.Content.Pipeline.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -786,4 +786,21 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Graphics/Shaders/Snowflake.fx
+
+#begin Graphics/GUI/xmas-hell-gui-atlas.json
+/importer:TexturePackerJsonImporter
+/processor:TexturePackerProcessor
+/build:Graphics/GUI/xmas-hell-gui-atlas.json
+
+#begin Graphics/GUI/xmas-hell-gui.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/GUI/xmas-hell-gui.png
 

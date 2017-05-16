@@ -77,6 +77,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\DebugScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\GUI\GuiMainMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\MainMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
