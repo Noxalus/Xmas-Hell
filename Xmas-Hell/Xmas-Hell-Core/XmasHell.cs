@@ -132,7 +132,7 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
-            SpriteBatchManager.Background = new SnowRainBackground(this);
+            SpriteBatchManager.Background = new GradientBackground(this);
         }
 
         protected override void UnloadContent()

@@ -1,9 +1,11 @@
 sampler TextureSampler : register(s0);
 
-float3 gradientPoint0Color;
-float3 gradientPoint1Color;
-float2 gradientPoint0Position;
-float2 gradientPoint1Position;
+float4 uGradientPoint0Color;
+float4 uGradientPoint1Color;
+float uSpeed;
+float uAmplitude;
+float2 uResolution;
+float uTime;
 
 struct PixelShaderInput
 {
@@ -12,18 +14,14 @@ struct PixelShaderInput
 
 float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
 {
-    float2 diffPosition = gradientPoint1Position - gradientPoint0Position;
+    float amplitude = 1. / uAmplitude;
 
-    // Vector projection
-    float s = dot(input.TexCoord.xy - gradientPoint0Position, diffPosition) / dot(diffPosition, diffPosition);
-    // Saturate scaler
-    s = clamp(s, 0.0, 1.0);
-    // Gradient color interpolation
-    float3 color = lerp(gradientPoint0Color, gradientPoint1Color, s);
-    // sRGB gamma encode
-    // color = pow(color, float3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
-
-    return float4(color, 1.0);
+    float ratio = uResolution.x / uResolution.y;
+    float2 coord = input.TexCoord.xy;
+    // Make sure to have a round circle
+    coord.y /= ratio;
+    float d = distance(float2(0.5, 0.5 / ratio), coord) * (sin(uTime * uSpeed) + amplitude);
+    return lerp(uGradientPoint0Color, uGradientPoint1Color, d);
 }
 
 technique AnimatedGradient {

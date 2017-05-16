@@ -38,7 +38,7 @@ namespace XmasHell
         };
 
         // Debug
-        public static bool DebugScreen = false;
+        public static bool DebugScreen = true;
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
         public static bool DisableCollision = false;
