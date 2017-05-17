@@ -8,6 +8,8 @@ using XmasHell.Screens;
 using XmasHell.Shaders;
 using XmasHell.Sprites;
 using Xmas_Hell_Core.Controls;
+using MonoGame.Extended.Animations;
+using MonoGame.Extended.Tweening;
 
 #if ANDROID
 using Xmas_Hell_Android;
@@ -89,6 +91,16 @@ namespace XmasHell
 
             GameManager.Initialize();
 
+            // Input manager
+            Components.Add(new InputManager(this));
+
+            // Animation and tweening
+            var animationComponent = new AnimationComponent(this);
+            Components.Add(animationComponent);
+            Components.Add(new TweeningComponent(this, animationComponent));
+
+            PerformanceManager.Initialize();
+
             // Screens
             ScreenManager = new ScreenManager(this);
 
@@ -105,11 +117,6 @@ namespace XmasHell
 
                 ScreenManager.GoTo<MainMenuScreen>();
             }
-
-            // Input manager
-            Components.Add(new InputManager(this));
-
-            PerformanceManager.Initialize();
         }
 
         protected override void LoadContent()

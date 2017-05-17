@@ -8,6 +8,8 @@ using XmasHell.BulletML;
 using XmasHell.Entities.Bosses;
 using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.Animations;
+using MonoGame.Extended.Tweening;
 
 namespace XmasHell.Screens
 {
@@ -30,10 +32,25 @@ namespace XmasHell.Screens
 
             base.Initialize();
 
-            _playButton.Position = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                GameConfig.VirtualResolution.Y / 2f
-            );
+            _playButton.Position = Game.ViewportAdapter.Center.ToVector2();
+        }
+
+        private void PlayButtonTweenPulse()
+        {
+            _playButton.CreateTweenChain(PlayButtonTweenPulse)
+                //.MoveTo(Game.ViewportAdapter.Center.ToVector2() + new Vector2(100), 0.1f, EasingFunctions.SineEaseIn)
+                //.MoveTo(Game.ViewportAdapter.Center.ToVector2(), 0.1f, EasingFunctions.SineEaseIn)
+            .Scale(new Vector2(1.1f), 0.75f, EasingFunctions.SineEaseInOut)
+            .Scale(new Vector2(1f), 0.75f, EasingFunctions.SineEaseIn)
+            ;
+        }
+
+        private void PlayButtonTweenRotate()
+        {
+            _playButton.CreateTweenChain(PlayButtonTweenRotate)
+                .RotateTo(MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseIn)
+                .RotateTo(-MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseOut)
+            ;
         }
 
         public override void LoadContent()
@@ -70,6 +87,8 @@ namespace XmasHell.Screens
 
             // GUI
             Game.SpriteBatchManager.UISprites.Add(_playButton);
+            PlayButtonTweenPulse();
+            PlayButtonTweenRotate();
         }
 
         public override void Hide()
@@ -83,7 +102,6 @@ namespace XmasHell.Screens
 
             // GUI
             Game.SpriteBatchManager.UISprites.Remove(_playButton);
-
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)

@@ -56,6 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\MonoGame.Extended.dll</HintPath>
     </Reference>
+    <Reference Include="MonoGame.Extended.Animations">
+      <HintPath>..\Libraries\MonoGame.Extended.Animations.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Extended.Graphics, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\MonoGame.Extended.Graphics.dll</HintPath>
@@ -63,6 +66,9 @@
     <Reference Include="MonoGame.Extended.Particles, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\MonoGame.Extended.Particles.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Extended.Tweening">
+      <HintPath>..\Libraries\MonoGame.Extended.Tweening.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
