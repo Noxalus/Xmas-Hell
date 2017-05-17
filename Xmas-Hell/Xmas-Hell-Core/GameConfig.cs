@@ -48,17 +48,19 @@ namespace XmasHell
         };
 
         // Debug
-        public static bool DebugScreen = true;
+        public static bool DebugScreen = false;
         public static bool GodMode = true;
         public static bool DisplayCollisionBoxes = false;
         public static bool DisableCollision = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = false;
         public static bool ShowPerformanceGraph = false;
+        public static float PerformanceInfoTextScale = 1.5f;
         public static int PerformanceGraphMaxSample = 500;
         public static readonly List<PerformanceStopwatchType> DisabledGraph = new List<PerformanceStopwatchType>()
         {
             //PerformanceStopwatchType.GlobalUpdate,
+            PerformanceStopwatchType.BackgroundUpdate,
             PerformanceStopwatchType.ParticleUpdate,
             PerformanceStopwatchType.GlobalCollisionUpdate,
             PerformanceStopwatchType.PlayerHitboxBossBulletsCollisionUpdate,
@@ -69,7 +71,8 @@ namespace XmasHell
             PerformanceStopwatchType.BossBehaviourUpdate,
             PerformanceStopwatchType.PerformanceManagerUpdate,
             //PerformanceStopwatchType.GlobalDraw,
-            PerformanceStopwatchType.ClearColorDraw,
+            //PerformanceStopwatchType.ClearColorDraw,
+            //PerformanceStopwatchType.BackgroundDraw,
             PerformanceStopwatchType.SpriteBatchManagerDraw,
             PerformanceStopwatchType.BackgroundParticleDraw,
             PerformanceStopwatchType.GameParticleDraw,

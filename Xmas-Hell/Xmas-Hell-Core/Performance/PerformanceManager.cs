@@ -12,6 +12,7 @@ namespace XmasHell.Performance
     public enum PerformanceStopwatchType
     {
         GlobalUpdate,
+        BackgroundUpdate,
         ParticleUpdate,
         GlobalCollisionUpdate,
         PlayerHitboxBossBulletsCollisionUpdate,
@@ -23,6 +24,7 @@ namespace XmasHell.Performance
         PerformanceManagerUpdate,
         GlobalDraw,
         ClearColorDraw,
+        BackgroundDraw,
         SpriteBatchManagerDraw,
         BackgroundParticleDraw,
         GameParticleDraw,
@@ -195,6 +197,7 @@ namespace XmasHell.Performance
                 transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
             );
 
+            var scale = GameConfig.PerformanceInfoTextScale;
             var mainFont = Assets.GetFont("Graphics/Fonts/main");
 
             for (int i = 0; i < _performanceInfo.Count; i++)
@@ -202,7 +205,7 @@ namespace XmasHell.Performance
                 var performanceInfo = _performanceInfo[i];
                 var textPosition = _performanceInfoPosition;
 
-                textPosition.Y += mainFont.LineHeight * i;
+                textPosition.Y += (mainFont.LineHeight * scale) * i;
 
                 if (performanceInfo.DotColor.HasValue && GameConfig.ShowPerformanceGraph)
                 {
@@ -220,10 +223,12 @@ namespace XmasHell.Performance
                 }
 
                 // Add shadow to make the text easier to read
-                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition + Vector2.One, Color.Black);
-                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition - Vector2.One, Color.Black);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition + Vector2.One * scale, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 1f);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition - Vector2.One * scale, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 1f);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition + new Vector2(-1, 1) * scale, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 1f);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition + new Vector2(1, -1) * scale, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 1f);
 
-                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition, performanceInfo.TextColor);
+                _game.SpriteBatch.DrawString(mainFont, performanceInfo.Text, textPosition, performanceInfo.TextColor, 0f, Vector2.Zero, scale, SpriteEffects.None, 1f);
             }
 
             _game.SpriteBatch.End();

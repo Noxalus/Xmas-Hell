@@ -1,16 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using MonoGame.Extended.Gui;
 using XmasHell.Background;
 using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
 using XmasHell.Sprites;
 using Xmas_Hell_Core.Controls;
-using XmasHell.Screens.GUI;
 
 #if ANDROID
 using Xmas_Hell_Android;
@@ -29,15 +26,9 @@ namespace XmasHell
         public ViewportAdapter ViewportAdapter;
         public Camera Camera;
         public GameManager GameManager;
-
-        public GuiSystem GuiSystem;
+        public ScreenManager ScreenManager;
 
         public bool Pause;
-
-        // Screens
-        public DebugScreen DebugScreen;
-        public MainMenuScreen MainMenuScreen;
-        public GameScreen GameScreen;
 
 #if ANDROID
         private XmasHellActivity _activity;
@@ -99,24 +90,21 @@ namespace XmasHell
             GameManager.Initialize();
 
             // Screens
-            //ScreenComponent screenComponent;
-            //Components.Add(screenComponent = new ScreenComponent(this));
+            ScreenManager = new ScreenManager(this);
 
-            //if (GameConfig.DebugScreen)
-            //{
-            //    DebugScreen = new DebugScreen(this);
-            //    screenComponent.Register(DebugScreen);
+            if (GameConfig.DebugScreen)
+            {
+                ScreenManager.AddScreen(new DebugScreen(this));
 
-            //    DebugScreen.Show();
-            //}
-            //else
-            //{
-            //    MainMenuScreen = new MainMenuScreen(this);
-            //    GameScreen = new GameScreen(this);
+                ScreenManager.GoTo<DebugScreen>();
+            }
+            else
+            {
+                ScreenManager.AddScreen(new MainMenuScreen(this));
+                ScreenManager.AddScreen(new GameScreen(this));
 
-            //    screenComponent.Register(MainMenuScreen);
-            //    screenComponent.Register(GameScreen);
-            //}
+                ScreenManager.GoTo<MainMenuScreen>();
+            }
 
             // Input manager
             Components.Add(new InputManager(this));
@@ -136,17 +124,9 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
-            // GUI
-            var skin = GuiSkin.FromFile(Content, @"Assets/GUI/xmas-hell-menu-skin.json");
-            var guiRenderer = new GuiSpriteBatchRenderer(GraphicsDevice, ViewportAdapter.GetScaleMatrix);
-
-            GuiSystem = new GuiSystem(ViewportAdapter, guiRenderer)
-            {
-                Screen = new GuiMainMenuScreen(skin)
-            };
-
             var gradientBackground = new GradientBackground(this);
-            gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item1, GameConfig.BackgroundGradients[BackgroundLevel.Level1].Item2);
+            var level = BackgroundLevel.Level1;
+            gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[level].Item1, GameConfig.BackgroundGradients[level].Item2);
             SpriteBatchManager.Background = gradientBackground;
         }
 
@@ -188,12 +168,12 @@ namespace XmasHell
 
             Camera.Update(gameTime);
 
+            ScreenManager.Update(gameTime);
+
             if (!GameManager.EndGame())
                 SpriteBatchManager.Update(gameTime);
 
             GameManager.Update(gameTime);
-
-            GuiSystem.Update(gameTime);
 
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
@@ -213,8 +193,6 @@ namespace XmasHell
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
             SpriteBatchManager.Draw();
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
-
-            GuiSystem.Draw(gameTime);
 
             base.Draw(gameTime);
 

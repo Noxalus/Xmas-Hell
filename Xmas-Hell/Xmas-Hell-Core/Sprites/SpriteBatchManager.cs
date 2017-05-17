@@ -95,7 +95,10 @@ namespace XmasHell.Sprites
                 Bloom.Settings.BloomSaturation = _bloomSaturationPulse;
             }
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundUpdate);
             Background?.Update(gameTime);
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundUpdate);
+
         }
 
         private void BeginDrawViewportSpace()
@@ -185,7 +188,9 @@ namespace XmasHell.Sprites
                 _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BloomDraw);
             }
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundDraw);
             Background?.Draw();
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundDraw);
 
             BeginDrawViewportSpace();
 

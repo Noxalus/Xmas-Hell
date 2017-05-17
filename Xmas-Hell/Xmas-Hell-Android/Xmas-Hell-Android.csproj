@@ -68,12 +68,6 @@
     <Reference Include="MonoGame.Extended.Graphics">
       <HintPath>..\Libraries\MonoGame.Extended.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended.Gui">
-      <HintPath>..\Libraries\MonoGame.Extended.Gui.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Input">
-      <HintPath>..\Libraries\MonoGame.Extended.Input.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Extended.Particles">
       <HintPath>..\Libraries\MonoGame.Extended.Particles.dll</HintPath>
     </Reference>

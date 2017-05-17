@@ -787,12 +787,7 @@
 /processorParam:DebugMode=Auto
 /build:Graphics/Shaders/Snowflake.fx
 
-#begin Graphics/GUI/xmas-hell-gui-atlas.json
-/importer:TexturePackerJsonImporter
-/processor:TexturePackerProcessor
-/build:Graphics/GUI/xmas-hell-gui-atlas.json
-
-#begin Graphics/GUI/xmas-hell-gui.png
+#begin Graphics/GUI/play-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -802,5 +797,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Graphics/GUI/xmas-hell-gui.png
+/build:Graphics/GUI/play-button.png
 

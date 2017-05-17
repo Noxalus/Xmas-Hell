@@ -60,12 +60,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\MonoGame.Extended.Graphics.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Extended.Gui">
-      <HintPath>..\Libraries\MonoGame.Extended.Gui.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Input">
-      <HintPath>..\Libraries\MonoGame.Extended.Input.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Extended.Particles, Version=0.6.377.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\MonoGame.Extended.Particles.dll</HintPath>

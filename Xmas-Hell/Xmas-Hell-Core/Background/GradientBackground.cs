@@ -15,8 +15,8 @@ namespace XmasHell.Background
             BackgroundEffect.Parameters["uGradientPoint0Color"].SetValue(Color.White.ToVector4());
             BackgroundEffect.Parameters["uGradientPoint1Color"].SetValue(Color.Black.ToVector4());
             BackgroundEffect.Parameters["uSpeed"].SetValue(0.5f);
-            BackgroundEffect.Parameters["uInnerAmplitude"].SetValue(1.5f);
-            BackgroundEffect.Parameters["uOuterAmplitude"].SetValue(1f);
+            BackgroundEffect.Parameters["uInnerAmplitude"].SetValue(2.5f);
+            BackgroundEffect.Parameters["uOuterAmplitude"].SetValue(1.5f);
             BackgroundEffect.Parameters["uResolution"].SetValue(GameConfig.VirtualResolution.ToVector2());
 
         }

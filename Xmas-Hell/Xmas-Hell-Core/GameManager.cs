@@ -86,8 +86,8 @@ namespace XmasHell
             else
             {
                 _endGameFirstTime = true;
-                _game.GameScreen.Dispose();
-                _game.GameScreen.Show<MainMenuScreen>();
+                //_game.GameScreen.Dispose();
+                //_game.GameScreen.Show<MainMenuScreen>();
                 _endGameTimer.Stop();
                 _game.Camera.Zoom = 1f;
             }

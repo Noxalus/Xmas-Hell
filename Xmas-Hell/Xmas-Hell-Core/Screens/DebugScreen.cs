@@ -7,7 +7,6 @@ namespace XmasHell.Screens
 {
     public class DebugScreen : Screen
     {
-        private readonly XmasHell _game;
         private Player _player;
         private Boss _boss;
 
@@ -16,25 +15,25 @@ namespace XmasHell.Screens
             return 1f;
         }
 
-        public DebugScreen(XmasHell game)
+        public DebugScreen(XmasHell game) : base(game)
         {
-            _game = game;
             GameManager.GameDifficulty = GetRank;
-
-            _player = new Player(_game);
+            _player = new Player(game);
         }
 
         // TODO: This should be handled by the ScreenManager
-        public void Show()
+        public override void Show(bool reset = false)
         {
+            base.Show(reset);
+
             _player.Initialize();
-            _boss = BossFactory.CreateBoss(BossType.Debug, _game, _player.Position);
+            _boss = BossFactory.CreateBoss(BossType.Debug, Game, _player.Position);
             _boss.Initialize();
         }
 
-        public override void Dispose()
+        public override void Hide()
         {
-            base.Dispose();
+            base.Hide();
 
             _boss.Dispose();
             _player.Dispose();
@@ -44,7 +43,7 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            if (_game.Pause)
+            if (Game.Pause)
                 return;
 
             if (_player.Alive())
