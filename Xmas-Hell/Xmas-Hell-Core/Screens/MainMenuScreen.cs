@@ -21,6 +21,8 @@ namespace XmasHell.Screens
         private Song _mainSong;
 
         private Sprite _playButton;
+        private TweenAnimation<Sprite> _playButtonPulseTweenChain;
+        private TweenAnimation<Sprite> _playButtonRotateTweenChain;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -37,17 +39,15 @@ namespace XmasHell.Screens
 
         private void PlayButtonTweenPulse()
         {
-            _playButton.CreateTweenChain(PlayButtonTweenPulse)
-                //.MoveTo(Game.ViewportAdapter.Center.ToVector2() + new Vector2(100), 0.1f, EasingFunctions.SineEaseIn)
-                //.MoveTo(Game.ViewportAdapter.Center.ToVector2(), 0.1f, EasingFunctions.SineEaseIn)
-            .Scale(new Vector2(1.1f), 0.75f, EasingFunctions.SineEaseInOut)
-            .Scale(new Vector2(1f), 0.75f, EasingFunctions.SineEaseIn)
+            _playButtonPulseTweenChain = _playButton.CreateTweenChain(PlayButtonTweenPulse)
+                .Scale(new Vector2(1.1f), 0.75f, EasingFunctions.SineEaseInOut)
+                .Scale(new Vector2(1f), 0.75f, EasingFunctions.SineEaseIn)
             ;
         }
 
         private void PlayButtonTweenRotate()
         {
-            _playButton.CreateTweenChain(PlayButtonTweenRotate)
+            _playButtonRotateTweenChain = _playButton.CreateTweenChain(PlayButtonTweenRotate)
                 .RotateTo(MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseIn)
                 .RotateTo(-MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseOut)
             ;
@@ -86,7 +86,10 @@ namespace XmasHell.Screens
             //MediaPlayer.Play(_mainSong);
 
             // GUI
+            _playButton.Scale = Vector2.One;
+            _playButton.Rotation = 0f;
             Game.SpriteBatchManager.UISprites.Add(_playButton);
+
             PlayButtonTweenPulse();
             PlayButtonTweenRotate();
         }
@@ -102,6 +105,9 @@ namespace XmasHell.Screens
 
             // GUI
             Game.SpriteBatchManager.UISprites.Remove(_playButton);
+
+            _playButtonPulseTweenChain.Stop();
+            _playButtonRotateTweenChain.Stop();
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)

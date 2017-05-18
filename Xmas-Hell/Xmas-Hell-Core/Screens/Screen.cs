@@ -8,6 +8,7 @@ namespace XmasHell.Screens
     public abstract class Screen
     {
         protected XmasHell Game;
+        protected bool IsVisible;
         private bool _neverShown;
 
         public Screen(XmasHell game)
@@ -28,6 +29,8 @@ namespace XmasHell.Screens
 
         public virtual void Show(bool reset = false)
         {
+            IsVisible = true;
+
             if (_neverShown)
             {
                 LoadContent();
@@ -44,6 +47,8 @@ namespace XmasHell.Screens
 
         public virtual void Hide()
         {
+            IsVisible = false;
+
             // Remove elements from the SpriteBatchManager
         }
 
