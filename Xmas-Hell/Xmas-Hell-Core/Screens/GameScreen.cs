@@ -61,13 +61,7 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (InputManager.PressedCancel())
-            {
-                Hide();
-                Game.ScreenManager.GoTo<MainMenuScreen>();
-            }
-
+            
             if (Game.Pause)
                 return;
 

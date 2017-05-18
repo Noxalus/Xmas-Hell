@@ -10,6 +10,7 @@ using XmasHell.Sprites;
 using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
+using XmasHell.GUI;
 
 #if ANDROID
 using Xmas_Hell_Android;
@@ -29,6 +30,7 @@ namespace XmasHell
         public Camera Camera;
         public GameManager GameManager;
         public ScreenManager ScreenManager;
+        public GuiManager GuiManager;
 
         public bool Pause;
 
@@ -99,6 +101,9 @@ namespace XmasHell
             Components.Add(animationComponent);
             Components.Add(new TweeningComponent(this, animationComponent));
 
+            // GUI
+            GuiManager = new GuiManager(this);
+
             PerformanceManager.Initialize();
 
             // Screens
@@ -149,6 +154,9 @@ namespace XmasHell
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
 
+            if (InputManager.PressedCancel())
+                ScreenManager.Back();
+
             if (GameConfig.EnableBloom)
             {
                 // Switch to the next bloom settings preset?
@@ -176,6 +184,8 @@ namespace XmasHell
             Camera.Update(gameTime);
 
             ScreenManager.Update(gameTime);
+
+            GuiManager.Update(gameTime);
 
             if (!GameManager.EndGame())
                 SpriteBatchManager.Update(gameTime);

@@ -10,6 +10,7 @@ using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
+using XmasHell.GUI;
 
 namespace XmasHell.Screens
 {
@@ -20,9 +21,9 @@ namespace XmasHell.Screens
         private Song _introSong;
         private Song _mainSong;
 
-        private Sprite _playButton;
-        private TweenAnimation<Sprite> _playButtonPulseTweenChain;
-        private TweenAnimation<Sprite> _playButtonRotateTweenChain;
+        private GuiButton _playButton;
+        private TweenAnimation<GuiButton> _playButtonPulseTweenChain;
+        private TweenAnimation<GuiButton> _playButtonRotateTweenChain;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -35,6 +36,12 @@ namespace XmasHell.Screens
             base.Initialize();
 
             _playButton.Position = Game.ViewportAdapter.Center.ToVector2();
+
+#if ANDROID
+#else
+            _playButton.Click += (s, e) => OnPlayButtonAction();
+#endif
+
         }
 
         private void PlayButtonTweenPulse()
@@ -53,6 +60,13 @@ namespace XmasHell.Screens
             ;
         }
 
+        private void OnPlayButtonAction()
+        {
+            Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(BossType.XmasBall);
+            Game.ScreenManager.GoTo<GameScreen>();
+
+        }
+
         public override void LoadContent()
         {
             base.LoadContent();
@@ -67,7 +81,7 @@ namespace XmasHell.Screens
 
             _introSong = Assets.GetMusic("boss-theme-intro");
             _mainSong = Assets.GetMusic("boss-theme-main");
-            _playButton = new Sprite(Assets.GetTexture2D("Graphics/GUI/play-button"));
+            _playButton = new GuiButton(Game.ViewportAdapter, "play-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/play-button")));
         }
 
         public override void Show(bool reset = false)
@@ -88,7 +102,7 @@ namespace XmasHell.Screens
             // GUI
             _playButton.Scale = Vector2.One;
             _playButton.Rotation = 0f;
-            Game.SpriteBatchManager.UISprites.Add(_playButton);
+            Game.GuiManager.AddButton(_playButton);
 
             PlayButtonTweenPulse();
             PlayButtonTweenRotate();
@@ -104,7 +118,7 @@ namespace XmasHell.Screens
             MediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
 
             // GUI
-            Game.SpriteBatchManager.UISprites.Remove(_playButton);
+            Game.GuiManager.RemoveButton(_playButton);
 
             _playButtonPulseTweenChain.Stop();
             _playButtonRotateTweenChain.Stop();
@@ -143,18 +157,18 @@ namespace XmasHell.Screens
                 var position = Game.ViewportAdapter.PointToScreen(InputManager.ClickPosition());
 #endif
 
-                var gameScreen = Game.ScreenManager.GetScreen<GameScreen>();
+                //var gameScreen = Game.ScreenManager.GetScreen<GameScreen>();
 
-                if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
-                    gameScreen.LoadBoss(BossType.XmasBall);
-                else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
-                    gameScreen.LoadBoss(BossType.XmasBell);
-                else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
-                    gameScreen.LoadBoss(BossType.XmasGift);
-                else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
-                    gameScreen.LoadBoss(BossType.XmasSnowflake);
+                //if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
+                //    gameScreen.LoadBoss(BossType.XmasBall);
+                //else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
+                //    gameScreen.LoadBoss(BossType.XmasBell);
+                //else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
+                //    gameScreen.LoadBoss(BossType.XmasGift);
+                //else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
+                //    gameScreen.LoadBoss(BossType.XmasSnowflake);
 
-                Game.ScreenManager.GoTo<GameScreen>();
+                //Game.ScreenManager.GoTo<GameScreen>();
             }
 
             if (_shootFrequency.TotalMilliseconds < 0)

@@ -59,6 +59,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\MathHelperExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Particles\ParticleManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Performance\Graph.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Performance\PerformanceManager.cs" />
