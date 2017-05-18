@@ -10,11 +10,15 @@ namespace XmasHell.Screens
         protected XmasHell Game;
         protected bool IsVisible;
         private bool _neverShown;
+        protected bool ShouldBeStackInHistory;
+
+        public bool StackInHistory => ShouldBeStackInHistory;
 
         public Screen(XmasHell game)
         {
             Game = game;
             _neverShown = true;
+            ShouldBeStackInHistory = true;
         }
 
         public virtual void Initialize()

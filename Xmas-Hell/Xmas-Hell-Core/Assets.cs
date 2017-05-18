@@ -71,6 +71,10 @@ namespace XmasHell
 
                 // GUI
                 content.Load<Texture2D>("Graphics/GUI/play-button"),
+                content.Load<Texture2D>("Graphics/GUI/boss-selection-ground"),
+                content.Load<Texture2D>("Graphics/GUI/boss-selection-tree"),
+                content.Load<Texture2D>("Graphics/GUI/boss-selection-tree-star"),
+                content.Load<Texture2D>("Graphics/GUI/unknown-boss-button"),
 
                 // Sprites
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet1"),

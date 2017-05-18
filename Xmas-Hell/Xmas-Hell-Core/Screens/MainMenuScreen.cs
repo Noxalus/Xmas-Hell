@@ -55,16 +55,14 @@ namespace XmasHell.Screens
         private void PlayButtonTweenRotate()
         {
             _playButtonRotateTweenChain = _playButton.CreateTweenChain(PlayButtonTweenRotate)
-                .RotateTo(MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseIn)
-                .RotateTo(-MathHelper.PiOver4, 1.0f, EasingFunctions.SineEaseOut)
+                .RotateTo(MathHelper.PiOver4 / 2f, 1.0f, EasingFunctions.SineEaseIn)
+                .RotateTo(-MathHelper.PiOver4 / 2f, 1.0f, EasingFunctions.SineEaseOut)
             ;
         }
 
         private void OnPlayButtonAction()
         {
-            Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(BossType.XmasBall);
-            Game.ScreenManager.GoTo<GameScreen>();
-
+            Game.ScreenManager.GoTo<BossSelectionScreen>();
         }
 
         public override void LoadContent()

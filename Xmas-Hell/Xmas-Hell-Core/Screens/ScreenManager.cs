@@ -47,7 +47,10 @@ namespace XmasHell.Screens
         private void GoTo(Screen screen)
         {
             _currentScreen?.Hide();
-            _previousScreen = _currentScreen;
+
+            if (_currentScreen != null && _currentScreen.StackInHistory)
+                _previousScreen = _currentScreen;
+
             _currentScreen = screen;
             _currentScreen.Show();
         }

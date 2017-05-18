@@ -118,6 +118,7 @@ namespace XmasHell
             else
             {
                 ScreenManager.AddScreen(new MainMenuScreen(this));
+                ScreenManager.AddScreen(new BossSelectionScreen(this));
                 ScreenManager.AddScreen(new GameScreen(this));
 
                 ScreenManager.GoTo<MainMenuScreen>();
