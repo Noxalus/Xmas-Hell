@@ -11,14 +11,14 @@ namespace XmasHell.Screens
         private XmasHell _game;
         private List<Screen> _screens;
         private Screen _currentScreen;
-        private Screen _previousScreen;
+        private Stack<Screen> _screenHistory;
 
         public ScreenManager(XmasHell game)
         {
             _game = game;
             _screens = new List<Screen>();
             _currentScreen = null;
-            _previousScreen = null;
+            _screenHistory = new Stack<Screen>();
         }
 
         public void AddScreen(Screen screen)
@@ -49,7 +49,7 @@ namespace XmasHell.Screens
             _currentScreen?.Hide();
 
             if (_currentScreen != null && _currentScreen.StackInHistory)
-                _previousScreen = _currentScreen;
+                _screenHistory.Push(_currentScreen);
 
             _currentScreen = screen;
             _currentScreen.Show();
@@ -57,8 +57,8 @@ namespace XmasHell.Screens
 
         public void Back()
         {
-            if (_previousScreen != null)
-                GoTo(_previousScreen);
+            if (_screenHistory.Count > 0)
+                GoTo(_screenHistory.Pop());
         }
 
         public void Update(GameTime gameTime)
