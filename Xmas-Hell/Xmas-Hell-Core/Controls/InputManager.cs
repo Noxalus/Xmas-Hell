@@ -293,7 +293,7 @@ namespace Xmas_Hell_Core.Controls
 
         public static Point TouchPosition()
         {
-            return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : _lastTouchState[0].Position.ToPoint();
+            return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : (_lastTouchState.Count > 0) ? _lastTouchState[0].Position.ToPoint() : Point.Zero;
         }
 
         #endregion

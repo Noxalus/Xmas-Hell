@@ -70,7 +70,7 @@ namespace XmasHell.GUI
         {
             var position = _viewportAdapter.PointToScreen(InputManager.TouchPosition());
 
-            if (Sprite.TextureRegion.Bounds.Intersects(new Rectangle(position, Vector2.One.ToPoint())))
+            if (Sprite.BoundingRectangle.Intersects(new Rectangle(position, Vector2.One.ToPoint())))
             {
                 if (InputManager.TouchDown())
                 {
@@ -96,7 +96,6 @@ namespace XmasHell.GUI
 
             if (Sprite.BoundingRectangle.Intersects(new Rectangle(position, Point.Zero)))
             {
-
                 if (InputManager.Clicked())
                 {
                     _mouseDown = true;

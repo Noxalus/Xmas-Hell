@@ -38,10 +38,10 @@ namespace XmasHell.Screens
             _playButton.Position = Game.ViewportAdapter.Center.ToVector2();
 
 #if ANDROID
+            _playButton.Tap += (s, e) => OnPlayButtonAction();
 #else
             _playButton.Click += (s, e) => OnPlayButtonAction();
 #endif
-
         }
 
         private void PlayButtonTweenPulse()
