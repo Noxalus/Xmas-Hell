@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml.dtd">
+<bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+
+  <action label="top">
+    <fire>
+      <bulletRef label="bullet-A">
+        <param>1</param>
+      </bulletRef>
+    </fire>
+  </action>
+
+  <bullet label="bullet-A">
+    <direction type="absolute">0</direction>
+    <speed>$1</speed>
+    <actionRef label="A">
+      <param>1</param>
+    </actionRef>
+    <actionRef label="B">
+      <param>1</param>
+    </actionRef>
+  </bullet>
+
+  <action label="A">
+    <wait>80 / $1</wait>
+    <changeDirection>
+      <direction type="relative">180</direction>
+      <term>100 / $1</term>
+    </changeDirection>
+    <wait>125 / $1</wait>
+    <changeDirection>
+      <direction type="relative">90</direction>
+      <term>0</term>
+    </changeDirection>
+    <wait>60 / $1</wait>
+    <changeDirection>
+      <direction type="relative">180</direction>
+      <term>0</term>
+    </changeDirection>
+    <wait>60 / $1</wait>
+    <changeDirection>
+      <direction type="relative">90</direction>
+      <term>0</term>
+    </changeDirection>
+    <wait>50 / $1</wait>
+    <changeDirection>
+      <direction type="relative">180</direction>
+      <term>0</term>
+    </changeDirection>
+<!--     <changeSpeed>
+      <speed>0</speed>
+      <term>0</term>
+    </changeSpeed> -->
+  </action>
+
+  <action label="B">
+    <wait>80 / $1</wait>
+    <changeDirection>
+      <direction type="relative">270</direction>
+      <term>125 / $1</term>
+    </changeDirection>
+    <wait>125 / $1</wait>
+    <changeDirection>
+      <direction type="relative">180</direction>
+      <term>0</term>
+    </changeDirection>
+    <changeDirection>
+      <direction type="relative">180</direction>
+      <term>90 / $1</term>
+    </changeDirection>
+    <wait>100 / $1</wait>
+<!--     <changeSpeed>
+      <speed>0</speed>
+      <term>0</term>
+    </changeSpeed> -->
+  </action>
+</bulletml>

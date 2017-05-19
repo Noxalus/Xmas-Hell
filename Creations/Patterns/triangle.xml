@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml.dtd">
+<bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
+
+  <action label="top">
+    <fire>
+      <bullet>
+        <direction type="absolute">0</direction>
+        <speed>10</speed>
+        <actionRef label="triangle">
+          <param>20</param>
+        </actionRef>
+      </bullet>
+    </fire>
+  </action>
+
+  <action label="triangle">
+    <repeat>
+      <times>0</times>
+      <action>
+        <wait>$1</wait>
+        <changeDirection>
+          <direction type="relative">120</direction>
+          <term>0</term>
+        </changeDirection>
+        <wait>$1</wait>
+        <changeDirection>
+          <direction type="relative">120</direction>
+          <term>0</term>
+        </changeDirection>
+        <wait>$1</wait>
+        <changeDirection>
+          <direction type="relative">120</direction>
+          <term>0</term>
+        </changeDirection>
+      </action>
+    </repeat>
+  </action>
+</bulletml>
