@@ -18,11 +18,15 @@ namespace XmasHell.Physics.Collision
             var scale = Entity.Scale();
             var rotation = Entity.Rotation();
             var position = Entity.Position();
+            var origin = Entity.Origin();
 
             return
                 Matrix.CreateScale(Math.Abs(scale.X), Math.Abs(scale.Y), 1.0f) *
+                Matrix.CreateTranslation(-origin.X, -origin.Y, 0f) * 
                 Matrix.CreateRotationZ(rotation) *
-                Matrix.CreateTranslation(position.X, position.Y, 0.0f);
+                Matrix.CreateTranslation(origin.X, origin.Y, 0f) *
+                Matrix.CreateTranslation(position.X, position.Y, 0.0f)
+            ;
         }
 
         public abstract bool Intersects(CollisionCircle element);

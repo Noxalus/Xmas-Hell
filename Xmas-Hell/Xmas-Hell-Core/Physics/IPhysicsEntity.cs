@@ -7,6 +7,7 @@ namespace XmasHell.Physics
         Vector2 Position();
         float Rotation();
         Vector2 Scale();
+        Vector2 Origin();
         void TakeDamage(float damage);
     }
 }

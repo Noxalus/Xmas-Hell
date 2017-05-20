@@ -18,6 +18,7 @@ namespace XmasHell
     {
         private XmasHell _game;
         private List<Bullet> _bullets;
+        private List<Laser> _lasers;
 
         private bool _endGame;
         private CountdownTimer _endGameTimer;
@@ -60,6 +61,7 @@ namespace XmasHell
         {
             _game = game;
             _bullets = new List<Bullet>();
+            _lasers = new List<Laser>();
             _endGame = false;
 
             MoverManager = new MoverManager(_game);
@@ -108,6 +110,9 @@ namespace XmasHell
             foreach (var bullet in _bullets)
                 bullet.Update(gameTime);
 
+            foreach (var laser in _lasers)
+                laser.Update(gameTime);
+
             MoverManager.Update();
             CollisionWorld.Update(gameTime);
             ParticleManager.Update(gameTime);
@@ -118,6 +123,18 @@ namespace XmasHell
         public void AddBullet(Bullet bullet)
         {
             _bullets.Add(bullet);
+        }
+
+        public void AddLaser(Laser laser)
+        {
+            _lasers.Add(laser);
+            _game.SpriteBatchManager.Lasers.Add(laser);
+        }
+
+        public void RemoveLaser(Laser laser)
+        {
+            _lasers.Remove(laser);
+            _game.SpriteBatchManager.Lasers.Remove(laser);
         }
 
         public Vector2 GetRandomPosition(bool normalized = false)

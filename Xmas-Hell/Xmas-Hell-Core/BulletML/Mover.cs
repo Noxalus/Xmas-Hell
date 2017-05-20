@@ -1,13 +1,15 @@
-﻿using BulletML;
+﻿using System;
+using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Sprites;
+using XmasHell.Entities.Bosses;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.BulletML
 {
-    public class Mover : Bullet, IPhysicsEntity
+    public class Mover : Bullet, IPhysicsEntity, IBossDeadlyEntity
     {
         private XmasHell _game;
         private Vector2 _position;
@@ -16,6 +18,8 @@ namespace XmasHell.BulletML
         public Sprite Sprite;
 
         private CollisionElement _hitbox;
+        private Vector2 _origin;
+        private bool _used;
 
         public Vector2 Position()
         {
@@ -31,9 +35,8 @@ namespace XmasHell.BulletML
             return Direction;
         }
 
-        public Vector2 Pivot()
+        public Vector2 Origin()
         {
-            // TODO: Get the proper pivot
             return Vector2.Zero;
         }
 
@@ -60,7 +63,15 @@ namespace XmasHell.BulletML
             set { _position.Y = value; }
         }
 
-        public bool Used { get; set; }
+        public bool Used()
+        {
+            return _used;
+        }
+
+        public void Used(bool value)
+        { 
+            _used = value;
+        }
 
         public Mover(XmasHell game, IBulletManager bulletManager, bool topBullet = false) : base(bulletManager)
         {
@@ -70,7 +81,7 @@ namespace XmasHell.BulletML
 
         public void Init(bool topBullet)
         {
-            Used = true;
+            _used = true;
 
             Sprite = new Sprite(Texture);
             Sprite.Alpha = 0f;
@@ -87,7 +98,7 @@ namespace XmasHell.BulletML
 
         public void Destroy()
         {
-            Used = false;
+            _used = false;
             _game.SpriteBatchManager.BossBullets.Remove(this);
             _game.GameManager.CollisionWorld.RemoveBossBulletHitbox(_hitbox);
 

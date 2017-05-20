@@ -22,6 +22,7 @@ namespace XmasHell.Sprites
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
         public List<Mover> BossBullets;
+        public List<Laser> Lasers;
         public List<Sprite> GameSprites;
         public List<ParticleEffect> GameParticles;
 
@@ -46,6 +47,7 @@ namespace XmasHell.Sprites
             BackgroundParticles = new List<ParticleEffect>();
             UISprites = new List<Sprite>();
             BossBullets = new List<Mover>();
+            Lasers = new List<Laser>();
             GameSprites = new List<Sprite>();
             GameParticles = new List<ParticleEffect>();
         }
@@ -119,7 +121,7 @@ namespace XmasHell.Sprites
             );
         }
 
-        private void DrawBloomedElements()
+        private void DrawBloomedElements(GameTime gameTime)
         {
             BeginDrawCameraSpace();
 
@@ -129,6 +131,11 @@ namespace XmasHell.Sprites
 
             foreach (var mover in BossBullets)
                 _game.SpriteBatch.Draw(mover.Sprite);
+
+
+            foreach (var laser in Lasers)
+                laser.Draw(gameTime);
+            
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletDraw);
 
@@ -162,7 +169,7 @@ namespace XmasHell.Sprites
             }
         }
 
-        public void Draw()
+        public void Draw(GameTime gameTime)
         {
             // Start by render the bloomed elements into a render target
             if (GameConfig.EnableBloom)
@@ -173,7 +180,7 @@ namespace XmasHell.Sprites
                 _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
                 _game.GraphicsDevice.Clear(Color.Transparent);
 
-                DrawBloomedElements();
+                DrawBloomedElements(gameTime);
 
                 // Apply bloom effect on the first render target and store the
                 // result into the second render target
@@ -252,7 +259,7 @@ namespace XmasHell.Sprites
             }
             else
             {
-                DrawBloomedElements();
+                DrawBloomedElements(gameTime);
             }
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UIDraw);

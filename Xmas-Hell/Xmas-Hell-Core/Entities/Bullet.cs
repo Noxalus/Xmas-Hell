@@ -16,7 +16,6 @@ namespace XmasHell.Entities
 
         protected CollisionElement Hitbox;
 
-
         public Vector2 Position()
         {
             return Sprite.Position;
@@ -32,7 +31,7 @@ namespace XmasHell.Entities
             return Sprite.Rotation;
         }
 
-        public Vector2 Pivot()
+        public Vector2 Origin()
         {
             return Sprite.Origin;
         }

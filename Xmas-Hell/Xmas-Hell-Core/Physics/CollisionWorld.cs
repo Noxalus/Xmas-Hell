@@ -138,7 +138,7 @@ namespace XmasHell.Physics
                     if (PlayerHitbox.Intersects(bossBulletHitbox))
                     {
                         player.Destroy();
-                        ((Mover)bossBulletHitbox.Entity).Used = false;
+                        ((IBossDeadlyEntity)bossBulletHitbox.Entity).Used(false);
                     }
                 }
             }
@@ -147,7 +147,7 @@ namespace XmasHell.Physics
 
             // Clean destroyed elements
             _playerBulletHitboxes.RemoveAll(hb => !((Bullet)hb.Entity).Used);
-            _bossBulletHitboxes.RemoveAll(hb => !((Mover)hb.Entity).Used);
+            _bossBulletHitboxes.RemoveAll(hb => !((IBossDeadlyEntity)hb.Entity).Used());
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalCollisionUpdate);
         }

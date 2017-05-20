@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using XmasHell.BulletML;
+using XmasHell.Geometry;
 
 namespace XmasHell.Entities.Bosses.DebugBoss
 {
@@ -9,8 +10,8 @@ namespace XmasHell.Entities.Bosses.DebugBoss
     {
         private TimeSpan _newPositionTime;
         private TimeSpan _bulletFrequence;
-        private int _maxBossBullets = 0;
         private bool _triggeredPattern;
+        private Laser _laser;
 
         public BossDebugBehaviour1(Boss boss) : base(boss)
         {
@@ -28,6 +29,10 @@ namespace XmasHell.Entities.Bosses.DebugBoss
             Boss.Speed = 500f;
             Boss.CurrentAnimator.Play("Idle");
             Boss.MoveToCenter();
+
+            _laser = new Laser(Boss.Game, new Line(Boss.Game.ViewportAdapter.Center.ToVector2(), Boss.Game.ViewportAdapter.Center.ToVector2() + new Vector2(100f, 0f)));
+
+            Boss.Game.GameManager.AddLaser(_laser);
         }
 
         public override void Stop()
@@ -46,6 +51,8 @@ namespace XmasHell.Entities.Bosses.DebugBoss
                 TriggerPattern();
                 _triggeredPattern = true;
             }
+
+            _laser.Update(gameTime);
         }
 
         private void TriggerPattern()

@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossDebug\BossDebug.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\BossDebug\BossDebugBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\IBossDeadlyEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBall.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBall\XmasBallBehaviour2.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBranch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Laser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ColorExtension.cs" />

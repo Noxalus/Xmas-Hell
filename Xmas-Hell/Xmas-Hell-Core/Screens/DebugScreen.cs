@@ -46,10 +46,13 @@ namespace XmasHell.Screens
             if (Game.Pause)
                 return;
 
-            if (_player.Alive())
-                _player.Update(gameTime);
+            if (!Game.GameManager.EndGame())
+            {
+                if (_player.Alive())
+                    _player.Update(gameTime);
 
-            _boss.Update(gameTime);
+                _boss.Update(gameTime);
+            }
         }
     }
 }

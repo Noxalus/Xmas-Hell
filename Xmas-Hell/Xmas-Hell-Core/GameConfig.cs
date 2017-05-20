@@ -28,7 +28,7 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
-        public static int MaximumBullets = 250;
+        public static int MaximumBullets = 0;
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -48,9 +48,9 @@ namespace XmasHell
         };
 
         // Debug
-        public static bool DebugScreen = false;
-        public static bool GodMode = true;
-        public static bool DisplayCollisionBoxes = false;
+        public static bool DebugScreen = true;
+        public static bool GodMode = false;
+        public static bool DisplayCollisionBoxes = true;
         public static bool DisableCollision = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = false;

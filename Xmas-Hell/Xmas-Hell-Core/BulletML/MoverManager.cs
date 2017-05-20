@@ -74,7 +74,7 @@ namespace XmasHell.BulletML
             // Add a new bullet in the center of the screen
             var mover = (Mover)CreateBullet(true);
 
-            if (mover.Used)
+            if (mover.Used())
             {
                 if (position.HasValue)
                     mover.Position(position.Value);
@@ -101,7 +101,7 @@ namespace XmasHell.BulletML
         {
             for (int i = 0; i < Movers.Count; i++)
             {
-                if (!Movers[i].Used || (Movers[i].TopBullet && Movers[i].TasksFinished()))
+                if (!Movers[i].Used() || (Movers[i].TopBullet && Movers[i].TasksFinished()))
                 {
                     Movers[i].Destroy();
                     Movers.RemoveAt(i);

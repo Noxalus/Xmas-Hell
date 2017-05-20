@@ -35,7 +35,6 @@ namespace XmasHell.Screens
         public void LoadBoss(BossType bossType)
         {
             _boss = BossFactory.CreateBoss(bossType, Game, _player.Position);
-            _boss.Initialize();
         }
 
         // TODO: This should be handled by the ScreenManager
@@ -44,6 +43,7 @@ namespace XmasHell.Screens
             base.Show(reset);
 
             _player.Initialize();
+            _boss.Initialize();
 
             // Should play music (doesn't seem to work for now...)
             //MediaPlayer.Volume = 1f;

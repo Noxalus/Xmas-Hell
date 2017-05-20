@@ -95,6 +95,11 @@ namespace XmasHell.Entities.Bosses
             return CurrentAnimator.Rotation;
         }
 
+        public virtual Vector2 Origin()
+        {
+            return new Vector2(Width() / 2f, Height() / 2f);
+        }
+
         public virtual Vector2 Scale()
         {
             return CurrentAnimator.Scale;
@@ -127,24 +132,24 @@ namespace XmasHell.Entities.Bosses
             return Rotation();
         }
 
-        public virtual float Width()
+        public virtual int Width()
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return CurrentAnimator.SpriteProvider.Get(0, 0).Width();
+                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Width();
             }
 
-            return 0f;
+            return 0;
         }
 
-        public virtual float Height()
+        public virtual int Height()
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return CurrentAnimator.SpriteProvider.Get(0, 0).Height();
+                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Height();
             }
 
-            return 0f;
+            return 0;
         }
 
         protected float GetSpritePartWidth(string name)

@@ -847,3 +847,15 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/unknown-boss-button.png
 
+#begin Graphics/Sprites/Bullets/laser.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bullets/laser.png
+

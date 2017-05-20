@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Shapes;
 using MonoGame.Extended;
+using XmasHell.Geometry;
 
 namespace XmasHell.Physics.Collision
 {

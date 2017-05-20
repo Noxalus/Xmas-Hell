@@ -30,6 +30,11 @@ namespace XmasHell.Physics
             return _animator.Rotation;
         }
 
+        public virtual Vector2 Origin()
+        {
+            return Vector2.Zero;
+        }
+
         public virtual Vector2 Scale()
         {
             if (_animator.FrameData != null && _animator.FrameData.SpriteData.Count > 0)

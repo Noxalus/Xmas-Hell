@@ -54,5 +54,10 @@ namespace XmasHell.Geometry
                 origin.Value.Y + (float)((point.X - origin.Value.X) * Math.Sin(angle) + (point.Y - origin.Value.Y) * Math.Cos(angle))
             );
         }
+
+        public static float LineToAngle(Line line)
+        {
+            return (float)Math.Atan2(line.Second.Y - line.First.Y, line.Second.X - line.First.X) - MathHelper.PiOver2;
+        }
     }
 }
