@@ -62,7 +62,7 @@ namespace XmasHell.Entities
                 new Vector2(0, _laserTexture.Height) * _scale
             };
 
-            _hitbox = new CollisionConvexPolygon(this, new Vector2(-_laserTexture.Width / 2f, 0f), vertices);
+            _hitbox = new CollisionConvexPolygon(this, -_origin, vertices);
             _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
         }
 
@@ -73,7 +73,7 @@ namespace XmasHell.Entities
         public void LoadContent()
         {
             _laserTexture = Assets.GetTexture2D("Graphics/Sprites/Bullets/laser");
-            _origin = Vector2.Zero; //new Vector2(-_laserTexture.Width / 2f, 0f);
+            _origin = new Vector2(_laserTexture.Width / 2f, 0f);
         }
 
         public void Update(GameTime gameTime)
@@ -90,12 +90,15 @@ namespace XmasHell.Entities
 
         public void Draw(GameTime gameTime)
         {
-            var position = Position();
-            var originalRectangle = new Rectangle((int)position.X, (int)position.Y, _laserTexture.Width, _laserTexture.Height);
-            //originalRectangle = new Rectangle(_line.First.ToPoint(), _line.Second.ToPoint());
+            var distance = _line.Distance();
+            var direction = _line.Direction();
+
+            var origin = Position();
+            var destination = origin + direction * distance;
+            var destinationRectangle = new Rectangle((int)origin.X, (int)origin.Y, _laserTexture.Width, (int)distance);
 
             _game.SpriteBatch.Draw(
-                _laserTexture, Position(), null, Color.White, Rotation(), new Vector2(_laserTexture.Width / 2f, 0), _scale, SpriteEffects.None, 1f
+                _laserTexture, destinationRectangle, null, Color.White, Rotation(), _origin, SpriteEffects.None, 1f
             );
 
             _game.SpriteBatch.Draw(

@@ -17,5 +17,15 @@ namespace XmasHell.Geometry
             First = firstPosition;
             Second = secondPosition;
         }
+
+        public Vector2 Direction()
+        {
+            return MathHelperExtension.AngleToDirection(MathHelperExtension.LineToAngle(this));
+        }
+
+        public float Distance()
+        {
+            return Vector2.Distance(First, Second);
+        }
     }
 }
