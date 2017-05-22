@@ -45,21 +45,21 @@ namespace XmasHell.Entities
             throw new NotImplementedException();
         }
 
-        public Laser(XmasHell game, Line line, Vector2? scale = null)
+        public Laser(XmasHell game, Line line, float scale = 1f)
         {
             _game = game;
             _line = line;
-            _scale = scale.HasValue ? scale.Value : Vector2.One;
             _used = true;
 
             LoadContent();
+            _scale = new Vector2(scale, line.Distance() / _laserTexture.Height);
 
             var vertices = new List<Vector2>
             {
                 Vector2.Zero,
-                new Vector2(_laserTexture.Width, 0) * _scale,
-                new Vector2(_laserTexture.Width, _laserTexture.Height) * _scale,
-                new Vector2(0, _laserTexture.Height) * _scale
+                new Vector2(_laserTexture.Width, 0),
+                new Vector2(_laserTexture.Width, _laserTexture.Height),
+                new Vector2(0, _laserTexture.Height)
             };
 
             _hitbox = new CollisionConvexPolygon(this, -_origin, vertices);
@@ -78,27 +78,21 @@ namespace XmasHell.Entities
 
         public void Update(GameTime gameTime)
         {
-            //_line.Second = _game.GameManager.GetRandomPosition();
+            var d = (100f + (float)gameTime.TotalGameTime.TotalMilliseconds / 10);
 
             _line.Second = new Vector2(
-                _game.ViewportAdapter.Center.ToVector2().X + (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds) * 100f,
-                _game.ViewportAdapter.Center.ToVector2().Y + (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds) * 100f
+                _game.ViewportAdapter.Center.ToVector2().X + (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds) * d,
+                _game.ViewportAdapter.Center.ToVector2().Y + (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds) * d
             );
 
-            _scale += new Vector2((float)gameTime.ElapsedGameTime.TotalSeconds);
+            _scale.X += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _scale.Y = (float)Math.Ceiling(_line.Distance() / _laserTexture.Height);
         }
 
         public void Draw(GameTime gameTime)
         {
-            var distance = _line.Distance();
-            var direction = _line.Direction();
-
-            var origin = Position();
-            var destination = origin + direction * distance;
-            var destinationRectangle = new Rectangle((int)origin.X, (int)origin.Y, _laserTexture.Width, (int)distance);
-
             _game.SpriteBatch.Draw(
-                _laserTexture, destinationRectangle, null, Color.White, Rotation(), _origin, SpriteEffects.None, 1f
+                _laserTexture, Position(), null, Color.White, Rotation(), _origin, _scale, SpriteEffects.None, 1f
             );
 
             _game.SpriteBatch.Draw(
