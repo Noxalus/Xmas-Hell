@@ -14,8 +14,8 @@ namespace XmasHell.Spriter
         private readonly ISprite _pointTexture;
 
         public MonoGameDebugAnimator(
-            SpriterEntity entity, 
-            GraphicsDevice graphicsDevice, 
+            SpriterEntity entity,
+            GraphicsDevice graphicsDevice,
             IProviderFactory<ISprite, SoundEffect> providerFactory = null,
             Stack<SpriteDrawInfo> drawInfoPool = null
         ) : base(entity, providerFactory, drawInfoPool)

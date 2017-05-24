@@ -43,8 +43,8 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 _newPositionTime = TimeSpan.FromSeconds(0);
 
                 var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f), (int)(Boss.Height() / 2f))
+                    Boss.Game.GameManager.Random.Next(Boss.Width(), Boss.Game.ViewportAdapter.VirtualWidth - Boss.Width()),
+                    (int)(Boss.Height() / 1.25f)
                 );
 
                 Boss.MoveTo(newPosition, 1.5f);

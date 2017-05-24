@@ -31,5 +31,12 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper.png", Vector2.Zero, 1f));
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper-ball.png", Vector2.Zero, 1f));
         }
+
+        protected override void UpdateBehaviourIndex()
+        {
+            base.UpdateBehaviourIndex();
+
+            CurrentBehaviourIndex = 3;
+        }
     }
 }

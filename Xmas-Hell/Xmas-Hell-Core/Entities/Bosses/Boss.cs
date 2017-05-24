@@ -73,7 +73,7 @@ namespace XmasHell.Entities.Bosses
         protected static readonly Config DefaultAnimatorConfig = new Config
         {
             MetadataEnabled = false,
-            EventsEnabled = false,
+            EventsEnabled = true,
             PoolingEnabled = true,
             TagsEnabled = false,
             VarsEnabled = false,
@@ -136,7 +136,7 @@ namespace XmasHell.Entities.Bosses
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Width();
+                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Height();
             }
 
             return 0;
@@ -146,7 +146,7 @@ namespace XmasHell.Entities.Bosses
         {
             if (CurrentAnimator.SpriteProvider != null)
             {
-                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Height();
+                return (int)CurrentAnimator.SpriteProvider.Get(0, 0).Width();
             }
 
             return 0;
@@ -288,7 +288,7 @@ namespace XmasHell.Entities.Bosses
             CurrentAnimator = _animators.First();
             CurrentAnimator.Position = InitialPosition;
 
-            CurrentAnimator.EventTriggered += CurrentAnimator_EventTriggered;
+            CurrentAnimator.EventTriggered += AnimationEventTriggered;
         }
 
         protected virtual void InitializePhysics()
@@ -430,9 +430,9 @@ namespace XmasHell.Entities.Bosses
                 MathHelperExtension.LinesIntersect(_upWallLine, line, ref newPosition);
         }
 
-        protected void CurrentAnimator_EventTriggered(string obj)
+        protected void AnimationEventTriggered(string eventName)
         {
-            System.Diagnostics.Debug.WriteLine(obj);
+            System.Diagnostics.Debug.WriteLine("Animation event triggered: " + eventName);
         }
 
         public void TakeDamage(float amount)

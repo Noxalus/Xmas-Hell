@@ -147,28 +147,6 @@ namespace XmasHell.Screens
             if (Game.Pause)
                 return;
 
-            if (InputManager.TouchUp() || InputManager.Clicked())
-            {
-#if ANDROID
-                var position = Game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
-#else
-                var position = Game.ViewportAdapter.PointToScreen(InputManager.ClickPosition());
-#endif
-
-                //var gameScreen = Game.ScreenManager.GetScreen<GameScreen>();
-
-                //if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
-                //    gameScreen.LoadBoss(BossType.XmasBall);
-                //else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y < GameConfig.VirtualResolution.Y / 2f)
-                //    gameScreen.LoadBoss(BossType.XmasBell);
-                //else if (position.X < GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
-                //    gameScreen.LoadBoss(BossType.XmasGift);
-                //else if (position.X > GameConfig.VirtualResolution.X / 2f && position.Y > GameConfig.VirtualResolution.Y / 2f)
-                //    gameScreen.LoadBoss(BossType.XmasSnowflake);
-
-                //Game.ScreenManager.GoTo<GameScreen>();
-            }
-
             if (_shootFrequency.TotalMilliseconds < 0)
             {
                 Game.GameManager.MoverManager.TriggerPattern(_patternFile, BulletType.Type1, false);

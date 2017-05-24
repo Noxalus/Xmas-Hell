@@ -121,7 +121,10 @@ namespace XmasHell
                 ScreenManager.AddScreen(new BossSelectionScreen(this));
                 ScreenManager.AddScreen(new GameScreen(this));
 
-                ScreenManager.GoTo<MainMenuScreen>();
+                ScreenManager.GetScreen<GameScreen>().LoadBoss(Entities.Bosses.BossType.XmasBell);
+
+                ScreenManager.GoTo<GameScreen>();
+                //ScreenManager.GoTo<MainMenuScreen>();
             }
         }
 

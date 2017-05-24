@@ -47,6 +47,16 @@ namespace XmasHell.Entities.Bosses.XmasBell
                     Boss.CurrentAnimator.Play("Troll3");
                 }
             };
+
+            Boss.CurrentAnimator.EventTriggered += AnimationEventTriggered;
+        }
+
+        private void AnimationEventTriggered(string eventName)
+        {
+            if (eventName == "shoot")
+            {
+                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern2", BulletType.Type2, false, Boss.ActionPointPosition());
+            }
         }
 
         public override void Stop()
@@ -66,11 +76,13 @@ namespace XmasHell.Entities.Bosses.XmasBell
             float newXPosition;
             float newYPosition;
 
+            //randomSideIndex = 0;
+
             switch (side[randomSideIndex])
             {
                 case ScreenSide.Left:
                     Boss.CurrentAnimator.Rotation = 0;
-                    newXPosition = -Boss.Width() / 2f;
+                    newXPosition = -Boss.Width() / 2;
                     newYPosition = Boss.Game.GameManager.Random.NextFloat(
                         Boss.Height() / 2f,
                         GameConfig.VirtualResolution.Y - Boss.Height() / 2f
@@ -86,7 +98,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
                     break;
                 case ScreenSide.Right:
                     Boss.CurrentAnimator.Rotation = MathHelper.ToRadians(180f);
-                    //Boss.CurrentAnimator.Scale = new Vector2(-1, -1);
                     newXPosition = GameConfig.VirtualResolution.X + (Boss.Width() / 2f);
                     newYPosition = Boss.Game.GameManager.Random.NextFloat(
                         Boss.Height() / 2f,
@@ -111,26 +122,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            // TODO: Will go from a side to another side of the screen
-            //if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X + Boss.Width())
-            //{
-            //    GetNewYRandomPosition();
-            //    Boss.Direction.X = -1;
-            //}
-            //else if (Boss.CurrentAnimator.Position.X < -Boss.Width())
-            //{
-            //    GetNewYRandomPosition();
-            //    Boss.Direction.X = 1;
-            //}
-
-            //if (_bulletFrequence.TotalMilliseconds > 0)
-            //    _bulletFrequence -= gameTime.ElapsedGameTime;
-            //else
-            //{
-            //    _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-            //    Boss.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
-            //}
         }
     }
 }
