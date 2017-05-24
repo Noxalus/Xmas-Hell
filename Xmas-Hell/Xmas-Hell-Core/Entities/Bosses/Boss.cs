@@ -13,11 +13,18 @@ using XmasHell.Geometry;
 using XmasHell.Physics;
 using XmasHell.Spriter;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
-using SpriterDotNet.MonoGame.Sprites;
 using SpriterDotNet.MonoGame.Content;
 
 namespace XmasHell.Entities.Bosses
 {
+    public enum ScreenSide
+    {
+        Left,
+        Top,
+        Right,
+        Bottom
+    };
+
     // TODO: Inherit from AbstractEntity
     public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
@@ -64,6 +71,9 @@ namespace XmasHell.Entities.Bosses
         protected readonly List<AbstractBossBehaviour> Behaviours;
         protected int PreviousBehaviourIndex;
         protected int CurrentBehaviourIndex;
+        private TimeSpan ShootTimer = TimeSpan.Zero;
+        public float ShootTimerTime = 0f;
+        public event EventHandler<float> ShootTimerFinished = null;
 
         // BulletML
         protected readonly List<string> BulletPatternFiles;
@@ -287,8 +297,6 @@ namespace XmasHell.Entities.Bosses
 
             CurrentAnimator = _animators.First();
             CurrentAnimator.Position = InitialPosition;
-
-            CurrentAnimator.EventTriggered += AnimationEventTriggered;
         }
 
         protected virtual void InitializePhysics()
@@ -369,6 +377,86 @@ namespace XmasHell.Entities.Bosses
             MoveTo(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f), force);
         }
 
+        public void MoveOutside(float time, bool force = true)
+        {
+            MoveTo(GetNearestOutsidePosition(), time, force);
+        }
+
+        public void MoveOutside(bool force = true)
+        {
+            MoveTo(GetNearestOutsidePosition(), force);
+        }
+
+        public Vector2 GetNearestOutsidePosition()
+        {
+            // Get the nearest border
+            var newPosition = Position();
+            ScreenSide side = GetNearestBorder();
+
+            switch (side)
+            {
+                case ScreenSide.Left:
+                    newPosition.X = -Width();
+                    break;
+                case ScreenSide.Top:
+                    newPosition.Y = -Height();
+                    break;
+                case ScreenSide.Right:
+                    newPosition.X = Game.ViewportAdapter.VirtualWidth + Width();
+                    break;
+                case ScreenSide.Bottom:
+                    newPosition.Y = Game.ViewportAdapter.VirtualHeight + Height();
+                    break;
+                default:
+                    break;
+            }
+
+            return newPosition;
+        }
+
+        public ScreenSide GetNearestBorder()
+        {
+            if (Position().X < Game.ViewportAdapter.VirtualWidth / 2f)
+            {
+                if (Position().Y < Game.ViewportAdapter.VirtualHeight / 2f)
+                {
+                    if (Position().Y < Position().X)
+                    {
+                        return ScreenSide.Top;
+                    }
+                }
+                else
+                {
+                    if (Game.ViewportAdapter.VirtualHeight - Position().Y < Position().X)
+                    {
+                        return ScreenSide.Bottom;
+                    }
+                }
+
+                return ScreenSide.Left;
+            }
+            else
+            {
+                if (Position().Y < Game.ViewportAdapter.VirtualHeight / 2f)
+                {
+                    if (Position().Y < Game.ViewportAdapter.VirtualWidth - Position().X)
+                    {
+                        return ScreenSide.Top;
+                    }
+                }
+                else
+                {
+                    if (Game.ViewportAdapter.VirtualHeight - Position().Y <
+                        Game.ViewportAdapter.VirtualWidth - Position().X)
+                    {
+                        return ScreenSide.Bottom;
+                    }
+                }
+
+                return ScreenSide.Right;
+            }
+        }
+
         public void RotateTo(float angle, float time, bool force = false)
         {
             if (TargetingAngle && !force)
@@ -430,11 +518,6 @@ namespace XmasHell.Entities.Bosses
                 MathHelperExtension.LinesIntersect(_upWallLine, line, ref newPosition);
         }
 
-        protected void AnimationEventTriggered(string eventName)
-        {
-            System.Diagnostics.Debug.WriteLine("Animation event triggered: " + eventName);
-        }
-
         public void TakeDamage(float amount)
         {
             if (Invincible)
@@ -453,6 +536,17 @@ namespace XmasHell.Entities.Bosses
             UpdatePosition(gameTime);
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
+
+            if (ShootTimerFinished != null)
+            {
+                if (ShootTimer.TotalMilliseconds > 0)
+                    ShootTimer -= gameTime.ElapsedGameTime;
+                else
+                {
+                    ShootTimer = TimeSpan.FromSeconds(ShootTimerTime);
+                    ShootTimerFinished.Invoke(this, ShootTimerTime);
+                }
+            }
 
             if (_hitTimer.TotalMilliseconds > 0)
                 _hitTimer -= gameTime.ElapsedGameTime;

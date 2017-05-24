@@ -525,7 +525,7 @@
                     <object folder="0" file="1" x="150.222222" y="300" scale_y="3"/>
                 </key>
             </timeline>
-            <timeline id="10" name="action_point_000" object_type="point">
+            <timeline id="10" name="action_point" object_type="point">
                 <key id="0" spin="0">
                     <object x="188.998484" y="1.254205" angle="0.683362"/>
                 </key>

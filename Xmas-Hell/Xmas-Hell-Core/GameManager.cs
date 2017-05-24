@@ -137,10 +137,21 @@ namespace XmasHell
             _game.SpriteBatchManager.Lasers.Remove(laser);
         }
 
-        public Vector2 GetRandomPosition(bool normalized = false)
+        public Vector2 GetRandomPosition(bool normalized = false, Rectangle? bounds = null)
         {
-            float randomX = Random.Next(0, GameConfig.VirtualResolution.X);
-            float randomY = Random.Next(0, GameConfig.VirtualResolution.Y);
+            float randomX;
+            float randomY;
+
+            if (bounds.HasValue)
+            {
+                randomX = Random.Next(bounds.Value.X, bounds.Value.Width);
+                randomY = Random.Next(bounds.Value.Y, bounds.Value.Height);
+            }
+            else
+            {
+                randomX = Random.Next(0, GameConfig.VirtualResolution.X);
+                randomY = Random.Next(0, GameConfig.VirtualResolution.Y);
+            }
 
             if (normalized)
             {
