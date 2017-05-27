@@ -57,14 +57,21 @@ namespace XmasHell.Entities.Bosses.XmasBell
 
         private void PlayRandomTrollAnimation()
         {
-            var randomNumber = Boss.Game.GameManager.Random.Next(3);
+            var randomNumber = Boss.Game.GameManager.Random.Next(4);
 
             if (randomNumber == 0)
                 Boss.CurrentAnimator.Play("Troll");
             else if(randomNumber == 1)
                 Boss.CurrentAnimator.Play("Troll2");
-            else
+            else if (randomNumber == 2)
                 Boss.CurrentAnimator.Play("Troll3");
+            else
+            {
+                if (Boss.Position().X < 0 || Boss.Position().X > Boss.Game.ViewportAdapter.VirtualWidth)
+                    Boss.CurrentAnimator.Play("Troll4W");
+                else if(Boss.Position().Y < 0 || Boss.Position().Y > Boss.Game.ViewportAdapter.VirtualHeight)
+                    Boss.CurrentAnimator.Play("Troll4H");
+            }
         }
 
         public override void Stop()
