@@ -49,8 +49,8 @@ namespace XmasHell
 
         // Debug
         public static bool DebugScreen = false;
-        public static bool GodMode = false;
-        public static bool DisplayCollisionBoxes = false;
+        public static bool GodMode = true;
+        public static bool DisplayCollisionBoxes = true;
         public static bool DisableCollision = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = false;

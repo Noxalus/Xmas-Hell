@@ -9,7 +9,9 @@ namespace XmasHell.Entities.Bosses.XmasBell
     class XmasBellBehaviour4 : AbstractBossBehaviour
     {
         private TimeSpan _bulletFrequence;
+        private bool _trollPattern;
         private bool _centerPattern;
+        private TimeSpan _trollPatternDuration;
         private TimeSpan _centerPatternDuration;
 
         public XmasBellBehaviour4(Boss boss) : base(boss)
@@ -21,53 +23,48 @@ namespace XmasHell.Entities.Bosses.XmasBell
             base.Start();
 
             _bulletFrequence = TimeSpan.Zero;
+            _trollPattern = false;
             _centerPattern = false;
+            Boss.Speed = 500f;
             Boss.CurrentAnimator.Rotation = 0;
             Boss.CurrentAnimator.Speed = 1f;
 
-            Boss.CurrentAnimator.AnimationFinished += delegate (string animationName)
-            {
-                if (animationName == "Troll" || animationName == "Troll2" || animationName == "Troll3")
-                {
-                    GetNewRandomPosition();
-                    PlayRandomTrollAnimation();
-                }
-            };
+            // Events
+            Boss.CurrentAnimator.AnimationFinished += AnimationFinished;
+            Boss.CurrentAnimator.EventTriggered += AnimationEventTriggered;
 
-            Boss.CurrentAnimator.EventTriggered += delegate (string eventName)
-            {
-                if (eventName == "shoot")
-                {
-                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern4", BulletType.Type2, false, Boss.ActionPointPosition(), Boss.ActionPointDirection());
-                }
-            };
+            Boss.MoveOutside();
+        }
 
-            GetNewRandomPosition();
-            PlayRandomTrollAnimation();
+        private void AnimationFinished(string animationName)
+        {
+            if (animationName.StartsWith("Troll"))
+            {
+                GetNewRandomPosition();
+                PlayRandomTrollAnimation();
+            }
+        }
+
+        private void AnimationEventTriggered(string eventName)
+        {
+            if (eventName == "shoot")
+            {
+                Boss.Game.GameManager.MoverManager.TriggerPattern(
+                    "XmasBell/pattern4", BulletType.Type2, false, Boss.ActionPointPosition(), Boss.ActionPointDirection()
+                );
+            }
         }
 
         private void PlayRandomTrollAnimation()
         {
-            var randomNumber = Boss.Game.GameManager.Random.NextDouble();
+            var randomNumber = Boss.Game.GameManager.Random.Next(3);
 
-            randomNumber = 0.74f;
-
-            if (randomNumber < 0.25f)
-            {
+            if (randomNumber == 0)
                 Boss.CurrentAnimator.Play("Troll");
-            }
-            else if(randomNumber < 0.5f)
-            {
+            else if(randomNumber == 1)
                 Boss.CurrentAnimator.Play("Troll2");
-            }
-            else if (randomNumber < 0.75f)
-            {
-                Boss.CurrentAnimator.Play("Troll3");
-            }
             else
-            {
-                StartCenterPattern();
-            }
+                Boss.CurrentAnimator.Play("Troll3");
         }
 
         public override void Stop()
@@ -85,7 +82,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
             };
 
             var randomSideIndex = Boss.Game.GameManager.Random.Next(side.Count);
-            //randomSideIndex = 2;
 
             float newXPosition;
             float newYPosition;
@@ -131,6 +127,20 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Boss.CurrentAnimator.Position = new Vector2(newXPosition, newYPosition);
         }
 
+        private void StartTrollPattern()
+        {
+            _trollPattern = true;
+            _trollPatternDuration = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(10, 30));
+            GetNewRandomPosition();
+            PlayRandomTrollAnimation();
+        }
+
+        private void StopTrollPattern()
+        {
+            _trollPattern = false;
+            StartCenterPattern();
+        }
+
         private void StartCenterPattern()
         {
             Boss.CurrentAnimator.Play("Idle");
@@ -138,57 +148,74 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Boss.Invincible = true;
 
             _centerPattern = true;
-            _centerPatternDuration = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(10, 30));
+            _centerPatternDuration = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(5, 10));
             Boss.MoveToCenter();
-            Boss.ShootTimerTime = 1;
-            Boss.ShootTimerFinished += delegate(object sender, float e)
-            {
-                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern2", BulletType.Type2, false, Boss.ActionPointPosition());
-            };
+
+            Boss.ShootTimerTime = 0.2f;
+            Boss.ShootTimerFinished += ShootTimerFinished;
+        }
+
+        private void ShootTimerFinished(object sender, float e)
+        {
+            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern4", BulletType.Type2, false, Boss.ActionPointPosition(), Boss.ActionPointDirection());
         }
 
         private void StopCenterPattern()
         {
             _centerPattern = false;
-            var randomPositionBounds = new Rectangle(
-                Boss.Game.ViewportAdapter.VirtualWidth / 2,
-                (int)(Boss.Game.ViewportAdapter.VirtualHeight / 1.25),
-                (int)(Boss.Game.ViewportAdapter.VirtualWidth / 1.5),
-                (int)(Boss.Game.ViewportAdapter.VirtualHeight)
-            );
-
-            //Boss.Position(Boss.Game.GameManager.GetRandomPosition(false));
-            //Boss.MoveOutside();
-            PlayRandomTrollAnimation();
+            Boss.StartShootTimer = false;
+            Boss.Invincible = false;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
+            Boss.Rotation(0);
+            Boss.CurrentAnimator.Play("Idle");
+            Boss.MoveOutside();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            // Increase animation speed ovdr time
-            float delaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Boss.CurrentAnimator.Speed = MathHelper.Clamp(Boss.CurrentAnimator.Speed + 0.05f * delaTime, 1f, 4f);
+            if (!_centerPattern && !Boss.TargetingPosition && Boss.IsOutside && Boss.CurrentAnimator.CurrentAnimation.Name == "Idle")
+                StartTrollPattern();
 
-            if (Xmas_Hell_Core.Controls.InputManager.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
-            {
-                StopCenterPattern();
-            }
+            // Increase animation speed over time
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Boss.CurrentAnimator.Speed = MathHelper.Clamp(Boss.CurrentAnimator.Speed + 0.01f * deltaTime, 1f, 4f);
 
-            if (_centerPattern)
+            UpdateTrollPattern(gameTime);
+            UpdateCenterPattern(gameTime);
+        }
+
+        private void UpdateTrollPattern(GameTime gameTime)
+        {
+            if (!_trollPattern)
+                return;
+
+            if (_trollPatternDuration.TotalMilliseconds > 0)
+                _trollPatternDuration -= gameTime.ElapsedGameTime;
+            else
+                StopTrollPattern();
+        }
+
+        private void UpdateCenterPattern(GameTime gameTime)
+        {
+            if (!_centerPattern)
+                return;
+
+            if (Boss.Position() == Boss.Game.ViewportAdapter.Center.ToVector2())
             {
-                var diff = Boss.Position() - Boss.Game.ViewportAdapter.Center.ToVector2();
-                if (Math.Abs(diff.X) < 0.01f && Math.Abs(diff.Y) < 0.01f)
+                Boss.StartShootTimer = true;
+                Boss.CurrentAnimator.Play("No_Animation");
+
+                if (_centerPatternDuration.TotalMilliseconds > 0)
                 {
-                    if (_centerPatternDuration.TotalMilliseconds > 0)
-                    {
-                        _centerPatternDuration -= gameTime.ElapsedGameTime;
-                    }
-                    else
-                    {
-                        StopCenterPattern();
-                    }
+                    _centerPatternDuration -= gameTime.ElapsedGameTime;
+
+                    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    Boss.Rotation(Boss.Rotation() + (2.5f * deltaTime));
                 }
+                else
+                    StopCenterPattern();
             }
         }
     }

@@ -71,9 +71,11 @@ namespace XmasHell.Entities.Bosses
         protected readonly List<AbstractBossBehaviour> Behaviours;
         protected int PreviousBehaviourIndex;
         protected int CurrentBehaviourIndex;
+        public bool StartShootTimer = false;
         private TimeSpan ShootTimer = TimeSpan.Zero;
         public float ShootTimerTime = 0f;
         public event EventHandler<float> ShootTimerFinished = null;
+        public bool IsOutside = false;
 
         // BulletML
         protected readonly List<string> BulletPatternFiles;
@@ -125,8 +127,9 @@ namespace XmasHell.Entities.Bosses
             if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
             {
                 var pointData = CurrentAnimator.FrameData.PointData["action_point"];
-                var actionPoint = new Vector2(pointData.X, pointData.Y);
-                return Position() + MathHelperExtension.RotatePoint(actionPoint, Rotation());
+                var actionPoint = new Vector2(pointData.X, -pointData.Y);
+                var rotatedActionPoint = MathHelperExtension.RotatePoint(actionPoint, Rotation());
+                return Position() + rotatedActionPoint;
             }
 
             return Position();
@@ -134,15 +137,13 @@ namespace XmasHell.Entities.Bosses
 
         public float ActionPointDirection()
         {
-            var spriteDirection = Rotation() + MathHelper.PiOver2;
-
             if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
             {
                 var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
-                return MathHelper.ToRadians(actionPoint.Angle) + spriteDirection;
+                return MathHelper.ToRadians(actionPoint.Angle - 90f) + Rotation();
             }
 
-            return spriteDirection;
+            return Rotation();
         }
 
         public virtual int Width()
@@ -540,7 +541,11 @@ namespace XmasHell.Entities.Bosses
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
 
-            if (ShootTimerFinished != null)
+            // Is outside of the screen?
+            IsOutside = Position().X < 0 || Position().X > Game.ViewportAdapter.VirtualWidth ||
+                        Position().Y < 0 || Position().Y > Game.ViewportAdapter.VirtualHeight;
+
+            if (StartShootTimer && ShootTimerFinished != null)
             {
                 if (ShootTimer.TotalMilliseconds > 0)
                     ShootTimer -= gameTime.ElapsedGameTime;
@@ -557,7 +562,7 @@ namespace XmasHell.Entities.Bosses
             Tinted = _hitTimer.TotalMilliseconds > 0;
 
             var portion = (InitialLife/Behaviours.Count);
-            var value = Life - (InitialLife - (CurrentBehaviourIndex + 1)*portion);
+            var value = Life - (InitialLife - (CurrentBehaviourIndex + 1) * portion);
 
             _hpBar.Scale = new Vector2(value / portion, 1f);
             _hpBar.Color = GameConfig.BossHPBarColors[CurrentBehaviourIndex];
