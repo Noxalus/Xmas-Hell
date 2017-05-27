@@ -23,6 +23,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             _bulletFrequence = TimeSpan.Zero;
             _centerPattern = false;
             Boss.CurrentAnimator.Rotation = 0;
+            Boss.CurrentAnimator.Speed = 1f;
 
             Boss.CurrentAnimator.AnimationFinished += delegate (string animationName)
             {
@@ -33,14 +34,23 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 }
             };
 
-            Boss.CurrentAnimator.EventTriggered += AnimationEventTriggered;
+            Boss.CurrentAnimator.EventTriggered += delegate (string eventName)
+            {
+                if (eventName == "shoot")
+                {
+                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern4", BulletType.Type2, false, Boss.ActionPointPosition(), Boss.ActionPointDirection());
+                }
+            };
 
-            //PlayRandomTrollAnimation();
+            GetNewRandomPosition();
+            PlayRandomTrollAnimation();
         }
 
         private void PlayRandomTrollAnimation()
         {
             var randomNumber = Boss.Game.GameManager.Random.NextDouble();
+
+            randomNumber = 0.74f;
 
             if (randomNumber < 0.25f)
             {
@@ -60,15 +70,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
             }
         }
 
-        private void AnimationEventTriggered(string eventName)
-        {
-            // TODO: Fix this, it should work :/
-            if (eventName == "shoot")
-            {
-                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern2", BulletType.Type2, false, Boss.ActionPointPosition());
-            }
-        }
-
         public override void Stop()
         {
             base.Stop();
@@ -84,6 +85,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             };
 
             var randomSideIndex = Boss.Game.GameManager.Random.Next(side.Count);
+            //randomSideIndex = 2;
 
             float newXPosition;
             float newYPosition;
@@ -104,7 +106,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
                         Boss.Width() / 2f,
                         GameConfig.VirtualResolution.X - Boss.Width() / 2f
                     );
-                    newYPosition = -Boss.Height() / 2f;
+                    newYPosition = -Boss.Width() / 2f;
                     break;
                 case ScreenSide.Right:
                     Boss.CurrentAnimator.Rotation = MathHelper.ToRadians(180f);
@@ -155,14 +157,18 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 (int)(Boss.Game.ViewportAdapter.VirtualHeight)
             );
 
-            Boss.Position(Boss.Game.GameManager.GetRandomPosition(false));
-            Boss.MoveOutside();
-            //PlayRandomTrollAnimation();
+            //Boss.Position(Boss.Game.GameManager.GetRandomPosition(false));
+            //Boss.MoveOutside();
+            PlayRandomTrollAnimation();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            // Increase animation speed ovdr time
+            float delaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Boss.CurrentAnimator.Speed = MathHelper.Clamp(Boss.CurrentAnimator.Speed + 0.05f * delaTime, 1f, 4f);
 
             if (Xmas_Hell_Core.Controls.InputManager.KeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
             {

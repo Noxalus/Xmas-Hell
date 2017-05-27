@@ -44,7 +44,7 @@ namespace XmasHell.Geometry
             return false;
         }
 
-        public static Vector2 RotatePoint(Vector2 point, float angle, Vector2? origin)
+        public static Vector2 RotatePoint(Vector2 point, float angle, Vector2? origin = null)
         {
             if (!origin.HasValue)
                 origin = Vector2.Zero;

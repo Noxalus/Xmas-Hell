@@ -9,7 +9,7 @@
         <file id="5" name="ribbon.png" width="223" height="158" pivot_x="0.5" pivot_y="0.63"/>
         <file id="6" name="clapper-ball.png" width="40" height="40" pivot_x="0.5" pivot_y="0.5"/>
         <file id="7" name="eye2.png" width="24" height="31" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="8" name="mouth2.png" width="82" height="17" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="8" name="mouth2.png" width="84" height="18" pivot_x="0.5" pivot_y="0.5"/>
         <file id="9" name="game-area.png" width="1080" height="1920" pivot_x="0.5" pivot_y="0.8"/>
     </folder>
     <entity id="0" name="Xmas Bell">
@@ -121,7 +121,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-75" y="0" angle="270"/>
+                    <object folder="0" file="0" x="-75" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="left-eye">
@@ -136,12 +136,12 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-115" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-115" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
@@ -165,7 +165,7 @@
             </timeline>
             <timeline id="7" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-56.972136" y="0" angle="90" scale_x="1.139443"/>
+                    <object folder="0" file="1" x="-56.972136" angle="90" scale_x="1.139443"/>
                 </key>
             </timeline>
             <timeline id="8" name="clapper-ball">
@@ -178,7 +178,7 @@
                     <bone x="0" y="60" angle="270" scale_x="0.877622"/>
                 </key>
                 <key id="1" spin="-1">
-                    <bone x="-15" y="0" angle="180" scale_x="0.877622"/>
+                    <bone x="-15" angle="180" scale_x="0.877622"/>
                 </key>
                 <key id="2" time="200">
                     <bone x="-10.036959" y="-11.147172" angle="168" scale_x="0.877622"/>
@@ -223,7 +223,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-75" y="0" angle="270"/>
+                    <object folder="0" file="0" x="-75" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="left-eye">
@@ -238,12 +238,12 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-115" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-115" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
@@ -258,7 +258,7 @@
             </timeline>
             <timeline id="7" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42" y="0" angle="90"/>
+                    <object folder="0" file="1" x="-42" angle="90"/>
                 </key>
             </timeline>
             <timeline id="8" name="clapper-ball">
@@ -268,7 +268,7 @@
             </timeline>
             <timeline id="9" obj="6" name="clapper-bone" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-7" y="0" angle="180"/>
+                    <bone x="-7" angle="180"/>
                 </key>
             </timeline>
         </animation>
@@ -301,7 +301,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-75" y="0" angle="270"/>
+                    <object folder="0" file="0" x="-75" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="left-eye">
@@ -316,12 +316,12 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-115" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-115" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
@@ -334,7 +334,7 @@
             </timeline>
             <timeline id="6" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42" y="0" angle="90"/>
+                    <object folder="0" file="1" x="-42" angle="90"/>
                 </key>
             </timeline>
             <timeline id="7" name="clapper-ball">
@@ -344,15 +344,15 @@
             </timeline>
             <timeline id="8" obj="6" name="clapper-bone" object_type="bone">
                 <key id="0">
-                    <bone x="-7" y="0" angle="180"/>
+                    <bone x="-7" angle="180"/>
                 </key>
                 <key id="1" time="499" spin="-1">
-                    <bone x="-7" y="0" angle="204.945389"/>
+                    <bone x="-7" angle="204.945389"/>
                 </key>
             </timeline>
             <timeline id="9" name="screen-border">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="150.222222" y="300" scale_y="3"/>
+                    <object folder="0" file="1" x="150.222222" y="300" angle="0" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
@@ -385,7 +385,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-75" y="0" angle="270"/>
+                    <object folder="0" file="0" x="-75" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="left-eye">
@@ -400,12 +400,12 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-115" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-115" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
@@ -418,7 +418,7 @@
             </timeline>
             <timeline id="6" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42" y="0" angle="90"/>
+                    <object folder="0" file="1" x="-42" angle="90"/>
                 </key>
             </timeline>
             <timeline id="7" name="clapper-ball">
@@ -428,21 +428,21 @@
             </timeline>
             <timeline id="8" obj="6" name="clapper-bone" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-7" y="0" angle="180"/>
+                    <bone x="-7" angle="180"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <bone x="-7" y="0" angle="180"/>
+                    <bone x="-7" angle="180"/>
                 </key>
             </timeline>
             <timeline id="9" name="screen-border">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="150.222222" y="300" scale_y="3"/>
+                    <object folder="0" file="1" x="150.222222" y="300" angle="0" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
         <animation id="4" name="Troll3" length="1000" interval="100">
             <mainline>
-                <key id="0" curve_type="bezier" c1="0.0067" c2="0.5634" c3="0.7138" c4="0.995305">
+                <key id="0" curve_type="cubic" c1="0.995305" c2="0.995305">
                     <bone_ref id="0" timeline="5" key="0"/>
                     <bone_ref id="1" parent="0" timeline="8" key="0"/>
                     <object_ref id="0" parent="1" timeline="6" key="0" z_index="0"/>
@@ -455,7 +455,7 @@
                     <object_ref id="7" timeline="9" key="0" z_index="7"/>
                     <object_ref id="8" parent="1" timeline="10" key="0" z_index="8"/>
                 </key>
-                <key id="1" time="248">
+                <key id="1" time="500" curve_type="cubic" c1="0" c2="0">
                     <bone_ref id="0" timeline="5" key="1"/>
                     <bone_ref id="1" parent="0" timeline="8" key="1"/>
                     <object_ref id="0" parent="1" timeline="6" key="0" z_index="0"/>
@@ -491,47 +491,47 @@
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
                 <key id="0" spin="0">
                     <bone x="-63" angle="180"/>
                 </key>
-                <key id="1" time="248" spin="0">
+                <key id="1" time="500" spin="0">
                     <bone x="37" angle="180"/>
                 </key>
             </timeline>
             <timeline id="6" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42" y="0" angle="90"/>
+                    <object folder="0" file="1" x="-42" y="-0" angle="90"/>
                 </key>
             </timeline>
             <timeline id="7" name="clapper-ball">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="189" y="-0" angle="90" scale_x="0.999999"/>
+                    <object folder="0" file="6" x="189" angle="90" scale_x="0.999999"/>
                 </key>
             </timeline>
             <timeline id="8" obj="6" name="clapper-bone" object_type="bone">
                 <key id="0">
-                    <bone x="-7" y="0" angle="179.316638"/>
+                    <bone x="-7" angle="179.316638"/>
                 </key>
-                <key id="1" time="248" spin="-1">
-                    <bone x="-7" y="0" angle="180"/>
+                <key id="1" time="500" spin="-1">
+                    <bone x="-7" angle="180"/>
                 </key>
             </timeline>
             <timeline id="9" name="screen-border">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="150.222222" y="300" scale_y="3"/>
+                    <object folder="0" file="1" x="150.222222" y="300" angle="0" scale_y="3"/>
                 </key>
             </timeline>
             <timeline id="10" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="188.998484" y="1.254205" angle="0.683362"/>
+                    <object x="55.996017" y="0.667892" angle="0.683362"/>
                 </key>
             </timeline>
             <eventline id="0" name="shoot">
-                <key id="0" time="248"/>
+                <key id="0" time="500"/>
             </eventline>
         </animation>
         <animation id="5" name="Clapper" length="1000" interval="100" looping="false">
@@ -890,40 +890,40 @@
             </timeline>
             <timeline id="7" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="0" y="3" angle="90" scale_y="131.945355"/>
+                    <object folder="0" file="1" y="3" angle="90" scale_y="131.945355"/>
                 </key>
                 <key id="1" time="100" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="2" time="200" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="3" time="300" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="4" time="400" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="5" time="500" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="6" time="600" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
                 <key id="7" time="698" spin="0">
-                    <object folder="0" file="1" x="0" y="1" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="1" angle="90" scale_y="128"/>
                 </key>
                 <key id="8" time="699" spin="0">
-                    <object folder="0" file="1" x="0" y="1" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="1" angle="90" scale_y="128"/>
                 </key>
                 <key id="9" time="839" spin="0">
                     <object folder="0" file="1" angle="90" scale_y="128"/>
                 </key>
                 <key id="10" time="909" spin="0">
-                    <object folder="0" file="1" x="0" y="1" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="1" angle="90" scale_y="128"/>
                 </key>
                 <key id="11" time="1000" spin="0">
-                    <object folder="0" file="1" x="0" y="4" angle="90" scale_y="128"/>
+                    <object folder="0" file="1" y="4" angle="90" scale_y="128"/>
                 </key>
             </timeline>
             <timeline id="8" name="clapper-ball">

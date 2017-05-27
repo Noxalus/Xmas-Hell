@@ -82,7 +82,7 @@ namespace XmasHell.Entities.Bosses
         protected string SpriterFilename;
         protected static readonly Config DefaultAnimatorConfig = new Config
         {
-            MetadataEnabled = false,
+            MetadataEnabled = true,
             EventsEnabled = true,
             PoolingEnabled = true,
             TagsEnabled = false,
@@ -124,8 +124,9 @@ namespace XmasHell.Entities.Bosses
         {
             if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
             {
-                var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
-                return Position() + new Vector2(actionPoint.X, -actionPoint.Y);
+                var pointData = CurrentAnimator.FrameData.PointData["action_point"];
+                var actionPoint = new Vector2(pointData.X, pointData.Y);
+                return Position() + MathHelperExtension.RotatePoint(actionPoint, Rotation());
             }
 
             return Position();
@@ -133,13 +134,15 @@ namespace XmasHell.Entities.Bosses
 
         public float ActionPointDirection()
         {
+            var spriteDirection = Rotation() + MathHelper.PiOver2;
+
             if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
             {
                 var actionPoint = CurrentAnimator.FrameData.PointData["action_point"];
-                return actionPoint.Angle;
+                return MathHelper.ToRadians(actionPoint.Angle) + spriteDirection;
             }
 
-            return Rotation();
+            return spriteDirection;
         }
 
         public virtual int Width()

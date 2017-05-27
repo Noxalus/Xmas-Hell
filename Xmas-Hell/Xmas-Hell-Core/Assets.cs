@@ -110,6 +110,7 @@ namespace XmasHell
                 // Xmas Bell
                 { "XmasBell/pattern1", OpenRawFile(BuildRawAssetPath("XmasBell/pattern1.xml")) },
                 { "XmasBell/pattern2", OpenRawFile(BuildRawAssetPath("XmasBell/pattern2.xml")) },
+                { "XmasBell/pattern4", OpenRawFile(BuildRawAssetPath("XmasBell/pattern4.xml")) },
 
                 // Xmas Candy
 
