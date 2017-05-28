@@ -6,7 +6,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
 {
     class XmasBellBehaviour1 : AbstractBossBehaviour
     {
-        private TimeSpan _newPositionTime;
         private TimeSpan _bulletFrequence;
 
         public XmasBellBehaviour1(Boss boss) : base(boss)
@@ -18,7 +17,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
             base.Start();
 
             Boss.Speed = 500f;
-            _newPositionTime = TimeSpan.Zero;
             _bulletFrequence = TimeSpan.Zero;
 
             Boss.CurrentAnimator.Play("Idle");
@@ -33,22 +31,12 @@ namespace XmasHell.Entities.Bosses.XmasBell
         {
             base.Update(gameTime);
 
-            if (_newPositionTime.TotalMilliseconds > 0)
-            {
-                if (!Boss.TargetingPosition)
-                    _newPositionTime -= gameTime.ElapsedGameTime;
-            }
-            else
-            {
-                _newPositionTime = TimeSpan.FromSeconds(0);
+            var newPosition = new Vector2(
+                Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), (int)(Boss.Game.ViewportAdapter.VirtualWidth - (Boss.Width() / 2f))),
+                (int)(Boss.Height() / 1.25f)
+            );
 
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next(Boss.Width(), Boss.Game.ViewportAdapter.VirtualWidth - Boss.Width()),
-                    (int)(Boss.Height() / 1.25f)
-                );
-
-                Boss.MoveTo(newPosition, 1.5f);
-            }
+            Boss.MoveTo(newPosition, 1.5f);
 
             if (_bulletFrequence.TotalMilliseconds > 0)
                 _bulletFrequence -= gameTime.ElapsedGameTime;

@@ -6,7 +6,8 @@ namespace XmasHell.BulletML
     {
         Type1 = 0,
         Type2 = 1,
-        Type3 = 2
+        Type3 = 2,
+        Type4 = 3
     }
 
     public static class BulletTypeUtils
@@ -23,6 +24,9 @@ namespace XmasHell.BulletML
 
                 case BulletType.Type3:
                     return Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet3");
+
+                case BulletType.Type4:
+                    return Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet4");
 
                 default:
                     return Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1");

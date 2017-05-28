@@ -29,6 +29,8 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 ),
                 true
             );
+
+            Boss.Invincible = true;
         }
 
         public override void Stop()
@@ -49,6 +51,9 @@ namespace XmasHell.Entities.Bosses.XmasBell
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Boss.Invincible && Boss.IsOutside)
+                Boss.Invincible = false;
 
             // TODO: Will go from a side to another side of the screen
             if (!Boss.TargetingPosition)

@@ -15,12 +15,14 @@ namespace XmasHell.Entities.Bosses.XmasBell
             BulletPatternFiles.Add("XmasBell/pattern1");
             BulletPatternFiles.Add("XmasBell/pattern2");
             BulletPatternFiles.Add("XmasBell/pattern4");
+            BulletPatternFiles.Add("XmasBell/pattern5");
 
             // Behaviours
             Behaviours.Add(new XmasBellBehaviour1(this));
             Behaviours.Add(new XmasBellBehaviour2(this));
             Behaviours.Add(new XmasBellBehaviour3(this));
             Behaviours.Add(new XmasBellBehaviour4(this));
+            Behaviours.Add(new XmasBellBehaviour5(this));
         }
 
         protected override void InitializePhysics()
@@ -37,7 +39,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
         {
             base.UpdateBehaviourIndex();
 
-            CurrentBehaviourIndex = 3;
+            //CurrentBehaviourIndex = 4;
         }
     }
 }

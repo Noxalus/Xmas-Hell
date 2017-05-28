@@ -35,12 +35,13 @@ namespace XmasHell
             Color.Green,
             Color.Orange,
             Color.OrangeRed,
-            Color.Red
+            Color.Red,
+            Color.DarkRed
         };
 
         public static Dictionary<BackgroundLevel, Tuple<Color, Color>> BackgroundGradients = new Dictionary<BackgroundLevel, Tuple<Color, Color>>
         {
-            { BackgroundLevel.Level1, new Tuple<Color, Color>(ColorExtension.FromHex("#EAF9FD"), ColorExtension.FromHex("#B7E5F2")) },
+            { BackgroundLevel.Level1, new Tuple<Color, Color>(ColorExtension.FromHex("#D2EFF7"), ColorExtension.FromHex("#B7E5F2")) },
             { BackgroundLevel.Level2, new Tuple<Color, Color>(ColorExtension.FromHex("#91D3EC"), ColorExtension.FromHex("#61BCDE")) },
             { BackgroundLevel.Level3, new Tuple<Color, Color>(ColorExtension.FromHex("#419CBF"), ColorExtension.FromHex("#1C8DB8")) },
             { BackgroundLevel.Level4, new Tuple<Color, Color>(ColorExtension.FromHex("#066B91"), ColorExtension.FromHex("#045878")) },

@@ -135,7 +135,7 @@ namespace XmasHell.Sprites
 
             foreach (var laser in Lasers)
                 laser.Draw(gameTime);
-            
+
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletDraw);
 
@@ -144,29 +144,29 @@ namespace XmasHell.Sprites
 
         private void DrawBoss()
         {
-            if (Boss != null)
+            if (Boss == null)
+                return;
+
+            if (Boss.Tinted)
             {
-                if (Boss.Tinted)
-                {
-                    var basicTintEffect = Assets.GetShader("Graphics/Shaders/BasicTint");
-                    basicTintEffect.Parameters["tintColor"].SetValue(Boss.HitColor.ToVector3());
+                var basicTintEffect = Assets.GetShader("Graphics/Shaders/BasicTint");
+                basicTintEffect.Parameters["tintColor"].SetValue(Boss.HitColor.ToVector3());
 
-                    _game.SpriteBatch.Begin(
-                        samplerState: SamplerState.PointClamp,
-                        blendState: BlendState.AlphaBlend,
-                        transformMatrix: _game.Camera.GetViewMatrix(),
-                        effect: basicTintEffect
-                    );
-                }
-                else
-                {
-                    BeginDrawCameraSpace();
-                }
-
-                Boss.Draw();
-
-                _game.SpriteBatch.End();
+                _game.SpriteBatch.Begin(
+                    samplerState: SamplerState.PointClamp,
+                    blendState: BlendState.AlphaBlend,
+                    transformMatrix: _game.Camera.GetViewMatrix(),
+                    effect: basicTintEffect
+                );
             }
+            else
+            {
+                BeginDrawCameraSpace();
+            }
+
+            Boss.Draw();
+
+            _game.SpriteBatch.End();
         }
 
         public void Draw(GameTime gameTime)

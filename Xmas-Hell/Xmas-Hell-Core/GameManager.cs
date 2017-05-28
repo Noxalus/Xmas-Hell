@@ -88,8 +88,9 @@ namespace XmasHell
             else
             {
                 _endGameFirstTime = true;
-                //_game.GameScreen.Dispose();
-                //_game.GameScreen.Show<MainMenuScreen>();
+
+                _game.ScreenManager.Back();
+
                 _endGameTimer.Stop();
                 _game.Camera.Zoom = 1f;
             }
@@ -144,8 +145,8 @@ namespace XmasHell
 
             if (bounds.HasValue)
             {
-                randomX = Random.Next(bounds.Value.X, bounds.Value.Width);
-                randomY = Random.Next(bounds.Value.Y, bounds.Value.Height);
+                randomX = Random.Next(bounds.Value.X, bounds.Value.X + bounds.Value.Width);
+                randomY = Random.Next(bounds.Value.Y, bounds.Value.Y + bounds.Value.Height);
             }
             else
             {

@@ -9,10 +9,11 @@ struct PixelShaderInput
 
 float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
 {
+    // TOFIX: Color doesn't properly take alpha into account
     float4 color = tex2D(TextureSampler, input.TexCoord);
     float3 tint = tintColor * color.a;
 
-    return float4(tint, 1.0f) * color;
+    return float4(tint, 1.0) * color;
 }
 
 technique BasicTint {

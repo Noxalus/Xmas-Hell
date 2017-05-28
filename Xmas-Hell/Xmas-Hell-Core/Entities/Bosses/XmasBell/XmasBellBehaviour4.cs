@@ -79,6 +79,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             base.Stop();
 
             Boss.CurrentAnimator.Rotation = 0;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
         }
 
         private void GetNewRandomPosition()
@@ -212,6 +213,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             if (Boss.Position() == Boss.Game.ViewportAdapter.Center.ToVector2())
             {
                 Boss.StartShootTimer = true;
+                Boss.Invincible = false;
                 Boss.CurrentAnimator.Play("No_Animation");
 
                 if (_centerPatternDuration.TotalMilliseconds > 0)

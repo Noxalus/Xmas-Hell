@@ -77,10 +77,14 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/GUI/unknown-boss-button"),
 
                 // Sprites
+
+                // Bullets
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet2"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet3"),
+                content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet4"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/laser"),
+
                 content.Load<Texture2D>("Graphics/Sprites/Player/hitbox"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch2"),
@@ -111,6 +115,7 @@ namespace XmasHell
                 { "XmasBell/pattern1", OpenRawFile(BuildRawAssetPath("XmasBell/pattern1.xml")) },
                 { "XmasBell/pattern2", OpenRawFile(BuildRawAssetPath("XmasBell/pattern2.xml")) },
                 { "XmasBell/pattern4", OpenRawFile(BuildRawAssetPath("XmasBell/pattern4.xml")) },
+                { "XmasBell/pattern5", OpenRawFile(BuildRawAssetPath("XmasBell/pattern5.xml")) },
 
                 // Xmas Candy
 

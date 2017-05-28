@@ -14,6 +14,7 @@ using XmasHell.Physics;
 using XmasHell.Spriter;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet.MonoGame.Content;
+using XmasHell.BulletML;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -29,7 +30,7 @@ namespace XmasHell.Entities.Bosses
     public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
         public XmasHell Game;
-        protected Vector2 InitialPosition;
+        public Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
         private Sprite _hpBar;
@@ -215,8 +216,8 @@ namespace XmasHell.Entities.Bosses
             _playerPositionDelegate = playerPositionDelegate;
 
             InitialPosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                150f
+                Game.ViewportAdapter.VirtualWidth / 2f,
+                Game.ViewportAdapter.VirtualHeight * 0.15f
             );
             InitialLife = GameConfig.BossDefaultLife;
 
@@ -381,6 +382,16 @@ namespace XmasHell.Entities.Bosses
             MoveTo(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y / 2f), force);
         }
 
+        public void MoveToInitialPosition(float time, bool force = false)
+        {
+            MoveTo(InitialPosition, time, force);
+        }
+
+        public void MoveToInitialPosition(bool force = false)
+        {
+            MoveTo(InitialPosition, force);
+        }
+
         public void MoveOutside(float time, bool force = true)
         {
             MoveTo(GetNearestOutsidePosition(), time, force);
@@ -533,6 +544,11 @@ namespace XmasHell.Entities.Bosses
                 Destroy();
 
             _hitTimer = TimeSpan.FromMilliseconds(20);
+        }
+
+        public void TriggerPattern(string patternName, BulletType type, bool clear = false, Vector2? position = null, float? direction = null)
+        {
+            Game.GameManager.MoverManager.TriggerPattern(patternName, type, clear, position, direction);
         }
 
         public virtual void Update(GameTime gameTime)
