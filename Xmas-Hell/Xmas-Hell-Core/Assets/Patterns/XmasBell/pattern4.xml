@@ -2,7 +2,7 @@
 <bulletml>
   <action label="top">
     <repeat>
-      <times>30 + ($rand * 30)</times>
+      <times>10 + ($rand * 20)</times>
       <action label="shoot">
         <fire>
           <bulletRef label="bullet1">

@@ -39,7 +39,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
         {
             base.UpdateBehaviourIndex();
 
-            //CurrentBehaviourIndex = 4;
+            //CurrentBehaviourIndex = 3;
         }
     }
 }
