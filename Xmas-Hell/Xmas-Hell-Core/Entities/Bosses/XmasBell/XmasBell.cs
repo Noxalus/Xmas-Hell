@@ -20,7 +20,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             // Behaviours
             Behaviours.Add(new XmasBellBehaviour1(this));
             Behaviours.Add(new XmasBellBehaviour2(this));
-            Behaviours.Add(new XmasBellBehaviour3(this));
+            //Behaviours.Add(new XmasBellBehaviour3(this));
             Behaviours.Add(new XmasBellBehaviour4(this));
             Behaviours.Add(new XmasBellBehaviour5(this));
         }
