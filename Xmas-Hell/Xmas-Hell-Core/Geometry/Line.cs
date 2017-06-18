@@ -18,14 +18,24 @@ namespace XmasHell.Geometry
             Second = secondPosition;
         }
 
+        public float Angle()
+        {
+            return MathHelperExtension.LineToAngle(this);
+        }
+
         public Vector2 Direction()
         {
-            return MathHelperExtension.AngleToDirection(MathHelperExtension.LineToAngle(this));
+            return Vector2.Normalize(MathHelperExtension.AngleToDirection(MathHelperExtension.LineToAngle(this)));
         }
 
         public float Distance()
         {
             return Vector2.Distance(First, Second);
+        }
+
+        public float Normal()
+        {
+            return MathHelperExtension.LineToAngle(this) + MathHelper.Pi;
         }
     }
 }

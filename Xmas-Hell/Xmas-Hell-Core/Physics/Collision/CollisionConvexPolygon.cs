@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Shapes;
 using MonoGame.Extended;
-using XmasHell.Geometry;
+using XmasHell.Extensions;
 
 namespace XmasHell.Physics.Collision
 {
@@ -58,12 +57,12 @@ namespace XmasHell.Physics.Collision
 
                 if (!edgeLengthSquared.Equals(0))
                 {
+                    // Check whether the circle overlap an edge of the polyhon
                     var dot = Vector2.Dot(edge, axis);
 
                     if (dot >= 0 && dot <= edgeLengthSquared)
                     {
                         var projection = vertex + (dot / edgeLengthSquared) * edge;
-
                         axis = projection - circleCenter;
 
                         if (axis.LengthSquared() <= radiusSquared)
@@ -84,20 +83,20 @@ namespace XmasHell.Physics.Collision
                             if (axis.X < 0)
                                 return false;
                         }
-                        else
+                        else if (edge.Y < 0)
                         {
                             if (axis.X > 0)
                                 return false;
                         }
-
-                        isInside = true;
+                        else
+                            isInside = true;
                     }
                 }
 
                 if (distance < nearestDistance)
                 {
                     nearestDistance = distance;
-                    nearestIsInside = isInside || lastIsInside;
+                    nearestIsInside = isInside;
                     nearestVertex = i;
                 }
 
@@ -127,22 +126,25 @@ namespace XmasHell.Physics.Collision
             {
                 var position = GetWorldPosition(i == Vertices.Count ? Vertices[0] : Vertices[i]);
 
+                // Draw edges
                 spriteBatch.DrawLine(
                     previousPosition.X,
                     previousPosition.Y,
                     position.X,
-                    position.Y, 
-                    Color.Red
+                    position.Y,
+                    Color.Red,
+                    5f
                 );
 
+                // Draw normals
                 Vector2 axis = Vector2.Normalize(position - previousPosition);
                 spriteBatch.DrawLine(
                     (previousPosition.X + position.X) / 2f,
                     (previousPosition.Y + position.Y) / 2f,
                     (previousPosition.X) + axis.Y * 2000,
                     (previousPosition.Y) - axis.X * 2000,
-                    Color.Red);
-
+                    Color.Red,
+                    2f);
 
                 previousPosition = position;
             }

@@ -96,7 +96,7 @@ namespace XmasHell.Physics
                     {
                         if (playerBulletHitbox.Intersects(bossHitBox))
                         {
-                            var playerBullet = (Bullet) playerBulletHitbox.Entity;
+                            var playerBullet = (Bullet)playerBulletHitbox.Entity;
                             playerBullet.Destroy();
                             bossHitBox.Entity.TakeDamage(1);
                             _game.GameManager.ParticleManager.EmitBossHitParticles(playerBullet.Position());

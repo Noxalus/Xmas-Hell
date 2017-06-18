@@ -1,7 +1,5 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Shapes;
 using MonoGame.Extended;
 
 namespace XmasHell.Physics.Collision
@@ -53,7 +51,7 @@ namespace XmasHell.Physics.Collision
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, GetRadius(), 10, Color.Red);
+            spriteBatch.DrawCircle(GetCenter().X, GetCenter().Y, GetRadius(), 10, Color.Red, 5f);
         }
     }
 }
