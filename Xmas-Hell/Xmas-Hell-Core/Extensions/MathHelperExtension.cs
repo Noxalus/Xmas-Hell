@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace XmasHell.Geometry
@@ -77,7 +78,7 @@ namespace XmasHell.Geometry
         {
             float area = 0f, crossProduct = 0f;
             Vector2 centroid = Vector2.Zero, currentVector = Vector2.Zero;
-            Vector2 previousVector = Vertices[Vertices.Count - 1];
+            Vector2 previousVector = worldPositionVertices[worldPositionVertices.Count - 1];
 
             for (int i = 0; i < worldPositionVertices.Count; i++)
             {
