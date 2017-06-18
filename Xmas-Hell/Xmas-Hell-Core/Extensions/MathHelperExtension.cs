@@ -72,5 +72,28 @@ namespace XmasHell.Geometry
         {
             return vector1.Y * vector2.X - vector1.X * vector2.Y;
         }
+
+        public static Vector2 GetCentroid(List<Vector2> worldPositionVertices)
+        {
+            float area = 0f, crossProduct = 0f;
+            Vector2 centroid = Vector2.Zero, currentVector = Vector2.Zero;
+            Vector2 previousVector = Vertices[Vertices.Count - 1];
+
+            for (int i = 0; i < worldPositionVertices.Count; i++)
+            {
+                currentVector = worldPositionVertices[i];
+                crossProduct = MathHelperExtension.CrossProduct(currentVector, previousVector);
+                var temp = (currentVector + previousVector) * crossProduct;
+                centroid += temp;
+                area += crossProduct;
+
+                previousVector = currentVector;
+            }
+
+            area *= 3;
+            centroid /= area;
+
+            return (area == 0) ? Vector2.Zero : centroid;
+        }
     }
 }
