@@ -14,7 +14,7 @@
    viewBox="0 0 744.09448819 1052.3622047"
    id="svg6524"
    version="1.1"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="xmas-snowman.svg"
    inkscape:export-filename="D:\Projets\Xmas-Hell\Creations\Graphics\Sprites\Bosses\XmasSnowman\xmas-snowman.png"
    inkscape:export-xdpi="50"
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="226.22056"
-     inkscape:cy="566.63848"
+     inkscape:zoom="0.7"
+     inkscape:cx="210.53259"
+     inkscape:cy="674.47418"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -209,5 +209,18 @@
          d="m 256.20862,407.5846 -6.76228,-45.81408 c 67.29724,23.89068 135.07614,32.13807 238.45939,-1.14535 l -7.11818,46.19587 c -79.37853,16.39151 -151.82606,13.81671 -224.57893,0.76356 z"
          style="fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.32135391;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
+    <ellipse
+       style="opacity:1;fill:#f1697c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4168"
+       cx="-177.28177"
+       cy="708.40527"
+       rx="42.931484"
+       ry="14.647212" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -220.21326,706.89003 0,-113.13708 c 0,-4.22158 -5.45471,-78.52809 38.3858,-87.88327 22.93483,-4.89409 35.494,57.39074 45.88296,57.52636 13.5243,0.17655 36.164071,-8.16501 37.326968,8.66771 2.232052,32.30855 -35.863578,21.89235 -35.732758,28.76027 l 2.02031,106.06601 z"
+       id="path4170"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssssscc" />
   </g>
 </svg>
