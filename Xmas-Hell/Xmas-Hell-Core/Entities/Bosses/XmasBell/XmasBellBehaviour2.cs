@@ -41,8 +41,8 @@ namespace XmasHell.Entities.Bosses.XmasBell
         private void GetNewYRandomPosition()
         {
             var newYPosition = Boss.Game.GameManager.Random.NextFloat(
-                Boss.Height() / 2f,
-                GameConfig.VirtualResolution.Y - Boss.Height() / 2f
+                Boss.Width() / 2f,
+                Boss.Game.ViewportAdapter.VirtualHeight - (Boss.Height() * 1.5f)
             );
 
             Boss.CurrentAnimator.Position = new Vector2(Boss.CurrentAnimator.Position.X, newYPosition);
@@ -55,7 +55,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             if (Boss.Invincible && Boss.IsOutside)
                 Boss.Invincible = false;
 
-            // TODO: Will go from a side to another side of the screen
+            // Go from a side to another side of the screen
             if (!Boss.TargetingPosition)
             {
                 if (Boss.CurrentAnimator.Position.X > GameConfig.VirtualResolution.X + Boss.Width())
