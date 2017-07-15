@@ -1,7 +1,4 @@
-using System;
 using Microsoft.Xna.Framework;
-using MonoGame.Extended.Timers;
-using XmasHell.BulletML;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
