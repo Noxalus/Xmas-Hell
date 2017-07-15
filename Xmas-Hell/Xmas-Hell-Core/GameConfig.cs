@@ -29,6 +29,7 @@ namespace XmasHell
 
         // Bullet manager
         public static int MaximumBullets = 2500;
+        public static Rectangle BulletArea = new Rectangle(-500, -500, 500, 500);
 
         public static Color[] BossHPBarColors = new Color[]
         {
@@ -50,8 +51,8 @@ namespace XmasHell
 
         // Debug
         public static bool DebugScreen = false;
-        public static bool GodMode = false;
-        public static bool DisplayCollisionBoxes = false;
+        public static bool GodMode = true;
+        public static bool DebugPhysics = false;
         public static bool DisableCollision = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = false;

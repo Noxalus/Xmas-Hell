@@ -69,7 +69,7 @@ namespace XmasHell.BulletML
         }
 
         public void Used(bool value)
-        { 
+        {
             _used = value;
         }
 
@@ -119,8 +119,8 @@ namespace XmasHell.BulletML
             Sprite.Rotation = Direction;
             Sprite.Scale = Scale();
 
-            if (X < -100 || X > GameConfig.VirtualResolution.X + 100 ||
-                Y < -100 || Y > GameConfig.VirtualResolution.Y + 100)
+            if (X < GameConfig.BulletArea.X || X > _game.ViewportAdapter.VirtualWidth + GameConfig.BulletArea.Width ||
+                Y < GameConfig.BulletArea.Y || Y > _game.ViewportAdapter.VirtualHeight + GameConfig.BulletArea.Height)
             {
                 Destroy();
             }

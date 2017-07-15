@@ -125,7 +125,7 @@ namespace XmasHell.Entities
                 //    (GameConfig.PlayerHitboxRadius * 2f) / playerHitboxTexture.Height
                 //)
             };
-            _hitbox = new CollisionCircle(this, new Vector2(0f, 0f), GameConfig.PlayerHitboxRadius);
+            _hitbox = new CollisionCircle(this, Vector2.Zero, GameConfig.PlayerHitboxRadius);
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);

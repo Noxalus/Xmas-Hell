@@ -34,12 +34,14 @@ namespace XmasHell.Spriter
 
         protected override void ApplyPointTransform(string name, SpriterObject info)
         {
-            if (_pointTexture == null) return;
+            if (!GameConfig.DebugPhysics || _pointTexture == null) return;
             ApplySpriteTransform(_pointTexture, info);
         }
 
         protected override void ApplyBoxTransform(SpriterObjectInfo objInfo, SpriterObject info)
         {
+            if (!GameConfig.DebugPhysics) return;
+
             ApplySpriteTransform(_boxTextures[objInfo.Name], info);
         }
     }

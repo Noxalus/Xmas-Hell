@@ -217,7 +217,7 @@ namespace XmasHell
 
             base.Draw(gameTime);
 
-            if (GameConfig.DisplayCollisionBoxes)
+            if (GameConfig.DebugPhysics)
                 GameManager.CollisionWorld.Draw();
 
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);

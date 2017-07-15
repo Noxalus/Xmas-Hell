@@ -51,7 +51,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             World = new World(gravity);
 
-            if (GameConfig.DisplayCollisionBoxes)
+            if (GameConfig.DebugPhysics)
                 _debugView = new DebugView(World, Game, 1f);
 
             SetupPhysicsWorld();
@@ -132,7 +132,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
         {
             base.Draw();
 
-            if (GameConfig.DisplayCollisionBoxes)
+            if (GameConfig.DebugPhysics)
             {
                 var view = Game.Camera.GetViewMatrix();
                 var projection = Matrix.CreateOrthographicOffCenter(
