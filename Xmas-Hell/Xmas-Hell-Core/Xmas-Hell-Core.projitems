@@ -56,7 +56,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ColorExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Extensions\MathHelperExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\MathExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RandomExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />

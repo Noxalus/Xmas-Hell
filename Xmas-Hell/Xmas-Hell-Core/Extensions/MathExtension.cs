@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using XmasHell.Geometry;
 
-namespace XmasHell.Geometry
+namespace XmasHell.Extensions
 {
-    public static class MathHelperExtension
+    public static class MathExtension
     {
         public static Vector2 AngleToDirection(float angle)
         {
@@ -83,7 +84,7 @@ namespace XmasHell.Geometry
             for (int i = 0; i < worldPositionVertices.Count; i++)
             {
                 currentVector = worldPositionVertices[i];
-                crossProduct = MathHelperExtension.CrossProduct(currentVector, previousVector);
+                crossProduct = MathExtension.CrossProduct(currentVector, previousVector);
                 var temp = (currentVector + previousVector) * crossProduct;
                 centroid += temp;
                 area += crossProduct;

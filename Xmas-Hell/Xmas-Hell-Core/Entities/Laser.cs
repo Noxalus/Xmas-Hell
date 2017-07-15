@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using XmasHell.Physics;
 using XmasHell.Geometry;
 using XmasHell.Physics.Collision;
 using XmasHell.Entities.Bosses;
+using XmasHell.Extensions;
 
 namespace XmasHell.Entities
 {
@@ -27,7 +27,7 @@ namespace XmasHell.Entities
 
         public float Rotation()
         {
-            return MathHelperExtension.LineToAngle(_line);
+            return MathExtension.LineToAngle(_line);
         }
 
         public Vector2 Scale()

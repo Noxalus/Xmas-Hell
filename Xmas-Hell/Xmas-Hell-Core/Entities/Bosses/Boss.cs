@@ -6,15 +6,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended;
 using MonoGame.Extended.TextureAtlases;
+using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
+using SpriterDotNet.MonoGame.Content;
 using XmasHell.Geometry;
 using XmasHell.Physics;
 using XmasHell.Spriter;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
-using SpriterDotNet.MonoGame.Content;
 using XmasHell.BulletML;
+using XmasHell.Extensions;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -129,7 +130,7 @@ namespace XmasHell.Entities.Bosses
             {
                 var pointData = CurrentAnimator.FrameData.PointData["action_point"];
                 var actionPoint = new Vector2(pointData.X, -pointData.Y);
-                var rotatedActionPoint = MathHelperExtension.RotatePoint(actionPoint, Rotation());
+                var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, Rotation());
                 return Position() + rotatedActionPoint;
             }
 
@@ -513,7 +514,7 @@ namespace XmasHell.Entities.Bosses
 
             angle += MathHelper.PiOver2;
 
-            return MathHelperExtension.AngleToDirection(angle);
+            return MathExtension.AngleToDirection(angle);
         }
 
         public bool GetLineWallIntersectionPosition(Line line, ref Vector2 newPosition)
@@ -527,10 +528,10 @@ namespace XmasHell.Entities.Bosses
             line.Second += (direction * maxDistance);
 
             return
-                MathHelperExtension.LinesIntersect(_bottomWallLine, line, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_leftWallLine, line, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_rightWallLine, line, ref newPosition) ||
-                MathHelperExtension.LinesIntersect(_upWallLine, line, ref newPosition);
+                MathExtension.LinesIntersect(_bottomWallLine, line, ref newPosition) ||
+                MathExtension.LinesIntersect(_leftWallLine, line, ref newPosition) ||
+                MathExtension.LinesIntersect(_rightWallLine, line, ref newPosition) ||
+                MathExtension.LinesIntersect(_upWallLine, line, ref newPosition);
         }
 
         public void TakeDamage(float amount)

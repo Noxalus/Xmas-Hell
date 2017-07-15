@@ -76,12 +76,12 @@ namespace XmasHell.Spriter
                 //rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
 
                 //// Take the animation angle into account
-                //worldPosition = MathHelperExtension.RotatePoint(
+                //worldPosition = MathExtension.RotatePoint(
                 //    worldPosition, rotation, origin
                 //);
 
                 //// Take the global angle into account
-                //worldPosition = MathHelperExtension.RotatePoint(
+                //worldPosition = MathExtension.RotatePoint(
                 //    worldPosition, animator.Rotation, animator.Position
                 //);
             }

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using XmasHell.Extensions;
 
 namespace XmasHell.Geometry
 {
@@ -20,12 +21,12 @@ namespace XmasHell.Geometry
 
         public float Angle()
         {
-            return MathHelperExtension.LineToAngle(this);
+            return MathExtension.LineToAngle(this);
         }
 
         public Vector2 Direction()
         {
-            return Vector2.Normalize(MathHelperExtension.AngleToDirection(MathHelperExtension.LineToAngle(this)));
+            return Vector2.Normalize(MathExtension.AngleToDirection(MathExtension.LineToAngle(this)));
         }
 
         public float Distance()
@@ -35,7 +36,7 @@ namespace XmasHell.Geometry
 
         public float Normal()
         {
-            return MathHelperExtension.LineToAngle(this) + MathHelper.Pi;
+            return MathExtension.LineToAngle(this) + MathHelper.Pi;
         }
     }
 }

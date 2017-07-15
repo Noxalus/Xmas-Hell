@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using SpriterDotNet;
-using XmasHell.Geometry;
+using XmasHell.Extensions;
 
 namespace XmasHell.Physics.Collision
 {
@@ -86,7 +86,7 @@ namespace XmasHell.Physics.Collision
                     new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f) +
                     _relativePosition;
 
-                centerPosition = MathHelperExtension.RotatePoint(
+                centerPosition = MathExtension.RotatePoint(
                     centerPosition, currentAnimator.Rotation, currentAnimator.Position
                 );
 

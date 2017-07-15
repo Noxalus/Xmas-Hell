@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SpriterDotNet;
-using XmasHell.Geometry;
 using XmasHell.Spriter;
+using XmasHell.Extensions;
 
 namespace XmasHell.Physics.Collision
 {
@@ -60,12 +60,12 @@ namespace XmasHell.Physics.Collision
                 rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
 
                 // Take the animation angle into account
-                worldPosition = MathHelperExtension.RotatePoint(
+                worldPosition = MathExtension.RotatePoint(
                     worldPosition, rotation, origin
                 );
 
                 // Take the global angle into account
-                worldPosition = MathHelperExtension.RotatePoint(
+                worldPosition = MathExtension.RotatePoint(
                     worldPosition, currentAnimator.Rotation, currentAnimator.Position
                 );
             }

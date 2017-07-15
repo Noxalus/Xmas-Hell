@@ -17,7 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
             Boss.StopMoving();
 
             var possibleAngle = new float[4] { 45f, 135f, 225f, 315f };
-            Boss.Direction = MathHelperExtension.AngleToDirection(
+            Boss.Direction = MathExtension.AngleToDirection(
                 MathHelper.ToRadians(possibleAngle[Boss.Game.GameManager.Random.Next(possibleAngle.Length - 1)])
             );
 
