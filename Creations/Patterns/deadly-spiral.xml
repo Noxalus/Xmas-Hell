@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <repeat>
+      <times>60</times>
+      <action>
+        <repeat>
+          <times>8</times>
+          <action>
+            <fire>
+              <bullet>
+                <direction type="sequence">46</direction>
+                <speed>2</speed>
+                <action>
+                  <changeDirection>
+                    <direction type="relative">360</direction>
+                    <term>250</term>
+                  </changeDirection>
+                  <wait>250</wait>
+                  <changeSpeed>
+                    <speed>0</speed>
+                    <term>250</term>
+                  </changeSpeed>
+                  <changeDirection>
+                    <direction type="relative">-180</direction>
+                    <term>250</term>
+                  </changeDirection>
+                  <wait>250</wait>
+                  <changeSpeed>
+                    <speed>3</speed>
+                    <term>100</term>
+                  </changeSpeed>
+                </action>
+              </bullet>
+            </fire>
+          </action>
+        </repeat>
+        <wait>5</wait>
+      </action>
+    </repeat>
+  </action>
+</bulletml>
