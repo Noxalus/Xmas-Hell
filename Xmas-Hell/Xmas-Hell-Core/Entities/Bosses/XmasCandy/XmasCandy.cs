@@ -1,4 +1,5 @@
 using BulletML;
+using Microsoft.Xna.Framework;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
@@ -27,10 +28,17 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.InitializePhysics();
 
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png"));
+            // Top part
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-60, 20), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-55, -20), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-20, -50), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(20, -50), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(55, -20), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(60, 20), 0.3f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(60, 60), 0.3f));
 
-            // TODO: Create 3 rectangle bounding boxes for the body.png part
-            // and one rectangle bounding box for each body2.png and body3.png parts
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body2.png"));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body3.png"));
         }
 
         protected override void UpdateBehaviourIndex()
