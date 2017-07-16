@@ -208,8 +208,18 @@ namespace XmasHell
             }
 
             // Debug
-            if (InputManager.KeyPressed(Keys.F2))
+            if (InputManager.KeyPressed(Keys.F1))
+                GameConfig.GodMode = !GameConfig.GodMode;
+            else if (InputManager.KeyPressed(Keys.F2))
                 GameConfig.DebugPhysics = !GameConfig.DebugPhysics;
+            else if (InputManager.KeyPressed(Keys.F3))
+                GameConfig.DisableCollision = !GameConfig.DisableCollision;
+            else if (InputManager.KeyPressed(Keys.F4))
+                GameConfig.EnableBloom = !GameConfig.EnableBloom;
+            else if (InputManager.KeyPressed(Keys.F5))
+                GameConfig.ShowPerformanceInfo = !GameConfig.ShowPerformanceInfo;
+            else if (InputManager.KeyPressed(Keys.F6))
+                GameConfig.ShowPerformanceGraph = !GameConfig.ShowPerformanceGraph;
         }
 
         protected override void Draw(GameTime gameTime)
