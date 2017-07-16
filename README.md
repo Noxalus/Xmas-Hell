@@ -3,4 +3,4 @@ A little 2D danmaku for Android written in C# using MonoGame with Xamarin.
 
 The game is also playable on Windows and supports gamepad.
 
-![](https://github.com/Noxalus/Xmas-Hell/blob/master/Creations/Screenshots/xmas-hell.gif)
+![](https://raw.githubusercontent.com/Noxalus/Xmas-Hell/master/Creations/Screenshots/xmas-hell.gif)
