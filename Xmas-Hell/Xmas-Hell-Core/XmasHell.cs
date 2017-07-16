@@ -155,6 +155,33 @@ namespace XmasHell
         {
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalUpdate);
 
+            HandleKeyboardInputs();
+
+            base.Update(gameTime);
+
+            if (Pause)
+                return;
+
+            Camera.Update(gameTime);
+
+            ScreenManager.Update(gameTime);
+
+            GuiManager.Update(gameTime);
+
+            if (!GameManager.EndGame())
+                SpriteBatchManager.Update(gameTime);
+
+            GameManager.Update(gameTime);
+
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
+
+            PerformanceManager.Update(gameTime);
+        }
+
+        private void HandleKeyboardInputs()
+        {
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
 
@@ -180,27 +207,9 @@ namespace XmasHell
                 }
             }
 
-            base.Update(gameTime);
-
-            if (Pause)
-                return;
-
-            Camera.Update(gameTime);
-
-            ScreenManager.Update(gameTime);
-
-            GuiManager.Update(gameTime);
-
-            if (!GameManager.EndGame())
-                SpriteBatchManager.Update(gameTime);
-
-            GameManager.Update(gameTime);
-
-            PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
-            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
-            PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
-
-            PerformanceManager.Update(gameTime);
+            // Debug
+            if (InputManager.KeyPressed(Keys.F2))
+                GameConfig.DebugPhysics = !GameConfig.DebugPhysics;
         }
 
         protected override void Draw(GameTime gameTime)
