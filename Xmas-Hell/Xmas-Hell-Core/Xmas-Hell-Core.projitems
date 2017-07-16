@@ -89,7 +89,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\IBloomService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\ActionPoint.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Spriter\MonoGameDebugAnimator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Spriter\CustomSpriterAnimator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />

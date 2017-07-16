@@ -8,12 +8,13 @@ using SpriterDotNet.MonoGame.Sprites;
 
 namespace XmasHell.Spriter
 {
-    public class MonoGameDebugAnimator : MonoGameAnimator
+    public class CustomSpriterAnimator : MonoGameAnimator
     {
         private readonly IDictionary<string, ISprite> _boxTextures = new Dictionary<string, ISprite>();
         private readonly ISprite _pointTexture;
+        public bool StretchOut = true;
 
-        public MonoGameDebugAnimator(
+        public CustomSpriterAnimator(
             SpriterEntity entity,
             GraphicsDevice graphicsDevice,
             IProviderFactory<ISprite, SoundEffect> providerFactory = null,
@@ -43,6 +44,17 @@ namespace XmasHell.Spriter
             if (!GameConfig.DebugPhysics) return;
 
             ApplySpriteTransform(_boxTextures[objInfo.Name], info);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < DrawInfos.Count; ++i)
+            {
+                SpriteDrawInfo di = DrawInfos[i];
+                ISprite sprite = di.Drawable;
+
+                sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
+            }
         }
     }
 }

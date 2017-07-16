@@ -94,8 +94,8 @@ namespace XmasHell.Entities.Bosses
             SoundsEnabled = false
         };
 
-        private readonly IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
-        public MonoGameAnimator CurrentAnimator;
+        private readonly IList<CustomSpriterAnimator> _animators = new List<CustomSpriterAnimator>();
+        public CustomSpriterAnimator CurrentAnimator;
 
         #region Getters
 
@@ -119,7 +119,7 @@ namespace XmasHell.Entities.Bosses
             return CurrentAnimator.Scale;
         }
 
-        public MonoGameAnimator GetCurrentAnimator()
+        public CustomSpriterAnimator GetCurrentAnimator()
         {
             return CurrentAnimator;
         }
@@ -297,7 +297,7 @@ namespace XmasHell.Entities.Bosses
 
             foreach (var entity in loader.Spriter.Entities)
             {
-                var animator = new MonoGameDebugAnimator(entity, Game.GraphicsDevice, factory);
+                var animator = new CustomSpriterAnimator(entity, Game.GraphicsDevice, factory);
                 _animators.Add(animator);
             }
 

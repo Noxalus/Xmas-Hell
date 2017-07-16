@@ -20,6 +20,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         protected override void LoadSpriterSprite()
         {
             base.LoadSpriterSprite();
+            CurrentAnimator.StretchOut = false;
         }
 
         protected override void InitializePhysics()
