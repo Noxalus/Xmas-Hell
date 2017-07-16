@@ -26,6 +26,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            Boss.Rotation(Boss.Rotation() + 0.01f);
         }
     }
 }
