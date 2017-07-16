@@ -80,11 +80,32 @@ namespace XmasHell.Physics.Collision
                 var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
                 var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
 
+                // Compute rotation
+                var realPivotPosition = new Vector2(1 - spriteData.PivotX, 1 - spriteData.PivotY);
+                var pivot = new Vector2(
+                    (_spriterPartFile.Width * realPivotPosition.X) + spriteData.X,
+                    (_spriterPartFile.Height * realPivotPosition.Y) - spriteData.Y
+                );
+
+                var spriteCenter = new Vector2(
+                    _spriterPartFile.Width * realPivotPosition.X,
+                    _spriterPartFile.Height * realPivotPosition.Y
+                );
+
+                var origin = currentAnimator.Position + pivot - spriteCenter;
+                var rotation = -spriteData.Angle;
+                rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
+
                 var centerPosition =
                     currentAnimator.Position +
                     new Vector2(pivotX, pivotY) -
                     new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f) +
-                    _relativePosition;
+                    _relativePosition
+                ;
+
+                centerPosition = MathExtension.RotatePoint(
+                    centerPosition, rotation, origin
+                );
 
                 centerPosition = MathExtension.RotatePoint(
                     centerPosition, currentAnimator.Rotation, currentAnimator.Position
