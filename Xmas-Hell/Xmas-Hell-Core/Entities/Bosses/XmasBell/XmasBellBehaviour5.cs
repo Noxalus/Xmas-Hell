@@ -32,13 +32,15 @@ namespace XmasHell.Entities.Bosses.XmasBell
 
                 var randomBulletCount = Boss.Game.GameManager.Random.Next(1, 5);
                 var bounds = new Rectangle(
-                    50, -10,
-                    Boss.Game.ViewportAdapter.VirtualWidth - 50, 10
+                    50, -100,
+                    Boss.Game.ViewportAdapter.VirtualWidth - 50, 100
                 );
 
                 for (int i = 0; i < randomBulletCount; i++)
                 {
                     var patternPosition = Boss.Game.GameManager.GetRandomPosition(false, bounds);
+                    patternPosition.Y = -500;
+
                     Boss.TriggerPattern("XmasBell/pattern5", BulletML.BulletType.Type4, false, patternPosition);
                 }
 
