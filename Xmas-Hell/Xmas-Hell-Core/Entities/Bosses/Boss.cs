@@ -73,10 +73,19 @@ namespace XmasHell.Entities.Bosses
         protected readonly List<AbstractBossBehaviour> Behaviours;
         protected int PreviousBehaviourIndex;
         protected int CurrentBehaviourIndex;
+
+        // New position timer
+        public bool StartNewPositionTimer = false;
+        private TimeSpan NewPositionTimer = TimeSpan.Zero;
+        public float NewPositionTimerTime = 0f;
+        public event EventHandler<float> NewPositionTimerFinished = null;
+
+        // Shoot timer
         public bool StartShootTimer = false;
         private TimeSpan ShootTimer = TimeSpan.Zero;
         public float ShootTimerTime = 0f;
         public event EventHandler<float> ShootTimerFinished = null;
+
         public bool IsOutside = false;
 
         // BulletML
@@ -517,6 +526,15 @@ namespace XmasHell.Entities.Bosses
             return MathExtension.AngleToDirection(angle);
         }
 
+        public float GetPlayerDirectionAngle()
+        {
+            var playerPosition = GetPlayerPosition();
+            var currentPosition = CurrentAnimator.Position;
+            var angle = (currentPosition - playerPosition).ToAngle();
+
+            return angle;
+        }
+
         public bool GetLineWallIntersectionPosition(Line line, ref Vector2 newPosition)
         {
             // Make sure the line go out of the screen
@@ -562,6 +580,19 @@ namespace XmasHell.Entities.Bosses
             IsOutside = Position().X < 0 || Position().X > Game.ViewportAdapter.VirtualWidth ||
                         Position().Y < 0 || Position().Y > Game.ViewportAdapter.VirtualHeight;
 
+            // New position timer
+            if (StartNewPositionTimer && NewPositionTimerFinished != null)
+            {
+                if (NewPositionTimer.TotalMilliseconds > 0)
+                    NewPositionTimer -= gameTime.ElapsedGameTime;
+                else
+                {
+                    NewPositionTimer = TimeSpan.FromSeconds(NewPositionTimerTime);
+                    NewPositionTimerFinished.Invoke(this, NewPositionTimerTime);
+                }
+            }
+
+            // Shoot timer
             if (StartShootTimer && ShootTimerFinished != null)
             {
                 if (ShootTimer.TotalMilliseconds > 0)
