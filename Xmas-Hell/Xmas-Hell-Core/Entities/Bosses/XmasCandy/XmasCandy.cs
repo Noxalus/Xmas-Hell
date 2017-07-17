@@ -15,6 +15,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             // Behaviours
             Behaviours.Add(new XmasCandyBehaviour1(this));
+            Behaviours.Add(new XmasCandyBehaviour2(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasCandy/xmas-candy";
         }
@@ -45,6 +46,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
+
+            CurrentBehaviourIndex = 1;
         }
     }
 }
