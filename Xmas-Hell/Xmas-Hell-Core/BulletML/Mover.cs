@@ -16,6 +16,7 @@ namespace XmasHell.BulletML
         public bool TopBullet;
         public Texture2D Texture;
         public Sprite Sprite;
+        private short _currentSpriteIndex;
 
         private CollisionElement _hitbox;
         private Vector2 _origin;
@@ -75,6 +76,7 @@ namespace XmasHell.BulletML
 
         public Mover(XmasHell game, IBulletManager bulletManager, bool topBullet = false) : base(bulletManager)
         {
+            _currentSpriteIndex = SpriteIndex;
             _game = game;
             TopBullet = topBullet;
         }
@@ -83,7 +85,7 @@ namespace XmasHell.BulletML
         {
             _used = true;
 
-            Sprite = new Sprite(Texture);
+            Sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"));
             Sprite.Alpha = 0f;
             Sprite.Scale = new Vector2(2.5f);
 
@@ -91,7 +93,7 @@ namespace XmasHell.BulletML
 
             if (!topBullet)
             {
-                _hitbox = new CollisionCircle(this, Vector2.Zero, Texture.Width/2f);
+                _hitbox = new CollisionCircle(this, Vector2.Zero, Sprite.BoundingRectangle.Width /2f);
                 _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
             }
         }
@@ -109,6 +111,15 @@ namespace XmasHell.BulletML
         {
             base.Update();
 
+            // SpriteIndex changed? => we need to update the bullet texture
+            if (_currentSpriteIndex != SpriteIndex)
+            {
+                _currentSpriteIndex = SpriteIndex;
+                var moverManager = (MoverManager)BulletManager;
+                if (SpriteIndex < moverManager.BulletTextures.Count)
+                    Sprite = new Sprite(moverManager.BulletTextures[SpriteIndex]);
+            }
+
             Sprite.Alpha = MathHelper.Lerp(Sprite.Alpha, 1f, 0.05f);
             Sprite.Scale = new Vector2(
                 MathHelper.Lerp(Sprite.Scale.X, 1f, 0.05f),
@@ -118,6 +129,8 @@ namespace XmasHell.BulletML
             Sprite.Position = _position;
             Sprite.Rotation = Direction;
             Sprite.Scale = Scale();
+
+            Sprite.Color = Color;
 
             if (X < GameConfig.BulletArea.X || X > _game.ViewportAdapter.VirtualWidth + GameConfig.BulletArea.Width ||
                 Y < GameConfig.BulletArea.Y || Y > _game.ViewportAdapter.VirtualHeight + GameConfig.BulletArea.Height)

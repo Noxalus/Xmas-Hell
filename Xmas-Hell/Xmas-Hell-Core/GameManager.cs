@@ -99,6 +99,15 @@ namespace XmasHell
         public void Initialize()
         {
             ParticleManager.Initialize();
+
+            var bulletTextures = new List<Texture2D>() {
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"),
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet2"),
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet3"),
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet4")
+            };
+
+            MoverManager.BulletTextures = bulletTextures;
         }
 
         public void Update(GameTime gameTime)

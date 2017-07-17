@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using XmasHell.Performance;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace XmasHell.BulletML
 {
@@ -13,7 +13,7 @@ namespace XmasHell.BulletML
         private PositionDelegate _getPlayerPosition;
         public BulletType CurrentBulletType;
         private Dictionary<string, BulletPattern> _patterns = new Dictionary<string, BulletPattern>();
-
+        public List<Texture2D> BulletTextures = new List<Texture2D>();
 
         public MoverManager(XmasHell game)
         {
@@ -32,10 +32,7 @@ namespace XmasHell.BulletML
 
         public IBullet CreateBullet(bool topBullet = false)
         {
-            var mover = new Mover(_game, this, topBullet)
-            {
-                Texture = BulletTypeUtils.BulletTypeToTexture(CurrentBulletType)
-            };
+            var mover = new Mover(_game, this, topBullet);
 
             mover.Init(topBullet);
 

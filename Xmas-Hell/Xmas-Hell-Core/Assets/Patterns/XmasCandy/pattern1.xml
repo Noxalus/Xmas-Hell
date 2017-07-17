@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <fire>
+      <bullet>
+        <speed>10</speed>
+        <sprite>1</sprite>
+        <color>
+          <red>$rand</red>
+          <green>$rand</green>
+          <blue>$rand</blue>
+        </color>
+        <action>
+          <wait>20 + 100 * $rand</wait>
+          <vanish />
+          <action>
+            <repeat>
+              <times>10</times>
+              <action>
+                <fire>
+                  <bullet>
+                    <direction type="sequence">36</direction>
+                    <speed>10</speed>
+                    <sprite>1</sprite>
+                    <color>
+                      <red>$rand</red>
+                      <green>$rand</green>
+                      <blue>$rand</blue>
+                    </color>
+                    <action>
+                      <changeDirection>
+                        <direction type="relative">360</direction>
+                        <term>250</term>
+                      </changeDirection>
+                    </action>
+                  </bullet>
+                </fire>
+              </action>
+            </repeat>
+          </action>
+        </action>
+      </bullet>
+    </fire>
+  </action>
+</bulletml>

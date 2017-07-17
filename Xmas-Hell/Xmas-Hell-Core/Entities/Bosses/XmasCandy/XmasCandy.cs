@@ -11,6 +11,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             InitialLife = 500f;
 
             // BulletML
+            BulletPatternFiles.Add("XmasCandy/pattern1");
 
             // Behaviours
             Behaviours.Add(new XmasCandyBehaviour1(this));

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using XmasHell.BulletML;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
@@ -12,10 +13,18 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Start();
 
-            Boss.Invincible = true;
             Boss.Speed = 500f;
 
-            Boss.CurrentAnimator.Play("StretchOut");
+            Boss.CurrentAnimator.Play("Idle");
+
+            Boss.StartShootTimer = true;
+            Boss.ShootTimerTime = 3f;
+            Boss.ShootTimerFinished += ShootTimerFinished;
+        }
+
+        private void ShootTimerFinished(object sender, float e)
+        {
+            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasCandy/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
         }
 
         public override void Stop()
@@ -27,7 +36,15 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
-            Boss.Rotation(Boss.Rotation() + 0.01f);
+            if (!Boss.TargetingPosition)
+            {
+                var newPosition = new Vector2(
+                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
+                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 100, 500 - (int)(Boss.Height() / 2f))
+                );
+
+                Boss.MoveTo(newPosition, 1.5f);
+            }
         }
     }
 }
