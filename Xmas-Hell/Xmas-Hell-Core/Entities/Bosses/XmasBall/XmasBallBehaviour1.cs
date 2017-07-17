@@ -33,15 +33,9 @@ namespace XmasHell.Entities.Bosses.XmasBall
         {
             base.Update(gameTime);
 
-            if (_newPositionTime.TotalMilliseconds > 0)
-            {
-                if (!Boss.TargetingPosition)
-                    _newPositionTime -= gameTime.ElapsedGameTime;
-            }
-            else
-            {
-                _newPositionTime = TimeSpan.FromSeconds(0);
 
+            if (!Boss.TargetingPosition)
+            {
                 var newPosition = new Vector2(
                     Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
                     Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 100, 500 - (int)(Boss.Height() / 2f))
