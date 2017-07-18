@@ -714,7 +714,7 @@ namespace XmasHell.Entities.Bosses
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {
-                if (PreviousBehaviourIndex > 0)
+                if (PreviousBehaviourIndex >= 0)
                     Behaviours[PreviousBehaviourIndex].Stop();
 
                 Game.GameManager.MoverManager.Clear();
