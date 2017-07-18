@@ -13,6 +13,8 @@ environment:
   ANDROID_KEYSTORE_PATH: Keystore\KawaiiGames.keystore
   ANDROID_PROJECT_PATH: Xmas-Hell\Xmas-Hell-Android
   ANDROID_PROJECT_FILENAME: Xmas-Hell-Android.csproj
+hosts:
+  api.nuget.org: 93.184.221.200
 install:
   - ps: '& ./Scripts/InstallDependencies.ps1'
 before_build:
