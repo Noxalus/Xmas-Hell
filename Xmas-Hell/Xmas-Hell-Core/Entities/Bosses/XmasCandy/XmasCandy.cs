@@ -48,8 +48,6 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-
-            CurrentBehaviourIndex = 2;
         }
     }
 }
