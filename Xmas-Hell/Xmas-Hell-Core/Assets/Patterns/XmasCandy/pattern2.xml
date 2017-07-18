@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <repeat>
+      <times>20</times>
+      <action>
+        <fire>
+          <bullet>
+            <direction type="relative">($rand * 50) - 50</direction>
+            <speed>5 + $rand * 3</speed>
+            <sprite>2</sprite>
+          </bullet>
+        </fire>
+      </action>
+    </repeat>
+  </action>
+</bulletml>

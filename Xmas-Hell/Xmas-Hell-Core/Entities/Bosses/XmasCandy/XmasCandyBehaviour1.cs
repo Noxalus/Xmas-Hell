@@ -24,12 +24,15 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
         private void ShootTimerFinished(object sender, float e)
         {
-            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasCandy/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
+            Boss.TriggerPattern("XmasCandy/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
         }
 
         public override void Stop()
         {
             base.Stop();
+
+            Boss.StartShootTimer = false;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
         }
 
         public override void Update(GameTime gameTime)

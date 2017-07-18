@@ -577,8 +577,7 @@ namespace XmasHell.Entities.Bosses
             UpdateBehaviour(gameTime);
 
             // Is outside of the screen?
-            IsOutside = Position().X < 0 || Position().X > Game.ViewportAdapter.VirtualWidth ||
-                        Position().Y < 0 || Position().Y > Game.ViewportAdapter.VirtualHeight;
+            IsOutside = Game.GameManager.IsOutside(Position());
 
             // New position timer
             if (StartNewPositionTimer && NewPositionTimerFinished != null)

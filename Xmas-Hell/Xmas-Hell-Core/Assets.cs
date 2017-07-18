@@ -120,6 +120,7 @@ namespace XmasHell
 
                 // Xmas Candy
                 { "XmasCandy/pattern1", OpenRawFile(BuildRawAssetPath("XmasCandy/pattern1.xml")) },
+                { "XmasCandy/pattern2", OpenRawFile(BuildRawAssetPath("XmasCandy/pattern2.xml")) },
 
                 // Xmas Snowflake
                 { "XmasSnowflake/pattern1", OpenRawFile(BuildRawAssetPath("XmasSnowflake/pattern1.xml")) },

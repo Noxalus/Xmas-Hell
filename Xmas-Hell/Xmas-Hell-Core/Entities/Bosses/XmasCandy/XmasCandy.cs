@@ -8,10 +8,11 @@ namespace XmasHell.Entities.Bosses.XmasCandy
     {
         public XmasCandy(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
-            InitialLife = 500f;
+            InitialLife = 250f;
 
             // BulletML
             BulletPatternFiles.Add("XmasCandy/pattern1");
+            BulletPatternFiles.Add("XmasCandy/pattern2");
 
             // Behaviours
             Behaviours.Add(new XmasCandyBehaviour1(this));

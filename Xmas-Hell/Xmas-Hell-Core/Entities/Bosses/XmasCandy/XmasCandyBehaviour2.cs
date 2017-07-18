@@ -7,7 +7,6 @@ namespace XmasHell.Entities.Bosses.XmasCandy
     {
         private bool _targetingPlayer;
         private bool _stretchingOut;
-        private TimeSpan _targetingPlayerTimer;
         private TimeSpan _stretchingOutTimer;
 
         public XmasCandyBehaviour2(Boss boss) : base(boss)
@@ -22,6 +21,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             ResetStretchOutAttack();
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
+
+            Boss.MoveToInitialPosition();
         }
 
         private void ResetStretchOutAttack()
@@ -30,8 +31,9 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             Boss.CurrentAnimator.Play("Idle");
             _targetingPlayer = false;
             _stretchingOut = false;
-            _targetingPlayerTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.NextDouble() * 0.5f);
-            _stretchingOutTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(2, 8));
+            _stretchingOutTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.NextDouble() * 0.75f);
+
+            Console.WriteLine("Stretching out timer: " + _stretchingOutTimer.TotalSeconds);
         }
 
         private void AnimationFinishedHandler(string animationName)
@@ -49,27 +51,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
-            if (!_targetingPlayer && !_stretchingOut && !Boss.TargetingPosition)
+            if (!_targetingPlayer && !Boss.TargetingPosition && Boss.Position().Equals(Boss.InitialPosition))
             {
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 100, 500 - (int)(Boss.Height() / 2f))
-                );
-
-                Boss.MoveTo(newPosition, 1.5f);
+                _targetingPlayer = true;
+                Boss.CurrentAnimator.Play("NoAnimation");
             }
-
-            if (!_targetingPlayer)
-            {
-                if (_targetingPlayerTimer >= TimeSpan.Zero)
-                    _targetingPlayerTimer -= gameTime.ElapsedGameTime;
-                else
-                {
-                    _targetingPlayer = true;
-                    Boss.CurrentAnimator.Play("NoAnimation");
-                }
-            }
-            else if (!_stretchingOut)
+            else if (_targetingPlayer && !_stretchingOut)
             {
                 Boss.RotateTo(Boss.GetPlayerDirectionAngle());
 
@@ -80,6 +67,20 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                     _stretchingOut = true;
                     Boss.CurrentAnimator.Play("StretchOut");
                 }
+            }
+
+            if (Boss.Game.GameManager.IsOutside(Boss.ActionPointPosition()))
+            {
+                Boss.Game.Camera.Shake(0.5f, 100f);
+
+                Boss.TriggerPattern(
+                    "XmasCandy/pattern2",
+                    BulletML.BulletType.Type1, false,
+                    Boss.ActionPointPosition(),
+                    (float)(Boss.ActionPointDirection() + Math.PI)
+                );
+
+                ResetStretchOutAttack();
             }
         }
     }

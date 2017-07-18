@@ -171,5 +171,11 @@ namespace XmasHell
 
             return new Vector2(randomX, randomY);
         }
+
+        public bool IsOutside(Vector2 position)
+        {
+            return position.X < 0 || position.X > _game.ViewportAdapter.VirtualWidth ||
+                   position.Y < 0 || position.Y > _game.ViewportAdapter.VirtualHeight;
+        }
     }
 }
