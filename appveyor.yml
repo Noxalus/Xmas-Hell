@@ -17,7 +17,7 @@ install:
   - ps: '& ./Scripts/InstallDependencies.ps1'
 before_build:
   - xamarin-component.exe restore "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
-  - nuget restore "%ANDROID_PROJECT_PATH%"\packages.config -PackagesDirectory "%ANDROID_PROJECT_PATH%/../packages"
+  - nuget restore "%ANDROID_PROJECT_PATH%"\packages.config -PackagesDirectory "%ANDROID_PROJECT_PATH%/../packages" -DisableParallelProcessing
   - ps: '& ./Scripts/UpdateAndroidVersion.ps1'
 build_script:
   - msbuild "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /t:SignAndroidPackage /p:Configuration=Release /p:Platform=AnyCPU /p:AndroidKeyStore=true /p:AndroidSigningKeyAlias="%ANDROID_KEYSTORE_ALIAS%" /p:AndroidSigningKeyPass="%ANDROID_KEYSTORE_PASSWORD%" /p:AndroidSigningKeyStore="%APPVEYOR_BUILD_FOLDER%\%ANDROID_KEYSTORE_PATH%" /p:AndroidSigningStorePass="%ANDROID_KEYSTORE_PASSWORD%"
