@@ -32,8 +32,6 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             _targetingPlayer = false;
             _stretchingOut = false;
             _stretchingOutTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.NextDouble() * 0.75f);
-
-            Console.WriteLine("Stretching out timer: " + _stretchingOutTimer.TotalSeconds);
         }
 
         private void AnimationFinishedHandler(string animationName)

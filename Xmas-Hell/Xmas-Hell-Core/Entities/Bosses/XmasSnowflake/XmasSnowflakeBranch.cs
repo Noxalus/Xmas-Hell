@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using MonoGame.Extended.Shapes;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Timers;
-using XmasHell.Entities.Bosses;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
-using XmasHell;
 using XmasHell.BulletML;
 using XmasHell.Geometry;
 

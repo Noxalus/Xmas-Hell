@@ -40,8 +40,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour4.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasBell\XmasBellBehaviour5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBehaviour3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />

@@ -8,7 +8,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
     {
         public XmasCandy(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
-            InitialLife = 250f;
+            InitialLife = 500f;
 
             // BulletML
             BulletPatternFiles.Add("XmasCandy/pattern1");
@@ -17,6 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             // Behaviours
             Behaviours.Add(new XmasCandyBehaviour1(this));
             Behaviours.Add(new XmasCandyBehaviour2(this));
+            Behaviours.Add(new XmasCandyBehaviour3(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasCandy/xmas-candy";
         }
@@ -48,7 +49,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.UpdateBehaviourIndex();
 
-            CurrentBehaviourIndex = 1;
+            CurrentBehaviourIndex = 2;
         }
     }
 }

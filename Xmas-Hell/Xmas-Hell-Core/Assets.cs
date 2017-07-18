@@ -87,8 +87,13 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/laser"),
 
                 content.Load<Texture2D>("Graphics/Sprites/Player/hitbox"),
+
+                // Snowflake
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch1"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowflake/branch2"),
+
+                // Candy bar
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasCandy/candy-bar"),
             };
 
             // Load fonts
