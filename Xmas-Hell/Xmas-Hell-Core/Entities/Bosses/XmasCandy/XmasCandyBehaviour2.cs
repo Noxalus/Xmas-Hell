@@ -22,7 +22,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             ResetStretchOutAttack();
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
 
-            Boss.MoveToInitialPosition();
+            Boss.MoveToInitialPosition(true);
         }
 
         private void ResetStretchOutAttack()
