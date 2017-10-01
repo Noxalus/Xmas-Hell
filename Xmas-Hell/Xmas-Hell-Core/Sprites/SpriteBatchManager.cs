@@ -23,6 +23,7 @@ namespace XmasHell.Sprites
         public List<MonoGameAnimator> BackgroundSpriterAnimators;
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
+        public List<MonoGameAnimator> UISpriterAnimators;
         public List<Mover> BossBullets;
         public List<Laser> Lasers;
         public List<Sprite> GameSprites;
@@ -49,6 +50,7 @@ namespace XmasHell.Sprites
             BackgroundSpriterAnimators = new List<MonoGameAnimator>();
             BackgroundParticles = new List<ParticleEffect>();
             UISprites = new List<Sprite>();
+            UISpriterAnimators = new List<MonoGameAnimator>();
             BossBullets = new List<Mover>();
             Lasers = new List<Laser>();
             GameSprites = new List<Sprite>();
@@ -105,6 +107,9 @@ namespace XmasHell.Sprites
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundUpdate);
 
             foreach (var animator in BackgroundSpriterAnimators)
+                animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            foreach (var animator in UISpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
@@ -277,6 +282,9 @@ namespace XmasHell.Sprites
             // Draw UI elements
             foreach (var sprite in UISprites)
                 sprite.Draw(_game.SpriteBatch);
+
+            foreach (var animator in UISpriterAnimators)
+                animator.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();
 

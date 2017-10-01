@@ -13,7 +13,6 @@ using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
 using SpriterDotNet.MonoGame.Content;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace XmasHell.Screens
 {
@@ -24,9 +23,7 @@ namespace XmasHell.Screens
         private Song _introSong;
         private Song _mainSong;
 
-        private GuiButton _playButton;
-        private TweenAnimation<GuiButton> _playButtonPulseTweenChain;
-        private TweenAnimation<GuiButton> _playButtonRotateTweenChain;
+        private SpriterGuiButton _playButton;
 
         private bool spriterFrameDataAvailable = false;
 
@@ -42,8 +39,8 @@ namespace XmasHell.Screens
             SoundsEnabled = false
         };
 
-        private readonly IList<CustomSpriterAnimator> _animators = new List<CustomSpriterAnimator>();
-        public CustomSpriterAnimator CurrentAnimator;
+        private readonly Dictionary<string, CustomSpriterAnimator> _animators = new Dictionary<string, CustomSpriterAnimator>();
+        //public CustomSpriterAnimator CurrentAnimator;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -55,22 +52,6 @@ namespace XmasHell.Screens
             _shootFrequency = TimeSpan.Zero;
 
             base.Initialize();
-        }
-
-        private void PlayButtonTweenPulse()
-        {
-            _playButtonPulseTweenChain = _playButton.CreateTweenChain(PlayButtonTweenPulse)
-                .Scale(new Vector2(1.1f), 0.75f, EasingFunctions.SineEaseInOut)
-                .Scale(new Vector2(1f), 0.75f, EasingFunctions.SineEaseIn)
-            ;
-        }
-
-        private void PlayButtonTweenRotate()
-        {
-            _playButtonRotateTweenChain = _playButton.CreateTweenChain(PlayButtonTweenRotate)
-                .RotateTo(MathHelper.PiOver4 / 2f, 1.0f, EasingFunctions.SineEaseIn)
-                .RotateTo(-MathHelper.PiOver4 / 2f, 1.0f, EasingFunctions.SineEaseOut)
-            ;
         }
 
         private void OnPlayButtonAction()
@@ -92,7 +73,22 @@ namespace XmasHell.Screens
 
             _introSong = Assets.GetMusic("boss-theme-intro");
             _mainSong = Assets.GetMusic("boss-theme-main");
-            _playButton = new GuiButton(Game.ViewportAdapter, "play-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/MainMenu/play-button")));
+
+            LoadSpriterSprite();
+        }
+
+        private void InitializeGuiButtons()
+        {
+            // Title
+            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", _animators["MainMenu"]);
+            _animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
+
+            // Place buttons according to their dummy positions on the Spriter file
+            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition("play-button.png", _animators["MainMenu"]);
+            //_playButton.Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonPosition;
+            _animators["PlayButton"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonDummyPosition;
+
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "play-button.png", _animators["PlayButton"]);
 
 #if ANDROID
             _playButton.Tap += (s, e) => OnPlayButtonAction();
@@ -100,14 +96,7 @@ namespace XmasHell.Screens
             _playButton.Click += (s, e) => OnPlayButtonAction();
 #endif
 
-            LoadSpriterSprite();
-        }
-
-        private void InitializeGuiButtons()
-        {
-            // Place buttons according to their dummy positions on the Spriter file
-            var spriterPlayButtonPosition = SpriterUtils.GetSpriterFilePosition("play-button.png", CurrentAnimator);
-            _playButton.Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonPosition;
+            Game.GuiManager.AddButton(_playButton);
         }
 
         protected virtual void LoadSpriterSprite()
@@ -123,12 +112,13 @@ namespace XmasHell.Screens
             foreach (var entity in loader.Spriter.Entities)
             {
                 var animator = new CustomSpriterAnimator(entity, Game.GraphicsDevice, factory);
-                _animators.Add(animator);
+                _animators.Add(entity.Name, animator);
             }
 
-            CurrentAnimator = _animators.First();
-            CurrentAnimator.Position = Game.ViewportAdapter.Center.ToVector2();
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Add(CurrentAnimator);
+            Game.SpriteBatchManager.BackgroundSpriterAnimators.Add(_animators["MainMenu"]);
+            Game.SpriteBatchManager.BackgroundSpriterAnimators.Add(_animators["XmasTitle"]);
+
+            _animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();
         }
 
         public override void Show(bool reset = false)
@@ -145,14 +135,6 @@ namespace XmasHell.Screens
 
             //MediaPlayer.Play(_introSong);
             //MediaPlayer.Play(_mainSong);
-
-            // GUI
-            _playButton.Scale = Vector2.One;
-            _playButton.Rotation = 0f;
-            Game.GuiManager.AddButton(_playButton);
-
-            PlayButtonTweenPulse();
-            PlayButtonTweenRotate();
         }
 
         public override void Hide()
@@ -166,10 +148,9 @@ namespace XmasHell.Screens
 
             // GUI
             Game.GuiManager.RemoveButton(_playButton);
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Remove(CurrentAnimator);
 
-            _playButtonPulseTweenChain.Stop();
-            _playButtonRotateTweenChain.Stop();
+            Game.SpriteBatchManager.BackgroundSpriterAnimators.Remove(_animators["MainMenu"]);
+            Game.SpriteBatchManager.BackgroundSpriterAnimators.Remove(_animators["XmasTitle"]);
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
@@ -194,7 +175,7 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            if (!spriterFrameDataAvailable && CurrentAnimator.FrameData != null)
+            if (!spriterFrameDataAvailable && _animators["MainMenu"].FrameData != null)
             {
                 InitializeGuiButtons();
                 spriterFrameDataAvailable = true;

@@ -1,36 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
-using MonoGame.Extended.Sprites;
 using MonoGame.Extended.ViewportAdapters;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xmas_Hell_Core.Controls;
 
 namespace XmasHell.GUI
 {
-    public class GuiButton : IScalable, IRotatable, IMovable
+    public abstract class AbstractGuiButton : IScalable, IRotatable, IMovable
     {
-        private ViewportAdapter _viewportAdapter;
+        protected ViewportAdapter ViewportAdapter;
         public String Name;
-        public Sprite Sprite;
 
-        public Vector2 Position
+        public abstract Vector2 Position();
+        public abstract void Position(Vector2 value);
+        public abstract Vector2 Scale();
+        public abstract void Scale(Vector2 value);
+        public abstract float Rotation();
+        public abstract void Rotation(float value);
+        public abstract BoundingRectangle BoundingRectangle();
+
+        Vector2 IMovable.Position
         {
-            get { return Sprite.Position; }
-            set { Sprite.Position = value; }
+            get { return Position(); }
+            set { Position(value); }
         }
 
-        public Vector2 Scale
+        float IRotatable.Rotation
         {
-            get { return Sprite.Scale; }
-            set { Sprite.Scale = value; }
+            get { return Rotation(); }
+            set { Rotation(value); }
         }
 
-        public float Rotation
+        Vector2 IScalable.Scale
         {
-            get { return Sprite.Rotation; }
-            set { Sprite.Rotation = value; }
+            get { return Scale(); }
+            set { Scale(value); }
         }
 
 #if ANDROID
@@ -39,15 +43,15 @@ namespace XmasHell.GUI
         public event EventHandler<Point> Tap;
 #else
         private bool _mouseDown;
+
         public event EventHandler<Point> MouseDown;
         public event EventHandler<Point> Click;
 #endif
 
-        public GuiButton(ViewportAdapter viewportAdapter, String name, Sprite sprite)
+        public AbstractGuiButton(ViewportAdapter viewportAdapter, String name)
         {
-            _viewportAdapter = viewportAdapter;
+            ViewportAdapter = viewportAdapter;
             Name = name;
-            Sprite = sprite;
 
 #if ANDROID
             _touchedDown = false;
@@ -68,9 +72,9 @@ namespace XmasHell.GUI
 #if ANDROID
         private void UpdateTouchState()
         {
-            var position = _viewportAdapter.PointToScreen(InputManager.TouchPosition());
+            var position = ViewportAdapter.PointToScreen(InputManager.TouchPosition());
 
-            if (Sprite.BoundingRectangle.Intersects(new Rectangle(position, Vector2.One.ToPoint())))
+            if (BoundingRectangle().Intersects(new Rectangle(position, Vector2.One.ToPoint())))
             {
                 if (InputManager.TouchDown())
                 {
@@ -92,9 +96,9 @@ namespace XmasHell.GUI
 
         private void UpdateMouseState()
         {
-            var position = _viewportAdapter.PointToScreen(InputManager.ClickPosition());
+            var position = ViewportAdapter.PointToScreen(InputManager.ClickPosition());
 
-            if (Sprite.BoundingRectangle.Intersects(new Rectangle(position, Point.Zero)))
+            if (BoundingRectangle().Intersects(new Rectangle(position, Point.Zero)))
             {
                 if (InputManager.Clicked())
                 {

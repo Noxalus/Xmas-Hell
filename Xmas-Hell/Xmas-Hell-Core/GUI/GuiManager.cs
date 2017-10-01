@@ -1,19 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace XmasHell.GUI
 {
     public class GuiManager
     {
         private XmasHell _game;
-        private List<GuiButton> _buttons;
+        private List<AbstractGuiButton> _buttons;
 
         public GuiManager(XmasHell game)
         {
             _game = game;
-            _buttons = new List<GuiButton>();
+            _buttons = new List<AbstractGuiButton>();
         }
 
         public void Update(GameTime gameTime)
@@ -24,15 +23,23 @@ namespace XmasHell.GUI
             }
         }
 
-        public void AddButton(GuiButton button)
+        public void AddButton(AbstractGuiButton button)
         {
             _buttons.Add(button);
-            _game.SpriteBatchManager.UISprites.Add(button.Sprite);
+
+            if (button is SpriteGuiButton)
+                _game.SpriteBatchManager.UISprites.Add((button as SpriteGuiButton).Sprite);
+            else if (button is SpriterGuiButton)
+                _game.SpriteBatchManager.UISpriterAnimators.Add((button as SpriterGuiButton).Animator);
         }
 
-        public void RemoveButton(GuiButton button)
+        public void RemoveButton(AbstractGuiButton button)
         {
-            _game.SpriteBatchManager.UISprites.Remove(button.Sprite);
+            if (button is SpriteGuiButton)
+                _game.SpriteBatchManager.UISprites.Remove((button as SpriteGuiButton).Sprite);
+            else if (button is SpriterGuiButton)
+                _game.SpriteBatchManager.UISpriterAnimators.Remove((button as SpriterGuiButton).Animator);
+
             _buttons.Remove(button);
         }
 
