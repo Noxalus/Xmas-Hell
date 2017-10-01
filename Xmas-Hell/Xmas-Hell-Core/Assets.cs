@@ -73,6 +73,7 @@ namespace XmasHell
 
                 // Main Menu
                 content.Load<Texture2D>("Graphics/GUI/MainMenu/play-button"),
+                content.Load<Texture2D>("Graphics/GUI/MainMenu/play-button"),
 
                 // Boss Selection Menu
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/boss-selection-ground"),

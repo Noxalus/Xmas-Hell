@@ -31,73 +31,74 @@
                     <object_ref id="9" timeline="8" key="0" z_index="9"/>
                     <object_ref id="10" timeline="6" key="0" z_index="10"/>
                     <object_ref id="11" timeline="7" key="0" z_index="11"/>
-                    <object_ref id="12" timeline="1" key="0" z_index="12"/>
-                    <object_ref id="13" timeline="2" key="0" z_index="13"/>
-                    <object_ref id="14" timeline="3" key="0" z_index="14"/>
-                    <object_ref id="15" timeline="4" key="0" z_index="15"/>
-                    <object_ref id="16" timeline="11" key="0" z_index="16"/>
-                    <object_ref id="17" timeline="14" key="0" z_index="17"/>
-                    <object_ref id="18" timeline="15" key="0" z_index="18"/>
+                    <object_ref id="12" timeline="19" key="0" z_index="12"/>
+                    <object_ref id="13" timeline="1" key="0" z_index="13"/>
+                    <object_ref id="14" timeline="2" key="0" z_index="14"/>
+                    <object_ref id="15" timeline="3" key="0" z_index="15"/>
+                    <object_ref id="16" timeline="4" key="0" z_index="16"/>
+                    <object_ref id="17" timeline="11" key="0" z_index="17"/>
+                    <object_ref id="18" timeline="14" key="0" z_index="18"/>
+                    <object_ref id="19" timeline="15" key="0" z_index="19"/>
                 </key>
             </mainline>
             <timeline id="0" name="game-area">
                 <key id="0" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="play-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" y="-400"/>
+                    <object folder="0" file="2" y="-400" angle="0"/>
                 </key>
             </timeline>
             <timeline id="2" name="settings-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" y="-852"/>
+                    <object folder="0" file="3" y="-852" angle="0"/>
                 </key>
             </timeline>
             <timeline id="3" name="leaderboard-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="300" y="-702"/>
+                    <object folder="0" file="9" x="300" y="-702" angle="0"/>
                 </key>
             </timeline>
             <timeline id="4" name="achievement-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-300" y="-702"/>
+                    <object folder="0" file="8" x="-300" y="-702" angle="0"/>
                 </key>
             </timeline>
             <timeline id="5" name="snow-ground">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-10.714286" y="-659.142857"/>
+                    <object folder="0" file="0" x="77.747252" y="-574.527472" angle="0"/>
                 </key>
             </timeline>
             <timeline id="6" name="tree">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="229.52381" y="-934.380952"/>
+                    <object folder="0" file="4" x="314.139195" y="-926.688644" angle="0" scale_x="1.251417" scale_y="1.251417"/>
                 </key>
             </timeline>
             <timeline id="7" name="tree_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-263.271222" y="-203.645963" scale_x="0.797194" scale_y="0.797194"/>
+                    <object folder="0" file="4" x="-263.271222" y="-203.645963" angle="0" scale_x="0.797194" scale_y="0.797194"/>
                 </key>
             </timeline>
             <timeline id="8" name="tree_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-432.142857" y="212.285714" scale_x="0.627126" scale_y="0.627126"/>
+                    <object folder="0" file="4" x="-432.142857" y="212.285714" angle="0" scale_x="0.627126" scale_y="0.627126"/>
                 </key>
             </timeline>
             <timeline id="9" name="tree_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="0" y="-152.857143" scale_x="0.765306" scale_y="0.765306"/>
+                    <object folder="0" file="4" y="-152.857143" angle="0" scale_x="0.765306" scale_y="0.765306"/>
                 </key>
             </timeline>
             <timeline id="10" name="mountain">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-173.888889" y="56.349206"/>
+                    <object folder="0" file="6" x="-309.966896" y="34.843247" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="star">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="2.642857" y="285.357143"/>
+                    <object folder="0" file="10" x="2.642857" y="285.357143" angle="0"/>
                 </key>
             </timeline>
             <timeline id="12" name="mountain_000">
@@ -107,32 +108,37 @@
             </timeline>
             <timeline id="13" name="mountain_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="160.869565" y="365.217391" angle="8.031656" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="6" x="160.869565" y="365.217391" angle="8.031656"/>
                 </key>
             </timeline>
             <timeline id="14" name="hell-title">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="51.672241" y="501.086957"/>
+                    <object folder="0" file="7" x="51.672241" y="501.086957" angle="0"/>
                 </key>
             </timeline>
             <timeline id="15" name="xmas-title">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="48.327759" y="768.478261"/>
+                    <object folder="0" file="5" x="48.327759" y="768.478261" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="tree_004">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="386.190476" y="-137.47619" scale_x="0.914116" scale_y="0.914116"/>
+                    <object folder="0" file="4" x="386.190476" y="-137.47619" angle="0" scale_x="0.914116" scale_y="0.914116"/>
                 </key>
             </timeline>
             <timeline id="17" name="cloud2">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-350" y="866.666667"/>
+                    <object folder="0" file="12" x="-350" y="866.666667" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="cloud1">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="290" y="790"/>
+                    <object folder="0" file="11" x="290" y="790" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="19" name="tree_003">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-188.461538" y="-1188.461538" scale_x="1.442308" scale_y="1.442308"/>
                 </key>
             </timeline>
         </animation>
@@ -183,89 +189,89 @@
             </mainline>
             <timeline id="0" name="game-area">
                 <key id="0" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="play-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" y="-400"/>
+                    <object folder="0" file="2" y="-400" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="2" y="-400" a="0"/>
+                    <object folder="0" file="2" y="-400" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="2" name="settings-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" y="-852"/>
+                    <object folder="0" file="3" y="-852" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="3" y="-852" a="0"/>
+                    <object folder="0" file="3" y="-852" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="3" name="leaderboard-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="300" y="-702"/>
+                    <object folder="0" file="9" x="300" y="-702" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="9" x="300" y="-702" a="0"/>
+                    <object folder="0" file="9" x="300" y="-702" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="4" name="achievement-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-300" y="-702"/>
+                    <object folder="0" file="8" x="-300" y="-702" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="8" x="-300" y="-702" a="0"/>
+                    <object folder="0" file="8" x="-300" y="-702" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="5" name="snow-ground">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-10.714286" y="-659.142857"/>
+                    <object folder="0" file="0" x="-10.714286" y="-659.142857" angle="0"/>
                 </key>
             </timeline>
             <timeline id="6" name="tree">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="229.52381" y="-934.380952"/>
+                    <object folder="0" file="4" x="229.52381" y="-934.380952" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="309.52381" y="-2161.047619" scale_x="2" scale_y="2"/>
+                    <object folder="0" file="4" x="309.52381" y="-2161.047619" angle="0" scale_x="2" scale_y="2"/>
                 </key>
             </timeline>
             <timeline id="7" name="tree_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-263.271222" y="-203.645963" scale_x="0.797194" scale_y="0.797194"/>
+                    <object folder="0" file="4" x="-263.271222" y="-203.645963" angle="0" scale_x="0.797194" scale_y="0.797194"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="-879.937888" y="-710.312629"/>
+                    <object folder="0" file="4" x="-879.937888" y="-710.312629" angle="0"/>
                 </key>
             </timeline>
             <timeline id="8" name="tree_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-432.142857" y="212.285714" scale_x="0.627126" scale_y="0.627126"/>
+                    <object folder="0" file="4" x="-432.142857" y="212.285714" angle="0" scale_x="0.627126" scale_y="0.627126"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="-782.142857" y="-94.380952" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="4" x="-782.142857" y="-94.380952" angle="0" scale_x="0.8" scale_y="0.8"/>
                 </key>
             </timeline>
             <timeline id="9" name="tree_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="0" y="-152.857143" scale_x="0.765306" scale_y="0.765306"/>
+                    <object folder="0" file="4" y="-152.857143" angle="0" scale_x="0.765306" scale_y="0.765306"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="0" y="-50" scale_x="1.530612" scale_y="1.530612"/>
+                    <object folder="0" file="4" y="-50" angle="0" scale_x="1.530612" scale_y="1.530612"/>
                 </key>
             </timeline>
             <timeline id="10" name="mountain">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-173.888889" y="56.349206"/>
+                    <object folder="0" file="6" x="-298.333333" y="83.015873" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="star">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="2.642857" y="285.357143"/>
+                    <object folder="0" file="10" x="2.642857" y="285.357143" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="10" x="5.285714" y="826.428571" scale_x="2" scale_y="2"/>
+                    <object folder="0" file="10" x="5.285714" y="826.428571" angle="0" scale_x="2" scale_y="2"/>
                 </key>
             </timeline>
             <timeline id="12" name="mountain_000">
@@ -275,41 +281,41 @@
             </timeline>
             <timeline id="13" name="mountain_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="160.869565" y="365.217391" angle="8.031656" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="6" x="160.869565" y="365.217391" angle="8.031656"/>
                 </key>
             </timeline>
             <timeline id="14" name="hell-title">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="51.672241" y="501.086957"/>
+                    <object folder="0" file="7" x="51.672241" y="501.086957" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="7" x="1091.672241" y="517.753623"/>
+                    <object folder="0" file="7" x="1091.672241" y="517.753623" angle="0"/>
                 </key>
             </timeline>
             <timeline id="15" name="xmas-title">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="48.327759" y="768.478261"/>
+                    <object folder="0" file="5" x="48.327759" y="768.478261" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="5" x="-1138.338907" y="761.811594"/>
+                    <object folder="0" file="5" x="-1138.338907" y="761.811594" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="tree_004">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="386.190476" y="-137.47619" scale_x="0.914116" scale_y="0.914116"/>
+                    <object folder="0" file="4" x="386.190476" y="-137.47619" angle="0" scale_x="0.914116" scale_y="0.914116"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="1156.190476" y="-667.47619" scale_x="1.2" scale_y="1.2"/>
+                    <object folder="0" file="4" x="1156.190476" y="-667.47619" angle="0" scale_x="1.2" scale_y="1.2"/>
                 </key>
             </timeline>
             <timeline id="17" name="cloud2">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-350" y="866.666667"/>
+                    <object folder="0" file="12" x="-350" y="866.666667" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="cloud1">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="290" y="790"/>
+                    <object folder="0" file="11" x="290" y="790" angle="0"/>
                 </key>
             </timeline>
         </animation>

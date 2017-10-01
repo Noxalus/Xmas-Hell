@@ -2,12 +2,27 @@
 using Microsoft.Xna.Framework;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
-using XmasHell.Geometry;
+using System.Linq;
 
 namespace XmasHell.Spriter
 {
     static class SpriterUtils
     {
+        public static Vector2 GetSpriterFilePosition(string spritePartFileName, MonoGameAnimator animator)
+        {
+            if (animator.FrameData == null)
+            {
+                return Vector2.Zero;
+            }
+
+            var spriterFile = GetSpriterFile(spritePartFileName, animator);
+            var spriteData = animator.FrameData.SpriteData;
+
+            var fileSpriteData = spriteData.FindAll(so => so.FileId == spriterFile.Id).First();
+
+            return new Vector2(fileSpriteData.X, -fileSpriteData.Y);
+        }
+
         public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator)
         {
             if (animator == null)

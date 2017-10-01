@@ -996,11 +996,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/MainMenu/leaderboard-button.png
 
-#begin Graphics/GUI/MainMenu/MainMenu.scml
-/importer:SpriterImporter
-/processor:PassThroughProcessor
-/build:Graphics/GUI/MainMenu/MainMenu.scml
-
 #begin Graphics/GUI/MainMenu/mountain.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1084,4 +1079,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/MainMenu/xmas-title.png
+
+#begin Graphics/GUI/MainMenu/main-menu.scml
+/importer:SpriterImporter
+/processor:PassThroughProcessor
+/build:Graphics/GUI/MainMenu/main-menu.scml
 

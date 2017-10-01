@@ -9,6 +9,7 @@ using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using XmasHell.Performance;
 using XmasHell.Shaders;
+using SpriterDotNet.MonoGame;
 
 namespace XmasHell.Sprites
 {
@@ -19,6 +20,7 @@ namespace XmasHell.Sprites
 
         public AbstractBackground Background;
         public List<Sprite> BackgroundSprites;
+        public List<MonoGameAnimator> BackgroundSpriterAnimators;
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
         public List<Mover> BossBullets;
@@ -44,6 +46,7 @@ namespace XmasHell.Sprites
             _game = game;
 
             BackgroundSprites = new List<Sprite>();
+            BackgroundSpriterAnimators = new List<MonoGameAnimator>();
             BackgroundParticles = new List<ParticleEffect>();
             UISprites = new List<Sprite>();
             BossBullets = new List<Mover>();
@@ -101,6 +104,8 @@ namespace XmasHell.Sprites
             Background?.Update(gameTime);
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundUpdate);
 
+            foreach (var animator in BackgroundSpriterAnimators)
+                animator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
         private void BeginDrawViewportSpace()
@@ -204,6 +209,9 @@ namespace XmasHell.Sprites
             // Draw background sprites
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
+
+            foreach (var animator in BackgroundSpriterAnimators)
+                animator.Draw(_game.SpriteBatch);
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundParticleDraw);
 
