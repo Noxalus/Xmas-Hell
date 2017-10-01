@@ -6,6 +6,7 @@
       <bullet>
         <direction type="aim">0</direction>
         <speed>20</speed>
+        <sprite>1</sprite>
         <actionRef label="snowflake" />
       </bullet>
     </fire>
@@ -34,6 +35,7 @@
           <bullet>
             <direction type="sequence">360 / 6</direction>
             <speed>8</speed>
+            <sprite>1</sprite>
           </bullet>
         </fire>
       </action>

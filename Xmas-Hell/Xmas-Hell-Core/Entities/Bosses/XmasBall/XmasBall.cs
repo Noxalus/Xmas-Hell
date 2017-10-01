@@ -10,8 +10,8 @@ namespace XmasHell.Entities.Bosses.XmasBall
         public XmasBall(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
         {
             // BulletML
-            BulletPatternFiles.Add("sample");
             BulletPatternFiles.Add("XmasBall/pattern1");
+            BulletPatternFiles.Add("XmasBall/pattern2");
             BulletPatternFiles.Add("XmasBall/pattern3");
             BulletPatternFiles.Add("XmasBall/pattern4");
 

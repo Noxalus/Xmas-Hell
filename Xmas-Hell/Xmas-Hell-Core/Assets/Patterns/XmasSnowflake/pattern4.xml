@@ -6,6 +6,7 @@
         <bullet>
           <direction type="relative">0</direction>
           <speed>1</speed>
+          <sprite>1</sprite>
           <action>
             <changeSpeed>
               <speed>20</speed>

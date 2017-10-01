@@ -9,6 +9,7 @@
           <bullet>
             <direction type="sequence">26</direction>
             <speed type="absolute">5</speed>
+            <sprite>2</sprite>
           </bullet>
         </fire>
         <wait>0</wait>

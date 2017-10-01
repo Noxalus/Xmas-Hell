@@ -119,6 +119,7 @@ namespace XmasHell
 
                 // Xmas Ball
                 { "XmasBall/pattern1", OpenRawFile(BuildRawAssetPath("XmasBall/pattern1.xml")) },
+                { "XmasBall/pattern2", OpenRawFile(BuildRawAssetPath("XmasBall/pattern2.xml")) },
                 { "XmasBall/pattern3", OpenRawFile(BuildRawAssetPath("XmasBall/pattern3.xml")) },
                 { "XmasBall/pattern4", OpenRawFile(BuildRawAssetPath("XmasBall/pattern4.xml")) },
 

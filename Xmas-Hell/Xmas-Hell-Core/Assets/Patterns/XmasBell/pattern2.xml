@@ -17,5 +17,6 @@
   <bullet label="bullet1">
     <direction type="absolute">($rand * $1) - ($1/2) + 180</direction>
     <speed>5 + ($rand * 3)</speed>
+    <sprite>1</sprite>
   </bullet>
 </bulletml>

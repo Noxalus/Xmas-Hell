@@ -6,6 +6,7 @@
         <bullet>
           <direction type="absolute">120 + ($rand * 20)</direction>
           <speed>5</speed>
+          <sprite>1</sprite>
 <!--           <action>
             <accel>
               <vertical>10</vertical>
