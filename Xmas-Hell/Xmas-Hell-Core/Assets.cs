@@ -144,7 +144,8 @@ namespace XmasHell
             _musics = new List<Song>()
             {
                 content.Load<Song>("Audio/BGM/boss-theme-intro"),
-                content.Load<Song>("Audio/BGM/boss-theme-main")
+                content.Load<Song>("Audio/BGM/boss-theme-main"),
+                content.Load<Song>("Audio/BGM/main-menu")
             };
 
             // Load custom shaders

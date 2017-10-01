@@ -15,6 +15,7 @@ namespace XmasHell.Screens
         private TimeSpan _shootFrequency;
         private Song _introSong;
         private Song _mainSong;
+        private Song _menuSong;
 
         private SpriterGuiButton _playButton;
 
@@ -50,6 +51,10 @@ namespace XmasHell.Screens
 
             _introSong = Assets.GetMusic("boss-theme-intro");
             _mainSong = Assets.GetMusic("boss-theme-main");
+            _menuSong = Assets.GetMusic("main-menu");
+
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(_menuSong);
 
             LoadSpriterSprite("Graphics/GUI/MainMenu/main-menu");
         }
@@ -104,19 +109,12 @@ namespace XmasHell.Screens
             MediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
             MediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
 
-            MediaPlayer.Stop();
-
-            //MediaPlayer.Play(_introSong);
-            //MediaPlayer.Play(_mainSong);
-
             ResetUI();
         }
 
         public override void Hide()
         {
             base.Hide();
-
-            MediaPlayer.Stop();
 
             MediaPlayer.MediaStateChanged -= MediaPlayerOnMediaStateChanged;
             MediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;

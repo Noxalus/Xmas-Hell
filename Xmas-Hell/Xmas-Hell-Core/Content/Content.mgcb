@@ -1301,3 +1301,9 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-tree-dummy-boss-button.png
 
+#begin Audio/BGM/main-menu.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/main-menu.ogg
+
