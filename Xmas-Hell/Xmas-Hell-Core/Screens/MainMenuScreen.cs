@@ -3,16 +3,9 @@ using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using XmasHell.BulletML;
-using MonoGame.Extended.Sprites;
-using MonoGame.Extended.Tweening;
 using XmasHell.GUI;
 using XmasHell.Spriter;
-using SpriterDotNet;
-using Microsoft.Xna.Framework.Audio;
-using SpriterDotNet.MonoGame;
-using SpriterDotNet.Providers;
-using SpriterDotNet.MonoGame.Content;
-using System.Collections.Generic;
+using XmasHell.Rendering;
 
 namespace XmasHell.Screens
 {
@@ -27,24 +20,8 @@ namespace XmasHell.Screens
 
         private bool spriterFrameDataAvailable = false;
 
-        // Spriter
-        protected string SpriterFilename;
-        protected static readonly Config DefaultAnimatorConfig = new Config
-        {
-            MetadataEnabled = true,
-            EventsEnabled = true,
-            PoolingEnabled = true,
-            TagsEnabled = false,
-            VarsEnabled = false,
-            SoundsEnabled = false
-        };
-
-        private readonly Dictionary<string, CustomSpriterAnimator> _animators = new Dictionary<string, CustomSpriterAnimator>();
-        //public CustomSpriterAnimator CurrentAnimator;
-
         public MainMenuScreen(XmasHell game) : base(game)
         {
-            SpriterFilename = "Graphics/GUI/MainMenu/main-menu";
         }
 
         public override void Initialize()
@@ -54,7 +31,7 @@ namespace XmasHell.Screens
             base.Initialize();
         }
 
-        private void OnPlayButtonAction()
+        private void OnPlayButtonAction(object s, Point e)
         {
             Game.ScreenManager.GoTo<BossSelectionScreen>();
         }
@@ -74,51 +51,47 @@ namespace XmasHell.Screens
             _introSong = Assets.GetMusic("boss-theme-intro");
             _mainSong = Assets.GetMusic("boss-theme-main");
 
-            LoadSpriterSprite();
+            LoadSpriterSprite("Graphics/GUI/MainMenu/main-menu");
         }
 
-        private void InitializeGuiButtons()
+        protected override void InitializeSpriterGui()
         {
             // Title
-            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", _animators["MainMenu"]);
-            _animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
+            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", Animators["MainMenu"]);
+            Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
 
             // Place buttons according to their dummy positions on the Spriter file
-            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition("play-button.png", _animators["MainMenu"]);
-            //_playButton.Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonPosition;
-            _animators["PlayButton"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonDummyPosition;
+            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition("play-button.png", Animators["MainMenu"]);
+            Animators["PlayButton"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonDummyPosition;
 
-            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "play-button.png", _animators["PlayButton"]);
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "play-button.png", Animators["PlayButton"]);
 
-#if ANDROID
-            _playButton.Tap += (s, e) => OnPlayButtonAction();
-#else
-            _playButton.Click += (s, e) => OnPlayButtonAction();
-#endif
-
-            Game.GuiManager.AddButton(_playButton);
+            ResetUI();
         }
 
-        protected virtual void LoadSpriterSprite()
+        private void ResetUI()
         {
-            if (SpriterFilename == string.Empty)
-                throw new Exception("You need to specify a path to the spriter file of this boss");
-
-            var factory = new DefaultProviderFactory<ISprite, SoundEffect>(DefaultAnimatorConfig, true);
-
-            var loader = new SpriterContentLoader(Game.Content, SpriterFilename);
-            loader.Fill(factory);
-
-            foreach (var entity in loader.Spriter.Entities)
+            if (_playButton != null)
             {
-                var animator = new CustomSpriterAnimator(entity, Game.GraphicsDevice, factory);
-                _animators.Add(entity.Name, animator);
+#if ANDROID
+                _playButton.Tap += OnPlayButtonAction;
+#else
+                _playButton.Click += OnPlayButtonAction;
+#endif
+                Game.GuiManager.AddButton(_playButton);
             }
 
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Add(_animators["MainMenu"]);
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Add(_animators["XmasTitle"]);
+            if (Animators["MainMenu"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
+            if (Animators["XmasTitle"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
+        }
 
-            _animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();
+        protected override void LoadSpriterSprite(String spriterFilename)
+        {
+            base.LoadSpriterSprite(spriterFilename);
+
+            Animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();
         }
 
         public override void Show(bool reset = false)
@@ -135,6 +108,8 @@ namespace XmasHell.Screens
 
             //MediaPlayer.Play(_introSong);
             //MediaPlayer.Play(_mainSong);
+
+            ResetUI();
         }
 
         public override void Hide()
@@ -149,8 +124,14 @@ namespace XmasHell.Screens
             // GUI
             Game.GuiManager.RemoveButton(_playButton);
 
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Remove(_animators["MainMenu"]);
-            Game.SpriteBatchManager.BackgroundSpriterAnimators.Remove(_animators["XmasTitle"]);
+#if ANDROID
+            _playButton.Tap -= OnPlayButtonAction;
+#else
+            _playButton.Click -= OnPlayButtonAction;
+#endif
+
+            Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
@@ -174,12 +155,6 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (!spriterFrameDataAvailable && _animators["MainMenu"].FrameData != null)
-            {
-                InitializeGuiButtons();
-                spriterFrameDataAvailable = true;
-            }
 
             if (_shootFrequency.TotalMilliseconds < 0)
             {

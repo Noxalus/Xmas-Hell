@@ -62,7 +62,7 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            
+
             if (Game.Pause)
                 return;
 
@@ -73,6 +73,11 @@ namespace XmasHell.Screens
 
                 _boss.Update(gameTime);
             }
+        }
+
+        protected override void InitializeSpriterGui()
+        {
+            throw new NotImplementedException();
         }
     }
 }

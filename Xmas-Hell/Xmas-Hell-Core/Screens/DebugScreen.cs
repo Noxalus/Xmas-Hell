@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Screens;
 using XmasHell.Entities;
@@ -53,6 +54,11 @@ namespace XmasHell.Screens
 
                 _boss.Update(gameTime);
             }
+        }
+
+        protected override void InitializeSpriterGui()
+        {
+            throw new NotImplementedException();
         }
     }
 }

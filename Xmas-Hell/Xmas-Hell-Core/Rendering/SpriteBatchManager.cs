@@ -11,8 +11,17 @@ using XmasHell.Performance;
 using XmasHell.Shaders;
 using SpriterDotNet.MonoGame;
 
-namespace XmasHell.Sprites
+namespace XmasHell.Rendering
 {
+    public enum Layer
+    {
+        BACKGROUND,
+        BACK,
+        FRONT,
+        UI
+    };
+
+
     // This class is used to batch the draw calls per category
     public class SpriteBatchManager
     {
@@ -20,10 +29,8 @@ namespace XmasHell.Sprites
 
         public AbstractBackground Background;
         public List<Sprite> BackgroundSprites;
-        public List<MonoGameAnimator> BackgroundSpriterAnimators;
         public List<ParticleEffect> BackgroundParticles;
         public List<Sprite> UISprites;
-        public List<MonoGameAnimator> UISpriterAnimators;
         public List<Mover> BossBullets;
         public List<Laser> Lasers;
         public List<Sprite> GameSprites;
@@ -42,15 +49,48 @@ namespace XmasHell.Sprites
         private RenderTarget2D _renderTarget1;
         private RenderTarget2D _renderTarget2;
 
+        private List<MonoGameAnimator> _backgroundSpriterAnimators;
+        public List<MonoGameAnimator> _uiSpriterAnimators;
+
+        public void AddSpriterAnimator(MonoGameAnimator animator, Layer layer)
+        {
+            switch (layer)
+            {
+                case Layer.BACKGROUND:
+                    if (!_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                        _backgroundSpriterAnimators.Add(animator);
+                    break;
+                case Layer.UI:
+                    if (!_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                        _uiSpriterAnimators.Add(animator);
+                    break;
+            }
+        }
+
+        public void RemoveSpriterAnimator(MonoGameAnimator animator, Layer layer)
+        {
+            switch (layer)
+            {
+                case Layer.BACKGROUND:
+                    if (_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                        _backgroundSpriterAnimators.Remove(animator);
+                    break;
+                case Layer.UI:
+                    if (_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                        _uiSpriterAnimators.Remove(animator);
+                    break;
+            }
+        }
+
         public SpriteBatchManager(XmasHell game)
         {
             _game = game;
 
             BackgroundSprites = new List<Sprite>();
-            BackgroundSpriterAnimators = new List<MonoGameAnimator>();
+            _backgroundSpriterAnimators = new List<MonoGameAnimator>();
             BackgroundParticles = new List<ParticleEffect>();
             UISprites = new List<Sprite>();
-            UISpriterAnimators = new List<MonoGameAnimator>();
+            _uiSpriterAnimators = new List<MonoGameAnimator>();
             BossBullets = new List<Mover>();
             Lasers = new List<Laser>();
             GameSprites = new List<Sprite>();
@@ -106,10 +146,10 @@ namespace XmasHell.Sprites
             Background?.Update(gameTime);
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundUpdate);
 
-            foreach (var animator in BackgroundSpriterAnimators)
+            foreach (var animator in _backgroundSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
-            foreach (var animator in UISpriterAnimators)
+            foreach (var animator in _uiSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
@@ -215,7 +255,7 @@ namespace XmasHell.Sprites
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
 
-            foreach (var animator in BackgroundSpriterAnimators)
+            foreach (var animator in _backgroundSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundParticleDraw);
@@ -283,7 +323,7 @@ namespace XmasHell.Sprites
             foreach (var sprite in UISprites)
                 sprite.Draw(_game.SpriteBatch);
 
-            foreach (var animator in UISpriterAnimators)
+            foreach (var animator in _uiSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
 
             _game.SpriteBatch.End();

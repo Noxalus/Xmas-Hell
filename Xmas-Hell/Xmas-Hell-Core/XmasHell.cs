@@ -6,7 +6,7 @@ using XmasHell.Background;
 using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
-using XmasHell.Sprites;
+using XmasHell.Rendering;
 using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;

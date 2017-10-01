@@ -11,6 +11,7 @@ namespace XmasHell.GUI
     public class SpriterGuiButton : AbstractGuiButton
     {
         public MonoGameAnimator Animator;
+        private String _spritePartFilename;
 
         public override Vector2 Position()
         {
@@ -44,13 +45,14 @@ namespace XmasHell.GUI
 
         public override BoundingRectangle BoundingRectangle()
         {
-            var spriteSize = SpriterUtils.GetSpriterFileSize(Name, Animator);
+            var spriteSize = SpriterUtils.GetSpriterFileSize(_spritePartFilename, Animator);
             return new BoundingRectangle(Position(), new Size2(spriteSize.X / 2, spriteSize.Y / 2));
         }
 
-        public SpriterGuiButton(ViewportAdapter viewportAdapter, String spritePartFilename, MonoGameAnimator animator) : base(viewportAdapter, spritePartFilename)
+        public SpriterGuiButton(ViewportAdapter viewportAdapter, String buttonName, String spritePartFilename, MonoGameAnimator animator) : base(viewportAdapter, buttonName)
         {
             Animator = animator;
+            _spritePartFilename = spritePartFilename;
         }
     }
 }

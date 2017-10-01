@@ -1,7 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using SpriterDotNet.MonoGame;
+using SpriterDotNet.Providers;
+using SpriterDotNet.MonoGame.Content;
+using XmasHell.Spriter;
+using SpriterDotNet;
+using Microsoft.Xna.Framework.Audio;
+using System.Linq;
 
 namespace XmasHell.Screens
 {
@@ -12,7 +18,22 @@ namespace XmasHell.Screens
         private bool _neverShown;
         protected bool ShouldBeStackInHistory;
 
+
         public bool StackInHistory => ShouldBeStackInHistory;
+
+        // Spriter
+        private bool _spriterFrameDataAvailable;
+        protected static readonly Config DefaultAnimatorConfig = new Config
+        {
+            MetadataEnabled = true,
+            EventsEnabled = true,
+            PoolingEnabled = true,
+            TagsEnabled = false,
+            VarsEnabled = false,
+            SoundsEnabled = false
+        };
+
+        protected readonly Dictionary<string, CustomSpriterAnimator> Animators = new Dictionary<string, CustomSpriterAnimator>();
 
         public Screen(XmasHell game)
         {
@@ -30,6 +51,25 @@ namespace XmasHell.Screens
         {
             // Load content used only by this screen
         }
+
+        protected virtual void LoadSpriterSprite(String spriterFilename)
+        {
+            if (spriterFilename == string.Empty)
+                throw new Exception("You need to specify a path to the spriter file of this boss");
+
+            var factory = new DefaultProviderFactory<ISprite, SoundEffect>(DefaultAnimatorConfig, true);
+
+            var loader = new SpriterContentLoader(Game.Content, spriterFilename);
+            loader.Fill(factory);
+
+            foreach (var entity in loader.Spriter.Entities)
+            {
+                var animator = new CustomSpriterAnimator(entity, Game.GraphicsDevice, factory);
+                Animators.Add(entity.Name, animator);
+            }
+        }
+
+        protected abstract void InitializeSpriterGui();
 
         public virtual void Show(bool reset = false)
         {
@@ -58,6 +98,12 @@ namespace XmasHell.Screens
 
         public virtual void Update(GameTime gameTime)
         {
+            // Check Spriter element are initialized
+            if (!_spriterFrameDataAvailable && Animators.Count > 0 && Animators.First().Value.FrameData != null)
+            {
+                InitializeSpriterGui();
+                _spriterFrameDataAvailable = true;
+            }
         }
     }
 }

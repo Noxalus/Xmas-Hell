@@ -84,6 +84,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\IPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BossSelectionScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\DebugScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
@@ -97,7 +98,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\CustomSpriterAnimator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\TextureUtil.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sprites\StringSprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XmasHell.cs" />
   </ItemGroup>

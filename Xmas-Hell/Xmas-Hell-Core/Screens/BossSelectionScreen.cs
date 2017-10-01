@@ -1,22 +1,21 @@
 using Microsoft.Xna.Framework;
-using MonoGame.Extended.Sprites;
-using MonoGame.Extended.Tweening;
+using System;
 using XmasHell.Entities.Bosses;
 using XmasHell.GUI;
+using XmasHell.Rendering;
+using XmasHell.Spriter;
 
 namespace XmasHell.Screens
 {
     public class BossSelectionScreen : Screen
     {
-        private Sprite _bossSelectionGround;
-        private Sprite _bossSelectionTree;
-        private SpriteGuiButton _bossSelectionTreeStar;
-        private SpriteGuiButton _xmasBallBossButton;
-        private SpriteGuiButton _xmasBellBossButton;
-        private SpriteGuiButton _xmasSnowflakeBossButton;
-        private SpriteGuiButton _xmasCandyBossButton;
-        private SpriteGuiButton _xmasLogBossButton;
-        private SpriteGuiButton _xmasGiftBossButton;
+        private SpriterGuiButton _bossSelectionTreeStar;
+        private SpriterGuiButton _xmasBallBossButton;
+        private SpriterGuiButton _xmasBellBossButton;
+        private SpriterGuiButton _xmasSnowflakeBossButton;
+        private SpriterGuiButton _xmasCandyBossButton;
+        private SpriterGuiButton _xmasLogBossButton;
+        private SpriterGuiButton _xmasGiftBossButton;
 
         private bool _treeFlipped;
 
@@ -30,60 +29,22 @@ namespace XmasHell.Screens
 
             _treeFlipped = false;
 
-            _bossSelectionGround.Position = new Vector2(_bossSelectionGround.BoundingRectangle.Width / 2f - 100, GameConfig.VirtualResolution.Y);
-            _bossSelectionTree.Position = new Vector2(Game.ViewportAdapter.Center.X, _bossSelectionGround.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f - 50);
-
-            _bossSelectionTreeStar.Position(new Vector2(
-                _bossSelectionTree.Position.X,
-                _bossSelectionTree.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f +
-                _bossSelectionTreeStar.Sprite.BoundingRectangle.Height / 4f
-            ));
-
-#if ANDROID
-            _bossSelectionTreeStar.Tap += OnTreeStarAction;
-#else
-            _bossSelectionTreeStar.Click += OnTreeStarAction;
-#endif
-
-            InitializeBossButtons();
+//#if ANDROID
+//            _bossSelectionTreeStar.Tap += OnTreeStarAction;
+//#else
+//            _bossSelectionTreeStar.Click += OnTreeStarAction;
+//#endif
         }
 
-        private void InitializeBossButtons()
+        private void OnBossButtonAction(object button, Point position)
         {
-            // Relative to the tree position left top corner
-            var originPosition = new Vector2(
-                _bossSelectionTree.Position.X - _bossSelectionTree.BoundingRectangle.Width / 2f,
-                _bossSelectionTree.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f
-            );
+            var spriterGuiButton = button as SpriterGuiButton;
 
-            _xmasBellBossButton.Position(new Vector2(originPosition.X + 180, originPosition.Y + 1400));
-            _xmasCandyBossButton.Position(new Vector2(originPosition.X + 370, originPosition.Y + 1475));
-            _xmasBallBossButton.Position(new Vector2(originPosition.X + 525, originPosition.Y + 1200));
-            _xmasSnowflakeBossButton.Position(new Vector2(originPosition.X + 715, originPosition.Y + 1225));
-            _xmasGiftBossButton.Position(new Vector2(originPosition.X + 265, originPosition.Y + 875));
-            _xmasLogBossButton.Position(new Vector2(originPosition.X + 425, originPosition.Y + 900));
+            var bossType = BossType.Debug;
 
+            if (spriterGuiButton.Name == "XmasBall")
+                bossType = BossType.XmasBall;
 
-            // Initialize button action
-#if ANDROID
-            _xmasBallBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasBall);
-            _xmasBellBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasBell);
-            _xmasSnowflakeBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasSnowflake);
-            _xmasCandyBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasCandy);
-            _xmasLogBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasLog);
-            _xmasGiftBossButton.Tap += (object sender, Point position) => OnBossButtonAction(BossType.XmasGift);
-#else
-            _xmasBallBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasBall);
-            _xmasBellBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasBell);
-            _xmasSnowflakeBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasSnowflake);
-            _xmasCandyBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasCandy);
-            _xmasLogBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasLog);
-            _xmasGiftBossButton.Click += (object sender, Point position) => OnBossButtonAction(BossType.XmasGift);
-#endif
-        }
-
-        private void OnBossButtonAction(BossType bossType)
-        {
             Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(bossType);
             Game.ScreenManager.GoTo<GameScreen>();
         }
@@ -97,50 +58,84 @@ namespace XmasHell.Screens
         {
             base.LoadContent();
 
-            _bossSelectionGround = new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-ground"));
-            _bossSelectionTree = new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree"));
-            _bossSelectionTreeStar = new SpriteGuiButton(Game.ViewportAdapter, "boss-selection-tree-star", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree-star")));
+            //_bossSelectionTreeStar = new SpriterGuiButton(Game.ViewportAdapter, "boss-selection-tree-star", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree-star")));
 
-            // Bosses
-            _xmasBallBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-ball-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
-            _xmasBellBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-bell-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
-            _xmasSnowflakeBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-snowflake-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
-            _xmasCandyBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-candy-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
-            _xmasLogBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-log-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
-            _xmasGiftBossButton = new SpriteGuiButton(Game.ViewportAdapter, "xmas-gift-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //// Bosses
+            //_xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-ball-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //_xmasBellBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-bell-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //_xmasSnowflakeBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-snowflake-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //_xmasCandyBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-candy-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //_xmasLogBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-log-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            //_xmasGiftBossButton = new SpriterGuiButton(Game.ViewportAdapter, "xmas-gift-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+
+            LoadSpriterSprite("Graphics/GUI/BossSelection/boss-selection");
+        }
+
+        protected override void LoadSpriterSprite(String spriterFilename)
+        {
+            base.LoadSpriterSprite(spriterFilename);
+
+            Animators["BossSelection"].Position = Game.ViewportAdapter.Center.ToVector2();
+        }
+
+        protected override void InitializeSpriterGui()
+        {
+            // TODO: Choose the animator entity according to player state (from Android preferences)
+            var spriterXmasBallDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-ball-dummy-boss-button.png", Animators["BossSelection"]);
+            if (true) // available but not beaten
+            {
+                Animators["XmasBalls"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterXmasBallDummyPosition;
+                _xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "XmasBall", "xmas-ball-dummy-boss-button.png", Animators["XmasBalls"]);
+            }
+
+            ResetUI();
+        }
+
+        private void ResetUI()
+        {
+            // Initialize button action
+            if (_xmasBallBossButton != null)
+            {
+#if ANDROID
+                _xmasBallBossButton.Tap += OnBossButtonAction;
+#else
+                _xmasBallBossButton.Click += OnBossButtonAction;
+#endif
+                Game.GuiManager.AddButton(_xmasBallBossButton);
+            }
+
+            if (Animators["BossSelection"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
         }
 
         public override void Show(bool reset = false)
         {
             base.Show(reset);
 
-            Game.SpriteBatchManager.UISprites.Add(_bossSelectionTree);
-            Game.GuiManager.AddButton(_bossSelectionTreeStar);
+            //Game.GuiManager.AddButton(_bossSelectionTreeStar);
 
-            Game.GuiManager.AddButton(_xmasBallBossButton);
-            Game.GuiManager.AddButton(_xmasBellBossButton);
-            Game.GuiManager.AddButton(_xmasSnowflakeBossButton);
-            Game.GuiManager.AddButton(_xmasCandyBossButton);
-            Game.GuiManager.AddButton(_xmasLogBossButton);
-            Game.GuiManager.AddButton(_xmasGiftBossButton);
+            //Game.GuiManager.AddButton(_xmasBallBossButton);
+            //Game.GuiManager.AddButton(_xmasBellBossButton);
+            //Game.GuiManager.AddButton(_xmasSnowflakeBossButton);
+            //Game.GuiManager.AddButton(_xmasCandyBossButton);
+            //Game.GuiManager.AddButton(_xmasLogBossButton);
+            //Game.GuiManager.AddButton(_xmasGiftBossButton);
 
-            //Game.SpriteBatchManager.UISprites.Add(_bossSelectionGround);
+            ResetUI();
         }
 
         public override void Hide()
         {
             base.Hide();
 
-            Game.SpriteBatchManager.UISprites.Remove(_bossSelectionGround);
-            Game.SpriteBatchManager.UISprites.Remove(_bossSelectionTree);
-            Game.GuiManager.RemoveButton(_bossSelectionTreeStar);
+#if ANDROID
+            _xmasBallBossButton.Tap -= OnBossButtonAction;
+#else
+            _xmasBallBossButton.Click -= OnBossButtonAction;
+#endif
 
             Game.GuiManager.RemoveButton(_xmasBallBossButton);
-            Game.GuiManager.RemoveButton(_xmasBellBossButton);
-            Game.GuiManager.RemoveButton(_xmasSnowflakeBossButton);
-            Game.GuiManager.RemoveButton(_xmasCandyBossButton);
-            Game.GuiManager.RemoveButton(_xmasLogBossButton);
-            Game.GuiManager.RemoveButton(_xmasGiftBossButton);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
         }
 
         public override void Update(GameTime gameTime)
@@ -150,10 +145,7 @@ namespace XmasHell.Screens
 
         public void FlipTree()
         {
-            if (_treeFlipped)
-                _bossSelectionTree.CreateTweenGroup().ScaleTo(new Vector2(1f, 1f), 1.0f, EasingFunctions.Linear);
-            else
-                _bossSelectionTree.CreateTweenGroup().ScaleTo(new Vector2(-1f, 1f), 1.0f, EasingFunctions.Linear);
+            // TODO: Start tree's flip animation
 
             _treeFlipped = !_treeFlipped;
         }
