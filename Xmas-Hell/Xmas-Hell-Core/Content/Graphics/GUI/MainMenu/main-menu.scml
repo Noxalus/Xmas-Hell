@@ -138,7 +138,7 @@
             </timeline>
             <timeline id="19" name="tree_003">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-188.461538" y="-1188.461538" scale_x="1.442308" scale_y="1.442308"/>
+                    <object folder="0" file="4" x="-355.128205" y="-1463.461538" angle="0" scale_x="1.442308" scale_y="1.442308"/>
                 </key>
             </timeline>
         </animation>
@@ -316,6 +316,76 @@
             <timeline id="18" name="cloud1">
                 <key id="0" spin="0">
                     <object folder="0" file="11" x="290" y="790" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="XmasTitle">
+        <animation id="0" name="Rotate" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="250">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="499">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="749">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="xmas-title">
+                <key id="0" spin="-1">
+                    <object folder="0" file="5" angle="0"/>
+                </key>
+                <key id="1" time="250">
+                    <object folder="0" file="5" angle="343.61"/>
+                </key>
+                <key id="2" time="499">
+                    <object folder="0" file="5" angle="0"/>
+                </key>
+                <key id="3" time="749" spin="-1">
+                    <object folder="0" file="5" angle="20"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Zoom" length="1000" interval="100">
+            <mainline>
+                <key id="0" curve_type="cubic" c1="0" c2="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="xmas-title_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" y="-0" scale_x="0.00001" scale_y="0.00001"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="5" y="-0" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="PlayButton">
+        <animation id="0" name="Pulse" length="1000" interval="100">
+            <mainline>
+                <key id="0" curve_type="cubic" c1="0.0329" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="499" curve_type="cubic" c1="0" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="play-button">
+                <key id="0" spin="0">
+                    <object folder="0" file="2"/>
+                </key>
+                <key id="1" time="499" spin="0">
+                    <object folder="0" file="2" scale_x="1.2" scale_y="1.2"/>
                 </key>
             </timeline>
         </animation>
