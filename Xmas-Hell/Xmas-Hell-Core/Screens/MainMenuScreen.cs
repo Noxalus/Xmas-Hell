@@ -79,7 +79,7 @@ namespace XmasHell.Screens
 
             _introSong = Assets.GetMusic("boss-theme-intro");
             _mainSong = Assets.GetMusic("boss-theme-main");
-            _playButton = new GuiButton(Game.ViewportAdapter, "play-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/play-button")));
+            _playButton = new GuiButton(Game.ViewportAdapter, "play-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/MainMenu/play-button")));
         }
 
         public override void Show(bool reset = false)

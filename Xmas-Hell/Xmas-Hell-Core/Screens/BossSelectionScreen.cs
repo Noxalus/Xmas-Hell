@@ -37,7 +37,7 @@ namespace XmasHell.Screens
 
             _bossSelectionTreeStar.Position = new Vector2(
                 _bossSelectionTree.Position.X,
-                _bossSelectionTree.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f + 
+                _bossSelectionTree.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f +
                 _bossSelectionTreeStar.Sprite.BoundingRectangle.Height / 4f
             );
 
@@ -58,8 +58,8 @@ namespace XmasHell.Screens
                 _bossSelectionTree.Position.Y - _bossSelectionTree.BoundingRectangle.Height / 2f
             );
 
-            _xmasBellBossButton.Position = new Vector2(originPosition.X + 175, originPosition.Y + 1175);
-            _xmasCandyBossButton.Position = new Vector2(originPosition.X + 350, originPosition.Y + 1250);
+            _xmasBellBossButton.Position = new Vector2(originPosition.X + 180, originPosition.Y + 1400);
+            _xmasCandyBossButton.Position = new Vector2(originPosition.X + 370, originPosition.Y + 1475);
             _xmasBallBossButton.Position = new Vector2(originPosition.X + 525, originPosition.Y + 1200);
             _xmasSnowflakeBossButton.Position = new Vector2(originPosition.X + 715, originPosition.Y + 1225);
             _xmasGiftBossButton.Position = new Vector2(originPosition.X + 265, originPosition.Y + 875);
@@ -99,17 +99,17 @@ namespace XmasHell.Screens
         {
             base.LoadContent();
 
-            _bossSelectionGround = new Sprite(Assets.GetTexture2D("Graphics/GUI/boss-selection-ground"));
-            _bossSelectionTree = new Sprite(Assets.GetTexture2D("Graphics/GUI/boss-selection-tree"));
-            _bossSelectionTreeStar = new GuiButton(Game.ViewportAdapter, "boss-selection-tree-star", new Sprite(Assets.GetTexture2D("Graphics/GUI/boss-selection-tree-star")));
+            _bossSelectionGround = new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-ground"));
+            _bossSelectionTree = new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree"));
+            _bossSelectionTreeStar = new GuiButton(Game.ViewportAdapter, "boss-selection-tree-star", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree-star")));
 
             // Bosses
-            _xmasBallBossButton = new GuiButton(Game.ViewportAdapter, "xmas-ball-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
-            _xmasBellBossButton = new GuiButton(Game.ViewportAdapter, "xmas-bell-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
-            _xmasSnowflakeBossButton = new GuiButton(Game.ViewportAdapter, "xmas-snowflake-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
-            _xmasCandyBossButton = new GuiButton(Game.ViewportAdapter, "xmas-candy-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
-            _xmasLogBossButton = new GuiButton(Game.ViewportAdapter, "xmas-log-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
-            _xmasGiftBossButton = new GuiButton(Game.ViewportAdapter, "xmas-gift-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/unknown-boss-button")));
+            _xmasBallBossButton = new GuiButton(Game.ViewportAdapter, "xmas-ball-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            _xmasBellBossButton = new GuiButton(Game.ViewportAdapter, "xmas-bell-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            _xmasSnowflakeBossButton = new GuiButton(Game.ViewportAdapter, "xmas-snowflake-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            _xmasCandyBossButton = new GuiButton(Game.ViewportAdapter, "xmas-candy-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            _xmasLogBossButton = new GuiButton(Game.ViewportAdapter, "xmas-log-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
+            _xmasGiftBossButton = new GuiButton(Game.ViewportAdapter, "xmas-gift-boss-button", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/unknown-boss-button")));
         }
 
         public override void Show(bool reset = false)
