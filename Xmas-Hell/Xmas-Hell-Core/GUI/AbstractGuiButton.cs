@@ -60,7 +60,7 @@ namespace XmasHell.GUI
 #endif
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
 #if ANDROID
             UpdateTouchState();

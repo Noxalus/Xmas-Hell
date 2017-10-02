@@ -11,6 +11,7 @@ namespace XmasHell.GUI
     public class SpriterGuiButton : AbstractGuiButton
     {
         public MonoGameAnimator Animator;
+        public MonoGameAnimator _referenceAnimator;
         private String _spritePartFilename;
 
         public override Vector2 Position()
@@ -49,10 +50,26 @@ namespace XmasHell.GUI
             return new BoundingRectangle(Position(), new Size2(spriteSize.X / 2, spriteSize.Y / 2));
         }
 
-        public SpriterGuiButton(ViewportAdapter viewportAdapter, String buttonName, String spritePartFilename, MonoGameAnimator animator) : base(viewportAdapter, buttonName)
+        public SpriterGuiButton(
+            ViewportAdapter viewportAdapter,
+            String buttonName,
+            String spritePartFilename,
+            MonoGameAnimator animator,
+            MonoGameAnimator referenceAnimator) :
+            base(viewportAdapter, buttonName)
         {
             Animator = animator;
+            _referenceAnimator = referenceAnimator;
             _spritePartFilename = spritePartFilename;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            // Place buttons according to their dummy positions on the Spriter file
+            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition(_spritePartFilename, _referenceAnimator);
+            Position(_referenceAnimator.Position + spriterPlayButtonDummyPosition);
         }
     }
 }

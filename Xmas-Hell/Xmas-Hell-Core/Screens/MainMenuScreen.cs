@@ -54,7 +54,7 @@ namespace XmasHell.Screens
             _menuSong = Assets.GetMusic("main-menu");
 
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(_menuSong);
+            //MediaPlayer.Play(_menuSong);
 
             LoadSpriterSprite("Graphics/GUI/MainMenu/main-menu");
         }
@@ -65,11 +65,7 @@ namespace XmasHell.Screens
             var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", Animators["MainMenu"]);
             Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
 
-            // Place buttons according to their dummy positions on the Spriter file
-            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition("play-button.png", Animators["MainMenu"]);
-            Animators["PlayButton"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterPlayButtonDummyPosition;
-
-            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "play-button.png", Animators["PlayButton"]);
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
 
             ResetUI();
         }

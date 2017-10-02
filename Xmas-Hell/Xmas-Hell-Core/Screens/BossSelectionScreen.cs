@@ -84,8 +84,7 @@ namespace XmasHell.Screens
             var spriterXmasBallDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-ball-dummy-boss-button.png", Animators["BossSelection"]);
             if (true) // available but not beaten
             {
-                Animators["XmasBalls"].Position = Game.ViewportAdapter.Center.ToVector2() + spriterXmasBallDummyPosition;
-                _xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "XmasBall", "xmas-ball-dummy-boss-button.png", Animators["XmasBalls"]);
+                _xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "XmasBall", "xmas-ball-dummy-boss-button.png", Animators["XmasBalls"], Animators["BossSelection"]);
             }
 
             ResetUI();
