@@ -54,22 +54,36 @@ namespace XmasHell.GUI
             ViewportAdapter viewportAdapter,
             String buttonName,
             String spritePartFilename,
-            MonoGameAnimator animator,
-            MonoGameAnimator referenceAnimator) :
+            CustomSpriterAnimator animator,
+            CustomSpriterAnimator referenceAnimator) :
             base(viewportAdapter, buttonName)
         {
             Animator = animator;
             _referenceAnimator = referenceAnimator;
             _spritePartFilename = spritePartFilename;
+
+            referenceAnimator.AddHiddenTexture(spritePartFilename);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            // Place buttons according to their dummy positions on the Spriter file
-            var spriterPlayButtonDummyPosition = SpriterUtils.GetSpriterFilePosition(_spritePartFilename, _referenceAnimator);
-            Position(_referenceAnimator.Position + spriterPlayButtonDummyPosition);
+            Synchronize();
+        }
+
+        private void Synchronize()
+        {
+            // Synchronize current GUI button animator with the related dummy element from the Spriter file
+            var spriterDummyData = SpriterUtils.GetSpriterFileData(_spritePartFilename, _referenceAnimator);
+            var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
+            var dummyScale = new Vector2(spriterDummyData.ScaleX);
+
+            Position(_referenceAnimator.Position + dummyPosition);
+            Rotation(spriterDummyData.Angle);
+            Scale(dummyScale);
+
+            // TODO: Synchronize alpha value
         }
     }
 }

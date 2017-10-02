@@ -25,6 +25,7 @@
         <file id="21" name="xmas-ball-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="22" name="xmas-snowman-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="23" name="xmas-tree-available-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
+        <file id="24" name="xmas-log-dummy-boss-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="BossSelection">
         <animation id="0" name="NoAnimation" length="1000" interval="100">
@@ -134,84 +135,94 @@
             </timeline>
             <timeline id="15" name="xmas-snowflake-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="351.009804" y="-498.068627"/>
+                    <object folder="0" file="7" x="351.009804" y="-498.068627" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="xmas-ball-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="133.362745" y="-543.166667"/>
+                    <object folder="0" file="8" x="133.362745" y="-543.166667" angle="0"/>
                 </key>
             </timeline>
             <timeline id="17" name="xmas-candy-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-94.088235" y="-521.598039"/>
+                    <object folder="0" file="9" x="-94.088235" y="-521.598039" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="xmas-bell-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-333.303922" y="-486.303922"/>
+                    <object folder="0" file="10" x="-333.303922" y="-486.303922" angle="0"/>
                 </key>
             </timeline>
             <timeline id="19" name="xmas-gift-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="-229.382353" y="-121.598039"/>
+                    <object folder="0" file="11" x="-229.382353" y="-121.598039" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="20" name="unknown-boss-button">
+            <timeline id="20" name="xmas-tree-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="7.843137" y="-168.627451"/>
+                    <object folder="0" file="12" x="233.362745" y="-96.107843" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="21" name="xmas-tree-dummy-boss-button">
+            <timeline id="21" name="xmas-reindeer-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="233.362745" y="-96.107843"/>
+                    <object folder="0" file="13" x="-119.578431" y="209.77451" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="22" name="xmas-reindeer-dummy-boss-button">
+            <timeline id="22" name="xmas-snowman-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="-119.578431" y="209.77451"/>
+                    <object folder="0" file="14" x="107.872549" y="205.852941" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="23" name="xmas-snowman-dummy-boss-button">
+            <timeline id="23" name="xmas-santa-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="107.872549" y="205.852941"/>
+                    <object folder="0" file="15" x="5.911765" y="599.970588" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="24" name="xmas-santa-dummy-boss-button">
+            <timeline id="24" name="xmas-log-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="15" x="5.911765" y="599.970588"/>
+                    <object folder="0" file="24" x="-67.741935" y="-93.548387"/>
                 </key>
             </timeline>
         </animation>
     </entity>
     <entity id="1" name="Ball">
-        <animation id="0" name="Jingle" length="1000" interval="100">
+        <obj_info name="bone_000" type="bone" w="110.314" h="10"/>
+        <animation id="0" name="Balance" length="1000" interval="100">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <bone_ref id="0" timeline="1" key="0"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="1" time="250">
-                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <bone_ref id="0" timeline="1" key="1"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="2" time="500">
-                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <bone_ref id="0" timeline="1" key="2"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="3" time="750">
-                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                    <bone_ref id="0" timeline="1" key="3"/>
+                    <object_ref id="0" parent="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="unknown-boss-button">
-                <key id="0">
-                    <object folder="0" file="0" angle="0"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="76.5" angle="90"/>
                 </key>
-                <key id="1" time="250" spin="-1">
-                    <object folder="0" file="0" angle="10"/>
+            </timeline>
+            <timeline id="1" obj="0" name="bone_000" object_type="bone">
+                <key id="0" spin="-1">
+                    <bone y="76.5" angle="270"/>
                 </key>
-                <key id="2" time="500" spin="-1">
-                    <object folder="0" file="0" angle="0"/>
+                <key id="1" time="250">
+                    <bone y="76.5" angle="240"/>
                 </key>
-                <key id="3" time="750">
-                    <object folder="0" file="0" angle="350"/>
+                <key id="2" time="500">
+                    <bone y="76.5" angle="270"/>
+                </key>
+                <key id="3" time="750" spin="-1">
+                    <bone y="76.5" angle="310"/>
                 </key>
             </timeline>
         </animation>
@@ -234,16 +245,16 @@
             </mainline>
             <timeline id="0" name="xmas-ball-available-button">
                 <key id="0">
-                    <object folder="0" file="21" x="-0" y="-0" angle="0"/>
+                    <object folder="0" file="21" angle="0"/>
                 </key>
                 <key id="1" time="250" spin="-1">
-                    <object folder="0" file="21" x="-0" y="-0" angle="10"/>
+                    <object folder="0" file="21" angle="10"/>
                 </key>
                 <key id="2" time="500" spin="-1">
-                    <object folder="0" file="21" x="-0" y="-0" angle="0"/>
+                    <object folder="0" file="21" angle="0"/>
                 </key>
                 <key id="3" time="750">
-                    <object folder="0" file="21" x="-0" y="-0" angle="350"/>
+                    <object folder="0" file="21" angle="350"/>
                 </key>
             </timeline>
         </animation>
@@ -264,16 +275,16 @@
             </mainline>
             <timeline id="0" name="xmas-ball-available-button">
                 <key id="0">
-                    <object folder="0" file="4" x="-0" y="-0" angle="0"/>
+                    <object folder="0" file="4" angle="0"/>
                 </key>
                 <key id="1" time="250" spin="-1">
-                    <object folder="0" file="4" x="-0" y="-0" angle="10"/>
+                    <object folder="0" file="4" angle="10"/>
                 </key>
                 <key id="2" time="500" spin="-1">
-                    <object folder="0" file="4" x="-0" y="-0" angle="0"/>
+                    <object folder="0" file="4" angle="0"/>
                 </key>
                 <key id="3" time="750">
-                    <object folder="0" file="4" x="-0" y="-0" angle="350"/>
+                    <object folder="0" file="4" angle="350"/>
                 </key>
             </timeline>
         </animation>

@@ -80,12 +80,18 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
+            // Clone the dummy ball animator for every boss
+            var xmasBallAnimator = Animators["Ball"].Clone();
+            var xmasBellAnimator = Animators["Ball"].Clone();
+
+            xmasBallAnimator.AddTextureSwap(
+                "Graphics/GUI/BossSelection/unknown-boss-button",
+                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-ball-available-button")
+            );
+
             // TODO: Choose the animator entity according to player state (from Android preferences)
             var spriterXmasBallDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-ball-dummy-boss-button.png", Animators["BossSelection"]);
-            if (true) // available but not beaten
-            {
-                _xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "XmasBall", "xmas-ball-dummy-boss-button.png", Animators["XmasBalls"], Animators["BossSelection"]);
-            }
+            _xmasBallBossButton = new SpriterGuiButton(Game.ViewportAdapter, "XmasBall", "xmas-ball-dummy-boss-button.png", xmasBallAnimator, Animators["BossSelection"]);
 
             ResetUI();
         }

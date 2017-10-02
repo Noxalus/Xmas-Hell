@@ -8,6 +8,21 @@ namespace XmasHell.Spriter
 {
     static class SpriterUtils
     {
+        public static SpriterObject GetSpriterFileData(string spritePartFileName, MonoGameAnimator animator)
+        {
+            if (animator.FrameData == null)
+                return null;
+
+            var spriterFile = GetSpriterFile(spritePartFileName, animator);
+            var spriteData = animator.FrameData.SpriteData;
+            var fileSpriteDataFound = spriteData.FindAll(so => so.FileId == spriterFile.Id);
+
+            if (fileSpriteDataFound.Count == 0)
+                return null;
+
+            return fileSpriteDataFound.First();
+        }
+
         public static Vector2 GetSpriterFilePosition(string spritePartFileName, MonoGameAnimator animator)
         {
             if (animator.FrameData == null)

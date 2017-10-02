@@ -74,6 +74,8 @@ namespace XmasHell
                 // Main Menu
 
                 // Boss Selection Menu
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-ball-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-ball-beaten-button"),
 
                 // Sprites
 
