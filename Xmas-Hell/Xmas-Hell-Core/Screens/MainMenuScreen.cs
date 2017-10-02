@@ -6,6 +6,7 @@ using XmasHell.BulletML;
 using XmasHell.GUI;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
+using System.Collections.Generic;
 
 namespace XmasHell.Screens
 {
@@ -92,6 +93,12 @@ namespace XmasHell.Screens
         {
             base.LoadSpriterSprite(spriterFilename);
 
+            Animators["MainMenu"].SetHiddenTextures(new List<string>(new string[]
+            {
+                "Graphics/GUI/MainMenu/xmas-title",
+                "Graphics/GUI/MainMenu/play-button"
+            }));
+
             Animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();
         }
 
@@ -159,6 +166,9 @@ namespace XmasHell.Screens
             {
                 _shootFrequency -= gameTime.ElapsedGameTime;
             }
+
+            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", Animators["MainMenu"]);
+            Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
         }
     }
 }

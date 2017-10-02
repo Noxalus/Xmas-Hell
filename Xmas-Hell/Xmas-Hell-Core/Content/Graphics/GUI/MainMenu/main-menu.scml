@@ -60,7 +60,7 @@
                     <object_ref id="16" timeline="4" key="0" z_index="16"/>
                     <object_ref id="17" timeline="11" key="0" z_index="17"/>
                     <object_ref id="18" timeline="14" key="0" z_index="18"/>
-                    <object_ref id="19" timeline="15" key="0" z_index="19"/>
+                    <object_ref id="19" timeline="15" key="1" z_index="19"/>
                 </key>
             </mainline>
             <timeline id="0" name="game-area">
@@ -73,7 +73,7 @@
                     <object folder="0" file="2" y="-400" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="2" y="-200" angle="0"/>
+                    <object folder="0" file="2" x="232.5" y="-180" angle="0"/>
                 </key>
             </timeline>
             <timeline id="2" name="settings-button">
@@ -144,6 +144,9 @@
             <timeline id="15" name="xmas-title">
                 <key id="0" spin="0">
                     <object folder="0" file="5" x="48.327759" y="768.478261" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="5" x="1025.827759" y="775.978261" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="tree_004">

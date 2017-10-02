@@ -12,6 +12,7 @@ namespace XmasHell.Spriter
     {
         private readonly IDictionary<string, ISprite> _boxTextures = new Dictionary<string, ISprite>();
         private readonly ISprite _pointTexture;
+        private List<string> _hiddenTextures;
         public bool StretchOut = true;
 
         public CustomSpriterAnimator(
@@ -21,6 +22,8 @@ namespace XmasHell.Spriter
             Stack<SpriteDrawInfo> drawInfoPool = null
         ) : base(entity, providerFactory, drawInfoPool)
         {
+            _hiddenTextures = new List<string>();
+
             _pointTexture = new TextureSprite(TextureUtil.CreateCircle(graphicsDevice, 1, Color.Cyan));
 
             if (entity.ObjectInfos != null)
@@ -31,6 +34,11 @@ namespace XmasHell.Spriter
                     _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(graphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
                 }
             }
+        }
+
+        public void SetHiddenTextures(List<string> hiddenTextures)
+        {
+            _hiddenTextures = hiddenTextures;
         }
 
         protected override void ApplyPointTransform(string name, SpriterObject info)
@@ -53,7 +61,8 @@ namespace XmasHell.Spriter
                 SpriteDrawInfo di = DrawInfos[i];
                 ISprite sprite = di.Drawable;
 
-                sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
+                if (_hiddenTextures.Find(n => n == sprite.Texture().Name) == null)
+                    sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
             }
         }
     }
