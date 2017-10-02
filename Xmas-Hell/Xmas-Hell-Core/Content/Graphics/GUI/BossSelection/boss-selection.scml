@@ -25,7 +25,7 @@
         <file id="21" name="xmas-ball-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="22" name="xmas-snowman-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="23" name="xmas-tree-available-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
-        <file id="24" name="xmas-log-dummy-boss-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
+        <file id="24" name="xmas-log-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
     <entity id="0" name="BossSelection">
         <animation id="0" name="NoAnimation" length="1000" interval="100">
@@ -180,7 +180,7 @@
             </timeline>
             <timeline id="24" name="xmas-log-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="24" x="-67.741935" y="-93.548387"/>
+                    <object folder="0" file="24" x="8.758065" y="-170.048387"/>
                 </key>
             </timeline>
         </animation>

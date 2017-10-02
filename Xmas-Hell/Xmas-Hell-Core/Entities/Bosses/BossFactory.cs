@@ -55,5 +55,35 @@ namespace XmasHell.Entities.Bosses
             return new XmasBall.XmasBall(game, playerPositionDelegate);
         }
 
+        public static BossType StringToBossType(string type)
+        {
+            switch (type)
+            {
+                case "Debug":
+                    return BossType.Debug;
+                case "XmasBall":
+                    return BossType.XmasBall;
+                case "XmasBell":
+                    return BossType.XmasBell;
+                case "XmasCandy":
+                    return BossType.XmasCandy;
+                case "XmasSnowflake":
+                    return BossType.XmasSnowflake;
+                case "XmasLog":
+                    return BossType.XmasLog;
+                case "XmasTree":
+                    return BossType.XmasTree;
+                case "XmasGift":
+                    return BossType.XmasGift;
+                case "XmasReinder":
+                    return BossType.XmasReinder;
+                case "XmasSnowman":
+                    return BossType.XmasSnowman;
+                case "XmasSanta":
+                    return BossType.XmasSanta;
+                default:
+                    return BossType.Debug;
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@ using XmasHell.BulletML;
 using XmasHell.Entities;
 using XmasHell.Particles;
 using XmasHell.Physics;
-using XmasHell.Screens;
 using Bullet = XmasHell.Entities.Bullet;
 
 namespace XmasHell
@@ -75,6 +74,16 @@ namespace XmasHell
             _endGameTimer.Stop();
             _endGameTimer.Completed += EndGameTimerCompleted;
             _endGameFirstTime = true;
+        }
+
+        public void Clear()
+        {
+            MoverManager.Clear();
+
+            foreach(var bullet in _bullets)
+                bullet.Destroy();
+
+            _bullets.RemoveAll(b => !b.Used);
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)

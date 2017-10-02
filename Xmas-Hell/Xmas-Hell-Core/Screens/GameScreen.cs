@@ -57,6 +57,7 @@ namespace XmasHell.Screens
 
             _boss.Dispose();
             _player.Dispose();
+            Game.GameManager.Clear();
         }
 
         public override void Update(GameTime gameTime)

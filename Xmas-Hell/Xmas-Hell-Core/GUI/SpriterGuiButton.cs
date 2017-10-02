@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
-using MonoGame.Extended.Sprites;
 using MonoGame.Extended.ViewportAdapters;
 using SpriterDotNet.MonoGame;
 using System;
+using System.IO;
 using XmasHell.Spriter;
 
 namespace XmasHell.GUI
@@ -53,16 +53,16 @@ namespace XmasHell.GUI
         public SpriterGuiButton(
             ViewportAdapter viewportAdapter,
             String buttonName,
-            String spritePartFilename,
+            String spritePartCompleteFilename,
             CustomSpriterAnimator animator,
             CustomSpriterAnimator referenceAnimator) :
             base(viewportAdapter, buttonName)
         {
             Animator = animator;
             _referenceAnimator = referenceAnimator;
-            _spritePartFilename = spritePartFilename;
+            _spritePartFilename = Path.GetFileName(spritePartCompleteFilename);
 
-            referenceAnimator.AddHiddenTexture(spritePartFilename);
+            referenceAnimator.AddHiddenTexture(Path.ChangeExtension(spritePartCompleteFilename, null));
         }
 
         public override void Update(GameTime gameTime)

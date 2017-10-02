@@ -61,8 +61,7 @@ namespace XmasHell.Rendering
                         _backgroundSpriterAnimators.Add(animator);
                     break;
                 case Layer.UI:
-                    if (!_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
-                        _uiSpriterAnimators.Add(animator);
+                    _uiSpriterAnimators.Add(animator);
                     break;
             }
         }

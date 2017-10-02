@@ -66,7 +66,7 @@ namespace XmasHell.Screens
             var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", Animators["MainMenu"]);
             Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
 
-            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
 
             ResetUI();
         }
@@ -96,7 +96,6 @@ namespace XmasHell.Screens
             Animators["MainMenu"].SetHiddenTextures(new List<string>(new string[]
             {
                 "Graphics/GUI/MainMenu/xmas-title",
-                "Graphics/GUI/MainMenu/play-button"
             }));
 
             Animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();

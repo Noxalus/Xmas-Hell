@@ -76,8 +76,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-4557.499"
-     inkscape:cy="323.21054"
+     inkscape:cx="-4515.3561"
+     inkscape:cy="324.63911"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -95,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -7016,7 +7016,7 @@
     </g>
     <g
        id="g8900"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-ball-beaten-button.png"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-snowflake-beaten-button.png"
        inkscape:export-xdpi="100"
        inkscape:export-ydpi="100"
        transform="translate(89.517475,2.2807)">
@@ -7442,7 +7442,10 @@
     </g>
     <g
        id="g9670"
-       transform="translate(16.535075)">
+       transform="translate(16.535075)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-candy-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g9650"
          transform="matrix(0.7935542,0,0,0.7935542,-430.42197,147.16721)">
@@ -7785,7 +7788,10 @@
     </g>
     <g
        id="g10901"
-       transform="translate(-13.6842,-0.57017492)">
+       transform="translate(-13.6842,-0.57017492)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-bell-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          transform="matrix(0.7935542,0,0,0.7935542,-345.35212,147.16721)"
          id="g10829">
@@ -8470,7 +8476,10 @@
     </g>
     <g
        id="g11788"
-       transform="translate(-29.6491,3.991225)">
+       transform="translate(-29.6491,3.991225)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-gift-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g11686"
          transform="matrix(0.7935542,0,0,0.7935542,-273.18386,142.32911)">
@@ -9464,7 +9473,10 @@
     </g>
     <g
        id="g14023"
-       transform="translate(-68.421,6.271925)">
+       transform="translate(-68.421,6.271925)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-reindeer-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          transform="translate(443.59615,111.7543)"
          id="g13923">
@@ -9669,7 +9681,10 @@
     </g>
     <g
        id="g14223"
-       transform="translate(-53.59645,3.991225)">
+       transform="translate(-53.59645,3.991225)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-tree-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          transform="matrix(0.7935542,0,0,0.7935542,-198.99974,143.13546)"
          id="g13909">
@@ -10110,7 +10125,10 @@
     </g>
     <g
        id="g16461"
-       transform="translate(-61.5789,7.98245)">
+       transform="translate(-61.5789,7.98245)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-snowman-beaten-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g14235"
          transform="matrix(0.7935542,0,0,0.7935542,-73.868131,137.8713)">
@@ -10503,7 +10521,10 @@
     </g>
     <g
        id="g16129"
-       transform="translate(-66.1403,5.131575)">
+       transform="translate(-66.1403,5.131575)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\xmas-ball-santa-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          transform="translate(554.78027,112.32447)"
          id="g16026">

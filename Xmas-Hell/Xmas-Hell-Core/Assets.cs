@@ -76,6 +76,25 @@ namespace XmasHell
                 // Boss Selection Menu
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-ball-available-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-ball-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-bell-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-bell-beaten-button"),
+
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-candy-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-candy-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-snowflake-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-snowflake-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-gift-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-gift-beaten-button"),
+                //content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-log-available-button"),
+                //content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-log-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-tree-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-tree-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-reindeer-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-reindeer-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-snowman-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-snowman-beaten-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-santa-available-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-santa-beaten-button"),
 
                 // Sprites
 
