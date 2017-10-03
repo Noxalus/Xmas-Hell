@@ -100,7 +100,7 @@
             </timeline>
             <timeline id="11" name="star">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-25" y="0" angle="90" scale_x="1"/>
+                    <object folder="0" file="10" x="-25" angle="90"/>
                 </key>
             </timeline>
             <timeline id="12" name="mountain_000">
@@ -318,7 +318,7 @@
                     <object folder="0" file="4" x="555.263158" angle="90"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="555.483871" y="-0" angle="90"/>
+                    <object folder="0" file="4" x="555.483871" angle="90"/>
                 </key>
             </timeline>
             <timeline id="10" name="mountain">
@@ -328,16 +328,16 @@
             </timeline>
             <timeline id="11" name="star">
                 <key id="0">
-                    <object folder="0" file="10" x="-25" y="0" angle="90" scale_x="1"/>
+                    <object folder="0" file="10" x="-25" angle="90"/>
                 </key>
                 <key id="1" time="500">
-                    <object folder="0" file="10" x="-25.080645" y="0" angle="270" scale_x="0.822581" scale_y="0.82258"/>
+                    <object folder="0" file="10" x="-25.080645" angle="270" scale_x="0.822581" scale_y="0.82258"/>
                 </key>
                 <key id="2" time="750">
-                    <object folder="0" file="10" x="-25.120968" y="0" scale_x="0.733871" scale_y="0.733871"/>
+                    <object folder="0" file="10" x="-25.120968" angle="0" scale_x="0.733871" scale_y="0.733871"/>
                 </key>
                 <key id="3" time="1000" spin="0">
-                    <object folder="0" file="10" x="-25.16129" y="0" angle="90" scale_x="0.645161" scale_y="0.645161"/>
+                    <object folder="0" file="10" x="-25.16129" angle="90" scale_x="0.645161" scale_y="0.645161"/>
                 </key>
             </timeline>
             <timeline id="12" name="mountain_000">
@@ -468,6 +468,38 @@
                 </key>
                 <key id="1" time="499" spin="0">
                     <object folder="0" file="2" angle="0" scale_x="1.2" scale_y="1.2"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="3" name="SettingsButton">
+        <animation id="0" name="UpDown" length="1500" interval="100">
+            <mainline>
+                <key id="0" curve_type="cubic" c1="0.995305" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="375" curve_type="cubic" c1="0" c2="0">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="750" curve_type="cubic" c1="0.995305" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="1125" curve_type="cubic" c1="0" c2="0">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="settings-button">
+                <key id="0" spin="0">
+                    <object folder="0" file="3"/>
+                </key>
+                <key id="1" time="375" spin="0">
+                    <object folder="0" file="3" y="-20"/>
+                </key>
+                <key id="2" time="750" spin="0">
+                    <object folder="0" file="3"/>
+                </key>
+                <key id="3" time="1125" spin="0">
+                    <object folder="0" file="3" y="20"/>
                 </key>
             </timeline>
         </animation>

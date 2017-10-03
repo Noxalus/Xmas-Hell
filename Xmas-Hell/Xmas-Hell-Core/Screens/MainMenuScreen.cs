@@ -21,6 +21,7 @@ namespace XmasHell.Screens
         private bool _goToBossSelectionScreen = false;
 
         private SpriterGuiButton _playButton;
+        private SpriterGuiButton _settingsButton;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -37,6 +38,10 @@ namespace XmasHell.Screens
         {
             Animators["MainMenu"].Play("Zoom");
             Animators["MainMenu"].CurrentAnimation.Looping = false;
+        }
+
+        private void OnSettingsButtonAction(object s, Point e)
+        {
         }
 
         public override void LoadContent()
@@ -68,6 +73,7 @@ namespace XmasHell.Screens
             Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
 
             _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
+            _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", Animators["SettingsButton"], Animators["MainMenu"]);
 
             ResetUI();
         }
@@ -82,6 +88,16 @@ namespace XmasHell.Screens
                 _playButton.Click += OnPlayButtonAction;
 #endif
                 Game.GuiManager.AddButton(_playButton);
+            }
+
+            if (_settingsButton != null)
+            {
+#if ANDROID
+                _settingsButton.Tap += OnSettingsButtonAction;
+#else
+                _settingsButton.Click += OnSettingsButtonAction;
+#endif
+                Game.GuiManager.AddButton(_settingsButton);
             }
 
             if (Animators["MainMenu"] != null)
@@ -143,6 +159,14 @@ namespace XmasHell.Screens
             _playButton.Tap -= OnPlayButtonAction;
 #else
             _playButton.Click -= OnPlayButtonAction;
+#endif
+
+            Game.GuiManager.RemoveButton(_settingsButton);
+
+#if ANDROID
+            _settingsButton.Tap -= OnSettingsButtonAction;
+#else
+            _settingsButton.Click -= OnSettingsButtonAction;
 #endif
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
