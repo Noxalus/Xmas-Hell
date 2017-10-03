@@ -63,15 +63,11 @@ namespace XmasHell.Screens
             MediaPlayer.IsRepeating = true;
             //MediaPlayer.Play(_menuSong);
 
-            LoadSpriterSprite("Graphics/GUI/MainMenu/main-menu");
+            LoadSpriterSprite("Graphics/GUI/main-menu");
         }
 
         protected override void InitializeSpriterGui()
         {
-            // Title
-            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", Animators["MainMenu"]);
-            Animators["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
-
             _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
             _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", Animators["SettingsButton"], Animators["MainMenu"]);
 

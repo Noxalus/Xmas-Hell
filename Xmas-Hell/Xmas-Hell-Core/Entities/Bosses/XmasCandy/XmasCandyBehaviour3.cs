@@ -35,7 +35,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 // Retrieve the candy bar position
                 var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
 
-                var body2File = Spriter.SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator);
+                int folderId = 0;
+                var body2File = Spriter.SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
                 var body2Sprite = spriteData.FindAll(so => so.FileId == body2File.Id)[0];
 
                 var worldPosition = Spriter.SpriterUtils.GetSpriterWorldPosition(body2Sprite, Boss.CurrentAnimator);

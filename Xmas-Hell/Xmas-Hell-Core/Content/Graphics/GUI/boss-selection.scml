@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="unknown-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="1" name="game-area.png" width="1080" height="1920" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="2" name="tree.png" width="671" height="1133" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="3" name="xmas-ball-beaten-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="4" name="garland.png" width="342" height="49" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="5" name="xmas-snowflake-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="6" name="xmas-snowflake-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="7" name="xmas-ball-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="8" name="xmas-candy-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="9" name="xmas-bell-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="10" name="xmas-gift-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="11" name="xmas-tree-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="12" name="xmas-reindeer-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="13" name="xmas-snowman-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="14" name="xmas-santa-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="15" name="xmas-candy-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="16" name="xmas-gift-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="17" name="xmas-reindeer-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="18" name="xmas-santa-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="19" name="xmas-bell-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="20" name="xmas-ball-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="21" name="xmas-snowman-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="22" name="xmas-tree-available-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
-        <file id="23" name="xmas-log-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="24" name="star.png" width="237" height="216" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="0" name="game-area.png" width="1080" height="1920" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="tree.png" width="671" height="1133" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="star.png" width="237" height="216" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <folder id="1" name="BossSelection">
+        <file id="0" name="BossSelection/unknown-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="BossSelection/garland.png" width="342" height="49" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="BossSelection/xmas-ball-beaten-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="BossSelection/xmas-snowflake-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="4" name="BossSelection/xmas-snowflake-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="5" name="BossSelection/xmas-ball-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="6" name="BossSelection/xmas-candy-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="7" name="BossSelection/xmas-bell-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="8" name="BossSelection/xmas-gift-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="9" name="BossSelection/xmas-tree-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="10" name="BossSelection/xmas-reindeer-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="11" name="BossSelection/xmas-snowman-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="12" name="BossSelection/xmas-santa-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="13" name="BossSelection/xmas-candy-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="14" name="BossSelection/xmas-gift-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="15" name="BossSelection/xmas-reindeer-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="16" name="BossSelection/xmas-santa-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="17" name="BossSelection/xmas-bell-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="18" name="BossSelection/xmas-ball-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="19" name="BossSelection/xmas-snowman-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="20" name="BossSelection/xmas-tree-available-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
+        <file id="21" name="BossSelection/xmas-log-dummy-boss-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
     <entity id="0" name="BossSelection">
         <animation id="0" name="Intro" length="1000" interval="100">
@@ -114,268 +116,268 @@
             </mainline>
             <timeline id="0" name="game-area">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-4.347826" y="1.515152" angle="0"/>
+                    <object folder="0" file="0" x="-4.347826" y="1.515152" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="1" x="-4.347826" y="1.515152" angle="0"/>
+                    <object folder="0" file="0" x="-4.347826" y="1.515152" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="tree">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
+                    <object folder="0" file="1" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="2" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
+                    <object folder="0" file="1" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
                 </key>
             </timeline>
             <timeline id="2" name="garland">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="300.346405" y="-292.473856" angle="287.001954" a="0"/>
+                    <object folder="1" file="1" x="300.346405" y="-292.473856" angle="287.001954" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="300.346405" y="-292.473856" angle="287.001954" a="0"/>
+                    <object folder="1" file="1" x="300.346405" y="-292.473856" angle="287.001954" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="300.346405" y="-292.473856" angle="287.001954"/>
+                    <object folder="1" file="1" x="300.346405" y="-292.473856" angle="287.001954"/>
                 </key>
             </timeline>
             <timeline id="3" name="garland_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="187.777778" y="-304.444444" angle="74.281427" a="0"/>
+                    <object folder="1" file="1" x="187.777778" y="-304.444444" angle="74.281427" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="187.777778" y="-304.444444" angle="74.281427" a="0"/>
+                    <object folder="1" file="1" x="187.777778" y="-304.444444" angle="74.281427" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="187.777778" y="-304.444444" angle="74.281427"/>
+                    <object folder="1" file="1" x="187.777778" y="-304.444444" angle="74.281427"/>
                 </key>
             </timeline>
             <timeline id="4" name="garland_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-51.111111" y="-390" angle="73.638923" a="0"/>
+                    <object folder="1" file="1" x="-51.111111" y="-390" angle="73.638923" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-51.111111" y="-390" angle="73.638923" a="0"/>
+                    <object folder="1" file="1" x="-51.111111" y="-390" angle="73.638923" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-51.111111" y="-390" angle="73.638923"/>
+                    <object folder="1" file="1" x="-51.111111" y="-390" angle="73.638923"/>
                 </key>
             </timeline>
             <timeline id="5" name="garland_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="-350" angle="113.160163" a="0"/>
+                    <object folder="1" file="1" x="74.444444" y="-350" angle="113.160163" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="-350" angle="113.160163" a="0"/>
+                    <object folder="1" file="1" x="74.444444" y="-350" angle="113.160163" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="-350" angle="113.160163"/>
+                    <object folder="1" file="1" x="74.444444" y="-350" angle="113.160163"/>
                 </key>
             </timeline>
             <timeline id="6" name="garland_003">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-275.555556" y="-291.111111" angle="74.370404" a="0"/>
+                    <object folder="1" file="1" x="-275.555556" y="-291.111111" angle="74.370404" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-275.555556" y="-291.111111" angle="74.370404" a="0"/>
+                    <object folder="1" file="1" x="-275.555556" y="-291.111111" angle="74.370404" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-275.555556" y="-291.111111" angle="74.370404"/>
+                    <object folder="1" file="1" x="-275.555556" y="-291.111111" angle="74.370404"/>
                 </key>
             </timeline>
             <timeline id="7" name="garland_004">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-164.444444" y="-327.777778" angle="107.732584" a="0"/>
+                    <object folder="1" file="1" x="-164.444444" y="-327.777778" angle="107.732584" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-164.444444" y="-327.777778" angle="107.732584" a="0"/>
+                    <object folder="1" file="1" x="-164.444444" y="-327.777778" angle="107.732584" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-164.444444" y="-327.777778" angle="107.732584"/>
+                    <object folder="1" file="1" x="-164.444444" y="-327.777778" angle="107.732584"/>
                 </key>
             </timeline>
             <timeline id="8" name="garland_005">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-166.666667" y="72.222222" angle="73.369046" a="0"/>
+                    <object folder="1" file="1" x="-166.666667" y="72.222222" angle="73.369046" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-166.666667" y="72.222222" angle="73.369046" a="0"/>
+                    <object folder="1" file="1" x="-166.666667" y="72.222222" angle="73.369046" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-166.666667" y="72.222222" angle="73.369046"/>
+                    <object folder="1" file="1" x="-166.666667" y="72.222222" angle="73.369046"/>
                 </key>
             </timeline>
             <timeline id="9" name="garland_006">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="65.555556" y="-4.444444" angle="72.377703" a="0"/>
+                    <object folder="1" file="1" x="65.555556" y="-4.444444" angle="72.377703" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="65.555556" y="-4.444444" angle="72.377703" a="0"/>
+                    <object folder="1" file="1" x="65.555556" y="-4.444444" angle="72.377703" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="65.555556" y="-4.444444" angle="72.377703"/>
+                    <object folder="1" file="1" x="65.555556" y="-4.444444" angle="72.377703"/>
                 </key>
             </timeline>
             <timeline id="10" name="garland_007">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-53.333333" y="24.444444" angle="108.641792" a="0"/>
+                    <object folder="1" file="1" x="-53.333333" y="24.444444" angle="108.641792" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-53.333333" y="24.444444" angle="108.641792" a="0"/>
+                    <object folder="1" file="1" x="-53.333333" y="24.444444" angle="108.641792" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-53.333333" y="24.444444" angle="108.641792"/>
+                    <object folder="1" file="1" x="-53.333333" y="24.444444" angle="108.641792"/>
                 </key>
             </timeline>
             <timeline id="11" name="garland_008">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="188.888889" y="22.222222" angle="113.198591" a="0"/>
+                    <object folder="1" file="1" x="188.888889" y="22.222222" angle="113.198591" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="188.888889" y="22.222222" angle="113.198591" a="0"/>
+                    <object folder="1" file="1" x="188.888889" y="22.222222" angle="113.198591" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="188.888889" y="22.222222" angle="113.198591"/>
+                    <object folder="1" file="1" x="188.888889" y="22.222222" angle="113.198591"/>
                 </key>
             </timeline>
             <timeline id="12" name="garland_009">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-50" y="402.222222" angle="69.217341" a="0"/>
+                    <object folder="1" file="1" x="-50" y="402.222222" angle="69.217341" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="-50" y="402.222222" angle="69.217341" a="0"/>
+                    <object folder="1" file="1" x="-50" y="402.222222" angle="69.217341" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="-50" y="402.222222" angle="69.217341"/>
+                    <object folder="1" file="1" x="-50" y="402.222222" angle="69.217341"/>
                 </key>
             </timeline>
             <timeline id="13" name="garland_010">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="368.888889" angle="109.290046" a="0"/>
+                    <object folder="1" file="1" x="74.444444" y="368.888889" angle="109.290046" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="368.888889" angle="109.290046" a="0"/>
+                    <object folder="1" file="1" x="74.444444" y="368.888889" angle="109.290046" a="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="368.888889" angle="109.290046"/>
+                    <object folder="1" file="1" x="74.444444" y="368.888889" angle="109.290046"/>
                 </key>
             </timeline>
             <timeline id="14" name="xmas-snowflake-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="351.009804" y="-498.068627" angle="0" a="0"/>
+                    <object folder="1" file="4" x="351.009804" y="-498.068627" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="6" x="351.009804" y="-498.068627" angle="0" a="1"/>
+                    <object folder="1" file="4" x="351.009804" y="-498.068627" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="6" x="351.009804" y="-498.068627" angle="0"/>
+                    <object folder="1" file="4" x="351.009804" y="-498.068627" angle="0"/>
                 </key>
             </timeline>
             <timeline id="15" name="xmas-ball-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="133.362745" y="-543.166667" angle="0" a="0"/>
+                    <object folder="1" file="5" x="133.362745" y="-543.166667" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="7" x="133.362745" y="-543.166667" angle="0" a="1"/>
+                    <object folder="1" file="5" x="133.362745" y="-543.166667" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="7" x="133.362745" y="-543.166667" angle="0"/>
+                    <object folder="1" file="5" x="133.362745" y="-543.166667" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="xmas-candy-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-94.088235" y="-521.598039" angle="0" a="0"/>
+                    <object folder="1" file="6" x="-94.088235" y="-521.598039" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="8" x="-94.088235" y="-521.598039" angle="0" a="1"/>
+                    <object folder="1" file="6" x="-94.088235" y="-521.598039" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="8" x="-94.088235" y="-521.598039" angle="0"/>
+                    <object folder="1" file="6" x="-94.088235" y="-521.598039" angle="0"/>
                 </key>
             </timeline>
             <timeline id="17" name="xmas-bell-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-333.303922" y="-486.303922" angle="0" a="0"/>
+                    <object folder="1" file="7" x="-333.303922" y="-486.303922" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="9" x="-333.303922" y="-486.303922" angle="0" a="1"/>
+                    <object folder="1" file="7" x="-333.303922" y="-486.303922" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="9" x="-333.303922" y="-486.303922" angle="0"/>
+                    <object folder="1" file="7" x="-333.303922" y="-486.303922" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="xmas-gift-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-229.382353" y="-121.598039" angle="0" a="0"/>
+                    <object folder="1" file="8" x="-229.382353" y="-121.598039" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="10" x="-229.382353" y="-121.598039" angle="0" a="1"/>
+                    <object folder="1" file="8" x="-229.382353" y="-121.598039" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="10" x="-229.382353" y="-121.598039" angle="0"/>
+                    <object folder="1" file="8" x="-229.382353" y="-121.598039" angle="0"/>
                 </key>
             </timeline>
             <timeline id="19" name="xmas-tree-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="233.362745" y="-96.107843" angle="0" a="0"/>
+                    <object folder="1" file="9" x="233.362745" y="-96.107843" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="11" x="233.362745" y="-96.107843" angle="0" a="1"/>
+                    <object folder="1" file="9" x="233.362745" y="-96.107843" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="11" x="233.362745" y="-96.107843" angle="0"/>
+                    <object folder="1" file="9" x="233.362745" y="-96.107843" angle="0"/>
                 </key>
             </timeline>
             <timeline id="20" name="xmas-reindeer-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-119.578431" y="209.77451" angle="0" a="0"/>
+                    <object folder="1" file="10" x="-119.578431" y="209.77451" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="12" x="-119.578431" y="209.77451" angle="0" a="1"/>
+                    <object folder="1" file="10" x="-119.578431" y="209.77451" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="12" x="-119.578431" y="209.77451" angle="0"/>
+                    <object folder="1" file="10" x="-119.578431" y="209.77451" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="xmas-snowman-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="107.872549" y="205.852941" angle="0" a="0"/>
+                    <object folder="1" file="11" x="107.872549" y="205.852941" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="13" x="107.872549" y="205.852941" angle="0" a="1"/>
+                    <object folder="1" file="11" x="107.872549" y="205.852941" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="13" x="107.872549" y="205.852941" angle="0"/>
+                    <object folder="1" file="11" x="107.872549" y="205.852941" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="xmas-santa-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="5.911765" y="599.970588" angle="0" a="0"/>
+                    <object folder="1" file="12" x="5.911765" y="599.970588" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="14" x="5.911765" y="599.970588" angle="0" a="1"/>
+                    <object folder="1" file="12" x="5.911765" y="599.970588" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="14" x="5.911765" y="599.970588" angle="0"/>
+                    <object folder="1" file="12" x="5.911765" y="599.970588" angle="0"/>
                 </key>
             </timeline>
             <timeline id="23" name="xmas-log-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="23" x="8.758065" y="-170.048387" angle="0" a="0"/>
+                    <object folder="1" file="21" x="8.758065" y="-170.048387" angle="0" a="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="0" file="23" x="8.758065" y="-170.048387" angle="0" a="1"/>
+                    <object folder="1" file="21" x="8.758065" y="-170.048387" angle="0" a="1"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="0" file="23" x="8.758065" y="-170.048387" angle="0"/>
+                    <object folder="1" file="21" x="8.758065" y="-170.048387" angle="0"/>
                 </key>
             </timeline>
             <timeline id="24" name="star">
                 <key id="0" spin="0">
-                    <object folder="0" file="24" y="820" angle="0"/>
+                    <object folder="0" file="2" y="820" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="24" y="820" angle="0"/>
+                    <object folder="0" file="2" y="820" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -411,127 +413,127 @@
             </mainline>
             <timeline id="0" name="game-area">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-4.347826" y="1.515152" angle="0"/>
+                    <object folder="0" file="0" x="-4.347826" y="1.515152" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="tree">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
+                    <object folder="0" file="1" y="-80" angle="0" scale_x="1.55" scale_y="1.55"/>
                 </key>
             </timeline>
             <timeline id="2" name="garland">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="300.346405" y="-292.473856" angle="287.001954"/>
+                    <object folder="1" file="1" x="300.346405" y="-292.473856" angle="287.001954"/>
                 </key>
             </timeline>
             <timeline id="3" name="garland_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="187.777778" y="-304.444444" angle="74.281427"/>
+                    <object folder="1" file="1" x="187.777778" y="-304.444444" angle="74.281427"/>
                 </key>
             </timeline>
             <timeline id="4" name="garland_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-51.111111" y="-390" angle="73.638923"/>
+                    <object folder="1" file="1" x="-51.111111" y="-390" angle="73.638923"/>
                 </key>
             </timeline>
             <timeline id="5" name="garland_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="-350" angle="113.160163"/>
+                    <object folder="1" file="1" x="74.444444" y="-350" angle="113.160163"/>
                 </key>
             </timeline>
             <timeline id="6" name="garland_003">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-275.555556" y="-291.111111" angle="74.370404"/>
+                    <object folder="1" file="1" x="-275.555556" y="-291.111111" angle="74.370404"/>
                 </key>
             </timeline>
             <timeline id="7" name="garland_004">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-164.444444" y="-327.777778" angle="107.732584"/>
+                    <object folder="1" file="1" x="-164.444444" y="-327.777778" angle="107.732584"/>
                 </key>
             </timeline>
             <timeline id="8" name="garland_005">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-166.666667" y="72.222222" angle="73.369046"/>
+                    <object folder="1" file="1" x="-166.666667" y="72.222222" angle="73.369046"/>
                 </key>
             </timeline>
             <timeline id="9" name="garland_006">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="65.555556" y="-4.444444" angle="72.377703"/>
+                    <object folder="1" file="1" x="65.555556" y="-4.444444" angle="72.377703"/>
                 </key>
             </timeline>
             <timeline id="10" name="garland_007">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-53.333333" y="24.444444" angle="108.641792"/>
+                    <object folder="1" file="1" x="-53.333333" y="24.444444" angle="108.641792"/>
                 </key>
             </timeline>
             <timeline id="11" name="garland_008">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="188.888889" y="22.222222" angle="113.198591"/>
+                    <object folder="1" file="1" x="188.888889" y="22.222222" angle="113.198591"/>
                 </key>
             </timeline>
             <timeline id="12" name="garland_009">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-50" y="402.222222" angle="69.217341"/>
+                    <object folder="1" file="1" x="-50" y="402.222222" angle="69.217341"/>
                 </key>
             </timeline>
             <timeline id="13" name="garland_010">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="74.444444" y="368.888889" angle="109.290046"/>
+                    <object folder="1" file="1" x="74.444444" y="368.888889" angle="109.290046"/>
                 </key>
             </timeline>
             <timeline id="14" name="xmas-snowflake-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="351.009804" y="-498.068627" angle="0"/>
+                    <object folder="1" file="4" x="351.009804" y="-498.068627" angle="0"/>
                 </key>
             </timeline>
             <timeline id="15" name="xmas-ball-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="133.362745" y="-543.166667" angle="0"/>
+                    <object folder="1" file="5" x="133.362745" y="-543.166667" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="xmas-candy-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-94.088235" y="-521.598039" angle="0"/>
+                    <object folder="1" file="6" x="-94.088235" y="-521.598039" angle="0"/>
                 </key>
             </timeline>
             <timeline id="17" name="xmas-bell-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-333.303922" y="-486.303922" angle="0"/>
+                    <object folder="1" file="7" x="-333.303922" y="-486.303922" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="xmas-gift-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-229.382353" y="-121.598039" angle="0"/>
+                    <object folder="1" file="8" x="-229.382353" y="-121.598039" angle="0"/>
                 </key>
             </timeline>
             <timeline id="19" name="xmas-tree-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="233.362745" y="-96.107843" angle="0"/>
+                    <object folder="1" file="9" x="233.362745" y="-96.107843" angle="0"/>
                 </key>
             </timeline>
             <timeline id="20" name="xmas-reindeer-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-119.578431" y="209.77451" angle="0"/>
+                    <object folder="1" file="10" x="-119.578431" y="209.77451" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="xmas-snowman-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="107.872549" y="205.852941" angle="0"/>
+                    <object folder="1" file="11" x="107.872549" y="205.852941" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="xmas-santa-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="5.911765" y="599.970588" angle="0"/>
+                    <object folder="1" file="12" x="5.911765" y="599.970588" angle="0"/>
                 </key>
             </timeline>
             <timeline id="23" name="xmas-log-dummy-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="23" x="8.758065" y="-170.048387" angle="0"/>
+                    <object folder="1" file="21" x="8.758065" y="-170.048387" angle="0"/>
                 </key>
             </timeline>
             <timeline id="24" name="star">
                 <key id="0" spin="0">
-                    <object folder="0" file="24" y="820" angle="0"/>
+                    <object folder="0" file="2" y="820" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -559,7 +561,7 @@
             </mainline>
             <timeline id="0" name="unknown-boss-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="76.5" angle="90"/>
+                    <object folder="1" file="0" x="76.5" angle="90"/>
                 </key>
             </timeline>
             <timeline id="1" obj="0" name="bone_000" object_type="bone">

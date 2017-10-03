@@ -57,7 +57,7 @@ namespace XmasHell.Screens
 
             //_bossSelectionTreeStar = new SpriterGuiButton(Game.ViewportAdapter, "boss-selection-tree-star", new Sprite(Assets.GetTexture2D("Graphics/GUI/BossSelection/boss-selection-tree-star")));
 
-            LoadSpriterSprite("Graphics/GUI/BossSelection/boss-selection");
+            LoadSpriterSprite("Graphics/GUI/boss-selection");
         }
 
         protected override void LoadSpriterSprite(String spriterFilename)

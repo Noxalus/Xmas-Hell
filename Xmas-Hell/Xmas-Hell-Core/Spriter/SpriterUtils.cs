@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using System.Linq;
+using System.IO;
 
 namespace XmasHell.Spriter
 {
@@ -13,9 +14,10 @@ namespace XmasHell.Spriter
             if (animator.FrameData == null)
                 return null;
 
-            var spriterFile = GetSpriterFile(spritePartFileName, animator);
+            int folderId = 0;
+            var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
-            var fileSpriteDataFound = spriteData.FindAll(so => so.FileId == spriterFile.Id);
+            var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
 
             if (fileSpriteDataFound.Count == 0)
                 return null;
@@ -28,9 +30,10 @@ namespace XmasHell.Spriter
             if (animator.FrameData == null)
                 return Vector2.Zero;
 
-            var spriterFile = GetSpriterFile(spritePartFileName, animator);
+            int folderId = 0;
+            var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
-            var fileSpriteDataFound = spriteData.FindAll(so => so.FileId == spriterFile.Id);
+            var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
 
             if (fileSpriteDataFound.Count == 0)
                 return Vector2.Zero;
@@ -41,22 +44,31 @@ namespace XmasHell.Spriter
 
         public static Point GetSpriterFileSize(string spritePartFileName, MonoGameAnimator animator)
         {
-            var spriteBodyPart = Array.Find(animator.Entity.Spriter.Folders[0].Files, (file) => file.Name == spritePartFileName);
+            foreach (var folder in animator.Entity.Spriter.Folders)
+            {
+                var spriterFileId = Array.FindIndex(folder.Files, (file) => Path.GetFileName(file.Name) == spritePartFileName);
 
-            if (spriteBodyPart == null)
-                return Point.Zero;
+                if (spriterFileId != -1)
+                {
+                    var spriteBodyPart = folder.Files[spriterFileId];
 
-            return new Point(spriteBodyPart.Width, spriteBodyPart.Height);
+                    return new Point(spriteBodyPart.Width, spriteBodyPart.Height);
+                }
+            }
+
+            return Point.Zero;
         }
 
-        public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator)
+        public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator, out int folderId)
         {
             if (animator == null)
                 throw new ArgumentException("Please make sure that a Spriter animator is linked to the given entity.");
 
             foreach (var folder in animator.Entity.Spriter.Folders)
             {
-                var spriterFileId = Array.FindIndex(folder.Files, (file) => file.Name == spritePartFileName);
+                var spriterFileId = Array.FindIndex(folder.Files, (file) => Path.GetFileName(file.Name) == spritePartFileName);
+
+                folderId = folder.Id;
 
                 if (spriterFileId != -1)
                     return folder.Files[spriterFileId];

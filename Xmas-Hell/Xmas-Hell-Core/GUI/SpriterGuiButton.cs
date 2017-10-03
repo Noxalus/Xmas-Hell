@@ -76,13 +76,17 @@ namespace XmasHell.GUI
         {
             // Synchronize current GUI button animator with the related dummy element from the Spriter file
             var spriterDummyData = SpriterUtils.GetSpriterFileData(_spritePartFilename, _referenceAnimator);
-            var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
-            var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
 
-            Position(_referenceAnimator.Position + dummyPosition);
-            Rotation(spriterDummyData.Angle);
-            Scale(dummyScale);
-            Animator.Color = new Color(Animator.Color, spriterDummyData.Alpha);
+            if (spriterDummyData != null)
+            {
+                var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
+                var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
+
+                Position(_referenceAnimator.Position + dummyPosition);
+                Rotation(spriterDummyData.Angle);
+                Scale(dummyScale);
+                Animator.Color = new Color(Animator.Color, spriterDummyData.Alpha);
+            }
         }
     }
 }
