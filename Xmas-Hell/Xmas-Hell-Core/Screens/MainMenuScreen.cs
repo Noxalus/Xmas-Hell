@@ -18,9 +18,9 @@ namespace XmasHell.Screens
         private Song _mainSong;
         private Song _menuSong;
 
-        private SpriterGuiButton _playButton;
+        private bool _goToBossSelectionScreen = false;
 
-        private bool spriterFrameDataAvailable = false;
+        private SpriterGuiButton _playButton;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -35,7 +35,8 @@ namespace XmasHell.Screens
 
         private void OnPlayButtonAction(object s, Point e)
         {
-            Game.ScreenManager.GoTo<BossSelectionScreen>();
+            Animators["MainMenu"].Play("Zoom");
+            Animators["MainMenu"].CurrentAnimation.Looping = false;
         }
 
         public override void LoadContent()
@@ -84,7 +85,11 @@ namespace XmasHell.Screens
             }
 
             if (Animators["MainMenu"] != null)
+            {
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
+                Animators["MainMenu"].Play("Idle");
+                Animators["MainMenu"].AnimationFinished += MainMenuScreen_AnimationFinished;
+            }
             if (Animators["XmasTitle"] != null)
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
         }
@@ -97,13 +102,23 @@ namespace XmasHell.Screens
             {
                 "Graphics/GUI/MainMenu/xmas-title",
             }));
+        }
 
-            Animators["MainMenu"].Position = Game.ViewportAdapter.Center.ToVector2();
+        private void MainMenuScreen_AnimationFinished(string animationName)
+        {
+            if (animationName == "Zoom")
+            {
+                // We can't switch to the BossSelection screen now
+                // because this screen will be removed in the animator.Update()
+                _goToBossSelectionScreen = true;
+            }
         }
 
         public override void Show(bool reset = false)
         {
             base.Show(reset);
+
+            _goToBossSelectionScreen = false;
 
             // Should play music (doesn't seem to work for now...)
             MediaPlayer.Volume = 1f;
@@ -132,6 +147,8 @@ namespace XmasHell.Screens
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
+
+            Animators["MainMenu"].AnimationFinished -= MainMenuScreen_AnimationFinished;
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
@@ -155,6 +172,9 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (_goToBossSelectionScreen)
+                Game.ScreenManager.GoTo<BossSelectionScreen>();
 
             if (_shootFrequency.TotalMilliseconds < 0)
             {

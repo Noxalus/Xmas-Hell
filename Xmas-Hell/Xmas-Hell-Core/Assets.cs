@@ -78,7 +78,6 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-ball-beaten-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-bell-available-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-bell-beaten-button"),
-
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-candy-available-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-candy-beaten-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-snowflake-available-button"),

@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24999999"
-     inkscape:cx="742.59252"
-     inkscape:cy="1054.2061"
+     inkscape:cx="-2165.8928"
+     inkscape:cy="528.88125"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -267,6 +267,29 @@
          sodipodi:nodetypes="cccccccc" />
     </g>
     <g
+       inkscape:export-ydpi="100"
+       inkscape:export-xdpi="100"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\mountain.png"
+       transform="translate(530.65844,-214.60298)"
+       id="g1051">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1045"
+         d="M -604.76195,309.09514 -484.61593,23.647491 -296.73655,317.96499 Z"
+         style="fill:#529fd8;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:#78b4e0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.0001092;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M -589.24671,293.69584 -483.69615,42.924673 -318.64056,301.48817 Z"
+         id="path1047"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path1049"
+         d="m -530.77942,133.91577 27.61747,-22.57778 18.54601,29.23015 18.14287,-30.03652 27.61748,27.61746 13.50634,-21.973 -58.8635,-91.722236 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
        transform="matrix(-0.98069773,0.19552996,0.19552993,0.98069773,-226.14394,-92.800674)"
        id="g16494">
       <path
@@ -285,29 +308,6 @@
          id="path16500"
          d="m -530.77942,133.91577 27.61747,-22.57778 18.54601,29.23015 18.14287,-30.03652 27.61748,27.61746 13.50634,-21.973 -58.8635,-91.722236 z"
          style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
-    <g
-       id="g16486"
-       transform="translate(547.9382,-208.68408)"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\mountain.png"
-       inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100">
-      <path
-         style="fill:#529fd8;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M -604.76195,309.09514 -484.61593,23.647491 -296.73655,317.96499 Z"
-         id="path16488"
-         inkscape:connector-curvature="0" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path16490"
-         d="M -589.24671,293.69584 -483.69615,42.924673 -318.64056,301.48817 Z"
-         style="fill:#78b4e0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.0001092;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m -530.77942,133.91577 27.61747,-22.57778 18.54601,29.23015 18.14287,-30.03652 27.61748,27.61746 13.50634,-21.973 -58.8635,-91.722236 z"
-         id="path16492"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cccccccc" />
     </g>
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222223;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1348,6 +1348,34 @@
          id="path4777"
          d="m -2101.8609,835.14747 c 0,0 28.8445,-18.34153 45.0439,-18.24559 15.2483,0.0903 42.1929,17.67542 42.1929,17.67542"
          style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.64444494;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g1064"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\mountain.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <path
+         style="fill:#529fd8;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -830.11267,545.1933 120.14602,-285.44765 187.87938,294.3175 z"
+         id="path16488"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path16490"
+         d="m -814.59743,529.794 105.55056,-250.77117 165.05559,258.5635 z"
+         style="fill:#78b4e0;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.0001092;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:#e6e6e6;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.82222247;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -756.13014,370.01393 27.61747,-22.57778 18.54601,29.23015 18.14287,-30.03652 27.61748,27.61746 13.50634,-21.973 -58.8635,-91.72224 z"
+         id="path16492"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccccc" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path1058"
+         d="m -742.52611,353.07126 20.09236,-16.42587 13.49267,21.26562 13.19936,-21.85228 20.09237,20.09236 9.82619,-15.98588 -42.82459,-66.7301 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.05323362;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
   <g
