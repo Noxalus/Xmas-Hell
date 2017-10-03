@@ -91,6 +91,8 @@ namespace XmasHell.Screens
 
             // Xmas Bell
             var xmasBellAnimator = Animators["Ball"].Clone();
+            xmasBellAnimator.Play("Balance");
+            xmasBellAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
 
             xmasBellAnimator.AddTextureSwap(
                 "Graphics/GUI/BossSelection/unknown-boss-button",
@@ -106,6 +108,8 @@ namespace XmasHell.Screens
 
             // Xmas Snowflake
             var xmasSnowflakeAnimator = Animators["Ball"].Clone();
+            xmasSnowflakeAnimator.Play("Balance");
+            xmasSnowflakeAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
 
             xmasSnowflakeAnimator.AddTextureSwap(
                 "Graphics/GUI/BossSelection/unknown-boss-button",
@@ -121,6 +125,8 @@ namespace XmasHell.Screens
 
             // Xmas Candy
             var xmasCandyAnimator = Animators["Ball"].Clone();
+            xmasCandyAnimator.Play("Balance");
+            xmasCandyAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
 
             xmasCandyAnimator.AddTextureSwap(
                 "Graphics/GUI/BossSelection/unknown-boss-button",
@@ -136,6 +142,8 @@ namespace XmasHell.Screens
 
             // Xmas Gift
             var xmasGiftAnimator = Animators["Ball"].Clone();
+            xmasGiftAnimator.Play("Balance");
+            xmasGiftAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
 
             xmasGiftAnimator.AddTextureSwap(
                 "Graphics/GUI/BossSelection/unknown-boss-button",
@@ -151,6 +159,8 @@ namespace XmasHell.Screens
 
             // Xmas Log
             var xmasLogAnimator = Animators["Ball"].Clone();
+            xmasLogAnimator.Play("Balance");
+            xmasLogAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
 
             xmasLogAnimator.AddTextureSwap(
                 "Graphics/GUI/BossSelection/unknown-boss-button",
