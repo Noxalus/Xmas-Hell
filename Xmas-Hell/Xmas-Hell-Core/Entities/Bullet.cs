@@ -81,8 +81,8 @@ namespace XmasHell.Entities
 
         private void CheckOutOfBounds()
         {
-            if (Position().X < 100 || Position().X > GameConfig.VirtualResolution.X - 100 ||
-                Position().Y < 100 || Position().Y > GameConfig.VirtualResolution.Y -100)
+            if (Position().X < 0 || Position().X > GameConfig.VirtualResolution.X ||
+                Position().Y < 0 || Position().Y > GameConfig.VirtualResolution.Y)
             {
                 Destroy();
             }
