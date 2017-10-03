@@ -27,3 +27,8 @@ artifacts:
     name: Xmas Hell
 deploy_script:
   - ps: '& ./Scripts/AndroidHockeyAppUpload.ps1'
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: s4vgF9WsZKzqj5GooTp+oZP/sIPWVGDyxSbWCu6UhCd2xuPnGTUq60XZGQUfMwFa
+  prerelease: true
