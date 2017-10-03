@@ -7,7 +7,7 @@ namespace XmasHell.Entities
         public PlayerBullet(XmasHell game, Vector2 position, float rotation, float speed) :
             base(game, position, rotation, speed)
         {
-            Sprite.Color = Color.White * 0.65f;
+            Sprite.Color = new Color(Color.White, 0.65f);
         }
 
         public override void Update(GameTime gameTime)
