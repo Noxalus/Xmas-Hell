@@ -88,8 +88,8 @@ namespace XmasHell.Spriter
 
                 if (_hiddenTextures.Find(n => n == sprite.Texture().Name) == null)
                 {
-                    if (_textureSwapMap.ContainsKey(sprite.Texture().Name))
-                        sprite.Texture(_textureSwapMap[sprite.Texture().Name]);
+                    if (_textureSwapMap.ContainsKey(sprite.Texture().Name) && _textureSwapMap[sprite.Texture().Name] != null)
+                        sprite = new TextureSprite(_textureSwapMap[sprite.Texture().Name]);
 
                     sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
                 }
