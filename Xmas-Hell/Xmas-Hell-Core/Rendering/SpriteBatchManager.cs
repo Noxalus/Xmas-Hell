@@ -156,7 +156,7 @@ namespace XmasHell.Rendering
         {
             _game.SpriteBatch.Begin(
                 samplerState: SamplerState.PointClamp,
-                blendState: BlendState.AlphaBlend,
+                blendState: BlendState.NonPremultiplied,
                 transformMatrix: _game.ViewportAdapter.GetScaleMatrix()
             );
         }
