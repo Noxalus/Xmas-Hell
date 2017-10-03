@@ -63,8 +63,6 @@ namespace XmasHell.Screens
         protected override void LoadSpriterSprite(String spriterFilename)
         {
             base.LoadSpriterSprite(spriterFilename);
-
-            Animators["BossSelection"].Play("NoAnimation");
         }
 
         protected override void InitializeSpriterGui()
@@ -74,6 +72,9 @@ namespace XmasHell.Screens
             foreach(var bossName in _bossNames)
             {
                 var ballAnimator = Animators["Ball"].Clone();
+                ballAnimator.Play("Balance");
+                ballAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
+                ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
 
                 ballAnimator.AddTextureSwap(
                     "Graphics/GUI/BossSelection/unknown-boss-button",
@@ -104,7 +105,19 @@ namespace XmasHell.Screens
             }
 
             if (Animators["BossSelection"] != null)
+            {
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
+                Animators["BossSelection"].Play("Intro");
+                Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
+            }
+        }
+
+        private void BossSelectionScreen_AnimationFinished(string animationName)
+        {
+            if (animationName == "Intro")
+            {
+                Animators["BossSelection"].Play("NoAnimation");
+            }
         }
 
         public override void Show(bool reset = false)
@@ -130,6 +143,7 @@ namespace XmasHell.Screens
             }
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
+            Animators["BossSelection"].AnimationFinished -= BossSelectionScreen_AnimationFinished;
         }
 
         public override void Update(GameTime gameTime)
