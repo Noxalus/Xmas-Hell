@@ -11,12 +11,10 @@ namespace XmasHell.Screens
     {
         private SpriterGuiButton _bossSelectionTreeStar;
         private List<SpriterGuiButton> _bossButtons;
-        //private SpriterGuiButton _xmasBallBossButton;
-        //private SpriterGuiButton _xmasBellBossButton;
-        //private SpriterGuiButton _xmasSnowflakeBossButton;
-        //private SpriterGuiButton _xmasCandyBossButton;
-        //private SpriterGuiButton _xmasLogBossButton;
-        //private SpriterGuiButton _xmasGiftBossButton;
+        private readonly List<string> _bossNames = new List<string>()
+        {
+            "ball", "bell", "snowflake", "candy", "gift", "log"
+        };
 
         private bool _treeFlipped;
 
@@ -66,113 +64,29 @@ namespace XmasHell.Screens
         {
             base.LoadSpriterSprite(spriterFilename);
 
-            Animators["BossSelection"].Position = Game.ViewportAdapter.Center.ToVector2();
+            Animators["BossSelection"].Play("NoAnimation");
         }
 
         protected override void InitializeSpriterGui()
         {
             // TODO: Choose the animator entity according to player state (from Android preferences)
 
-            // Xmas Ball
-            var xmasBallAnimator = Animators["Ball"].Clone();
-            xmasBallAnimator.Speed *= Game.GameManager.Random.Next(2, 5);
+            foreach(var bossName in _bossNames)
+            {
+                var ballAnimator = Animators["Ball"].Clone();
 
-            xmasBallAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-ball-available-button")
-            );
+                ballAnimator.AddTextureSwap(
+                    "Graphics/GUI/BossSelection/unknown-boss-button",
+                    Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossName + "-available-button")
+                );
 
-            var xmasBallBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasBall", "Graphics/GUI/BossSelection/xmas-ball-dummy-boss-button.png",
-                xmasBallAnimator, Animators["BossSelection"]
-            );
+                var bossButton = new SpriterGuiButton(
+                    Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName  + "-dummy-boss-button.png",
+                    ballAnimator, Animators["BossSelection"]
+                );
 
-            _bossButtons.Add(xmasBallBossButton);
-
-            // Xmas Bell
-            var xmasBellAnimator = Animators["Ball"].Clone();
-            xmasBellAnimator.Play("Balance");
-            xmasBellAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-
-            xmasBellAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-bell-available-button")
-            );
-
-            var xmasBellBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasBell", "Graphics/GUI/BossSelection/xmas-bell-dummy-boss-button.png",
-                xmasBellAnimator, Animators["BossSelection"]
-            );
-
-            _bossButtons.Add(xmasBellBossButton);
-
-            // Xmas Snowflake
-            var xmasSnowflakeAnimator = Animators["Ball"].Clone();
-            xmasSnowflakeAnimator.Play("Balance");
-            xmasSnowflakeAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-
-            xmasSnowflakeAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-snowflake-available-button")
-            );
-
-            var xmasSnowflakeBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasSnowflake", "Graphics/GUI/BossSelection/xmas-snowflake-dummy-boss-button.png",
-                xmasSnowflakeAnimator, Animators["BossSelection"]
-            );
-
-            _bossButtons.Add(xmasSnowflakeBossButton);
-
-            // Xmas Candy
-            var xmasCandyAnimator = Animators["Ball"].Clone();
-            xmasCandyAnimator.Play("Balance");
-            xmasCandyAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-
-            xmasCandyAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-candy-available-button")
-            );
-
-            var xmasCandyBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasCandy", "Graphics/GUI/BossSelection/xmas-candy-dummy-boss-button.png",
-                xmasCandyAnimator, Animators["BossSelection"]
-            );
-
-            _bossButtons.Add(xmasCandyBossButton);
-
-            // Xmas Gift
-            var xmasGiftAnimator = Animators["Ball"].Clone();
-            xmasGiftAnimator.Play("Balance");
-            xmasGiftAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-
-            xmasGiftAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-gift-available-button")
-            );
-
-            var xmasGiftBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasGift", "Graphics/GUI/BossSelection/xmas-gift-dummy-boss-button.png",
-                xmasGiftAnimator, Animators["BossSelection"]
-            );
-
-            _bossButtons.Add(xmasGiftBossButton);
-
-            // Xmas Log
-            var xmasLogAnimator = Animators["Ball"].Clone();
-            xmasLogAnimator.Play("Balance");
-            xmasLogAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-
-            xmasLogAnimator.AddTextureSwap(
-                "Graphics/GUI/BossSelection/unknown-boss-button",
-                Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-log-available-button")
-            );
-
-            var xmasLogBossButton = new SpriterGuiButton(
-                Game.ViewportAdapter, "XmasLog", "Graphics/GUI/BossSelection/xmas-log-dummy-boss-button.png",
-                xmasLogAnimator, Animators["BossSelection"]
-            );
-
-            _bossButtons.Add(xmasLogBossButton);
+                _bossButtons.Add(bossButton);
+            }
 
             ResetUI();
         }

@@ -59,27 +59,27 @@ namespace XmasHell.Entities.Bosses
         {
             switch (type)
             {
-                case "Debug":
+                case "debug":
                     return BossType.Debug;
-                case "XmasBall":
+                case "ball":
                     return BossType.XmasBall;
-                case "XmasBell":
+                case "bell":
                     return BossType.XmasBell;
-                case "XmasCandy":
+                case "candy":
                     return BossType.XmasCandy;
-                case "XmasSnowflake":
+                case "snowflake":
                     return BossType.XmasSnowflake;
-                case "XmasLog":
+                case "log":
                     return BossType.XmasLog;
-                case "XmasTree":
+                case "tree":
                     return BossType.XmasTree;
-                case "XmasGift":
+                case "gift":
                     return BossType.XmasGift;
-                case "XmasReinder":
+                case "reinder":
                     return BossType.XmasReinder;
-                case "XmasSnowman":
+                case "snowman":
                     return BossType.XmasSnowman;
-                case "XmasSanta":
+                case "santa":
                     return BossType.XmasSanta;
                 default:
                     return BossType.Debug;
