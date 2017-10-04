@@ -380,6 +380,14 @@ namespace XmasHell.Entities
 
         private void UpdateShoot(GameTime gameTime)
         {
+#if ANDROID
+            if (InputManager.TouchCount() != 1 || !InputManager.TouchIsDown())
+                return;
+#else
+            if (!InputManager.KeyDown(Keys.LeftControl))
+                return;
+#endif
+
             if (_bulletFrequence.TotalMilliseconds > 0)
                 _bulletFrequence -= gameTime.ElapsedGameTime;
             else

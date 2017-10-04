@@ -291,6 +291,11 @@ namespace Xmas_Hell_Core.Controls
             return _touchState.Count > 0 && _lastTouchState.Count == 0 && _touchState[0].State == TouchLocationState.Pressed;
         }
 
+        public static bool TouchIsDown()
+        {
+            return _touchState.Count > 0;
+        }
+
         public static Point TouchPosition()
         {
             return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : (_lastTouchState.Count > 0) ? _lastTouchState[0].Position.ToPoint() : Point.Zero;
