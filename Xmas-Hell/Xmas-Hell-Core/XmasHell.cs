@@ -11,9 +11,14 @@ using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
 using XmasHell.GUI;
+using System;
+using XmasHell.PlayerData;
 
 #if ANDROID
 using Xmas_Hell_Android;
+using Android.Util;
+using Android.Preferences;
+using Android.Content;
 #endif
 
 namespace XmasHell
@@ -31,6 +36,7 @@ namespace XmasHell
         public GameManager GameManager;
         public ScreenManager ScreenManager;
         public GuiManager GuiManager;
+        public PlayerData.PlayerData PlayerData;
 
         public bool Pause;
 
@@ -121,11 +127,14 @@ namespace XmasHell
                 ScreenManager.AddScreen(new BossSelectionScreen(this));
                 ScreenManager.AddScreen(new GameScreen(this));
 
-                //ScreenManager.GetScreen<GameScreen>().LoadBoss(Entities.Bosses.BossType.XmasBell);
-                //ScreenManager.GoTo<GameScreen>();
-
                 ScreenManager.GoTo<MainMenuScreen>();
             }
+#if ANDROID
+            ISharedPreferences prefs = _activity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
+            PlayerData = new PlayerData.PlayerData(prefs);
+#else
+            PlayerData = new PlayerData.PlayerData();
+#endif
         }
 
         protected override void LoadContent()
@@ -145,6 +154,27 @@ namespace XmasHell
             gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[level].Item1, GameConfig.BackgroundGradients[level].Item2);
             SpriteBatchManager.Background = gradientBackground;
         }
+
+#if ANDROID
+        public void OnDestroy()
+        {
+            Log.Debug("XmasHell", "Destroy");
+        }
+
+        public void OnPause()
+        {
+            Log.Debug("XmasHell", "Pause");
+            Log.Debug("XmasHell", "Save player data");
+
+            //StaticClassSerializer.Save(typeof(PlayerData.PlayerData), "PlayerData.dat");
+            //StaticClassSerializer.Save(typeof(BossesData), "BossesData.dat");
+        }
+
+        public void OnResume()
+        {
+            Log.Debug("XmasHell", "Resume");
+        }
+#endif
 
         protected override void UnloadContent()
         {

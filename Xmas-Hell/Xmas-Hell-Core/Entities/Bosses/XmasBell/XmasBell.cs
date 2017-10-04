@@ -6,7 +6,8 @@ namespace XmasHell.Entities.Bosses.XmasBell
 {
     class XmasBell : Boss
     {
-        public XmasBell(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasBell(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasBell, playerPositionDelegate)
         {
             // Spriter
             SpriterFilename = "Graphics/Sprites/Bosses/XmasBell/xmas-bell";
@@ -38,7 +39,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            CurrentBehaviourIndex = 3;
         }
     }
 }

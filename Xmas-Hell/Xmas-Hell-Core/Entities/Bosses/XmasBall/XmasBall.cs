@@ -7,7 +7,8 @@ namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBall : Boss
     {
-        public XmasBall(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasBall(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasBall, playerPositionDelegate)
         {
             // BulletML
             BulletPatternFiles.Add("XmasBall/pattern1");
@@ -39,8 +40,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
         protected override void Reset()
         {
             base.Reset();
-
-            //Life = InitialLife / 2f;
         }
 
         public override void Update(GameTime gameTime)
@@ -51,7 +50,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-            //CurrentBehaviourIndex = 1;
         }
     }
 }

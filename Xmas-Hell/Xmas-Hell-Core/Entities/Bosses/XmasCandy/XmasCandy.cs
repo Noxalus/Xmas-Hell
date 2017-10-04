@@ -6,7 +6,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 {
     class XmasCandy : Boss
     {
-        public XmasCandy(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasCandy(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasCandy, playerPositionDelegate)
         {
             InitialLife = 500f;
 

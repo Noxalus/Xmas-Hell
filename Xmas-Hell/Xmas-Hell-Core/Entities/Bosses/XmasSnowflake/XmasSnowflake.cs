@@ -5,7 +5,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 {
     class XmasSnowflake : Boss
     {
-        public XmasSnowflake(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasSnowflake(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasSnowflake, playerPositionDelegate)
         {
             InitialLife = 500f;
 

@@ -15,14 +15,16 @@ namespace Xmas_Hell_Android
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class XmasHellActivity : Microsoft.Xna.Framework.AndroidGameActivity, View.IOnSystemUiVisibilityChangeListener
     {
+        private XmasHell.XmasHell _game;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var g = new XmasHell.XmasHell(this);
-            View vw = (View)g.Services.GetService(typeof(View));
+            _game = new XmasHell.XmasHell(this);
+            View vw = (View)_game.Services.GetService(typeof(View));
 
             SetContentView(vw);
-            g.Run();
+            _game.Run();
 
             vw.SetOnSystemUiVisibilityChangeListener(this);
             HideSystemUi();
@@ -37,6 +39,30 @@ namespace Xmas_Hell_Android
         {
             SystemUiFlags flags = SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky;
             this.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            if (_game != null)
+                _game.OnDestroy();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            if (_game != null)
+                _game.OnPause();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            if (_game != null)
+                _game.OnResume();
         }
     }
 }

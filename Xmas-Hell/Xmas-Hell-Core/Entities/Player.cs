@@ -170,6 +170,8 @@ namespace XmasHell.Entities
 
             _destroyed = true;
 
+            _game.PlayerData.DeathCounter(_game.PlayerData.DeathCounter() + 1);
+
             Dispose();
         }
 

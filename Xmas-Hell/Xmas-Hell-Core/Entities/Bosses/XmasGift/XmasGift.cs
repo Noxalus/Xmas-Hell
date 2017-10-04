@@ -28,7 +28,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         private DebugView _debugView;
 
-        public XmasGift(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasGift(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasGift, playerPositionDelegate)
         {
             // Spriter
             SpriterFilename = "Graphics/Sprites/Bosses/XmasGift/xmas-gift";

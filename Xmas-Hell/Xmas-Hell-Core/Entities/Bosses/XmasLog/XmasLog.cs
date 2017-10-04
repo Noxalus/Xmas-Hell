@@ -6,7 +6,8 @@ namespace XmasHell.Entities.Bosses.XmasLog
 {
     class XmasLog : Boss
     {
-        public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) : base(game, playerPositionDelegate)
+        public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) :
+            base(game, BossType.XmasLog, playerPositionDelegate)
         {
             // BulletML
             BulletPatternFiles.Add("sample");

@@ -31,6 +31,7 @@ namespace XmasHell.Entities.Bosses
     public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
         public XmasHell Game;
+        protected readonly BossType BossType;
         public Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;
@@ -220,9 +221,10 @@ namespace XmasHell.Entities.Bosses
 
         #endregion
 
-        protected Boss(XmasHell game, PositionDelegate playerPositionDelegate)
+        protected Boss(XmasHell game, BossType type, PositionDelegate playerPositionDelegate)
         {
             Game = game;
+            BossType = type;
             _playerPositionDelegate = playerPositionDelegate;
 
             InitialPosition = new Vector2(
@@ -713,6 +715,15 @@ namespace XmasHell.Entities.Bosses
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {
+                if (PreviousBehaviourIndex == Behaviours.Count - 1)
+                {
+                    Game.PlayerData.BossBeatenCounter(BossType, Game.PlayerData.BossBeatenCounter(BossType) + 1);
+
+                    // Don't do that here, call a method from GameManager to end the game
+                    Game.ScreenManager.Back();
+                    return;
+                }
+
                 if (PreviousBehaviourIndex >= 0)
                     Behaviours[PreviousBehaviourIndex].Stop();
 
