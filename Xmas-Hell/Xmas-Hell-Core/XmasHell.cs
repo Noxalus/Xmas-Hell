@@ -164,10 +164,6 @@ namespace XmasHell
         public void OnPause()
         {
             Log.Debug("XmasHell", "Pause");
-            Log.Debug("XmasHell", "Save player data");
-
-            //StaticClassSerializer.Save(typeof(PlayerData.PlayerData), "PlayerData.dat");
-            //StaticClassSerializer.Save(typeof(BossesData), "BossesData.dat");
         }
 
         public void OnResume()

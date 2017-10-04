@@ -27,7 +27,6 @@ namespace XmasHell.PlayerData
         public void DeathCounter(int value)
         {
 #if ANDROID
-            Log.Debug("XmasHell", "Death counter: " + value);
             _preferencesEditor.PutInt("deathCounter", value);
             _preferencesEditor.Apply();
 #endif
@@ -45,7 +44,6 @@ namespace XmasHell.PlayerData
         public void BossBeatenCounter(BossType type, int value)
         {
 #if ANDROID
-            Log.Debug("XmasHell", "BossBeatenCounter: " + value);
             _preferencesEditor.PutInt("BossBeatenCounter-" + type.ToString(), value);
             _preferencesEditor.Apply();
 #endif
