@@ -76,13 +76,6 @@ namespace XmasHell.Screens
                 ballAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
                 ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
 
-                var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossName)) > 0;
-
-                ballAnimator.AddTextureSwap(
-                    "Graphics/GUI/BossSelection/unknown-boss-button",
-                    Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossName + "-" + ((beaten) ? "beaten" : "available") + "-button")
-                );
-
                 var bossButton = new SpriterGuiButton(
                     Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName  + "-dummy-boss-button.png",
                     ballAnimator, Animators["BossSelection"]
@@ -103,6 +96,13 @@ namespace XmasHell.Screens
 #else
                 bossButton.Click += OnBossButtonAction;
 #endif
+                var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
+
+                bossButton.Animator.AddTextureSwap(
+                    "Graphics/GUI/BossSelection/unknown-boss-button",
+                    Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
+                );
+
                 Game.GuiManager.AddButton(bossButton);
             }
 

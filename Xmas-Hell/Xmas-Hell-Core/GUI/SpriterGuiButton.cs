@@ -10,8 +10,8 @@ namespace XmasHell.GUI
 {
     public class SpriterGuiButton : AbstractGuiButton
     {
-        public MonoGameAnimator Animator;
-        public MonoGameAnimator _referenceAnimator;
+        public CustomSpriterAnimator Animator;
+        public CustomSpriterAnimator _referenceAnimator;
         private String _spritePartFilename;
 
         public override Vector2 Position()

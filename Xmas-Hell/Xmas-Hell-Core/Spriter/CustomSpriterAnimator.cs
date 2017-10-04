@@ -62,8 +62,10 @@ namespace XmasHell.Spriter
 
         public void AddTextureSwap(string originalTextureName, Texture2D textureToUse)
         {
-            if (!_textureSwapMap.ContainsKey(originalTextureName))
-                _textureSwapMap.Add(originalTextureName, textureToUse);
+            if (_textureSwapMap.ContainsKey(originalTextureName))
+                _textureSwapMap.Remove(originalTextureName);
+
+            _textureSwapMap.Add(originalTextureName, textureToUse);
         }
 
         protected override void ApplyPointTransform(string name, SpriterObject info)
