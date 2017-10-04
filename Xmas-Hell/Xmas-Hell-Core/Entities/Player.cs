@@ -225,7 +225,7 @@ namespace XmasHell.Entities
 
         private void UpdatePositionFromTouch(GameTime gameTime)
         {
-            if (InputManager.TouchCount() > 0)
+            if (InputManager.TouchCount() == 1)
             {
                 if (InputManager.TouchDown())
                 {
