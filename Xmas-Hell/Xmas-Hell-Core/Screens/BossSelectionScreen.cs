@@ -142,6 +142,7 @@ namespace XmasHell.Screens
                 Game.GuiManager.RemoveButton(bossButton);
             }
 
+            Animators["BossSelection"].Play("Idle");
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
             Animators["BossSelection"].AnimationFinished -= BossSelectionScreen_AnimationFinished;
         }
