@@ -284,6 +284,8 @@ namespace XmasHell.Entities.Bosses
             InitializePhysics();
 
             Reset();
+
+            Game.PlayerData.BossAttempts(BossType, Game.PlayerData.BossAttempts(BossType) + 1);
         }
 
         public void Dispose()

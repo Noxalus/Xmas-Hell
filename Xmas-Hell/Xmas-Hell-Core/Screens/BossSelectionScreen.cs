@@ -16,6 +16,16 @@ namespace XmasHell.Screens
             "ball", "bell", "snowflake", "candy", "gift", "log", "tree", "reindeer", "snowman", "santa"
         };
 
+        private readonly Dictionary<string, Tuple<string, string>> _bossRelations = new Dictionary<string, Tuple<string, string>>
+        {
+            { "santa", new Tuple<string, string>("reindeer", "snowman") },
+            { "reindeer", new Tuple<string, string>("gift", "log") },
+            { "snowman", new Tuple<string, string>("log", "tree") },
+            { "gift", new Tuple<string, string>("bell", "candy") },
+            { "log", new Tuple<string, string>("candy", "ball") },
+            { "tree", new Tuple<string, string>("ball", "snowflake") }
+        };
+
         private bool _treeFlipped;
 
         public BossSelectionScreen(XmasHell game) : base(game)
@@ -67,8 +77,6 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
-            // TODO: Choose the animator entity according to player state (from Android preferences)
-
             foreach(var bossName in _bossNames)
             {
                 var ballAnimator = Animators["Ball"].Clone();
@@ -96,12 +104,23 @@ namespace XmasHell.Screens
 #else
                 bossButton.Click += OnBossButtonAction;
 #endif
-                var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
+                var noRelation = !_bossRelations.ContainsKey(bossButton.Name);
 
-                bossButton.Animator.AddTextureSwap(
-                    "Graphics/GUI/BossSelection/unknown-boss-button",
-                    Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
-                );
+                var available = noRelation ||
+                    (Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item1)) > 0 &&
+                    Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item2)) > 0);
+
+                var hidden = Game.PlayerData.BossAttempts(BossFactory.StringToBossType(bossButton.Name)) == 0;
+
+                if (noRelation || (available && !hidden))
+                {
+                    var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
+
+                    bossButton.Animator.AddTextureSwap(
+                        "Graphics/GUI/BossSelection/unknown-boss-button",
+                        Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
+                    );
+                }
 
                 Game.GuiManager.AddButton(bossButton);
             }

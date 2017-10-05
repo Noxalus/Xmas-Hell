@@ -41,6 +41,8 @@ namespace XmasHell.PlayerData
 #endif
         }
 
+        // Boss specific data
+
         public void BossBeatenCounter(BossType type, int value)
         {
 #if ANDROID
@@ -56,7 +58,23 @@ namespace XmasHell.PlayerData
 #else
             return 0;
 #endif
+        }
 
+        public void BossAttempts(BossType type, int value)
+        {
+#if ANDROID
+            _preferencesEditor.PutInt("BossAttempts-" + type.ToString(), value);
+            _preferencesEditor.Apply();
+#endif
+        }
+
+        public int BossAttempts(BossType type)
+        {
+#if ANDROID
+            return _preferences.GetInt("BossAttempts-" + type.ToString(), 0);
+#else
+            return 0;
+#endif
         }
     }
 }
