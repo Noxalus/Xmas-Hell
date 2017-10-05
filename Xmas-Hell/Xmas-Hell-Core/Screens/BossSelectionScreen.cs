@@ -13,7 +13,7 @@ namespace XmasHell.Screens
         private List<SpriterGuiButton> _bossButtons;
         private readonly List<string> _bossNames = new List<string>()
         {
-            "ball", "bell", "snowflake", "candy", "gift", "log"
+            "ball", "bell", "snowflake", "candy", "gift", "log", "tree", "reindeer", "snowman", "santa"
         };
 
         private bool _treeFlipped;
@@ -77,7 +77,7 @@ namespace XmasHell.Screens
                 ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
 
                 var bossButton = new SpriterGuiButton(
-                    Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName  + "-dummy-boss-button.png",
+                    Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName  + "-available-button.png",
                     ballAnimator, Animators["BossSelection"]
                 );
 

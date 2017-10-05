@@ -901,18 +901,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-ball-beaten-button.png
 
-#begin Graphics/GUI/BossSelection/xmas-ball-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-ball-dummy-boss-button.png
-
 #begin Graphics/GUI/BossSelection/xmas-bell-available-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -936,18 +924,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-bell-beaten-button.png
-
-#begin Graphics/GUI/BossSelection/xmas-bell-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-bell-dummy-boss-button.png
 
 #begin Graphics/GUI/BossSelection/xmas-candy-available-button.png
 /importer:TextureImporter
@@ -973,18 +949,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-candy-beaten-button.png
 
-#begin Graphics/GUI/BossSelection/xmas-candy-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-candy-dummy-boss-button.png
-
 #begin Graphics/GUI/BossSelection/xmas-gift-available-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1008,30 +972,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-gift-beaten-button.png
-
-#begin Graphics/GUI/BossSelection/xmas-gift-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-gift-dummy-boss-button.png
-
-#begin Graphics/GUI/BossSelection/xmas-log-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-log-dummy-boss-button.png
 
 #begin Graphics/GUI/BossSelection/xmas-reindeer-available-button.png
 /importer:TextureImporter
@@ -1057,18 +997,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-reindeer-beaten-button.png
 
-#begin Graphics/GUI/BossSelection/xmas-reindeer-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-reindeer-dummy-boss-button.png
-
 #begin Graphics/GUI/BossSelection/xmas-santa-available-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1092,18 +1020,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-santa-beaten-button.png
-
-#begin Graphics/GUI/BossSelection/xmas-santa-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-santa-dummy-boss-button.png
 
 #begin Graphics/GUI/BossSelection/xmas-snowflake-available-button.png
 /importer:TextureImporter
@@ -1129,18 +1045,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-snowflake-beaten-button.png
 
-#begin Graphics/GUI/BossSelection/xmas-snowflake-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-snowflake-dummy-boss-button.png
-
 #begin Graphics/GUI/BossSelection/xmas-snowman-available-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1165,18 +1069,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-snowman-beaten-button.png
 
-#begin Graphics/GUI/BossSelection/xmas-snowman-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-snowman-dummy-boss-button.png
-
 #begin Graphics/GUI/BossSelection/xmas-tree-available-button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1200,18 +1092,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/BossSelection/xmas-tree-beaten-button.png
-
-#begin Graphics/GUI/BossSelection/xmas-tree-dummy-boss-button.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/GUI/BossSelection/xmas-tree-dummy-boss-button.png
 
 #begin Graphics/GUI/MainMenu/achievement-button.png
 /importer:TextureImporter
@@ -1378,4 +1258,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/tree.png
+
+#begin Graphics/GUI/BossSelection/xmas-log-available-button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/GUI/BossSelection/xmas-log-available-button.png
+
+#begin Graphics/GUI/BossSelection/xmas-log-beaten-button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/GUI/BossSelection/xmas-log-beaten-button.png
 

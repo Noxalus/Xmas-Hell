@@ -246,6 +246,12 @@ namespace XmasHell.Entities
                 _initialTouchPosition = Point.Zero;
                 //CurrentAnimator.Play("Idle");
             }
+
+            if (InputManager.TouchUp())
+            {
+                _initialSpritePosition = Vector2.Zero;
+                _initialTouchPosition = Point.Zero;
+            }
         }
 
         private void UpdatePositionFromKeyboard(GameTime gameTime)
