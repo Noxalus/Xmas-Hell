@@ -7,7 +7,7 @@
       <action>
         <fire>
           <bullet>
-            <direction type="relative">($rand * 50) - 50</direction>
+            <direction type="relative">($rand * 50) - 25</direction>
             <speed>5 + $rand * 3</speed>
             <sprite>2</sprite>
           </bullet>
