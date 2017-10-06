@@ -61,7 +61,6 @@ namespace XmasHell.GUI
             base(viewportAdapter, buttonName)
         {
             SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator);
-            referenceAnimator.AddHiddenTexture(Path.ChangeExtension(spritePartCompleteFilename, null));
         }
 
         public override void Update(GameTime gameTime)

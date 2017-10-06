@@ -24,6 +24,8 @@ namespace XmasHell.Spriter
 
             _replacedSpriterFile = SpriterUtils.GetSpriterFileStaticData(_replacedPartFilename, SubstituteAnimator);
             _replacedSpriterFileHalfSize = new Size2(_replacedSpriterFile.Width / 2, _replacedSpriterFile.Height / 2);
+
+            referenceAnimator.AddHiddenTexture(replacedPartFilename);
         }
 
         public void Update(GameTime gameTime)

@@ -11,7 +11,8 @@ namespace XmasHell.Screens
     public class BossSelectionScreen : Screen
     {
         private SpriterGuiButton _bossSelectionTreeStar;
-        private List<SpriterGuiButton> _bossButtons;
+        private List<SpriterGuiButton> _bossButtons = new List<SpriterGuiButton>();
+        private List<SpriterSubstituteEntity> _bossGarlands = new List<SpriterSubstituteEntity>();
         private readonly List<string> _bossNames = new List<string>()
         {
             "ball", "bell", "snowflake", "candy", "gift", "log", "tree", "reindeer", "snowman", "santa"
@@ -31,7 +32,6 @@ namespace XmasHell.Screens
 
         public BossSelectionScreen(XmasHell game) : base(game)
         {
-            _bossButtons = new List<SpriterGuiButton>();
         }
 
         public override void Initialize()
@@ -78,14 +78,27 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
-
-
             foreach(var bossName in _bossNames)
             {
                 var ballAnimator = Animators["Ball"].Clone();
                 ballAnimator.Play("Balance");
                 ballAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
                 ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
+
+                var hasRelation = _bossRelations.ContainsKey(bossName);
+
+                if (hasRelation)
+                {
+                    _bossGarlands.Add(new SpriterSubstituteEntity(
+                        "xmas-" + _bossRelations[bossName].Item1 + "-" + bossName + "-garland.png",
+                        Animators["BossSelection"], Animators["Garland"].Clone()
+                    ));
+
+                    _bossGarlands.Add(new SpriterSubstituteEntity(
+                        "xmas-" + _bossRelations[bossName].Item2 + "-" + bossName + "-garland.png",
+                        Animators["BossSelection"], Animators["Garland"].Clone()
+                    ));
+                }
 
                 var bossButton = new SpriterGuiButton(
                     Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName  + "-available-button.png",
@@ -100,6 +113,16 @@ namespace XmasHell.Screens
 
         private void ResetUI()
         {
+            if (Animators["BossSelection"] != null)
+            {
+                Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
+                Animators["BossSelection"].Play("Intro");
+                Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
+            }
+
+            foreach (var garland in _bossGarlands)
+                Game.SpriteBatchManager.AddSpriterAnimator(garland.SubstituteAnimator, Layer.UI);
+
             foreach (var bossButton in _bossButtons)
             {
 #if ANDROID
@@ -107,15 +130,15 @@ namespace XmasHell.Screens
 #else
                 bossButton.Click += OnBossButtonAction;
 #endif
-                var noRelation = !_bossRelations.ContainsKey(bossButton.Name);
+                var hasRelation = _bossRelations.ContainsKey(bossButton.Name);
 
-                var available = noRelation ||
+                var available = !hasRelation ||
                     (Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item1)) > 0 &&
                     Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item2)) > 0);
 
                 var hidden = Game.PlayerData.BossAttempts(BossFactory.StringToBossType(bossButton.Name)) == 0;
 
-                if (noRelation || (available && !hidden))
+                if (!hasRelation || (available && !hidden))
                 {
                     var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
 
@@ -127,16 +150,6 @@ namespace XmasHell.Screens
 
                 Game.GuiManager.AddButton(bossButton);
             }
-
-            if (Animators["BossSelection"] != null)
-            {
-                Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
-                Animators["BossSelection"].Play("Intro");
-                Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
-            }
-
-            if (Animators["Garland"] != null)
-                Game.SpriteBatchManager.AddSpriterAnimator(Animators["Garland"], Layer.BACKGROUND);
         }
 
         private void BossSelectionScreen_AnimationFinished(string animationName)
@@ -158,7 +171,10 @@ namespace XmasHell.Screens
         {
             base.Hide();
 
-            foreach (var bossButton in _bossButtons)
+            foreach (var garland in _bossGarlands)
+                Game.SpriteBatchManager.RemoveSpriterAnimator(garland.SubstituteAnimator, Layer.UI);
+
+                foreach (var bossButton in _bossButtons)
             {
 #if ANDROID
                 bossButton.Tap -= OnBossButtonAction;
@@ -178,19 +194,8 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            // Synchronize current GUI button animator with the related dummy element from the Spriter file
-            var spriterDummyData = SpriterUtils.GetSpriterFileData("xmas-ball-log-garland.png", Animators["BossSelection"]);
-
-            if (spriterDummyData != null)
-            {
-                var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
-                var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
-
-                Animators["Garland"].Position = Animators["BossSelection"].Position + dummyPosition;
-                Animators["Garland"].Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
-                Animators["Garland"].Scale = dummyScale;
-                Animators["Garland"].Color = new Color(Animators["Garland"].Color, spriterDummyData.Alpha);
-            }
+            foreach (var garland in _bossGarlands)
+                garland.Update(gameTime);
         }
 
         public void FlipTree()

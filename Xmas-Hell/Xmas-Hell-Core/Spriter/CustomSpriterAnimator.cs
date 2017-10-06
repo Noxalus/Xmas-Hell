@@ -6,6 +6,7 @@ using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.MonoGame.Sprites;
 using System;
+using System.IO;
 
 namespace XmasHell.Spriter
 {
@@ -88,7 +89,7 @@ namespace XmasHell.Spriter
                 SpriteDrawInfo di = DrawInfos[i];
                 ISprite sprite = di.Drawable;
 
-                if (_hiddenTextures.Find(n => n == sprite.Texture().Name) == null)
+                if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == Path.GetFileNameWithoutExtension(sprite.Texture().Name)) == null)
                 {
                     if (_textureSwapMap.ContainsKey(sprite.Texture().Name) && _textureSwapMap[sprite.Texture().Name] != null)
                         sprite = new TextureSprite(_textureSwapMap[sprite.Texture().Name]);
