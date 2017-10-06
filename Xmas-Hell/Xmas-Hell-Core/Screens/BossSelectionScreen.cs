@@ -119,7 +119,7 @@ namespace XmasHell.Screens
                 {
                     var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
 
-                    bossButton.Animator.AddTextureSwap(
+                    bossButton.Animator().AddTextureSwap(
                         "Graphics/GUI/BossSelection/unknown-boss-button",
                         Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
                     );
@@ -187,7 +187,7 @@ namespace XmasHell.Screens
                 var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
 
                 Animators["Garland"].Position = Animators["BossSelection"].Position + dummyPosition;
-                Animators["Garland"].Rotation = -spriterDummyData.Angle;
+                Animators["Garland"].Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
                 Animators["Garland"].Scale = dummyScale;
                 Animators["Garland"].Color = new Color(Animators["Garland"].Color, spriterDummyData.Alpha);
             }

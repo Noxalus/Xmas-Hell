@@ -59,6 +59,21 @@ namespace XmasHell.Spriter
             return Point.Zero;
         }
 
+        public static SpriterFile GetSpriterFileStaticData(string spritePartFileName, MonoGameAnimator animator)
+        {
+            foreach (var folder in animator.Entity.Spriter.Folders)
+            {
+                var spriterFileId = Array.FindIndex(folder.Files, (file) => Path.GetFileName(file.Name) == spritePartFileName);
+
+                if (spriterFileId != -1)
+                {
+                    return folder.Files[spriterFileId];
+                }
+            }
+
+            return null;
+        }
+
         public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator, out int folderId)
         {
             if (animator == null)

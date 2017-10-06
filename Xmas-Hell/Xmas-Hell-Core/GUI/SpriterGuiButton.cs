@@ -10,44 +10,46 @@ namespace XmasHell.GUI
 {
     public class SpriterGuiButton : AbstractGuiButton
     {
-        public CustomSpriterAnimator Animator;
-        public CustomSpriterAnimator _referenceAnimator;
-        private String _spritePartFilename;
+        public SpriterSubstituteEntity SubstituteEntity;
+
+        public CustomSpriterAnimator Animator()
+        {
+            return SubstituteEntity.SubstituteAnimator;
+        }
 
         public override Vector2 Position()
         {
-            return Animator.Position;
+            return SubstituteEntity.SubstituteAnimator.Position;
         }
 
         public override void Scale(Vector2 value)
         {
-            Animator.Scale = value;
+            SubstituteEntity.SubstituteAnimator.Scale = value;
         }
 
         public override float Rotation()
         {
-            return Animator.Rotation;
+            return SubstituteEntity.SubstituteAnimator.Rotation;
         }
 
         public override void Rotation(float value)
         {
-            Animator.Rotation = value;
+            SubstituteEntity.SubstituteAnimator.Rotation = value;
         }
 
         public override void Position(Vector2 value)
         {
-            Animator.Position = value;
+            SubstituteEntity.SubstituteAnimator.Position = value;
         }
 
         public override Vector2 Scale()
         {
-            return Animator.Scale;
+            return SubstituteEntity.SubstituteAnimator.Scale;
         }
 
         public override BoundingRectangle BoundingRectangle()
         {
-            var spriteSize = SpriterUtils.GetSpriterFileSize(_spritePartFilename, Animator);
-            return new BoundingRectangle(Position(), new Size2(spriteSize.X / 2, spriteSize.Y / 2));
+            return SubstituteEntity.BoundingRectangle();
         }
 
         public SpriterGuiButton(
@@ -58,10 +60,7 @@ namespace XmasHell.GUI
             CustomSpriterAnimator referenceAnimator) :
             base(viewportAdapter, buttonName)
         {
-            Animator = animator;
-            _referenceAnimator = referenceAnimator;
-            _spritePartFilename = Path.GetFileName(spritePartCompleteFilename);
-
+            SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator);
             referenceAnimator.AddHiddenTexture(Path.ChangeExtension(spritePartCompleteFilename, null));
         }
 
@@ -69,24 +68,7 @@ namespace XmasHell.GUI
         {
             base.Update(gameTime);
 
-            Synchronize();
-        }
-
-        private void Synchronize()
-        {
-            // Synchronize current GUI button animator with the related dummy element from the Spriter file
-            var spriterDummyData = SpriterUtils.GetSpriterFileData(_spritePartFilename, _referenceAnimator);
-
-            if (spriterDummyData != null)
-            {
-                var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
-                var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
-
-                Position(_referenceAnimator.Position + dummyPosition);
-                Rotation(spriterDummyData.Angle);
-                Scale(dummyScale);
-                Animator.Color = new Color(Animator.Color, spriterDummyData.Alpha);
-            }
+            SubstituteEntity.Update(gameTime);
         }
     }
 }

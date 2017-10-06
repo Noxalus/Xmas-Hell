@@ -31,7 +31,7 @@ namespace XmasHell.GUI
             if (button is SpriteGuiButton)
                 _game.SpriteBatchManager.UISprites.Add((button as SpriteGuiButton).Sprite);
             else if (button is SpriterGuiButton)
-                _game.SpriteBatchManager.AddSpriterAnimator((button as SpriterGuiButton).Animator, Layer.UI);
+                _game.SpriteBatchManager.AddSpriterAnimator((button as SpriterGuiButton).Animator(), Layer.UI);
         }
 
         public void RemoveButton(AbstractGuiButton button)
@@ -39,7 +39,7 @@ namespace XmasHell.GUI
             if (button is SpriteGuiButton)
                 _game.SpriteBatchManager.UISprites.Remove((button as SpriteGuiButton).Sprite);
             else if (button is SpriterGuiButton)
-                _game.SpriteBatchManager.RemoveSpriterAnimator((button as SpriterGuiButton).Animator, Layer.UI);
+                _game.SpriteBatchManager.RemoveSpriterAnimator((button as SpriterGuiButton).Animator(), Layer.UI);
 
             _buttons.Remove(button);
         }
