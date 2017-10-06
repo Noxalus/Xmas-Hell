@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using XmasHell.Entities.Bosses;
 using XmasHell.GUI;
 using XmasHell.Rendering;
+using XmasHell.Spriter;
 
 namespace XmasHell.Screens
 {
@@ -77,6 +78,8 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
+
+
             foreach(var bossName in _bossNames)
             {
                 var ballAnimator = Animators["Ball"].Clone();
@@ -131,6 +134,9 @@ namespace XmasHell.Screens
                 Animators["BossSelection"].Play("Intro");
                 Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
             }
+
+            if (Animators["Garland"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(Animators["Garland"], Layer.BACKGROUND);
         }
 
         private void BossSelectionScreen_AnimationFinished(string animationName)
@@ -171,6 +177,20 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            // Synchronize current GUI button animator with the related dummy element from the Spriter file
+            var spriterDummyData = SpriterUtils.GetSpriterFileData("xmas-ball-log-garland.png", Animators["BossSelection"]);
+
+            if (spriterDummyData != null)
+            {
+                var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
+                var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
+
+                Animators["Garland"].Position = Animators["BossSelection"].Position + dummyPosition;
+                Animators["Garland"].Rotation = -spriterDummyData.Angle;
+                Animators["Garland"].Scale = dummyScale;
+                Animators["Garland"].Color = new Color(Animators["Garland"].Color, spriterDummyData.Alpha);
+            }
         }
 
         public void FlipTree()
