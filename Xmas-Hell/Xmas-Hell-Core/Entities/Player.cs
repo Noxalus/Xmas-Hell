@@ -107,7 +107,7 @@ namespace XmasHell.Entities
 
             foreach (var entity in loader.Spriter.Entities)
             {
-                var animator = new CustomSpriterAnimator(entity, _game.GraphicsDevice, factory, drawInfoPool);
+                var animator = new CustomSpriterAnimator(_game, entity, factory, drawInfoPool);
                 _animators.Add(animator);
             }
 

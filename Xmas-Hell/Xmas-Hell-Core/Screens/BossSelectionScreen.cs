@@ -59,6 +59,10 @@ namespace XmasHell.Screens
             Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
             Animators["BossPanel"].AnimationFinished += BossPanel_AnimationFinished;
 
+            Animators["Ball"].zIndex(9);
+            Animators["Garland"].zIndex(5);
+            Animators["BossPanel"].zIndex(10);
+
             // Christmas tree's balls
             foreach (var bossName in _bossNames)
             {
@@ -104,6 +108,9 @@ namespace XmasHell.Screens
 
             _closeBossPanelButton.Action += BossPanelCloseButtonAction;
             _startBattleBossPanelButton.Action += BossPanelStartBattleButtonAction;
+
+            _closeBossPanelButton.Animator().zIndex(11);
+            _startBattleBossPanelButton.Animator().zIndex(11);
 
             _bossPanelButtons.Add(_closeBossPanelButton);
             _bossPanelButtons.Add(_startBattleBossPanelButton);
@@ -160,10 +167,10 @@ namespace XmasHell.Screens
             var spriterGuiButton = _bossButtons[bossType];
             spriterGuiButton.SubstituteEntity.EnableSynchronization(false);
             var ballPosition = Game.ViewportAdapter.Center.ToVector2();
-            ballPosition.Y -= 500;
+            ballPosition.Y -= 575;
             spriterGuiButton.Animator().Position = ballPosition;
             spriterGuiButton.Animator().Scale = new Vector2(2f);
-            // TODO: Change Z order
+            spriterGuiButton.Animator().zIndex(11);
 
             foreach (var bossPanelButton in _bossPanelButtons)
                 Game.GuiManager.AddButton(bossPanelButton);
@@ -190,7 +197,11 @@ namespace XmasHell.Screens
         private void CloseBossPanel(bool hardClose = false)
         {
             if (_bossButtons.ContainsKey(_selectedBoss))
+            {
                 _bossButtons[_selectedBoss].SubstituteEntity.EnableSynchronization(true);
+                _bossButtons[_selectedBoss].Animator().zIndex(9);
+
+            }
 
             foreach (var bossPanelButton in _bossPanelButtons)
                 Game.GuiManager.RemoveButton(bossPanelButton);

@@ -9,8 +9,8 @@ using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using XmasHell.Performance;
 using XmasHell.Shaders;
-using SpriterDotNet.MonoGame;
 using System;
+using XmasHell.Spriter;
 
 namespace XmasHell.Rendering
 {
@@ -50,26 +50,47 @@ namespace XmasHell.Rendering
         private RenderTarget2D _renderTarget1;
         private RenderTarget2D _renderTarget2;
 
-        private List<MonoGameAnimator> _backgroundSpriterAnimators = new List<MonoGameAnimator>();
-        private List<MonoGameAnimator> _uiSpriterAnimators = new List<MonoGameAnimator>();
+        private List<CustomSpriterAnimator> _backgroundSpriterAnimators = new List<CustomSpriterAnimator>();
+        private List<CustomSpriterAnimator> _uiSpriterAnimators = new List<CustomSpriterAnimator>();
 
-        // Use to delayed Spriter animator collection modification (to be able to easily call code in MonoGameAnimator callbacks)
-        private List<Tuple<MonoGameAnimator, Layer>> _animatorsToRemove = new List<Tuple<MonoGameAnimator, Layer>>();
-        private List<Tuple<MonoGameAnimator, Layer>> _animatorsToAdd = new List<Tuple<MonoGameAnimator, Layer>>();
+        // Use to delayed Spriter animator collection modification (to be able to easily call code in CustomSpriterAnimator callbacks)
+        private List<Tuple<CustomSpriterAnimator, Layer>> _animatorsToRemove = new List<Tuple<CustomSpriterAnimator, Layer>>();
+        private List<Tuple<CustomSpriterAnimator, Layer>> _animatorsToAdd = new List<Tuple<CustomSpriterAnimator, Layer>>();
 
-        public void AddSpriterAnimator(MonoGameAnimator animator, Layer layer)
+        public void AddSpriterAnimator(CustomSpriterAnimator animator, Layer layer)
         {
-            _animatorsToAdd.Add(new Tuple<MonoGameAnimator, Layer>(animator, layer));
+            _animatorsToAdd.Add(new Tuple<CustomSpriterAnimator, Layer>(animator, layer));
         }
 
-        public void RemoveSpriterAnimator(MonoGameAnimator animator, Layer layer)
+        public void RemoveSpriterAnimator(CustomSpriterAnimator animator, Layer layer)
         {
-            _animatorsToRemove.Add(new Tuple<MonoGameAnimator, Layer>(animator, layer));
+            _animatorsToRemove.Add(new Tuple<CustomSpriterAnimator, Layer>(animator, layer));
         }
 
         public SpriteBatchManager(XmasHell game)
         {
             _game = game;
+        }
+
+        public void SortSpriterAnimator(Layer? layer = null)
+        {
+            if (layer.HasValue)
+            {
+                switch (layer.Value)
+                {
+                    case Layer.BACKGROUND:
+                        _backgroundSpriterAnimators.Sort();
+                        break;
+                    case Layer.UI:
+                        _uiSpriterAnimators.Sort();
+                        break;
+                }
+            }
+            else
+            {
+                _backgroundSpriterAnimators.Sort();
+                _uiSpriterAnimators.Sort();
+            }
         }
 
         public void Initialize()
@@ -117,7 +138,9 @@ namespace XmasHell.Rendering
                 {
                     case Layer.BACKGROUND:
                         if (!_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                        {
                             _backgroundSpriterAnimators.Add(animator);
+                        }
                         break;
                     case Layer.UI:
                         _uiSpriterAnimators.Add(animator);
@@ -125,7 +148,11 @@ namespace XmasHell.Rendering
                 }
             }
 
-            _animatorsToAdd.Clear();
+            if (_animatorsToAdd.Count > 0)
+            {
+                SortSpriterAnimator();
+                _animatorsToAdd.Clear();
+            }
         }
 
         private void CleanSpriterAnimators()

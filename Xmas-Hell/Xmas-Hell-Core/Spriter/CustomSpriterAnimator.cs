@@ -7,11 +7,13 @@ using SpriterDotNet.MonoGame;
 using SpriterDotNet.MonoGame.Sprites;
 using System;
 using System.IO;
+using XmasHell.Rendering;
 
 namespace XmasHell.Spriter
 {
-    public class CustomSpriterAnimator : MonoGameAnimator
+    public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>
     {
+        private readonly XmasHell _game;
         private readonly GraphicsDevice _graphicsDevice;
         private readonly IProviderFactory<ISprite, SoundEffect> _providerFactory;
         private readonly Stack<SpriteDrawInfo> _drawInfoPool;
@@ -20,35 +22,49 @@ namespace XmasHell.Spriter
         private List<string> _hiddenTextures;
         private Dictionary<string, Texture2D> _textureSwapMap;
         public bool StretchOut = true;
+        private int _zIndex;
+
+        public int zIndex()
+        {
+            return _zIndex;
+        }
+
+        public void zIndex(int value, Layer? layer = null)
+        {
+            _zIndex = value;
+            _game.SpriteBatchManager.SortSpriterAnimator(layer);
+        }
 
         public CustomSpriterAnimator(
+            XmasHell game,
             SpriterEntity entity,
-            GraphicsDevice graphicsDevice,
             IProviderFactory<ISprite, SoundEffect> providerFactory = null,
             Stack<SpriteDrawInfo> drawInfoPool = null
         ) : base(entity, providerFactory, drawInfoPool)
         {
-            _graphicsDevice = graphicsDevice;
+            _game = game;
             _providerFactory = providerFactory;
             _drawInfoPool = drawInfoPool;
 
             _hiddenTextures = new List<string>();
             _textureSwapMap = new Dictionary<string, Texture2D>();
-            _pointTexture = new TextureSprite(TextureUtil.CreateCircle(graphicsDevice, 1, Color.Cyan));
+            _pointTexture = new TextureSprite(TextureUtil.CreateCircle(_game.GraphicsDevice, 1, Color.Cyan));
 
             if (entity.ObjectInfos != null)
             {
                 foreach (SpriterObjectInfo objInfo in entity.ObjectInfos)
                 {
                     if (objInfo.ObjectType != SpriterObjectType.Box) continue;
-                    _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(graphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
+                    _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(_game.GraphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
                 }
             }
         }
 
         public CustomSpriterAnimator Clone()
         {
-            return new CustomSpriterAnimator(Entity, _graphicsDevice, _providerFactory, _drawInfoPool);
+            var clone = new CustomSpriterAnimator(_game, Entity, _providerFactory, _drawInfoPool);
+            clone.zIndex(_zIndex);
+            return clone;
         }
 
         public void SetHiddenTextures(List<string> hiddenTextures)
@@ -97,6 +113,11 @@ namespace XmasHell.Spriter
                     sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
                 }
             }
+        }
+
+        public int CompareTo(CustomSpriterAnimator other)
+        {
+            return _zIndex.CompareTo(other.zIndex());
         }
     }
 }

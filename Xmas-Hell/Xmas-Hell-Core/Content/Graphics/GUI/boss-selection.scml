@@ -291,7 +291,7 @@
                     <object folder="1" file="9" x="145" y="-500" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="9" x="145" y="-500" angle="0" a="0.42"/>
+                    <object folder="1" file="9" x="145" y="-500" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" name="xmas-snowflake-available-button">
@@ -302,7 +302,7 @@
                     <object folder="1" file="3" x="347" y="-455" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="3" x="347" y="-455" angle="0" a="0.42"/>
+                    <object folder="1" file="3" x="347" y="-455" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="xmas-snowman-available-button">
@@ -313,7 +313,7 @@
                     <object folder="1" file="10" x="126" y="190" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="10" x="126" y="190" angle="0" a="0.42"/>
+                    <object folder="1" file="10" x="126" y="190" angle="0"/>
                 </key>
             </timeline>
             <timeline id="12" name="xmas-reindeer-available-button">
@@ -324,7 +324,7 @@
                     <object folder="1" file="6" x="-114" y="197" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="6" x="-114" y="197" angle="0" a="0.42"/>
+                    <object folder="1" file="6" x="-114" y="197" angle="0"/>
                 </key>
             </timeline>
             <timeline id="13" name="xmas-santa-available-button">
@@ -335,7 +335,7 @@
                     <object folder="1" file="7" x="-15" y="546" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="7" x="-15" y="546" angle="0" a="0.42"/>
+                    <object folder="1" file="7" x="-15" y="546" angle="0"/>
                 </key>
             </timeline>
             <timeline id="14" name="xmas-tree-available-button">
@@ -346,7 +346,7 @@
                     <object folder="1" file="11" x="245" y="-141" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="11" x="245" y="-141" angle="0" a="0.42"/>
+                    <object folder="1" file="11" x="245" y="-141" angle="0"/>
                 </key>
             </timeline>
             <timeline id="15" name="xmas-gift-available-button">
@@ -357,7 +357,7 @@
                     <object folder="1" file="5" x="-198" y="-151" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="5" x="-198" y="-151" angle="0" a="0.42"/>
+                    <object folder="1" file="5" x="-198" y="-151" angle="0"/>
                 </key>
             </timeline>
             <timeline id="16" name="xmas-candy-available-button">
@@ -368,7 +368,7 @@
                     <object folder="1" file="4" x="-97" y="-510" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="4" x="-97" y="-510" angle="0" a="0.42"/>
+                    <object folder="1" file="4" x="-97" y="-510" angle="0"/>
                 </key>
             </timeline>
             <timeline id="17" name="xmas-bell-available-button">
@@ -379,7 +379,7 @@
                     <object folder="1" file="8" x="-324" y="-462" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="8" x="-324" y="-462" angle="0" a="0.42"/>
+                    <object folder="1" file="8" x="-324" y="-462" angle="0"/>
                 </key>
             </timeline>
             <timeline id="18" name="xmas-log-available-button">
@@ -390,7 +390,7 @@
                     <object folder="1" file="16" x="8" y="-168" angle="0"/>
                 </key>
                 <key id="2" time="1000" spin="0">
-                    <object folder="1" file="16" x="8" y="-168" angle="0" a="0.42"/>
+                    <object folder="1" file="16" x="8" y="-168" angle="0"/>
                 </key>
             </timeline>
             <timeline id="19" name="garland-forbidden-ball">
