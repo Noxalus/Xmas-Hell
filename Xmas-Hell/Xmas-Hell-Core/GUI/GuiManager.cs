@@ -9,7 +9,7 @@ namespace XmasHell.GUI
     {
         private XmasHell _game;
         private List<AbstractGuiButton> _buttons = new List<AbstractGuiButton>();
-        private List<GuiLabel> _labels = new List<GuiLabel>();
+        private List<AbstractGuiLabel> _labels = new List<AbstractGuiLabel>();
 
         public GuiManager(XmasHell game)
         {
@@ -19,19 +19,21 @@ namespace XmasHell.GUI
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < _buttons.Count; i++)
-            {
                 _buttons[i].Update(gameTime);
-            }
+
+            for (int i = 0; i < _labels.Count; i++)
+                _labels[i].Update(gameTime);
         }
 
-        public void AddLabel(GuiLabel label)
+        public void AddLabel(AbstractGuiLabel label)
         {
             _labels.Add(label);
 
-            _game.SpriteBatchManager.UILabels.Add(label);
+            if (label is SpriterGuiLabel)
+                _game.SpriteBatchManager.UILabels.Add(label);
         }
 
-        public void RemoveLabel(GuiLabel label)
+        public void RemoveLabel(AbstractGuiLabel label)
         {
             _game.SpriteBatchManager.UILabels.Remove(label);
             _labels.Remove(label);

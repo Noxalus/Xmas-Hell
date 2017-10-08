@@ -38,12 +38,12 @@ namespace XmasHell.Screens
         private SpriterGuiButton _startBattleBossPanelButton;
 
         // Labels
-        private List<GuiLabel> _bossPanelLabels = new List<GuiLabel>();
-        private GuiLabel _bossNameLabel;
-        private GuiLabel _bestTimeLabel;
-        private GuiLabel _playTimeLabel;
-        private GuiLabel _playerDeathLabel;
-        private GuiLabel _bossDeathLabel;
+        private List<SpriterGuiLabel> _bossPanelLabels = new List<SpriterGuiLabel>();
+        private SpriterGuiLabel _bossNameLabel;
+        private SpriterGuiLabel _bestTimeLabel;
+        private SpriterGuiLabel _playTimeLabel;
+        private SpriterGuiLabel _playerDeathLabel;
+        private SpriterGuiLabel _bossDeathLabel;
 
         #endregion
 
@@ -53,18 +53,6 @@ namespace XmasHell.Screens
 
         public override void Initialize()
         {
-            _bossNameLabel = new GuiLabel("Unknown", Vector2.Zero, Color.Black);
-            _bestTimeLabel = new GuiLabel("Best time: ", Vector2.Zero, Color.Black);
-            _playTimeLabel = new GuiLabel("Play time: ", Vector2.Zero, Color.Black);
-            _playerDeathLabel = new GuiLabel("Player deaths: ", Vector2.Zero, Color.Black);
-            _bossDeathLabel = new GuiLabel("Boss deaths: ", Vector2.Zero, Color.Black);
-
-            _bossPanelLabels.Add(_bossNameLabel);
-            _bossPanelLabels.Add(_bestTimeLabel);
-            _bossPanelLabels.Add(_playTimeLabel);
-            _bossPanelLabels.Add(_playerDeathLabel);
-            _bossPanelLabels.Add(_bossDeathLabel);
-
             base.Initialize();
         }
 
@@ -136,6 +124,19 @@ namespace XmasHell.Screens
             _bossPanelButtons.Add(_closeBossPanelButton);
             _bossPanelButtons.Add(_startBattleBossPanelButton);
 
+            // Labels
+            _bossNameLabel = new SpriterGuiLabel("Unknown", "boss-panel-title-label.png", Animators["BossPanel"]);
+            //_bestTimeLabel = new SpriterGuiLabel("Best time: ", Vector2.Zero, Color.Black);
+            //_playTimeLabel = new SpriterGuiLabel("Play time: ", Vector2.Zero, Color.Black);
+            //_playerDeathLabel = new SpriterGuiLabel("Player deaths: ", Vector2.Zero, Color.Black);
+            //_bossDeathLabel = new SpriterGuiLabel("Boss deaths: ", Vector2.Zero, Color.Black);
+
+            _bossPanelLabels.Add(_bossNameLabel);
+            //_bossPanelLabels.Add(_bestTimeLabel);
+            //_bossPanelLabels.Add(_playTimeLabel);
+            //_bossPanelLabels.Add(_playerDeathLabel);
+            //_bossPanelLabels.Add(_bossDeathLabel);
+
             base.InitializeSpriterGui();
 
             ResetUI();
@@ -201,6 +202,9 @@ namespace XmasHell.Screens
 
             Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossPanel"], Layer.UI);
             Animators["BossPanel"].Play("Show");
+
+            // Update labels
+            _bossNameLabel.Text = "Xmas " + bossType.ToString().Substring(4);
 
             DoOpenBossPanel();
         }

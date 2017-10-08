@@ -86,16 +86,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-7360.6017"
-     inkscape:cy="-693.06249"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="-7386.834"
+     inkscape:cy="-576.27696"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:window-y="71"
      inkscape:window-maximized="1"
      units="px"
      showguides="false" />
@@ -11642,6 +11642,12 @@
         </g>
       </g>
     </g>
+    <circle
+       style="opacity:1;fill:#d04f4f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.23333339;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path3053"
+       cx="-1876.5762"
+       cy="395.77777"
+       r="17.941269" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:11.28888893px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -11654,30 +11660,18 @@
          y="403.71631"
          style="stroke-width:0.28222224px"></tspan></text>
     <g
-       id="g4349"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-close-button.png"
-       inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100">
-      <circle
-         r="17.941269"
-         cy="395.77777"
-         cx="-1876.5762"
-         id="path3053"
-         style="opacity:1;fill:#d04f4f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.23333339;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <g
-         transform="translate(0.21381562,0.64144687)"
-         id="g3065">
-        <path
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m -1881.3636,400.55828 10.1587,-11.75265"
-           id="path3059"
-           inkscape:connector-curvature="0" />
-        <path
-           inkscape:connector-curvature="0"
-           id="path3061"
-           d="m -1871.2049,400.55828 -10.1587,-11.75265"
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      </g>
+       id="g3065"
+       transform="translate(0.21381562,0.64144687)">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3059"
+         d="m -1881.3636,400.55828 10.1587,-11.75265"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -1871.2049,400.55828 -10.1587,-11.75265"
+         id="path3061"
+         inkscape:connector-curvature="0" />
     </g>
     <g
        transform="matrix(1.5658264,0,0,1.5658264,15.621461,146.16899)"
@@ -12679,7 +12673,10 @@
        style="font-style:normal;font-weight:normal;font-size:11.28888893px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-2071.5115"
        y="453.02856"
-       id="text3481"><tspan
+       id="text3481"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-title-label.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
          sodipodi:role="line"
          id="tspan3479"
          x="-2071.5115"
@@ -12690,12 +12687,15 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;line-height:125%;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-2079.4282"
        y="497.13147"
-       id="text3507"><tspan
+       id="text3507"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-best-time-label.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
          sodipodi:role="line"
          id="tspan3505"
          x="-2079.4282"
          y="497.13147"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px">Best time: 1:49</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px">Best time: </tspan></text>
     <g
        transform="matrix(0.69087536,0,0,0.69087536,-2076.6788,530.69917)"
        id="g4719"
@@ -12742,33 +12742,47 @@
        y="529.61572"
        x="-2079.4282"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;line-height:125%;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-play-time-label.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px"
          y="529.61572"
          x="-2079.4282"
          id="tspan4333"
-         sodipodi:role="line">Play time: 13:35</tspan></text>
+         sodipodi:role="line">Play time:</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px"
+         y="563.48236"
+         x="-2079.4282"
+         sodipodi:role="line"
+         id="tspan9560" /></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;line-height:125%;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="-2079.4282"
        y="562.2442"
-       id="text4339"><tspan
+       id="text4339"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-player-deaths-label.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
          sodipodi:role="line"
          id="tspan4337"
          x="-2079.4282"
          y="562.2442"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px">Player deaths: 42</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px">Player deaths:</tspan></text>
     <text
        id="text4343"
        y="595.31433"
        x="-2078.8582"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;line-height:125%;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       xml:space="preserve"><tspan
+       xml:space="preserve"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-boss-deaths-label.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:27.0933342px;font-family:'Santas Big Secret BB';-inkscape-font-specification:'Santas Big Secret BB';stroke-width:0.28222224px"
          y="595.31433"
          x="-2078.8582"
          id="tspan4341"
-         sodipodi:role="line">Boss deaths: 1</tspan></text>
+         sodipodi:role="line">Boss deaths:</tspan></text>
   </g>
 </svg>

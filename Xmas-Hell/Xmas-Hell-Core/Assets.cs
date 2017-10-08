@@ -118,7 +118,9 @@ namespace XmasHell
             // Load fonts
             _fonts = new List<BitmapFont>()
             {
-                content.Load<BitmapFont>("Graphics/Fonts/main")
+                content.Load<BitmapFont>("Graphics/Fonts/main"),
+                content.Load<BitmapFont>("Graphics/Fonts/ui"),
+                content.Load<BitmapFont>("Graphics/Fonts/ui-title")
             };
 
             // Load BulletML files

@@ -37,7 +37,7 @@ namespace XmasHell.Rendering
         public List<Laser> Lasers = new List<Laser>();
         public List<Sprite> GameSprites = new List<Sprite>();
         public List<ParticleEffect> GameParticles = new List<ParticleEffect>();
-        public List<GuiLabel> UILabels = new List<GuiLabel>();
+        public List<AbstractGuiLabel> UILabels = new List<AbstractGuiLabel>();
 
         public Boss Boss;
         public Player Player;
