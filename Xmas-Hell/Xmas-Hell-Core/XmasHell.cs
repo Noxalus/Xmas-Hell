@@ -211,8 +211,8 @@ namespace XmasHell
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
 
-            if (InputManager.PressedCancel())
-                ScreenManager.Back();
+            //if (InputManager.PressedCancel())
+            //    ScreenManager.Back();
 
             if (GameConfig.EnableBloom)
             {

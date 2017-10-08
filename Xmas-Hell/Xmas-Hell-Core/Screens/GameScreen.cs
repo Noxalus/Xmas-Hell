@@ -64,6 +64,9 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
+            if (InputManager.PressedCancel())
+                Game.ScreenManager.GoTo<BossSelectionScreen>();
+
             if (Game.Pause)
                 return;
 

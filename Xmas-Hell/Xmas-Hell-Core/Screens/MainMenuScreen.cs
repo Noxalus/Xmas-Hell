@@ -67,6 +67,8 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
+            Animators["MainMenu"].AnimationFinished += MainMenuScreen_AnimationFinished;
+
             _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
             _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", Animators["SettingsButton"], Animators["MainMenu"]);
 
@@ -94,7 +96,6 @@ namespace XmasHell.Screens
             {
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
                 Animators["MainMenu"].Play("Idle");
-                Animators["MainMenu"].AnimationFinished += MainMenuScreen_AnimationFinished;
             }
             if (Animators["XmasTitle"] != null)
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
@@ -142,8 +143,6 @@ namespace XmasHell.Screens
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
-
-            Animators["MainMenu"].AnimationFinished -= MainMenuScreen_AnimationFinished;
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)

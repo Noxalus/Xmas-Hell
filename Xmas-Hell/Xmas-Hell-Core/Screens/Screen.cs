@@ -17,7 +17,7 @@ namespace XmasHell.Screens
         protected bool IsVisible;
         private bool _neverShown;
         protected bool ShouldBeStackInHistory;
-
+        protected bool SpriterGuiInitialized = false;
 
         public bool StackInHistory => ShouldBeStackInHistory;
 
@@ -72,7 +72,10 @@ namespace XmasHell.Screens
             }
         }
 
-        protected abstract void InitializeSpriterGui();
+        protected virtual void InitializeSpriterGui()
+        {
+            SpriterGuiInitialized = true;
+        }
 
         public virtual void Show(bool reset = false)
         {
@@ -102,7 +105,7 @@ namespace XmasHell.Screens
         public virtual void Update(GameTime gameTime)
         {
             // Check Spriter element are initialized
-            if (!_spriterFrameDataAvailable && Animators.Count > 0 && Animators.First().Value.FrameData != null)
+            if (!_spriterFrameDataAvailable && Animators.Count > 0)
             {
                 InitializeSpriterGui();
                 _spriterFrameDataAvailable = true;

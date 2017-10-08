@@ -56,6 +56,11 @@ namespace XmasHell.GUI
             Enabled = value;
         }
 
+        public void Synchronize()
+        {
+            SubstituteEntity.Synchronize();
+        }
+
         public SpriterGuiButton(
             ViewportAdapter viewportAdapter,
             String buttonName,

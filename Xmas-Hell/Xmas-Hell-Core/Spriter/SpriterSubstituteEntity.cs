@@ -38,19 +38,24 @@ namespace XmasHell.Spriter
         {
             if (_synchronize)
             {
-                // Synchronize current GUI button animator with the related dummy element from the Spriter file
-                var spriterDummyData = SpriterUtils.GetSpriterFileData(_replacedPartFilename, _referenceAnimator);
+                Synchronize();
+            }
+        }
 
-                if (spriterDummyData != null)
-                {
-                    var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
-                    var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
+        public void Synchronize()
+        {
+            // Synchronize current GUI button animator with the related dummy element from the Spriter file
+            var spriterDummyData = SpriterUtils.GetSpriterFileData(_replacedPartFilename, _referenceAnimator);
 
-                    SubstituteAnimator.Position = _referenceAnimator.Position + dummyPosition;
-                    SubstituteAnimator.Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
-                    SubstituteAnimator.Scale = dummyScale;
-                    SubstituteAnimator.Color = new Color(SubstituteAnimator.Color, spriterDummyData.Alpha);
-                }
+            if (spriterDummyData != null)
+            {
+                var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
+                var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
+
+                SubstituteAnimator.Position = _referenceAnimator.Position + dummyPosition;
+                SubstituteAnimator.Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
+                SubstituteAnimator.Scale = dummyScale;
+                SubstituteAnimator.Color = new Color(SubstituteAnimator.Color, spriterDummyData.Alpha);
             }
         }
     }
