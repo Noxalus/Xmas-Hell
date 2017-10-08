@@ -7,12 +7,13 @@ using SpriterDotNet.MonoGame.Content;
 using XmasHell.Spriter;
 using SpriterDotNet;
 using Microsoft.Xna.Framework.Audio;
-using System.Linq;
 
 namespace XmasHell.Screens
 {
     public abstract class Screen
     {
+        public readonly string Name;
+
         protected XmasHell Game;
         protected bool IsVisible;
         private bool _neverShown;
@@ -40,6 +41,7 @@ namespace XmasHell.Screens
             Game = game;
             _neverShown = true;
             ShouldBeStackInHistory = true;
+            Name = GetType().Name;
         }
 
         public virtual void Initialize()
