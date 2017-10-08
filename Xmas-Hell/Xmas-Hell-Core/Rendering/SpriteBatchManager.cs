@@ -10,6 +10,7 @@ using XmasHell.Entities.Bosses;
 using XmasHell.Performance;
 using XmasHell.Shaders;
 using SpriterDotNet.MonoGame;
+using System;
 
 namespace XmasHell.Rendering
 {
@@ -28,13 +29,13 @@ namespace XmasHell.Rendering
         private XmasHell _game;
 
         public AbstractBackground Background;
-        public List<Sprite> BackgroundSprites;
-        public List<ParticleEffect> BackgroundParticles;
-        public List<Sprite> UISprites;
-        public List<Mover> BossBullets;
-        public List<Laser> Lasers;
-        public List<Sprite> GameSprites;
-        public List<ParticleEffect> GameParticles;
+        public List<Sprite> BackgroundSprites = new List<Sprite>();
+        public List<ParticleEffect> BackgroundParticles = new List<ParticleEffect>();
+        public List<Sprite> UISprites = new List<Sprite>();
+        public List<Mover> BossBullets = new List<Mover>();
+        public List<Laser> Lasers = new List<Laser>();
+        public List<Sprite> GameSprites = new List<Sprite>();
+        public List<ParticleEffect> GameParticles = new List<ParticleEffect>();
 
         public Boss Boss;
         public Player Player;
@@ -49,51 +50,26 @@ namespace XmasHell.Rendering
         private RenderTarget2D _renderTarget1;
         private RenderTarget2D _renderTarget2;
 
-        private List<MonoGameAnimator> _backgroundSpriterAnimators;
-        public List<MonoGameAnimator> _uiSpriterAnimators;
+        private List<MonoGameAnimator> _backgroundSpriterAnimators = new List<MonoGameAnimator>();
+        private List<MonoGameAnimator> _uiSpriterAnimators = new List<MonoGameAnimator>();
+
+        // Use to delayed Spriter animator collection modification (to be able to easily call code in MonoGameAnimator callbacks)
+        private List<Tuple<MonoGameAnimator, Layer>> _animatorsToRemove = new List<Tuple<MonoGameAnimator, Layer>>();
+        private List<Tuple<MonoGameAnimator, Layer>> _animatorsToAdd = new List<Tuple<MonoGameAnimator, Layer>>();
 
         public void AddSpriterAnimator(MonoGameAnimator animator, Layer layer)
         {
-            switch (layer)
-            {
-                case Layer.BACKGROUND:
-                    if (!_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
-                        _backgroundSpriterAnimators.Add(animator);
-                    break;
-                case Layer.UI:
-                    _uiSpriterAnimators.Add(animator);
-                    break;
-            }
+            _animatorsToAdd.Add(new Tuple<MonoGameAnimator, Layer>(animator, layer));
         }
 
         public void RemoveSpriterAnimator(MonoGameAnimator animator, Layer layer)
         {
-            switch (layer)
-            {
-                case Layer.BACKGROUND:
-                    if (_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
-                        _backgroundSpriterAnimators.Remove(animator);
-                    break;
-                case Layer.UI:
-                    if (_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
-                        _uiSpriterAnimators.Remove(animator);
-                    break;
-            }
+            _animatorsToRemove.Add(new Tuple<MonoGameAnimator, Layer>(animator, layer));
         }
 
         public SpriteBatchManager(XmasHell game)
         {
             _game = game;
-
-            BackgroundSprites = new List<Sprite>();
-            _backgroundSpriterAnimators = new List<MonoGameAnimator>();
-            BackgroundParticles = new List<ParticleEffect>();
-            UISprites = new List<Sprite>();
-            _uiSpriterAnimators = new List<MonoGameAnimator>();
-            BossBullets = new List<Mover>();
-            Lasers = new List<Laser>();
-            GameSprites = new List<Sprite>();
-            GameParticles = new List<ParticleEffect>();
         }
 
         public void Initialize()
@@ -130,8 +106,58 @@ namespace XmasHell.Rendering
             }
         }
 
+        private void AddSpriterAnimators()
+        {
+            foreach (var animatorTuple in _animatorsToAdd)
+            {
+                var animator = animatorTuple.Item1;
+                var layer = animatorTuple.Item2;
+
+                switch (layer)
+                {
+                    case Layer.BACKGROUND:
+                        if (!_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _backgroundSpriterAnimators.Add(animator);
+                        break;
+                    case Layer.UI:
+                        _uiSpriterAnimators.Add(animator);
+                        break;
+                }
+            }
+
+            _animatorsToAdd.Clear();
+        }
+
+        private void CleanSpriterAnimators()
+        {
+            foreach (var animatorTuple in _animatorsToRemove)
+            {
+                var animator = animatorTuple.Item1;
+                var layer = animatorTuple.Item2;
+
+                switch (layer)
+                {
+                    case Layer.BACKGROUND:
+                        if (_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _backgroundSpriterAnimators.Remove(animator);
+                        break;
+                    case Layer.UI:
+                        if (_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _uiSpriterAnimators.Remove(animator);
+                        break;
+                }
+            }
+
+            _animatorsToRemove.Clear();
+        }
+
         public void Update(GameTime gameTime)
         {
+            // Clean Spriter animators to remove
+            CleanSpriterAnimators();
+
+            AddSpriterAnimators();
+
             if (GameConfig.EnableBloom)
             {
                 _bloomSaturationPulse += _bloomSaturationDirection;

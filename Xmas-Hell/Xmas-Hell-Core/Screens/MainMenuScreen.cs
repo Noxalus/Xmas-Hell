@@ -18,8 +18,6 @@ namespace XmasHell.Screens
         private Song _mainSong;
         private Song _menuSong;
 
-        private bool _goToBossSelectionScreen = false;
-
         private SpriterGuiButton _playButton;
         private SpriterGuiButton _settingsButton;
 
@@ -119,18 +117,12 @@ namespace XmasHell.Screens
         private void MainMenuScreen_AnimationFinished(string animationName)
         {
             if (animationName == "Zoom")
-            {
-                // We can't switch to the BossSelection screen now
-                // because this screen will be removed in the animator.Update()
-                _goToBossSelectionScreen = true;
-            }
+                Game.ScreenManager.GoTo<BossSelectionScreen>();
         }
 
         public override void Show(bool reset = false)
         {
             base.Show(reset);
-
-            _goToBossSelectionScreen = false;
 
             // Should play music (doesn't seem to work for now...)
             MediaPlayer.Volume = 1f;
@@ -192,9 +184,6 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (_goToBossSelectionScreen)
-                Game.ScreenManager.GoTo<BossSelectionScreen>();
 
             if (_shootFrequency.TotalMilliseconds < 0)
             {
