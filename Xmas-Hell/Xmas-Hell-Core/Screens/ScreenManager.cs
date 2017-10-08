@@ -61,6 +61,14 @@ namespace XmasHell.Screens
                 GoTo(_screenHistory.Pop());
         }
 
+        public Screen GetPreviousScreen()
+        {
+            if (_screenHistory.Count == 0)
+                return null;
+
+            return _screenHistory.Peek();
+        }
+
         public void Update(GameTime gameTime)
         {
             _currentScreen?.Update(gameTime);
