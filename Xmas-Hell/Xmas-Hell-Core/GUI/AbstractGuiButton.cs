@@ -82,7 +82,6 @@ namespace XmasHell.GUI
                 {
                     _touchedDown = true;
                     TouchStarted?.Invoke(this, position);
-                    Action?.Invoke(this, position);
                 }
                 else if (InputManager.TouchUp() && _touchedDown)
                 {
@@ -108,7 +107,6 @@ namespace XmasHell.GUI
                 {
                     _mouseDown = true;
                     MouseDown?.Invoke(this, position);
-                    Action?.Invoke(this, position);
                 }
                 else if (InputManager.LeftClickReleased() && _mouseDown)
                 {
