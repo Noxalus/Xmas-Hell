@@ -36,6 +36,10 @@ namespace XmasHell.Screens
         {
             Animators["MainMenu"].Play("Zoom");
             Animators["MainMenu"].CurrentAnimation.Looping = false;
+
+            if (Animators["MainMenu"].Speed < 0f)
+            Animators["MainMenu"].Speed *= -1f;
+
             _playButton.Enable(false);
         }
 
@@ -94,9 +98,22 @@ namespace XmasHell.Screens
 
             if (Animators["MainMenu"] != null)
             {
+                var previousScreen = Game.ScreenManager.GetPreviousScreen();
+
+                if (previousScreen == null)
+                {
+                    Animators["MainMenu"].Play("Idle");
+                }
+                else
+                {
+                    Animators["MainMenu"].Play("Zoom");
+                    Animators["MainMenu"].Progress = 1f;
+                    Animators["MainMenu"].Speed *= -1;
+                }
+
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
-                Animators["MainMenu"].Play("Idle");
             }
+
             if (Animators["XmasTitle"] != null)
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
         }
@@ -114,7 +131,10 @@ namespace XmasHell.Screens
         private void MainMenuScreen_AnimationFinished(string animationName)
         {
             if (animationName == "Zoom")
-                Game.ScreenManager.GoTo<BossSelectionScreen>();
+            {
+                if (Animators["MainMenu"].Progress == 1f)
+                    Game.ScreenManager.GoTo<BossSelectionScreen>();
+            }
         }
 
         public override void Show(bool reset = false)
