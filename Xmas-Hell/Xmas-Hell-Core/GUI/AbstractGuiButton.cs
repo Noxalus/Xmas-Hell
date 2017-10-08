@@ -18,6 +18,7 @@ namespace XmasHell.GUI
         public abstract float Rotation();
         public abstract void Rotation(float value);
         public abstract BoundingRectangle BoundingRectangle();
+        protected bool Enabled = true;
 
         Vector2 IMovable.Position
         {
@@ -64,6 +65,9 @@ namespace XmasHell.GUI
 
         public virtual void Update(GameTime gameTime)
         {
+            if (!Enabled)
+                return;
+
 #if ANDROID
             UpdateTouchState();
 #else

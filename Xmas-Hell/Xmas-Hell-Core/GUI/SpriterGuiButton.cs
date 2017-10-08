@@ -51,6 +51,11 @@ namespace XmasHell.GUI
             return SubstituteEntity.BoundingRectangle();
         }
 
+        public void Enable(bool value)
+        {
+            Enabled = value;
+        }
+
         public SpriterGuiButton(
             ViewportAdapter viewportAdapter,
             String buttonName,

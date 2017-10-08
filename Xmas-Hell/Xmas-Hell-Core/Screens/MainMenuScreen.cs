@@ -32,10 +32,11 @@ namespace XmasHell.Screens
             base.Initialize();
         }
 
-        private void OnPlayButtonAction(object s, Point e)
+        private void OnPlayButtonAction(object button, Point position)
         {
             Animators["MainMenu"].Play("Zoom");
             Animators["MainMenu"].CurrentAnimation.Looping = false;
+            _playButton.Enable(false);
         }
 
         private void OnSettingsButtonAction(object s, Point e)
@@ -69,6 +70,9 @@ namespace XmasHell.Screens
             _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", Animators["PlayButton"], Animators["MainMenu"]);
             _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", Animators["SettingsButton"], Animators["MainMenu"]);
 
+            _playButton.Action += OnPlayButtonAction;
+            _settingsButton.Action += OnSettingsButtonAction;
+
             ResetUI();
         }
 
@@ -76,21 +80,13 @@ namespace XmasHell.Screens
         {
             if (_playButton != null)
             {
-#if ANDROID
-                _playButton.Tap += OnPlayButtonAction;
-#else
-                _playButton.Click += OnPlayButtonAction;
-#endif
+                _playButton.Enable(true);
                 Game.GuiManager.AddButton(_playButton);
             }
 
             if (_settingsButton != null)
             {
-#if ANDROID
-                _settingsButton.Tap += OnSettingsButtonAction;
-#else
-                _settingsButton.Click += OnSettingsButtonAction;
-#endif
+                _settingsButton.Enable(true);
                 Game.GuiManager.AddButton(_settingsButton);
             }
 
@@ -141,21 +137,8 @@ namespace XmasHell.Screens
             MediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
 
             // GUI
-            Game.GuiManager.RemoveButton(_playButton);
-
-#if ANDROID
-            _playButton.Tap -= OnPlayButtonAction;
-#else
-            _playButton.Click -= OnPlayButtonAction;
-#endif
-
             Game.GuiManager.RemoveButton(_settingsButton);
-
-#if ANDROID
-            _settingsButton.Tap -= OnSettingsButtonAction;
-#else
-            _settingsButton.Click -= OnSettingsButtonAction;
-#endif
+            Game.GuiManager.RemoveButton(_playButton);
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["MainMenu"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["XmasTitle"], Layer.BACKGROUND);
