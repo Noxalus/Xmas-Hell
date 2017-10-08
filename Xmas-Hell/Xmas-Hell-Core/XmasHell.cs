@@ -11,13 +11,10 @@ using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
 using XmasHell.GUI;
-using System;
-using XmasHell.PlayerData;
 
 #if ANDROID
 using Xmas_Hell_Android;
 using Android.Util;
-using Android.Preferences;
 using Android.Content;
 #endif
 
@@ -39,6 +36,7 @@ namespace XmasHell
         public PlayerData.PlayerData PlayerData;
 
         public bool Pause;
+        private bool _computeNextFrame = false;
 
 #if ANDROID
         private XmasHellActivity _activity;
@@ -185,7 +183,7 @@ namespace XmasHell
 
             base.Update(gameTime);
 
-            if (Pause)
+            if (Pause && !_computeNextFrame)
                 return;
 
             Camera.Update(gameTime);
@@ -210,6 +208,9 @@ namespace XmasHell
         {
             if (InputManager.KeyPressed(Keys.P))
                 Pause = !Pause;
+
+            if (InputManager.KeyPressed(Keys.N))
+                _computeNextFrame = true;
 
             //if (InputManager.PressedCancel())
             //    ScreenManager.Back();
@@ -270,6 +271,9 @@ namespace XmasHell
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerDraw);
 
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalDraw);
+
+            if (Pause)
+                _computeNextFrame = false;
         }
     }
 }
