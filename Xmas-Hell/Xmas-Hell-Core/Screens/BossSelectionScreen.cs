@@ -12,6 +12,8 @@ namespace XmasHell.Screens
     {
         private SpriterGuiButton _bossSelectionTreeStar;
         private List<SpriterGuiButton> _bossButtons = new List<SpriterGuiButton>();
+        private List<SpriterGuiButton> _bossPanelButtons = new List<SpriterGuiButton>();
+        private SpriterGuiButton _closeBossPanelButton;
         private List<SpriterSubstituteEntity> _bossGarlands = new List<SpriterSubstituteEntity>();
         private readonly List<string> _bossNames = new List<string>()
         {
@@ -50,11 +52,22 @@ namespace XmasHell.Screens
         private void OnBossButtonAction(object button, Point position)
         {
             var spriterGuiButton = button as SpriterGuiButton;
-
             var bossType = BossFactory.StringToBossType(spriterGuiButton.Name);
 
-            Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(bossType);
-            Game.ScreenManager.GoTo<GameScreen>();
+            if (bossType != BossType.Unknown)
+            {
+                spriterGuiButton.SubstituteEntity.EnableSynchronization(false);
+                var ballPosition = Game.ViewportAdapter.Center.ToVector2();
+                ballPosition.Y -= 500;
+                spriterGuiButton.Animator().Position = ballPosition;
+                spriterGuiButton.Animator().Scale = new Vector2(2f);
+                // TODO: Change Z order
+
+                OpenBossPanel();
+
+                //Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(bossType);
+                //Game.ScreenManager.GoTo<GameScreen>();
+            }
         }
 
         private void OnTreeStarAction(object sender, Point position)
@@ -78,6 +91,7 @@ namespace XmasHell.Screens
 
         protected override void InitializeSpriterGui()
         {
+            // Christmas tree's balls
             foreach(var bossName in _bossNames)
             {
                 var ballAnimator = Animators["Ball"].Clone();
@@ -108,7 +122,45 @@ namespace XmasHell.Screens
                 _bossButtons.Add(bossButton);
             }
 
+            // Boss panel buttons
+            _closeBossPanelButton = new SpriterGuiButton(
+                Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/BossSelection/boss-panel-close-button.png",
+                Animators["CloseButton"], Animators["BossPanel"]
+            );
+
+            _bossPanelButtons.Add(_closeBossPanelButton);
+
             ResetUI();
+        }
+
+        private void BossPanelCloseButtonAction(object sender, Point e)
+        {
+            CloseBossPanel();
+        }
+
+        private void OpenBossPanel()
+        {
+            foreach (var bossPanelButton in _bossPanelButtons)
+            {
+                Game.GuiManager.AddButton(bossPanelButton);
+            }
+
+            _closeBossPanelButton.Action += BossPanelCloseButtonAction;
+            Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossPanel"], Layer.UI);
+            Animators["BossPanel"].Play("Show");
+        }
+
+        private void CloseBossPanel()
+        {
+            Animators["BossPanel"].Play("Hide");
+            Animators["BossPanel"].CurrentAnimation.Looping = false;
+
+            _closeBossPanelButton.Action -= BossPanelCloseButtonAction;
+
+            foreach (var bossPanelButton in _bossPanelButtons)
+            {
+                Game.GuiManager.RemoveButton(bossPanelButton);
+            }
         }
 
         private void ResetUI()
@@ -120,16 +172,17 @@ namespace XmasHell.Screens
                 Animators["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
             }
 
+            if (Animators["BossPanel"] != null)
+            {
+                Animators["BossPanel"].AnimationFinished += BossPanel_AnimationFinished;
+            }
+
             foreach (var garland in _bossGarlands)
                 Game.SpriteBatchManager.AddSpriterAnimator(garland.SubstituteAnimator, Layer.UI);
 
             foreach (var bossButton in _bossButtons)
             {
-#if ANDROID
-                bossButton.Tap += OnBossButtonAction;
-#else
-                bossButton.Click += OnBossButtonAction;
-#endif
+                bossButton.Action += OnBossButtonAction;
                 var hasRelation = _bossRelations.ContainsKey(bossButton.Name);
 
                 var available = !hasRelation ||
@@ -147,6 +200,10 @@ namespace XmasHell.Screens
                         Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
                     );
                 }
+                else
+                {
+                    bossButton.Name = "Unknown";
+                }
 
                 Game.GuiManager.AddButton(bossButton);
             }
@@ -157,6 +214,17 @@ namespace XmasHell.Screens
             if (animationName == "Intro")
             {
                 Animators["BossSelection"].Play("NoAnimation");
+            }
+        }
+
+        private void BossPanel_AnimationFinished(string animationName)
+        {
+            if (animationName == "Show")
+                Animators["BossPanel"].Play("Idle");
+            else if (animationName == "Hide")
+            {
+                Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossPanel"], Layer.UI);
+                //Animators["BossPanel"].Play("Hidden");
             }
         }
 
@@ -188,6 +256,7 @@ namespace XmasHell.Screens
             Animators["BossSelection"].Play("Idle");
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
             Animators["BossSelection"].AnimationFinished -= BossSelectionScreen_AnimationFinished;
+            Animators["BossPanel"].AnimationFinished -= BossPanel_AnimationFinished;
         }
 
         public override void Update(GameTime gameTime)

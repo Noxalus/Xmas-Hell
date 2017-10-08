@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
-using SpriterDotNet.MonoGame;
 using System;
 using System.IO;
 using XmasHell.Spriter;

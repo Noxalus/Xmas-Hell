@@ -1,12 +1,11 @@
 using System;
-using System.Diagnostics;
 using BulletML;
-using XmasHell.Entities.Bosses.XmasBall;
 
 namespace XmasHell.Entities.Bosses
 {
     public enum BossType
     {
+        Unknown,
         Debug,
         XmasBall,
         XmasBell,
@@ -82,7 +81,7 @@ namespace XmasHell.Entities.Bosses
                 case "santa":
                     return BossType.XmasSanta;
                 default:
-                    return BossType.Debug;
+                    return BossType.Unknown;
             }
         }
     }
