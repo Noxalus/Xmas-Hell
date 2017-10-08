@@ -21,7 +21,7 @@ namespace XmasHell.Screens
 
         public GameScreen(XmasHell game) : base(game)
         {
-            ShouldBeStackInHistory = false;
+            ShouldBeStackInHistory = true;
             GameManager.GameDifficulty = GetRank;
 
             _player = new Player(game);

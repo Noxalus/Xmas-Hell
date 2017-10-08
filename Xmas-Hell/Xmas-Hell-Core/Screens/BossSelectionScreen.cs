@@ -169,7 +169,7 @@ namespace XmasHell.Screens
         {
             if (animationName == "Intro")
             {
-                Animators["BossSelection"].Play("NoAnimation");
+                Animators["BossSelection"].Play("Idle");
             }
         }
 
@@ -296,8 +296,16 @@ namespace XmasHell.Screens
 
             if (Animators["BossSelection"] != null)
             {
+                if (Game.ScreenManager.GetPreviousScreen().Name == "MainMenuScreen")
+                {
+                    Animators["BossSelection"].Play("Intro");
+                }
+                else if (Game.ScreenManager.GetPreviousScreen().Name == "GameScreen")
+                {
+                    Animators["BossSelection"].Play("Idle");
+                }
+
                 Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossSelection"], Layer.BACKGROUND);
-                Animators["BossSelection"].Play("Intro");
                 Animators["BossSelection"].CurrentAnimation.Looping = false;
             }
 
