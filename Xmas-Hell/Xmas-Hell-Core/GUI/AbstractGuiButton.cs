@@ -48,6 +48,8 @@ namespace XmasHell.GUI
         public event EventHandler<Point> Click;
 #endif
 
+        public event EventHandler<Point> Action;
+
         public AbstractGuiButton(ViewportAdapter viewportAdapter, String name)
         {
             ViewportAdapter = viewportAdapter;
@@ -80,11 +82,13 @@ namespace XmasHell.GUI
                 {
                     _touchedDown = true;
                     TouchStarted?.Invoke(this, position);
+                    Action?.Invoke(this, position);
                 }
                 else if (InputManager.TouchUp() && _touchedDown)
                 {
                     _touchedDown = false;
                     Tap?.Invoke(this, position);
+                    Action?.Invoke(this, position);
                 }
             }
             else
@@ -104,12 +108,14 @@ namespace XmasHell.GUI
                 {
                     _mouseDown = true;
                     MouseDown?.Invoke(this, position);
+                    Action?.Invoke(this, position);
                 }
                 else if (InputManager.LeftClickReleased() && _mouseDown)
                 {
                     _mouseDown = false;
 
                     Click?.Invoke(this, position);
+                    Action?.Invoke(this, position);
                 }
             }
             else
