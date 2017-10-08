@@ -36,6 +36,15 @@ namespace XmasHell.Screens
         private List<SpriterGuiButton> _bossPanelButtons = new List<SpriterGuiButton>();
         private SpriterGuiButton _closeBossPanelButton;
         private SpriterGuiButton _startBattleBossPanelButton;
+
+        // Labels
+        private List<GuiLabel> _bossPanelLabels = new List<GuiLabel>();
+        private GuiLabel _bossNameLabel;
+        private GuiLabel _bestTimeLabel;
+        private GuiLabel _playTimeLabel;
+        private GuiLabel _playerDeathLabel;
+        private GuiLabel _bossDeathLabel;
+
         #endregion
 
         public BossSelectionScreen(XmasHell game) : base(game)
@@ -44,6 +53,18 @@ namespace XmasHell.Screens
 
         public override void Initialize()
         {
+            _bossNameLabel = new GuiLabel("Unknown", Vector2.Zero, Color.Black);
+            _bestTimeLabel = new GuiLabel("Best time: ", Vector2.Zero, Color.Black);
+            _playTimeLabel = new GuiLabel("Play time: ", Vector2.Zero, Color.Black);
+            _playerDeathLabel = new GuiLabel("Player deaths: ", Vector2.Zero, Color.Black);
+            _bossDeathLabel = new GuiLabel("Boss deaths: ", Vector2.Zero, Color.Black);
+
+            _bossPanelLabels.Add(_bossNameLabel);
+            _bossPanelLabels.Add(_bestTimeLabel);
+            _bossPanelLabels.Add(_playTimeLabel);
+            _bossPanelLabels.Add(_playerDeathLabel);
+            _bossPanelLabels.Add(_bossDeathLabel);
+
             base.Initialize();
         }
 
@@ -175,6 +196,9 @@ namespace XmasHell.Screens
             foreach (var bossPanelButton in _bossPanelButtons)
                 Game.GuiManager.AddButton(bossPanelButton);
 
+            foreach (var bossPanelLabel in _bossPanelLabels)
+                Game.GuiManager.AddLabel(bossPanelLabel);
+
             Game.SpriteBatchManager.AddSpriterAnimator(Animators["BossPanel"], Layer.UI);
             Animators["BossPanel"].Play("Show");
 
@@ -205,6 +229,9 @@ namespace XmasHell.Screens
 
             foreach (var bossPanelButton in _bossPanelButtons)
                 Game.GuiManager.RemoveButton(bossPanelButton);
+
+            foreach (var bossPanelLabel in _bossPanelLabels)
+                Game.GuiManager.RemoveLabel(bossPanelLabel);
 
             if (hardClose)
             {

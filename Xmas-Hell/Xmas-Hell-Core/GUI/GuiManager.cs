@@ -8,12 +8,12 @@ namespace XmasHell.GUI
     public class GuiManager
     {
         private XmasHell _game;
-        private List<AbstractGuiButton> _buttons;
+        private List<AbstractGuiButton> _buttons = new List<AbstractGuiButton>();
+        private List<GuiLabel> _labels = new List<GuiLabel>();
 
         public GuiManager(XmasHell game)
         {
             _game = game;
-            _buttons = new List<AbstractGuiButton>();
         }
 
         public void Update(GameTime gameTime)
@@ -22,6 +22,19 @@ namespace XmasHell.GUI
             {
                 _buttons[i].Update(gameTime);
             }
+        }
+
+        public void AddLabel(GuiLabel label)
+        {
+            _labels.Add(label);
+
+            _game.SpriteBatchManager.UILabels.Add(label);
+        }
+
+        public void RemoveLabel(GuiLabel label)
+        {
+            _game.SpriteBatchManager.UILabels.Remove(label);
+            _labels.Remove(label);
         }
 
         public void AddButton(AbstractGuiButton button)

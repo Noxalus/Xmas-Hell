@@ -86,9 +86,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-7000.816"
-     inkscape:cy="-834.89271"
+     inkscape:zoom="0.35"
+     inkscape:cx="-7360.6017"
+     inkscape:cy="-693.06249"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -11379,12 +11379,15 @@
        x="-2131.2673"
        y="285.70575" />
     <rect
-       style="opacity:1;fill:#a0612b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:8.25169277;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#a0612b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:8.25161343;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect3051"
        width="229.91643"
        height="308.78476"
        x="-2100.4221"
-       y="394.75528" />
+       y="394.75528"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-background.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
     <g
        id="g3049"
        transform="matrix(1.5658264,0,0,1.5658264,15.621461,146.16899)">
@@ -11639,12 +11642,6 @@
         </g>
       </g>
     </g>
-    <circle
-       style="opacity:1;fill:#d04f4f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.23333339;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path3053"
-       cx="-1876.5762"
-       cy="395.77777"
-       r="17.941269" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:11.28888893px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.28222224px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -11657,18 +11654,30 @@
          y="403.71631"
          style="stroke-width:0.28222224px"></tspan></text>
     <g
-       id="g3065"
-       transform="translate(0.21381562,0.64144687)">
-      <path
-         inkscape:connector-curvature="0"
-         id="path3059"
-         d="m -1881.3636,400.55828 10.1587,-11.75265"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m -1871.2049,400.55828 -10.1587,-11.75265"
-         id="path3061"
-         inkscape:connector-curvature="0" />
+       id="g4349"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-close-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <circle
+         r="17.941269"
+         cy="395.77777"
+         cx="-1876.5762"
+         id="path3053"
+         style="opacity:1;fill:#d04f4f;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.23333339;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         transform="translate(0.21381562,0.64144687)"
+         id="g3065">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -1881.3636,400.55828 10.1587,-11.75265"
+           id="path3059"
+           inkscape:connector-curvature="0" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path3061"
+           d="m -1871.2049,400.55828 -10.1587,-11.75265"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.23887253;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
     </g>
     <g
        transform="matrix(1.5658264,0,0,1.5658264,15.621461,146.16899)"
@@ -12401,7 +12410,10 @@
     </g>
     <g
        id="g3503"
-       transform="translate(-3.2253968,150.88308)">
+       transform="translate(-3.2253968,150.88308)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-battle-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g7474"
          transform="matrix(1.6543387,0,0,1.6543387,-1105.4507,-21.406639)">

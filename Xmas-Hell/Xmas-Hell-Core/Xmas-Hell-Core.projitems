@@ -65,6 +65,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\AbstractGuiButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\SpriterGuiButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\SpriteGuiButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GUI\GuiManager.cs" />

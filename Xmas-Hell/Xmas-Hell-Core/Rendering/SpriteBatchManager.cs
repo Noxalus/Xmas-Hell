@@ -11,6 +11,7 @@ using XmasHell.Performance;
 using XmasHell.Shaders;
 using System;
 using XmasHell.Spriter;
+using XmasHell.GUI;
 
 namespace XmasHell.Rendering
 {
@@ -36,6 +37,7 @@ namespace XmasHell.Rendering
         public List<Laser> Lasers = new List<Laser>();
         public List<Sprite> GameSprites = new List<Sprite>();
         public List<ParticleEffect> GameParticles = new List<ParticleEffect>();
+        public List<GuiLabel> UILabels = new List<GuiLabel>();
 
         public Boss Boss;
         public Player Player;
@@ -378,12 +380,13 @@ namespace XmasHell.Rendering
             foreach (var animator in _uiSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
 
+            // Draw strings
+            foreach (var label in UILabels)
+                label.Draw(_game.SpriteBatch);
+
             _game.SpriteBatch.End();
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UIDraw);
-
-            // Draw strings
-            // TODO: Think to a good way to do that
         }
     }
 }

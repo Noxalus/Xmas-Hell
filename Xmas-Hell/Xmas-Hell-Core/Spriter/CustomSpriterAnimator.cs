@@ -24,6 +24,13 @@ namespace XmasHell.Spriter
         public bool StretchOut = true;
         private int _zIndex;
 
+        // GUI texts
+        private string _selectedBossName = "Unknown";
+        private string _selectedBossBestTime = "Best time: ";
+        private string _selectedBossPlayTime = "Play time: ";
+        private string _selectedBossPlayerDeath = "Player death: ";
+        private string _selectedBossBossDeath = "Boss death: ";
+
         public int zIndex()
         {
             return _zIndex;
