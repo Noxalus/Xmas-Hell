@@ -218,6 +218,12 @@ namespace XmasHell.Screens
         // Performed when animation is finished
         private void DoCloseBossPanel()
         {
+            foreach (var bossPanelButton in _bossPanelButtons)
+                Game.GuiManager.RemoveButton(bossPanelButton);
+
+            foreach (var bossPanelLabel in _bossPanelLabels)
+                Game.GuiManager.RemoveLabel(bossPanelLabel);
+
             Game.SpriteBatchManager.RemoveSpriterAnimator(Animators["BossPanel"], Layer.UI);
             EnableBossButtons();
         }
@@ -228,14 +234,7 @@ namespace XmasHell.Screens
             {
                 _bossButtons[_selectedBoss].SubstituteEntity.EnableSynchronization(true);
                 _bossButtons[_selectedBoss].Animator().zIndex(9);
-
             }
-
-            foreach (var bossPanelButton in _bossPanelButtons)
-                Game.GuiManager.RemoveButton(bossPanelButton);
-
-            foreach (var bossPanelLabel in _bossPanelLabels)
-                Game.GuiManager.RemoveLabel(bossPanelLabel);
 
             if (hardClose)
             {
@@ -260,6 +259,8 @@ namespace XmasHell.Screens
             foreach (var bossButtonPair in _bossButtons)
             {
                 var bossButton = bossButtonPair.Value;
+
+                bossButton.SubstituteEntity.EnableSynchronization(true);
 
                 var hasRelation = _bossRelations.ContainsKey(bossButton.Name);
 
