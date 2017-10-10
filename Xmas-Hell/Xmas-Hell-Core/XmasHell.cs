@@ -110,6 +110,14 @@ namespace XmasHell
 
             PerformanceManager.Initialize();
 
+            // Player data
+#if ANDROID
+            ISharedPreferences prefs = _activity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
+            PlayerData = new PlayerData.PlayerData(prefs);
+#else
+            PlayerData = new PlayerData.PlayerData();
+#endif
+
             // Screens
             ScreenManager = new ScreenManager(this);
 
@@ -127,12 +135,6 @@ namespace XmasHell
 
                 ScreenManager.GoTo<MainMenuScreen>();
             }
-#if ANDROID
-            ISharedPreferences prefs = _activity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
-            PlayerData = new PlayerData.PlayerData(prefs);
-#else
-            PlayerData = new PlayerData.PlayerData();
-#endif
         }
 
         protected override void LoadContent()

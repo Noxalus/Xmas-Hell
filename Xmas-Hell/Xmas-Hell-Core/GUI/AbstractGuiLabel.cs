@@ -12,14 +12,16 @@ namespace XmasHell.GUI
         protected Vector2 Scale;
         protected Color Color;
         protected BitmapFont Font;
+        protected bool Center;
 
-        public AbstractGuiLabel(string text, Vector2 position, Color color)
+        public AbstractGuiLabel(string text, BitmapFont font, Vector2 position, Color color, bool center = false)
         {
             Text = text;
             Position = position;
             Color = color;
 
-            Font = Assets.GetFont("Graphics/Fonts/ui-title");
+            Font = font;
+            Center = center;
         }
 
         public virtual void Update(GameTime gameTime)

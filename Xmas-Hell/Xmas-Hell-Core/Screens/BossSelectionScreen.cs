@@ -125,17 +125,17 @@ namespace XmasHell.Screens
             _bossPanelButtons.Add(_startBattleBossPanelButton);
 
             // Labels
-            _bossNameLabel = new SpriterGuiLabel("Unknown", "boss-panel-title-label.png", Animators["BossPanel"]);
-            //_bestTimeLabel = new SpriterGuiLabel("Best time: ", Vector2.Zero, Color.Black);
-            //_playTimeLabel = new SpriterGuiLabel("Play time: ", Vector2.Zero, Color.Black);
-            //_playerDeathLabel = new SpriterGuiLabel("Player deaths: ", Vector2.Zero, Color.Black);
-            //_bossDeathLabel = new SpriterGuiLabel("Boss deaths: ", Vector2.Zero, Color.Black);
+            _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", Animators["BossPanel"], true);
+            _bestTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-best-time-label.png", Animators["BossPanel"]);
+            _playTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-play-time-label.png", Animators["BossPanel"]);
+            _playerDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-player-deaths-label.png", Animators["BossPanel"]);
+            _bossDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-boss-deaths-label.png", Animators["BossPanel"]);
 
             _bossPanelLabels.Add(_bossNameLabel);
-            //_bossPanelLabels.Add(_bestTimeLabel);
-            //_bossPanelLabels.Add(_playTimeLabel);
-            //_bossPanelLabels.Add(_playerDeathLabel);
-            //_bossPanelLabels.Add(_bossDeathLabel);
+            _bossPanelLabels.Add(_bestTimeLabel);
+            _bossPanelLabels.Add(_playTimeLabel);
+            _bossPanelLabels.Add(_playerDeathLabel);
+            _bossPanelLabels.Add(_bossDeathLabel);
 
             base.InitializeSpriterGui();
 
@@ -205,6 +205,10 @@ namespace XmasHell.Screens
 
             // Update labels
             _bossNameLabel.Text = "Xmas " + bossType.ToString().Substring(4);
+            _bestTimeLabel.Text = "Best time: " + Game.PlayerData.BossBestTime(bossType);
+            _playTimeLabel.Text = "Play time: " + Game.PlayerData.BossPlayTime(bossType).ToString("mm\\:ss");
+            _playerDeathLabel.Text = "Attempts: " + Game.PlayerData.BossAttempts(bossType);
+            _bossDeathLabel.Text = "Boss deaths: " + Game.PlayerData.BossBeatenCounter(bossType);
 
             DoOpenBossPanel();
         }

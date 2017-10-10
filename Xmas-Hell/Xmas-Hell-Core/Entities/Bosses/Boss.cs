@@ -31,7 +31,7 @@ namespace XmasHell.Entities.Bosses
     public abstract class Boss : ISpriterPhysicsEntity, IDisposable
     {
         public XmasHell Game;
-        protected readonly BossType BossType;
+        public readonly BossType BossType;
         public Vector2 InitialPosition;
         protected float InitialLife;
         protected float Life;

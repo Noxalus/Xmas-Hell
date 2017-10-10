@@ -13,6 +13,7 @@ namespace XmasHell.Screens
     {
         private Player _player;
         private Boss _boss;
+        private TimeSpan _playTime;
 
         private float GetRank()
         {
@@ -45,6 +46,9 @@ namespace XmasHell.Screens
             _player.Initialize();
             _boss.Initialize();
 
+            _playTime = TimeSpan.Zero;
+            Game.PlayerData.BossAttempts(_boss.BossType, Game.PlayerData.BossAttempts(_boss.BossType) + 1);
+
             // Should play music (doesn't seem to work for now...)
             //MediaPlayer.Volume = 1f;
             //MediaPlayer.IsRepeating = true;
@@ -58,6 +62,8 @@ namespace XmasHell.Screens
             _boss.Dispose();
             _player.Dispose();
             Game.GameManager.Clear();
+
+            Game.PlayerData.BossPlayTime(_boss.BossType, Game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
         }
 
         public override void Update(GameTime gameTime)
@@ -67,8 +73,7 @@ namespace XmasHell.Screens
             if (InputManager.PressedCancel())
                 Game.ScreenManager.GoTo<BossSelectionScreen>();
 
-            if (Game.Pause)
-                return;
+            _playTime += gameTime.ElapsedGameTime;
 
             if (!Game.GameManager.EndGame())
             {

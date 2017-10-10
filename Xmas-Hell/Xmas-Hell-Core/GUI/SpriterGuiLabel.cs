@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended.BitmapFonts;
 using XmasHell.Spriter;
 
 namespace XmasHell.GUI
@@ -10,9 +11,11 @@ namespace XmasHell.GUI
 
         public SpriterGuiLabel(
             string text,
+            BitmapFont font,
             string spritePartCompleteFilename,
-            CustomSpriterAnimator referenceAnimator) :
-            base(text, Vector2.Zero, Color.Black)
+            CustomSpriterAnimator referenceAnimator,
+            bool center = false) :
+            base(text, font, Vector2.Zero, Color.Black, center)
         {
             _replacedPartFilename = spritePartCompleteFilename;
             _referenceAnimator = referenceAnimator;
@@ -39,9 +42,18 @@ namespace XmasHell.GUI
                 Position = _referenceAnimator.Position + dummyPosition;
                 Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
                 Scale = dummyScale;
-                Position.X -= (Font.MeasureString(Text).Width / 2f) * Scale.X;
-                Position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
                 Color = new Color(Color, spriterDummyData.Alpha);
+
+                if (Center)
+                {
+                    Position.X -= (Font.MeasureString(Text).Width / 2f) * Scale.X;
+                    Position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
+                }
+                else
+                {
+                    Position.X -= 1 * Scale.X;
+                    Position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
+                }
             }
         }
     }

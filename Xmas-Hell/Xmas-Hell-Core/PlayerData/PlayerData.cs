@@ -1,4 +1,5 @@
 ﻿using XmasHell.Entities.Bosses;
+using System;
 
 #if ANDROID
 using Android.Util;
@@ -74,6 +75,40 @@ namespace XmasHell.PlayerData
             return _preferences.GetInt("BossAttempts-" + type.ToString(), 0);
 #else
             return 0;
+#endif
+        }
+
+        public void BossBestTime(BossType type, TimeSpan value)
+        {
+#if ANDROID
+            _preferencesEditor.PutString("BossBestTime-" + type.ToString(), value.TotalSeconds.ToString());
+            _preferencesEditor.Apply();
+#endif
+        }
+
+        public TimeSpan BossBestTime(BossType type)
+        {
+#if ANDROID
+            return TimeSpan.FromSeconds(double.Parse(_preferences.GetString("BossBestTime-" + type.ToString(), "0")));
+#else
+            return TimeSpan.Zero;
+#endif
+        }
+
+        public void BossPlayTime(BossType type, TimeSpan value)
+        {
+#if ANDROID
+            _preferencesEditor.PutString("BossPlayTime-" + type.ToString(), value.TotalSeconds.ToString());
+            _preferencesEditor.Apply();
+#endif
+        }
+
+        public TimeSpan BossPlayTime(BossType type)
+        {
+#if ANDROID
+            return TimeSpan.FromSeconds(double.Parse(_preferences.GetString("BossPlayTime-" + type.ToString(), "0")));
+#else
+            return TimeSpan.Zero;
 #endif
         }
     }
