@@ -16,6 +16,7 @@ using XmasHell.Physics;
 using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Extensions;
+using XmasHell.GUI;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -36,6 +37,8 @@ namespace XmasHell.Entities.Bosses
         protected float InitialLife;
         protected float Life;
         private Sprite _hpBar;
+        private AbstractGuiLabel _timerLabel;
+        private TimeSpan _timer;
 
         public bool Invincible;
 
@@ -244,7 +247,7 @@ namespace XmasHell.Entities.Bosses
             _hpBar = new Sprite(
                 new TextureRegion2D(
                     Assets.GetTexture2D("pixel"),
-                    0, 0, GameConfig.VirtualResolution.X, 20
+                    0, 0, GameConfig.VirtualResolution.X, 50
                 )
             )
             {
@@ -254,6 +257,9 @@ namespace XmasHell.Entities.Bosses
 
             Game.SpriteBatchManager.Boss = this;
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
+
+            _timerLabel = new AbstractGuiLabel("00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth / 2f, 25), Color.White, true);
+            Game.SpriteBatchManager.UILabels.Add(_timerLabel);
 
             // To compute line/wall intersection
             _bottomWallLine = new Line(
@@ -327,6 +333,7 @@ namespace XmasHell.Entities.Bosses
             CurrentAnimator.Position = InitialPosition;
             Invincible = false;
             Tinted = false;
+            _timer = TimeSpan.Zero;
 
             Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
@@ -614,7 +621,10 @@ namespace XmasHell.Entities.Bosses
             var value = Life - (InitialLife - (CurrentBehaviourIndex + 1) * portion);
 
             _hpBar.Scale = new Vector2(value / portion, 1f);
-            _hpBar.Color = GameConfig.BossHPBarColors[CurrentBehaviourIndex];
+            _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
+
+            _timer += gameTime.ElapsedGameTime;
+            _timerLabel.Text = _timer.ToString("mm\\:ss");
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }

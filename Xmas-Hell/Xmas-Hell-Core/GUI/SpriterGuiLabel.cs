@@ -43,17 +43,6 @@ namespace XmasHell.GUI
                 Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
                 Scale = dummyScale;
                 Color = new Color(Color, spriterDummyData.Alpha);
-
-                if (Center)
-                {
-                    Position.X -= (Font.MeasureString(Text).Width / 2f) * Scale.X;
-                    Position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
-                }
-                else
-                {
-                    Position.X -= 1 * Scale.X;
-                    Position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
-                }
             }
         }
     }

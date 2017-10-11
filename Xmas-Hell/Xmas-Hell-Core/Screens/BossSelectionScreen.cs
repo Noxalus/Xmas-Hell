@@ -205,7 +205,7 @@ namespace XmasHell.Screens
 
             // Update labels
             _bossNameLabel.Text = "Xmas " + bossType.ToString().Substring(4);
-            _bestTimeLabel.Text = "Best time: " + Game.PlayerData.BossBestTime(bossType);
+            _bestTimeLabel.Text = "Best time: " + Game.PlayerData.BossBestTime(bossType).ToString("mm\\:ss");
             _playTimeLabel.Text = "Play time: " + Game.PlayerData.BossPlayTime(bossType).ToString("mm\\:ss");
             _playerDeathLabel.Text = "Attempts: " + Game.PlayerData.BossAttempts(bossType);
             _bossDeathLabel.Text = "Boss deaths: " + Game.PlayerData.BossBeatenCounter(bossType);

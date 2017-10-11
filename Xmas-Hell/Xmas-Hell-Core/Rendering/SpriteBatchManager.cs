@@ -205,6 +205,9 @@ namespace XmasHell.Rendering
 
             foreach (var animator in _uiSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            foreach (var label in UILabels)
+                label.Update(gameTime);
         }
 
         private void BeginDrawViewportSpace()

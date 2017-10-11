@@ -9,7 +9,7 @@ namespace XmasHell.GUI
         public string Text;
         protected Vector2 Position;
         protected float Rotation;
-        protected Vector2 Scale;
+        public Vector2 Scale;
         protected Color Color;
         protected BitmapFont Font;
         protected bool Center;
@@ -22,6 +22,7 @@ namespace XmasHell.GUI
 
             Font = font;
             Center = center;
+            Scale = Vector2.One;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -30,7 +31,20 @@ namespace XmasHell.GUI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Font, Text, Position, Color, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 0f);
+            var position = Position;
+
+            if (Center)
+            {
+                position.X -= (Font.MeasureString(Text).Width / 2f) * Scale.X;
+                position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
+            }
+            else
+            {
+                //position.X -= 1 * Scale.X;
+                //position.Y -= (Font.MeasureString(Text).Height / 2f) * Scale.Y;
+            }
+
+            spriteBatch.DrawString(Font, Text, position, Color, Rotation, Vector2.Zero, Scale, SpriteEffects.None, 0f);
         }
     }
 }
