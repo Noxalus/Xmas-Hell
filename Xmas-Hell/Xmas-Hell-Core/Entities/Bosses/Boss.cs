@@ -296,6 +296,7 @@ namespace XmasHell.Entities.Bosses
         {
             Game.SpriteBatchManager.Boss = null;
             Game.SpriteBatchManager.UISprites.Remove(_hpBar);
+            Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
             Game.SpriteBatchManager.BossBullets.Clear();
 
             Game.GameManager.CollisionWorld.ClearBossHitboxes();
