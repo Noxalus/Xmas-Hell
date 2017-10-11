@@ -1605,3 +1605,20 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Fonts/ui-title_1.png
 
+#begin Graphics/Fonts/ui-small.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:Graphics/Fonts/ui-small.fnt
+
+#begin Graphics/Fonts/ui-small_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Fonts/ui-small_0.png
+

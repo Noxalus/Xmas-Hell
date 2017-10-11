@@ -120,7 +120,8 @@ namespace XmasHell
             {
                 content.Load<BitmapFont>("Graphics/Fonts/main"),
                 content.Load<BitmapFont>("Graphics/Fonts/ui"),
-                content.Load<BitmapFont>("Graphics/Fonts/ui-title")
+                content.Load<BitmapFont>("Graphics/Fonts/ui-title"),
+                content.Load<BitmapFont>("Graphics/Fonts/ui-small")
             };
 
             // Load BulletML files
