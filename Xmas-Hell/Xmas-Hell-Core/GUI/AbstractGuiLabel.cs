@@ -10,7 +10,7 @@ namespace XmasHell.GUI
         protected Vector2 Position;
         protected float Rotation;
         public Vector2 Scale;
-        protected Color Color;
+        public Color Color;
         protected BitmapFont Font;
         protected bool Center;
 

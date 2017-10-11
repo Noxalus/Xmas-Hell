@@ -4,6 +4,7 @@ using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using System.Linq;
 using System.IO;
+using XmasHell.Extensions;
 
 namespace XmasHell.Spriter
 {
@@ -133,25 +134,76 @@ namespace XmasHell.Spriter
                 worldPosition = worldTopLeftCornerPosition + animationOffset;
 
                 // Compute rotation
-                //var pivot = new Vector2(
-                //    (spriterFile.Width * realPivotPosition.X) + spriterObject.X,
-                //    (spriterFile.Height * realPivotPosition.Y) - spriterObject.Y
-                //);
+                var pivot = new Vector2(
+                    (spriterFile.Width * realPivotPosition.X) + spriterObject.X,
+                    (spriterFile.Height * realPivotPosition.Y) - spriterObject.Y
+                );
 
-                //var origin = animator.Position + pivot - spriteCenter;
+                var origin = animator.Position + pivot - spriteCenter;
 
-                //var rotation = -spriterObject.Angle;
-                //rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
+                var rotation = -spriterObject.Angle;
+                rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
 
-                //// Take the animation angle into account
-                //worldPosition = MathExtension.RotatePoint(
-                //    worldPosition, rotation, origin
-                //);
+                // Take the animation angle into account
+                worldPosition = MathExtension.RotatePoint(
+                    worldPosition, rotation, origin
+                );
 
-                //// Take the global angle into account
-                //worldPosition = MathExtension.RotatePoint(
-                //    worldPosition, animator.Rotation, animator.Position
-                //);
+                // Take the global angle into account
+                worldPosition = MathExtension.RotatePoint(
+                    worldPosition, animator.Rotation, animator.Position
+                );
+            }
+
+            return worldPosition;
+        }
+
+        public static Vector2 GetWorldPosition(string spriterPartFilename, MonoGameAnimator animator, Vector2? optionalLocalPosition = null)
+        {
+            var vertex = optionalLocalPosition.HasValue ? optionalLocalPosition.Value : Vector2.Zero;
+            var worldPosition = animator.Position + vertex;
+
+            if (animator.FrameData != null)
+            {
+                // Compute translation
+                int folderId = 0;
+                var spriterPartFile = SpriterUtils.GetSpriterFile(spriterPartFilename, animator, out folderId);
+
+                var spriteData = animator.FrameData.SpriteData.Find((so) => so.FileId == spriterPartFile.Id);
+                var animationOffset = new Vector2(spriteData.X, -spriteData.Y);
+                var scale = new Vector2(spriteData.ScaleX, spriteData.ScaleY);
+                var realPivotPosition = new Vector2(1 - spriteData.PivotX, 1 - spriteData.PivotY);
+
+                vertex *= scale;
+
+                var spriteCenter = new Vector2(
+                    spriterPartFile.Width * realPivotPosition.X,
+                    spriterPartFile.Height * realPivotPosition.Y
+                );
+                var worldTopLeftCornerPosition = animator.Position - (spriteCenter * scale);
+
+                worldPosition = worldTopLeftCornerPosition + vertex + animationOffset;
+
+                // Compute rotation
+                var pivot = new Vector2(
+                    (spriterPartFile.Width * realPivotPosition.X) + spriteData.X,
+                    (spriterPartFile.Height * realPivotPosition.Y) - spriteData.Y
+                );
+
+                var origin = animator.Position + pivot - spriteCenter;
+
+                var rotation = -spriteData.Angle;
+                rotation = MathHelper.WrapAngle(MathHelper.ToRadians(rotation));
+
+                // Take the animation angle into account
+                worldPosition = MathExtension.RotatePoint(
+                    worldPosition, rotation, origin
+                );
+
+                // Take the global angle into account
+                worldPosition = MathExtension.RotatePoint(
+                    worldPosition, animator.Rotation, animator.Position
+                );
             }
 
             return worldPosition;

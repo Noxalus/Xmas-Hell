@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Sprites;
+using XmasHell.Spriter;
+using System.Diagnostics;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
     class XmasCandyBehaviour3 : AbstractBossBehaviour
     {
-        private List<XmasCandyBar> _candyBars;
+        private List<CustomSpriterAnimator> _candyBars;
+        private bool _patternStarted;
 
         public XmasCandyBehaviour3(Boss boss) : base(boss)
         {
@@ -17,37 +20,70 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Start();
 
-            Boss.CurrentAnimator.Play("StretchOutBorder");
-
+            Boss.Speed = 500f;
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
+            _patternStarted = false;
+            //Boss.MoveOutside();
 
-            _candyBars = new List<XmasCandyBar>();
+            _candyBars = new List<CustomSpriterAnimator>();
         }
 
         private void AnimationFinishedHandler(string animationName)
         {
-            if (animationName == "StretchOutBorder")
+            if (animationName == "StretchOutBorderWidth" || animationName == "StretchOutBorderHeight")
             {
-                var candyBarSprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasCandy/candy-bar"));
-                candyBarSprite.Origin = new Vector2(candyBarSprite.BoundingRectangle.Width / 2f, 0f);
-                candyBarSprite.Rotation = -MathHelper.PiOver2;
-
                 // Retrieve the candy bar position
                 var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
 
                 int folderId = 0;
-                var body2File = Spriter.SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
-                var body2Sprite = spriteData.FindAll(so => so.FileId == body2File.Id)[0];
+                var body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
+                var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(body2File.Width / 2f, 0f));
+                var angle = Boss.Rotation();
 
-                var worldPosition = Spriter.SpriterUtils.GetSpriterWorldPosition(body2Sprite, Boss.CurrentAnimator);
-                var angle = MathHelper.ToRadians(body2Sprite.Angle);
+                var candyBar = Boss.CurrentAnimator.Clone();
+                candyBar.StretchOut = false;
+                candyBar.Position = worldPosition;
+                candyBar.Rotation = angle;
+                candyBar.Progress = 0;
+                candyBar.Speed = 1;
+                candyBar.Play("StretchInBorderWidth");
 
-                candyBarSprite.Position = new Vector2(body2Sprite.X, body2Sprite.Y);
-                candyBarSprite.Rotation = angle;
-
-                var candyBar = new XmasCandyBar(Boss, candyBarSprite);
-
+                _candyBars.Clear();
                 _candyBars.Add(candyBar);
+
+                var bodyFile = SpriterUtils.GetSpriterFile("body.png", Boss.CurrentAnimator, out folderId);
+                var bodyPosition = SpriterUtils.GetWorldPosition("body.png", Boss.CurrentAnimator);
+                var bodyRotation = Boss.Rotation() + MathHelper.Pi + ((float)Boss.Game.GameManager.Random.NextDouble() * (-(MathHelper.PiOver4 / 1.5f)));
+
+                if (bodyPosition.Y <= 0)
+                {
+                    bodyPosition.X += Boss.Width() / 2f + body2File.Width;
+                    bodyPosition.Y = 0;
+                    bodyRotation = -MathHelper.PiOver2;
+                }
+                else if (bodyPosition.Y > Boss.Game.ViewportAdapter.VirtualHeight)
+                {
+                    bodyPosition.X -= Boss.Width() / 2f + body2File.Width;
+                    bodyPosition.Y = Boss.Game.ViewportAdapter.VirtualHeight;
+                    bodyRotation = MathHelper.PiOver2;
+                }
+                else if (bodyPosition.X > Boss.Game.ViewportAdapter.VirtualWidth)
+                {
+                    bodyPosition.X = Boss.Game.ViewportAdapter.VirtualWidth;
+                    bodyPosition.Y += Boss.Height();
+                    bodyRotation = 0;
+                }
+                else if (bodyPosition.X <= 0)
+                {
+                    bodyPosition.X = 0;
+                    bodyPosition.Y -= Boss.Height();
+                    bodyRotation = MathHelper.Pi;
+                }
+
+                Boss.Position(bodyPosition);
+                Boss.Rotation(bodyRotation);
+
+                //Boss.CurrentAnimator.Play("StretchOutBorderHeight");
             }
         }
 
@@ -62,8 +98,27 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
+            if (!_patternStarted /*&& Boss.IsOutside*/)
+            {
+                // TODO: Choose random initial position
+                Boss.Position(new Vector2(Boss.Game.ViewportAdapter.VirtualWidth, Boss.Height()));
+                Boss.CurrentAnimator.Play("StretchOutBorderHeight");
+                Boss.Rotation((float)Boss.Game.GameManager.Random.NextDouble() * (-(MathHelper.PiOver4) / 2));
+
+                Boss.CurrentAnimator.CurrentAnimation.Looping = false;
+                Boss.Position(new Vector2(Boss.Game.ViewportAdapter.VirtualWidth / 3f, 100));
+                Boss.Rotation(-MathHelper.PiOver2);
+
+                _patternStarted = true;
+            }
+
+            if (_patternStarted)
+            {
+
+            }
+
             foreach (var candyBar in _candyBars)
-                candyBar.Update(gameTime);
+                candyBar.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
