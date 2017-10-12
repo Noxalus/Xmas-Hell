@@ -139,12 +139,19 @@ namespace XmasHell.Entities.Bosses
 
         public Vector2 ActionPointPosition()
         {
-            if (CurrentAnimator.FrameData != null && CurrentAnimator.FrameData.PointData.ContainsKey("action_point"))
+            if (CurrentAnimator.FrameData != null)
             {
-                var pointData = CurrentAnimator.FrameData.PointData["action_point"];
-                var actionPoint = new Vector2(pointData.X, -pointData.Y);
-                var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, Rotation());
-                return Position() + rotatedActionPoint;
+                foreach (var pointData in CurrentAnimator.FrameData.PointData)
+                {
+                    if (pointData.Key.StartsWith("action_point"))
+                    {
+                        var actionPoint = new Vector2(pointData.Value.X, -pointData.Value.Y);
+                        var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, Rotation());
+                        return Position() + rotatedActionPoint;
+                    }
+                }
+
+
             }
 
             return Position();

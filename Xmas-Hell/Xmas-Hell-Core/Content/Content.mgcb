@@ -1622,3 +1622,15 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Fonts/ui-small_0.png
 
+#begin Graphics/Sprites/Bosses/XmasCandy/body4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasCandy/body4.png
+
