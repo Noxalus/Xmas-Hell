@@ -1,12 +1,13 @@
 using System;
 using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Media;
 using XmasHell.BulletML;
 using XmasHell.GUI;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Media;
+using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
 namespace XmasHell.Screens
 {
@@ -63,8 +64,8 @@ namespace XmasHell.Screens
             _mainSong = Assets.GetMusic("boss-theme-main");
             _menuSong = Assets.GetMusic("main-menu");
 
-            MediaPlayer.IsRepeating = true;
-            //MediaPlayer.Play(_menuSong);
+            XnaMediaPlayer.IsRepeating = true;
+            //XnaMediaPlayer.Play(_menuSong);
 
             LoadSpriterSprite("Graphics/GUI/main-menu");
         }
@@ -142,10 +143,10 @@ namespace XmasHell.Screens
             base.Show(reset);
 
             // Should play music (doesn't seem to work for now...)
-            MediaPlayer.Volume = 1f;
+            XnaMediaPlayer.Volume = 1f;
 
-            MediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
-            MediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
+            XnaMediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
+            XnaMediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
 
             ResetUI();
         }
@@ -154,8 +155,8 @@ namespace XmasHell.Screens
         {
             base.Hide();
 
-            MediaPlayer.MediaStateChanged -= MediaPlayerOnMediaStateChanged;
-            MediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
+            XnaMediaPlayer.MediaStateChanged -= MediaPlayerOnMediaStateChanged;
+            XnaMediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
 
             // GUI
             Game.GuiManager.RemoveButton(_settingsButton);
@@ -172,15 +173,15 @@ namespace XmasHell.Screens
 
         private void MediaPlayerOnMediaStateChanged(object sender, EventArgs eventArgs)
         {
-            if (MediaPlayer.Queue.ActiveSong == null)
+            if (XnaMediaPlayer.Queue.ActiveSong == null)
                 return;
 
-            if (MediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
-                MediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
-            {
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.Play(_mainSong);
-            }
+            //if (XnaMediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
+            //    XnaMediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
+            //{
+            //    XnaMediaPlayer.IsRepeating = true;
+            //    XnaMediaPlayer.Play(_mainSong);
+            //}
         }
 
         public override void Update(GameTime gameTime)
