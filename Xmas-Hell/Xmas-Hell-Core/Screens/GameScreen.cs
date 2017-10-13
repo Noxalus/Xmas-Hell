@@ -80,7 +80,8 @@ namespace XmasHell.Screens
                 if (_player.Alive())
                     _player.Update(gameTime);
 
-                _boss.Update(gameTime);
+                if (_boss.Alive())
+                    _boss.Update(gameTime);
             }
         }
 

@@ -17,6 +17,7 @@ using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Extensions;
 using XmasHell.GUI;
+using XmasHell.Screens;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -39,6 +40,7 @@ namespace XmasHell.Entities.Bosses
         private Sprite _hpBar;
         private AbstractGuiLabel _timerLabel;
         private TimeSpan _timer;
+        private bool _destroyed;
 
         public bool Invincible;
 
@@ -310,6 +312,11 @@ namespace XmasHell.Entities.Bosses
             Game.GameManager.CollisionWorld.ClearBossBullets();
         }
 
+        public bool Alive()
+        {
+            return !_destroyed;
+        }
+
         protected virtual void LoadSpriterSprite()
         {
             if (SpriterFilename == string.Empty)
@@ -342,6 +349,7 @@ namespace XmasHell.Entities.Bosses
             Invincible = false;
             Tinted = false;
             _timer = TimeSpan.Zero;
+            _destroyed = false;
 
             Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
@@ -371,16 +379,20 @@ namespace XmasHell.Entities.Bosses
 
         public void Destroy()
         {
-            Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
+            if (_destroyed)
+                return;
 
             Game.PlayerData.BossBeatenCounter(BossType, Game.PlayerData.BossBeatenCounter(BossType) + 1);
 
-            // Don't do that here, call a method from GameManager to end the game
-            Game.ScreenManager.Back();
-
             var bestTime = Game.PlayerData.BossBestTime(BossType);
-            if (bestTime > _timer)
+            if (bestTime == TimeSpan.Zero || bestTime > _timer)
                 Game.PlayerData.BossBestTime(BossType, _timer);
+
+            Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
+            Game.Camera.ZoomTo(3f, 0.25, CurrentAnimator.Position);
+            Game.GameManager.EndGame(true);
+
+            _destroyed = true;
         }
 
         // Move to a given position in "time" seconds

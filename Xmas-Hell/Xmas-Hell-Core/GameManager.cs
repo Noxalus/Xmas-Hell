@@ -10,6 +10,7 @@ using XmasHell.Entities;
 using XmasHell.Particles;
 using XmasHell.Physics;
 using Bullet = XmasHell.Entities.Bullet;
+using XmasHell.Screens;
 
 namespace XmasHell
 {
@@ -98,7 +99,7 @@ namespace XmasHell
             {
                 _endGameFirstTime = true;
 
-                _game.ScreenManager.Back();
+                _game.ScreenManager.GoTo<BossSelectionScreen>();
 
                 _endGameTimer.Stop();
                 _game.Camera.Zoom = 1f;
