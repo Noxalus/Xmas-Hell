@@ -372,7 +372,15 @@ namespace XmasHell.Entities.Bosses
         public void Destroy()
         {
             Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
-            Reset();
+
+            Game.PlayerData.BossBeatenCounter(BossType, Game.PlayerData.BossBeatenCounter(BossType) + 1);
+
+            // Don't do that here, call a method from GameManager to end the game
+            Game.ScreenManager.Back();
+
+            var bestTime = Game.PlayerData.BossBestTime(BossType);
+            if (bestTime > _timer)
+                Game.PlayerData.BossBestTime(BossType, _timer);
         }
 
         // Move to a given position in "time" seconds
@@ -733,15 +741,6 @@ namespace XmasHell.Entities.Bosses
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {
-                if (PreviousBehaviourIndex == Behaviours.Count - 1)
-                {
-                    Game.PlayerData.BossBeatenCounter(BossType, Game.PlayerData.BossBeatenCounter(BossType) + 1);
-
-                    // Don't do that here, call a method from GameManager to end the game
-                    Game.ScreenManager.Back();
-                    return;
-                }
-
                 if (PreviousBehaviourIndex >= 0)
                     Behaviours[PreviousBehaviourIndex].Stop();
 
