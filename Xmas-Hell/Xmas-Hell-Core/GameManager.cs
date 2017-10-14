@@ -94,6 +94,7 @@ namespace XmasHell
                 _endGame = false;
                 _endGameFirstTime = false;
                 _endGameTimer.Restart();
+                Assets.GetSound("Audio/SE/player-death").Play();
             }
             else
             {

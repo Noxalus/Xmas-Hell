@@ -600,6 +600,8 @@ namespace XmasHell.Entities.Bosses
                 Destroy();
 
             _hitTimer = TimeSpan.FromMilliseconds(20);
+
+            Assets.GetSound("Audio/SE/boss-hit1").Play();
         }
 
         public void TriggerPattern(string patternName, BulletType type, bool clear = false, Vector2? position = null, float? direction = null)

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.BitmapFonts;
 using Stream = System.IO.Stream;
+using Microsoft.Xna.Framework.Audio;
 
 #if ANDROID
 using Android.App;
@@ -19,6 +20,7 @@ namespace XmasHell
         private static List<Texture2D> _textures;
         private static Dictionary<string, Stream> _patternSteams;
         private static List<Song> _musics;
+        private static List<SoundEffect> _soundEffects;
         private static List<Effect> _effects;
 
 #if ANDROID
@@ -172,6 +174,19 @@ namespace XmasHell
                 content.Load<Song>("Audio/BGM/main-menu")
             };
 
+            // Load sounds
+            _soundEffects = new List<SoundEffect>()
+            {
+                content.Load<SoundEffect>("Audio/SE/shoot1"),
+                content.Load<SoundEffect>("Audio/SE/shoot2"),
+                content.Load<SoundEffect>("Audio/SE/shoot3"),
+                content.Load<SoundEffect>("Audio/SE/shoot4"),
+                content.Load<SoundEffect>("Audio/SE/boss-hit1"),
+                content.Load<SoundEffect>("Audio/SE/boss-hit2"),
+                content.Load<SoundEffect>("Audio/SE/boss-hit3"),
+                content.Load<SoundEffect>("Audio/SE/player-death")
+            };
+
             // Load custom shaders
             _effects = new List<Effect>()
             {
@@ -202,6 +217,11 @@ namespace XmasHell
         public static Song GetMusic(string musicName)
         {
             return _musics.Find(m => m.Name == musicName);
+        }
+
+        public static SoundEffect GetSound(string soundName)
+        {
+            return _soundEffects.Find(m => m.Name == soundName);
         }
 
         public static Effect GetShader(string shaderName)

@@ -1634,3 +1634,75 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasCandy/body4.png
 
+#begin Audio/SE/shoot1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/shoot1.wav
+
+#begin Audio/SE/shoot2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/shoot2.wav
+
+#begin Audio/SE/shoot3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/shoot3.wav
+
+#begin Audio/SE/boss-hit1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/boss-hit1.wav
+
+#begin Audio/SE/boss-hit2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/boss-hit2.wav
+
+#begin Audio/SE/boss-hit3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/boss-hit3.wav
+
+#begin Audio/SE/laser.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/laser.wav
+
+#begin Audio/SE/player-death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/player-death.wav
+
+#begin Audio/SE/select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/select.wav
+
+#begin Audio/SE/select2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/select2.wav
+
+#begin Audio/SE/shoot4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/shoot4.wav
+
+#begin Audio/SE/teleport.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/teleport.wav
+

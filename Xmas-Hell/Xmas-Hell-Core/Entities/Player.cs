@@ -43,6 +43,9 @@ namespace XmasHell.Entities
 
         private TimeSpan _bulletFrequence;
 
+        // Sounds
+        SoundEffectInstance _shoot4SoundInstance;
+
         public Vector2 Position()
         {
             return CurrentAnimator.Position;
@@ -129,6 +132,9 @@ namespace XmasHell.Entities
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
+
+            // Sounds
+            _shoot4SoundInstance = Assets.GetSound("Audio/SE/shoot4").CreateInstance();
         }
 
         public void Initialize()
@@ -400,6 +406,19 @@ namespace XmasHell.Entities
                 _bulletFrequence -= gameTime.ElapsedGameTime;
             else
             {
+                //if (_shoot4SoundInstance.State != SoundState.Playing)
+                {
+                    //_shoot4SoundInstance.Play();
+                    //Assets.GetSound("Audio/SE/shoot4").Play();
+                    var randomNumber = _game.GameManager.Random.NextDouble();
+                    if (randomNumber < 1f / 3f)
+                        Assets.GetSound("Audio/SE/shoot1").Play();
+                    else if (randomNumber < 2f / 3f)
+                        Assets.GetSound("Audio/SE/shoot2").Play();
+                    else
+                        Assets.GetSound("Audio/SE/shoot4").Play();
+                }
+
                 _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
 
                 var bullet1 = new PlayerBullet(_game, CurrentAnimator.Position, -MathHelper.PiOver4 / 4f, GameConfig.PlayerBulletSpeed);
