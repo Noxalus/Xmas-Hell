@@ -8,6 +8,7 @@ using SpriterDotNet.MonoGame.Sprites;
 using System;
 using System.IO;
 using XmasHell.Rendering;
+using System.Diagnostics;
 
 namespace XmasHell.Spriter
 {
@@ -109,12 +110,25 @@ namespace XmasHell.Spriter
                 SpriteDrawInfo di = DrawInfos[i];
                 ISprite sprite = di.Drawable;
 
+                var currentTextureName = Path.GetFileNameWithoutExtension(sprite.Texture().Name);
+                Debug.Print("Draw: " + currentTextureName);
+
+                if (Path.GetFileNameWithoutExtension(sprite.Texture().Name) == "play-button")
+                {
+                    Debug.Print("Draw play button");
+                }
+
                 if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == Path.GetFileNameWithoutExtension(sprite.Texture().Name)) == null)
                 {
                     if (sprite.Texture().Name != null && _textureSwapMap.ContainsKey(sprite.Texture().Name) && _textureSwapMap[sprite.Texture().Name] != null)
                         sprite = new TextureSprite(_textureSwapMap[sprite.Texture().Name]);
 
                     sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
+                }
+                else
+                {
+                    var textureName = sprite.Texture().Name;
+                    Debug.Print("Hide " + textureName);
                 }
             }
         }

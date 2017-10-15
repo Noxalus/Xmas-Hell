@@ -7,6 +7,12 @@ using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.BitmapFonts;
 using Stream = System.IO.Stream;
 using Microsoft.Xna.Framework.Audio;
+using XmasHell.Spriter;
+using SpriterDotNet;
+using SpriterDotNet.Providers;
+using SpriterDotNet.MonoGame;
+using SpriterDotNet.MonoGame.Content;
+using System;
 
 #if ANDROID
 using Android.App;
@@ -22,6 +28,18 @@ namespace XmasHell
         private static List<Song> _musics;
         private static List<SoundEffect> _soundEffects;
         private static List<Effect> _effects;
+
+        // Spriter
+        private static readonly Config DefaultAnimatorConfig = new Config
+        {
+            MetadataEnabled = true,
+            EventsEnabled = true,
+            PoolingEnabled = true,
+            TagsEnabled = false,
+            VarsEnabled = false,
+            SoundsEnabled = false
+        };
+        private static Dictionary<string, Dictionary<string, CustomSpriterAnimator>> _spriterAnimators;
 
 #if ANDROID
         private static Activity _activity;
@@ -53,6 +71,28 @@ namespace XmasHell
         private static string BuildRawAssetPath(string path)
         {
             return GetPatternsFolder() + path;
+        }
+
+        private static Dictionary<string, CustomSpriterAnimator> LoadSpriterFile(ContentManager content, string filename)
+        {
+            var factory = new DefaultProviderFactory<ISprite, SoundEffect>(DefaultAnimatorConfig, true);
+
+            var loader = new SpriterContentLoader(content, filename);
+            loader.Fill(factory);
+
+            var animators = new Dictionary<string, CustomSpriterAnimator>();
+
+            foreach (var entity in loader.Spriter.Entities)
+            {
+                var animator = new CustomSpriterAnimator(entity, factory);
+
+                // Center the animator
+                animator.Position = XmasHell.Instance().ViewportAdapter.Center.ToVector2();
+
+                animators.Add(entity.Name, animator);
+            }
+
+            return animators;
         }
 
 #if ANDROID
@@ -115,6 +155,12 @@ namespace XmasHell
 
                 // Candy bar
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasCandy/candy-bar"),
+            };
+
+            _spriterAnimators = new Dictionary<string, Dictionary<string, CustomSpriterAnimator>>()
+            {
+                { "Graphics/GUI/main-menu", LoadSpriterFile(content, "Graphics/GUI/main-menu") },
+                { "Graphics/GUI/boss-selection", LoadSpriterFile(content, "Graphics/GUI/boss-selection") }
             };
 
             // Load fonts
@@ -202,6 +248,14 @@ namespace XmasHell
         public static Texture2D GetTexture2D(string textureName)
         {
             return _textures.Find(t => t.Name == textureName);
+        }
+
+        public static Dictionary<string, CustomSpriterAnimator> GetSpriterAnimators(string spriterFilename)
+        {
+            if (!_spriterAnimators.ContainsKey(spriterFilename))
+                throw new Exception("This Spriter file doesn't exist");
+
+            return _spriterAnimators[spriterFilename];
         }
 
         public static BitmapFont GetFont(string fontName)

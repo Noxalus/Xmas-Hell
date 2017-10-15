@@ -84,10 +84,5 @@ namespace XmasHell.Screens
                     _boss.Update(gameTime);
             }
         }
-
-        protected override void InitializeSpriterGui()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

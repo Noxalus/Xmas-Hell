@@ -59,6 +59,8 @@ namespace XmasHell.Rendering
         private List<Tuple<CustomSpriterAnimator, Layer>> _animatorsToRemove = new List<Tuple<CustomSpriterAnimator, Layer>>();
         private List<Tuple<CustomSpriterAnimator, Layer>> _animatorsToAdd = new List<Tuple<CustomSpriterAnimator, Layer>>();
 
+        private bool _sortSpriterAnimators;
+
         public void AddSpriterAnimator(CustomSpriterAnimator animator, Layer layer)
         {
             _animatorsToAdd.Add(new Tuple<CustomSpriterAnimator, Layer>(animator, layer));
@@ -76,23 +78,18 @@ namespace XmasHell.Rendering
 
         public void SortSpriterAnimator(Layer? layer = null)
         {
-            if (layer.HasValue)
-            {
-                switch (layer.Value)
-                {
-                    case Layer.BACKGROUND:
-                        _backgroundSpriterAnimators.Sort();
-                        break;
-                    case Layer.UI:
-                        _uiSpriterAnimators.Sort();
-                        break;
-                }
-            }
-            else
-            {
-                _backgroundSpriterAnimators.Sort();
-                _uiSpriterAnimators.Sort();
-            }
+            _sortSpriterAnimators = true;
+        }
+
+        private void DoSortSpriterAnimator()
+        {
+            if (!_sortSpriterAnimators)
+                return;
+
+            _backgroundSpriterAnimators.Sort();
+            _uiSpriterAnimators.Sort();
+
+            _sortSpriterAnimators = false;
         }
 
         public void Initialize()
@@ -184,8 +181,9 @@ namespace XmasHell.Rendering
         {
             // Clean Spriter animators to remove
             CleanSpriterAnimators();
-
             AddSpriterAnimators();
+
+            DoSortSpriterAnimator();
 
             if (GameConfig.EnableBloom)
             {
