@@ -13,7 +13,6 @@ namespace XmasHell.Spriter
 {
     public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>
     {
-        private readonly XmasHell _game;
         private readonly GraphicsDevice _graphicsDevice;
         private readonly IProviderFactory<ISprite, SoundEffect> _providerFactory;
         private readonly Stack<SpriteDrawInfo> _drawInfoPool;
@@ -39,37 +38,35 @@ namespace XmasHell.Spriter
         public void zIndex(int value, Layer? layer = null)
         {
             _zIndex = value;
-            _game.SpriteBatchManager.SortSpriterAnimator(layer);
+            XmasHell.Instance().SpriteBatchManager.SortSpriterAnimator(layer);
         }
 
         public CustomSpriterAnimator(
-            XmasHell game,
             SpriterEntity entity,
             IProviderFactory<ISprite, SoundEffect> providerFactory = null,
             Stack<SpriteDrawInfo> drawInfoPool = null
         ) : base(entity, providerFactory, drawInfoPool)
         {
-            _game = game;
             _providerFactory = providerFactory;
             _drawInfoPool = drawInfoPool;
 
             _hiddenTextures = new List<string>();
             _textureSwapMap = new Dictionary<string, Texture2D>();
-            _pointTexture = new TextureSprite(TextureUtil.CreateCircle(_game.GraphicsDevice, 1, Color.Cyan));
+            _pointTexture = new TextureSprite(TextureUtil.CreateCircle(XmasHell.Instance().GraphicsDevice, 1, Color.Cyan));
 
             if (entity.ObjectInfos != null)
             {
                 foreach (SpriterObjectInfo objInfo in entity.ObjectInfos)
                 {
                     if (objInfo.ObjectType != SpriterObjectType.Box) continue;
-                    _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(_game.GraphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
+                    _boxTextures[objInfo.Name] = new TextureSprite(TextureUtil.CreateRectangle(XmasHell.Instance().GraphicsDevice, (int)objInfo.Width, (int)objInfo.Height, Color.Cyan));
                 }
             }
         }
 
         public CustomSpriterAnimator Clone()
         {
-            var clone = new CustomSpriterAnimator(_game, Entity, _providerFactory, _drawInfoPool);
+            var clone = new CustomSpriterAnimator(Entity, _providerFactory, _drawInfoPool);
             clone.zIndex(_zIndex);
             return clone;
         }

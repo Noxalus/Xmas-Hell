@@ -329,7 +329,7 @@ namespace XmasHell.Entities.Bosses
 
             foreach (var entity in loader.Spriter.Entities)
             {
-                var animator = new CustomSpriterAnimator(Game, entity, factory);
+                var animator = new CustomSpriterAnimator(entity, factory);
                 _animators.Add(animator);
             }
 

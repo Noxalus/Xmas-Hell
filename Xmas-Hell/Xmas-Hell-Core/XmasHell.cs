@@ -45,12 +45,20 @@ namespace XmasHell
         // Performance
         public PerformanceManager PerformanceManager;
 
+        private static XmasHell _instance = null;
+
+        public static XmasHell Instance()
+        {
+            return _instance;
+        }
+
 #if ANDROID
         public XmasHell(XmasHellActivity activity)
 #else
         public XmasHell()
 #endif
         {
+            _instance = this;
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 

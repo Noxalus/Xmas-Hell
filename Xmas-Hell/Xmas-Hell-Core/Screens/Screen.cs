@@ -66,7 +66,7 @@ namespace XmasHell.Screens
 
             foreach (var entity in loader.Spriter.Entities)
             {
-                var animator = new CustomSpriterAnimator(Game, entity, factory);
+                var animator = new CustomSpriterAnimator(entity, factory);
                 // Center the animator
                 animator.Position = Game.ViewportAdapter.Center.ToVector2();
 
