@@ -1,27 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
-<bulletml>
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml.dtd">
+<bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
   <action label="top">
-    <fire>
-      <bullet>
-        <direction type="aim">0</direction>
-        <speed>4</speed>
-        <action>
-          <wait>60</wait>
-          <vanish />
-          <repeat>
-            <times>5</times>
-            <action>
-              <fire>
-                <bullet>
-                  <direction type="sequence">360 / 5</direction>
-                  <speed>10</speed>
-                </bullet>
-              </fire>
-            </action>
-          </repeat>
-        </action>
-      </bullet>
-    </fire>
+      <fire>
+        <bullet>
+          <direction type="absolute">180</direction>
+          <speed>3 + ($rand * 5)</speed>
+          <scale type="absolute">$rand * 10.5</scale>
+        </bullet>
+      </fire>
   </action>
 </bulletml>

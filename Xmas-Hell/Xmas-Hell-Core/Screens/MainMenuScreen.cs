@@ -191,8 +191,11 @@ namespace XmasHell.Screens
 
             if (_shootFrequency.TotalMilliseconds < 0)
             {
-                Game.GameManager.MoverManager.TriggerPattern(_patternFile, BulletType.Type1, false);
-                _shootFrequency = TimeSpan.FromSeconds(1);
+                var randomX = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualWidth);
+                var position = new Vector2(randomX, -500);
+
+                Game.GameManager.MoverManager.TriggerPattern(_patternFile, BulletType.Type1, false, position);
+                _shootFrequency = TimeSpan.FromSeconds(0.01);
             }
             else
             {
