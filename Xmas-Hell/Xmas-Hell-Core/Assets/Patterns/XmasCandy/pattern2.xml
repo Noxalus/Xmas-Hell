@@ -3,13 +3,18 @@
 <bulletml>
   <action label="top">
     <repeat>
-      <times>20</times>
+      <times>10</times>
       <action>
         <fire>
           <bullet>
             <direction type="relative">($rand * 50) - 25</direction>
-            <speed>5 + $rand * 3</speed>
+            <speed>3 + $rand * 3</speed>
             <sprite>2</sprite>
+            <color>
+              <red>$rand</red>
+              <green>$rand</green>
+              <blue>$rand</blue>
+            </color>
           </bullet>
         </fire>
       </action>

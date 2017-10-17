@@ -27,7 +27,6 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
         private void ResetStretchOutAttack()
         {
-            Boss.RotateTo(0);
             Boss.CurrentAnimator.Play("Idle");
             _targetingPlayer = false;
             _stretchingOut = false;
