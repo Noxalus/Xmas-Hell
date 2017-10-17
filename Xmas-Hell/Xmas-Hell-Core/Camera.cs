@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Timers;
 using MonoGame.Extended.ViewportAdapters;
+using XmasHell.Sound;
 
 namespace XmasHell
 {
@@ -95,6 +96,8 @@ namespace XmasHell
             _shakingMagnitude = magnitude;
             _shakingTimer = TimeSpan.FromSeconds(time);
             _initialPosition = Position;
+
+            SoundManager.PlaySound(Assets.GetSound("Audio/SE/shake"));
         }
 
         public void ZoomTo(float targetZoom, double time, Vector2? origin = null)

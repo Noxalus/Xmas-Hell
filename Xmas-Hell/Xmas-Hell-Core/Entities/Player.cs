@@ -15,6 +15,7 @@ using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 using Xmas_Hell_Core.Controls;
+using XmasHell.Sound;
 
 namespace XmasHell.Entities
 {
@@ -406,18 +407,15 @@ namespace XmasHell.Entities
                 _bulletFrequence -= gameTime.ElapsedGameTime;
             else
             {
-                //if (_shoot4SoundInstance.State != SoundState.Playing)
+                var sounds = new List<SoundEffect>()
                 {
-                    //_shoot4SoundInstance.Play();
-                    //Assets.GetSound("Audio/SE/shoot4").Play();
-                    var randomNumber = _game.GameManager.Random.NextDouble();
-                    if (randomNumber < 1f / 3f)
-                        Assets.GetSound("Audio/SE/shoot1").Play();
-                    else if (randomNumber < 2f / 3f)
-                        Assets.GetSound("Audio/SE/shoot2").Play();
-                    else
-                        Assets.GetSound("Audio/SE/shoot4").Play();
-                }
+                     Assets.GetSound("Audio/SE/shoot1"),
+                     Assets.GetSound("Audio/SE/shoot2"),
+                     Assets.GetSound("Audio/SE/shoot3"),
+                     Assets.GetSound("Audio/SE/shoot4")
+                };
+
+                SoundManager.PlayRandomSound(sounds);
 
                 _bulletFrequence = TimeSpan.FromTicks(GameConfig.PlayerShootFrequency.Ticks);
 

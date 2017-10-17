@@ -230,7 +230,8 @@ namespace XmasHell
                 content.Load<SoundEffect>("Audio/SE/boss-hit1"),
                 content.Load<SoundEffect>("Audio/SE/boss-hit2"),
                 content.Load<SoundEffect>("Audio/SE/boss-hit3"),
-                content.Load<SoundEffect>("Audio/SE/player-death")
+                content.Load<SoundEffect>("Audio/SE/player-death"),
+                content.Load<SoundEffect>("Audio/SE/shake")
             };
 
             // Load custom shaders

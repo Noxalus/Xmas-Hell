@@ -1706,3 +1706,9 @@
 /processorParam:Quality=Best
 /build:Audio/SE/teleport.wav
 
+#begin Audio/SE/shake.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/shake.wav
+

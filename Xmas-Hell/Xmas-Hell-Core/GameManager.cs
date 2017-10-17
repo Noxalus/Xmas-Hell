@@ -11,6 +11,7 @@ using XmasHell.Particles;
 using XmasHell.Physics;
 using Bullet = XmasHell.Entities.Bullet;
 using XmasHell.Screens;
+using XmasHell.Sound;
 
 namespace XmasHell
 {
@@ -94,7 +95,7 @@ namespace XmasHell
                 _endGame = false;
                 _endGameFirstTime = false;
                 _endGameTimer.Restart();
-                Assets.GetSound("Audio/SE/player-death").Play();
+                SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
             }
             else
             {

@@ -17,7 +17,7 @@ using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Extensions;
 using XmasHell.GUI;
-using XmasHell.Screens;
+using XmasHell.Sound;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -256,7 +256,7 @@ namespace XmasHell.Entities.Bosses
             _hpBar = new Sprite(
                 new TextureRegion2D(
                     Assets.GetTexture2D("pixel"),
-                    0, 0, GameConfig.VirtualResolution.X, 50
+                    0, 0, GameConfig.VirtualResolution.X, 10
                 )
             )
             {
@@ -267,7 +267,7 @@ namespace XmasHell.Entities.Bosses
             Game.SpriteBatchManager.Boss = this;
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
-            _timerLabel = new AbstractGuiLabel("00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth / 2f, 25), Color.White, true);
+            _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 100, 30), Color.White, true);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
 
             // To compute line/wall intersection
@@ -601,7 +601,14 @@ namespace XmasHell.Entities.Bosses
 
             _hitTimer = TimeSpan.FromMilliseconds(20);
 
-            Assets.GetSound("Audio/SE/boss-hit1").Play();
+            var sounds = new List<SoundEffect>()
+                {
+                     Assets.GetSound("Audio/SE/boss-hit1"),
+                     Assets.GetSound("Audio/SE/boss-hit2"),
+                     Assets.GetSound("Audio/SE/boss-hit3")
+                };
+
+            SoundManager.PlayRandomSound(sounds);
         }
 
         public void TriggerPattern(string patternName, BulletType type, bool clear = false, Vector2? position = null, float? direction = null)
@@ -654,7 +661,7 @@ namespace XmasHell.Entities.Bosses
             _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
 
             _timer += gameTime.ElapsedGameTime;
-            _timerLabel.Text = _timer.ToString("mm\\:ss");
+            _timerLabel.Text = _timer.ToString("mm\\:ss\\:ff");
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
