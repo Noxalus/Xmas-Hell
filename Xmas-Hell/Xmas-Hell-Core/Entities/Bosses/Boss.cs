@@ -449,6 +449,60 @@ namespace XmasHell.Entities.Bosses
             MoveTo(GetNearestOutsidePosition(), force);
         }
 
+        public ScreenSide GetRandomSide()
+        {
+            var randomIndex = Game.GameManager.Random.Next(0, 3);
+
+            if (randomIndex == 0)
+                return ScreenSide.Left;
+            else if (randomIndex == 1)
+                return ScreenSide.Top;
+            else if (randomIndex == 2)
+                return ScreenSide.Right;
+            else
+                return ScreenSide.Bottom;
+        }
+
+        public ScreenSide GetSideFromPosition(Vector2 position)
+        {
+            if (position.X <= 0)
+                return ScreenSide.Left;
+            else if (position.X >= Game.ViewportAdapter.VirtualWidth)
+                return ScreenSide.Right;
+            else if (position.Y <= 0)
+                return ScreenSide.Top;
+            else if (position.Y >= Game.ViewportAdapter.VirtualHeight)
+                return ScreenSide.Bottom;
+
+            throw new Exception("Position is not outside of the screen!");
+        }
+
+        public Vector2 GetRandomOutsidePosition(ScreenSide? side = null)
+        {
+            var randomPosition = Vector2.Zero;
+            side = side.HasValue ? side.Value : GetRandomSide();
+
+            switch(side)
+            {
+                case ScreenSide.Left:
+                    randomPosition.Y = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualHeight);
+                    break;
+                case ScreenSide.Right:
+                    randomPosition.X = Game.ViewportAdapter.VirtualWidth;
+                    randomPosition.Y = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualHeight);
+                    break;
+                case ScreenSide.Top:
+                    randomPosition.X = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualWidth);
+                    randomPosition.Y = Game.ViewportAdapter.VirtualHeight;
+                    break;
+                case ScreenSide.Bottom:
+                    randomPosition.X = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualWidth);
+                    break;
+            }
+
+            return randomPosition;
+        }
+
         public Vector2 GetNearestOutsidePosition()
         {
             // Get the nearest border
@@ -474,6 +528,31 @@ namespace XmasHell.Entities.Bosses
             }
 
             return newPosition;
+        }
+
+        public float GetRandomOutsideAngle(ScreenSide side, int maxAngle, int? topAngle = null)
+        {
+            var randomAngle = Game.GameManager.Random.Next(-maxAngle, maxAngle);
+
+            if (topAngle.HasValue)
+                randomAngle -= topAngle.Value;
+
+            switch (side)
+            {
+                case ScreenSide.Left:
+                    randomAngle -= 90;
+                    break;
+                case ScreenSide.Right:
+                    randomAngle += 90;
+                    break;
+                case ScreenSide.Bottom:
+                    randomAngle += 180;
+                    break;
+                default:
+                    break;
+            }
+
+            return randomAngle;
         }
 
         public ScreenSide GetNearestBorder()
