@@ -8,7 +8,10 @@ namespace XmasHell.Entities.Bosses.XmasCandy
     class XmasCandyBehaviour3 : AbstractBossBehaviour
     {
         private List<CustomSpriterAnimator> _candyBars;
+        private List<CustomSpriterAnimator> _candyBarsToRemove;
         private bool _patternStarted;
+        private bool _stretchOut;
+        private bool _stretchIn;
 
         public XmasCandyBehaviour3(Boss boss) : base(boss)
         {
@@ -20,15 +23,20 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             Boss.Speed = 500f;
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
-            _patternStarted = false;
-            //Boss.MoveOutside();
+            Boss.CurrentAnimator.EventTriggered += EventTriggeredHandler;
+            Boss.MoveOutside(true);
 
             _candyBars = new List<CustomSpriterAnimator>();
+            _candyBarsToRemove = new List<CustomSpriterAnimator>();
+
+            _patternStarted = false;
+            _stretchOut = false;
+            _stretchIn = false;
         }
 
-        private void AnimationFinishedHandler(string animationName)
+        private void EventTriggeredHandler(string eventName)
         {
-            if (animationName == "StretchOutBorderWidth" || animationName == "StretchOutBorderHeight")
+            if (eventName == "almostFinished")
             {
                 // Retrieve the candy bar position
                 var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
@@ -43,48 +51,94 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 candyBar.Position = worldPosition;
                 candyBar.Rotation = angle;
                 candyBar.Progress = 0;
-                candyBar.Speed = 1;
-                candyBar.Play("StretchInBorderWidth");
+                candyBar.Speed = 0;
+                candyBar.AnimationFinished += AnimationFinishedHandler;
 
-                _candyBars.Clear();
+                var currentSide = Boss.GetSideFromPosition(Boss.Position());
+
+                if (currentSide == ScreenSide.Left || currentSide == ScreenSide.Right)
+                    candyBar.Play("StretchInBorderWidth");
+                else
+                    candyBar.Play("StretchInBorderHeight");
+
+                candyBar.CurrentAnimation.Looping = false;
+
                 _candyBars.Add(candyBar);
+            }
+        }
 
-                var bodyFile = SpriterUtils.GetSpriterFile("body.png", Boss.CurrentAnimator, out folderId);
-                var bodyPosition = SpriterUtils.GetWorldPosition("body.png", Boss.CurrentAnimator);
-                var bodyRotation = Boss.Rotation() + MathHelper.Pi + ((float)Boss.Game.GameManager.Random.NextDouble() * (-(MathHelper.PiOver4 / 1.5f)));
+        private void GetRandomPositionAndAngle()
+        {
+            // Retrieve the candy bar position
+            var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
+            int folderId = 0;
+            var body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
+            var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(body2File.Width / 2f, 0f));
+            var screenSide = Boss.GetSideFromPosition(worldPosition);
+            var newRandomPosition = Boss.GetRandomOutsidePosition(screenSide);
 
-                var screenSide = Boss.GetSideFromPosition(bodyPosition);
+            switch (screenSide)
+            {
+                case ScreenSide.Left:
+                    newRandomPosition.X = -Boss.Width();
+                    newRandomPosition.Y -= Boss.Height();
+                    Boss.CurrentAnimator.Play("StretchOutBorderWidth");
+                    break;
+                case ScreenSide.Top:
+                    newRandomPosition.X += Boss.Width() / 2f + body2File.Width;
+                    newRandomPosition.Y = -Boss.Height();
+                    Boss.CurrentAnimator.Play("StretchOutBorderHeight");
+                    break;
+                case ScreenSide.Right:
+                    newRandomPosition.X = Boss.Game.ViewportAdapter.VirtualWidth + Boss.Width();
+                    newRandomPosition.Y += Boss.Height();
+                    Boss.CurrentAnimator.Play("StretchOutBorderWidth");
+                    break;
+                case ScreenSide.Bottom:
+                    newRandomPosition.X -= Boss.Width() / 2f + body2File.Width;
+                    newRandomPosition.Y = Boss.Game.ViewportAdapter.VirtualHeight + Boss.Height();
+                    Boss.CurrentAnimator.Play("StretchOutBorderHeight");
+                    break;
+                default:
+                    break;
+            }
 
-                var newRandomPosition = Boss.GetRandomOutsidePosition(screenSide);
+            Boss.Position(newRandomPosition);
+            Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(screenSide, 50, 90)));
+        }
 
-                switch (screenSide)
+        private void AnimationFinishedHandler(string animationName)
+        {
+            if (animationName == "StretchOutBorderWidth" || animationName == "StretchOutBorderHeight")
+            {
+                if (_candyBars.Count < 5)
+                    GetRandomPositionAndAngle();
+                else
                 {
-                    case ScreenSide.Left:
-                        newRandomPosition.X = 0;
-                        newRandomPosition.Y -= Boss.Height();
-                        Boss.CurrentAnimator.Play("StretchOutBorderWidth");
-                        break;
-                    case ScreenSide.Top:
-                        newRandomPosition.X += Boss.Width() / 2f + body2File.Width;
-                        newRandomPosition.Y = 0;
-                        Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-                        break;
-                    case ScreenSide.Right:
-                        newRandomPosition.X = Boss.Game.ViewportAdapter.VirtualWidth;
-                        newRandomPosition.Y += Boss.Height();
-                        Boss.CurrentAnimator.Play("StretchOutBorderWidth");
-                        break;
-                    case ScreenSide.Bottom:
-                        newRandomPosition.X -= Boss.Width() / 2f + body2File.Width;
-                        newRandomPosition.Y = Boss.Game.ViewportAdapter.VirtualHeight;
-                        Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-                        break;
-                    default:
-                        break;
+                    _stretchIn = true;
+                    _candyBars[0].Speed = 1;
+                    Boss.CurrentAnimator.Speed = 0;
+                    Boss.CurrentAnimator.Progress = 0;
+                }
+            }
+            else if (animationName == "StretchInBorderWidth" || animationName == "StretchInBorderHeight")
+            {
+                if (_candyBars.Count > 0)
+                {
+                    var candyBar = _candyBars[0];
+                    candyBar.AnimationFinished -= AnimationFinishedHandler;
+                    _candyBarsToRemove.Add(candyBar);
                 }
 
-                Boss.Position(newRandomPosition);
-                Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(screenSide, 50, 90)));
+                if (_candyBars.Count > 1)
+                    _candyBars[1].Speed = 1;
+                else
+                {
+                    _stretchOut = true;
+                    _stretchIn = false;
+                    GetRandomPositionAndAngle();
+                    Boss.CurrentAnimator.Speed = 1;
+                }
             }
         }
 
@@ -93,41 +147,28 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             base.Stop();
 
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
+            Boss.CurrentAnimator.EventTriggered -= EventTriggeredHandler;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (!_patternStarted /*&& Boss.IsOutside*/)
+            if (!_patternStarted && !Boss.TargetingPosition && Boss.IsOutside)
             {
-                // TODO: Choose random initial position
-                //Boss.Position(new Vector2(Boss.Game.ViewportAdapter.VirtualWidth, Boss.Height()));
-                //Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-                //Boss.Rotation((float)Boss.Game.GameManager.Random.NextDouble() * (-(MathHelper.PiOver4) / 2));
-
-                Boss.CurrentAnimator.CurrentAnimation.Looping = false;
-                //Boss.Position(new Vector2(Boss.Game.ViewportAdapter.VirtualWidth / 3f, 100));
-                //Boss.Rotation(-MathHelper.PiOver2);
-
-                var nearestPosition = Boss.GetNearestOutsidePosition();
-                var side = Boss.GetSideFromPosition(nearestPosition);
-                Boss.Position(Boss.GetNearestOutsidePosition());
-                Boss.Position(new Vector2(Boss.Position().X, Boss.Game.ViewportAdapter.VirtualHeight));
-                Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(Boss.GetSideFromPosition(Boss.Position()), 10, 90)));
-                Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-
+                GetRandomPositionAndAngle();
                 _patternStarted = true;
             }
 
             if (_patternStarted)
             {
-                //Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(Boss.GetSideFromPosition(Boss.Position()), 10)));
-                //Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(ScreenSide.Bottom, 10, 90)));
             }
 
             foreach (var candyBar in _candyBars)
                 candyBar.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            foreach (var candyBarToRemove in _candyBarsToRemove)
+                _candyBars.Remove(candyBarToRemove);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

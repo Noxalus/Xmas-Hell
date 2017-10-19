@@ -893,7 +893,7 @@
             </timeline>
             <timeline id="7" name="game-area_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" angle="0"/>
+                    <object folder="0" file="9" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="8" name="left-eye-2">
@@ -1024,7 +1024,7 @@
             </mainline>
             <timeline id="0" name="body">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-75" y="0" angle="270"/>
+                    <object folder="0" file="0" x="-75" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="left-eye">
@@ -1039,12 +1039,12 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-115" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-115" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="ribbon">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="33" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="33" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" obj="0" name="bell-bone" object_type="bone">
@@ -1063,12 +1063,12 @@
             </timeline>
             <timeline id="6" name="action_point" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-145" y="0" angle="180"/>
+                    <object x="-145" angle="180"/>
                 </key>
             </timeline>
             <timeline id="7" name="clapper">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42" y="0" angle="90" scale_x="3" scale_y="7.8"/>
+                    <object folder="0" file="1" x="-42" angle="90" scale_x="3" scale_y="7.8"/>
                 </key>
             </timeline>
             <timeline id="8" name="clapper-ball">

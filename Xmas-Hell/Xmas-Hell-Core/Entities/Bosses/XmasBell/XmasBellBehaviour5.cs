@@ -17,7 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
 
             // Events
             Boss.CurrentAnimator.AnimationFinished += AnimationFinished;
-            Boss.CurrentAnimator.EventTriggered += AnimationEventTriggered; ;
+            Boss.CurrentAnimator.EventTriggered += AnimationEventTriggered;
         }
 
         private void AnimationEventTriggered(string name)
