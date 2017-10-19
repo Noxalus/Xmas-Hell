@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <fire>
+      <bullet>
+        <direction type="absolute">$rand * 360</direction>
+        <speed>0</speed>
+        <sprite>1</sprite>
+        <action>
+          <wait>100</wait>
+          <changeSpeed>
+            <speed>20</speed>
+            <term>200</term>
+          </changeSpeed>
+          <changeColor>
+            <color>
+              <red>$rand</red>
+              <green>$rand</green>
+              <blue>$rand</blue>
+            </color>
+            <term>200</term>
+          </changeColor>
+        </action>
+      </bullet>
+    </fire>
+  </action>
+</bulletml>

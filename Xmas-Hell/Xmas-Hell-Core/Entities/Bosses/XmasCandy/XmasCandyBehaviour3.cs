@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using XmasHell.Spriter;
+using XmasHell.BulletML;
+using XmasHell.Extensions;
+using SpriterDotNet;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
@@ -12,6 +15,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         private bool _patternStarted;
         private bool _stretchOut;
         private bool _stretchIn;
+        private SpriterFile _body2File;
 
         public XmasCandyBehaviour3(Boss boss) : base(boss)
         {
@@ -32,6 +36,34 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             _patternStarted = false;
             _stretchOut = false;
             _stretchIn = false;
+
+            Boss.StartShootTimer = false;
+            Boss.ShootTimerTime = 0.000002f;
+            Boss.ShootTimerFinished += ShootTimerFinished;
+
+            _body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator);
+        }
+
+        private void ShootTimerFinished(object sender, float e)
+        {
+            if (_candyBars.Count <= 0)
+                return;
+
+            var currentCandyBar = _candyBars[0];
+
+            foreach (var pointData in currentCandyBar.FrameData.PointData)
+            {
+                if (pointData.Key.StartsWith("action_point"))
+                {
+                    var actionPoint = new Vector2(pointData.Value.X, -pointData.Value.Y);
+                    var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, currentCandyBar.Rotation);
+
+                    var actionPointPosition = currentCandyBar.Position + rotatedActionPoint;
+                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasCandy/pattern3", BulletType.Type2, false, actionPointPosition);
+                    break;
+                }
+            }
+
         }
 
         private void EventTriggeredHandler(string eventName)
@@ -39,11 +71,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             if (eventName == "almostFinished")
             {
                 // Retrieve the candy bar position
-                var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
-
-                int folderId = 0;
-                var body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
-                var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(body2File.Width / 2f, 0f));
+                var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(_body2File.Width / 2f, 0f));
                 var angle = Boss.Rotation();
 
                 var candyBar = Boss.CurrentAnimator.Clone();
@@ -61,6 +89,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 else
                     candyBar.Play("StretchInBorderHeight");
 
+                // TODO: Add bounding boxes
+
                 candyBar.CurrentAnimation.Looping = false;
 
                 _candyBars.Add(candyBar);
@@ -70,41 +100,24 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         private void GetRandomPositionAndAngle()
         {
             // Retrieve the candy bar position
-            var spriteData = Boss.CurrentAnimator.FrameData.SpriteData;
-            int folderId = 0;
-            var body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator, out folderId);
-            var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(body2File.Width / 2f, 0f));
+            var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(_body2File.Width / 2f, 0f));
             var screenSide = Boss.GetSideFromPosition(worldPosition);
             var newRandomPosition = Boss.GetRandomOutsidePosition(screenSide);
+            var newRandomAngle = Boss.GetRandomOutsideAngle(screenSide, 50, 90);
 
-            switch (screenSide)
+            if (screenSide == ScreenSide.Left || screenSide == ScreenSide.Right)
             {
-                case ScreenSide.Left:
-                    newRandomPosition.X = -Boss.Width();
-                    newRandomPosition.Y -= Boss.Height();
-                    Boss.CurrentAnimator.Play("StretchOutBorderWidth");
-                    break;
-                case ScreenSide.Top:
-                    newRandomPosition.X += Boss.Width() / 2f + body2File.Width;
-                    newRandomPosition.Y = -Boss.Height();
-                    Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-                    break;
-                case ScreenSide.Right:
-                    newRandomPosition.X = Boss.Game.ViewportAdapter.VirtualWidth + Boss.Width();
-                    newRandomPosition.Y += Boss.Height();
-                    Boss.CurrentAnimator.Play("StretchOutBorderWidth");
-                    break;
-                case ScreenSide.Bottom:
-                    newRandomPosition.X -= Boss.Width() / 2f + body2File.Width;
-                    newRandomPosition.Y = Boss.Game.ViewportAdapter.VirtualHeight + Boss.Height();
-                    Boss.CurrentAnimator.Play("StretchOutBorderHeight");
-                    break;
-                default:
-                    break;
+                newRandomPosition.X = (screenSide == ScreenSide.Left) ? 0 : Boss.Game.ViewportAdapter.VirtualWidth;
+                Boss.CurrentAnimator.Play("StretchOutBorderWidth");
+            }
+            else if (screenSide == ScreenSide.Top || screenSide == ScreenSide.Bottom)
+            {
+                newRandomPosition.Y = (screenSide == ScreenSide.Top) ? 0 : Boss.Game.ViewportAdapter.VirtualHeight;
+                Boss.CurrentAnimator.Play("StretchOutBorderHeight");
             }
 
             Boss.Position(newRandomPosition);
-            Boss.Rotation(MathHelper.ToRadians(Boss.GetRandomOutsideAngle(screenSide, 50, 90)));
+            Boss.Rotation(MathHelper.ToRadians(newRandomAngle));
         }
 
         private void AnimationFinishedHandler(string animationName)
@@ -119,6 +132,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                     _candyBars[0].Speed = 1;
                     Boss.CurrentAnimator.Speed = 0;
                     Boss.CurrentAnimator.Progress = 0;
+                    Boss.StartShootTimer = true;
                 }
             }
             else if (animationName == "StretchInBorderWidth" || animationName == "StretchInBorderHeight")
@@ -146,8 +160,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Stop();
 
+            foreach (var candy in _candyBars)
+                candy.AnimationFinished -= AnimationFinishedHandler;
+
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
             Boss.CurrentAnimator.EventTriggered -= EventTriggeredHandler;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
         }
 
         public override void Update(GameTime gameTime)
@@ -162,13 +180,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             if (_patternStarted)
             {
+                foreach (var candyBar in _candyBars)
+                    candyBar.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+                foreach (var candyBarToRemove in _candyBarsToRemove)
+                    _candyBars.Remove(candyBarToRemove);
             }
-
-            foreach (var candyBar in _candyBars)
-                candyBar.Update(gameTime.ElapsedGameTime.Milliseconds);
-
-            foreach (var candyBarToRemove in _candyBarsToRemove)
-                _candyBars.Remove(candyBarToRemove);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -14,6 +14,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             // BulletML
             BulletPatternFiles.Add("XmasCandy/pattern1");
             BulletPatternFiles.Add("XmasCandy/pattern2");
+            BulletPatternFiles.Add("XmasCandy/pattern3");
+            BulletPatternFiles.Add("XmasCandy/pattern4");
 
             // Behaviours
             Behaviours.Add(new XmasCandyBehaviour1(this));

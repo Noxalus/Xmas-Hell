@@ -75,6 +75,13 @@ namespace XmasHell.Spriter
             return null;
         }
 
+        // To make folderId parameter optional
+        public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator)
+        {
+            int folderId = 0;
+            return GetSpriterFile(spritePartFileName, animator, out folderId);
+        }
+
         public static SpriterFile GetSpriterFile(string spritePartFileName, MonoGameAnimator animator, out int folderId)
         {
             if (animator == null)

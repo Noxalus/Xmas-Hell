@@ -473,8 +473,8 @@ namespace XmasHell.Entities.Bosses
                 return ScreenSide.Top;
             else if (position.Y >= Game.ViewportAdapter.VirtualHeight)
                 return ScreenSide.Bottom;
-
-            throw new Exception("Position is not outside of the screen!");
+            else
+                return GetSideFromPosition(GetNearestOutsidePosition());
         }
 
         public Vector2 GetRandomOutsidePosition(ScreenSide? side = null)
