@@ -9,10 +9,11 @@ using System;
 using System.IO;
 using XmasHell.Rendering;
 using System.Diagnostics;
+using XmasHell.Physics;
 
 namespace XmasHell.Spriter
 {
-    public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>
+    public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>, ISpriterPhysicsEntity
     {
         private readonly GraphicsDevice _graphicsDevice;
         private readonly IProviderFactory<ISprite, SoundEffect> _providerFactory;
@@ -136,6 +137,35 @@ namespace XmasHell.Spriter
         public int CompareTo(CustomSpriterAnimator other)
         {
             return _zIndex.CompareTo(other.zIndex());
+        }
+
+        public CustomSpriterAnimator GetCurrentAnimator()
+        {
+            return this;
+        }
+
+        Vector2 IPhysicsEntity.Position()
+        {
+            return Position;
+        }
+
+        float IPhysicsEntity.Rotation()
+        {
+            return Rotation;
+        }
+
+        Vector2 IPhysicsEntity.Scale()
+        {
+            return Scale;
+        }
+
+        public Vector2 Origin()
+        {
+            return Origin();
+        }
+
+        public void TakeDamage(float damage)
+        {
         }
     }
 }
