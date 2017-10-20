@@ -5,6 +5,7 @@ using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Extensions;
 using SpriterDotNet;
+using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
@@ -89,7 +90,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 else
                     candyBar.Play("StretchInBorderHeight");
 
-                // TODO: Add bounding boxes
+                Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(candyBar, "body2.png"));
 
                 candyBar.CurrentAnimation.Looping = false;
 
