@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Sprites;
-using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Physics.Collision;
 
@@ -18,10 +15,27 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             Boss.CurrentAnimator.StretchOut = true;
             Boss.Game.GameManager.CollisionWorld.ClearBossHitboxes();
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(170f, 0f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-170f, 0f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, 800f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, 1400f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, 1800f), 0.2f));
 
-            Boss.CurrentAnimator.Scale = new Vector2(5f, 5f);
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, -800f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, -1400f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, -1800f), 0.2f));
+
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, 800f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, 1400f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, 1800f), 0.2f));
+
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, -800f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, -1400f), 0.2f));
+            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, -1800f), 0.2f));
+
+            Boss.CurrentAnimator.Scale = new Vector2(0.1f);
 
             base.Start();
 
@@ -33,7 +47,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             Boss.Position(Boss.GetPlayerPosition());
 
             Boss.StartShootTimer = true;
-            Boss.ShootTimerTime = 3f;
+            Boss.ShootTimerTime = 0.5f;
             Boss.ShootTimerFinished += ShootTimerFinished;
         }
 
@@ -59,7 +73,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
-            Boss.Scale(Boss.Scale() - new Vector2(0.01f));
+            //Boss.Scale(Boss.Scale() - new Vector2(0.001f));
 
             Boss.MoveTo(Boss.GetPlayerPosition(), true);
         }
