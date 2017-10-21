@@ -16,7 +16,25 @@
     <entity id="0" name="Xmas Candy">
         <obj_info name="bone_000" type="bone" w="92.2784" h="10"/>
         <obj_info name="bone_001" type="bone" w="80.0062" h="10"/>
-        <animation id="0" name="Idle" length="1000" interval="100">
+        <animation id="0" name="CircleAppears" length="3000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="3000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Xmas Candy" object_type="entity">
+                <key id="0" spin="0">
+                    <object entity="0" animation="2" t="0" a="0.00001"/>
+                </key>
+                <key id="1" time="3000" spin="0">
+                    <object entity="0" animation="2" t="0" a="0.99"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -118,7 +136,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="Circle" length="3000" interval="100">
+        <animation id="2" name="Circle" length="3000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="1" key="0"/>
@@ -199,7 +217,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="NoAnimation" length="1000" interval="100">
+        <animation id="3" name="NoAnimation" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -259,7 +277,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="StretchOut" length="1000" interval="100">
+        <animation id="4" name="StretchOut" length="1000" interval="100">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0.995305" c2="0.995305">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -359,7 +377,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="4" name="StretchOutBorderWidth" length="2000" interval="100">
+        <animation id="5" name="StretchOutBorderWidth" length="2000" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -462,7 +480,7 @@
                 <key id="0" time="1966"/>
             </eventline>
         </animation>
-        <animation id="5" name="StretchOutBorderHeight" length="2500" interval="100">
+        <animation id="6" name="StretchOutBorderHeight" length="2500" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="6" key="0"/>
@@ -565,7 +583,7 @@
                 <key id="0" time="2270"/>
             </eventline>
         </animation>
-        <animation id="6" name="StretchInBorderWidth" length="1000" interval="100">
+        <animation id="7" name="StretchInBorderWidth" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -603,7 +621,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="7" name="StretchInBorderHeight" length="1000" interval="100">
+        <animation id="8" name="StretchInBorderHeight" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -641,7 +659,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="8" name="StretchInBorderMoving" length="1000" interval="100">
+        <animation id="9" name="StretchInBorderMoving" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>

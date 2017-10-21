@@ -7,6 +7,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 {
     class XmasCandyBehaviour4 : AbstractBossBehaviour
     {
+        private float _minScale = 0.1f;
+
         public XmasCandyBehaviour4(Boss boss) : base(boss)
         {
         }
@@ -35,28 +37,34 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, -1400f), 0.2f));
             Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, -1800f), 0.2f));
 
-            Boss.CurrentAnimator.Scale = new Vector2(0.1f);
+            Boss.CurrentAnimator.Scale = new Vector2(1f);
 
             base.Start();
 
             Boss.Speed = 200f;
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
-            Boss.CurrentAnimator.Play("Circle");
+            Boss.CurrentAnimator.Play("CircleAppears");
             Boss.CurrentAnimator.Speed = 1f;
 
             Boss.Position(Boss.GetPlayerPosition());
 
-            Boss.StartShootTimer = true;
-            Boss.ShootTimerTime = 0.5f;
+            Boss.StartShootTimer = false;
+            Boss.ShootTimerTime = 0.001f;
             Boss.ShootTimerFinished += ShootTimerFinished;
         }
 
         private void AnimationFinishedHandler(string animationName)
         {
+            if (animationName == "CircleAppears")
+            {
+                Boss.CurrentAnimator.Play("Circle");
+                Boss.StartShootTimer = true;
+            }
         }
 
         private void ShootTimerFinished(object sender, float e)
         {
+            // Bullet speed should depends on the boss scale
             Boss.TriggerPattern("XmasCandy/pattern4", BulletType.Type2, false, Boss.ActionPointPosition());
         }
 
@@ -73,7 +81,15 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
-            //Boss.Scale(Boss.Scale() - new Vector2(0.001f));
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (Boss.Scale().X > _minScale && Boss.Scale().Y > _minScale)
+            {
+                var factor = 0.01f * dt;
+                Boss.CurrentAnimator.Speed += factor * 1.5f;
+                Boss.ShootTimerTime = MathHelper.Clamp(Boss.ShootTimerTime + factor, 0.001f, 1f);
+                Boss.Scale(Boss.Scale() - new Vector2(factor));
+            }
 
             Boss.MoveTo(Boss.GetPlayerPosition(), true);
         }

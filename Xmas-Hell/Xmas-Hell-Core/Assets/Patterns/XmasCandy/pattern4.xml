@@ -4,8 +4,44 @@
   <action label="top">
     <fire>
       <bullet>
-        <speed>1.5</speed>
-        <sprite>1</sprite>
+        <speed>10</speed>
+        <sprite>2</sprite>
+        <color>
+          <red>$rand</red>
+          <green>$rand</green>
+          <blue>$rand</blue>
+        </color>
+        <action>
+          <changeSpeed>
+            <speed>0</speed>
+            <term>200</term>
+          </changeSpeed>
+          <wait>100 + (500 * $rand)</wait>
+          <repeat>
+            <times>4</times>
+            <action>
+              <fire>
+                  <bullet>
+                    <direction type="sequence">90</direction>
+                    <speed>1</speed>
+                    <sprite>1</sprite>
+                    <color>
+                      <red>$rand</red>
+                      <green>$rand</green>
+                      <blue>$rand</blue>
+                    </color>
+                    <action>
+                      <changeSpeed>
+                        <speed>50</speed>
+                        <term>500</term>
+                      </changeSpeed>
+                    </action>
+                  </bullet>
+              </fire>
+            </action>
+          </repeat>
+          <vanish />
+        </action>
       </bullet>
     </fire>
   </action>
