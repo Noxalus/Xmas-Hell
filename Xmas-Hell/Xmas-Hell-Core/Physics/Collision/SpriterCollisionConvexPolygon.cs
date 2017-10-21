@@ -35,6 +35,10 @@ namespace XmasHell.Physics.Collision
             {
                 // Compute translation
                 var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterPartFile.Id);
+
+                if (spriteData == null)
+                    return worldPosition;
+
                 var animationOffset = new Vector2(spriteData.X, -spriteData.Y);
                 var scale = new Vector2(spriteData.ScaleX, spriteData.ScaleY);
                 var realPivotPosition = new Vector2(1 - spriteData.PivotX, 1 - spriteData.PivotY);

@@ -53,8 +53,12 @@ namespace XmasHell.Physics.Collision
             if (currentAnimator.FrameData != null)
             {
                 var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
-                var widthRadius = _spriterPartFile.Width * spriteData.ScaleX;
-                var heightRadius = _spriterPartFile.Height * spriteData.ScaleY;
+
+                if (spriteData == null)
+                    return 0f;
+
+                var widthRadius = _spriterPartFile.Width * spriteData.ScaleX * currentAnimator.Scale.X;
+                var heightRadius = _spriterPartFile.Height * spriteData.ScaleY * currentAnimator.Scale.Y;
 
                 return ((widthRadius + heightRadius) / 4f) * _scale;
             }
@@ -77,6 +81,10 @@ namespace XmasHell.Physics.Collision
             if (currentAnimator.FrameData != null)
             {
                 var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
+
+                if (spriteData == null)
+                    return currentAnimator.Position;
+
                 var pivotX = (_spriterPartFile.Width * spriteData.PivotX) + spriteData.X;
                 var pivotY = (_spriterPartFile.Height * spriteData.PivotY) - spriteData.Y;
 
@@ -100,7 +108,7 @@ namespace XmasHell.Physics.Collision
                     currentAnimator.Position +
                     new Vector2(pivotX, pivotY) -
                     new Vector2(_spriterPartFile.Width / 2f, _spriterPartFile.Height / 2f) +
-                    _relativePosition
+                    _relativePosition * currentAnimator.Scale
                 ;
 
                 centerPosition = MathExtension.RotatePoint(

@@ -147,7 +147,7 @@ namespace XmasHell.Entities.Bosses
                 {
                     if (pointData.Key.StartsWith("action_point"))
                     {
-                        var actionPoint = new Vector2(pointData.Value.X, -pointData.Value.Y);
+                        var actionPoint = new Vector2(pointData.Value.X, -pointData.Value.Y) * CurrentAnimator.Scale;
                         var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, Rotation());
                         return Position() + rotatedActionPoint;
                     }
