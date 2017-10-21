@@ -4,15 +4,21 @@ using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using XmasHell.Extensions;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
-    class XmasCandyBar : IPhysicsEntity
+    class XmasCandyBar : ISpriterPhysicsEntity
     {
         private readonly Boss _boss;
         private CollisionConvexPolygon _boundingBox;
         private CustomSpriterAnimator _animator;
         public bool Destroyed = false;
+
+        public CustomSpriterAnimator GetCurrentAnimator()
+        {
+            return _animator;
+        }
 
         public Vector2 Position()
         {
@@ -36,7 +42,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
         public void TakeDamage(float damage)
         {
-            _boss.TakeDamage(damage * 0.05f);
+            _boss.TakeDamage(damage * 0.1f);
         }
 
         public Vector2 ActionPointPosition()
@@ -67,8 +73,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             _animator.Speed = 1;
             _animator.AnimationFinished += AnimationFinishedHandler;
 
-            var candyBarCollisionBox = new SpriterCollisionConvexPolygon(_animator, "body2.png");
-            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(candyBarCollisionBox);
+            _boundingBox = new SpriterCollisionConvexPolygon(this, "body2.png");
+            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
 
             _animator.Play("StretchInBorderMoving");
         }
