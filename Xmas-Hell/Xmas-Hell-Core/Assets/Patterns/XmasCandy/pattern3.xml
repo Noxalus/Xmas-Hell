@@ -8,7 +8,7 @@
         <speed>0</speed>
         <sprite>1</sprite>
         <action>
-          <wait>100</wait>
+          <wait>0</wait>
           <changeSpeed>
             <speed>20</speed>
             <term>200</term>

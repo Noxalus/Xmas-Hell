@@ -3,16 +3,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using XmasHell.Spriter;
 using XmasHell.BulletML;
-using XmasHell.Extensions;
 using SpriterDotNet;
-using XmasHell.Physics.Collision;
+using System.Linq;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
     class XmasCandyBehaviour3 : AbstractBossBehaviour
     {
-        private List<CustomSpriterAnimator> _candyBars;
-        private List<CustomSpriterAnimator> _candyBarsToRemove;
+        private List<XmasCandyBar> _candyBars;
         private bool _patternStarted;
         private bool _stretchOut;
         private bool _stretchIn;
@@ -31,8 +29,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             Boss.CurrentAnimator.EventTriggered += EventTriggeredHandler;
             Boss.MoveOutside(true);
 
-            _candyBars = new List<CustomSpriterAnimator>();
-            _candyBarsToRemove = new List<CustomSpriterAnimator>();
+            _candyBars = new List<XmasCandyBar>();
 
             _patternStarted = false;
             _stretchOut = false;
@@ -51,20 +48,9 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 return;
 
             var currentCandyBar = _candyBars[0];
+            var actionPointPosition = currentCandyBar.ActionPointPosition();
 
-            foreach (var pointData in currentCandyBar.FrameData.PointData)
-            {
-                if (pointData.Key.StartsWith("action_point"))
-                {
-                    var actionPoint = new Vector2(pointData.Value.X, -pointData.Value.Y);
-                    var rotatedActionPoint = MathExtension.RotatePoint(actionPoint, currentCandyBar.Rotation);
-
-                    var actionPointPosition = currentCandyBar.Position + rotatedActionPoint;
-                    Boss.Game.GameManager.MoverManager.TriggerPattern("XmasCandy/pattern3", BulletType.Type2, false, actionPointPosition);
-                    break;
-                }
-            }
-
+            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasCandy/pattern3", BulletType.Type2, false, actionPointPosition);
         }
 
         private void EventTriggeredHandler(string eventName)
@@ -75,24 +61,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 var worldPosition = SpriterUtils.GetWorldPosition("body2.png", Boss.CurrentAnimator, new Vector2(_body2File.Width / 2f, 0f));
                 var angle = Boss.Rotation();
 
-                var candyBar = Boss.CurrentAnimator.Clone();
-                candyBar.StretchOut = false;
-                candyBar.Position = worldPosition;
-                candyBar.Rotation = angle;
-                candyBar.Progress = 0;
-                candyBar.Speed = 0;
-                candyBar.AnimationFinished += AnimationFinishedHandler;
+                var candyBarAnimator = Boss.CurrentAnimator.Clone();
+                candyBarAnimator.StretchOut = false;
+                candyBarAnimator.Position = worldPosition;
+                candyBarAnimator.Rotation = angle;
 
-                var currentSide = Boss.GetSideFromPosition(Boss.Position());
-
-                if (currentSide == ScreenSide.Left || currentSide == ScreenSide.Right)
-                    candyBar.Play("StretchInBorderWidth");
-                else
-                    candyBar.Play("StretchInBorderHeight");
-
-                Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(candyBar, "body2.png"));
-
-                candyBar.CurrentAnimation.Looping = false;
+                var candyBar = new XmasCandyBar(Boss, candyBarAnimator);
 
                 _candyBars.Add(candyBar);
             }
@@ -130,29 +104,14 @@ namespace XmasHell.Entities.Bosses.XmasCandy
                 else
                 {
                     _stretchIn = true;
-                    _candyBars[0].Speed = 1;
+
+                    _candyBars.First().StartStretchInAnimation();
+
+                    // Hide the boss
+                    Boss.Position(new Vector2(-1000, -1000));
                     Boss.CurrentAnimator.Speed = 0;
                     Boss.CurrentAnimator.Progress = 0;
                     Boss.StartShootTimer = true;
-                }
-            }
-            else if (animationName == "StretchInBorderWidth" || animationName == "StretchInBorderHeight")
-            {
-                if (_candyBars.Count > 0)
-                {
-                    var candyBar = _candyBars[0];
-                    candyBar.AnimationFinished -= AnimationFinishedHandler;
-                    _candyBarsToRemove.Add(candyBar);
-                }
-
-                if (_candyBars.Count > 1)
-                    _candyBars[1].Speed = 1;
-                else
-                {
-                    _stretchOut = true;
-                    _stretchIn = false;
-                    GetRandomPositionAndAngle();
-                    Boss.CurrentAnimator.Speed = 1;
                 }
             }
         }
@@ -162,7 +121,9 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             base.Stop();
 
             foreach (var candy in _candyBars)
-                candy.AnimationFinished -= AnimationFinishedHandler;
+                candy.Dispose();
+
+            _candyBars.Clear();
 
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
             Boss.CurrentAnimator.EventTriggered -= EventTriggeredHandler;
@@ -182,10 +143,22 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             if (_patternStarted)
             {
                 foreach (var candyBar in _candyBars)
-                    candyBar.Update(gameTime.ElapsedGameTime.Milliseconds);
+                    candyBar.Update(gameTime);
 
-                foreach (var candyBarToRemove in _candyBarsToRemove)
-                    _candyBars.Remove(candyBarToRemove);
+                var removed = _candyBars.RemoveAll(cb => cb.Destroyed);
+
+                if (removed != 0 && _candyBars.Count > 0)
+                {
+                    _candyBars.First().StartStretchInAnimation();
+                }
+
+                if (_candyBars.Count == 0 && Boss.CurrentAnimator.Speed == 0)
+                {
+                    _stretchOut = true;
+                    _stretchIn = false;
+                    GetRandomPositionAndAngle();
+                    Boss.CurrentAnimator.Speed = 1;
+                }
             }
         }
 
