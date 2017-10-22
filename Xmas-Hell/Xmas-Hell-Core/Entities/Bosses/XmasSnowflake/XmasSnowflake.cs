@@ -8,8 +8,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         public XmasSnowflake(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasSnowflake, playerPositionDelegate)
         {
-            InitialLife = 500f;
-
             // BulletML
             BulletPatternFiles.Add("XmasSnowflake/pattern1");
             BulletPatternFiles.Add("XmasSnowflake/pattern2");
@@ -40,8 +38,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-
-            //CurrentBehaviourIndex = 3;
         }
     }
 }

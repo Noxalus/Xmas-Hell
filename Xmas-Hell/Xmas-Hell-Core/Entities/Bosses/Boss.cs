@@ -35,8 +35,6 @@ namespace XmasHell.Entities.Bosses
         public XmasHell Game;
         public readonly BossType BossType;
         public Vector2 InitialPosition;
-        protected float InitialLife;
-        protected float Life;
         private Sprite _hpBar;
         private AbstractGuiLabel _timerLabel;
         private TimeSpan _timer;
@@ -243,7 +241,6 @@ namespace XmasHell.Entities.Bosses
                 Game.ViewportAdapter.VirtualWidth / 2f,
                 Game.ViewportAdapter.VirtualHeight * 0.15f
             );
-            InitialLife = GameConfig.BossDefaultLife;
 
             // Behaviours
             Behaviours = new List<AbstractBossBehaviour>();
@@ -344,7 +341,6 @@ namespace XmasHell.Entities.Bosses
         protected virtual void Reset()
         {
             Game.GameManager.MoverManager.Clear();
-            Life = InitialLife;
             CurrentAnimator.Position = InitialPosition;
             Invincible = false;
             Tinted = false;
@@ -670,13 +666,11 @@ namespace XmasHell.Entities.Bosses
 
         public void TakeDamage(float amount)
         {
-            if (Invincible)
+            if (Invincible || _destroyed)
                 return;
 
-            Life -= amount;
-
-            if (Life < 0f)
-                Destroy();
+            var currentBehaviour = Behaviours[CurrentBehaviourIndex];
+            currentBehaviour.TakeDamage(amount);
 
             _hitTimer = TimeSpan.FromMilliseconds(20);
 
@@ -700,6 +694,9 @@ namespace XmasHell.Entities.Bosses
             UpdatePosition(gameTime);
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
+
+            if (_destroyed)
+                return;
 
             // Is outside of the screen?
             IsOutside = Game.GameManager.IsOutside(Position());
@@ -733,10 +730,7 @@ namespace XmasHell.Entities.Bosses
 
             Tinted = _hitTimer.TotalMilliseconds > 0;
 
-            var portion = (InitialLife/Behaviours.Count);
-            var value = Life - (InitialLife - (CurrentBehaviourIndex + 1) * portion);
-
-            _hpBar.Scale = new Vector2(value / portion, 1f);
+            _hpBar.Scale = new Vector2(Behaviours[CurrentBehaviourIndex].GetLifePercentage(), 1f);
             _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
 
             _timer += gameTime.ElapsedGameTime;
@@ -839,6 +833,9 @@ namespace XmasHell.Entities.Bosses
         {
             UpdateBehaviourIndex();
 
+            if (_destroyed)
+                return;
+
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {
                 if (PreviousBehaviourIndex >= 0)
@@ -862,7 +859,13 @@ namespace XmasHell.Entities.Bosses
             if (Behaviours.Count == 0)
                 return;
 
-            CurrentBehaviourIndex = (int)Math.Floor((1f - (Life / InitialLife)) * Behaviours.Count) % Behaviours.Count;
+            if (Behaviours[CurrentBehaviourIndex].IsBehaviourEnded())
+            {
+                CurrentBehaviourIndex++;
+
+                if (CurrentBehaviourIndex >= Behaviours.Count)
+                    Destroy();
+            }
         }
 
         public virtual void Draw()
