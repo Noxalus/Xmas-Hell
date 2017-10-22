@@ -8,9 +8,14 @@ namespace XmasHell.Entities.Bosses.XmasCandy
     class XmasCandyBehaviour4 : AbstractBossBehaviour
     {
         private float _minScale = 0.1f;
+        private float _maxRotationSpeed = 3f;
+        private float _minRotationSpeed = 1f;
+        private float _maxShootTimeFrequence = 0.01f;
+        private float _minShootTimeFrequence = 0.25f;
 
         public XmasCandyBehaviour4(Boss boss) : base(boss)
         {
+            InitialBehaviourLife = 1800f;
         }
 
         public override void Start()
@@ -44,12 +49,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             Boss.Speed = 200f;
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
             Boss.CurrentAnimator.Play("CircleAppears");
-            Boss.CurrentAnimator.Speed = 1f;
+            Boss.CurrentAnimator.Speed = _maxRotationSpeed;
 
             Boss.Position(Boss.GetPlayerPosition());
 
             Boss.StartShootTimer = false;
-            Boss.ShootTimerTime = 0.001f;
+            Boss.ShootTimerTime = _maxShootTimeFrequence;
             Boss.ShootTimerFinished += ShootTimerFinished;
         }
 
@@ -86,8 +91,8 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             if (Boss.Scale().X > _minScale && Boss.Scale().Y > _minScale)
             {
                 var factor = 0.01f * dt;
-                Boss.CurrentAnimator.Speed += factor * 1.5f;
-                Boss.ShootTimerTime = MathHelper.Clamp(Boss.ShootTimerTime + factor, 0.001f, 1f);
+                Boss.CurrentAnimator.Speed -= factor * 1.5f;
+                Boss.ShootTimerTime = MathHelper.Clamp(Boss.ShootTimerTime + factor, _maxShootTimeFrequence, _minShootTimeFrequence);
                 Boss.Scale(Boss.Scale() - new Vector2(factor));
             }
 

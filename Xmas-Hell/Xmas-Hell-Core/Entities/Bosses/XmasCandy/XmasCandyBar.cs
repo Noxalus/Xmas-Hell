@@ -42,7 +42,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
         public void TakeDamage(float damage)
         {
-            _boss.TakeDamage(damage * 0.1f);
+            _boss.TakeDamage(damage * 0.25f);
         }
 
         public Vector2 ActionPointPosition()

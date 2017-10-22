@@ -16,12 +16,12 @@
           <vanish />
           <action>
             <repeat>
-              <times>10</times>
+              <times>5</times>
               <action>
                 <fire>
                   <bullet>
-                    <direction type="sequence">36</direction>
-                    <speed>10</speed>
+                    <direction type="sequence">72</direction>
+                    <speed>8</speed>
                     <sprite>1</sprite>
                     <color>
                       <red>$rand</red>
@@ -31,7 +31,7 @@
                     <action>
                       <changeDirection>
                         <direction type="relative">360</direction>
-                        <term>250</term>
+                        <term>175</term>
                       </changeDirection>
                     </action>
                   </bullet>
