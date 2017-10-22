@@ -1,4 +1,4 @@
-﻿#if LINUX
+﻿#if true
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -208,42 +208,64 @@ namespace XmasHell.PlayerData.Desktop
 
         public void Dispose()
         {
-
         }
 
         public IPreferencesEditor PutBoolean(string key, bool value)
         {
-            _boolDictionnary.Add(key, value);
+            if (_boolDictionnary.ContainsKey(key))
+                _boolDictionnary[key] = value;
+            else
+                _boolDictionnary.Add(key, value);
+
             return this;
         }
 
         public IPreferencesEditor PutFloat(string key, float value)
         {
-            _floatDictionnary.Add(key, value);
+            if (_floatDictionnary.ContainsKey(key))
+                _floatDictionnary[key] = value;
+            else
+                _floatDictionnary.Add(key, value);
+
             return this;
         }
 
         public IPreferencesEditor PutInt(string key, int value)
         {
-            _intDictionnary.Add(key, value);
+            if (_intDictionnary.ContainsKey(key))
+                _intDictionnary[key] = value;
+            else
+                _intDictionnary.Add(key, value);
+
             return this;
         }
 
         public IPreferencesEditor PutLong(string key, long value)
         {
-            _floatDictionnary.Add(key, value);
+            if (_longDictionnary.ContainsKey(key))
+                _longDictionnary[key] = value;
+            else
+                _longDictionnary.Add(key, value);
+
             return this;
         }
 
         public IPreferencesEditor PutString(string key, string value)
         {
-            _stringDictionnary.Add(key, value);
+            if (_stringDictionnary.ContainsKey(key))
+                _stringDictionnary[key] = value;
+            else
+                _stringDictionnary.Add(key, value);
+
             return this;
         }
 
         public IPreferencesEditor PutStringSet(string key, ICollection<string> values)
         {
-            _stringSetDictionnary.Add(key, values);
+            if (_stringSetDictionnary.ContainsKey(key))
+                _stringSetDictionnary[key] = values;
+            else
+                _stringSetDictionnary.Add(key, values);
             return this;
         }
 
