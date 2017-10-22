@@ -15,7 +15,6 @@ namespace XmasHell.Spriter
 {
     public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>, ISpriterPhysicsEntity
     {
-        private readonly GraphicsDevice _graphicsDevice;
         private readonly IProviderFactory<ISprite, SoundEffect> _providerFactory;
         private readonly Stack<SpriteDrawInfo> _drawInfoPool;
         private readonly IDictionary<string, ISprite> _boxTextures = new Dictionary<string, ISprite>();
@@ -24,13 +23,6 @@ namespace XmasHell.Spriter
         private Dictionary<string, Texture2D> _textureSwapMap;
         public bool StretchOut = true;
         private int _zIndex;
-
-        // GUI texts
-        private string _selectedBossName = "Unknown";
-        private string _selectedBossBestTime = "Best time: ";
-        private string _selectedBossPlayTime = "Play time: ";
-        private string _selectedBossPlayerDeath = "Player death: ";
-        private string _selectedBossBossDeath = "Boss death: ";
 
         public int zIndex()
         {
@@ -73,11 +65,6 @@ namespace XmasHell.Spriter
             return clone;
         }
 
-        public void SetHiddenTextures(List<string> hiddenTextures)
-        {
-            _hiddenTextures = hiddenTextures;
-        }
-
         public void AddHiddenTexture(string hiddenTextureName)
         {
             _hiddenTextures.Add(hiddenTextureName);
@@ -112,24 +99,13 @@ namespace XmasHell.Spriter
                 ISprite sprite = di.Drawable;
 
                 var currentTextureName = Path.GetFileNameWithoutExtension(sprite.Texture().Name);
-                Debug.Print("Draw: " + currentTextureName);
 
-                if (Path.GetFileNameWithoutExtension(sprite.Texture().Name) == "play-button")
-                {
-                    Debug.Print("Draw play button");
-                }
-
-                if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == Path.GetFileNameWithoutExtension(sprite.Texture().Name)) == null)
+                if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == currentTextureName) == null)
                 {
                     if (sprite.Texture().Name != null && _textureSwapMap.ContainsKey(sprite.Texture().Name) && _textureSwapMap[sprite.Texture().Name] != null)
                         sprite = new TextureSprite(_textureSwapMap[sprite.Texture().Name]);
 
                     sprite.Draw(spriteBatch, di.Pivot, di.Position, di.Scale, di.Rotation, di.Color, di.Depth, StretchOut);
-                }
-                else
-                {
-                    var textureName = sprite.Texture().Name;
-                    Debug.Print("Hide " + textureName);
                 }
             }
         }
@@ -161,7 +137,8 @@ namespace XmasHell.Spriter
 
         public Vector2 Origin()
         {
-            return Origin();
+            // TODO
+            return Vector2.Zero;
         }
 
         public void TakeDamage(float damage)
