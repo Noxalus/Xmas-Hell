@@ -5,8 +5,14 @@
     <fire>
       <bullet>
         <direction type="aim">0</direction>
-        <speed>4</speed>
+        <speed>5</speed>
         <sprite>1</sprite>
+        <action>
+          <changeSpeed>
+            <speed>20</speed>
+            <term>50</term>
+          </changeSpeed>
+        </action>
       </bullet>
     </fire>
   </action>
