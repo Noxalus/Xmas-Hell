@@ -428,13 +428,13 @@
                     <object folder="1" file="0" angle="0"/>
                 </key>
                 <key id="1" time="250">
-                    <object folder="1" file="0" angle="343.61"/>
+                    <object folder="1" file="0" angle="350"/>
                 </key>
                 <key id="2" time="499">
                     <object folder="1" file="0" angle="0"/>
                 </key>
                 <key id="3" time="749" spin="-1">
-                    <object folder="1" file="0" angle="20"/>
+                    <object folder="1" file="0" angle="10"/>
                 </key>
             </timeline>
         </animation>
