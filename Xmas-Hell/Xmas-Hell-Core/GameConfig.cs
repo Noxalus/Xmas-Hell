@@ -24,7 +24,7 @@ namespace XmasHell
         public static float PlayerHitboxRadius = 5f;
 
         // Boss
-        public static int BossDefaultLife = 1000;
+        public static int BossDefaultBehaviourLife = 400;
         public static float BossDefaultSpeed = 200f;
 
         // Bullet manager
