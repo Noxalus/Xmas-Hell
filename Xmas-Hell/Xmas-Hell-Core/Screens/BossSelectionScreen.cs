@@ -13,7 +13,7 @@ namespace XmasHell.Screens
     {
         #region Fields
         private BossType _selectedBoss;
-        private List<SpriterSubstituteEntity> _bossGarlands = new List<SpriterSubstituteEntity>();
+        private Dictionary<string, SpriterSubstituteEntity> _bossGarlands = new Dictionary<string, SpriterSubstituteEntity>();
         private Dictionary<string, CustomSpriterAnimator> _bossSelectionSpriterFile;
 
         private readonly List<string> _bossNames = new List<string>()
@@ -85,15 +85,21 @@ namespace XmasHell.Screens
 
                 if (hasRelation)
                 {
-                    _bossGarlands.Add(new SpriterSubstituteEntity(
-                        "xmas-" + _bossRelations[bossName].Item1 + "-" + bossName + "-garland.png",
-                        _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
-                    ));
+                    _bossGarlands.Add(
+                        _bossRelations[bossName].Item1 + "-" + bossName,
+                        new SpriterSubstituteEntity(
+                            "xmas-" + _bossRelations[bossName].Item1 + "-" + bossName + "-garland.png",
+                            _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
+                        )
+                    );
 
-                    _bossGarlands.Add(new SpriterSubstituteEntity(
-                        "xmas-" + _bossRelations[bossName].Item2 + "-" + bossName + "-garland.png",
-                        _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
-                    ));
+                    _bossGarlands.Add(
+                         _bossRelations[bossName].Item2 + "-" + bossName,
+                         new SpriterSubstituteEntity(
+                            "xmas-" + _bossRelations[bossName].Item2 + "-" + bossName + "-garland.png",
+                            _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
+                        )
+                    );
                 }
 
                 var bossButton = new SpriterGuiButton(
@@ -271,15 +277,28 @@ namespace XmasHell.Screens
                     (Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item1)) > 0 &&
                     Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item2)) > 0);
 
-                var hidden = Game.PlayerData.BossAttempts(BossFactory.StringToBossType(bossButton.Name)) == 0;
-
-                if (!hasRelation || (available && !hidden))
+                if (available)
                 {
                     var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
+                    var hidden = Game.PlayerData.BossAttempts(BossFactory.StringToBossType(bossButton.Name)) == 0;
+                    var buttonTextureSwapName = "xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button";
+
+                    if (hasRelation && hidden)
+                        buttonTextureSwapName = "hidden-boss-button";
+
+                    if (hasRelation)
+                    {
+                        var relation1 = _bossRelations[bossButton.Name].Item1;
+                        var relation2 = _bossRelations[bossButton.Name].Item2;
+                        var animationName = (beaten) ? "FlashBeaten" : "FlashAvailable";
+
+                        _bossGarlands[relation1 + "-" + bossButton.Name].SubstituteAnimator.Play(animationName);
+                        _bossGarlands[relation2 + "-" + bossButton.Name].SubstituteAnimator.Play(animationName);
+                    }
 
                     bossButton.Animator().AddTextureSwap(
                         "Graphics/GUI/BossSelection/unknown-boss-button",
-                        Assets.GetTexture2D("Graphics/GUI/BossSelection/xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button")
+                        Assets.GetTexture2D("Graphics/GUI/BossSelection/" + buttonTextureSwapName)
                     );
                 }
                 else
@@ -301,20 +320,16 @@ namespace XmasHell.Screens
             if (_bossSelectionSpriterFile["BossSelection"] != null)
             {
                 if (Game.ScreenManager.GetPreviousScreen().Name == "MainMenuScreen")
-                {
                     _bossSelectionSpriterFile["BossSelection"].Play("Intro");
-                }
                 else if (Game.ScreenManager.GetPreviousScreen().Name == "GameScreen")
-                {
                     _bossSelectionSpriterFile["BossSelection"].Play("Idle");
-                }
 
                 Game.SpriteBatchManager.AddSpriterAnimator(_bossSelectionSpriterFile["BossSelection"], Layer.BACKGROUND);
                 _bossSelectionSpriterFile["BossSelection"].CurrentAnimation.Looping = false;
             }
 
             foreach (var garland in _bossGarlands)
-                Game.SpriteBatchManager.AddSpriterAnimator(garland.SubstituteAnimator, Layer.UI);
+                Game.SpriteBatchManager.AddSpriterAnimator(garland.Value.SubstituteAnimator, Layer.UI);
 
             ShowBossButtons();
             UIReseted = true;
@@ -354,7 +369,7 @@ namespace XmasHell.Screens
             base.Hide();
 
             foreach (var garland in _bossGarlands)
-                Game.SpriteBatchManager.RemoveSpriterAnimator(garland.SubstituteAnimator, Layer.UI);
+                Game.SpriteBatchManager.RemoveSpriterAnimator(garland.Value.SubstituteAnimator, Layer.UI);
 
             HideBossButtons();
 
@@ -372,7 +387,7 @@ namespace XmasHell.Screens
                 Game.ScreenManager.GoTo<MainMenuScreen>();
 
             foreach (var garland in _bossGarlands)
-                garland.Update(gameTime);
+                garland.Value.Update(gameTime);
         }
     }
 }

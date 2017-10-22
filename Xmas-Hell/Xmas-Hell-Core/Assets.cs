@@ -137,6 +137,9 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-santa-available-button"),
                 content.Load<Texture2D>("Graphics/GUI/BossSelection/xmas-santa-beaten-button"),
 
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/unknown-boss-button"),
+                content.Load<Texture2D>("Graphics/GUI/BossSelection/hidden-boss-button"),
+
                 // Sprites
 
                 // Bullets
