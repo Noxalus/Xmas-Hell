@@ -87,6 +87,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Physics\IPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\ISpriterPhysicsEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Physics\SpriterPhysicsEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\Android\AndroidPreferencesEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\Android\AndroidPreferences.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\Desktop\DesktopPreferencesEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\Desktop\DesktopPreferences.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\IPreferencesEditor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerData\IPreferences.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerData\PlayerSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatchManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\BossSelectionScreen.cs" />

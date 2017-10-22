@@ -11,11 +11,15 @@ using Xmas_Hell_Core.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
 using XmasHell.GUI;
+using XmasHell.PlayerData;
 
 #if ANDROID
 using Xmas_Hell_Android;
 using Android.Util;
 using Android.Content;
+using XmasHell.PlayerData.Android;
+#elif LINUX
+using XmasHell.PlayerData.Desktop;
 #endif
 
 namespace XmasHell
@@ -121,9 +125,11 @@ namespace XmasHell
             // Player data
 #if ANDROID
             ISharedPreferences prefs = _activity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
-            PlayerData = new PlayerData.PlayerData(prefs);
-#else
-            PlayerData = new PlayerData.PlayerData();
+            var androidPreferences = new AndroidPreferences(prefs);
+            PlayerData = new PlayerData.PlayerData(androidPreferences);
+#elif LINUX
+            var desktopPreferences = new DesktopPreferences();
+            PlayerData = new PlayerData.PlayerData(desktopPreferences);
 #endif
 
             // Screens
