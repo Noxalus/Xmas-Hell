@@ -49,24 +49,24 @@ namespace XmasHell.PlayerData
 
         public void BossBestTime(BossType type, TimeSpan value)
         {
-            _preferences.Editor().PutString("BossBestTime-" + type.ToString(), value.TotalSeconds.ToString());
+            _preferences.Editor().PutFloat("BossBestTime-" + type.ToString(), (float)value.TotalSeconds);
             _preferences.Editor().Apply();
         }
 
         public TimeSpan BossBestTime(BossType type)
         {
-            return TimeSpan.FromSeconds(double.Parse(_preferences.GetString("BossBestTime-" + type.ToString(), "0")));
+            return TimeSpan.FromSeconds(_preferences.GetFloat("BossBestTime-" + type.ToString(), 0));
         }
 
         public void BossPlayTime(BossType type, TimeSpan value)
         {
-            _preferences.Editor().PutString("BossPlayTime-" + type.ToString(), value.TotalSeconds.ToString());
+            _preferences.Editor().PutFloat("BossPlayTime-" + type.ToString(), (float)value.TotalSeconds);
             _preferences.Editor().Apply();
         }
 
         public TimeSpan BossPlayTime(BossType type)
         {
-            return TimeSpan.FromSeconds(double.Parse(_preferences.GetString("BossPlayTime-" + type.ToString(), "0")));
+            return TimeSpan.FromSeconds(_preferences.GetFloat("BossPlayTime-" + type.ToString(), 0));
         }
     }
 }

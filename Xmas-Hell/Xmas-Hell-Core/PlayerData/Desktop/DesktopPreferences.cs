@@ -8,42 +8,41 @@ namespace XmasHell.PlayerData.Desktop
     {
         public bool Contains(string key)
         {
-            throw new NotImplementedException();
+            return _editor.Contains(key);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public bool GetBoolean(string key, bool defValue)
         {
-            throw new NotImplementedException();
+            return _editor.GetBoolean(key, defValue);
         }
 
         public float GetFloat(string key, float defValue)
         {
-            throw new NotImplementedException();
+            return _editor.GetFloat(key, defValue);
         }
 
         public int GetInt(string key, int defValue)
         {
-            throw new NotImplementedException();
+            return _editor.GetInt(key, defValue);
         }
 
         public long GetLong(string key, long defValue)
         {
-            throw new NotImplementedException();
+            return _editor.GetLong(key, defValue);
         }
 
         public string GetString(string key, string defValue)
         {
-            throw new NotImplementedException();
+            return _editor.GetString(key, defValue);
         }
 
         public ICollection<string> GetStringSet(string key, ICollection<string> defValues)
         {
-            throw new NotImplementedException();
+            return _editor.GetStringSet(key, defValues);
         }
 
         private DesktopPreferencesEditor _editor;
