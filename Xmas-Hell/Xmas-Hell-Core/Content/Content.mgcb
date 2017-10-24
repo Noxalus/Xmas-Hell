@@ -562,18 +562,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasGift/ribbon.png
 
-#begin Graphics/Sprites/Bosses/XmasGift/ribbon2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasGift/ribbon2.png
-
 #begin Graphics/Sprites/Bosses/XmasGift/xmas-gift.scml
 /importer:SpriterImporter
 /processor:PassThroughProcessor
