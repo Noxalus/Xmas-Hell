@@ -9,12 +9,10 @@ namespace XmasHell.Entities.Bosses.XmasGift
     {
         private TimeSpan _newPositionTime;
         private TimeSpan _bulletFrequence;
-        private World _world;
 
-
-        public XmasGiftBehaviour1(Boss boss, World world) : base(boss)
+        public XmasGiftBehaviour1(Boss boss) : base(boss)
         {
-            _world = world;
+            InitialBehaviourLife = 100f;
         }
 
         public override void Start()
@@ -36,6 +34,17 @@ namespace XmasHell.Entities.Bosses.XmasGift
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            //if (InputManager.KeyDown(Keys.Space))
+            {
+                //var forceVector = new Vector2(0.5f, 0.5f);
+                //var strength = 10f;
+
+                //forceVector.Normalize();
+                //_giftBody.ApplyForce(forceVector * strength);
+                //_giftBody.ApplyLinearImpulse(new Vector2(100, 10));
+                Boss.PhysicsBody.ApplyAngularImpulse(0.5f);
+            }
 
             //if (_newPositionTime.TotalMilliseconds > 0)
             //{

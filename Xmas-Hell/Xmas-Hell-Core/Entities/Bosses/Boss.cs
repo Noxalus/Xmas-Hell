@@ -18,6 +18,10 @@ using XmasHell.BulletML;
 using XmasHell.Extensions;
 using XmasHell.GUI;
 using XmasHell.Sound;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics;
+using FarseerPhysics.Factories;
+using Xmas_Hell_Core.Physics.DebugView;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -46,6 +50,16 @@ namespace XmasHell.Entities.Bosses
         public float Speed;
         public Vector2 Acceleration = Vector2.One;
         public float AngularVelocity = 5f;
+
+        // Physics World
+        protected bool PhysicsEnabled = false;
+        public World PhysicsWorld;
+        public Body PhysicsBody;
+        protected Body LeftWallBody;
+        protected Body TopWallBody;
+        protected Body RightWallBody;
+        protected Body BottomWallBody;
+        private DebugView _debugView;
 
         // Relative to position targeting
         public bool TargetingPosition = false;
@@ -336,6 +350,39 @@ namespace XmasHell.Entities.Bosses
 
         protected virtual void InitializePhysics()
         {
+            if (PhysicsEnabled)
+                SetupPhysicsWorld();
+        }
+
+        protected virtual void SetupPhysicsWorld()
+        {
+            PhysicsWorld = new World(GameConfig.DefaultGravity);
+            _debugView = new DebugView(PhysicsWorld, Game, 1f);
+
+            // Walls
+            BottomWallBody = BodyFactory.CreateEdge(
+                PhysicsWorld,
+                ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            );
+
+            LeftWallBody = BodyFactory.CreateEdge(
+                PhysicsWorld,
+                ConvertUnits.ToSimUnits(0, 0),
+                ConvertUnits.ToSimUnits(0, GameConfig.VirtualResolution.Y)
+            );
+
+            RightWallBody = BodyFactory.CreateEdge(
+                PhysicsWorld,
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y)
+            );
+
+            TopWallBody = BodyFactory.CreateEdge(
+                PhysicsWorld,
+                ConvertUnits.ToSimUnits(0, 0),
+                ConvertUnits.ToSimUnits(GameConfig.VirtualResolution.X, 0)
+            );
         }
 
         protected virtual void Reset()
@@ -737,6 +784,18 @@ namespace XmasHell.Entities.Bosses
             _timerLabel.Text = _timer.ToString("mm\\:ss\\:ff");
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            if (PhysicsEnabled)
+            {
+                PhysicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
+                SynchronizeGraphicsWithPhysics();
+            }
+        }
+
+        private void SynchronizeGraphicsWithPhysics()
+        {
+            Position(ConvertUnits.ToDisplayUnits(PhysicsBody.Position));
+            Rotation(PhysicsBody.Rotation);
         }
 
         private void UpdatePosition(GameTime gameTime)
@@ -874,6 +933,18 @@ namespace XmasHell.Entities.Bosses
                 Behaviours[CurrentBehaviourIndex].Draw(Game.SpriteBatch);
 
             CurrentAnimator.Draw(Game.SpriteBatch);
+
+            if (PhysicsEnabled && GameConfig.DebugPhysics)
+            {
+                var view = Game.Camera.GetViewMatrix();
+                var projection = Matrix.CreateOrthographicOffCenter(
+                    0f,
+                    ConvertUnits.ToSimUnits(Game.GraphicsDevice.Viewport.Width),
+                    ConvertUnits.ToSimUnits(Game.GraphicsDevice.Viewport.Height), 0f, 0f, 1f
+                );
+
+                _debugView.Draw(ref projection, ref view);
+            }
         }
     }
 }
