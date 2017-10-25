@@ -52,7 +52,7 @@ namespace XmasHell.Entities.Bosses
         public float AngularVelocity = 5f;
 
         // Physics World
-        protected bool PhysicsEnabled = false;
+        public bool PhysicsEnabled = false;
         public World PhysicsWorld;
         public Body PhysicsBody;
         protected Body LeftWallBody;

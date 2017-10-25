@@ -18,7 +18,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
             SpriterFilename = "Graphics/Sprites/Bosses/XmasGift/xmas-gift";
 
             // BulletML
-            BulletPatternFiles.Add("sample");
+            BulletPatternFiles.Add("XmasGift/pattern1");
 
             // Behaviours
             Behaviours.Add(new XmasGiftBehaviour1(this));

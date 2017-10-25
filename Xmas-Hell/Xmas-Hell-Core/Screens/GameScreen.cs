@@ -1,8 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using MonoGame.Extended.Screens;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using Xmas_Hell_Core.Controls;
