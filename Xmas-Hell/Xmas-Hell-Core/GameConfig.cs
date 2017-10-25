@@ -49,6 +49,9 @@ namespace XmasHell
             { BackgroundLevel.Level5, new Tuple<Color, Color>(ColorExtension.FromHex("#01364B"), ColorExtension.FromHex("#00212D")) }
         };
 
+        // Physics
+        public static readonly Vector2 DefaultGravity = Vector2.UnitY * 9.82f;
+
         // Debug
         public static bool GodMode = false;
         public static bool DebugPhysics = false;
