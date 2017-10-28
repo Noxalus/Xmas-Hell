@@ -163,7 +163,8 @@ namespace XmasHell
             _spriterAnimators = new Dictionary<string, Dictionary<string, CustomSpriterAnimator>>()
             {
                 { "Graphics/GUI/main-menu", LoadSpriterFile(content, "Graphics/GUI/main-menu") },
-                { "Graphics/GUI/boss-selection", LoadSpriterFile(content, "Graphics/GUI/boss-selection") }
+                { "Graphics/GUI/boss-selection", LoadSpriterFile(content, "Graphics/GUI/boss-selection") },
+                { "Graphics/GUI/game-screen", LoadSpriterFile(content, "Graphics/GUI/game-screen") }
             };
 
             // Load fonts

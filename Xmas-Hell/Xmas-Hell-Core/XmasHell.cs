@@ -208,8 +208,7 @@ namespace XmasHell
 
             GuiManager.Update(gameTime);
 
-            if (!GameManager.EndGame())
-                SpriteBatchManager.Update(gameTime);
+            SpriteBatchManager.Update(gameTime);
 
             GameManager.Update(gameTime);
 

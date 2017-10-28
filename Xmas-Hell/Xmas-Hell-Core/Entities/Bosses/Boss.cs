@@ -780,8 +780,11 @@ namespace XmasHell.Entities.Bosses
             _hpBar.Scale = new Vector2(Behaviours[CurrentBehaviourIndex].GetLifePercentage(), 1f);
             _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
 
-            _timer += gameTime.ElapsedGameTime;
-            _timerLabel.Text = _timer.ToString("mm\\:ss\\:ff");
+            if (!Game.GameManager.GameIsFinished())
+            {
+                _timer += gameTime.ElapsedGameTime;
+                _timerLabel.Text = _timer.ToString("mm\\:ss\\:ff");
+            }
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 

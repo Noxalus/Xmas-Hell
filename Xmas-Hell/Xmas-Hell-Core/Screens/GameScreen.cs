@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework;
 using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
 using Xmas_Hell_Core.Controls;
+using System.Collections.Generic;
+using XmasHell.Spriter;
+using XmasHell.Rendering;
 
 namespace XmasHell.Screens
 {
@@ -11,6 +14,10 @@ namespace XmasHell.Screens
         private Player _player;
         private Boss _boss;
         private TimeSpan _playTime;
+        private bool _endGamePopupOpened = false;
+
+        // GUI
+        private Dictionary<string, CustomSpriterAnimator> _spriterFile;
 
         private float GetRank()
         {
@@ -30,9 +37,47 @@ namespace XmasHell.Screens
             base.Initialize();
         }
 
+        public override void LoadContent()
+        {
+            base.LoadContent();
+
+            _spriterFile = Assets.GetSpriterAnimators("Graphics/GUI/game-screen");
+            InitializeSpriterGui();
+        }
+
+        private void InitializeSpriterGui()
+        {
+            _spriterFile["EndGamePanel"].AnimationFinished += EndGamePanel_AnimationFinished;
+        }
+
+        #region Animations finished
+        private void EndGamePanel_AnimationFinished(string animationName)
+        {
+            if (animationName == "Show")
+                _spriterFile["EndGamePanel"].Play("Idle");
+            else if (animationName == "Hide")
+                CloseEndGamePopup();
+        }
+        #endregion
+
         public void LoadBoss(BossType bossType)
         {
             _boss = BossFactory.CreateBoss(bossType, Game, _player.Position);
+        }
+
+        private void OpenEndGamePopup()
+        {
+            if (_endGamePopupOpened)
+                return;
+
+            _endGamePopupOpened = true;
+            Game.SpriteBatchManager.AddSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
+            _spriterFile["EndGamePanel"].Play("Show");
+        }
+
+        private void CloseEndGamePopup()
+        {
+            _endGamePopupOpened = false;
         }
 
         // TODO: This should be handled by the ScreenManager
@@ -72,14 +117,14 @@ namespace XmasHell.Screens
 
             _playTime += gameTime.ElapsedGameTime;
 
-            if (!Game.GameManager.EndGame())
-            {
-                if (_player.Alive())
-                    _player.Update(gameTime);
+            if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
+                OpenEndGamePopup();
 
-                if (_boss.Alive())
-                    _boss.Update(gameTime);
-            }
+            if (_player.Alive())
+                _player.Update(gameTime);
+
+            if (_boss.Alive())
+                _boss.Update(gameTime);
         }
     }
 }

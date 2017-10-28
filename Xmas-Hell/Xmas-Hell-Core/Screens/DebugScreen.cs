@@ -47,7 +47,7 @@ namespace XmasHell.Screens
             if (Game.Pause)
                 return;
 
-            if (!Game.GameManager.EndGame())
+            if (!Game.GameManager.GameIsFinished())
             {
                 if (_player.Alive())
                     _player.Update(gameTime);

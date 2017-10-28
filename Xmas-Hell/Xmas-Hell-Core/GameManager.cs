@@ -10,7 +10,6 @@ using XmasHell.Entities;
 using XmasHell.Particles;
 using XmasHell.Physics;
 using Bullet = XmasHell.Entities.Bullet;
-using XmasHell.Screens;
 using XmasHell.Sound;
 
 namespace XmasHell
@@ -24,6 +23,7 @@ namespace XmasHell
         private bool _endGame;
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
+        private bool _gameIsFinished;
 
         public Random Random;
 
@@ -47,9 +47,9 @@ namespace XmasHell
             return _bullets.Where(b => b is PlayerBullet).ToList();
         }
 
-        public bool EndGame()
+        public bool GameIsFinished()
         {
-            return _endGame;
+            return _gameIsFinished;
         }
 
         public void EndGame(bool value)
@@ -100,8 +100,7 @@ namespace XmasHell
             else
             {
                 _endGameFirstTime = true;
-
-                _game.ScreenManager.GoTo<BossSelectionScreen>();
+                _gameIsFinished = true;
 
                 _endGameTimer.Stop();
                 _game.Camera.Zoom = 1f;
