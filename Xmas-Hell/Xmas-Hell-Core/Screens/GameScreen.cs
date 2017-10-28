@@ -6,6 +6,7 @@ using Xmas_Hell_Core.Controls;
 using System.Collections.Generic;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
+using XmasHell.GUI;
 
 namespace XmasHell.Screens
 {
@@ -18,6 +19,7 @@ namespace XmasHell.Screens
 
         // GUI
         private Dictionary<string, CustomSpriterAnimator> _spriterFile;
+        private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
 
         private float GetRank()
         {
@@ -48,6 +50,26 @@ namespace XmasHell.Screens
         private void InitializeSpriterGui()
         {
             _spriterFile["EndGamePanel"].AnimationFinished += EndGamePanel_AnimationFinished;
+
+            // End game panel buttons
+            var closePanelButton = new SpriterGuiButton(
+                Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/GameScreen/game-panel-close-button.png",
+                _spriterFile["CloseButton"], _spriterFile["EndGamePanel"]
+            );
+
+            var retryPanelButton = new SpriterGuiButton(
+                Game.ViewportAdapter, "StartBattleBossPanel", "Graphics/GUI/GameScreen/game-panel-retry-button.png",
+                _spriterFile["RetryButton"], _spriterFile["EndGamePanel"]
+            );
+
+            closePanelButton.Action += EndGamePanelCloseButtonAction;
+            retryPanelButton.Action += EndGamePanelRetryButtonAction;
+
+            closePanelButton.Animator().zIndex(11);
+            retryPanelButton.Animator().zIndex(11);
+
+            _endGamePanelButtons.Add(closePanelButton);
+            _endGamePanelButtons.Add(retryPanelButton);
         }
 
         #region Animations finished
@@ -57,6 +79,18 @@ namespace XmasHell.Screens
                 _spriterFile["EndGamePanel"].Play("Idle");
             else if (animationName == "Hide")
                 CloseEndGamePopup();
+        }
+        #endregion
+
+        #region Button actions
+        private void EndGamePanelCloseButtonAction(object button, Point e)
+        {
+            Game.ScreenManager.GoTo<BossSelectionScreen>();
+        }
+
+        private void EndGamePanelRetryButtonAction(object button, Point e)
+        {
+            // Reset game
         }
         #endregion
 
@@ -73,11 +107,20 @@ namespace XmasHell.Screens
             _endGamePopupOpened = true;
             Game.SpriteBatchManager.AddSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
             _spriterFile["EndGamePanel"].Play("Show");
+
+            foreach (var button in _endGamePanelButtons)
+                Game.GuiManager.AddButton(button);
         }
 
         private void CloseEndGamePopup()
         {
             _endGamePopupOpened = false;
+
+            foreach (var button in _endGamePanelButtons)
+                Game.GuiManager.RemoveButton(button);
+
+            _spriterFile["EndGamePanel"].Play("Hide");
+            Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
         }
 
         // TODO: This should be handled by the ScreenManager
@@ -101,9 +144,13 @@ namespace XmasHell.Screens
         {
             base.Hide();
 
+            Game.GameManager.StartNewGame();
+
             _boss.Dispose();
             _player.Dispose();
             Game.GameManager.Clear();
+
+            CloseEndGamePopup();
 
             Game.PlayerData.BossPlayTime(_boss.BossType, Game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
         }

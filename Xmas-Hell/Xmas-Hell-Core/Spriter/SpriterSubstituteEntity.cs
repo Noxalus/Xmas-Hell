@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using System.Diagnostics;
 
 namespace XmasHell.Spriter
 {
@@ -11,6 +12,7 @@ namespace XmasHell.Spriter
         private SpriterDotNet.SpriterFile _replacedSpriterFile;
         private Size2 _replacedSpriterFileHalfSize;
         private bool _synchronize = true;
+        private bool _firstFrame = true;
 
         public BoundingRectangle BoundingRectangle()
         {
@@ -34,12 +36,17 @@ namespace XmasHell.Spriter
             referenceAnimator.AddHiddenTexture(replacedPartFilename);
         }
 
+        public void Reset()
+        {
+            _firstFrame = true;
+        }
+
         public void Update(GameTime gameTime)
         {
             if (_synchronize)
-            {
                 Synchronize();
-            }
+
+            _firstFrame = false;
         }
 
         public void Synchronize()
@@ -47,7 +54,7 @@ namespace XmasHell.Spriter
             // Synchronize current GUI button animator with the related dummy element from the Spriter file
             var spriterDummyData = SpriterUtils.GetSpriterFileData(_replacedPartFilename, _referenceAnimator);
 
-            if (spriterDummyData != null)
+            if (spriterDummyData != null && !_firstFrame)
             {
                 var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
                 var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
@@ -57,6 +64,12 @@ namespace XmasHell.Spriter
                 SubstituteAnimator.Scale = dummyScale;
                 SubstituteAnimator.Color = new Color(SubstituteAnimator.Color, spriterDummyData.Alpha);
             }
+            else if (_firstFrame)
+            {
+                // Workaround to avoid desync on the first frame
+                SubstituteAnimator.Scale = Vector2.Zero;
+            }
+
         }
     }
 }

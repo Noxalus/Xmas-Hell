@@ -121,6 +121,13 @@ namespace XmasHell
             MoverManager.BulletTextures = bulletTextures;
         }
 
+        public void StartNewGame()
+        {
+            _gameIsFinished = false;
+
+            // TODO: Reset game status (including player and boss)
+        }
+
         public void Update(GameTime gameTime)
         {
             _endGameTimer.Update(gameTime);

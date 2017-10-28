@@ -34,8 +34,6 @@ namespace XmasHell.Screens
         // GUI
         private Dictionary<BossType, SpriterGuiButton> _bossButtons = new Dictionary<BossType, SpriterGuiButton>();
         private List<SpriterGuiButton> _bossPanelButtons = new List<SpriterGuiButton>();
-        private SpriterGuiButton _closeBossPanelButton;
-        private SpriterGuiButton _startBattleBossPanelButton;
 
         // Labels
         private List<SpriterGuiLabel> _bossPanelLabels = new List<SpriterGuiLabel>();
@@ -112,24 +110,24 @@ namespace XmasHell.Screens
             }
 
             // Boss panel buttons
-            _closeBossPanelButton = new SpriterGuiButton(
+            var closeBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/BossSelection/boss-panel-close-button.png",
                 _bossSelectionSpriterFile["CloseButton"], _bossSelectionSpriterFile["BossPanel"]
             );
 
-            _startBattleBossPanelButton = new SpriterGuiButton(
+            var startBattleBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "StartBattleBossPanel", "Graphics/GUI/BossSelection/boss-panel-battle-button.png",
                 _bossSelectionSpriterFile["BattleButton"], _bossSelectionSpriterFile["BossPanel"]
             );
 
-            _closeBossPanelButton.Action += BossPanelCloseButtonAction;
-            _startBattleBossPanelButton.Action += BossPanelStartBattleButtonAction;
+            closeBossPanelButton.Action += BossPanelCloseButtonAction;
+            startBattleBossPanelButton.Action += BossPanelStartBattleButtonAction;
 
-            _closeBossPanelButton.Animator().zIndex(11);
-            _startBattleBossPanelButton.Animator().zIndex(11);
+            closeBossPanelButton.Animator().zIndex(11);
+            startBattleBossPanelButton.Animator().zIndex(11);
 
-            _bossPanelButtons.Add(_closeBossPanelButton);
-            _bossPanelButtons.Add(_startBattleBossPanelButton);
+            _bossPanelButtons.Add(closeBossPanelButton);
+            _bossPanelButtons.Add(startBattleBossPanelButton);
 
             // Labels
             _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", _bossSelectionSpriterFile["BossPanel"], true);
@@ -329,7 +327,10 @@ namespace XmasHell.Screens
             }
 
             foreach (var garland in _bossGarlands)
+            {
+                garland.Value.Reset();
                 Game.SpriteBatchManager.AddSpriterAnimator(garland.Value.SubstituteAnimator, Layer.UI);
+            }
 
             ShowBossButtons();
             UIReseted = true;
