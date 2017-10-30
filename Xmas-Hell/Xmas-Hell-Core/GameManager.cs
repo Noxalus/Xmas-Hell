@@ -78,6 +78,12 @@ namespace XmasHell
             _endGameFirstTime = true;
         }
 
+        public void Reset()
+        {
+            Clear();
+            _gameIsFinished = false;
+        }
+
         public void Clear()
         {
             MoverManager.Clear();

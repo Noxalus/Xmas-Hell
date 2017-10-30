@@ -91,6 +91,13 @@ namespace XmasHell.Screens
         private void EndGamePanelRetryButtonAction(object button, Point e)
         {
             // Reset game
+            Game.GameManager.Reset();
+
+            // TODO: Move this into GameManager
+            _boss.Initialize();
+            _player.Initialize();
+
+            CloseEndGamePopup();
         }
         #endregion
 
