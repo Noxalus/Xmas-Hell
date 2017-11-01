@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace Xmas_Hell_Core.Controls
+namespace XmasHell.Controls
 {
     class InputManager : GameComponent
     {

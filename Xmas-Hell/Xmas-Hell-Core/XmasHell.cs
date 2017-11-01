@@ -7,14 +7,14 @@ using XmasHell.Performance;
 using XmasHell.Screens;
 using XmasHell.Shaders;
 using XmasHell.Rendering;
-using Xmas_Hell_Core.Controls;
+using XmasHell.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
 using XmasHell.GUI;
 using XmasHell.PlayerData;
 
 #if ANDROID
-using Xmas_Hell_Android;
+using XmasHellAndroid;
 using Android.Util;
 using Android.Content;
 using XmasHell.PlayerData.Android;

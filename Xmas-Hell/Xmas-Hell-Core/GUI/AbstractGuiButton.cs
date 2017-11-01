@@ -2,7 +2,7 @@
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using System;
-using Xmas_Hell_Core.Controls;
+using XmasHell.Controls;
 
 namespace XmasHell.GUI
 {

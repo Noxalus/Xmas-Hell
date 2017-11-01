@@ -1,6 +1,6 @@
 using BulletML;
 using XmasHell.Physics.Collision;
-using Xmas_Hell_Core.Entities.Bosses.XmasLog;
+using XmasHell.Entities.Bosses.XmasLog;
 
 namespace XmasHell.Entities.Bosses.XmasLog
 {

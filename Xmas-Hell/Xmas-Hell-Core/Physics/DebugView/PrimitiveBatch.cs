@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Xmas_Hell_Core.Physics.DebugView
+namespace XmasHell.Physics.DebugView
 {
     public class PrimitiveBatch : IDisposable
     {

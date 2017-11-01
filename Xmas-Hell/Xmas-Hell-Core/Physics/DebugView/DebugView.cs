@@ -4,13 +4,13 @@ using System.Text;
 using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
 
-namespace Xmas_Hell_Core.Physics.DebugView
+namespace XmasHell.Physics.DebugView
 {
     class DebugView
     {
         private DebugViewXna _debugView;
 
-        public DebugView(World _world, XmasHell.XmasHell game, float _ratio)
+        public DebugView(World _world, XmasHell game, float _ratio)
         {
             _debugView = new DebugViewXna(_world);
             _debugView.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
@@ -35,7 +35,7 @@ namespace Xmas_Hell_Core.Physics.DebugView
             Enabled = true;
         }
 
-        public XmasHell.XmasHell game { get; set; }
+        public XmasHell game { get; set; }
         public float _ratio { get; private set; }
         public bool Enabled { get; set; }
 

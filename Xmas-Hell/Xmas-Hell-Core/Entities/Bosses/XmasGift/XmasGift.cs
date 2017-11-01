@@ -5,7 +5,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using XmasHell.Physics.Collision;
-using Xmas_Hell_Core.Physics.DebugView;
+using XmasHell.Physics.DebugView;
 
 namespace XmasHell.Entities.Bosses.XmasGift
 {

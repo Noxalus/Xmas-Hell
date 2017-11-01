@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.BitmapFonts;
 using XmasHell;
 
-namespace Xmas_Hell_Core.Physics.DebugView
+namespace XmasHell.Physics.DebugView
 {
     /// <summary>
     /// A debug view shows you what happens inside the physics engine. You can view

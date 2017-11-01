@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using XmasHell;
 using XmasHell.Entities.Bosses;
 
-namespace Xmas_Hell_Core.Entities.Bosses.XmasLog
+namespace XmasHell.Entities.Bosses.XmasLog
 {
     class XmasLogBehaviour1 : AbstractBossBehaviour
     {

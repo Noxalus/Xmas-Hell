@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Xmas_Hell_Core.Controls;
+using XmasHell.Controls;
 using XmasHell.Entities.Bosses;
 using XmasHell.GUI;
 using XmasHell.Rendering;

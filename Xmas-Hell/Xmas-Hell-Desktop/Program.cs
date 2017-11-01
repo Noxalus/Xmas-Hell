@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Xmas_Hell_Desktop
+namespace XmasHellDesktop
 {
     /// <summary>
     /// The main class.

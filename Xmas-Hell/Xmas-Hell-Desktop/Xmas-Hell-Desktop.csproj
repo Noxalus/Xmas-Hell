@@ -9,7 +9,7 @@
     <ProjectGuid>{3458A5D0-ED04-46FE-847C-9547CECCE4D8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xmas_Hell_Desktop</RootNamespace>
+    <RootNamespace>XmasHellDesktop</RootNamespace>
     <AssemblyName>Xmas-Hell-Desktop</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>

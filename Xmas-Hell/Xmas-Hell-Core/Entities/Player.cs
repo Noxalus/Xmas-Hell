@@ -14,7 +14,7 @@ using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
-using Xmas_Hell_Core.Controls;
+using XmasHell.Controls;
 using XmasHell.Sound;
 
 namespace XmasHell.Entities

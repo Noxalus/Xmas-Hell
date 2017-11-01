@@ -1,6 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
-using Xmas_Hell_Core.Controls;
+using XmasHell.Controls;
 using System.Collections.Generic;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
