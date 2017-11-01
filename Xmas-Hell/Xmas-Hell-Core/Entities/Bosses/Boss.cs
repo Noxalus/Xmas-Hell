@@ -17,11 +17,11 @@ using XmasHell.Spriter;
 using XmasHell.BulletML;
 using XmasHell.Extensions;
 using XmasHell.GUI;
-using XmasHell.Sound;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics;
 using FarseerPhysics.Factories;
 using Xmas_Hell_Core.Physics.DebugView;
+using XmasHell.Sound;
 
 namespace XmasHell.Entities.Bosses
 {

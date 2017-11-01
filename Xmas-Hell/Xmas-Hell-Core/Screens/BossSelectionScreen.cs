@@ -162,7 +162,7 @@ namespace XmasHell.Screens
 
         private void BossPanelStartBattleButtonAction(object button, Point e)
         {
-            Game.ScreenManager.GetScreen<GameScreen>().LoadBoss(_selectedBoss);
+            Game.GameManager.LoadBoss(_selectedBoss);
             Game.ScreenManager.GoTo<GameScreen>();
         }
         #endregion

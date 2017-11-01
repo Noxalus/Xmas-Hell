@@ -10,6 +10,7 @@ using XmasHell.Entities;
 using XmasHell.Particles;
 using XmasHell.Physics;
 using Bullet = XmasHell.Entities.Bullet;
+using XmasHell.Entities.Bosses;
 using XmasHell.Sound;
 
 namespace XmasHell
@@ -17,6 +18,10 @@ namespace XmasHell
     public class GameManager
     {
         private XmasHell _game;
+
+        private Boss _boss;
+        private Player _player;
+
         private List<Bullet> _bullets;
         private List<Laser> _lasers;
 
@@ -24,6 +29,7 @@ namespace XmasHell
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
         private bool _gameIsFinished;
+        private TimeSpan _playTime;
 
         public Random Random;
 
@@ -61,6 +67,7 @@ namespace XmasHell
         public GameManager(XmasHell game)
         {
             _game = game;
+
             _bullets = new List<Bullet>();
             _lasers = new List<Laser>();
             _endGame = false;
@@ -92,6 +99,9 @@ namespace XmasHell
                 bullet.Destroy();
 
             _bullets.RemoveAll(b => !b.Used);
+
+            _boss.Dispose();
+            _player.Dispose();
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)
@@ -107,6 +117,8 @@ namespace XmasHell
             {
                 _endGameFirstTime = true;
                 _gameIsFinished = true;
+
+                _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
 
                 _endGameTimer.Stop();
                 _game.Camera.Zoom = 1f;
@@ -125,13 +137,24 @@ namespace XmasHell
             };
 
             MoverManager.BulletTextures = bulletTextures;
+
+            _player = new Player(_game);
         }
 
         public void StartNewGame()
         {
+            _playTime = TimeSpan.Zero;
             _gameIsFinished = false;
 
-            // TODO: Reset game status (including player and boss)
+            _boss.Initialize();
+            _player.Initialize();
+
+            _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
+        }
+
+        public void LoadBoss(BossType bossType)
+        {
+            _boss = BossFactory.CreateBoss(bossType, _game, _player.Position);
         }
 
         public void Update(GameTime gameTime)
@@ -140,6 +163,8 @@ namespace XmasHell
 
             if (_endGame)
                 return;
+
+            _playTime += gameTime.ElapsedGameTime;
 
             foreach (var bullet in _bullets)
                 bullet.Update(gameTime);
@@ -152,6 +177,12 @@ namespace XmasHell
             ParticleManager.Update(gameTime);
 
             _bullets.RemoveAll(b => !b.Used);
+
+            if (_player.Alive())
+                _player.Update(gameTime);
+
+            if (_boss != null && _boss.Alive())
+                _boss.Update(gameTime);
         }
 
         public void AddBullet(Bullet bullet)

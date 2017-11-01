@@ -1,7 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using XmasHell.Entities;
-using XmasHell.Entities.Bosses;
 using Xmas_Hell_Core.Controls;
 using System.Collections.Generic;
 using XmasHell.Spriter;
@@ -12,9 +10,6 @@ namespace XmasHell.Screens
 {
     public class GameScreen : Screen
     {
-        private Player _player;
-        private Boss _boss;
-        private TimeSpan _playTime;
         private bool _endGamePopupOpened = false;
 
         // GUI
@@ -30,8 +25,6 @@ namespace XmasHell.Screens
         {
             ShouldBeStackInHistory = true;
             GameManager.GameDifficulty = GetRank;
-
-            _player = new Player(game);
         }
 
         public override void Initialize()
@@ -93,18 +86,9 @@ namespace XmasHell.Screens
             // Reset game
             Game.GameManager.Reset();
 
-            // TODO: Move this into GameManager
-            _boss.Initialize();
-            _player.Initialize();
-
             CloseEndGamePopup();
         }
         #endregion
-
-        public void LoadBoss(BossType bossType)
-        {
-            _boss = BossFactory.CreateBoss(bossType, Game, _player.Position);
-        }
 
         private void OpenEndGamePopup()
         {
@@ -135,11 +119,7 @@ namespace XmasHell.Screens
         {
             base.Show(reset);
 
-            _player.Initialize();
-            _boss.Initialize();
-
-            _playTime = TimeSpan.Zero;
-            Game.PlayerData.BossAttempts(_boss.BossType, Game.PlayerData.BossAttempts(_boss.BossType) + 1);
+            Game.GameManager.StartNewGame();
 
             // Should play music (doesn't seem to work for now...)
             //MediaPlayer.Volume = 1f;
@@ -151,15 +131,8 @@ namespace XmasHell.Screens
         {
             base.Hide();
 
-            Game.GameManager.StartNewGame();
-
-            _boss.Dispose();
-            _player.Dispose();
             Game.GameManager.Clear();
-
             CloseEndGamePopup();
-
-            Game.PlayerData.BossPlayTime(_boss.BossType, Game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
         }
 
         public override void Update(GameTime gameTime)
@@ -169,16 +142,8 @@ namespace XmasHell.Screens
             if (InputManager.PressedCancel())
                 Game.ScreenManager.GoTo<BossSelectionScreen>();
 
-            _playTime += gameTime.ElapsedGameTime;
-
             if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
                 OpenEndGamePopup();
-
-            if (_player.Alive())
-                _player.Update(gameTime);
-
-            if (_boss.Alive())
-                _boss.Update(gameTime);
         }
     }
 }
