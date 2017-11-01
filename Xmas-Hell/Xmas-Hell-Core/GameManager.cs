@@ -109,7 +109,7 @@ namespace XmasHell
             _boss.Initialize();
             _player.Initialize();
 
-            _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
+            Reset();
         }
 
         public void Dispose()
@@ -133,6 +133,8 @@ namespace XmasHell
 
             if (_boss != null)
                 _boss.Reset();
+
+            _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)
