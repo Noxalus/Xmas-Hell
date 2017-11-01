@@ -207,11 +207,13 @@ namespace XmasHell.Screens
             _bossSelectionSpriterFile["BossPanel"].Play("Show");
 
             // Update labels
+            var bossDeath = Game.PlayerData.BossBeatenCounter(bossType);
             _bossNameLabel.Text = "Xmas " + bossType.ToString().Substring(4);
-            _bestTimeLabel.Text = "Best time: " + Game.PlayerData.BossBestTime(bossType).ToString("mm\\:ss");
+            _bestTimeLabel.Text = "Best time: ";
+            _bestTimeLabel.Text += (bossDeath > 0) ? Game.PlayerData.BossBestTime(bossType).ToString("mm\\:ss") : "--:--";
             _playTimeLabel.Text = "Play time: " + Game.PlayerData.BossPlayTime(bossType).ToString("mm\\:ss");
             _playerDeathLabel.Text = "Attempts: " + Game.PlayerData.BossAttempts(bossType);
-            _bossDeathLabel.Text = "Boss deaths: " + Game.PlayerData.BossBeatenCounter(bossType);
+            _bossDeathLabel.Text = "Boss deaths: " + bossDeath;
 
             DoOpenBossPanel();
         }
