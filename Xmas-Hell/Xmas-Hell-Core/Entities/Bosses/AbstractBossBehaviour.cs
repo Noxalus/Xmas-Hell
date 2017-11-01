@@ -40,6 +40,7 @@ namespace XmasHell.Entities.Bosses
         {
             CurrentBehaviourLife = InitialBehaviourLife;
             BehaviourEnded = false;
+            Stop();
         }
 
         public virtual void Stop()

@@ -120,10 +120,13 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Stop();
 
-            foreach (var candy in _candyBars)
-                candy.Dispose();
+            if (_candyBars != null)
+            {
+                foreach (var candy in _candyBars)
+                    candy.Dispose();
 
-            _candyBars.Clear();
+                _candyBars.Clear();
+            }
 
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
             Boss.CurrentAnimator.EventTriggered -= EventTriggeredHandler;
