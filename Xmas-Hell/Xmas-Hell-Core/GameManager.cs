@@ -48,6 +48,11 @@ namespace XmasHell
             return MoverManager.Movers;
         }
 
+        public Boss GetCurrentBoss()
+        {
+            return _boss;
+        }
+
         public List<Bullet> GetPlayerBullets()
         {
             return _bullets.Where(b => b is PlayerBullet).ToList();

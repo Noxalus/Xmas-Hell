@@ -16,6 +16,12 @@ namespace XmasHell.Screens
         private Dictionary<string, CustomSpriterAnimator> _spriterFile;
         private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
 
+        // Labels
+        private List<SpriterGuiLabel> _endGamePanelLabels = new List<SpriterGuiLabel>();
+        private SpriterGuiLabel _endGameTitleLabel;
+        private SpriterGuiLabel _endGameDeathCounterLabel;
+        private SpriterGuiLabel _endGameTauntLabel;
+
         private float GetRank()
         {
             return 1f;
@@ -63,6 +69,15 @@ namespace XmasHell.Screens
 
             _endGamePanelButtons.Add(closePanelButton);
             _endGamePanelButtons.Add(retryPanelButton);
+
+            // GUI
+            _endGameTitleLabel = new SpriterGuiLabel("You died!", Assets.GetFont("Graphics/Fonts/ui-title"), "end-game-panel-title-label.png", _spriterFile["EndGamePanel"], true);
+            _endGameDeathCounterLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-player-deaths-label.png", _spriterFile["EndGamePanel"], true);
+            _endGameTauntLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-taunt-label.png", _spriterFile["EndGamePanel"], true);
+
+            _endGamePanelLabels.Add(_endGameTitleLabel);
+            _endGamePanelLabels.Add(_endGameDeathCounterLabel);
+            _endGamePanelLabels.Add(_endGameTauntLabel);
         }
 
         #region Animations finished
@@ -99,8 +114,16 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.AddSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
             _spriterFile["EndGamePanel"].Play("Show");
 
+            // GUI
+
+            _endGameDeathCounterLabel.Text = Game.PlayerData.BossAttempts(Game.GameManager.GetCurrentBoss().BossType) + " times already";
+            _endGameTauntLabel.Text = "You suck!";
+
             foreach (var button in _endGamePanelButtons)
                 Game.GuiManager.AddButton(button);
+
+            foreach (var label in _endGamePanelLabels)
+                Game.GuiManager.AddLabel(label);
         }
 
         private void CloseEndGamePopup()
@@ -109,6 +132,9 @@ namespace XmasHell.Screens
 
             foreach (var button in _endGamePanelButtons)
                 Game.GuiManager.RemoveButton(button);
+
+            foreach (var label in _endGamePanelLabels)
+                Game.GuiManager.RemoveLabel(label);
 
             _spriterFile["EndGamePanel"].Play("Hide");
             Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
