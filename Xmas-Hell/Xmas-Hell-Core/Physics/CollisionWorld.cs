@@ -129,7 +129,7 @@ namespace XmasHell.Physics
             // Check collision between boss bullets and player's hitbox
             var player = (Player)PlayerHitbox?.Entity;
 
-            if (player != null && !player.Invincible)
+            if (player != null)
             {
                 for (int index = 0; index < _bossBulletHitboxes.Count; index++)
                 {

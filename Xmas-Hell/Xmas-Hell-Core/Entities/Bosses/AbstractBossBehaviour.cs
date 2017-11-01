@@ -33,7 +33,13 @@ namespace XmasHell.Entities.Bosses
 
         public virtual void Start()
         {
+            Reset();
+        }
+
+        public virtual void Reset()
+        {
             CurrentBehaviourLife = InitialBehaviourLife;
+            BehaviourEnded = false;
         }
 
         public virtual void Stop()

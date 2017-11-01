@@ -28,7 +28,7 @@ namespace XmasHell
         private bool _endGame;
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
-        private bool _gameIsFinished;
+        private bool _gameIsFinished = false;
         private TimeSpan _playTime;
 
         public Random Random;
@@ -85,46 +85,6 @@ namespace XmasHell
             _endGameFirstTime = true;
         }
 
-        public void Reset()
-        {
-            Clear();
-            _gameIsFinished = false;
-        }
-
-        public void Clear()
-        {
-            MoverManager.Clear();
-
-            foreach(var bullet in _bullets)
-                bullet.Destroy();
-
-            _bullets.RemoveAll(b => !b.Used);
-
-            _boss.Dispose();
-            _player.Dispose();
-        }
-
-        private void EndGameTimerCompleted(object sender, EventArgs e)
-        {
-            if (_endGameFirstTime)
-            {
-                _endGame = false;
-                _endGameFirstTime = false;
-                _endGameTimer.Restart();
-                SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
-            }
-            else
-            {
-                _endGameFirstTime = true;
-                _gameIsFinished = true;
-
-                _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
-
-                _endGameTimer.Stop();
-                _game.Camera.Zoom = 1f;
-            }
-        }
-
         public void Initialize()
         {
             ParticleManager.Initialize();
@@ -150,6 +110,50 @@ namespace XmasHell
             _player.Initialize();
 
             _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
+        }
+
+        public void Dispose()
+        {
+            MoverManager.Clear();
+
+            foreach (var bullet in _bullets)
+                bullet.Destroy();
+
+            _bullets.RemoveAll(b => !b.Used);
+
+            _boss.Dispose();
+            _player.Dispose();
+        }
+
+        public void Reset()
+        {
+            _gameIsFinished = false;
+
+            _player.Reset();
+
+            if (_boss != null)
+                _boss.Reset();
+        }
+
+        private void EndGameTimerCompleted(object sender, EventArgs e)
+        {
+            if (_endGameFirstTime)
+            {
+                _endGame = false;
+                _endGameFirstTime = false;
+                _endGameTimer.Restart();
+                SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
+            }
+            else
+            {
+                _endGameFirstTime = true;
+                _gameIsFinished = true;
+
+                _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
+
+                _endGameTimer.Stop();
+                _game.Camera.Zoom = 1f;
+            }
         }
 
         public void LoadBoss(BossType bossType)

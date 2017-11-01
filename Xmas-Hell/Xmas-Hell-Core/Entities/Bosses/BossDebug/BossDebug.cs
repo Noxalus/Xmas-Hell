@@ -30,7 +30,7 @@ namespace XmasHell.Entities.Bosses.DebugBoss
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
         }
 
-        protected override void Reset()
+        public override void Reset()
         {
             base.Reset();
         }

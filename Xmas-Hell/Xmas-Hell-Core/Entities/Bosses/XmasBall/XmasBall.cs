@@ -37,11 +37,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
         }
 
-        protected override void Reset()
-        {
-            base.Reset();
-        }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

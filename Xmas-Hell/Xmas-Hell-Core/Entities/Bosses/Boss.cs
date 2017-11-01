@@ -275,7 +275,6 @@ namespace XmasHell.Entities.Bosses
                 Color = Color.Red
             };
 
-            Game.SpriteBatchManager.Boss = this;
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
             _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 100, 30), Color.White, true);
@@ -305,6 +304,8 @@ namespace XmasHell.Entities.Bosses
 
         public virtual void Initialize()
         {
+            Game.SpriteBatchManager.Boss = this;
+
             LoadBulletPatterns();
             LoadSpriterSprite();
             InitializePhysics();
@@ -385,7 +386,7 @@ namespace XmasHell.Entities.Bosses
             );
         }
 
-        protected virtual void Reset()
+        public virtual void Reset()
         {
             Game.GameManager.MoverManager.Clear();
             CurrentAnimator.Position = InitialPosition;
@@ -398,6 +399,9 @@ namespace XmasHell.Entities.Bosses
             Speed = GameConfig.BossDefaultSpeed;
             CurrentBehaviourIndex = 0;
             PreviousBehaviourIndex = -1;
+
+            foreach (var behaviour in Behaviours)
+                behaviour.Reset();
         }
 
         private void RestoreDefaultState()

@@ -114,7 +114,6 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
         }
 
-        // TODO: This should be handled by the ScreenManager
         public override void Show(bool reset = false)
         {
             base.Show(reset);
@@ -131,7 +130,7 @@ namespace XmasHell.Screens
         {
             base.Hide();
 
-            Game.GameManager.Clear();
+            Game.GameManager.Dispose();
             CloseEndGamePopup();
         }
 

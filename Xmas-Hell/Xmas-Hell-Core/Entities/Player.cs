@@ -21,8 +21,6 @@ namespace XmasHell.Entities
 {
     public class Player : IPhysicsEntity
     {
-        public bool Invincible;
-        public TimeSpan _invincibleTimer;
         private bool _destroyed;
 
         private readonly XmasHell _game;
@@ -140,23 +138,12 @@ namespace XmasHell.Entities
 
         public void Initialize()
         {
-            Invincible = false;
-            _invincibleTimer = TimeSpan.FromSeconds(3f);
-
-            _bulletFrequence = TimeSpan.Zero;
-            _destroyed = false;
-
             _initialSpritePosition = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y - 150
             );
 
-            CurrentAnimator.Position = _initialSpritePosition;
-            _initialTouchPosition = _currentTouchPosition;
-
-            _game.SpriteBatchManager.Player = this;
-            _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
-            _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
+            Reset();
         }
 
         public void Dispose()
@@ -166,9 +153,21 @@ namespace XmasHell.Entities
             _game.GameManager.CollisionWorld.PlayerHitbox = null;
         }
 
+        public void Reset()
+        {
+            _game.SpriteBatchManager.Player = this;
+            _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
+            _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
+
+            CurrentAnimator.Position = _initialSpritePosition;
+            _initialTouchPosition = _currentTouchPosition;
+            _bulletFrequence = TimeSpan.Zero;
+            _destroyed = false;
+        }
+
         public void Destroy()
         {
-            if (GameConfig.GodMode)
+            if (GameConfig.GodMode || _destroyed)
                 return;
 
             _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
@@ -208,11 +207,6 @@ namespace XmasHell.Entities
                 else
                     _game.Camera.ZoomTo(1f, 0.5, Position());
             }
-
-            if (_invincibleTimer.TotalMilliseconds > 0)
-                _invincibleTimer -= gameTime.ElapsedGameTime;
-            else
-                Invincible = false;
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
