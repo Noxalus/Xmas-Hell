@@ -95,11 +95,7 @@ namespace XmasHell
             return animators;
         }
 
-#if ANDROID
         public static void Load(ContentManager content, GraphicsDevice graphicsDevice)
-#else
-        public static void Load(ContentManager content, GraphicsDevice graphicsDevice)
-#endif
         {
             var pixel = new Texture2D(graphicsDevice, 1, 1) { Name = "pixel" };
             pixel.SetData(new[] { Color.White });
