@@ -33,7 +33,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
         {
             base.Update(gameTime);
 
-
             if (!Boss.TargetingPosition)
             {
                 var newPosition = new Vector2(

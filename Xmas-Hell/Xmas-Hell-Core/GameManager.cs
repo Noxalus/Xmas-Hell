@@ -123,6 +123,9 @@ namespace XmasHell
 
             _boss.Dispose();
             _player.Dispose();
+
+            // Should be loaded
+            _boss = null;
         }
 
         public void Reset()
