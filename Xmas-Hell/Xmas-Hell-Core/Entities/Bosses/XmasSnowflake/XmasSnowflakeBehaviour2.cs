@@ -41,10 +41,15 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             base.Stop();
 
-            foreach (var branch in _branches)
+            if (_branches != null)
             {
-                branch.Dispose();
+                foreach (var branch in _branches)
+                    branch.Dispose();
+
+                _branches.Clear();
             }
+
+            Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
         }
 
         private void AnimationFinishedHandler(string animationName)
