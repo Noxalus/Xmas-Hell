@@ -54,7 +54,7 @@ namespace XmasHell.Screens
             _spriterFile = Assets.GetSpriterAnimators("Graphics/GUI/game-screen");
             InitializeSpriterGui();
 
-            _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 100, 30), Color.White, true);
+            _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 95, 30), Color.White, true);
         }
 
         private void InitializeSpriterGui()
