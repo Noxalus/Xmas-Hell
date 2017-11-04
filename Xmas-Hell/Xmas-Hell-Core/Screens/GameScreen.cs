@@ -16,6 +16,7 @@ namespace XmasHell.Screens
         private Dictionary<string, CustomSpriterAnimator> _spriterFile;
         private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
         private AbstractGuiLabel _timerLabel;
+        private AbstractGuiLabel _timerLabelShadow;
 
         // Labels
         private List<SpriterGuiLabel> _endGamePanelLabels = new List<SpriterGuiLabel>();
@@ -55,6 +56,7 @@ namespace XmasHell.Screens
             InitializeSpriterGui();
 
             _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 95, 30), Color.White, true);
+            _timerLabelShadow = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(_timerLabel.Position.X + 1, _timerLabel.Position.Y + 1), Color.Black, true);
         }
 
         private void InitializeSpriterGui()
@@ -156,6 +158,7 @@ namespace XmasHell.Screens
 
             Game.GameManager.StartNewGame();
 
+            Game.SpriteBatchManager.UILabels.Add(_timerLabelShadow);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
 
             // Should play music (doesn't seem to work for now...)
@@ -171,6 +174,7 @@ namespace XmasHell.Screens
             Game.GameManager.Dispose();
             CloseEndGamePopup();
             Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
+            Game.SpriteBatchManager.UILabels.Remove(_timerLabelShadow);
         }
 
         public override void Update(GameTime gameTime)
@@ -184,7 +188,10 @@ namespace XmasHell.Screens
                 OpenEndGamePopup();
 
             if (!Game.GameManager.GameIsFinished())
+            {
                 _timerLabel.Text = Game.GameManager.GetCurrentTime().ToString("mm\\:ss\\:ff");
+                _timerLabelShadow.Text = _timerLabel.Text;
+            }
         }
 
         private String GetRandomTauntString()

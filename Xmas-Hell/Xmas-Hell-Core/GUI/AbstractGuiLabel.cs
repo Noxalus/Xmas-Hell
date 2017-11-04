@@ -7,7 +7,7 @@ namespace XmasHell.GUI
     public class AbstractGuiLabel
     {
         public string Text;
-        protected Vector2 Position;
+        public Vector2 Position;
         protected float Rotation;
         public Vector2 Scale;
         public Color Color;
