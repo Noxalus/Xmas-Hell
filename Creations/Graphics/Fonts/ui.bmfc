@@ -2,7 +2,7 @@
 fileVersion=1
 
 # font settings
-fontName=Santas Big Secret BB
+fontName=Droid Serif
 fontFile=
 charSet=0
 fontSize=90
@@ -50,6 +50,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=32-90,92,95,97-122,210-213,217
+chars=32-126
 
 # imported icon images

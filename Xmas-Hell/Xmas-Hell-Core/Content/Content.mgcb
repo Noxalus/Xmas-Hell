@@ -1564,35 +1564,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Fonts/ui_0.png
 
-#begin Graphics/Fonts/ui-title.fnt
-/importer:BitmapFontImporter
-/processor:BitmapFontProcessor
-/build:Graphics/Fonts/ui-title.fnt
-
-#begin Graphics/Fonts/ui-title_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Fonts/ui-title_0.png
-
-#begin Graphics/Fonts/ui-title_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Fonts/ui-title_1.png
-
 #begin Graphics/Fonts/ui-small.fnt
 /importer:BitmapFontImporter
 /processor:BitmapFontProcessor
@@ -1824,4 +1795,21 @@
 /importer:SpriterImporter
 /processor:PassThroughProcessor
 /build:Graphics/GUI/game-screen.scml
+
+#begin Graphics/Fonts/ui-title.fnt
+/importer:BitmapFontImporter
+/processor:BitmapFontProcessor
+/build:Graphics/Fonts/ui-title.fnt
+
+#begin Graphics/Fonts/ui-title_0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Fonts/ui-title_0.png
 
