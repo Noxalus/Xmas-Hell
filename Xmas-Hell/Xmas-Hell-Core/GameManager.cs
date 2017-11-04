@@ -25,6 +25,8 @@ namespace XmasHell
         private List<Bullet> _bullets;
         private List<Laser> _lasers;
 
+        private TimeSpan _timer;
+
         private bool _endGame;
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
@@ -51,6 +53,11 @@ namespace XmasHell
         public Boss GetCurrentBoss()
         {
             return _boss;
+        }
+
+        public TimeSpan GetCurrentTime()
+        {
+            return _timer;
         }
 
         public List<Bullet> GetPlayerBullets()
@@ -135,6 +142,7 @@ namespace XmasHell
 
         public void Reset()
         {
+            _timer = TimeSpan.Zero;
             _gameIsFinished = false;
 
             _player.Reset();
@@ -179,6 +187,9 @@ namespace XmasHell
                 return;
 
             _playTime += gameTime.ElapsedGameTime;
+
+            if (!GameIsFinished() && _endGameFirstTime)
+                _timer += gameTime.ElapsedGameTime;
 
             foreach (var bullet in _bullets)
                 bullet.Update(gameTime);

@@ -15,12 +15,21 @@ namespace XmasHell.Screens
         // GUI
         private Dictionary<string, CustomSpriterAnimator> _spriterFile;
         private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
+        private AbstractGuiLabel _timerLabel;
 
         // Labels
         private List<SpriterGuiLabel> _endGamePanelLabels = new List<SpriterGuiLabel>();
         private SpriterGuiLabel _endGameTitleLabel;
         private SpriterGuiLabel _endGameDeathCounterLabel;
         private SpriterGuiLabel _endGameTauntLabel;
+
+        private static List<String> _tauntStrings = new List<string>()
+        {
+            "You suck!",
+            "Your goal is to avoid your opponent's\n bullet, not to collect them!",
+            "Drag your finger over\n the screen to move",
+            "Sorry, there is no in \napp-purchases to help you here"
+        };
 
         private float GetRank()
         {
@@ -44,6 +53,8 @@ namespace XmasHell.Screens
 
             _spriterFile = Assets.GetSpriterAnimators("Graphics/GUI/game-screen");
             InitializeSpriterGui();
+
+            _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 100, 30), Color.White, true);
         }
 
         private void InitializeSpriterGui()
@@ -115,9 +126,8 @@ namespace XmasHell.Screens
             _spriterFile["EndGamePanel"].Play("Show");
 
             // GUI
-
             _endGameDeathCounterLabel.Text = Game.PlayerData.BossAttempts(Game.GameManager.GetCurrentBoss().BossType) + " times already";
-            _endGameTauntLabel.Text = "You suck!";
+            _endGameTauntLabel.Text = GetRandomTauntString();
 
             foreach (var button in _endGamePanelButtons)
                 Game.GuiManager.AddButton(button);
@@ -146,6 +156,8 @@ namespace XmasHell.Screens
 
             Game.GameManager.StartNewGame();
 
+            Game.SpriteBatchManager.UILabels.Add(_timerLabel);
+
             // Should play music (doesn't seem to work for now...)
             //MediaPlayer.Volume = 1f;
             //MediaPlayer.IsRepeating = true;
@@ -158,6 +170,7 @@ namespace XmasHell.Screens
 
             Game.GameManager.Dispose();
             CloseEndGamePopup();
+            Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
         }
 
         public override void Update(GameTime gameTime)
@@ -169,6 +182,14 @@ namespace XmasHell.Screens
 
             if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
                 OpenEndGamePopup();
+
+            if (!Game.GameManager.GameIsFinished())
+                _timerLabel.Text = Game.GameManager.GetCurrentTime().ToString("mm\\:ss\\:ff");
+        }
+
+        private String GetRandomTauntString()
+        {
+            return _tauntStrings[Game.GameManager.Random.Next(_tauntStrings.Count)];
         }
     }
 }

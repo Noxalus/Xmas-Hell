@@ -40,8 +40,6 @@ namespace XmasHell.Entities.Bosses
         public readonly BossType BossType;
         public Vector2 InitialPosition;
         private Sprite _hpBar;
-        private AbstractGuiLabel _timerLabel;
-        private TimeSpan _timer;
         private bool _destroyed;
 
         public bool Invincible;
@@ -277,9 +275,6 @@ namespace XmasHell.Entities.Bosses
 
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
-            _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 100, 30), Color.White, true);
-            Game.SpriteBatchManager.UILabels.Add(_timerLabel);
-
             // To compute line/wall intersection
             _bottomWallLine = new Line(
                 new Vector2(0f, GameConfig.VirtualResolution.Y),
@@ -317,7 +312,6 @@ namespace XmasHell.Entities.Bosses
         {
             Game.SpriteBatchManager.Boss = null;
             Game.SpriteBatchManager.UISprites.Remove(_hpBar);
-            Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
             Game.SpriteBatchManager.BossBullets.Clear();
 
             Game.GameManager.CollisionWorld.ClearBossHitboxes();
@@ -392,7 +386,6 @@ namespace XmasHell.Entities.Bosses
             CurrentAnimator.Position = InitialPosition;
             Invincible = false;
             Tinted = false;
-            _timer = TimeSpan.Zero;
             _destroyed = false;
 
             Direction = Vector2.Zero;
@@ -432,8 +425,9 @@ namespace XmasHell.Entities.Bosses
             Game.PlayerData.BossBeatenCounter(BossType, Game.PlayerData.BossBeatenCounter(BossType) + 1);
 
             var bestTime = Game.PlayerData.BossBestTime(BossType);
-            if (bestTime == TimeSpan.Zero || bestTime > _timer)
-                Game.PlayerData.BossBestTime(BossType, _timer);
+            var currentTime = Game.GameManager.GetCurrentTime();
+            if (bestTime == TimeSpan.Zero || bestTime > currentTime)
+                Game.PlayerData.BossBestTime(BossType, currentTime);
 
             Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
             Game.Camera.ZoomTo(3f, 0.25, CurrentAnimator.Position);
@@ -783,12 +777,6 @@ namespace XmasHell.Entities.Bosses
 
             _hpBar.Scale = new Vector2(Behaviours[CurrentBehaviourIndex].GetLifePercentage(), 1f);
             _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
-
-            if (!Game.GameManager.GameIsFinished())
-            {
-                _timer += gameTime.ElapsedGameTime;
-                _timerLabel.Text = _timer.ToString("mm\\:ss\\:ff");
-            }
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 

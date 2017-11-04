@@ -62,6 +62,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\ColorExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\MathExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RandomExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
