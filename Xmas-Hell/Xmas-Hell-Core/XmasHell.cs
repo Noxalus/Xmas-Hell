@@ -5,6 +5,7 @@ using MonoGame.Extended.ViewportAdapters;
 using XmasHell.Background;
 using XmasHell.Performance;
 using XmasHell.Screens;
+using XmasHell.Screens.Menu;
 using XmasHell.Shaders;
 using XmasHell.Rendering;
 using XmasHell.Controls;

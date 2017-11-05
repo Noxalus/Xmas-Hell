@@ -7,7 +7,7 @@ using XmasHell.GUI;
 using XmasHell.Rendering;
 using XmasHell.Spriter;
 
-namespace XmasHell.Screens
+namespace XmasHell.Screens.Menu
 {
     public class BossSelectionScreen : Screen
     {

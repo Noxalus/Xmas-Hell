@@ -96,10 +96,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)PlayerData\IPreferences.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlayerData\PlayerSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatchManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\BossSelectionScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\DebugScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\GameScreen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Screens\MainMenuScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menu\BossSelectionScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\Menu\MainMenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Screen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />

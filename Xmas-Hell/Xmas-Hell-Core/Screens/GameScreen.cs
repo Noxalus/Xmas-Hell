@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
 using XmasHell.GUI;
+using XmasHell.Screens.Menu;
 
 namespace XmasHell.Screens
 {

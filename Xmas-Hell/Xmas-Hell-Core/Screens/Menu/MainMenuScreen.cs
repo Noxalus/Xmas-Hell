@@ -9,12 +9,13 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
 using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
-namespace XmasHell.Screens
+namespace XmasHell.Screens.Menu
 {
     public class MainMenuScreen : Screen
     {
         private string _patternFile = "MainMenu/snowflake";
         private TimeSpan _shootFrequency;
+
         private Song _introSong;
         private Song _mainSong;
         private Song _menuSong;
