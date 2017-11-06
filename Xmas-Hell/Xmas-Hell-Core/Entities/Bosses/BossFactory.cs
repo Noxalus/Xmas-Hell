@@ -14,7 +14,7 @@ namespace XmasHell.Entities.Bosses
         XmasLog,
         XmasTree,
         XmasGift,
-        XmasReinder,
+        XmasReindeer,
         XmasSnowman,
         XmasSanta
     }
@@ -41,8 +41,8 @@ namespace XmasHell.Entities.Bosses
                     return new XmasTree.XmasTree(game, playerPositionDelegate);
                 case BossType.XmasGift:
                     return new XmasGift.XmasGift(game, playerPositionDelegate);
-                case BossType.XmasReinder:
-                    break;
+                case BossType.XmasReindeer:
+                    return new XmasReindeer.XmasReindeer(game, playerPositionDelegate);
                 case BossType.XmasSnowman:
                     return new XmasSnowman.XmasSnowman(game, playerPositionDelegate);
                 case BossType.XmasSanta:
@@ -74,8 +74,8 @@ namespace XmasHell.Entities.Bosses
                     return BossType.XmasTree;
                 case "gift":
                     return BossType.XmasGift;
-                case "reinder":
-                    return BossType.XmasReinder;
+                case "reindeer":
+                    return BossType.XmasReindeer;
                 case "snowman":
                     return BossType.XmasSnowman;
                 case "santa":

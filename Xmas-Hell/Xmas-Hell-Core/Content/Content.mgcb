@@ -2003,3 +2003,80 @@
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman.scml
 
+#begin Graphics/Sprites/Bosses/XmasReindeer/antler.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/antler.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/body.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/body.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/eye.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/eye.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/hear.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/hear.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/nose.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/nose.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/paw.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasReindeer/paw.png
+
+#begin Graphics/Sprites/Bosses/XmasReindeer/xmas-reindeer.scml
+/importer:SpriterImporter
+/processor:PassThroughProcessor
+/build:Graphics/Sprites/Bosses/XmasReindeer/xmas-reindeer.scml
+
