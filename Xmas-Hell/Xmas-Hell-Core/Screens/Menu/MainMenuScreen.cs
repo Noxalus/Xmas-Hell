@@ -68,7 +68,7 @@ namespace XmasHell.Screens.Menu
             _menuSong = Assets.GetMusic("main-menu");
 
             XnaMediaPlayer.IsRepeating = true;
-            //XnaMediaPlayer.Play(_menuSong);
+            XnaMediaPlayer.Play(_menuSong);
 
             _mainMenuSpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/main-menu");
             //LoadSpriterSprite("Graphics/GUI/main-menu");
@@ -175,8 +175,8 @@ namespace XmasHell.Screens.Menu
 
         private void MediaPlayerOnMediaStateChanged(object sender, EventArgs eventArgs)
         {
-            if (XnaMediaPlayer.Queue.ActiveSong == null)
-                return;
+            //if (XnaMediaPlayer.Queue.ActiveSong == null)
+            //    return;
 
             //if (XnaMediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
             //    XnaMediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
