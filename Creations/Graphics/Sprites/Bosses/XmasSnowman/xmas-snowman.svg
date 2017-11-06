@@ -53,17 +53,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.69999999"
-     inkscape:cx="-1729.5092"
-     inkscape:cy="1158.5696"
+     inkscape:zoom="0.49497474"
+     inkscape:cx="-2234.5936"
+     inkscape:cy="976.96146"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1027"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="958"
+     inkscape:window-height="1018"
+     inkscape:window-x="1913"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata6529">
     <rdf:RDF>
@@ -636,8 +636,8 @@
        id="g6998"
        transform="matrix(0.69824436,0,0,0.68477232,-2277.0853,-485.56617)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\hat.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50">
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          style="fill:#323232;fill-opacity:1"
          id="g6994">
@@ -668,8 +668,8 @@
        id="g7055"
        transform="translate(-841.07144,127.23215)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\body.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50">
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g7049">
         <ellipse
@@ -730,8 +730,8 @@
        id="g7061"
        transform="matrix(0.56882414,-0.56882414,0.56882414,0.56882414,-2851.4353,419.48454)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\arm.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50">
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -752,14 +752,14 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cac"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\mouth.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50" />
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
     <g
        id="g7071"
        transform="matrix(0.80443881,0,0,0.80443881,-1883.3315,-61.322968)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\nose.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50">
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <path
          style="fill:#ffa200;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -69.389142,536.96033 c -19.69233,0.80809 -40.568548,-6.37852 -41.163708,-20.20306 0.39284,-10.26979 26.733248,-13.0417 40.406098,-13.13198 13.37489,0.45588 16.02026,27.40897 0.75761,33.33504 z"
@@ -787,7 +787,7 @@
        rx="19.502542"
        ry="18.283632"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\eye.png"
-       inkscape:export-xdpi="50"
-       inkscape:export-ydpi="50" />
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
   </g>
 </svg>

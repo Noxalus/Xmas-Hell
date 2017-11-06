@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11" pixel_mode="1">
     <folder id="0">
-        <file id="0" name="body.png" width="160" height="186" pivot_x="0.5" pivot_y="0.25"/>
-        <file id="1" name="eye.png" width="22" height="20" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="2" name="hat.png" width="150" height="87" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="3" name="nose.png" width="25" height="17" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="4" name="mouth.png" width="16" height="14" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="5" name="arm.png" width="24" height="52" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="0" name="body.png" width="320" height="371" pivot_x="0.5" pivot_y="0.25"/>
+        <file id="1" name="eye.png" width="43" height="41" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="hat.png" width="300" height="175" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="nose.png" width="51" height="34" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="4" name="mouth.png" width="32" height="28" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="5" name="arm.png" width="48" height="104" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
     <entity id="0" name="XmasSnowman">
         <obj_info name="body_bone" type="bone" w="78.1722" h="10"/>
@@ -64,37 +64,37 @@
             </timeline>
             <timeline id="1" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="70" angle="270"/>
+                    <object folder="0" file="4" x="140" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="eye">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="93" y="30" angle="270"/>
+                    <object folder="0" file="1" x="186" y="60" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="eye_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="93" y="-30" angle="270"/>
+                    <object folder="0" file="1" x="186" y="-60" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="150" angle="270"/>
+                    <object folder="0" file="2" x="300" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="nose">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="90" y="5" angle="270"/>
+                    <object folder="0" file="3" x="180" y="10" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="arm">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="52" y="78" angle="319.473212" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="5" x="104" y="156" angle="319.473212" scale_x="1" scale_y="1"/>
                 </key>
             </timeline>
             <timeline id="7" name="arm_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="48" y="-80" angle="234.441156" scale_x="1"/>
+                    <object folder="0" file="5" x="96" y="-160" angle="234.441156" scale_x="1"/>
                 </key>
             </timeline>
             <timeline id="8" obj="0" name="body_bone" object_type="bone">
