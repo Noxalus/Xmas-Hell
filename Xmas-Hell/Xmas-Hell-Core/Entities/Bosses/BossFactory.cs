@@ -44,7 +44,7 @@ namespace XmasHell.Entities.Bosses
                 case BossType.XmasReinder:
                     break;
                 case BossType.XmasSnowman:
-                    break;
+                    return new XmasSnowman.XmasSnowman(game, playerPositionDelegate);
                 case BossType.XmasSanta:
                     break;
                 default:

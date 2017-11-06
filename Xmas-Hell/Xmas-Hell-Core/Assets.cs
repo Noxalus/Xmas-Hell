@@ -217,6 +217,7 @@ namespace XmasHell
                 // Xmas Reindeer
 
                 // Xmas Snowman
+                { "XmasSnowman/pattern1", OpenRawFile(BuildRawAssetPath("XmasSnowman/pattern1.xml")) },
 
                 // Xmas Santa
             };
