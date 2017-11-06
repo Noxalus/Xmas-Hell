@@ -51,8 +51,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="-1987.9063"
-     inkscape:cy="990.66853"
+     inkscape:cx="-1240.7634"
+     inkscape:cy="1319.24"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -850,7 +850,10 @@
     </g>
     <g
        id="g6140"
-       transform="matrix(0.7169064,0,0,0.7169064,-1712.7929,-235.3294)">
+       transform="matrix(0.7169064,0,0,0.7169064,-1712.7929,-235.3294)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\blue-ball.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <circle
          style="opacity:1;fill:#5191e6;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.5625;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="circle6136"
@@ -866,7 +869,10 @@
     </g>
     <g
        id="g6146"
-       transform="matrix(0.7169064,0,0,0.7169064,-1582.8719,-291.53155)">
+       transform="matrix(0.7169064,0,0,0.7169064,-1582.8719,-291.53155)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\red-ball.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <circle
          style="opacity:1;fill:#c52617;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.5625;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="circle6142"
@@ -882,7 +888,10 @@
     </g>
     <g
        id="g6154"
-       transform="matrix(0.7169064,0,0,0.7169064,-765.63064,-538.15008)">
+       transform="matrix(0.7169064,0,0,0.7169064,-765.63064,-538.15008)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\pink-ball.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <g
          id="g6152"
          transform="translate(-1067.2249,272.83682)">
@@ -902,7 +911,10 @@
     </g>
     <g
        id="g6160"
-       transform="matrix(0.7169064,0,0,0.7169064,-1396.7014,-266.0765)">
+       transform="matrix(0.7169064,0,0,0.7169064,-1396.7014,-266.0765)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\green-ball.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <circle
          style="opacity:1;fill:#3b8627;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.5625;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="circle6156"
@@ -918,7 +930,10 @@
     </g>
     <g
        transform="matrix(0.7169064,0,0,0.7169064,-2160.4689,-2.103236)"
-       id="g6170">
+       id="g6170"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\star.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <path
          sodipodi:nodetypes="ccccccccccc"
          inkscape:connector-curvature="0"
@@ -950,10 +965,16 @@
        inkscape:connector-curvature="0"
        id="path6174"
        d="m -1916.2129,268.28929 c 0,-26.64651 27.4407,-26.27561 27.4407,0"
-       style="fill:none;stroke:#000000;stroke-width:6.65971851;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;stroke:#000000;stroke-width:6.65971851;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\eye.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100" />
     <g
        transform="matrix(0.7169064,0,0,0.7169064,-2165.4159,-116.42356)"
-       id="g6190">
+       id="g6190"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasTree\mouth.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
       <path
          inkscape:connector-curvature="0"
          id="path6186"
