@@ -54,7 +54,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         private Vector2 GetRandomLeftWallPosition()
         {
             return new Vector2(
-                0,
+                -100,
                 (float)Boss.Game.GameManager.Random.NextDouble() * GameConfig.VirtualResolution.Y
             );
         }
@@ -63,7 +63,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             return new Vector2(
                 (float)Boss.Game.GameManager.Random.NextDouble() * GameConfig.VirtualResolution.X,
-                0
+                -100
             );
         }
 
