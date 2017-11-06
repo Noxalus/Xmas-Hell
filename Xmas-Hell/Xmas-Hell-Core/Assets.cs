@@ -212,6 +212,13 @@ namespace XmasHell
                 // Xmas Log
 
                 // Xmas Tree
+                { "XmasTree/pattern1", OpenRawFile(BuildRawAssetPath("XmasTree/pattern1.xml")) },
+
+                // Xmas Reindeer
+
+                // Xmas Snowman
+
+                // Xmas Santa
             };
 
             // Load musics

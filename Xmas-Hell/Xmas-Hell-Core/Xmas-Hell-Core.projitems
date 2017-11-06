@@ -55,6 +55,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBranch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTreeBehaviour1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Laser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />

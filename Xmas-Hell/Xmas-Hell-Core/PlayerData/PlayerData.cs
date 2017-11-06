@@ -14,13 +14,13 @@ namespace XmasHell.PlayerData
 
         public void DeathCounter(int value)
         {
-            _preferences.Editor().PutInt("deathCounter", value);
+            _preferences.Editor().PutInt("DeathCounter", value);
             _preferences.Editor().Apply();
         }
 
         public int DeathCounter()
         {
-            return _preferences.GetInt("deathCounter", 0);
+            return _preferences.GetInt("DeathCounter", 0);
         }
 
         // Boss specific data
