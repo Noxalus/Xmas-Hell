@@ -46,12 +46,10 @@ namespace XmasHell.Entities.Bosses
                 case BossType.XmasSnowman:
                     return new XmasSnowman.XmasSnowman(game, playerPositionDelegate);
                 case BossType.XmasSanta:
-                    break;
+                    return new XmasSanta.XmasSanta(game, playerPositionDelegate);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
-
-            return new XmasBall.XmasBall(game, playerPositionDelegate);
         }
 
         public static BossType StringToBossType(string type)
