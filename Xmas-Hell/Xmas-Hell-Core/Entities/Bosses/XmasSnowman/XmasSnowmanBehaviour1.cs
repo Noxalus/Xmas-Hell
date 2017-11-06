@@ -46,7 +46,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             var newPosition = new Vector2(
                 Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 50, (int)(Boss.Height() / 2f) + 150)
+                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 200, (int)(Boss.Height() / 2f) + 300)
             );
 
             Boss.MoveTo(newPosition, 1.5f);
