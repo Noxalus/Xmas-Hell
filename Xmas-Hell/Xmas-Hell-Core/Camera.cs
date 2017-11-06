@@ -89,6 +89,8 @@ namespace XmasHell
         // Time in seconds
         public void Shake(float time, float magnitude)
         {
+            SoundManager.PlaySound(Assets.GetSound("Audio/SE/shake"));
+
             if (_shaking)
                 return;
 
@@ -96,8 +98,6 @@ namespace XmasHell
             _shakingMagnitude = magnitude;
             _shakingTimer = TimeSpan.FromSeconds(time);
             _initialPosition = Position;
-
-            SoundManager.PlaySound(Assets.GetSound("Audio/SE/shake"));
         }
 
         public void ZoomTo(float targetZoom, double time, Vector2? origin = null)
