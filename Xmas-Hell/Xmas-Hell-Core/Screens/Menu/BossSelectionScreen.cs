@@ -14,7 +14,6 @@ namespace XmasHell.Screens.Menu
         #region Fields
         private BossType _selectedBoss;
         private Dictionary<string, SpriterSubstituteEntity> _bossGarlands = new Dictionary<string, SpriterSubstituteEntity>();
-        private Dictionary<string, CustomSpriterAnimator> _bossSelectionSpriterFile;
 
         private readonly List<string> _bossNames = new List<string>()
         {
@@ -58,23 +57,23 @@ namespace XmasHell.Screens.Menu
         {
             base.LoadContent();
 
-            _bossSelectionSpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/boss-selection");
+            SpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/boss-selection");
             InitializeSpriterGui();
         }
 
         private void InitializeSpriterGui()
         {
-            _bossSelectionSpriterFile["BossSelection"].AnimationFinished += BossSelectionScreen_AnimationFinished;
-            _bossSelectionSpriterFile["BossPanel"].AnimationFinished += BossPanel_AnimationFinished;
+            SpriterFile["Main"].AnimationFinished += BossSelectionScreen_AnimationFinished;
+            SpriterFile["BossPanel"].AnimationFinished += BossPanel_AnimationFinished;
 
-            _bossSelectionSpriterFile["Ball"].zIndex(9);
-            _bossSelectionSpriterFile["Garland"].zIndex(5);
-            _bossSelectionSpriterFile["BossPanel"].zIndex(10);
+            SpriterFile["Ball"].zIndex(9);
+            SpriterFile["Garland"].zIndex(5);
+            SpriterFile["BossPanel"].zIndex(10);
 
             // Christmas tree's balls
             foreach (var bossName in _bossNames)
             {
-                var ballAnimator = _bossSelectionSpriterFile["Ball"].Clone();
+                var ballAnimator = SpriterFile["Ball"].Clone();
                 ballAnimator.Play("Balance");
                 ballAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
                 ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
@@ -87,7 +86,7 @@ namespace XmasHell.Screens.Menu
                         _bossRelations[bossName].Item1 + "-" + bossName,
                         new SpriterSubstituteEntity(
                             "xmas-" + _bossRelations[bossName].Item1 + "-" + bossName + "-garland.png",
-                            _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
+                            SpriterFile["Main"], SpriterFile["Garland"].Clone()
                         )
                     );
 
@@ -95,14 +94,14 @@ namespace XmasHell.Screens.Menu
                          _bossRelations[bossName].Item2 + "-" + bossName,
                          new SpriterSubstituteEntity(
                             "xmas-" + _bossRelations[bossName].Item2 + "-" + bossName + "-garland.png",
-                            _bossSelectionSpriterFile["BossSelection"], _bossSelectionSpriterFile["Garland"].Clone()
+                            SpriterFile["Main"], SpriterFile["Garland"].Clone()
                         )
                     );
                 }
 
                 var bossButton = new SpriterGuiButton(
                     Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName + "-available-button.png",
-                    ballAnimator, _bossSelectionSpriterFile["BossSelection"]
+                    ballAnimator, SpriterFile["Main"]
                 );
 
                 bossButton.Action += OnBossButtonAction;
@@ -112,12 +111,12 @@ namespace XmasHell.Screens.Menu
             // Boss panel buttons
             var closeBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/BossSelection/boss-panel-close-button.png",
-                _bossSelectionSpriterFile["CloseButton"], _bossSelectionSpriterFile["BossPanel"]
+                SpriterFile["CloseButton"], SpriterFile["BossPanel"]
             );
 
             var startBattleBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "StartBattleBossPanel", "Graphics/GUI/BossSelection/boss-panel-battle-button.png",
-                _bossSelectionSpriterFile["BattleButton"], _bossSelectionSpriterFile["BossPanel"]
+                SpriterFile["BattleButton"], SpriterFile["BossPanel"]
             );
 
             closeBossPanelButton.Action += BossPanelCloseButtonAction;
@@ -130,11 +129,11 @@ namespace XmasHell.Screens.Menu
             _bossPanelButtons.Add(startBattleBossPanelButton);
 
             // Labels
-            _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", _bossSelectionSpriterFile["BossPanel"], true);
-            _bestTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-best-time-label.png", _bossSelectionSpriterFile["BossPanel"]);
-            _playTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-play-time-label.png", _bossSelectionSpriterFile["BossPanel"]);
-            _playerDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-player-deaths-label.png", _bossSelectionSpriterFile["BossPanel"]);
-            _bossDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-boss-deaths-label.png", _bossSelectionSpriterFile["BossPanel"]);
+            _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", SpriterFile["BossPanel"], true);
+            _bestTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-best-time-label.png", SpriterFile["BossPanel"]);
+            _playTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-play-time-label.png", SpriterFile["BossPanel"]);
+            _playerDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-player-deaths-label.png", SpriterFile["BossPanel"]);
+            _bossDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-boss-deaths-label.png", SpriterFile["BossPanel"]);
 
             _bossPanelLabels.Add(_bossNameLabel);
             _bossPanelLabels.Add(_bestTimeLabel);
@@ -172,14 +171,14 @@ namespace XmasHell.Screens.Menu
         {
             if (animationName == "Intro")
             {
-                _bossSelectionSpriterFile["BossSelection"].Play("Idle");
+                SpriterFile["Main"].Play("Idle");
             }
         }
 
         private void BossPanel_AnimationFinished(string animationName)
         {
             if (animationName == "Show")
-                _bossSelectionSpriterFile["BossPanel"].Play("Idle");
+                SpriterFile["BossPanel"].Play("Idle");
             else if (animationName == "Hide")
                 DoCloseBossPanel();
         }
@@ -203,8 +202,8 @@ namespace XmasHell.Screens.Menu
             foreach (var bossPanelLabel in _bossPanelLabels)
                 Game.GuiManager.AddLabel(bossPanelLabel);
 
-            Game.SpriteBatchManager.AddSpriterAnimator(_bossSelectionSpriterFile["BossPanel"], Layer.UI);
-            _bossSelectionSpriterFile["BossPanel"].Play("Show");
+            Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["BossPanel"], Layer.UI);
+            SpriterFile["BossPanel"].Play("Show");
 
             // Update labels
             var bossDeath = Game.PlayerData.BossBeatenCounter(bossType);
@@ -233,7 +232,7 @@ namespace XmasHell.Screens.Menu
             foreach (var bossPanelLabel in _bossPanelLabels)
                 Game.GuiManager.RemoveLabel(bossPanelLabel);
 
-            Game.SpriteBatchManager.RemoveSpriterAnimator(_bossSelectionSpriterFile["BossPanel"], Layer.UI);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["BossPanel"], Layer.UI);
             EnableBossButtons();
         }
 
@@ -251,8 +250,8 @@ namespace XmasHell.Screens.Menu
             }
             else
             {
-                _bossSelectionSpriterFile["BossPanel"].Play("Hide");
-                _bossSelectionSpriterFile["BossPanel"].CurrentAnimation.Looping = false;
+                SpriterFile["BossPanel"].Play("Hide");
+                SpriterFile["BossPanel"].CurrentAnimation.Looping = false;
             }
         }
 
@@ -312,20 +311,22 @@ namespace XmasHell.Screens.Menu
             EnableBossButtons();
         }
 
-        private void ResetUI()
+        protected override void ResetUI()
         {
+            base.ResetUI();
+
             if (UIReseted)
                 return;
 
-            if (_bossSelectionSpriterFile["BossSelection"] != null)
+            if (SpriterFile["Main"] != null)
             {
                 if (Game.ScreenManager.GetPreviousScreen().Name == "MainMenuScreen")
-                    _bossSelectionSpriterFile["BossSelection"].Play("Intro");
+                    SpriterFile["Main"].Play("Intro");
                 else if (Game.ScreenManager.GetPreviousScreen().Name == "GameScreen")
-                    _bossSelectionSpriterFile["BossSelection"].Play("Idle");
+                    SpriterFile["Main"].Play("Idle");
 
-                Game.SpriteBatchManager.AddSpriterAnimator(_bossSelectionSpriterFile["BossSelection"], Layer.BACKGROUND);
-                _bossSelectionSpriterFile["BossSelection"].CurrentAnimation.Looping = false;
+                Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["Main"], Layer.BACKGROUND);
+                SpriterFile["Main"].CurrentAnimation.Looping = false;
             }
 
             foreach (var garland in _bossGarlands)
@@ -376,8 +377,8 @@ namespace XmasHell.Screens.Menu
 
             HideBossButtons();
 
-            _bossSelectionSpriterFile["BossSelection"].Play("Idle");
-            Game.SpriteBatchManager.RemoveSpriterAnimator(_bossSelectionSpriterFile["BossSelection"], Layer.BACKGROUND);
+            SpriterFile["Main"].Play("Idle");
+            Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["Main"], Layer.BACKGROUND);
 
             CloseBossPanel(true);
         }

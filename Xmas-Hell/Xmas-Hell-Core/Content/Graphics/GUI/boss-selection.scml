@@ -57,7 +57,7 @@
         <file id="44" name="BossSelection/boss-panel-best-time-label.png" width="423" height="74" pivot_x="0" pivot_y="0.5"/>
         <file id="45" name="BossSelection/hidden-boss-button.png" width="153" height="153" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="BossSelection">
+    <entity id="0" name="Main">
         <animation id="0" name="Intro" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -1004,6 +1004,34 @@
             <timeline id="0" name="boss-panel-battle-button">
                 <key id="0" spin="0">
                     <object folder="1" file="38" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="6" name="Cloud1">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="cloud1">
+                <key id="0" spin="0">
+                    <object folder="0" file="4"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="7" name="Cloud2">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="cloud2">
+                <key id="0" spin="0">
+                    <object folder="0" file="5"/>
                 </key>
             </timeline>
         </animation>

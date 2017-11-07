@@ -17,7 +17,7 @@
         <file id="4" name="MainMenu/leaderboard-button.png" width="226" height="226" pivot_x="0.5" pivot_y="0.5"/>
         <file id="5" name="MainMenu/settings-button.png" width="149" height="149" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
-    <entity id="0" name="MainMenu">
+    <entity id="0" name="Main">
         <obj_info name="bone_000" type="bone" w="114.503" h="10"/>
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
@@ -527,7 +527,7 @@
             </mainline>
             <timeline id="0" name="achievement-button">
                 <key id="0">
-                    <object folder="1" file="3"/>
+                    <object folder="1" file="3" angle="0"/>
                 </key>
                 <key id="1" time="250" spin="-1">
                     <object folder="1" file="3" angle="15"/>
@@ -559,7 +559,7 @@
             </mainline>
             <timeline id="0" name="leaderboard-button">
                 <key id="0">
-                    <object folder="1" file="4"/>
+                    <object folder="1" file="4" angle="0"/>
                 </key>
                 <key id="1" time="250" spin="-1">
                     <object folder="1" file="4" angle="15"/>
@@ -569,6 +569,34 @@
                 </key>
                 <key id="3" time="759">
                     <object folder="1" file="4" angle="345"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="6" name="Cloud1">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0" curve_type="cubic" c1="0" c2="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="cloud1">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="7" name="Cloud2">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="cloud2">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" angle="0"/>
                 </key>
             </timeline>
         </animation>

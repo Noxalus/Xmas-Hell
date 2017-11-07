@@ -8,8 +8,6 @@ namespace XmasHell.Screens.Menu
 {
     public class MainMenuScreen : MenuScreen
     {
-        private Dictionary<string, CustomSpriterAnimator> _mainMenuSpriterFile;
-
         private List<SpriterGuiButton> _menuButtons = new List<SpriterGuiButton>();
         private SpriterGuiButton _playButton;
         private SpriterGuiButton _settingsButton;
@@ -27,11 +25,11 @@ namespace XmasHell.Screens.Menu
 
         private void OnPlayButtonAction(object button, Point position)
         {
-            _mainMenuSpriterFile["MainMenu"].Play("Zoom");
-            _mainMenuSpriterFile["MainMenu"].CurrentAnimation.Looping = false;
+            SpriterFile["Main"].Play("Zoom");
+            SpriterFile["Main"].CurrentAnimation.Looping = false;
 
-            if (_mainMenuSpriterFile["MainMenu"].Speed < 0f)
-            _mainMenuSpriterFile["MainMenu"].Speed *= -1f;
+            if (SpriterFile["Main"].Speed < 0f)
+            SpriterFile["Main"].Speed *= -1f;
         }
 
         private void OnSettingsButtonAction(object button, Point position)
@@ -57,19 +55,19 @@ namespace XmasHell.Screens.Menu
         {
             base.LoadContent();
 
-            _mainMenuSpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/main-menu");
+            SpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/main-menu");
             //LoadSpriterSprite("Graphics/GUI/main-menu");
             InitializeSpriterGui();
         }
 
         private void InitializeSpriterGui()
         {
-            _mainMenuSpriterFile["MainMenu"].AnimationFinished += MainMenuScreen_AnimationFinished;
+            SpriterFile["Main"].AnimationFinished += MainMenuScreen_AnimationFinished;
 
-            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", _mainMenuSpriterFile["PlayButton"], _mainMenuSpriterFile["MainMenu"]);
-            _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", _mainMenuSpriterFile["SettingsButton"], _mainMenuSpriterFile["MainMenu"]);
-            _achievementsButton = new SpriterGuiButton(Game.ViewportAdapter, "AchievementsButton", "Graphics/GUI/MainMenu/achievement-button.png", _mainMenuSpriterFile["AchievementsButton"], _mainMenuSpriterFile["MainMenu"]);
-            _leaderboardsButton = new SpriterGuiButton(Game.ViewportAdapter, "LeaderboardsButton", "Graphics/GUI/MainMenu/leaderboard-button.png", _mainMenuSpriterFile["LeaderboardsButton"], _mainMenuSpriterFile["MainMenu"]);
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", SpriterFile["PlayButton"], SpriterFile["Main"]);
+            _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", SpriterFile["SettingsButton"], SpriterFile["Main"]);
+            _achievementsButton = new SpriterGuiButton(Game.ViewportAdapter, "AchievementsButton", "Graphics/GUI/MainMenu/achievement-button.png", SpriterFile["AchievementsButton"], SpriterFile["Main"]);
+            _leaderboardsButton = new SpriterGuiButton(Game.ViewportAdapter, "LeaderboardsButton", "Graphics/GUI/MainMenu/leaderboard-button.png", SpriterFile["LeaderboardsButton"], SpriterFile["Main"]);
 
             _playButton.Action += OnPlayButtonAction;
             _settingsButton.Action += OnSettingsButtonAction;
@@ -81,13 +79,15 @@ namespace XmasHell.Screens.Menu
             _menuButtons.Add(_achievementsButton);
             _menuButtons.Add(_leaderboardsButton);
 
-            _mainMenuSpriterFile["MainMenu"].AddHiddenTexture("Graphics/GUI/MainMenu/xmas-title");
+            SpriterFile["Main"].AddHiddenTexture("Graphics/GUI/MainMenu/xmas-title");
 
             ResetUI();
         }
 
-        private void ResetUI()
+        protected override void ResetUI()
         {
+            base.ResetUI();
+
             if (UIReseted)
                 return;
 
@@ -97,26 +97,26 @@ namespace XmasHell.Screens.Menu
                 Game.GuiManager.AddButton(button);
             }
 
-            if (_mainMenuSpriterFile["MainMenu"] != null)
+            if (SpriterFile["Main"] != null)
             {
                 var previousScreen = Game.ScreenManager.GetPreviousScreen();
 
                 if (previousScreen == null)
                 {
-                    _mainMenuSpriterFile["MainMenu"].Play("Idle");
+                    SpriterFile["Main"].Play("Idle");
                 }
                 else
                 {
-                    _mainMenuSpriterFile["MainMenu"].Play("Zoom");
-                    _mainMenuSpriterFile["MainMenu"].Progress = 1f;
-                    _mainMenuSpriterFile["MainMenu"].Speed *= -1;
+                    SpriterFile["Main"].Play("Zoom");
+                    SpriterFile["Main"].Progress = 1f;
+                    SpriterFile["Main"].Speed *= -1;
                 }
 
-                Game.SpriteBatchManager.AddSpriterAnimator(_mainMenuSpriterFile["MainMenu"], Layer.BACKGROUND);
+                Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["Main"], Layer.BACKGROUND);
             }
 
-            if (_mainMenuSpriterFile["XmasTitle"] != null)
-                Game.SpriteBatchManager.AddSpriterAnimator(_mainMenuSpriterFile["XmasTitle"], Layer.BACKGROUND);
+            if (SpriterFile["XmasTitle"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["XmasTitle"], Layer.BACKGROUND);
 
             UIReseted = true;
         }
@@ -125,7 +125,7 @@ namespace XmasHell.Screens.Menu
         {
             if (animationName == "Zoom")
             {
-                if (_mainMenuSpriterFile["MainMenu"].Progress == 1f)
+                if (SpriterFile["Main"].Progress == 1f)
                     Game.ScreenManager.GoTo<BossSelectionScreen>();
             }
         }
@@ -142,8 +142,8 @@ namespace XmasHell.Screens.Menu
             base.Hide();
 
             // GUI
-            Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["MainMenu"], Layer.BACKGROUND);
-            Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["XmasTitle"], Layer.BACKGROUND);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["Main"], Layer.BACKGROUND);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["XmasTitle"], Layer.BACKGROUND);
 
             foreach (var button in _menuButtons)
             {
@@ -156,8 +156,8 @@ namespace XmasHell.Screens.Menu
         {
             base.Update(gameTime);
 
-            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", _mainMenuSpriterFile["MainMenu"]);
-            _mainMenuSpriterFile["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
+            var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", SpriterFile["Main"]);
+            SpriterFile["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
         }
     }
 }
