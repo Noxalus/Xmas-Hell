@@ -181,14 +181,14 @@ namespace XmasHell.Screens.Menu
             XnaMediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
 
             // GUI
-            Game.GuiManager.RemoveButton(_settingsButton);
-            Game.GuiManager.RemoveButton(_playButton);
-
             Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["MainMenu"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["XmasTitle"], Layer.BACKGROUND);
 
             foreach (var button in _menuButtons)
+            {
                 button.Enable(false);
+                Game.GuiManager.RemoveButton(button);
+            }
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
