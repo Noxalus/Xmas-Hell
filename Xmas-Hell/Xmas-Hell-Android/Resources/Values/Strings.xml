@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ApplicationName">Xmas Hell</string>
+    <string name="signin_other_error">There was an issue with sign in. Please try again later.</string>
 </resources>

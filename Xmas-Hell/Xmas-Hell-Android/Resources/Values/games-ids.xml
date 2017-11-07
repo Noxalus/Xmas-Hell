@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+  <!-- app_id -->
+  <string name="app_id" translatable="false">974096245219</string>
+  <!-- package_name -->
+  <string name="package_name" translatable="false">io.noxalus.XmasHell</string>
+  <!-- achievement Defeat Xmas Ball -->
+  <string name="achievement_defeat_xmas_ball" translatable="false">CgkI48Ok5awcEAIQAg</string>
+  <!-- leaderboard Xmas Ball -->
+  <string name="leaderboard_xmas_ball" translatable="false">CgkI48Ok5awcEAIQAQ</string>
+</resources>

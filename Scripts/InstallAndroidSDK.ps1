@@ -1,5 +1,5 @@
 param (
-    [string]$AndroidToolPath = "${env:ProgramFiles(x86)}\Android\android-sdk\tools\android", #$AndroidToolPath = "$env:localappdata\Android\android-sdk\tools\android"
+    [string]$AndroidToolPath = "${env:ProgramFiles(x86)}\Android\android-sdk\tools\android",
     [Parameter(Mandatory=$true)][string[]]$versions
  )
 
