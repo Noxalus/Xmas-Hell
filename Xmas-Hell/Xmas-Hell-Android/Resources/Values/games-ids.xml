@@ -10,6 +10,24 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="package_name" translatable="false">io.noxalus.XmasHell</string>
   <!-- achievement Defeat Xmas Ball -->
   <string name="achievement_defeat_xmas_ball" translatable="false">CgkI48Ok5awcEAIQAg</string>
+  <!-- achievement Defeat Xmas Bell -->
+  <string name="achievement_defeat_xmas_bell" translatable="false">CgkI48Ok5awcEAIQBA</string>
+  <!-- achievement Defeat Xmas Snowflake -->
+  <string name="achievement_defeat_xmas_snowflake" translatable="false">CgkI48Ok5awcEAIQBQ</string>
+  <!-- achievement Defeat Xmas Candy -->
+  <string name="achievement_defeat_xmas_candy" translatable="false">CgkI48Ok5awcEAIQBg</string>
+  <!-- achievement Defeat Xmas Gift -->
+  <string name="achievement_defeat_xmas_gift" translatable="false">CgkI48Ok5awcEAIQBw</string>
+  <!-- achievement Defeat Xmas Tree -->
+  <string name="achievement_defeat_xmas_tree" translatable="false">CgkI48Ok5awcEAIQCA</string>
+  <!-- achievement Defeat Xmas Log -->
+  <string name="achievement_defeat_xmas_log" translatable="false">CgkI48Ok5awcEAIQCQ</string>
+  <!-- achievement Defeat Xmas Snowman -->
+  <string name="achievement_defeat_xmas_snowman" translatable="false">CgkI48Ok5awcEAIQCg</string>
+  <!-- achievement Defeat Xmas Reindeer -->
+  <string name="achievement_defeat_xmas_reindeer" translatable="false">CgkI48Ok5awcEAIQCw</string>
+  <!-- achievement Defeat Xmas Santa -->
+  <string name="achievement_defeat_xmas_santa" translatable="false">CgkI48Ok5awcEAIQDA</string>
   <!-- leaderboard Xmas Ball -->
   <string name="leaderboard_xmas_ball" translatable="false">CgkI48Ok5awcEAIQAQ</string>
 </resources>

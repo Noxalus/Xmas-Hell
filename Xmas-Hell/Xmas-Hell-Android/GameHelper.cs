@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XmasHell.Entities.Bosses;
 
 namespace XmasHellAndroid
 {
@@ -327,5 +328,38 @@ namespace XmasHellAndroid
                     OnSignInFailed?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        #region Xmas Hell specific code
+
+        public string BossTypeToAchievementCode(BossType bossType)
+        {
+            switch (bossType)
+            {
+                case BossType.XmasBall:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_ball);
+                case BossType.XmasBell:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_bell);
+                case BossType.XmasCandy:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_candy);
+                case BossType.XmasSnowflake:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_snowflake);
+                case BossType.XmasLog:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_log);
+                case BossType.XmasTree:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_tree);
+                case BossType.XmasGift:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_gift);
+                case BossType.XmasReindeer:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_reindeer);
+                case BossType.XmasSnowman:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_snowman);
+                case BossType.XmasSanta:
+                    return activity.GetString(Resource.String.achievement_defeat_xmas_santa);
+                default:
+                    return "";
+            }
+        }
+
+        #endregion
     }
 }

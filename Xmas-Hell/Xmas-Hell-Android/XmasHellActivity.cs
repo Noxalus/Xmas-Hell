@@ -4,8 +4,6 @@ using Android.OS;
 using Android.Views;
 using Android.Content;
 
-[assembly: MetaData("com.google.android.gms.games.APP_ID", Value = "@string/app_id")]
-
 namespace XmasHellAndroid
 {
     [Activity(Label = "Xmas Hell"
@@ -18,7 +16,7 @@ namespace XmasHellAndroid
     public class XmasHellActivity : Microsoft.Xna.Framework.AndroidGameActivity, View.IOnSystemUiVisibilityChangeListener
     {
         private XmasHell.XmasHell _game;
-        private GameHelper _helper;
+        public GameHelper GameHelper;
         const string TAG = "XmasHell";
 
         void Log(string message)
@@ -32,8 +30,8 @@ namespace XmasHellAndroid
             HideSystemUi();
             InitializeServices();
 
-            if (_helper != null && _helper.SignedOut)
-                _helper.SignIn();
+            if (GameHelper != null && GameHelper.SignedOut)
+                GameHelper.SignIn();
 
             base.OnCreate(bundle);
             _game = new XmasHell.XmasHell(this);
@@ -48,8 +46,8 @@ namespace XmasHellAndroid
         void InitializeServices()
         {
             // Setup Google Play Services Helper
-            _helper = new GameHelper(this);
-            _helper.Initialize();
+            GameHelper = new GameHelper(this);
+            GameHelper.Initialize();
         }
 
         public void OnSystemUiVisibilityChange(StatusBarVisibility visibility)
@@ -91,40 +89,40 @@ namespace XmasHellAndroid
         {
             base.OnStart();
 
-            if (_helper != null)
-                _helper.Start();
+            if (GameHelper != null)
+                GameHelper.Start();
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if (_helper != null)
-                _helper.OnActivityResult(requestCode, resultCode, data);
+            if (GameHelper != null)
+                GameHelper.OnActivityResult(requestCode, resultCode, data);
 
             base.OnActivityResult(requestCode, resultCode, data);
         }
 
         protected override void OnStop()
         {
-            if (_helper != null)
-                _helper.Stop();
+            if (GameHelper != null)
+                GameHelper.Stop();
 
             base.OnStop();
         }
 
         public void ShowAchievements()
         {
-            if (_helper != null && !_helper.SignedOut)
-                _helper.ShowAchievements();
+            if (GameHelper != null && !GameHelper.SignedOut)
+                GameHelper.ShowAchievements();
         }
 
         public void ShowLeaderboards(string leaderboardName = "")
         {
-            if (_helper != null && !_helper.SignedOut)
+            if (GameHelper != null && !GameHelper.SignedOut)
             {
                 if (leaderboardName == "")
-                    _helper.ShowAllLeaderBoardsIntent();
+                    GameHelper.ShowAllLeaderBoardsIntent();
                 else
-                    _helper.ShowLeaderBoardIntentForLeaderboard(leaderboardName);
+                    GameHelper.ShowLeaderBoardIntentForLeaderboard(leaderboardName);
             }
         }
     }

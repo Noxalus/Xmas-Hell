@@ -434,6 +434,16 @@ namespace XmasHell.Entities.Bosses
             Game.GameManager.EndGame(true);
 
             _destroyed = true;
+
+            UnlockBossDefeatAchievement();
+        }
+
+        private void UnlockBossDefeatAchievement()
+        {
+#if ANDROID
+            var gameHelper = Game.AndroidActivity.GameHelper;
+            gameHelper.UnlockAchievement(gameHelper.BossTypeToAchievementCode(BossType));
+#endif
         }
 
         // Move to a given position in "time" seconds

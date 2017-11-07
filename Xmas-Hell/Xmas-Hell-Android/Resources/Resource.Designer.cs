@@ -246,11 +246,38 @@ namespace XmasHellAndroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040015
-			public const int ApplicationName = 2130968597;
+			// aapt resource value: 0x7f04001e
+			public const int ApplicationName = 2130968606;
 			
 			// aapt resource value: 0x7f040013
 			public const int achievement_defeat_xmas_ball = 2130968595;
+			
+			// aapt resource value: 0x7f040014
+			public const int achievement_defeat_xmas_bell = 2130968596;
+			
+			// aapt resource value: 0x7f040016
+			public const int achievement_defeat_xmas_candy = 2130968598;
+			
+			// aapt resource value: 0x7f040017
+			public const int achievement_defeat_xmas_gift = 2130968599;
+			
+			// aapt resource value: 0x7f040019
+			public const int achievement_defeat_xmas_log = 2130968601;
+			
+			// aapt resource value: 0x7f04001b
+			public const int achievement_defeat_xmas_reindeer = 2130968603;
+			
+			// aapt resource value: 0x7f04001c
+			public const int achievement_defeat_xmas_santa = 2130968604;
+			
+			// aapt resource value: 0x7f040015
+			public const int achievement_defeat_xmas_snowflake = 2130968597;
+			
+			// aapt resource value: 0x7f04001a
+			public const int achievement_defeat_xmas_snowman = 2130968602;
+			
+			// aapt resource value: 0x7f040018
+			public const int achievement_defeat_xmas_tree = 2130968600;
 			
 			// aapt resource value: 0x7f040011
 			public const int app_id = 2130968593;
@@ -306,14 +333,11 @@ namespace XmasHellAndroid
 			// aapt resource value: 0x7f04000f
 			public const int common_signin_button_text_long = 2130968591;
 			
-			// aapt resource value: 0x7f040014
-			public const int leaderboard_xmas_ball = 2130968596;
+			// aapt resource value: 0x7f04001d
+			public const int leaderboard_xmas_ball = 2130968605;
 			
 			// aapt resource value: 0x7f040012
 			public const int package_name = 2130968594;
-			
-			// aapt resource value: 0x7f040016
-			public const int signin_other_error = 2130968598;
 			
 			static String()
 			{
