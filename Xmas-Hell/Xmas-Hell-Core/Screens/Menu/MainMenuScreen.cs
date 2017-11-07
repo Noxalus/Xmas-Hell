@@ -1,25 +1,13 @@
-using System;
-using BulletML;
 using Microsoft.Xna.Framework;
-using XmasHell.BulletML;
 using XmasHell.GUI;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Media;
-using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
 namespace XmasHell.Screens.Menu
 {
-    public class MainMenuScreen : Screen
+    public class MainMenuScreen : MenuScreen
     {
-        private string _patternFile = "MainMenu/snowflake";
-        private TimeSpan _shootFrequency;
-
-        private Song _introSong;
-        private Song _mainSong;
-        private Song _menuSong;
-
         private Dictionary<string, CustomSpriterAnimator> _mainMenuSpriterFile;
 
         private List<SpriterGuiButton> _menuButtons = new List<SpriterGuiButton>();
@@ -34,8 +22,6 @@ namespace XmasHell.Screens.Menu
 
         public override void Initialize()
         {
-            _shootFrequency = TimeSpan.Zero;
-
             base.Initialize();
         }
 
@@ -46,22 +32,21 @@ namespace XmasHell.Screens.Menu
 
             if (_mainMenuSpriterFile["MainMenu"].Speed < 0f)
             _mainMenuSpriterFile["MainMenu"].Speed *= -1f;
-
-            _playButton.Enable(false);
         }
 
-        private void OnSettingsButtonAction(object s, Point e)
+        private void OnSettingsButtonAction(object button, Point position)
         {
+            // TODO: Add a SettingsScreen
         }
 
-        private void OnAchievementsButtonAction(object s, Point e)
+        private void OnAchievementsButtonAction(object button, Point position)
         {
 #if ANDROID
             Game.AndroidActivity.ShowAchievements();
 #endif
         }
 
-        private void OnLeaderboardsButtonAction(object s, Point e)
+        private void OnLeaderboardsButtonAction(object button, Point position)
         {
 #if ANDROID
             Game.AndroidActivity.ShowLeaderboards();
@@ -71,21 +56,6 @@ namespace XmasHell.Screens.Menu
         public override void LoadContent()
         {
             base.LoadContent();
-
-            if (Game.GameManager.MoverManager.FindPattern(_patternFile) == null)
-            {
-                var pattern = new BulletPattern();
-                pattern.ParseStream(_patternFile, Assets.GetPattern(_patternFile));
-
-                Game.GameManager.MoverManager.AddPattern(_patternFile, pattern);
-            }
-
-            _introSong = Assets.GetMusic("boss-theme-intro");
-            _mainSong = Assets.GetMusic("boss-theme-main");
-            _menuSong = Assets.GetMusic("main-menu");
-
-            XnaMediaPlayer.IsRepeating = true;
-            XnaMediaPlayer.Play(_menuSong);
 
             _mainMenuSpriterFile = Assets.GetSpriterAnimators("Graphics/GUI/main-menu");
             //LoadSpriterSprite("Graphics/GUI/main-menu");
@@ -164,21 +134,12 @@ namespace XmasHell.Screens.Menu
         {
             base.Show(reset);
 
-            // Should play music (doesn't seem to work for now...)
-            XnaMediaPlayer.Volume = 1f;
-
-            XnaMediaPlayer.MediaStateChanged += MediaPlayerOnMediaStateChanged;
-            XnaMediaPlayer.ActiveSongChanged += MediaPlayerOnActiveSongChanged;
-
             ResetUI();
         }
 
         public override void Hide()
         {
             base.Hide();
-
-            XnaMediaPlayer.MediaStateChanged -= MediaPlayerOnMediaStateChanged;
-            XnaMediaPlayer.ActiveSongChanged -= MediaPlayerOnActiveSongChanged;
 
             // GUI
             Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["MainMenu"], Layer.BACKGROUND);
@@ -191,40 +152,9 @@ namespace XmasHell.Screens.Menu
             }
         }
 
-        private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void MediaPlayerOnMediaStateChanged(object sender, EventArgs eventArgs)
-        {
-            //if (XnaMediaPlayer.Queue.ActiveSong == null)
-            //    return;
-
-            //if (XnaMediaPlayer.Queue.ActiveSong.Name == _introSong.Name &&
-            //    XnaMediaPlayer.Queue.ActiveSong.Position >= _introSong.Duration)
-            //{
-            //    XnaMediaPlayer.IsRepeating = true;
-            //    XnaMediaPlayer.Play(_mainSong);
-            //}
-        }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (_shootFrequency.TotalMilliseconds < 0)
-            {
-                var randomX = Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualWidth);
-                var position = new Vector2(randomX, -500);
-
-                Game.GameManager.MoverManager.TriggerPattern(_patternFile, BulletType.Type1, false, position);
-                _shootFrequency = TimeSpan.FromSeconds(0.01);
-            }
-            else
-            {
-                _shootFrequency -= gameTime.ElapsedGameTime;
-            }
 
             var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", _mainMenuSpriterFile["MainMenu"]);
             _mainMenuSpriterFile["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;

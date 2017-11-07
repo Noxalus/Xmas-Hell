@@ -9,7 +9,7 @@ using XmasHell.Spriter;
 
 namespace XmasHell.Screens.Menu
 {
-    public class BossSelectionScreen : Screen
+    public class BossSelectionScreen : MenuScreen
     {
         #region Fields
         private BossType _selectedBoss;
