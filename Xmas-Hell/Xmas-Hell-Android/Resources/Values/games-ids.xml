@@ -30,4 +30,22 @@ Save this file as res/values/games-ids.xml in your project.
   <string name="achievement_defeat_xmas_santa" translatable="false">CgkI48Ok5awcEAIQDA</string>
   <!-- leaderboard Xmas Ball -->
   <string name="leaderboard_xmas_ball" translatable="false">CgkI48Ok5awcEAIQAQ</string>
+  <!-- leaderboard Xmas Bell -->
+  <string name="leaderboard_xmas_bell" translatable="false">CgkI48Ok5awcEAIQDQ</string>
+  <!-- leaderboard Xmas Snowflake -->
+  <string name="leaderboard_xmas_snowflake" translatable="false">CgkI48Ok5awcEAIQDg</string>
+  <!-- leaderboard Xmas Candy -->
+  <string name="leaderboard_xmas_candy" translatable="false">CgkI48Ok5awcEAIQDw</string>
+  <!-- leaderboard Xmas Gift -->
+  <string name="leaderboard_xmas_gift" translatable="false">CgkI48Ok5awcEAIQEA</string>
+  <!-- leaderboard Xmas Tree -->
+  <string name="leaderboard_xmas_tree" translatable="false">CgkI48Ok5awcEAIQEQ</string>
+  <!-- leaderboard Xmas Log -->
+  <string name="leaderboard_xmas_log" translatable="false">CgkI48Ok5awcEAIQEg</string>
+  <!-- leaderboard Xmas Snowman -->
+  <string name="leaderboard_xmas_snowman" translatable="false">CgkI48Ok5awcEAIQEw</string>
+  <!-- leaderboard Xmas Reindeer -->
+  <string name="leaderboard_xmas_reindeer" translatable="false">CgkI48Ok5awcEAIQFA</string>
+  <!-- leaderboard Xmas Santa -->
+  <string name="leaderboard_xmas_santa" translatable="false">CgkI48Ok5awcEAIQFQ</string>
 </resources>

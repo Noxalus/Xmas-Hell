@@ -360,6 +360,35 @@ namespace XmasHellAndroid
             }
         }
 
+        public string BossTypeToLeaderboardCode(BossType bossType)
+        {
+            switch (bossType)
+            {
+                case BossType.XmasBall:
+                    return activity.GetString(Resource.String.leaderboard_xmas_ball);
+                case BossType.XmasBell:
+                    return activity.GetString(Resource.String.leaderboard_xmas_bell);
+                case BossType.XmasCandy:
+                    return activity.GetString(Resource.String.leaderboard_xmas_candy);
+                case BossType.XmasSnowflake:
+                    return activity.GetString(Resource.String.leaderboard_xmas_snowflake);
+                case BossType.XmasLog:
+                    return activity.GetString(Resource.String.leaderboard_xmas_log);
+                case BossType.XmasTree:
+                    return activity.GetString(Resource.String.leaderboard_xmas_tree);
+                case BossType.XmasGift:
+                    return activity.GetString(Resource.String.leaderboard_xmas_gift);
+                case BossType.XmasReindeer:
+                    return activity.GetString(Resource.String.leaderboard_xmas_reindeer);
+                case BossType.XmasSnowman:
+                    return activity.GetString(Resource.String.leaderboard_xmas_snowman);
+                case BossType.XmasSanta:
+                    return activity.GetString(Resource.String.leaderboard_xmas_santa);
+                default:
+                    return "";
+            }
+        }
+
         #endregion
     }
 }

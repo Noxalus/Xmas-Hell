@@ -436,6 +436,7 @@ namespace XmasHell.Entities.Bosses
             _destroyed = true;
 
             UnlockBossDefeatAchievement();
+            SubmitScore();
         }
 
         private void UnlockBossDefeatAchievement()
@@ -443,6 +444,15 @@ namespace XmasHell.Entities.Bosses
 #if ANDROID
             var gameHelper = Game.AndroidActivity.GameHelper;
             gameHelper.UnlockAchievement(gameHelper.BossTypeToAchievementCode(BossType));
+#endif
+        }
+
+        private void SubmitScore()
+        {
+            var currentTime = (long)Game.GameManager.GetCurrentTime().TotalMilliseconds;
+#if ANDROID
+            var gameHelper = Game.AndroidActivity.GameHelper;
+            gameHelper.SubmitScore(gameHelper.BossTypeToLeaderboardCode(BossType), currentTime);
 #endif
         }
 

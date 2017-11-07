@@ -246,8 +246,8 @@ namespace XmasHellAndroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f04001e
-			public const int ApplicationName = 2130968606;
+			// aapt resource value: 0x7f040027
+			public const int ApplicationName = 2130968615;
 			
 			// aapt resource value: 0x7f040013
 			public const int achievement_defeat_xmas_ball = 2130968595;
@@ -335,6 +335,33 @@ namespace XmasHellAndroid
 			
 			// aapt resource value: 0x7f04001d
 			public const int leaderboard_xmas_ball = 2130968605;
+			
+			// aapt resource value: 0x7f04001e
+			public const int leaderboard_xmas_bell = 2130968606;
+			
+			// aapt resource value: 0x7f040020
+			public const int leaderboard_xmas_candy = 2130968608;
+			
+			// aapt resource value: 0x7f040021
+			public const int leaderboard_xmas_gift = 2130968609;
+			
+			// aapt resource value: 0x7f040023
+			public const int leaderboard_xmas_log = 2130968611;
+			
+			// aapt resource value: 0x7f040025
+			public const int leaderboard_xmas_reindeer = 2130968613;
+			
+			// aapt resource value: 0x7f040026
+			public const int leaderboard_xmas_santa = 2130968614;
+			
+			// aapt resource value: 0x7f04001f
+			public const int leaderboard_xmas_snowflake = 2130968607;
+			
+			// aapt resource value: 0x7f040024
+			public const int leaderboard_xmas_snowman = 2130968612;
+			
+			// aapt resource value: 0x7f040022
+			public const int leaderboard_xmas_tree = 2130968610;
 			
 			// aapt resource value: 0x7f040012
 			public const int package_name = 2130968594;
