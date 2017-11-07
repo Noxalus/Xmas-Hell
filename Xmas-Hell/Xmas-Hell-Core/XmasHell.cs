@@ -44,7 +44,7 @@ namespace XmasHell
         private bool _computeNextFrame = false;
 
 #if ANDROID
-        private XmasHellActivity _activity;
+        public XmasHellActivity AndroidActivity;
 #endif
 
         // Performance
@@ -69,7 +69,7 @@ namespace XmasHell
 
 #if ANDROID
             Graphics.SupportedOrientations = DisplayOrientation.Portrait;
-            _activity = activity;
+            AndroidActivity = activity;
 
             // Used for bloom effect
             Graphics.PreferredDepthStencilFormat = DepthFormat.Depth16;
@@ -125,7 +125,7 @@ namespace XmasHell
 
             // Player data
 #if ANDROID
-            ISharedPreferences prefs = _activity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
+            ISharedPreferences prefs = AndroidActivity.GetSharedPreferences("XmasHell", FileCreationMode.Private);
             var androidPreferences = new AndroidPreferences(prefs);
             PlayerData = new PlayerData.PlayerData(androidPreferences);
 #elif LINUX
@@ -157,7 +157,7 @@ namespace XmasHell
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
 #if ANDROID
-            Assets.SetActivity(_activity);
+            Assets.SetActivity(AndroidActivity);
 #endif
 
             Assets.Load(Content, GraphicsDevice);

@@ -509,4 +509,32 @@
             </timeline>
         </animation>
     </entity>
+    <entity id="4" name="AchievementsButton">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="achievement-button">
+                <key id="0" spin="0">
+                    <object folder="1" file="3"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="5" name="LeaderboardsButton">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="leaderboard-button">
+                <key id="0" spin="0">
+                    <object folder="1" file="4"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
 </spriter_data>

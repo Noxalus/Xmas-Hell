@@ -22,8 +22,11 @@ namespace XmasHell.Screens.Menu
 
         private Dictionary<string, CustomSpriterAnimator> _mainMenuSpriterFile;
 
+        private List<SpriterGuiButton> _menuButtons = new List<SpriterGuiButton>();
         private SpriterGuiButton _playButton;
         private SpriterGuiButton _settingsButton;
+        private SpriterGuiButton _achievementsButton;
+        private SpriterGuiButton _leaderboardsButton;
 
         public MainMenuScreen(XmasHell game) : base(game)
         {
@@ -49,6 +52,20 @@ namespace XmasHell.Screens.Menu
 
         private void OnSettingsButtonAction(object s, Point e)
         {
+        }
+
+        private void OnAchievementsButtonAction(object s, Point e)
+        {
+#if ANDROID
+            Game.AndroidActivity.ShowAchievements();
+#endif
+        }
+
+        private void OnLeaderboardsButtonAction(object s, Point e)
+        {
+#if ANDROID
+            Game.AndroidActivity.ShowLeaderboards();
+#endif
         }
 
         public override void LoadContent()
@@ -81,9 +98,18 @@ namespace XmasHell.Screens.Menu
 
             _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", _mainMenuSpriterFile["PlayButton"], _mainMenuSpriterFile["MainMenu"]);
             _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", _mainMenuSpriterFile["SettingsButton"], _mainMenuSpriterFile["MainMenu"]);
+            _achievementsButton = new SpriterGuiButton(Game.ViewportAdapter, "AchievementsButton", "Graphics/GUI/MainMenu/achievement-button.png", _mainMenuSpriterFile["AchievementsButton"], _mainMenuSpriterFile["MainMenu"]);
+            _leaderboardsButton = new SpriterGuiButton(Game.ViewportAdapter, "LeaderboardsButton", "Graphics/GUI/MainMenu/leaderboard-button.png", _mainMenuSpriterFile["LeaderboardsButton"], _mainMenuSpriterFile["MainMenu"]);
 
             _playButton.Action += OnPlayButtonAction;
             _settingsButton.Action += OnSettingsButtonAction;
+            _achievementsButton.Action += OnAchievementsButtonAction;
+            _leaderboardsButton.Action += OnLeaderboardsButtonAction;
+
+            _menuButtons.Add(_playButton);
+            _menuButtons.Add(_settingsButton);
+            _menuButtons.Add(_achievementsButton);
+            _menuButtons.Add(_leaderboardsButton);
 
             _mainMenuSpriterFile["MainMenu"].AddHiddenTexture("Graphics/GUI/MainMenu/xmas-title");
 
@@ -95,16 +121,10 @@ namespace XmasHell.Screens.Menu
             if (UIReseted)
                 return;
 
-            if (_playButton != null)
+            foreach (var button in _menuButtons)
             {
-                _playButton.Enable(true);
-                Game.GuiManager.AddButton(_playButton);
-            }
-
-            if (_settingsButton != null)
-            {
-                _settingsButton.Enable(true);
-                Game.GuiManager.AddButton(_settingsButton);
+                button.Enable(true);
+                Game.GuiManager.AddButton(button);
             }
 
             if (_mainMenuSpriterFile["MainMenu"] != null)
@@ -166,6 +186,9 @@ namespace XmasHell.Screens.Menu
 
             Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["MainMenu"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(_mainMenuSpriterFile["XmasTitle"], Layer.BACKGROUND);
+
+            foreach (var button in _menuButtons)
+                button.Enable(false);
         }
 
         private void MediaPlayerOnActiveSongChanged(object sender, EventArgs eventArgs)
