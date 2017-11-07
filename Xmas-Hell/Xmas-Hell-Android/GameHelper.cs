@@ -20,7 +20,7 @@ namespace XmasHellAndroid
         GoogleApiClient client;
         Activity activity;
         bool signedOut = true;
-        bool signingin = false;
+        bool signingIn = false;
         bool resolving = false;
         List<IAchievement> achievments = new List<IAchievement>();
         Dictionary<string, List<ILeaderboardScore>> scores = new Dictionary<string, List<ILeaderboardScore>>();
@@ -40,18 +40,7 @@ namespace XmasHellAndroid
             set
             {
                 if (signedOut != value)
-                {
                     signedOut = value;
-                    // Store if we Signed Out so we don't bug the player next time.
-                    using (var settings = this.activity.GetSharedPreferences("googleplayservicessettings", FileCreationMode.Private))
-                    {
-                        using (var e = settings.Edit())
-                        {
-                            e.PutBoolean("SignedOut", signedOut);
-                            e.Commit();
-                        }
-                    }
-                }
             }
         }
 
@@ -100,31 +89,19 @@ namespace XmasHellAndroid
 
         public void Initialize()
         {
-
-            var settings = this.activity.GetSharedPreferences("googleplayservicessettings", FileCreationMode.Private);
-            signedOut = settings.GetBoolean("SignedOut", true);
-
-            if (!signedOut)
-                CreateClient();
+            CreateClient();
         }
 
         private void CreateClient()
         {
-
-            // did we log in with a player id already? If so we don't want to ask which account to use
-            var settings = this.activity.GetSharedPreferences("googleplayservicessettings", FileCreationMode.Private);
-            var id = settings.GetString("playerid", String.Empty);
-
             var builder = new GoogleApiClient.Builder(activity, this, this);
-            builder.AddApi(Android.Gms.Games.GamesClass.API);
-            builder.AddScope(Android.Gms.Games.GamesClass.ScopeGames);
+            builder.AddApi(GamesClass.API);
+            builder.AddScope(GamesClass.ScopeGames);
             builder.SetGravityForPopups((int)GravityForPopups);
+
             if (ViewForPopups != null)
                 builder.SetViewForPopups(ViewForPopups);
-            if (!string.IsNullOrEmpty(id))
-            {
-                builder.SetAccountName(id);
-            }
+
             client = builder.Build();
         }
 
@@ -133,8 +110,7 @@ namespace XmasHellAndroid
         /// </summary>
         public void Start()
         {
-
-            if (SignedOut && !signingin)
+            if (SignedOut && !signingIn)
                 return;
 
             if (client != null && !client.IsConnected)
@@ -169,24 +145,14 @@ namespace XmasHellAndroid
         /// </summary>
         public void SignOut()
         {
-
             SignedOut = true;
             if (client.IsConnected)
             {
                 GamesClass.SignOut(client);
                 Stop();
-                using (var settings = this.activity.GetSharedPreferences("googleplayservicessettings", FileCreationMode.Private))
-                {
-                    using (var e = settings.Edit())
-                    {
-                        e.PutString("playerid", String.Empty);
-                        e.Commit();
-                    }
-                }
                 client.Dispose();
                 client = null;
-                if (OnSignedOut != null)
-                    OnSignedOut(this, EventArgs.Empty);
+                OnSignedOut?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -195,8 +161,7 @@ namespace XmasHellAndroid
         /// </summary>
         public void SignIn()
         {
-
-            signingin = true;
+            signingIn = true;
             if (client == null)
                 CreateClient();
 
@@ -208,12 +173,9 @@ namespace XmasHellAndroid
 
             var result = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(activity);
             if (result != ConnectionResult.Success)
-            {
                 return;
-            }
 
             Start();
-
         }
 
         /// <summary>
@@ -315,16 +277,7 @@ namespace XmasHellAndroid
         {
             resolving = false;
             SignedOut = false;
-            signingin = false;
-
-            using (var settings = this.activity.GetSharedPreferences("googleplayservicessettings", FileCreationMode.Private))
-            {
-                using (var e = settings.Edit())
-                {
-                    e.PutString("playerid", GamesClass.GetCurrentAccountName(client));
-                    e.Commit();
-                }
-            }
+            signingIn = false;
 
             OnSignedIn?.Invoke(this, EventArgs.Empty);
         }
@@ -333,7 +286,7 @@ namespace XmasHellAndroid
         {
             resolving = false;
             SignedOut = false;
-            signingin = false;
+            signingIn = false;
             client.Disconnect();
             OnSignInFailed?.Invoke(this, EventArgs.Empty);
         }
@@ -352,7 +305,7 @@ namespace XmasHellAndroid
 
             resolving = false;
             SignedOut = false;
-            signingin = false;
+            signingIn = false;
             OnSignInFailed?.Invoke(this, EventArgs.Empty);
         }
         #endregion
@@ -369,13 +322,9 @@ namespace XmasHellAndroid
             if (requestCode == RC_RESOLVE)
             {
                 if (resultCode == Result.Ok)
-                {
                     Start();
-                }
                 else
-                {
                     OnSignInFailed?.Invoke(this, EventArgs.Empty);
-                }
             }
         }
     }

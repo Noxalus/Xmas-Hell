@@ -2,11 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using Android.Gms.Common;
-using Android.Gms.Common.Apis;
-using Android.Gms.Games;
 using Android.Content;
-using System;
 
 [assembly: MetaData("com.google.android.gms.games.APP_ID", Value = "@string/app_id")]
 
@@ -32,6 +28,13 @@ namespace XmasHellAndroid
 
         protected override void OnCreate(Bundle bundle)
         {
+            Log("onCreate()");
+            HideSystemUi();
+            InitializeServices();
+
+            if (_helper != null && _helper.SignedOut)
+                _helper.SignIn();
+
             base.OnCreate(bundle);
             _game = new XmasHell.XmasHell(this);
             View vw = (View)_game.Services.GetService(typeof(View));
@@ -40,14 +43,6 @@ namespace XmasHellAndroid
             _game.Run();
 
             vw.SetOnSystemUiVisibilityChangeListener(this);
-            HideSystemUi();
-
-            Log("onCreate()");
-
-            InitializeServices();
-
-            if (_helper != null && _helper.SignedOut)
-                _helper.SignIn();
         }
 
         void InitializeServices()
@@ -65,7 +60,7 @@ namespace XmasHellAndroid
         private void HideSystemUi()
         {
             SystemUiFlags flags = SystemUiFlags.HideNavigation | SystemUiFlags.Fullscreen | SystemUiFlags.ImmersiveSticky;
-            this.Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)flags;
         }
 
         protected override void OnDestroy()
