@@ -515,10 +515,28 @@
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
+                <key id="1" time="250">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="498">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="751">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
             </mainline>
             <timeline id="0" name="achievement-button">
-                <key id="0" spin="0">
+                <key id="0">
                     <object folder="1" file="3"/>
+                </key>
+                <key id="1" time="250" spin="-1">
+                    <object folder="1" file="3" angle="15"/>
+                </key>
+                <key id="2" time="498" spin="-1">
+                    <object folder="1" file="3" angle="0"/>
+                </key>
+                <key id="3" time="751">
+                    <object folder="1" file="3" angle="345"/>
                 </key>
             </timeline>
         </animation>
@@ -529,10 +547,28 @@
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
+                <key id="1" time="250">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="498">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="759">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
             </mainline>
             <timeline id="0" name="leaderboard-button">
-                <key id="0" spin="0">
+                <key id="0">
                     <object folder="1" file="4"/>
+                </key>
+                <key id="1" time="250" spin="-1">
+                    <object folder="1" file="4" angle="15"/>
+                </key>
+                <key id="2" time="498" spin="-1">
+                    <object folder="1" file="4" angle="0"/>
+                </key>
+                <key id="3" time="759">
+                    <object folder="1" file="4" angle="345"/>
                 </key>
             </timeline>
         </animation>
