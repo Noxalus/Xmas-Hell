@@ -7,7 +7,6 @@ using Android.Gms.Games.LeaderBoard;
 using Android.App;
 using Android.Content;
 using Android.Views;
-using Java.Interop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -327,8 +326,7 @@ namespace XmasHellAndroid
                 }
             }
 
-            if (OnSignedIn != null)
-                OnSignedIn(this, EventArgs.Empty);
+            OnSignedIn?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnConnectionSuspended(int resultCode)
@@ -337,8 +335,7 @@ namespace XmasHellAndroid
             SignedOut = false;
             signingin = false;
             client.Disconnect();
-            if (OnSignInFailed != null)
-                OnSignInFailed(this, EventArgs.Empty);
+            OnSignInFailed?.Invoke(this, EventArgs.Empty);
         }
 
         public void OnConnectionFailed(ConnectionResult result)
@@ -356,8 +353,7 @@ namespace XmasHellAndroid
             resolving = false;
             SignedOut = false;
             signingin = false;
-            if (OnSignInFailed != null)
-                OnSignInFailed(this, EventArgs.Empty);
+            OnSignInFailed?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
@@ -378,8 +374,7 @@ namespace XmasHellAndroid
                 }
                 else
                 {
-                    if (OnSignInFailed != null)
-                        OnSignInFailed(this, EventArgs.Empty);
+                    OnSignInFailed?.Invoke(this, EventArgs.Empty);
                 }
             }
         }

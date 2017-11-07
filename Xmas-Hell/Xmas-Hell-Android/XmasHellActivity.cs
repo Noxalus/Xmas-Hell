@@ -6,6 +6,7 @@ using Android.Gms.Common;
 using Android.Gms.Common.Apis;
 using Android.Gms.Games;
 using Android.Content;
+using System;
 
 [assembly: MetaData("com.google.android.gms.games.APP_ID", Value = "@string/app_id")]
 
@@ -18,28 +19,11 @@ namespace XmasHellAndroid
         , AlwaysRetainTaskState = true
         , ScreenOrientation = ScreenOrientation.SensorPortrait
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
-    public class XmasHellActivity : Microsoft.Xna.Framework.AndroidGameActivity, View.IOnSystemUiVisibilityChangeListener, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
+    public class XmasHellActivity : Microsoft.Xna.Framework.AndroidGameActivity, View.IOnSystemUiVisibilityChangeListener
     {
         private XmasHell.XmasHell _game;
-
-        // Google Play Services
+        private GameHelper _helper;
         const string TAG = "XmasHell";
-
-        // Default lifetime of a request, 1 week.
-        const int DEFAULT_LIFETIME = 7;
-
-        // Request code used to invoke sign in user interactions.
-        const int RC_SIGN_IN = 9001;
-
-        // Client used to interact with Google APIs.
-        GoogleApiClient mGoogleApiClient;
-
-        // Are we currently resolving a connection failure?
-        bool mResolvingConnectionFailure = false;
-
-        // Set to true to automatically start the sign in flow when the Activity starts.
-        // Set to false to require the user to click the button in order to sign in.
-        bool mAutoStartSignInFlow = true;
 
         void Log(string message)
         {
@@ -60,14 +44,17 @@ namespace XmasHellAndroid
 
             Log("onCreate()");
 
-            // Create the Google Api Client with access to Plus and Games
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .AddConnectionCallbacks(this)
-                .AddOnConnectionFailedListener(this)
-                .AddApi(GamesClass.API).AddScope(GamesClass.ScopeGames)
-                .Build();
+            InitializeServices();
 
-            mGoogleApiClient.Connect();
+            if (_helper != null && _helper.SignedOut)
+                _helper.SignIn();
+        }
+
+        void InitializeServices()
+        {
+            // Setup Google Play Services Helper
+            _helper = new GameHelper(this);
+            _helper.Initialize();
         }
 
         public void OnSystemUiVisibilityChange(StatusBarVisibility visibility)
@@ -105,78 +92,45 @@ namespace XmasHellAndroid
                 _game.OnResume();
         }
 
-        public void OnConnectionFailed(ConnectionResult result)
+        protected override void OnStart()
         {
-            Log("onConnectionFailed() called, result: " + result);
+            base.OnStart();
 
-            if (mResolvingConnectionFailure)
-            {
-                Log("onConnectionFailed() ignoring connection failure; already resolving.");
-                return;
-            }
-
-            if (mAutoStartSignInFlow)
-            {
-                mAutoStartSignInFlow = false;
-                mResolvingConnectionFailure = ResolveConnectionFailure(
-                    this, mGoogleApiClient, result, RC_SIGN_IN, GetString(Resource.String.signin_other_error)
-                );
-            }
+            if (_helper != null)
+                _helper.Start();
         }
 
-        bool ResolveConnectionFailure(Activity activity, GoogleApiClient client, ConnectionResult result, int requestCode, string fallbackErrorMessage)
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if (result.HasResolution)
+            if (_helper != null)
+                _helper.OnActivityResult(requestCode, resultCode, data);
+
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        protected override void OnStop()
+        {
+            if (_helper != null)
+                _helper.Stop();
+
+            base.OnStop();
+        }
+
+        public void ShowAchievements()
+        {
+            if (_helper != null && !_helper.SignedOut)
+                _helper.ShowAchievements();
+        }
+
+        public void ShowLeaderboards(string leaderboardName = "")
+        {
+            if (_helper != null && !_helper.SignedOut)
             {
-                try
-                {
-                    result.StartResolutionForResult(activity, requestCode);
-                    return true;
-                }
-                catch (IntentSender.SendIntentException e)
-                {
-                    // The intent was canceled before it was sent.  Return to the default
-                    // state and attempt to connect to get an updated ConnectionResult.
-                    client.Connect();
-                    return false;
-                }
-            }
-            else
-            {
-                // not resolvable... so show an error message
-                int errorCode = result.ErrorCode;
-                var dialog = GooglePlayServicesUtil.GetErrorDialog(errorCode, activity, requestCode);
-                if (dialog != null)
-                {
-                    dialog.Show();
-                }
+                if (leaderboardName == "")
+                    _helper.ShowAllLeaderBoardsIntent();
                 else
-                {
-                    // no built-in dialog: show the fallback error message
-                    //ShowAlert (activity, fallbackErrorMessage);
-                    (new AlertDialog.Builder(activity)).SetMessage(fallbackErrorMessage)
-                        .SetNeutralButton(Android.Resource.String.Ok, delegate { }).Create().Show();
-                }
-                return false;
+                    _helper.ShowLeaderBoardIntentForLeaderboard(leaderboardName);
             }
-        }
-
-        public void OnConnected(Bundle connectionHint)
-        {
-            Log("onConnected() called. Sign in successful!");
-
-            var player = GamesClass.Players.GetCurrentPlayer(mGoogleApiClient);
-            var xmasBallLeaderboard = GamesClass.Leaderboards.GetLeaderboardIntent(mGoogleApiClient, "@string/leaderboard_xmas_ball");
-            var achievementsIntent = GamesClass.Achievements.GetAchievementsIntent(mGoogleApiClient);
-
-            const int REQUEST_ACHIEVEMENTS = 9004;
-            StartActivityForResult(achievementsIntent, REQUEST_ACHIEVEMENTS);
-        }
-
-        public void OnConnectionSuspended(int cause)
-        {
-            Log("onConnectionSuspended() called. Trying to reconnect.");
-            mGoogleApiClient.Connect();
         }
     }
 }
