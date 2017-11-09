@@ -7,12 +7,11 @@ namespace XmasHell.Entities.Bosses.XmasTree
 {
     class XmasTreeBehaviour1 : AbstractBossBehaviour
     {
-        private TimeSpan _newPositionTime;
         private CountdownTimer _shootBulletTimer;
 
         public XmasTreeBehaviour1(Boss boss) : base(boss)
         {
-            InitialBehaviourLife = 200;
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 0.5f;
         }
 
         public override void Start()
@@ -20,7 +19,6 @@ namespace XmasHell.Entities.Bosses.XmasTree
             base.Start();
 
             Boss.Speed = 500f;
-            _newPositionTime = TimeSpan.Zero;
 
             _shootBulletTimer = new CountdownTimer(1);
 

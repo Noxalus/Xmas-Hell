@@ -7,12 +7,11 @@ namespace XmasHell.Entities.Bosses.XmasSanta
 {
     class XmasSantaBehaviour1 : AbstractBossBehaviour
     {
-        private TimeSpan _newPositionTime;
         private CountdownTimer _shootBulletTimer;
 
         public XmasSantaBehaviour1(Boss boss) : base(boss)
         {
-            InitialBehaviourLife = 200;
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 0.5f;
         }
 
         public override void Start()
@@ -20,10 +19,8 @@ namespace XmasHell.Entities.Bosses.XmasSanta
             base.Start();
 
             Boss.Speed = 500f;
-            _newPositionTime = TimeSpan.Zero;
 
             _shootBulletTimer = new CountdownTimer(1);
-
             _shootBulletTimer.Completed += (sender, args) =>
             {
                 Boss.Game.GameManager.MoverManager.TriggerPattern("XmasSanta/pattern1", BulletType.Type2, false, Boss.Position());

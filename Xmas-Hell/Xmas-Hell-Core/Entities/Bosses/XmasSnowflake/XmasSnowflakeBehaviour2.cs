@@ -30,9 +30,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             Boss.CurrentAnimator.Play("Idle");
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
 
-            int folderId = 0;
-            _branch1File = SpriterUtils.GetSpriterFile("branch1.png", Boss.CurrentAnimator, out folderId);
-            _branch2File = SpriterUtils.GetSpriterFile("branch2.png", Boss.CurrentAnimator, out folderId);
+            _branch1File = SpriterUtils.GetSpriterFile("branch1.png", Boss.CurrentAnimator);
+            _branch2File = SpriterUtils.GetSpriterFile("branch2.png", Boss.CurrentAnimator);
 
             _branches = new List<XmasSnowflakeBranch>(8);
         }

@@ -15,7 +15,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
         public XmasCandyBehaviour4(Boss boss) : base(boss)
         {
-            InitialBehaviourLife = 1800f;
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 4.5f;
         }
 
         public override void Start()

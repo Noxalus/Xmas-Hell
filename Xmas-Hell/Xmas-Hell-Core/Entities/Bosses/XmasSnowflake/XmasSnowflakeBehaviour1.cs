@@ -12,7 +12,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
 
         public XmasSnowflakeBehaviour1(Boss boss) : base(boss)
         {
-            InitialBehaviourLife = 200;
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 0.5f;
         }
 
         public override void Start()
