@@ -27,7 +27,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
             base.Start();
 
             _newPosition = Vector2.Zero;
-            Boss.Speed = 100f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 0.5f;
             _charging = false;
             _stunned = false;
 

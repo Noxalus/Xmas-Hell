@@ -21,7 +21,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 MathHelper.ToRadians(possibleAngle[Boss.Game.GameManager.Random.Next(possibleAngle.Length - 1)])
             );
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
         }
 
         public override void Stop()

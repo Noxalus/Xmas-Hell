@@ -13,7 +13,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
 
             Boss.CurrentAnimator.Play("Idle");
 

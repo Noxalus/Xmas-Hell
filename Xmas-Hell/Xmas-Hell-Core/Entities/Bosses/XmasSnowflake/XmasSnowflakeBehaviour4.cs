@@ -19,7 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             base.Start();
 
-            //Boss.Speed = 500f;
+            //Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             Boss.CurrentAnimator.Play("Idle");
 
             _shootBulletTimer = new CountdownTimer(0.2);

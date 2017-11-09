@@ -26,7 +26,7 @@ namespace XmasHell.Entities.Bosses.DebugBoss
             _triggeredPattern = false;
 
             Boss.Invincible = true;
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             Boss.CurrentAnimator.Play("Idle");
             Boss.MoveToCenter();
 

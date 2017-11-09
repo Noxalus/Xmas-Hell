@@ -6,7 +6,6 @@ namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBallBehaviour1 : AbstractBossBehaviour
     {
-        private TimeSpan _newPositionTime;
         private TimeSpan _bulletFrequence;
 
         public XmasBallBehaviour1(Boss boss) : base(boss)
@@ -17,8 +16,8 @@ namespace XmasHell.Entities.Bosses.XmasBall
         {
             base.Start();
 
-            Boss.Speed = 500f;
-            _newPositionTime = TimeSpan.Zero;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
+
             _bulletFrequence = TimeSpan.Zero;
 
             Boss.CurrentAnimator.Play("Idle");

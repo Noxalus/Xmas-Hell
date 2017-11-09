@@ -18,7 +18,7 @@ namespace XmasHell.Entities.Bosses.XmasTree
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
 
             _shootBulletTimer = new CountdownTimer(1);
 

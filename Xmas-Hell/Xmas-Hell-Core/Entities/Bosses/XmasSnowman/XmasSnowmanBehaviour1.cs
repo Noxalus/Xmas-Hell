@@ -18,7 +18,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             _shootBulletTimer = new CountdownTimer(1);
 
             _shootBulletTimer.Completed += (sender, args) =>

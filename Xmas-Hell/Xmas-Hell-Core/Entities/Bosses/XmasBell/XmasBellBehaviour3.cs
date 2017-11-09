@@ -17,7 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             _timeBeforeShoot = TimeSpan.FromSeconds(2);
 
             Boss.MoveTo(

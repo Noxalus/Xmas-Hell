@@ -19,7 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             _newPositionTime = TimeSpan.Zero;
 
             _shootBulletTimer = new CountdownTimer(1);

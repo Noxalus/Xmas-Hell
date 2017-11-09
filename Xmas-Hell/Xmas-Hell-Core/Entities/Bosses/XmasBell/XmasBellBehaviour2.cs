@@ -17,7 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
         {
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             _bulletFrequence = TimeSpan.Zero;
 
             Boss.CurrentAnimator.Play("Idle");

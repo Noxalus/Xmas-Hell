@@ -21,7 +21,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             base.Start();
 
-            Boss.Speed = 500f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
             _newPositionTime = TimeSpan.Zero;
             _bulletFrequence = TimeSpan.Zero;
 

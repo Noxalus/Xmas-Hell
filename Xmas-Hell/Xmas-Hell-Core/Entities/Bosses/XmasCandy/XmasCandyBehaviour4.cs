@@ -46,7 +46,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             base.Start();
 
-            Boss.Speed = 200f;
+            Boss.Speed = GameConfig.BossDefaultSpeed * 0.5f;
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
             Boss.CurrentAnimator.Play("CircleAppears");
             Boss.CurrentAnimator.Speed = _maxRotationSpeed;
