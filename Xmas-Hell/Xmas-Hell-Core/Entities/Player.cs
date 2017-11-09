@@ -133,11 +133,6 @@ namespace XmasHell.Entities
 
         public void Initialize()
         {
-            _initialSpritePosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                GameConfig.VirtualResolution.Y - 150
-            );
-
             Reset();
         }
 
@@ -154,10 +149,15 @@ namespace XmasHell.Entities
             _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
             _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
-            CurrentAnimator.Position = _initialSpritePosition;
+            _initialSpritePosition = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                GameConfig.VirtualResolution.Y - 150
+            );
             _initialTouchPosition = _currentTouchPosition;
             _bulletFrequence = TimeSpan.Zero;
             _destroyed = false;
+
+            CurrentAnimator.Position = _initialSpritePosition;
         }
 
         public void Destroy()
