@@ -30,6 +30,19 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             CurrentAnimator.StretchOut = false;
         }
 
+        public override void Reset()
+        {
+            base.Reset();
+
+            // For the 4th pattern, the initial bounding boxes are removed
+            // We need to make sure we re-add them properly
+            Game.GameManager.CollisionWorld.ClearBossHitboxes();
+            InitializePhysics();
+
+            // Same thing for stretch out behaviour, disabled for the 4th pattern
+            CurrentAnimator.StretchOut = false;
+        }
+
         protected override void InitializePhysics()
         {
             base.InitializePhysics();

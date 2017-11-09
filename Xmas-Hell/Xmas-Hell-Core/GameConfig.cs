@@ -24,8 +24,10 @@ namespace XmasHell
         public static float PlayerHitboxRadius = 5f;
 
         // Boss
-        public static int BossDefaultBehaviourLife = 40;
+        public static int BossDefaultBehaviourLife = 400;
         public static float BossDefaultSpeed = 200f;
+        public static Vector2 BossDefaultPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, VirtualResolution.Y * 0.15f);
+        public static float BossEntranceAnimationTime = 1; // seconds
 
         // Bullet manager
         public static int MaximumBullets = 2500;

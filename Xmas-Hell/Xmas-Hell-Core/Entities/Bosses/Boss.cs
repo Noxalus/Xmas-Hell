@@ -390,9 +390,10 @@ namespace XmasHell.Entities.Bosses
             _bossEntranceAnimation = true;
             _ready = false;
             _destroyed = false;
+            _targetDirection = Vector2.Zero;
+            _targetAngle = 0f;
 
             Game.GameManager.MoverManager.Clear();
-            Position(new Vector2(InitialPosition.X, InitialPosition.Y - 500f));
             Invincible = true;
             Tinted = false;
             TargetingPosition = false;
@@ -400,10 +401,18 @@ namespace XmasHell.Entities.Bosses
 
             CurrentBehaviourIndex = 0;
             PreviousBehaviourIndex = -1;
+
+            Position(new Vector2(InitialPosition.X, InitialPosition.Y - 500f));
+            Rotation(0);
+            Scale(Vector2.One);
+
             Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
 
             CurrentAnimator.Play("Idle");
+            CurrentAnimator.Progress = 0;
+            CurrentAnimator.Speed = 1;
+
             MoveToInitialPosition(GameConfig.BossEntranceAnimationTime, true);
         }
 
@@ -478,6 +487,7 @@ namespace XmasHell.Entities.Bosses
             _targetPositionTime = TimeSpan.FromSeconds(time);
             _targetPosition = position;
             _initialPosition = CurrentAnimator.Position;
+            //_targetDirection = Vector2.Normalize(_targetPosition - _initialPosition);
         }
 
         // Move to a given position keeping the actual speed

@@ -148,9 +148,10 @@ namespace XmasHell
             _player.Reset();
 
             if (_boss != null)
+            {
                 _boss.Reset();
-
-            _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
+                _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
+            }
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)
