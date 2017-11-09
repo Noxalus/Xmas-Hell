@@ -400,10 +400,11 @@ namespace XmasHell.Entities.Bosses
 
             CurrentBehaviourIndex = 0;
             PreviousBehaviourIndex = -1;
-            Direction = Vector2.UnitY;
+            Direction = Vector2.Zero;
             Speed = GameConfig.BossDefaultSpeed;
 
             CurrentAnimator.Play("Idle");
+            MoveToInitialPosition(GameConfig.BossEntranceAnimationTime, true);
         }
 
         private void RestoreDefaultState()
