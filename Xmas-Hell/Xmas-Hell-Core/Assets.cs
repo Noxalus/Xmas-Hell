@@ -15,6 +15,8 @@ using System;
 
 #if ANDROID
 using Android.App;
+#else
+using System.IO;
 #endif
 
 namespace XmasHell

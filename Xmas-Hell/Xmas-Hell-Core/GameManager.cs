@@ -188,7 +188,7 @@ namespace XmasHell
 
             _playTime += gameTime.ElapsedGameTime;
 
-            if (!GameIsFinished() && _endGameFirstTime)
+            if (_boss != null && _boss.IsReady() && !GameIsFinished() && _endGameFirstTime)
                 _timer += gameTime.ElapsedGameTime;
 
             foreach (var bullet in _bullets)

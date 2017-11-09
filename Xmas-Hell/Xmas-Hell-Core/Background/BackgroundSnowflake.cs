@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace XmasHell.Background
 {
-    class BackgroundSnowflake
+    internal class BackgroundSnowflake
     {
         private XmasHell _game;
         private Vector2 _position;
@@ -20,7 +19,7 @@ namespace XmasHell.Background
 
         public void Update(GameTime gameTime)
         {
-            var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
+            var dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _position.Y += _speed * dt;
 
             if (_position.Y >= GameConfig.VirtualResolution.Y + _size.Y)

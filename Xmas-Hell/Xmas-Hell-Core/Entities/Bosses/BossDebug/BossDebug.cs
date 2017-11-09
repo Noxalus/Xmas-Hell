@@ -4,7 +4,7 @@ using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.DebugBoss
 {
-    class BossDebug : Boss
+    internal class BossDebug : Boss
     {
         public BossDebug(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.Debug, playerPositionDelegate)

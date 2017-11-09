@@ -40,6 +40,8 @@ namespace XmasHell.Entities.Bosses
         public Vector2 InitialPosition;
         private Sprite _hpBar;
         private bool _destroyed;
+        private bool _bossEntranceAnimation;
+        private bool _ready;
 
         public bool Invincible;
 
@@ -221,6 +223,11 @@ namespace XmasHell.Entities.Bosses
             return 0f;
         }
 
+        public bool IsReady()
+        {
+            return _ready;
+        }
+
         #endregion
 
         #region Setters
@@ -248,10 +255,7 @@ namespace XmasHell.Entities.Bosses
             BossType = type;
             _playerPositionDelegate = playerPositionDelegate;
 
-            InitialPosition = new Vector2(
-                Game.ViewportAdapter.VirtualWidth / 2f,
-                Game.ViewportAdapter.VirtualHeight * 0.15f
-            );
+            InitialPosition = GameConfig.BossDefaultPosition;
 
             // Behaviours
             Behaviours = new List<AbstractBossBehaviour>();
@@ -339,7 +343,6 @@ namespace XmasHell.Entities.Bosses
             }
 
             CurrentAnimator = _animators.First();
-            CurrentAnimator.Position = InitialPosition;
         }
 
         protected virtual void InitializePhysics()
@@ -381,19 +384,26 @@ namespace XmasHell.Entities.Bosses
 
         public virtual void Reset()
         {
-            Game.GameManager.MoverManager.Clear();
-            CurrentAnimator.Position = InitialPosition;
-            Invincible = false;
-            Tinted = false;
-            _destroyed = false;
-
-            Direction = Vector2.Zero;
-            Speed = GameConfig.BossDefaultSpeed;
-            CurrentBehaviourIndex = 0;
-            PreviousBehaviourIndex = -1;
-
             foreach (var behaviour in Behaviours)
                 behaviour.Reset();
+
+            _bossEntranceAnimation = true;
+            _ready = false;
+            _destroyed = false;
+
+            Game.GameManager.MoverManager.Clear();
+            Position(new Vector2(InitialPosition.X, InitialPosition.Y - 500f));
+            Invincible = true;
+            Tinted = false;
+            TargetingPosition = false;
+            TargetingAngle = false;
+
+            CurrentBehaviourIndex = 0;
+            PreviousBehaviourIndex = -1;
+            Direction = Vector2.UnitY;
+            Speed = GameConfig.BossDefaultSpeed;
+
+            CurrentAnimator.Play("Idle");
         }
 
         private void RestoreDefaultState()
@@ -759,6 +769,17 @@ namespace XmasHell.Entities.Bosses
             if (_destroyed)
                 return;
 
+            if (_bossEntranceAnimation)
+            {
+                if (Position().EqualsWithTolerence(InitialPosition, 1E-02f))
+                {
+                    Position(InitialPosition);
+                    _ready = true;
+                    _bossEntranceAnimation = false;
+                    Invincible = false;
+                }
+            }
+
             UpdatePosition(gameTime);
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
@@ -908,6 +929,9 @@ namespace XmasHell.Entities.Bosses
 
         private void UpdateBehaviour(GameTime gameTime)
         {
+            if (!_ready)
+                return;
+
             UpdateBehaviourIndex();
 
             if (_destroyed)
