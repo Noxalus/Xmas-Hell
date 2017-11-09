@@ -1,54 +1,54 @@
-﻿using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using System;
+using System.Linq;
 
 namespace XmasHell.Controls
 {
-    class InputManager : GameComponent
+    internal class InputManager : GameComponent
     {
         #region Mouse Field Region
 
-        static MouseState _mouseState;
-        static MouseState _lastMouseState;
+        private static MouseState _mouseState;
+        private static MouseState _lastMouseState;
 
-        #endregion
+        #endregion Mouse Field Region
 
         #region Keyboard Field Region
 
-        static KeyboardState _keyboardState;
-        static KeyboardState _lastKeyboardState;
+        private static KeyboardState _keyboardState;
+        private static KeyboardState _lastKeyboardState;
 
-        #endregion
+        #endregion Keyboard Field Region
 
         #region Game Pad Field Region
 
-        static GamePadState[] _gamePadStates;
-        static GamePadState[] _lastGamePadStates;
+        private static GamePadState[] _gamePadStates;
+        private static GamePadState[] _lastGamePadStates;
 
-        #endregion
+        #endregion Game Pad Field Region
 
         #region Touch Field Region
 
-        static TouchCollection _touchState;
-        static TouchCollection _lastTouchState;
+        private static TouchCollection _touchState;
+        private static TouchCollection _lastTouchState;
 
-        #endregion
+        #endregion Touch Field Region
 
         #region Mouse Property Region
 
         public static MouseState MouseState => _mouseState;
         public static MouseState LastMouseState => _lastMouseState;
 
-        #endregion
+        #endregion Mouse Property Region
 
         #region Keyboard Property Region
 
         public static KeyboardState KeyboardState => _keyboardState;
         public static KeyboardState LastKeyboardState => _lastKeyboardState;
 
-        #endregion
+        #endregion Keyboard Property Region
 
         #region Game Pad Property Region
 
@@ -62,14 +62,14 @@ namespace XmasHell.Controls
             get { return _lastGamePadStates; }
         }
 
-        #endregion
+        #endregion Game Pad Property Region
 
         #region Touch Property Region
 
         public static TouchCollection TouchState => _touchState;
         public static TouchCollection LastTouchState => _lastTouchState;
 
-        #endregion
+        #endregion Touch Property Region
 
         #region Constructor Region
 
@@ -84,9 +84,9 @@ namespace XmasHell.Controls
                 _gamePadStates[(int)index] = GamePad.GetState(index);
         }
 
-        #endregion
+        #endregion Constructor Region
 
-#region XNA methods
+        #region XNA methods
 
         public override void Initialize()
         {
@@ -111,9 +111,9 @@ namespace XmasHell.Controls
             base.Update(gameTime);
         }
 
-#endregion
+        #endregion XNA methods
 
-#region General Method Region
+        #region General Method Region
 
         public static void Flush()
         {
@@ -200,7 +200,7 @@ namespace XmasHell.Controls
                 ButtonPressed(Buttons.Back, PlayerIndex.One));
         }
 
-        #endregion
+        #endregion General Method Region
 
         #region Mouse Region
 
@@ -241,9 +241,9 @@ namespace XmasHell.Controls
             return _mouseState.ScrollWheelValue < _lastMouseState.ScrollWheelValue;
         }
 
-#endregion
+        #endregion Mouse Region
 
-#region Keyboard Region
+        #region Keyboard Region
 
         public static bool KeyReleased(Keys key)
         {
@@ -272,7 +272,7 @@ namespace XmasHell.Controls
             return _keyboardState.GetPressedKeys();
         }
 
-        #endregion
+        #endregion Keyboard Region
 
         #region Touch Region
 
@@ -301,7 +301,7 @@ namespace XmasHell.Controls
             return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : (_lastTouchState.Count > 0) ? _lastTouchState[0].Position.ToPoint() : Point.Zero;
         }
 
-        #endregion
+        #endregion Touch Region
 
         #region Game Pad Region
 
@@ -332,6 +332,6 @@ namespace XmasHell.Controls
             return Enum.GetValues(typeof(Buttons)).Cast<Buttons>().Where(button => ButtonPressed(button, index)).ToArray();
         }
 
-        #endregion
+        #endregion Game Pad Region
     }
 }

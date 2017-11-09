@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 
 namespace XmasHell.Background
 {
@@ -18,7 +16,6 @@ namespace XmasHell.Background
             BackgroundEffect.Parameters["uInnerAmplitude"].SetValue(2.5f);
             BackgroundEffect.Parameters["uOuterAmplitude"].SetValue(1.5f);
             BackgroundEffect.Parameters["uResolution"].SetValue(GameConfig.VirtualResolution.ToVector2());
-
         }
 
         public void ChangeGradientColors(Color brightColor, Color darkColor)

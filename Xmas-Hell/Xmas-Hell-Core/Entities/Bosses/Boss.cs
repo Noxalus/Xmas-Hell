@@ -399,6 +399,7 @@ namespace XmasHell.Entities.Bosses
         private void RestoreDefaultState()
         {
             Direction = Vector2.Zero;
+            Rotation(0);
             CurrentAnimator.Play("Idle");
         }
 
@@ -762,6 +763,9 @@ namespace XmasHell.Entities.Bosses
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
 
+            if (_destroyed)
+                return;
+
             // Is outside of the screen?
             IsOutside = Game.GameManager.IsOutside(Position());
 
@@ -905,6 +909,9 @@ namespace XmasHell.Entities.Bosses
         private void UpdateBehaviour(GameTime gameTime)
         {
             UpdateBehaviourIndex();
+
+            if (_destroyed)
+                return;
 
             if (CurrentBehaviourIndex != PreviousBehaviourIndex)
             {

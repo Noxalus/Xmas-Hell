@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using BulletML;
+﻿using BulletML;
 using Microsoft.Xna.Framework;
-using XmasHell.Performance;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using XmasHell.Performance;
 
 namespace XmasHell.BulletML
 {

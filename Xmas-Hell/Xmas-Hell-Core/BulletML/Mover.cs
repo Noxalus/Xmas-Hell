@@ -1,5 +1,4 @@
-﻿using System;
-using BulletML;
+﻿using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Sprites;
@@ -26,6 +25,7 @@ namespace XmasHell.BulletML
         {
             return _position;
         }
+
         public virtual Vector2 LocalPosition()
         {
             return Vector2.Zero;
@@ -93,7 +93,7 @@ namespace XmasHell.BulletML
 
             if (!topBullet)
             {
-                _hitbox = new CollisionCircle(this, Vector2.Zero, Sprite.BoundingRectangle.Width /2f);
+                _hitbox = new CollisionCircle(this, Vector2.Zero, Sprite.BoundingRectangle.Width / 2f);
                 _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
             }
         }
