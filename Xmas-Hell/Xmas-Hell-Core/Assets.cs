@@ -226,15 +226,14 @@ namespace XmasHell
             };
 
             // Load musics
-            _musics = new List<Song>()
+            _musics = new List<Song>
             {
-                content.Load<Song>("Audio/BGM/boss-theme-intro"),
-                content.Load<Song>("Audio/BGM/boss-theme-main"),
+                content.Load<Song>("Audio/BGM/boss-theme"),
                 content.Load<Song>("Audio/BGM/main-menu")
             };
 
             // Load sounds
-            _soundEffects = new List<SoundEffect>()
+            _soundEffects = new List<SoundEffect>
             {
                 content.Load<SoundEffect>("Audio/SE/shoot1"),
                 content.Load<SoundEffect>("Audio/SE/shoot2"),

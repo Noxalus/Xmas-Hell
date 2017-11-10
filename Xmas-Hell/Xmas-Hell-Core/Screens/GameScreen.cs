@@ -8,6 +8,7 @@ using XmasHell.GUI;
 using XmasHell.Screens.Menu;
 using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 using XmasHell.Extensions;
+using XmasHell.Audio;
 
 namespace XmasHell.Screens
 {
@@ -181,11 +182,7 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.UILabels.Add(_timerLabelShadow);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
 
-            // Should play music (doesn't seem to work for now...)
-            XnaMediaPlayer.Stop();
-            //XnaMediaPlayer.Volume = 1f;
-            //XnaMediaPlayer.IsRepeating = true;
-            //XnaMediaPlayer.Play(Assets.GetMusic("Audio/BGM/boss-theme"));
+            MusicManager.PlayGameMusic(true);
         }
 
         public override void Hide()

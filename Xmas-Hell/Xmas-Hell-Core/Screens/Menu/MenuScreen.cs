@@ -1,12 +1,11 @@
 ﻿using BulletML;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using XmasHell.Audio;
 using XmasHell.BulletML;
 using XmasHell.Rendering;
 using XmasHell.Spriter;
-using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
 namespace XmasHell.Screens.Menu
 {
@@ -56,12 +55,7 @@ namespace XmasHell.Screens.Menu
         {
             base.Show(reset);
 
-            if (XnaMediaPlayer.State == MediaState.Stopped)
-            {
-                XnaMediaPlayer.Volume = 1f;
-                XnaMediaPlayer.IsRepeating = true;
-                XnaMediaPlayer.Play(Assets.GetMusic("main-menu"));
-            }
+            MusicManager.PlayMenuMusic();
 
             InitializeClouds();
         }

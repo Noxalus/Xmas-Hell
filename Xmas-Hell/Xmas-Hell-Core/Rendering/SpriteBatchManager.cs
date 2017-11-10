@@ -237,10 +237,8 @@ namespace XmasHell.Rendering
             foreach (var mover in BossBullets)
                 _game.SpriteBatch.Draw(mover.Sprite);
 
-
             foreach (var laser in Lasers)
                 laser.Draw(gameTime);
-
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletDraw);
 

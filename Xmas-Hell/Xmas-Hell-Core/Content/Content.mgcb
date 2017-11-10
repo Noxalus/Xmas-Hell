@@ -490,18 +490,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasBell/clapper-ball.png
 
-#begin Audio/BGM/boss-theme-intro.ogg
-/importer:OggImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audio/BGM/boss-theme-intro.ogg
-
-#begin Audio/BGM/boss-theme-main.ogg
-/importer:OggImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Audio/BGM/boss-theme-main.ogg
-
 #begin Graphics/Sprites/Bosses/XmasBell/game-area.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2156,4 +2144,10 @@
 /importer:SpriterImporter
 /processor:PassThroughProcessor
 /build:Graphics/Sprites/Bosses/XmasSanta/xmas-santa.scml
+
+#begin Audio/BGM/boss-theme.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/boss-theme.ogg
 

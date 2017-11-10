@@ -11,7 +11,7 @@ using XmasHell.Particles;
 using XmasHell.Physics;
 using Bullet = XmasHell.Entities.Bullet;
 using XmasHell.Entities.Bosses;
-using XmasHell.Sound;
+using XmasHell.Audio;
 
 namespace XmasHell
 {

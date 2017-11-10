@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Timers;
 using MonoGame.Extended.ViewportAdapters;
-using XmasHell.Sound;
+using XmasHell.Audio;
 
 namespace XmasHell
 {

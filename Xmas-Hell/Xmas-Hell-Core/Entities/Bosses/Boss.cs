@@ -20,7 +20,7 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics;
 using FarseerPhysics.Factories;
 using XmasHell.Physics.DebugView;
-using XmasHell.Sound;
+using XmasHell.Audio;
 
 namespace XmasHell.Entities.Bosses
 {

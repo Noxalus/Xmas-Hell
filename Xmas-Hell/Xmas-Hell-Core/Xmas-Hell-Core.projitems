@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Assets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Audio\MusicManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\AbstractBackground.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\BackgroundSnowflake.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Background\SnowRainBackground.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\IBloomService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sound\SoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Audio\SoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\ActionPoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\SpriterSubstituteEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Spriter\CustomSpriterAnimator.cs" />
