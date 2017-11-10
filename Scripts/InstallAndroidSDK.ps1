@@ -38,8 +38,8 @@ Function Install-AndroidSDK
 }
 
 # Tools
-Echo 'y' | & $AndroidToolPath update sdk -u -a -t tools
-Echo 'y' | & $AndroidToolPath update sdk -u -a -t platform-tools
+Echo 'y' | & $AndroidToolPath update sdk -u -a -t tools --force
+Echo 'y' | & $AndroidToolPath update sdk -u -a -t platform-tools --force
 
 # SDKs
 foreach ($v in $versions)
