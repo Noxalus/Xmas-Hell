@@ -30,6 +30,9 @@ namespace XmasHell.Screens.Menu
 
             if (SpriterFile["Main"].Speed < 0f)
             SpriterFile["Main"].Speed *= -1f;
+
+            foreach (var b in _menuButtons)
+                b.Enable(false);
         }
 
         private void OnSettingsButtonAction(object button, Point position)
