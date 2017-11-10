@@ -68,7 +68,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             if (Boss.Game.GameManager.IsOutside(Boss.ActionPointPosition()))
             {
-                Boss.Game.Camera.Shake(0.5f, 100f);
+                Boss.Game.Camera.Shake(0.5f, 50f);
 
                 Boss.TriggerPattern(
                     "XmasCandy/pattern2",
