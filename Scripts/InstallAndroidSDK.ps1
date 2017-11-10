@@ -20,13 +20,15 @@ Function Get-AllAndroidSDKs() {
 Function Execute-AndroidSDKInstall() {
     [CmdletBinding()]
     Param(
+        [string]$AndroidSDKManagerPath = "${env:ProgramFiles(x86)}\Android\android-sdk\tools\bin\sdkmanager",
         [Parameter(Mandatory=$true, Position=0)]
         [PSObject[]]$sdks
     )
 
     $sdkIndexes = $sdks |% { $_.Index }
     $sdkIndexArgument = [string]::Join(',', $sdkIndexes)
-    Echo 'y' | & $AndroidToolPath update sdk -u -a -t $sdkIndexArgument --force
+    # & $AndroidToolPath update sdk -u -a -t $sdkIndexArgument
+    Echo 'y' | & $AndroidSDKManagerPath --update
 }
 
 Function Install-AndroidSDK
@@ -38,8 +40,8 @@ Function Install-AndroidSDK
 }
 
 # Tools
-Echo 'y' | & $AndroidToolPath update sdk -u -a -t tools --force
-Echo 'y' | & $AndroidToolPath update sdk -u -a -t platform-tools --force
+# Echo 'y' | & $AndroidToolPath update sdk -u -a -t tools --force
+# Echo 'y' | & $AndroidToolPath update sdk -u -a -t platform-tools --force
 
 # SDKs
 foreach ($v in $versions)
