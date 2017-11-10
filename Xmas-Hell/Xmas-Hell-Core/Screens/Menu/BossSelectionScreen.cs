@@ -129,11 +129,11 @@ namespace XmasHell.Screens.Menu
             _bossPanelButtons.Add(startBattleBossPanelButton);
 
             // Labels
-            _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", SpriterFile["BossPanel"], true);
-            _bestTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-best-time-label.png", SpriterFile["BossPanel"]);
-            _playTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-play-time-label.png", SpriterFile["BossPanel"]);
-            _playerDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-player-deaths-label.png", SpriterFile["BossPanel"]);
-            _bossDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-boss-deaths-label.png", SpriterFile["BossPanel"]);
+            _bossNameLabel = new SpriterGuiLabel("Unknown", Assets.GetFont("Graphics/Fonts/ui-title"), "boss-panel-title-label.png", SpriterFile["BossPanel"], Vector2.Zero, true);
+            _bestTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-best-time-label.png", SpriterFile["BossPanel"], Vector2.Zero);
+            _playTimeLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-play-time-label.png", SpriterFile["BossPanel"], Vector2.Zero);
+            _playerDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-player-deaths-label.png", SpriterFile["BossPanel"], Vector2.Zero);
+            _bossDeathLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "boss-panel-boss-deaths-label.png", SpriterFile["BossPanel"], Vector2.Zero);
 
             _bossPanelLabels.Add(_bossNameLabel);
             _bossPanelLabels.Add(_bestTimeLabel);

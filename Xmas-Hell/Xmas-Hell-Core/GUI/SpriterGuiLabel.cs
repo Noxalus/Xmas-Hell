@@ -8,18 +8,21 @@ namespace XmasHell.GUI
     {
         private string _replacedPartFilename;
         private CustomSpriterAnimator _referenceAnimator;
+        private Vector2 _relativePosition;
 
         public SpriterGuiLabel(
             string text,
             BitmapFont font,
             string spritePartCompleteFilename,
             CustomSpriterAnimator referenceAnimator,
+            Vector2 relativePosition,
             bool center = false) :
-            base(text, font, Vector2.Zero, Color.Black, center)
+            base(text, font, relativePosition, Color.Black, center)
         {
             _replacedPartFilename = spritePartCompleteFilename;
             _referenceAnimator = referenceAnimator;
             _referenceAnimator.AddHiddenTexture(_replacedPartFilename);
+            _relativePosition = relativePosition;
         }
 
         public override void Update(GameTime gameTime)
@@ -39,7 +42,7 @@ namespace XmasHell.GUI
                 var dummyPosition = new Vector2(spriterDummyData.X, -spriterDummyData.Y);
                 var dummyScale = new Vector2(spriterDummyData.ScaleX, spriterDummyData.ScaleY);
 
-                Position = _referenceAnimator.Position + dummyPosition;
+                Position = _referenceAnimator.Position + dummyPosition + _relativePosition;
                 Rotation = -MathHelper.ToRadians(spriterDummyData.Angle);
                 Scale = dummyScale;
                 Color = new Color(Color, spriterDummyData.Alpha);

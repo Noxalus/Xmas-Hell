@@ -7,6 +7,7 @@ using XmasHell.Rendering;
 using XmasHell.GUI;
 using XmasHell.Screens.Menu;
 using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
+using XmasHell.Extensions;
 
 namespace XmasHell.Screens
 {
@@ -24,14 +25,14 @@ namespace XmasHell.Screens
         private List<SpriterGuiLabel> _endGamePanelLabels = new List<SpriterGuiLabel>();
         private SpriterGuiLabel _endGameTitleLabel;
         private SpriterGuiLabel _endGameDeathCounterLabel;
-        private SpriterGuiLabel _endGameTauntLabel;
+        private List<SpriterGuiLabel> _endGameTauntLabels;
 
         private static List<String> _tauntStrings = new List<string>()
         {
             "You suck!",
-            "Your goal is to avoid your opponent's\n bullet, not to collect them!",
-            "Drag your finger over\n the screen to move",
-            "Sorry, there is no in \napp-purchases to help you here"
+            "Your goal is to avoid your opponent's bullet, not to collect them!",
+            "Drag your finger over the screen to move",
+            "Sorry, there is no in app-purchases to help you here"
         };
 
         private float GetRank()
@@ -86,13 +87,12 @@ namespace XmasHell.Screens
             _endGamePanelButtons.Add(retryPanelButton);
 
             // GUI
-            _endGameTitleLabel = new SpriterGuiLabel("You died!", Assets.GetFont("Graphics/Fonts/ui-title"), "end-game-panel-title-label.png", _spriterFile["EndGamePanel"], true);
-            _endGameDeathCounterLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-player-deaths-label.png", _spriterFile["EndGamePanel"], true);
-            _endGameTauntLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-taunt-label.png", _spriterFile["EndGamePanel"], true);
+            _endGameTitleLabel = new SpriterGuiLabel("You died!", Assets.GetFont("Graphics/Fonts/ui-title"), "end-game-panel-title-label.png", _spriterFile["EndGamePanel"], Vector2.Zero, true);
+            _endGameDeathCounterLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-player-deaths-label.png", _spriterFile["EndGamePanel"], Vector2.Zero, true);
+            _endGameTauntLabels = new List<SpriterGuiLabel>();
 
             _endGamePanelLabels.Add(_endGameTitleLabel);
             _endGamePanelLabels.Add(_endGameDeathCounterLabel);
-            _endGamePanelLabels.Add(_endGameTauntLabel);
         }
 
         #region Animations finished
@@ -131,7 +131,20 @@ namespace XmasHell.Screens
 
             // GUI
             _endGameDeathCounterLabel.Text = Game.PlayerData.BossAttempts(Game.GameManager.GetCurrentBoss().BossType) + " times already";
-            _endGameTauntLabel.Text = GetRandomTauntString();
+
+            var font = Assets.GetFont("Graphics/Fonts/ui");
+            var randomTaunt = GetRandomTauntString();
+            var tauntStrings = StringExtension.FormatBoxString(randomTaunt, 260, font);
+
+            for (var i  = 0; i < tauntStrings.Count; i++)
+            {
+                var relativePosition = new Vector2(0, i * font.MeasureString(tauntStrings[i]).Height);
+                var label = new SpriterGuiLabel(tauntStrings[i], font,
+                    "end-game-panel-taunt-label.png", _spriterFile["EndGamePanel"], relativePosition, true);
+
+                _endGameTauntLabels.Add(label);
+                _endGamePanelLabels.Add(label);
+            }
 
             foreach (var button in _endGamePanelButtons)
                 Game.GuiManager.AddButton(button);
@@ -149,6 +162,11 @@ namespace XmasHell.Screens
 
             foreach (var label in _endGamePanelLabels)
                 Game.GuiManager.RemoveLabel(label);
+
+            foreach (var endGameTauntLabel in _endGameTauntLabels)
+                _endGamePanelLabels.Remove(endGameTauntLabel);
+
+            _endGameTauntLabels.Clear();
 
             _spriterFile["EndGamePanel"].Play("Hide");
             Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);

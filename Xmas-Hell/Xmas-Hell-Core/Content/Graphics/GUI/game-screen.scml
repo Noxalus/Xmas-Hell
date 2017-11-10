@@ -37,17 +37,17 @@
             </timeline>
             <timeline id="3" name="end-game-panel-title-label">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" y="445.238095" angle="0"/>
+                    <object folder="0" file="3" y="482.238095" angle="0"/>
                 </key>
             </timeline>
             <timeline id="4" name="end-game-panel-player-deaths-label">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" y="228.047619" angle="0"/>
+                    <object folder="0" file="4" y="375.320346" angle="0"/>
                 </key>
             </timeline>
             <timeline id="5" name="end-game-panel-taunt-label">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" y="-90"/>
+                    <object folder="0" file="5" y="257" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -62,10 +62,10 @@
             </mainline>
             <timeline id="0" name="EndGamePanel" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="0" animation="0" t="0" x="-0" y="0" scale_x="0.00001" scale_y="0.00001"/>
+                    <object entity="0" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object entity="0" animation="0" t="0" x="-0" y="0" scale_y="1"/>
+                    <object entity="0" animation="0" t="0" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -80,10 +80,10 @@
             </mainline>
             <timeline id="0" name="EndGamePanel" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="0" animation="0" t="0" x="-0" y="0" scale_y="1"/>
+                    <object entity="0" animation="0" t="0" angle="0"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object entity="0" animation="0" t="0" x="-0" y="0" scale_x="0.00001" scale_y="0.00001"/>
+                    <object entity="0" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
             </timeline>
         </animation>
@@ -97,7 +97,7 @@
             </mainline>
             <timeline id="0" name="game-panel-close-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="1"/>
+                    <object folder="0" file="1" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -111,7 +111,7 @@
             </mainline>
             <timeline id="0" name="game-panel-retry-button">
                 <key id="0" spin="0">
-                    <object folder="0" file="2"/>
+                    <object folder="0" file="2" angle="0"/>
                 </key>
             </timeline>
         </animation>
