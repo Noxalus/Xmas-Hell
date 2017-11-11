@@ -187,8 +187,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 StartTrollPattern();
 
             // Increase animation speed over time
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Boss.CurrentAnimator.Speed = MathHelper.Clamp(Boss.CurrentAnimator.Speed + 0.01f * deltaTime, 1f, 4f);
+            Boss.CurrentAnimator.Speed = MathHelper.Clamp(Boss.CurrentAnimator.Speed + 0.01f * gameTime.GetElapsedSeconds(), 1f, 4f);
 
             UpdateTrollPattern(gameTime);
             UpdateCenterPattern(gameTime);
@@ -219,9 +218,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
                 if (_centerPatternDuration.TotalMilliseconds > 0)
                 {
                     _centerPatternDuration -= gameTime.ElapsedGameTime;
-
-                    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Boss.Rotation(Boss.Rotation() + (2.5f * deltaTime));
+                    Boss.Rotation(Boss.Rotation() + (2.5f * gameTime.GetElapsedSeconds()));
                 }
                 else
                     StopCenterPattern();

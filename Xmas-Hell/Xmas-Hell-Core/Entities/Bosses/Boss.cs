@@ -906,7 +906,7 @@ namespace XmasHell.Entities.Bosses
                 {
                     var currentRotation = CurrentAnimator.Rotation;
                     var distance = Math.Abs(currentRotation - _targetAngle);
-                    var deltaDistance = AngularVelocity*gameTime.GetElapsedSeconds();
+                    var deltaDistance = AngularVelocity * gameTime.GetElapsedSeconds();
 
                     if (distance < deltaDistance)
                     {
