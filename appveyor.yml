@@ -13,8 +13,25 @@ environment:
   ANDROID_KEYSTORE_PATH: Keystore\KawaiiGames.keystore
   ANDROID_PROJECT_PATH: Xmas-Hell\Xmas-Hell-Android
   ANDROID_PROJECT_FILENAME: Xmas-Hell-Android.csproj
+  ANDROID_HOME: "C:\\android-sdk-windows"
+  ANDROID_TOOLS_URL: "https://dl.google.com/android/repository/sdk-tools-windows-3859397.zip"
+  TMP_ANDROID_TOOLS_FOLDER: "C:\\android-tools"
+  JAVA_HOME: "C:\\Program Files\\Java\\jdk1.8.0"
+init:
+  # Download the Android SDK
+  - appveyor DownloadFile %ANDROID_TOOLS_URL% -FileName android-tools.zip
+  - 7z x android-tools.zip -o"%TMP_ANDROID_TOOLS_FOLDER%" > nul
 install:
-  - ps: '& ./Scripts/InstallAndroidSDK.ps1 -versions 26'
+  - mkdir %ANDROID_HOME%\licenses
+  - ps: 'Add-Content -Value "`n8933bad161af4178b1185d1a37fbf41ea5269c55`n`nd56f5187479451eabf01fb78af6dfcb131a6481e" -Path $env:ANDROID_HOME\licenses\android-sdk-license -Encoding ASCII'
+  - ps: 'Add-Content -Value "`n84831b9409646a918e30573bab4c9c91346d8abd`n504667f4c0de7af1a06de9f4b1727b84351f2910" -Path $env:ANDROID_HOME\licenses\android-sdk-preview-license -Encoding ASCII'
+  # - %TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat --licenses'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat tools --sdk_root=%ANDROID_HOME%'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat platform-tools --sdk_root=%ANDROID_HOME%'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat build-tools;26.0.2 --sdk_root=%ANDROID_HOME%'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat platforms;android-26 --sdk_root=%ANDROID_HOME%'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat extras;android;m2repository --sdk_root=%ANDROID_HOME%'
+  - '%TMP_ANDROID_TOOLS_FOLDER%\tools\bin\sdkmanager.bat --list --sdk_root=%ANDROID_HOME%'
   - ps: '& ./Scripts/InstallDependencies.ps1'
 before_build:
   - xamarin-component.exe restore "%ANDROID_PROJECT_PATH%\%ANDROID_PROJECT_FILENAME%"
