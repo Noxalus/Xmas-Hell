@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using XmasHell.Extensions;
 using XmasHell.BulletML;
+using MonoGame.Extended;
 
 namespace XmasHell.Entities.Bosses.XmasBell
 {

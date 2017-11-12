@@ -26,7 +26,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Behaviours.Add(new XmasBellBehaviour5(this));
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();
 

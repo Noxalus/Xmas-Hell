@@ -345,9 +345,9 @@ namespace XmasHell.Entities.Bosses
             CurrentAnimator = _animators.First();
         }
 
-        protected virtual void InitializePhysics()
+        protected virtual void InitializePhysics(bool setupPhysicsWorld = false)
         {
-            if (PhysicsEnabled)
+            if (setupPhysicsWorld)
                 SetupPhysicsWorld();
         }
 

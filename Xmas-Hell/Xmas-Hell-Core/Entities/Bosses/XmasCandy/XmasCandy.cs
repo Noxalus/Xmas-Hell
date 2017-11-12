@@ -43,7 +43,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             CurrentAnimator.StretchOut = false;
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();
 

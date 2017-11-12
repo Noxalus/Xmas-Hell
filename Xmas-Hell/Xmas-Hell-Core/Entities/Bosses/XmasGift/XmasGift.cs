@@ -1,11 +1,9 @@
-using System;
 using BulletML;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using XmasHell.Physics.Collision;
-using XmasHell.Physics.DebugView;
 
 namespace XmasHell.Entities.Bosses.XmasGift
 {
@@ -24,11 +22,9 @@ namespace XmasHell.Entities.Bosses.XmasGift
             Behaviours.Add(new XmasGiftBehaviour1(this));
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
-            PhysicsEnabled = true;
-
-            base.InitializePhysics();
+            base.InitializePhysics(true);
 
             // Physics
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png", Vector2.Zero, 1f));

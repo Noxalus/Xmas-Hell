@@ -28,7 +28,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             base.LoadSpriterSprite();
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();
 

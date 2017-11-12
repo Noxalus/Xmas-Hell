@@ -22,7 +22,7 @@ namespace XmasHell.Entities.Bosses.XmasTree
             base.LoadSpriterSprite();
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();
 

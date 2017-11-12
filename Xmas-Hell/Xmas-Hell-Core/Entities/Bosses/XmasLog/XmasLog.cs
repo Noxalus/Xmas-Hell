@@ -19,7 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
             Behaviours.Add(new XmasLogBehaviour1(this));
         }
 
-        protected override void InitializePhysics()
+        protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();
 
