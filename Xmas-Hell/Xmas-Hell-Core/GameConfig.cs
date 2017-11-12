@@ -58,6 +58,7 @@ namespace XmasHell
         public static bool GodMode = false;
         public static bool DebugPhysics = false;
         public static bool DisableCollision = false;
+        public static bool DisableParticles = false;
         public static bool DebugScreen = false;
         public static bool EnableBloom = true;
         public static bool ShowPerformanceInfo = false;
@@ -80,13 +81,13 @@ namespace XmasHell
             //PerformanceStopwatchType.GlobalDraw,
             //PerformanceStopwatchType.ClearColorDraw,
             //PerformanceStopwatchType.BackgroundDraw,
-            PerformanceStopwatchType.SpriteBatchManagerDraw,
-            PerformanceStopwatchType.BackgroundParticleDraw,
-            PerformanceStopwatchType.GameParticleDraw,
-            PerformanceStopwatchType.BossBulletDraw,
-            PerformanceStopwatchType.PlayerBulletDraw,
-            PerformanceStopwatchType.BloomDraw,
-            PerformanceStopwatchType.BloomRenderTargetDraw,
+            //PerformanceStopwatchType.SpriteBatchManagerDraw,
+            //PerformanceStopwatchType.BackgroundParticleDraw,
+            //PerformanceStopwatchType.GameParticleDraw,
+            //PerformanceStopwatchType.BossBulletDraw,
+            //PerformanceStopwatchType.PlayerBulletDraw,
+            //PerformanceStopwatchType.BloomDraw,
+            //PerformanceStopwatchType.BloomRenderTargetDraw,
             PerformanceStopwatchType.UIDraw,
             PerformanceStopwatchType.PerformanceManagerDraw
         };

@@ -40,6 +40,13 @@ namespace XmasHell.Particles
             InitializeParticleEffects();
         }
 
+        public void Clear()
+        {
+            foreach (var particleEffet in _particleEffects)
+                foreach (var particleEmitter in particleEffet.Emitters)
+                    particleEmitter.Dispose();
+        }
+
         private void InitializeParticleEffects()
         {
             _particleEffects.Clear();
@@ -189,21 +196,27 @@ namespace XmasHell.Particles
 
         public void EmitBossHitParticles(Vector2 position)
         {
-            _bossHitParticles.Trigger(position);
+            if (!GameConfig.DisableParticles)
+                _bossHitParticles.Trigger(position);
         }
 
         public void EmitPlayerDestroyedParticles(Vector2 position)
         {
-            _playerDestroyedParticles.Trigger(position);
+            if (!GameConfig.DisableParticles)
+                _playerDestroyedParticles.Trigger(position);
         }
 
         public void EmitBossDestroyedParticles(Vector2 position)
         {
-            _bossDestroyedParticles.Trigger(position);
+            if (!GameConfig.DisableParticles)
+                _bossDestroyedParticles.Trigger(position);
         }
 
         public void Update(GameTime gameTime)
         {
+            if (GameConfig.DisableParticles)
+                return;
+
             foreach (var particleEffect in _particleEffects)
                 particleEffect.Update(gameTime.GetElapsedSeconds());
 
