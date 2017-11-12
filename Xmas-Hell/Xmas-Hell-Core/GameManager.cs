@@ -129,6 +129,7 @@ namespace XmasHell
         public void Dispose()
         {
             MoverManager.Clear();
+            ParticleManager.Clear();
 
             foreach (var bullet in _bullets)
                 bullet.Destroy();
@@ -141,7 +142,11 @@ namespace XmasHell
             // Should be loaded
             _boss = null;
 
+            _endGame = false;
+            _endGameFirstTime = false;
             _ready = false;
+            _game.Camera.Zoom = 1f;
+
         }
 
         public void Reset()
@@ -209,7 +214,6 @@ namespace XmasHell
             foreach (var laser in _lasers)
                 laser.Update(gameTime);
 
-            MoverManager.Update();
             CollisionWorld.Update(gameTime);
             ParticleManager.Update(gameTime);
 

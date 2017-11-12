@@ -97,5 +97,19 @@ namespace XmasHell.Extensions
 
             return (area == 0) ? Vector2.Zero : centroid;
         }
+
+        public static Vector2 GetNormalFromPositionAndRectangle(Vector2 position, Rectangle rectangle)
+        {
+            if (position.X < rectangle.X)
+                return new Vector2(1f, 0f);
+            if (position.X > rectangle.X + rectangle.Width)
+                return new Vector2(-1f, 0f);
+            if (position.Y < rectangle.Y)
+                return new Vector2(0f, 1f);
+            if (position.Y > rectangle.Y + rectangle.Height)
+                return new Vector2(0f, -1f);
+
+            return Vector2.Zero;
+        }
     }
 }

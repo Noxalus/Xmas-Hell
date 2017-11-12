@@ -15,9 +15,16 @@ namespace XmasHell.BulletML
         private Dictionary<string, BulletPattern> _patterns = new Dictionary<string, BulletPattern>();
         public List<Texture2D> BulletTextures = new List<Texture2D>();
 
+        private Rectangle? _bounceBounds;
+
         public MoverManager(XmasHell game)
         {
             _game = game;
+        }
+
+        public void SetBounceBounds(Rectangle bounceBounds)
+        {
+            _bounceBounds = bounceBounds;
         }
 
         public void SetPlayerPositionDelegate(PositionDelegate playerDelegate)
@@ -35,6 +42,9 @@ namespace XmasHell.BulletML
             var mover = new Mover(_game, this, topBullet);
 
             mover.Init(topBullet);
+
+            if (_bounceBounds.HasValue)
+                mover.BounceBounds = _bounceBounds.Value;
 
             // Limit the number of bullet
             if (Movers.Count >= GameConfig.MaximumBullets)
@@ -79,6 +89,9 @@ namespace XmasHell.BulletML
                     mover.Direction = direction.Value;
 
                 mover.InitTopNode(_patterns[patternName].RootNode);
+
+                if (_bounceBounds.HasValue)
+                    mover.BounceBounds = _bounceBounds.Value;
             }
         }
 

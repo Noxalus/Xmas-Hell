@@ -1,10 +1,14 @@
-﻿using BulletML;
+﻿using System;
+using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using MonoGame.Extended.Sprites;
 using XmasHell.Entities.Bosses;
+using XmasHell.Extensions;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
+using System.Diagnostics;
 
 namespace XmasHell.BulletML
 {
@@ -16,6 +20,8 @@ namespace XmasHell.BulletML
         public Texture2D Texture;
         public Sprite Sprite;
         private short _currentSpriteIndex;
+        public Rectangle? BounceBounds = null;
+        private bool _outOfBounceBounds = false;
 
         private CollisionElement _hitbox;
         private Vector2 _origin;
@@ -120,6 +126,11 @@ namespace XmasHell.BulletML
                     Sprite = new Sprite(moverManager.BulletTextures[SpriteIndex]);
             }
 
+            if (BounceBounds.HasValue)
+                CheckBounceBounds();
+            else
+                CheckOutOfBounds();
+
             Sprite.Alpha = MathHelper.Lerp(Sprite.Alpha, 1f, 0.05f);
             Sprite.Scale = new Vector2(
                 MathHelper.Lerp(Sprite.Scale.X, 1f, 0.05f),
@@ -131,7 +142,37 @@ namespace XmasHell.BulletML
             Sprite.Scale = Scale();
 
             Sprite.Color = Color;
+        }
 
+        private void CheckBounceBounds()
+        {
+            if (BounceBounds == null || !BounceBounds.HasValue)
+                return;
+
+            if (X < BounceBounds.Value.X || X > BounceBounds.Value.X + BounceBounds.Value.Width ||
+                Y < BounceBounds.Value.Y || Y > BounceBounds.Value.Y + BounceBounds.Value.Height)
+            {
+                if (!_outOfBounceBounds)
+                {
+                    var currentDirection = MathExtension.AngleToDirection(MathHelper.WrapAngle(Direction));
+                    var normal = MathExtension.GetNormalFromPositionAndRectangle(Position(), BounceBounds.Value);
+
+                    Direction = MathHelper.WrapAngle(Vector2.Reflect(
+                        currentDirection,
+                        normal
+                    ).ToAngle() + MathHelper.PiOver2);
+                }
+
+                _outOfBounceBounds = true;
+            }
+            else
+            {
+                _outOfBounceBounds = false;
+            }
+        }
+
+        private void CheckOutOfBounds()
+        {
             if (X < GameConfig.BulletArea.X || X > _game.ViewportAdapter.VirtualWidth + GameConfig.BulletArea.Width ||
                 Y < GameConfig.BulletArea.Y || Y > _game.ViewportAdapter.VirtualHeight + GameConfig.BulletArea.Height)
             {
