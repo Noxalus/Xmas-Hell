@@ -188,6 +188,8 @@ namespace XmasHell
 
         public void Update(GameTime gameTime)
         {
+            MoverManager.Update();
+
             if (!_ready)
                 return;
 
