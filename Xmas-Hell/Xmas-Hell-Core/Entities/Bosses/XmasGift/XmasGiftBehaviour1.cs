@@ -6,12 +6,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
 {
     class XmasGiftBehaviour1 : AbstractBossBehaviour
     {
-        private TimeSpan _newPositionTime;
-        private TimeSpan _bulletFrequence;
-
         public XmasGiftBehaviour1(Boss boss) : base(boss)
         {
-            //InitialBehaviourLife = 100f;
         }
 
         public override void Start()
@@ -22,19 +18,20 @@ namespace XmasHell.Entities.Bosses.XmasGift
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
-            _newPositionTime = TimeSpan.Zero;
-            _bulletFrequence = TimeSpan.Zero;
 
             Boss.CurrentAnimator.Play("Idle");
 
             Boss.StartShootTimer = true;
             Boss.ShootTimerTime = 0.3f;
             Boss.ShootTimerFinished += ShootTimerFinished;
+
+            Boss.Game.GameManager.MoverManager.SetBounceBounds(new Rectangle(0, 0, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y));
         }
 
         private void ShootTimerFinished(object sender, float e)
         {
-            Boss.TriggerPattern("XmasGift/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
+            if (Boss.Game.GameManager.GetBossBullets().Count < 20)
+                Boss.TriggerPattern("XmasGift/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
         }
         public override void Stop()
         {
