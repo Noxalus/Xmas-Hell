@@ -22,6 +22,8 @@ namespace XmasHell
         private Boss _boss;
         private Player _player;
 
+        private bool _ready;
+
         private List<Bullet> _bullets;
         private List<Laser> _lasers;
 
@@ -138,6 +140,8 @@ namespace XmasHell
 
             // Should be loaded
             _boss = null;
+
+            _ready = false;
         }
 
         public void Reset()
@@ -152,6 +156,8 @@ namespace XmasHell
                 _boss.Reset();
                 _game.PlayerData.BossAttempts(_boss.BossType, _game.PlayerData.BossAttempts(_boss.BossType) + 1);
             }
+
+            _ready = true;
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)
@@ -182,6 +188,9 @@ namespace XmasHell
 
         public void Update(GameTime gameTime)
         {
+            if (!_ready)
+                return;
+
             _endGameTimer.Update(gameTime);
 
             if (_endGame)
