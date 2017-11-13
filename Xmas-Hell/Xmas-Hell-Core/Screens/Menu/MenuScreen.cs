@@ -55,7 +55,7 @@ namespace XmasHell.Screens.Menu
         {
             base.Show(reset);
 
-            MusicManager.PlayMenuMusic();
+            Game.MusicManager.PlayMenuMusic();
 
             InitializeClouds();
         }

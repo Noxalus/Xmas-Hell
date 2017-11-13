@@ -1,40 +1,84 @@
-﻿using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace XmasHell.Audio
 {
-    public static class MusicManager
+    public class MusicManager
     {
-        private static bool _menuMusicIsPlaying = false;
-        private static bool _gameMusicIsPlaying = false;
-
-        public static void PlayMenuMusic()
+        private enum MusicState
         {
-            if (_menuMusicIsPlaying)
-                return;
-
-            Assets.GetMusic("boss-theme").Stop(true);
-
-            var mainMenuMusic = Assets.GetMusic("main-menu");
-            mainMenuMusic.IsLooped = true;
-            mainMenuMusic.Play();
-
-            _gameMusicIsPlaying = false;
-            _menuMusicIsPlaying = true;
+            None,
+            MenuTheme,
+            BossIntro,
+            BossTheme
         }
 
-        public static void PlayGameMusic(bool force = false)
+        private MusicState _currentState;
+
+        private Dictionary<string, SoundEffectInstance> _musics;
+
+        public MusicManager()
         {
-            if (_gameMusicIsPlaying && !force)
+        }
+
+        public void Initialize()
+        {
+            _currentState = MusicState.None;
+
+            // Create music instances
+            var menuThemeInstance = Assets.GetMusic("Audio/BGM/main-menu").CreateInstance();
+            var bossIntroInstance = Assets.GetMusic("Audio/BGM/boss-intro").CreateInstance();
+            var bossThemeInstance = Assets.GetMusic("Audio/BGM/boss-theme").CreateInstance();
+
+            menuThemeInstance.IsLooped = true;
+            bossIntroInstance.IsLooped = false;
+            bossThemeInstance.IsLooped = true;
+
+            _musics = new Dictionary<string, SoundEffectInstance>
+            {
+                { "menu-theme", menuThemeInstance },
+                { "boss-intro", bossIntroInstance },
+                { "boss-theme", bossThemeInstance }
+            };
+        }
+
+        public void StopMusic()
+        {
+            foreach (var pair in _musics)
+                pair.Value.Stop(true);
+        }
+
+        public void PlayMenuMusic()
+        {
+            if (_currentState == MusicState.MenuTheme)
                 return;
 
-            Assets.GetMusic("main-menu").Stop(true);
+            StopMusic();
+            _musics["menu-theme"].Play();
+            _currentState = MusicState.MenuTheme;
+        }
 
-            var bossMusic = Assets.GetMusic("boss-theme");
-            bossMusic.IsLooped = true;
-            bossMusic.Play();
+        public void PlayGameMusic(bool force = false)
+        {
+            if (!force && (_currentState == MusicState.BossIntro || _currentState == MusicState.BossTheme))
+                return;
 
-            _gameMusicIsPlaying = true;
-            _menuMusicIsPlaying = false;
+            StopMusic();
+            _musics["boss-intro"].Play();
+            _currentState = MusicState.BossIntro;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (_currentState == MusicState.BossIntro)
+            {
+                if (_musics["boss-intro"].State == SoundState.Stopped)
+                {
+                    _musics["boss-theme"].Play();
+                    _currentState = MusicState.BossTheme;
+                }
+            }
         }
     }
 }

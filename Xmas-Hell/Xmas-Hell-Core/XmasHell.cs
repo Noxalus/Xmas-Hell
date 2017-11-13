@@ -11,6 +11,7 @@ using XmasHell.Rendering;
 using XmasHell.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
+using XmasHell.Audio;
 using XmasHell.GUI;
 using XmasHell.PlayerData;
 
@@ -37,6 +38,7 @@ namespace XmasHell
         public Camera Camera;
         public GameManager GameManager;
         public ScreenManager ScreenManager;
+        public MusicManager MusicManager;
         public GuiManager GuiManager;
         public PlayerData.PlayerData PlayerData;
 
@@ -101,6 +103,7 @@ namespace XmasHell
             ViewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y);
 
             Camera = new Camera(this, ViewportAdapter);
+            MusicManager = new MusicManager();
 
             SpriteBatchManager.Initialize();
 
@@ -164,6 +167,8 @@ namespace XmasHell
 
             SpriteBatchManager.LoadContent();
 
+            MusicManager.Initialize();
+
             var gradientBackground = new GradientBackground(this);
             var level = BackgroundLevel.Level1;
             gradientBackground.ChangeGradientColors(GameConfig.BackgroundGradients[level].Item1, GameConfig.BackgroundGradients[level].Item2);
@@ -202,6 +207,8 @@ namespace XmasHell
 
             if (Pause && !_computeNextFrame)
                 return;
+
+            MusicManager.Update(gameTime);
 
             Camera.Update(gameTime);
 

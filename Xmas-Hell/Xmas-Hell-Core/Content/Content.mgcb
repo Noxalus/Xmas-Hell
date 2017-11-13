@@ -2151,3 +2151,9 @@
 /processorParam:Quality=Best
 /build:Audio/BGM/boss-theme.ogg
 
+#begin Audio/BGM/boss-intro.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/boss-intro.ogg
+

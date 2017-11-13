@@ -182,7 +182,7 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.UILabels.Add(_timerLabelShadow);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
 
-            MusicManager.PlayGameMusic(true);
+            Game.MusicManager.PlayGameMusic(true);
         }
 
         public override void Hide()
