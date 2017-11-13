@@ -26,7 +26,7 @@ namespace XmasHell
         private static List<BitmapFont> _fonts;
         private static List<Texture2D> _textures;
         private static Dictionary<string, Stream> _patternSteams;
-        private static List<Song> _musics;
+        private static Dictionary<string, SoundEffectInstance> _musics; // Don't use Song type to avoid delay when looping with the MediaManager
         private static List<SoundEffect> _soundEffects;
         private static List<Effect> _effects;
 
@@ -226,10 +226,13 @@ namespace XmasHell
             };
 
             // Load musics
-            _musics = new List<Song>
+            var mainMenuSoundEffect = content.Load<SoundEffect>("Audio/BGM/main-menu");
+            var bossThemeSoundEffect = content.Load<SoundEffect>("Audio/BGM/boss-theme");
+
+            _musics = new Dictionary<string, SoundEffectInstance>
             {
-                content.Load<Song>("Audio/BGM/boss-theme"),
-                content.Load<Song>("Audio/BGM/main-menu")
+                { "main-menu", mainMenuSoundEffect.CreateInstance() },
+                { "boss-theme", bossThemeSoundEffect.CreateInstance() }
             };
 
             // Load sounds
@@ -281,9 +284,9 @@ namespace XmasHell
             return _patternSteams[patternName];
         }
 
-        public static Song GetMusic(string musicName)
+        public static SoundEffectInstance GetMusic(string musicName)
         {
-            return _musics.Find(m => m.Name == musicName);
+            return _musics[musicName];
         }
 
         public static SoundEffect GetSound(string soundName)

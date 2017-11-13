@@ -12,10 +12,11 @@ namespace XmasHell.Audio
             if (_menuMusicIsPlaying)
                 return;
 
-            XnaMediaPlayer.Stop();
-            XnaMediaPlayer.Volume = 1f;
-            XnaMediaPlayer.IsRepeating = true;
-            XnaMediaPlayer.Play(Assets.GetMusic("main-menu"));
+            Assets.GetMusic("boss-theme").Stop(true);
+
+            var mainMenuMusic = Assets.GetMusic("main-menu");
+            mainMenuMusic.IsLooped = true;
+            mainMenuMusic.Play();
 
             _gameMusicIsPlaying = false;
             _menuMusicIsPlaying = true;
@@ -26,10 +27,11 @@ namespace XmasHell.Audio
             if (_gameMusicIsPlaying && !force)
                 return;
 
-            XnaMediaPlayer.Stop();
-            XnaMediaPlayer.Volume = 1f;
-            XnaMediaPlayer.IsRepeating = true;
-            XnaMediaPlayer.Play(Assets.GetMusic("boss-theme"));
+            Assets.GetMusic("main-menu").Stop(true);
+
+            var bossMusic = Assets.GetMusic("boss-theme");
+            bossMusic.IsLooped = true;
+            bossMusic.Play();
 
             _gameMusicIsPlaying = true;
             _menuMusicIsPlaying = false;

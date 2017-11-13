@@ -825,7 +825,7 @@
 
 #begin Audio/BGM/main-menu.ogg
 /importer:OggImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/BGM/main-menu.ogg
 
@@ -2147,7 +2147,7 @@
 
 #begin Audio/BGM/boss-theme.ogg
 /importer:OggImporter
-/processor:SongProcessor
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/BGM/boss-theme.ogg
 
