@@ -20,6 +20,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             // Behaviours
             Behaviours.Add(new XmasGiftBehaviour1(this));
+            Behaviours.Add(new XmasGiftBehaviour2(this));
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
@@ -27,16 +28,24 @@ namespace XmasHell.Entities.Bosses.XmasGift
             base.InitializePhysics(true);
 
             // Physics
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png", Vector2.Zero, 1f));
+            var width = GetSpritePartWidth("body.png") * 0.9f;
+            var height = GetSpritePartHeight("body.png") * 0.95f;
+            var scale = 0.85f;
+            var relativePosition = new Vector2(
+                (1f - scale) / 2f * width,
+                height - (height * scale)
+            );
+
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png", relativePosition, scale));
         }
 
         protected override void SetupPhysicsWorld()
         {
             base.SetupPhysicsWorld();
 
-            var width = GetSpritePartWidth("body.png");
-            var height = GetSpritePartHeight("body.png");
-            var position = new Vector2(ConvertUnits.ToSimUnits(Position().X), ConvertUnits.ToSimUnits(Position().Y));
+            var width = GetSpritePartWidth("body.png") * 0.9f;
+            var height = GetSpritePartHeight("body.png") * 0.95f;
+            var position = ConvertUnits.ToSimUnits(Position());
 
             PhysicsBody = BodyFactory.CreateRectangle(
                 PhysicsWorld,
@@ -47,8 +56,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
             );
 
             PhysicsBody.BodyType = BodyType.Dynamic;
-            PhysicsBody.Restitution = 1.01f;
-            PhysicsBody.Friction = 0.1f;
+            PhysicsBody.Restitution = 0.01f;
+            PhysicsBody.Friction = 0f;
         }
 
         public override void Update(GameTime gameTime)

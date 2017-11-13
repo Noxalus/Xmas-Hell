@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using XmasHell.BulletML;
 
@@ -44,17 +43,6 @@ namespace XmasHell.Entities.Bosses.XmasGift
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            //if (InputManager.KeyDown(Keys.Space))
-            {
-                //var forceVector = new Vector2(0.5f, 0.5f);
-                //var strength = 10f;
-
-                //forceVector.Normalize();
-                //_giftBody.ApplyForce(forceVector * strength);
-                //_giftBody.ApplyLinearImpulse(new Vector2(100, 10));
-                //Boss.PhysicsBody.ApplyAngularImpulse(0.5f);
-            }
 
             if (!Boss.TargetingPosition)
             {
