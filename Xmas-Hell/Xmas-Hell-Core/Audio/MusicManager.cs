@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace XmasHell.Audio
 {
@@ -15,7 +16,7 @@ namespace XmasHell.Audio
         }
 
         private MusicState _currentState;
-
+        private TimeSpan _introProgress;
         private Dictionary<string, SoundEffectInstance> _musics;
 
         public MusicManager()
@@ -27,7 +28,7 @@ namespace XmasHell.Audio
             _currentState = MusicState.None;
 
             // Create music instances
-            var menuThemeInstance = Assets.GetMusic("Audio/BGM/main-menu").CreateInstance();
+            var menuThemeInstance = Assets.GetMusic("Audio/BGM/menu-theme").CreateInstance();
             var bossIntroInstance = Assets.GetMusic("Audio/BGM/boss-intro").CreateInstance();
             var bossThemeInstance = Assets.GetMusic("Audio/BGM/boss-theme").CreateInstance();
 
@@ -67,13 +68,17 @@ namespace XmasHell.Audio
             StopMusic();
             _musics["boss-intro"].Play();
             _currentState = MusicState.BossIntro;
+
+            _introProgress = TimeSpan.Zero;
         }
 
         public void Update(GameTime gameTime)
         {
             if (_currentState == MusicState.BossIntro)
             {
-                if (_musics["boss-intro"].State == SoundState.Stopped)
+                _introProgress += gameTime.ElapsedGameTime;
+
+                if (_introProgress.TotalMilliseconds >= Assets.GetMusic("Audio/BGM/boss-intro").Duration.TotalMilliseconds * 0.97f)
                 {
                     _musics["boss-theme"].Play();
                     _currentState = MusicState.BossTheme;

@@ -228,7 +228,7 @@ namespace XmasHell
             // Load musics
             _musics = new List<SoundEffect>
             {
-                content.Load<SoundEffect>("Audio/BGM/main-menu"),
+                content.Load<SoundEffect>("Audio/BGM/menu-theme"),
                 content.Load<SoundEffect>("Audio/BGM/boss-intro"),
                 content.Load<SoundEffect>("Audio/BGM/boss-theme")
             };

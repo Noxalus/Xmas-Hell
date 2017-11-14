@@ -823,12 +823,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasCandy/candy-bar.png
 
-#begin Audio/BGM/main-menu.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Audio/BGM/main-menu.ogg
-
 #begin Graphics/GUI/BossSelection/garland.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2156,4 +2150,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Audio/BGM/boss-intro.ogg
+
+#begin Audio/BGM/menu-theme.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/BGM/menu-theme.ogg
 
