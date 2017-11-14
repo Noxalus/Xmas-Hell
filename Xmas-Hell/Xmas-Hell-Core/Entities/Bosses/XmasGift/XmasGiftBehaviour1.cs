@@ -38,6 +38,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             Boss.StartShootTimer = false;
             Boss.ShootTimerFinished -= ShootTimerFinished;
+
+            Boss.Game.GameManager.MoverManager.SetBounceBounds(null);
         }
 
         public override void Update(GameTime gameTime)

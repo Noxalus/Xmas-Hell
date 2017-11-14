@@ -22,7 +22,7 @@ namespace XmasHell.BulletML
             _game = game;
         }
 
-        public void SetBounceBounds(Rectangle bounceBounds)
+        public void SetBounceBounds(Rectangle? bounceBounds)
         {
             _bounceBounds = bounceBounds;
         }

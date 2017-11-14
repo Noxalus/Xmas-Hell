@@ -319,6 +319,8 @@ namespace XmasHell.Entities.Bosses
 
             Game.GameManager.CollisionWorld.ClearBossHitboxes();
             Game.GameManager.CollisionWorld.ClearBossBullets();
+
+            PhysicsBody?.Dispose();
         }
 
         public bool Alive()
