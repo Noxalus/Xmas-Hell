@@ -321,6 +321,8 @@ namespace XmasHell.Entities.Bosses
             Game.GameManager.CollisionWorld.ClearBossBullets();
 
             PhysicsBody?.Dispose();
+
+            Game.GameManager.MoverManager.SetBounceBounds(null);
         }
 
         public bool Alive()
