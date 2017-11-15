@@ -65,46 +65,40 @@ namespace XmasHellAndroid
         {
             base.OnDestroy();
 
-            if (_game != null)
-                _game.OnDestroy();
+            _game?.OnDestroy();
         }
 
         protected override void OnPause()
         {
             base.OnPause();
 
-            if (_game != null)
-                _game.OnPause();
+            _game?.OnPause();
         }
 
         protected override void OnResume()
         {
             base.OnResume();
 
-            if (_game != null)
-                _game.OnResume();
+            _game?.OnResume();
         }
 
         protected override void OnStart()
         {
             base.OnStart();
 
-            if (GameHelper != null)
-                GameHelper.Start();
+            GameHelper?.Start();
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if (GameHelper != null)
-                GameHelper.OnActivityResult(requestCode, resultCode, data);
+            GameHelper?.OnActivityResult(requestCode, resultCode, data);
 
             base.OnActivityResult(requestCode, resultCode, data);
         }
 
         protected override void OnStop()
         {
-            if (GameHelper != null)
-                GameHelper.Stop();
+            GameHelper?.Stop();
 
             base.OnStop();
         }

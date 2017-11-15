@@ -185,12 +185,14 @@ namespace XmasHellAndroid
         /// <param name="achievementCode">Achievement code from you applications Google Play Game Services Achievements Page</param>
         public void UnlockAchievement(string achievementCode)
         {
-            GamesClass.Achievements.Unlock(client, achievementCode);
+            if (client.IsConnected)
+                GamesClass.Achievements.Unlock(client, achievementCode);
         }
 
         public void IncrementAchievement(string achievementCode, int progress)
         {
-            GamesClass.Achievements.Increment(client, achievementCode, progress);
+            if (client.IsConnected)
+                GamesClass.Achievements.Increment(client, achievementCode, progress);
         }
 
         /// <summary>
@@ -198,8 +200,11 @@ namespace XmasHellAndroid
         /// </summary>
         public void ShowAchievements()
         {
-            var intent = GamesClass.Achievements.GetAchievementsIntent(client);
-            activity.StartActivityForResult(intent, REQUEST_ACHIEVEMENTS);
+            if (client.IsConnected)
+            {
+                var intent = GamesClass.Achievements.GetAchievementsIntent(client);
+                activity.StartActivityForResult(intent, REQUEST_ACHIEVEMENTS);
+            }
         }
 
         /// <summary>
@@ -210,7 +215,8 @@ namespace XmasHellAndroid
         /// <param name="value">The value of the score</param>
         public void SubmitScore(string leaderboardCode, long value)
         {
-            GamesClass.Leaderboards.SubmitScore(client, leaderboardCode, value);
+            if (client.IsConnected)
+                GamesClass.Leaderboards.SubmitScore(client, leaderboardCode, value);
         }
 
         /// <summary>
@@ -222,7 +228,8 @@ namespace XmasHellAndroid
         /// <param name="value">Additional MetaData to attach. Must be a URI safe string with a max length of 64 characters</param>
         public void SubmitScore(string leaderboardCode, long value, string metadata)
         {
-            GamesClass.Leaderboards.SubmitScore(client, leaderboardCode, value, metadata);
+            if (client.IsConnected)
+                GamesClass.Leaderboards.SubmitScore(client, leaderboardCode, value, metadata);
         }
 
         /// <summary>
@@ -231,8 +238,11 @@ namespace XmasHellAndroid
         /// <param name="leaderboardCode">Leaderboard code from you applications Google Play Game Services Leaderboards Page</param>
         public void ShowLeaderBoardIntentForLeaderboard(string leaderboardCode)
         {
-            var intent = GamesClass.Leaderboards.GetLeaderboardIntent(client, leaderboardCode);
-            activity.StartActivityForResult(intent, REQUEST_LEADERBOARD);
+            if (client.IsConnected)
+            {
+                var intent = GamesClass.Leaderboards.GetLeaderboardIntent(client, leaderboardCode);
+                activity.StartActivityForResult(intent, REQUEST_LEADERBOARD);
+            }
         }
 
         /// <summary>
@@ -240,8 +250,11 @@ namespace XmasHellAndroid
         /// </summary>
         public void ShowAllLeaderBoardsIntent()
         {
-            var intent = GamesClass.Leaderboards.GetAllLeaderboardsIntent(client);
-            activity.StartActivityForResult(intent, REQUEST_ALL_LEADERBOARDS);
+            if (client.IsConnected)
+            {
+                var intent = GamesClass.Leaderboards.GetAllLeaderboardsIntent(client);
+                activity.StartActivityForResult(intent, REQUEST_ALL_LEADERBOARDS);
+            }
         }
 
         /// <summary>
@@ -249,7 +262,10 @@ namespace XmasHellAndroid
         /// </summary>
         public async Task LoadAchievements()
         {
-            var ar = await GamesClass.Achievements.LoadAsync(client, false);
+            if (!client.IsConnected)
+                return;
+
+                var ar = await GamesClass.Achievements.LoadAsync(client, false);
             if (ar != null)
             {
                 achievments.Clear();
@@ -259,6 +275,9 @@ namespace XmasHellAndroid
 
         public async Task LoadTopScores(string leaderboardCode)
         {
+            if (!client.IsConnected)
+                return;
+
             var ar = await GamesClass.Leaderboards.LoadTopScoresAsync(client, leaderboardCode, 2, 0, 25);
             if (ar != null)
             {
