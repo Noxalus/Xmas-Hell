@@ -27,13 +27,14 @@ namespace XmasHellAndroid
         protected override void OnCreate(Bundle bundle)
         {
             Log("onCreate()");
-            HideSystemUi();
+            base.OnCreate(bundle);
+
             InitializeServices();
+            HideSystemUi();
 
             if (GameHelper != null && GameHelper.SignedOut)
                 GameHelper.SignIn();
 
-            base.OnCreate(bundle);
             _game = new XmasHell.XmasHell(this);
             View vw = (View)_game.Services.GetService(typeof(View));
 
