@@ -76,6 +76,7 @@ namespace XmasHell
         {
             _endGame = value;
             _endGameTimer.Restart();
+            _endGameFirstTime = true;
         }
 
         public GameManager(XmasHell game)
@@ -200,6 +201,15 @@ namespace XmasHell
 
             _endGameTimer.Update(gameTime);
 
+            if (_boss != null && _boss.Alive() && (!_endGame || GameIsFinished()))
+                _boss.Update(gameTime);
+
+            foreach (var bullet in _bullets)
+                bullet.Update(gameTime);
+
+            foreach (var laser in _lasers)
+                laser.Update(gameTime);
+
             if (_endGame)
                 return;
 
@@ -208,12 +218,6 @@ namespace XmasHell
             if (_boss != null && _boss.IsReady() && !GameIsFinished() && _endGameFirstTime)
                 _timer += gameTime.ElapsedGameTime;
 
-            foreach (var bullet in _bullets)
-                bullet.Update(gameTime);
-
-            foreach (var laser in _lasers)
-                laser.Update(gameTime);
-
             CollisionWorld.Update(gameTime);
             ParticleManager.Update(gameTime);
 
@@ -221,9 +225,6 @@ namespace XmasHell
 
             if (_player.Alive())
                 _player.Update(gameTime);
-
-            if (_boss != null && _boss.Alive())
-                _boss.Update(gameTime);
         }
 
         public void AddBullet(Bullet bullet)
