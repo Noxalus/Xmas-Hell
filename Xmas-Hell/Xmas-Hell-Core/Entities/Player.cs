@@ -190,7 +190,7 @@ namespace XmasHell.Entities
         {
             if (_destroyed)
             {
-                if (_game.GameManager.GameIsFinished())
+                if (_game.GameManager.TransitioningToEndGame())
                     Dispose();
 
                 return;

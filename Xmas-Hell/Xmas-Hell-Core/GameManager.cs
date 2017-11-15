@@ -33,6 +33,7 @@ namespace XmasHell
         private bool _endGame;
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
+        private bool _transitioningToEndGame;
         private bool _gameIsFinished;
         private bool _won;
         private TimeSpan _playTime;
@@ -87,6 +88,11 @@ namespace XmasHell
             _won = won;
         }
 
+        public bool TransitioningToEndGame()
+        {
+            return _transitioningToEndGame;
+        }
+
         public GameManager(XmasHell game)
         {
             _game = game;
@@ -106,6 +112,7 @@ namespace XmasHell
             _endGameTimer.Stop();
             _endGameTimer.Completed += EndGameTimerCompleted;
             _endGameFirstTime = true;
+            _transitioningToEndGame = false;
         }
 
         public void Initialize()
@@ -126,10 +133,6 @@ namespace XmasHell
 
         public void StartNewGame()
         {
-            _playTime = TimeSpan.Zero;
-            _gameIsFinished = false;
-            _won = false;
-
             _boss.Initialize();
             _player.Initialize();
 
@@ -160,12 +163,16 @@ namespace XmasHell
             _gameIsFinished = false;
             _ready = false;
             _game.Camera.Zoom = 1f;
+            _transitioningToEndGame = false;
         }
 
         public void Reset()
         {
+            _playTime = TimeSpan.Zero;
             _timer = TimeSpan.Zero;
             _gameIsFinished = false;
+            _transitioningToEndGame = false;
+            _won = false;
 
             _player.Reset();
 
@@ -186,6 +193,7 @@ namespace XmasHell
                 _endGameFirstTime = false;
                 _endGameTimer.Restart();
                 SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
+                _transitioningToEndGame = true;
             }
             else
             {
@@ -222,11 +230,13 @@ namespace XmasHell
                 foreach (var bullet in _bullets)
                     bullet.Update(gameTime);
 
+                _bullets.RemoveAll(b => !b.Used);
+
                 foreach (var laser in _lasers)
                     laser.Update(gameTime);
             }
 
-            if (_endGame)
+            if (GameIsFinished())
                 return;
 
             _playTime += gameTime.ElapsedGameTime;
@@ -237,10 +247,7 @@ namespace XmasHell
             CollisionWorld.Update(gameTime);
             ParticleManager.Update(gameTime);
 
-            _bullets.RemoveAll(b => !b.Used);
-
-            if (_player.Alive())
-                _player.Update(gameTime);
+            _player.Update(gameTime);
         }
 
         public void AddBullet(Bullet bullet)

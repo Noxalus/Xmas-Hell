@@ -138,7 +138,6 @@ namespace XmasHell.Physics
                     if (PlayerHitbox.Intersects(bossBulletHitbox))
                     {
                         player.Destroy();
-                        ((IBossDeadlyEntity)bossBulletHitbox.Entity).Used(false);
                         break;
                     }
                 }
