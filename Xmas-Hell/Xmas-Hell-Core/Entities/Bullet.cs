@@ -45,15 +45,17 @@ namespace XmasHell.Entities
         {
             _game = game;
             var defaultBulletTexture = BulletTypeUtils.BulletTypeToTexture(BulletType.Type2);
+
             Sprite = new Sprite(defaultBulletTexture)
             {
                 Position = position,
                 Rotation = rotation
             };
+
             Speed = speed;
             Used = true;
 
-            Hitbox = new CollisionCircle(this, Vector2.Zero, defaultBulletTexture.Width/2f);
+            Hitbox = new CollisionCircle(this, Vector2.Zero, defaultBulletTexture.Width / 2f);
             _game.GameManager.CollisionWorld.AddPlayerBulletHitbox(Hitbox);
 
             _game.SpriteBatchManager.GameSprites.Add(Sprite);

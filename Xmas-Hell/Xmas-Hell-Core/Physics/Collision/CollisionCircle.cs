@@ -19,6 +19,16 @@ namespace XmasHell.Physics.Collision
         {
         }
 
+        public void SetRelativePosition(Vector2 relativePosition)
+        {
+            _relativePosition = relativePosition;
+        }
+
+        public void SetRadius(float value)
+        {
+            _initialRadius = value;
+        }
+
         public virtual float GetRadius()
         {
             return _initialRadius * Entity.Scale().X;

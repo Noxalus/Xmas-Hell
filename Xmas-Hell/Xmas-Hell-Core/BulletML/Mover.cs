@@ -91,15 +91,17 @@ namespace XmasHell.BulletML
         {
             _used = true;
 
-            Sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"));
-            Sprite.Alpha = 0f;
-            Sprite.Scale = new Vector2(2.5f);
+            Sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"))
+            {
+                Alpha = 0f,
+                Scale = new Vector2(2.5f)
+            };
 
             _game.SpriteBatchManager.BossBullets.Add(this);
 
             if (!topBullet)
             {
-                _hitbox = new CollisionCircle(this, Vector2.Zero, Sprite.BoundingRectangle.Width / 2f);
+                _hitbox = new CollisionCircle(this, Vector2.Zero, ((Sprite.BoundingRectangle.Width) / Sprite.Scale.X) / 2f);
                 _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
             }
         }
@@ -123,7 +125,10 @@ namespace XmasHell.BulletML
                 _currentSpriteIndex = SpriteIndex;
                 var moverManager = (MoverManager)BulletManager;
                 if (SpriteIndex < moverManager.BulletTextures.Count)
+                {
                     Sprite = new Sprite(moverManager.BulletTextures[SpriteIndex]);
+                    ((CollisionCircle)_hitbox).SetRadius(Sprite.BoundingRectangle.Width / 2f);
+                }
             }
 
             if (BounceBounds.HasValue)
