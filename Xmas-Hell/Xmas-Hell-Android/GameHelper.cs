@@ -46,13 +46,6 @@ namespace XmasHellAndroid
         }
 
         /// <summary>
-        /// Gets or sets the gravity for the GooglePlay Popups. 
-        /// Defaults to Bottom|Center
-        /// </summary>
-        /// <value>The gravity for popups.</value>
-        public GravityFlags GravityForPopups { get; set; }
-
-        /// <summary>
         /// The View on which the Popups should show
         /// </summary>
         /// <value>The view for popups.</value>
@@ -85,7 +78,6 @@ namespace XmasHellAndroid
         public GameHelper(Activity activity)
         {
             this.activity = activity;
-            this.GravityForPopups = GravityFlags.Bottom | GravityFlags.Center;
         }
 
         public void Initialize()
@@ -98,7 +90,6 @@ namespace XmasHellAndroid
             var builder = new GoogleApiClient.Builder(activity, this, this);
             builder.AddApi(GamesClass.API);
             builder.AddScope(GamesClass.ScopeGames);
-            builder.SetGravityForPopups((int)GravityForPopups);
 
             if (ViewForPopups != null)
                 builder.SetViewForPopups(ViewForPopups);
