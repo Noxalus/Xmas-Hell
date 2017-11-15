@@ -456,7 +456,7 @@ namespace XmasHell.Entities.Bosses
 
             Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
             Game.Camera.ZoomTo(3f, 0.25, CurrentAnimator.Position);
-            Game.GameManager.EndGame(true);
+            Game.GameManager.EndGame(true, true);
 
             _destroyed = true;
 

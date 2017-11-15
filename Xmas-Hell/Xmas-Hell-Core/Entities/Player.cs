@@ -167,13 +167,11 @@ namespace XmasHell.Entities
 
             _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
             _game.Camera.ZoomTo(3f, 0.25, Position());
-            _game.GameManager.EndGame(true);
+            _game.GameManager.EndGame(true, false);
 
             _destroyed = true;
 
             _game.PlayerData.DeathCounter(_game.PlayerData.DeathCounter() + 1);
-
-            Dispose();
         }
 
         private void AnimationFinished(string animationName)
@@ -190,6 +188,14 @@ namespace XmasHell.Entities
 
         public void Update(GameTime gameTime)
         {
+            if (_destroyed)
+            {
+                if (_game.GameManager.GameIsFinished())
+                    Dispose();
+
+                return;
+            }
+
             var keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.Enter))

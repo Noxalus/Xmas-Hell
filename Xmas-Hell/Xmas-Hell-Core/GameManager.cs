@@ -33,7 +33,8 @@ namespace XmasHell
         private bool _endGame;
         private CountdownTimer _endGameTimer;
         private bool _endGameFirstTime;
-        private bool _gameIsFinished = false;
+        private bool _gameIsFinished;
+        private bool _won;
         private TimeSpan _playTime;
 
         public Random Random;
@@ -73,11 +74,17 @@ namespace XmasHell
             return _gameIsFinished;
         }
 
-        public void EndGame(bool value)
+        public bool Won()
+        {
+            return _won;
+        }
+
+        public void EndGame(bool value, bool won)
         {
             _endGame = value;
             _endGameTimer.Restart();
             _endGameFirstTime = true;
+            _won = won;
         }
 
         public GameManager(XmasHell game)
@@ -121,6 +128,7 @@ namespace XmasHell
         {
             _playTime = TimeSpan.Zero;
             _gameIsFinished = false;
+            _won = false;
 
             _boss.Initialize();
             _player.Initialize();
