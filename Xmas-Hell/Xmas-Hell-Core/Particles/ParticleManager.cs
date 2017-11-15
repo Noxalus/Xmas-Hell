@@ -42,9 +42,13 @@ namespace XmasHell.Particles
 
         public void Clear()
         {
-            foreach (var particleEffet in _particleEffects)
-                foreach (var particleEmitter in particleEffet.Emitters)
-                    particleEmitter.Dispose();
+            //foreach (var particleEffet in _particleEffects)
+            //{
+            //    foreach (var particleEmitter in particleEffet.Emitters)
+            //    {
+            //        particleEmitter.Dispose();
+            //    }
+            //}
         }
 
         private void InitializeParticleEffects()
@@ -55,6 +59,7 @@ namespace XmasHell.Particles
 
             _bossHitParticles = new ParticleEffect
             {
+                Name = "BossHitParticles",
                 Emitters = new[]
                 {
                     new ParticleEmitter(
@@ -82,6 +87,7 @@ namespace XmasHell.Particles
 
             _playerDestroyedParticles = new ParticleEffect
             {
+                Name = "PlayerDestroyedParticles",
                 Emitters = new[]
                 {
                     new ParticleEmitter(
@@ -113,8 +119,7 @@ namespace XmasHell.Particles
                                     }
                                 }
                             },
-                            new RotationModifier { RotationRate = -2.1f },
-                            new RectangleContainerModifier {  Width = 720, Height = 1280 },
+                            new RotationModifier { RotationRate = -2.1f }
                         }
                     }
                 }
@@ -122,6 +127,7 @@ namespace XmasHell.Particles
 
             _bossDestroyedParticles = new ParticleEffect
             {
+                Name = "BossDestroyedParticles",
                 Emitters = new[]
                 {
                     new ParticleEmitter(
@@ -196,8 +202,8 @@ namespace XmasHell.Particles
 
         public void EmitBossHitParticles(Vector2 position)
         {
-            if (!GameConfig.DisableParticles)
-                _bossHitParticles.Trigger(position);
+            //if (!GameConfig.DisableParticles)
+            //    _bossHitParticles.Trigger(position);
         }
 
         public void EmitPlayerDestroyedParticles(Vector2 position)

@@ -165,7 +165,6 @@ namespace XmasHell.Entities
             if (GameConfig.GodMode || _destroyed)
                 return;
 
-            _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
             _game.Camera.ZoomTo(3f, 0.25, Position());
             _game.GameManager.EndGame(true, false);
 
@@ -191,7 +190,10 @@ namespace XmasHell.Entities
             if (_destroyed)
             {
                 if (_game.GameManager.TransitioningToEndGame())
+                {
+                    _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
                     Dispose();
+                }
 
                 return;
             }
