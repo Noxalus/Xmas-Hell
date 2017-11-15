@@ -198,6 +198,9 @@ namespace XmasHell.Entities
                 return;
             }
 
+            if (_game.GameManager.CantMove())
+                return;
+
             var keyboardState = Keyboard.GetState();
 
             if (keyboardState.IsKeyDown(Keys.Enter))

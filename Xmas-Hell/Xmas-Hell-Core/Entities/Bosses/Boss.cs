@@ -276,8 +276,6 @@ namespace XmasHell.Entities.Bosses
                 Color = Color.Red
             };
 
-            Game.SpriteBatchManager.UISprites.Add(_hpBar);
-
             // To compute line/wall intersection
             _bottomWallLine = new Line(
                 new Vector2(0f, GameConfig.VirtualResolution.Y),
@@ -302,13 +300,48 @@ namespace XmasHell.Entities.Bosses
 
         public virtual void Initialize()
         {
-            Game.SpriteBatchManager.Boss = this;
-
             LoadBulletPatterns();
             LoadSpriterSprite();
-            InitializePhysics();
 
             Reset();
+        }
+
+        public virtual void Reset()
+        {
+            Game.SpriteBatchManager.Boss = this;
+            InitializePhysics();
+            Game.SpriteBatchManager.UISprites.Add(_hpBar);
+
+            foreach (var behaviour in Behaviours)
+                behaviour.Reset();
+
+            _bossEntranceAnimation = true;
+            _ready = false;
+            _destroyed = false;
+            _targetDirection = Vector2.Zero;
+            _targetAngle = 0f;
+
+            Game.GameManager.MoverManager.Clear();
+            Invincible = true;
+            Tinted = false;
+            TargetingPosition = false;
+            TargetingAngle = false;
+
+            CurrentBehaviourIndex = 0;
+            PreviousBehaviourIndex = -1;
+
+            Position(new Vector2(InitialPosition.X, InitialPosition.Y - 500f));
+            Rotation(0);
+            Scale(Vector2.One);
+
+            Direction = Vector2.Zero;
+            Speed = GameConfig.BossDefaultSpeed;
+
+            CurrentAnimator.Play("Idle");
+            CurrentAnimator.Progress = 0;
+            CurrentAnimator.Speed = 1;
+
+            MoveToInitialPosition(GameConfig.BossEntranceAnimationTime, true);
         }
 
         public void Dispose()
@@ -387,40 +420,6 @@ namespace XmasHell.Entities.Bosses
             );
         }
 
-        public virtual void Reset()
-        {
-            foreach (var behaviour in Behaviours)
-                behaviour.Reset();
-
-            _bossEntranceAnimation = true;
-            _ready = false;
-            _destroyed = false;
-            _targetDirection = Vector2.Zero;
-            _targetAngle = 0f;
-
-            Game.GameManager.MoverManager.Clear();
-            Invincible = true;
-            Tinted = false;
-            TargetingPosition = false;
-            TargetingAngle = false;
-
-            CurrentBehaviourIndex = 0;
-            PreviousBehaviourIndex = -1;
-
-            Position(new Vector2(InitialPosition.X, InitialPosition.Y - 500f));
-            Rotation(0);
-            Scale(Vector2.One);
-
-            Direction = Vector2.Zero;
-            Speed = GameConfig.BossDefaultSpeed;
-
-            CurrentAnimator.Play("Idle");
-            CurrentAnimator.Progress = 0;
-            CurrentAnimator.Speed = 1;
-
-            MoveToInitialPosition(GameConfig.BossEntranceAnimationTime, true);
-        }
-
         private void RestoreDefaultState()
         {
             Direction = Vector2.Zero;
@@ -454,7 +453,6 @@ namespace XmasHell.Entities.Bosses
             if (bestTime == TimeSpan.Zero || bestTime > currentTime)
                 Game.PlayerData.BossBestTime(BossType, currentTime);
 
-            Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
             Game.Camera.ZoomTo(3f, 0.25, CurrentAnimator.Position);
             Game.GameManager.EndGame(true, true);
 
@@ -783,7 +781,15 @@ namespace XmasHell.Entities.Bosses
         public virtual void Update(GameTime gameTime)
         {
             if (_destroyed)
+            {
+                if (Game.GameManager.TransitioningToEndGame())
+                {
+                    Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
+                    Dispose();
+                }
+
                 return;
+            }
 
             if (_bossEntranceAnimation)
             {

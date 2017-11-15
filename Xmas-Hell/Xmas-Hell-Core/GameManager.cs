@@ -36,6 +36,7 @@ namespace XmasHell
         private bool _transitioningToEndGame;
         private bool _gameIsFinished;
         private bool _won;
+        private bool _cantMove;
         private TimeSpan _playTime;
 
         public Random Random;
@@ -75,6 +76,16 @@ namespace XmasHell
             return _gameIsFinished;
         }
 
+        public bool EndGame()
+        {
+            return _endGame;
+        }
+
+        public bool CantMove()
+        {
+            return _cantMove;
+        }
+
         public bool Won()
         {
             return _won;
@@ -86,6 +97,7 @@ namespace XmasHell
             _endGameTimer.Restart();
             _endGameFirstTime = true;
             _won = won;
+            _cantMove = true;
         }
 
         public bool TransitioningToEndGame()
@@ -113,6 +125,7 @@ namespace XmasHell
             _endGameTimer.Completed += EndGameTimerCompleted;
             _endGameFirstTime = true;
             _transitioningToEndGame = false;
+            _cantMove = false;
         }
 
         public void Initialize()
@@ -164,6 +177,7 @@ namespace XmasHell
             _ready = false;
             _game.Camera.Zoom = 1f;
             _transitioningToEndGame = false;
+            _cantMove = false;
         }
 
         public void Reset()
@@ -173,6 +187,7 @@ namespace XmasHell
             _gameIsFinished = false;
             _transitioningToEndGame = false;
             _won = false;
+            _cantMove = false;
 
             _player.Reset();
 
@@ -222,7 +237,7 @@ namespace XmasHell
 
             _endGameTimer.Update(gameTime);
 
-            if (_boss != null && _boss.Alive() && (!_endGame || GameIsFinished()))
+            if (_boss != null && (!_endGame || GameIsFinished()))
                 _boss.Update(gameTime);
 
             if (!_endGame || GameIsFinished())
