@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using BulletML;
 using Microsoft.Xna.Framework;
@@ -129,6 +130,8 @@ namespace XmasHell
 
         public void Dispose()
         {
+            _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
+
             MoverManager.Clear();
             ParticleManager.Clear();
 
@@ -145,9 +148,10 @@ namespace XmasHell
 
             _endGame = false;
             _endGameFirstTime = false;
+            _endGameTimer.Stop();
+            _gameIsFinished = false;
             _ready = false;
             _game.Camera.Zoom = 1f;
-
         }
 
         public void Reset()
@@ -194,7 +198,8 @@ namespace XmasHell
 
         public void Update(GameTime gameTime)
         {
-            MoverManager.Update();
+            if (!_endGame || GameIsFinished())
+                MoverManager.Update();
 
             if (!_ready)
                 return;
@@ -204,11 +209,14 @@ namespace XmasHell
             if (_boss != null && _boss.Alive() && (!_endGame || GameIsFinished()))
                 _boss.Update(gameTime);
 
-            foreach (var bullet in _bullets)
-                bullet.Update(gameTime);
+            if (!_endGame || GameIsFinished())
+            {
+                foreach (var bullet in _bullets)
+                    bullet.Update(gameTime);
 
-            foreach (var laser in _lasers)
-                laser.Update(gameTime);
+                foreach (var laser in _lasers)
+                    laser.Update(gameTime);
+            }
 
             if (_endGame)
                 return;
