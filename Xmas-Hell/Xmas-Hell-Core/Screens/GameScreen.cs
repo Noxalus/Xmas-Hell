@@ -2,6 +2,8 @@ using System;
 using Microsoft.Xna.Framework;
 using XmasHell.Controls;
 using System.Collections.Generic;
+using MonoGame.Extended.Sprites;
+using MonoGame.Extended.TextureAtlases;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
 using XmasHell.GUI;
@@ -21,6 +23,7 @@ namespace XmasHell.Screens
         private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
         private AbstractGuiLabel _timerLabel;
         private AbstractGuiLabel _timerLabelShadow;
+        private Sprite _hpBar;
 
         // Labels
         private List<SpriterGuiLabel> _endGamePanelLabels = new List<SpriterGuiLabel>();
@@ -61,6 +64,17 @@ namespace XmasHell.Screens
 
             _timerLabel = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(Game.ViewportAdapter.VirtualWidth - 95, 30), Color.White, true);
             _timerLabelShadow = new AbstractGuiLabel("00:00:00", Assets.GetFont("Graphics/Fonts/ui-small"), new Vector2(_timerLabel.Position.X + 1, _timerLabel.Position.Y + 1), Color.Black, true);
+
+            _hpBar = new Sprite(
+                new TextureRegion2D(
+                    Assets.GetTexture2D("pixel"),
+                    0, 0, GameConfig.VirtualResolution.X, 10
+                )
+            )
+            {
+                Origin = Vector2.Zero,
+                Color = Color.Red
+            };
         }
 
         private void InitializeSpriterGui()
@@ -195,6 +209,7 @@ namespace XmasHell.Screens
 
             Game.SpriteBatchManager.UILabels.Add(_timerLabelShadow);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
+            Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
             Game.MusicManager.PlayGameMusic(true);
         }
@@ -207,6 +222,7 @@ namespace XmasHell.Screens
             CloseEndGamePopup();
             Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
             Game.SpriteBatchManager.UILabels.Remove(_timerLabelShadow);
+            Game.SpriteBatchManager.UISprites.Remove(_hpBar);
         }
 
         public override void Update(GameTime gameTime)
@@ -223,6 +239,14 @@ namespace XmasHell.Screens
             {
                 _timerLabel.Text = Game.GameManager.GetCurrentTime().ToString("mm\\:ss\\:ff");
                 _timerLabelShadow.Text = _timerLabel.Text;
+
+                var currentBoss = Game.GameManager.GetCurrentBoss();
+
+                if (currentBoss != null)
+                {
+                    _hpBar.Scale = new Vector2(currentBoss.GetLifePercentage(), 1);
+                    _hpBar.Color = currentBoss.Tinted ? Color.White : GameConfig.BossHPBarColors[currentBoss.CurrentBehaviourIndex];
+                }
             }
         }
 

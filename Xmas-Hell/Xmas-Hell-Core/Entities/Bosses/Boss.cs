@@ -38,7 +38,6 @@ namespace XmasHell.Entities.Bosses
         public XmasHell Game;
         public readonly BossType BossType;
         public Vector2 InitialPosition;
-        private Sprite _hpBar;
         private bool _destroyed;
         private bool _bossEntranceAnimation;
         private bool _ready;
@@ -78,7 +77,7 @@ namespace XmasHell.Entities.Bosses
         private readonly PositionDelegate _playerPositionDelegate;
 
         private TimeSpan _hitTimer = TimeSpan.Zero;
-        public bool Tinted;
+        public bool Tinted { get; protected set; }
         public Color HitColor;
 
         private readonly Line _leftWallLine;
@@ -89,7 +88,7 @@ namespace XmasHell.Entities.Bosses
         // Behaviours
         protected readonly List<AbstractBossBehaviour> Behaviours;
         protected int PreviousBehaviourIndex;
-        protected int CurrentBehaviourIndex;
+        public int CurrentBehaviourIndex { get; protected set; }
 
         // New position timer
         public bool StartNewPositionTimer = false;
@@ -148,6 +147,11 @@ namespace XmasHell.Entities.Bosses
         public CustomSpriterAnimator GetCurrentAnimator()
         {
             return CurrentAnimator;
+        }
+
+        public float GetLifePercentage()
+        {
+            return Behaviours[CurrentBehaviourIndex].GetLifePercentage();
         }
 
         public Vector2 ActionPointPosition()
@@ -265,17 +269,6 @@ namespace XmasHell.Entities.Bosses
 
             HitColor = Color.White * 0.5f;
 
-            _hpBar = new Sprite(
-                new TextureRegion2D(
-                    Assets.GetTexture2D("pixel"),
-                    0, 0, GameConfig.VirtualResolution.X, 10
-                )
-            )
-            {
-                Origin = Vector2.Zero,
-                Color = Color.Red
-            };
-
             // To compute line/wall intersection
             _bottomWallLine = new Line(
                 new Vector2(0f, GameConfig.VirtualResolution.Y),
@@ -310,7 +303,6 @@ namespace XmasHell.Entities.Bosses
         {
             Game.SpriteBatchManager.Boss = this;
             InitializePhysics();
-            Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
             foreach (var behaviour in Behaviours)
                 behaviour.Reset();
@@ -347,7 +339,6 @@ namespace XmasHell.Entities.Bosses
         public void Dispose()
         {
             Game.SpriteBatchManager.Boss = null;
-            Game.SpriteBatchManager.UISprites.Remove(_hpBar);
             Game.SpriteBatchManager.BossBullets.Clear();
 
             Game.GameManager.CollisionWorld.ClearBossHitboxes();
@@ -840,9 +831,6 @@ namespace XmasHell.Entities.Bosses
                 _hitTimer -= gameTime.ElapsedGameTime;
 
             Tinted = _hitTimer.TotalMilliseconds > 0;
-
-            _hpBar.Scale = new Vector2(Behaviours[CurrentBehaviourIndex].GetLifePercentage(), 1f);
-            _hpBar.Color = Tinted ? Color.White : GameConfig.BossHPBarColors[CurrentBehaviourIndex];
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
