@@ -463,10 +463,14 @@ namespace XmasHell.Entities.Bosses
 
         private void SubmitScore()
         {
-            var currentTime = (long)Game.GameManager.GetCurrentTime().TotalMilliseconds;
 #if ANDROID
-            var gameHelper = Game.AndroidActivity.GameHelper;
-            gameHelper.SubmitScore(gameHelper.BossTypeToLeaderboardCode(BossType), currentTime);
+            var currentTime = (long)Game.GameManager.GetCurrentTime().TotalMilliseconds;
+
+            if (currentTime > 0)
+            {
+                var gameHelper = Game.AndroidActivity.GameHelper;
+                gameHelper.SubmitScore(gameHelper.BossTypeToLeaderboardCode(BossType), currentTime);
+            }
 #endif
         }
 

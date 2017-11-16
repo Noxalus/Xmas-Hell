@@ -171,7 +171,7 @@ namespace XmasHell
             _boss = null;
 
             _endGame = false;
-            _endGameFirstTime = false;
+            _endGameFirstTime = true;
             _endGameTimer.Stop();
             _gameIsFinished = false;
             _ready = false;
