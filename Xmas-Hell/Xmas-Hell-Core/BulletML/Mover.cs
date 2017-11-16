@@ -26,6 +26,8 @@ namespace XmasHell.BulletML
         private CollisionElement _hitbox;
         private Vector2 _origin;
         private bool _used;
+        private float _alpha;
+        private Vector2 _scale;
 
         public Vector2 Position()
         {
@@ -49,8 +51,12 @@ namespace XmasHell.BulletML
 
         public Vector2 Scale()
         {
-            // TODO: Get the proper scale
-            return Vector2.One;
+            return _scale;
+        }
+
+        public void Scale(Vector2 value)
+        {
+            _scale = value;
         }
 
         public void Position(Vector2 value)
@@ -91,13 +97,11 @@ namespace XmasHell.BulletML
         {
             _used = true;
 
-            Sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"))
-            {
-                Alpha = 0f,
-                Scale = new Vector2(2.5f)
-            };
-
+            Sprite = new Sprite(Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"));
             _game.SpriteBatchManager.BossBullets.Add(this);
+
+            _alpha = 1f;
+            _scale = new Vector2(2.5f);
 
             if (!topBullet)
             {
@@ -127,6 +131,7 @@ namespace XmasHell.BulletML
                 if (SpriteIndex < moverManager.BulletTextures.Count)
                 {
                     Sprite = new Sprite(moverManager.BulletTextures[SpriteIndex]);
+
                     ((CollisionCircle)_hitbox).SetRadius(Sprite.BoundingRectangle.Width / 2f);
                 }
             }
@@ -136,17 +141,17 @@ namespace XmasHell.BulletML
             else
                 CheckOutOfBounds();
 
-            Sprite.Alpha = MathHelper.Lerp(Sprite.Alpha, 1f, 0.05f);
-            Sprite.Scale = new Vector2(
-                MathHelper.Lerp(Sprite.Scale.X, 1f, 0.05f),
-                MathHelper.Lerp(Sprite.Scale.Y, 1f, 0.05f)
+            _alpha = MathHelper.Lerp(_alpha, 1f, 0.05f);
+            _scale = new Vector2(
+                MathHelper.Lerp(_scale.X, 1f, 0.05f),
+                MathHelper.Lerp(_scale.Y, 1f, 0.05f)
             );
 
-            Sprite.Position = _position;
+            Sprite.Position = Position();
             Sprite.Rotation = Direction;
             Sprite.Scale = Scale();
-
             Sprite.Color = Color;
+            Sprite.Alpha = _alpha;
         }
 
         private void CheckBounceBounds()
