@@ -4,9 +4,9 @@
   <action label="top">
       <fire>
         <bullet>
-          <direction type="absolute">180</direction>
-          <speed>3 + ($rand * 5)</speed>
-          <scale type="absolute">$rand * 10.5</scale>
+          <direction type="absolute">180 + ($rand * 50) - 25</direction>
+          <speed>2 + ($rand * 5)</speed>
+          <scale type="absolute">0.75 + 1.25 * $rand</scale>
         </bullet>
       </fire>
   </action>
