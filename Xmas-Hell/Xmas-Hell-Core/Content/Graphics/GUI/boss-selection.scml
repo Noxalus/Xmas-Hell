@@ -931,12 +931,12 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="Show" length="1000" interval="100">
+        <animation id="1" name="Show" length="500" interval="100">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0.9953" c2="0.9953">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="1000" curve_type="cubic" c1="0.995305" c2="0.995305">
+                <key id="1" time="500" curve_type="cubic" c1="0.995305" c2="0.995305">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
@@ -944,17 +944,17 @@
                 <key id="0" spin="0">
                     <object entity="3" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
-                <key id="1" time="1000" spin="0">
+                <key id="1" time="500" spin="0">
                     <object entity="3" animation="0" t="0" angle="0"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="Hide" length="1000" interval="100">
+        <animation id="2" name="Hide" length="300" interval="100">
             <mainline>
                 <key id="0" curve_type="bezier" c1="0.33777" c2="0" c3="1" c4="0.2347">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="1000" curve_type="cubic" c1="0.9953" c2="0.9953">
+                <key id="1" time="300" curve_type="cubic" c1="0.9953" c2="0.9953">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
@@ -962,7 +962,7 @@
                 <key id="0" spin="0">
                     <object entity="3" animation="0" t="0" angle="0"/>
                 </key>
-                <key id="1" time="1000" spin="0">
+                <key id="1" time="300" spin="0">
                     <object entity="3" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
             </timeline>
@@ -1017,7 +1017,7 @@
             </mainline>
             <timeline id="0" name="cloud1">
                 <key id="0" spin="0">
-                    <object folder="0" file="4"/>
+                    <object folder="0" file="4" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -1031,7 +1031,7 @@
             </mainline>
             <timeline id="0" name="cloud2">
                 <key id="0" spin="0">
-                    <object folder="0" file="5"/>
+                    <object folder="0" file="5" angle="0"/>
                 </key>
             </timeline>
         </animation>
