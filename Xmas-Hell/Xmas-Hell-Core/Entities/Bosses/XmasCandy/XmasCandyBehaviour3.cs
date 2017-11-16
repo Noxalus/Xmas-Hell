@@ -36,7 +36,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             _stretchIn = false;
 
             Boss.StartShootTimer = false;
-            Boss.ShootTimerTime = 0.000002f;
+            Boss.ShootTimerTime = 0.0005f;
             Boss.ShootTimerFinished += ShootTimerFinished;
 
             _body2File = SpriterUtils.GetSpriterFile("body2.png", Boss.CurrentAnimator);

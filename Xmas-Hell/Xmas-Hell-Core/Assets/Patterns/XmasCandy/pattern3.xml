@@ -10,8 +10,8 @@
         <action>
           <wait>0</wait>
           <changeSpeed>
-            <speed>20</speed>
-            <term>200</term>
+            <speed>10</speed>
+            <term>350</term>
           </changeSpeed>
           <changeColor>
             <color>
