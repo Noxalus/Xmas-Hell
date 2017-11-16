@@ -32,12 +32,14 @@ namespace XmasHell.Entities.Bosses.XmasGift
             if (Boss.Game.GameManager.GetBossBullets().Count < 20)
                 Boss.TriggerPattern("XmasGift/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
         }
+
         public override void Stop()
         {
             base.Stop();
 
             Boss.StartShootTimer = false;
             Boss.ShootTimerFinished -= ShootTimerFinished;
+            Boss.TargetingPosition = false;
 
             Boss.Game.GameManager.MoverManager.SetBounceBounds(null);
         }
