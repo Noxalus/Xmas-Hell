@@ -1,10 +1,6 @@
 using System;
 using FarseerPhysics;
-using FarseerPhysics.Dynamics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using XmasHell.BulletML;
-using XmasHell.Controls;
 
 namespace XmasHell.Entities.Bosses.XmasGift
 {
@@ -16,11 +12,13 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         public override void Start()
         {
+            base.Start();
+
             Boss.PhysicsBody.Position = ConvertUnits.ToSimUnits(Boss.Position());
             Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
             Boss.PhysicsEnabled = true;
 
-            base.Start();
+            Boss.PhysicsBody.ApplyAngularImpulse(10f);
 
             Boss.CurrentAnimator.Play("NoAnimation");
         }
@@ -28,21 +26,25 @@ namespace XmasHell.Entities.Bosses.XmasGift
         public override void Stop()
         {
             base.Stop();
+
+            Boss.PhysicsWorld.Gravity = Vector2.Zero;
+            Boss.PhysicsEnabled = false;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            if (InputManager.KeyPressed(Keys.Space))
+            if (Boss.Position().Y > Boss.GetPlayerPosition().Y && 
+                Math.Abs(Boss.PhysicsBody.LinearVelocity.Y) < 0.0005f && Math.Abs(Boss.PhysicsBody.LinearVelocity.X) < 0.0005f)
             {
-                var forceVector = new Vector2(0.5f, -0.5f);
-                var strength = 1000f;
+                var forceVector = Boss.GetPlayerDirection();
+                var strength = 500f;
 
                 forceVector.Normalize();
                 //Boss.PhysicsBody.ApplyForce(forceVector * strength);
                 Boss.PhysicsBody.ApplyLinearImpulse(forceVector * strength);
-                Boss.PhysicsBody.ApplyAngularImpulse(100f);
+                Boss.PhysicsBody.ApplyAngularImpulse(100);//Boss.Game.GameManager.Random.Next(10, 100));
             }
         }
     }

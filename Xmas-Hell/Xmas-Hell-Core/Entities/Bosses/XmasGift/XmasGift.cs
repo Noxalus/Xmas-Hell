@@ -57,7 +57,8 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             PhysicsBody.BodyType = BodyType.Dynamic;
             PhysicsBody.Restitution = 0.01f;
-            PhysicsBody.Friction = 0f;
+            PhysicsBody.Friction = 0.5f;
+            PhysicsBody.Mass = 30f;
         }
 
         public override void Update(GameTime gameTime)

@@ -16,8 +16,7 @@ namespace XmasHell.Physics.Collision
             Vector2? relativePosition = null, float scale = 1f) : base(entity)
         {
             _spriterPhysicsEntity = entity;
-            int folderId = 0;
-            _spriterPartFile = SpriterUtils.GetSpriterFile(spritePartName, _spriterPhysicsEntity.GetCurrentAnimator(), out folderId);
+            _spriterPartFile = SpriterUtils.GetSpriterFile(spritePartName, _spriterPhysicsEntity.GetCurrentAnimator());
             _relativePosition = relativePosition ?? Vector2.Zero;
 
             Vertices.Add(Vector2.Zero);
