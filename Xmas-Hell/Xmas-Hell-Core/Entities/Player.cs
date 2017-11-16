@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Timers;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
@@ -214,10 +215,6 @@ namespace XmasHell.Entities
                     _game.Camera.ZoomTo(1f, 0.5, Position());
             }
 
-            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
-
-            _hitboxSprite.Position = _hitbox.GetCenter();
-
 #if ANDROID
             UpdatePositionFromTouch(gameTime);
             //UpdateAnimationFromTouch();
@@ -225,6 +222,10 @@ namespace XmasHell.Entities
             UpdatePositionFromKeyboard(gameTime);
             //UpdateAnimationFromKeyboard();
 #endif
+
+            _hitboxSprite.Position = _hitbox.GetCenter();
+
+            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
             CheckOutOfBounds();
             UpdateShoot(gameTime);
@@ -263,7 +264,6 @@ namespace XmasHell.Entities
 
         private void UpdatePositionFromKeyboard(GameTime gameTime)
         {
-            var dt = (float) gameTime.ElapsedGameTime.TotalSeconds;
             _currentDirection = Vector2.Zero;
 
             if (InputManager.Up())
@@ -283,7 +283,7 @@ namespace XmasHell.Entities
             if (InputManager.KeyDown(Keys.LeftShift))
                 speed = 250f;
 
-            CurrentAnimator.Position += _currentDirection * speed * dt;
+            CurrentAnimator.Position += _currentDirection * speed * gameTime.GetElapsedSeconds();
         }
 
         private void UpdateAnimationFromTouch()

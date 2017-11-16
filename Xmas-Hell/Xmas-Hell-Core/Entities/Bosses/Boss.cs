@@ -832,13 +832,13 @@ namespace XmasHell.Entities.Bosses
 
             Tinted = _hitTimer.TotalMilliseconds > 0;
 
-            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
-
             if (PhysicsEnabled)
             {
                 PhysicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
                 SynchronizeGraphicsWithPhysics();
             }
+
+            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
         private void SynchronizeGraphicsWithPhysics()
