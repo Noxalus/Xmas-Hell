@@ -139,7 +139,7 @@ namespace XmasHell.Entities.Bosses
             return new Vector2(Width() / 2f, Height() / 2f);
         }
 
-        public virtual Vector2 Scale()
+        public virtual Vector2 ScaleVector()
         {
             return CurrentAnimator.Scale;
         }

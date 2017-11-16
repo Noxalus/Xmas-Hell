@@ -130,7 +130,7 @@ namespace XmasHell.Spriter
             return Rotation;
         }
 
-        Vector2 IPhysicsEntity.Scale()
+        Vector2 IPhysicsEntity.ScaleVector()
         {
             return Scale;
         }

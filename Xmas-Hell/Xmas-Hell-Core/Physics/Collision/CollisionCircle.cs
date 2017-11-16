@@ -31,7 +31,7 @@ namespace XmasHell.Physics.Collision
 
         public virtual float GetRadius()
         {
-            return _initialRadius * Entity.Scale().X;
+            return _initialRadius * Entity.ScaleVector().X;
         }
 
         public virtual Vector2 GetCenter()

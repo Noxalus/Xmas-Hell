@@ -88,12 +88,12 @@ namespace XmasHell.Entities.Bosses.XmasCandy
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (Boss.Scale().X > _minScale && Boss.Scale().Y > _minScale)
+            if (Boss.ScaleVector().X > _minScale && Boss.ScaleVector().Y > _minScale)
             {
                 var factor = 0.01f * dt;
                 Boss.CurrentAnimator.Speed -= factor * 1.5f;
                 Boss.ShootTimerTime = MathHelper.Clamp(Boss.ShootTimerTime + factor, _maxShootTimeFrequence, _minShootTimeFrequence);
-                Boss.Scale(Boss.Scale() - new Vector2(factor));
+                Boss.Scale(Boss.ScaleVector() - new Vector2(factor));
             }
 
             Boss.MoveTo(Boss.GetPlayerPosition(), true);

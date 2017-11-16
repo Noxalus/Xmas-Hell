@@ -64,7 +64,7 @@ namespace XmasHell.Entities
             return _hitboxSprite.Origin;
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return CurrentAnimator.Scale;
         }

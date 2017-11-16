@@ -36,7 +36,7 @@ namespace XmasHell.Entities
             return Sprite.Origin;
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return Sprite.Scale;
         }

@@ -30,7 +30,7 @@ namespace XmasHell.Entities
             return MathExtension.LineToAngle(_line);
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return _scale;
         }

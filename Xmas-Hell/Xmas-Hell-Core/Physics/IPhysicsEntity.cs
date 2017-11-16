@@ -6,7 +6,7 @@ namespace XmasHell.Physics
     {
         Vector2 Position();
         float Rotation();
-        Vector2 Scale();
+        Vector2 ScaleVector(); // Avoid "Scale" name because it's already used by BulletML's Bullet class for a single float
         Vector2 Origin();
         void TakeDamage(float damage);
     }

@@ -15,7 +15,7 @@ namespace XmasHell.Physics.Collision
 
         protected Matrix GetMatrix()
         {
-            var scale = Entity.Scale();
+            var scale = Entity.ScaleVector();
             var rotation = Entity.Rotation();
             var position = Entity.Position();
             //var origin = Entity.Origin();

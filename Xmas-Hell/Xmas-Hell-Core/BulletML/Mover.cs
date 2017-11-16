@@ -27,6 +27,7 @@ namespace XmasHell.BulletML
         private Vector2 _origin;
         private bool _used;
         private float _alpha;
+        private Vector2 _initialScale;
         private Vector2 _scale;
 
         public Vector2 Position()
@@ -49,14 +50,9 @@ namespace XmasHell.BulletML
             return Vector2.Zero;
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return _scale;
-        }
-
-        public void Scale(Vector2 value)
-        {
-            _scale = value;
         }
 
         public void Position(Vector2 value)
@@ -101,6 +97,7 @@ namespace XmasHell.BulletML
             _game.SpriteBatchManager.BossBullets.Add(this);
 
             _alpha = 1f;
+            _initialScale = Vector2.One;
             _scale = new Vector2(2.5f);
 
             if (!topBullet)
@@ -136,6 +133,13 @@ namespace XmasHell.BulletML
                 }
             }
 
+            // Scale changed?
+            if (Math.Abs(Scale - _scale.X) > 0.01f)
+            {
+                _scale = new Vector2(Scale);
+                _initialScale = _scale;
+            }
+
             if (BounceBounds.HasValue)
                 CheckBounceBounds();
             else
@@ -143,13 +147,13 @@ namespace XmasHell.BulletML
 
             _alpha = MathHelper.Lerp(_alpha, 1f, 0.05f);
             _scale = new Vector2(
-                MathHelper.Lerp(_scale.X, 1f, 0.05f),
-                MathHelper.Lerp(_scale.Y, 1f, 0.05f)
+                MathHelper.Lerp(_scale.X, _initialScale.X, 0.05f),
+                MathHelper.Lerp(_scale.Y, _initialScale.Y, 0.05f)
             );
 
-            Sprite.Position = Position();
+            Sprite.Position = _position;
             Sprite.Rotation = Direction;
-            Sprite.Scale = Scale();
+            Sprite.Scale = _scale;
             Sprite.Color = Color;
             Sprite.Alpha = _alpha;
         }

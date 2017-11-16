@@ -35,7 +35,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             return _animator.Origin();
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return _animator.Scale;
         }

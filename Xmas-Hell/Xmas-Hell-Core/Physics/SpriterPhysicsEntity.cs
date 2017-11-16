@@ -35,7 +35,7 @@ namespace XmasHell.Physics
             return Vector2.Zero;
         }
 
-        public virtual Vector2 Scale()
+        public virtual Vector2 ScaleVector()
         {
             if (_animator.FrameData != null && _animator.FrameData.SpriteData.Count > 0)
             {

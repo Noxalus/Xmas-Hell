@@ -33,7 +33,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             return Vector2.Zero;
         }
 
-        public Vector2 Scale()
+        public Vector2 ScaleVector()
         {
             return Sprite.Scale;
         }
