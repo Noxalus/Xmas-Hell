@@ -151,7 +151,7 @@ namespace XmasHell.Entities.Bosses
 
         public float GetLifePercentage()
         {
-            return Behaviours[CurrentBehaviourIndex].GetLifePercentage();
+            return CurrentBehaviourIndex >= Behaviours.Count ? 0 : Behaviours[CurrentBehaviourIndex].GetLifePercentage();
         }
 
         public Vector2 ActionPointPosition()
