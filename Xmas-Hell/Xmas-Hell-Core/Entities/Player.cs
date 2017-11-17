@@ -16,7 +16,6 @@ using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 using XmasHell.Controls;
-using XmasHell.Audio;
 
 namespace XmasHell.Entities
 {
@@ -225,10 +224,10 @@ namespace XmasHell.Entities
 
             _hitboxSprite.Position = _hitbox.GetCenter();
 
-            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
-
             CheckOutOfBounds();
             UpdateShoot(gameTime);
+
+            CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
         private void UpdatePositionFromTouch(GameTime gameTime)
