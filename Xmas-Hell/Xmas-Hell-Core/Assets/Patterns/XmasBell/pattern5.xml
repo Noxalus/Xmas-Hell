@@ -1,21 +1,19 @@
 <?xml version="1.0" ?>
 <!DOCTYPE bulletml SYSTEM "http://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml.dtd">
 <bulletml xmlns="http://www.asahi-net.or.jp/~cs8k-cyu/bulletml">
-    <action label="top">
-      <fire>
-        <bulletRef label="bullet1" />
-      </fire>
+  <action label="top">
+    <fire>
+      <bullet>
+        <direction type="absolute">180 + ($rand * 30) - 15</direction>
+        <speed>10 + $rand * 10</speed>
+        <sprite>3</sprite>
+        <action>
+          <accel>
+            <vertical>100</vertical>
+            <term>200 + $rand * 200</term>
+          </accel>
+        </action>
+      </bullet>
+    </fire>
   </action>
-
-  <bullet label="bullet1">
-    <direction type="absolute">180</direction>
-    <speed>1</speed>
-    <sprite>3</sprite>
-    <action>
-      <changeSpeed>
-        <speed>30 + ($rand * 20)</speed>
-        <term>100</term>
-      </changeSpeed>
-    </action>
-  </bullet>
 </bulletml>
