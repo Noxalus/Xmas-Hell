@@ -5,8 +5,6 @@ using BulletML;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using MonoGame.Extended;
-using MonoGame.Extended.TextureAtlases;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.Providers;
@@ -299,8 +297,22 @@ namespace XmasHell.Entities.Bosses
             Reset();
         }
 
+        private void Clear()
+        {
+            Game.SpriteBatchManager.BossBullets.Clear();
+            Game.GameManager.CollisionWorld.ClearBossHitboxes();
+            Game.GameManager.CollisionWorld.ClearBossBullets();
+
+            PhysicsBody?.Dispose();
+            PhysicsWorld?.Clear();
+
+            Game.GameManager.MoverManager.SetBounceBounds(null);
+        }
+
         public virtual void Reset()
         {
+            Clear();
+
             Game.SpriteBatchManager.Boss = this;
             InitializePhysics();
 
@@ -338,16 +350,8 @@ namespace XmasHell.Entities.Bosses
 
         public void Dispose()
         {
+            Clear();
             Game.SpriteBatchManager.Boss = null;
-            Game.SpriteBatchManager.BossBullets.Clear();
-
-            Game.GameManager.CollisionWorld.ClearBossHitboxes();
-            Game.GameManager.CollisionWorld.ClearBossBullets();
-
-            PhysicsBody?.Dispose();
-            PhysicsWorld?.Clear();
-
-            Game.GameManager.MoverManager.SetBounceBounds(null);
         }
 
         public bool Alive()
