@@ -12,6 +12,7 @@ using XmasHell.Controls;
 using MonoGame.Extended.Animations;
 using MonoGame.Extended.Tweening;
 using XmasHell.Audio;
+using XmasHell.Entities;
 using XmasHell.GUI;
 using XmasHell.PlayerData;
 
@@ -41,6 +42,7 @@ namespace XmasHell
         public MusicManager MusicManager;
         public GuiManager GuiManager;
         public PlayerData.PlayerData PlayerData;
+        public CloudManager CloudManager;
 
         public bool Pause;
         private bool _computeNextFrame = false;
@@ -96,6 +98,7 @@ namespace XmasHell
             GameManager = new GameManager(this);
             SpriteBatchManager = new SpriteBatchManager(this);
             PerformanceManager = new PerformanceManager(this);
+            CloudManager = new CloudManager(this);
         }
 
         protected override void Initialize()
@@ -166,8 +169,8 @@ namespace XmasHell
             Assets.Load(Content, GraphicsDevice);
 
             SpriteBatchManager.LoadContent();
-
-            MusicManager.Initialize();
+            CloudManager.LoadContent();
+            MusicManager.LoadContent();
 
             var gradientBackground = new GradientBackground(this);
             var level = BackgroundLevel.Level1;

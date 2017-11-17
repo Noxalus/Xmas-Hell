@@ -163,6 +163,8 @@ namespace XmasHell.Screens.Menu
         {
             Game.GameManager.LoadBoss(_selectedBoss);
             Game.ScreenManager.GoTo<GameScreen>();
+
+            Game.CloudManager.Dispose();
         }
         #endregion
 

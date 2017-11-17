@@ -155,6 +155,10 @@ namespace XmasHell
 
                 // Candy bar
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasCandy/candy-bar"),
+
+                // Clouds
+                content.Load<Texture2D>("Graphics/GUI/cloud1"),
+                content.Load<Texture2D>("Graphics/GUI/cloud2")
             };
 
             _spriterAnimators = new Dictionary<string, Dictionary<string, CustomSpriterAnimator>>()

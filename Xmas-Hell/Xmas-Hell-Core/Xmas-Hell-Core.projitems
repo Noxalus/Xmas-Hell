@@ -66,6 +66,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTreeBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bullet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clouds\CloudManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Laser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Player.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PlayerBullet.cs" />
@@ -130,5 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Clouds\" />
   </ItemGroup>
 </Project>

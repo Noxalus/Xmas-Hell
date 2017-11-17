@@ -62,14 +62,14 @@
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="8" key="0" z_index="1"/>
-                    <object_ref id="2" timeline="7" key="0" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
-                    <object_ref id="4" timeline="5" key="0" z_index="4"/>
-                    <object_ref id="5" timeline="4" key="0" z_index="5"/>
-                    <object_ref id="6" timeline="6" key="0" z_index="6"/>
-                    <object_ref id="7" timeline="1" key="0" z_index="7"/>
-                    <object_ref id="8" timeline="2" key="0" z_index="8"/>
+                    <object_ref id="1" timeline="3" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="5" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="1" key="0" z_index="5"/>
+                    <object_ref id="6" timeline="2" key="0" z_index="6"/>
+                    <object_ref id="7" timeline="17" key="0" z_index="7"/>
+                    <object_ref id="8" timeline="18" key="0" z_index="8"/>
                     <object_ref id="9" timeline="19" key="0" z_index="9"/>
                     <object_ref id="10" timeline="20" key="0" z_index="10"/>
                     <object_ref id="11" timeline="21" key="0" z_index="11"/>
@@ -88,10 +88,10 @@
                     <object_ref id="24" timeline="34" key="0" z_index="24"/>
                     <object_ref id="25" timeline="35" key="0" z_index="25"/>
                     <object_ref id="26" timeline="36" key="0" z_index="26"/>
-                    <object_ref id="27" timeline="37" key="0" z_index="27"/>
-                    <object_ref id="28" timeline="38" key="0" z_index="28"/>
-                    <object_ref id="29" timeline="40" key="0" z_index="29"/>
-                    <object_ref id="30" timeline="39" key="0" z_index="30"/>
+                    <object_ref id="27" timeline="38" key="0" z_index="27"/>
+                    <object_ref id="28" timeline="37" key="0" z_index="28"/>
+                    <object_ref id="29" timeline="7" key="0" z_index="29"/>
+                    <object_ref id="30" timeline="8" key="0" z_index="30"/>
                     <object_ref id="31" timeline="9" key="0" z_index="31"/>
                     <object_ref id="32" timeline="10" key="0" z_index="32"/>
                     <object_ref id="33" timeline="11" key="0" z_index="33"/>
@@ -100,19 +100,17 @@
                     <object_ref id="36" timeline="14" key="0" z_index="36"/>
                     <object_ref id="37" timeline="15" key="0" z_index="37"/>
                     <object_ref id="38" timeline="16" key="0" z_index="38"/>
-                    <object_ref id="39" timeline="17" key="0" z_index="39"/>
-                    <object_ref id="40" timeline="18" key="0" z_index="40"/>
                 </key>
                 <key id="1" time="500">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
-                    <object_ref id="1" timeline="8" key="1" z_index="1"/>
-                    <object_ref id="2" timeline="7" key="1" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
-                    <object_ref id="4" timeline="5" key="1" z_index="4"/>
-                    <object_ref id="5" timeline="4" key="1" z_index="5"/>
-                    <object_ref id="6" timeline="6" key="1" z_index="6"/>
-                    <object_ref id="7" timeline="1" key="1" z_index="7"/>
-                    <object_ref id="8" timeline="2" key="1" z_index="8"/>
+                    <object_ref id="1" timeline="3" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="5" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="1" key="1" z_index="5"/>
+                    <object_ref id="6" timeline="2" key="1" z_index="6"/>
+                    <object_ref id="7" timeline="17" key="1" z_index="7"/>
+                    <object_ref id="8" timeline="18" key="1" z_index="8"/>
                     <object_ref id="9" timeline="19" key="1" z_index="9"/>
                     <object_ref id="10" timeline="20" key="1" z_index="10"/>
                     <object_ref id="11" timeline="21" key="1" z_index="11"/>
@@ -131,10 +129,10 @@
                     <object_ref id="24" timeline="34" key="1" z_index="24"/>
                     <object_ref id="25" timeline="35" key="1" z_index="25"/>
                     <object_ref id="26" timeline="36" key="1" z_index="26"/>
-                    <object_ref id="27" timeline="37" key="1" z_index="27"/>
-                    <object_ref id="28" timeline="38" key="1" z_index="28"/>
-                    <object_ref id="29" timeline="40" key="1" z_index="29"/>
-                    <object_ref id="30" timeline="39" key="1" z_index="30"/>
+                    <object_ref id="27" timeline="38" key="1" z_index="27"/>
+                    <object_ref id="28" timeline="37" key="1" z_index="28"/>
+                    <object_ref id="29" timeline="7" key="1" z_index="29"/>
+                    <object_ref id="30" timeline="8" key="1" z_index="30"/>
                     <object_ref id="31" timeline="9" key="1" z_index="31"/>
                     <object_ref id="32" timeline="10" key="1" z_index="32"/>
                     <object_ref id="33" timeline="11" key="1" z_index="33"/>
@@ -143,19 +141,17 @@
                     <object_ref id="36" timeline="14" key="1" z_index="36"/>
                     <object_ref id="37" timeline="15" key="1" z_index="37"/>
                     <object_ref id="38" timeline="16" key="1" z_index="38"/>
-                    <object_ref id="39" timeline="17" key="1" z_index="39"/>
-                    <object_ref id="40" timeline="18" key="1" z_index="40"/>
                 </key>
                 <key id="2" time="1000">
                     <object_ref id="0" timeline="0" key="2" z_index="0"/>
-                    <object_ref id="1" timeline="8" key="2" z_index="1"/>
-                    <object_ref id="2" timeline="7" key="2" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
-                    <object_ref id="4" timeline="5" key="2" z_index="4"/>
-                    <object_ref id="5" timeline="4" key="2" z_index="5"/>
-                    <object_ref id="6" timeline="6" key="2" z_index="6"/>
-                    <object_ref id="7" timeline="1" key="2" z_index="7"/>
-                    <object_ref id="8" timeline="2" key="2" z_index="8"/>
+                    <object_ref id="1" timeline="3" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="5" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="6" key="2" z_index="4"/>
+                    <object_ref id="5" timeline="1" key="2" z_index="5"/>
+                    <object_ref id="6" timeline="2" key="2" z_index="6"/>
+                    <object_ref id="7" timeline="17" key="2" z_index="7"/>
+                    <object_ref id="8" timeline="18" key="2" z_index="8"/>
                     <object_ref id="9" timeline="19" key="2" z_index="9"/>
                     <object_ref id="10" timeline="20" key="2" z_index="10"/>
                     <object_ref id="11" timeline="21" key="2" z_index="11"/>
@@ -174,10 +170,10 @@
                     <object_ref id="24" timeline="34" key="2" z_index="24"/>
                     <object_ref id="25" timeline="35" key="2" z_index="25"/>
                     <object_ref id="26" timeline="36" key="2" z_index="26"/>
-                    <object_ref id="27" timeline="37" key="2" z_index="27"/>
-                    <object_ref id="28" timeline="38" key="2" z_index="28"/>
-                    <object_ref id="29" timeline="40" key="2" z_index="29"/>
-                    <object_ref id="30" timeline="39" key="2" z_index="30"/>
+                    <object_ref id="27" timeline="38" key="2" z_index="27"/>
+                    <object_ref id="28" timeline="37" key="2" z_index="28"/>
+                    <object_ref id="29" timeline="7" key="2" z_index="29"/>
+                    <object_ref id="30" timeline="8" key="2" z_index="30"/>
                     <object_ref id="31" timeline="9" key="2" z_index="31"/>
                     <object_ref id="32" timeline="10" key="2" z_index="32"/>
                     <object_ref id="33" timeline="11" key="2" z_index="33"/>
@@ -186,8 +182,6 @@
                     <object_ref id="36" timeline="14" key="2" z_index="36"/>
                     <object_ref id="37" timeline="15" key="2" z_index="37"/>
                     <object_ref id="38" timeline="16" key="2" z_index="38"/>
-                    <object_ref id="39" timeline="17" key="2" z_index="39"/>
-                    <object_ref id="40" timeline="18" key="2" z_index="40"/>
                 </key>
             </mainline>
             <timeline id="0" name="game-area">
@@ -267,29 +261,7 @@
                     <object folder="0" file="6" x="78" y="-575" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="7" name="cloud2">
-                <key id="0" spin="0">
-                    <object folder="0" file="5" x="-350" y="867" angle="0"/>
-                </key>
-                <key id="1" time="500" spin="0">
-                    <object folder="0" file="5" x="-350" y="867" angle="0"/>
-                </key>
-                <key id="2" time="1000" spin="0">
-                    <object folder="0" file="5" x="-350" y="867" angle="0"/>
-                </key>
-            </timeline>
-            <timeline id="8" name="cloud1">
-                <key id="0" spin="0">
-                    <object folder="0" file="4" x="290" y="790" angle="0"/>
-                </key>
-                <key id="1" time="500" spin="0">
-                    <object folder="0" file="4" x="290" y="790" angle="0"/>
-                </key>
-                <key id="2" time="1000" spin="0">
-                    <object folder="0" file="4" x="290" y="790" angle="0"/>
-                </key>
-            </timeline>
-            <timeline id="9" name="xmas-ball-available-button">
+            <timeline id="7" name="xmas-ball-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="9" x="145" y="-500" angle="0" a="0"/>
                 </key>
@@ -300,7 +272,7 @@
                     <object folder="1" file="9" x="145" y="-500" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="10" name="xmas-snowflake-available-button">
+            <timeline id="8" name="xmas-snowflake-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="3" x="347" y="-455" angle="0" a="0"/>
                 </key>
@@ -311,7 +283,7 @@
                     <object folder="1" file="3" x="347" y="-455" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="11" name="xmas-snowman-available-button">
+            <timeline id="9" name="xmas-snowman-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="10" x="126" y="190" angle="0" a="0"/>
                 </key>
@@ -322,7 +294,7 @@
                     <object folder="1" file="10" x="126" y="190" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="12" name="xmas-reindeer-available-button">
+            <timeline id="10" name="xmas-reindeer-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="6" x="-114" y="197" angle="0" a="0"/>
                 </key>
@@ -333,7 +305,7 @@
                     <object folder="1" file="6" x="-114" y="197" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="13" name="xmas-santa-available-button">
+            <timeline id="11" name="xmas-santa-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="7" x="-15" y="546" angle="0" a="0"/>
                 </key>
@@ -344,7 +316,7 @@
                     <object folder="1" file="7" x="-15" y="546" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="14" name="xmas-tree-available-button">
+            <timeline id="12" name="xmas-tree-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="11" x="245" y="-141" angle="0" a="0"/>
                 </key>
@@ -355,7 +327,7 @@
                     <object folder="1" file="11" x="245" y="-141" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="15" name="xmas-gift-available-button">
+            <timeline id="13" name="xmas-gift-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="5" x="-198" y="-151" angle="0" a="0"/>
                 </key>
@@ -366,7 +338,7 @@
                     <object folder="1" file="5" x="-198" y="-151" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="16" name="xmas-candy-available-button">
+            <timeline id="14" name="xmas-candy-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="4" x="-97" y="-510" angle="0" a="0"/>
                 </key>
@@ -377,7 +349,7 @@
                     <object folder="1" file="4" x="-97" y="-510" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="17" name="xmas-bell-available-button">
+            <timeline id="15" name="xmas-bell-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="8" x="-324" y="-462" angle="0" a="0"/>
                 </key>
@@ -388,7 +360,7 @@
                     <object folder="1" file="8" x="-324" y="-462" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="18" name="xmas-log-available-button">
+            <timeline id="16" name="xmas-log-available-button">
                 <key id="0" spin="0">
                     <object folder="1" file="16" x="8" y="-168" angle="0" a="0"/>
                 </key>
@@ -399,7 +371,7 @@
                     <object folder="1" file="16" x="8" y="-168" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="19" name="garland-forbidden-ball">
+            <timeline id="17" name="garland-forbidden-ball">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="9" y="-170" angle="0" a="0"/>
                 </key>
@@ -410,7 +382,7 @@
                     <object folder="1" file="14" x="9" y="-170" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="20" name="garland-forbidden-ball_000">
+            <timeline id="18" name="garland-forbidden-ball_000">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="243" y="-140" angle="0" a="0"/>
                 </key>
@@ -421,7 +393,7 @@
                     <object folder="1" file="14" x="243" y="-140" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="21" name="garland-forbidden-ball_001">
+            <timeline id="19" name="garland-forbidden-ball_001">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="145" y="-498" angle="0" a="0"/>
                 </key>
@@ -432,7 +404,7 @@
                     <object folder="1" file="14" x="145" y="-498" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="22" name="garland-forbidden-ball_002">
+            <timeline id="20" name="garland-forbidden-ball_002">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="-97" y="-509" angle="0" a="0"/>
                 </key>
@@ -443,7 +415,7 @@
                     <object folder="1" file="14" x="-97" y="-509" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="23" name="garland-forbidden-ball_003">
+            <timeline id="21" name="garland-forbidden-ball_003">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="-325" y="-462" angle="0" a="0"/>
                 </key>
@@ -454,7 +426,7 @@
                     <object folder="1" file="14" x="-325" y="-462" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="24" name="garland-forbidden-ball_004">
+            <timeline id="22" name="garland-forbidden-ball_004">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="349" y="-455" angle="0" a="0"/>
                 </key>
@@ -465,7 +437,7 @@
                     <object folder="1" file="14" x="349" y="-455" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="25" name="garland-forbidden-ball_005">
+            <timeline id="23" name="garland-forbidden-ball_005">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="-196" y="-153" angle="0" a="0"/>
                 </key>
@@ -476,7 +448,7 @@
                     <object folder="1" file="14" x="-196" y="-153" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="26" name="garland-forbidden-ball_006">
+            <timeline id="24" name="garland-forbidden-ball_006">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="-113" y="196" angle="0" a="0"/>
                 </key>
@@ -487,7 +459,7 @@
                     <object folder="1" file="14" x="-113" y="196" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="27" name="garland-forbidden-ball_007">
+            <timeline id="25" name="garland-forbidden-ball_007">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="-17" y="547" angle="0" a="0"/>
                 </key>
@@ -498,7 +470,7 @@
                     <object folder="1" file="14" x="-17" y="547" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="28" name="garland-forbidden-ball_008">
+            <timeline id="26" name="garland-forbidden-ball_008">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="126" y="191" angle="0" a="0"/>
                 </key>
@@ -509,7 +481,7 @@
                     <object folder="1" file="14" x="126" y="191" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="29" name="xmas-ball-log-garland">
+            <timeline id="27" name="xmas-ball-log-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="26" x="79" y="-341" angle="113.054272" a="0"/>
                 </key>
@@ -520,7 +492,7 @@
                     <object folder="1" file="26" x="79" y="-341" angle="113.054272"/>
                 </key>
             </timeline>
-            <timeline id="30" name="xmas-ball-tree-garland">
+            <timeline id="28" name="xmas-ball-tree-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="25" x="196" y="-319" angle="75.051582" a="0"/>
                 </key>
@@ -531,7 +503,7 @@
                     <object folder="1" file="25" x="196" y="-319" angle="75.051582"/>
                 </key>
             </timeline>
-            <timeline id="31" name="xmas-bell-gift-garland">
+            <timeline id="29" name="xmas-bell-gift-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="27" x="-259" y="-309" angle="68.028132" a="0"/>
                 </key>
@@ -542,7 +514,7 @@
                     <object folder="1" file="27" x="-259" y="-309" angle="68.028132"/>
                 </key>
             </timeline>
-            <timeline id="32" name="xmas-candy-gift-garland">
+            <timeline id="30" name="xmas-candy-gift-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="28" x="-145" y="-329" angle="106.03683" a="0"/>
                 </key>
@@ -553,7 +525,7 @@
                     <object folder="1" file="28" x="-145" y="-329" angle="106.03683"/>
                 </key>
             </timeline>
-            <timeline id="33" name="xmas-candy-log-garland">
+            <timeline id="31" name="xmas-candy-log-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="29" x="-41" y="-346" angle="73.518526" a="0"/>
                 </key>
@@ -564,7 +536,7 @@
                     <object folder="1" file="29" x="-41" y="-346" angle="73.518526"/>
                 </key>
             </timeline>
-            <timeline id="34" name="xmas-gift-reindeer-garland">
+            <timeline id="32" name="xmas-gift-reindeer-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="30" x="-157" y="26" angle="78.505572" a="0"/>
                 </key>
@@ -575,7 +547,7 @@
                     <object folder="1" file="30" x="-157" y="26" angle="78.505572"/>
                 </key>
             </timeline>
-            <timeline id="35" name="xmas-log-reindeer-garland">
+            <timeline id="33" name="xmas-log-reindeer-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="31" x="-51" y="12" angle="108.302394" a="0"/>
                 </key>
@@ -586,7 +558,7 @@
                     <object folder="1" file="31" x="-51" y="12" angle="108.302394"/>
                 </key>
             </timeline>
-            <timeline id="36" name="xmas-log-snowman-garland">
+            <timeline id="34" name="xmas-log-snowman-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="32" x="68" y="5" angle="72.966127" a="0"/>
                 </key>
@@ -597,7 +569,7 @@
                     <object folder="1" file="32" x="68" y="5" angle="72.966127"/>
                 </key>
             </timeline>
-            <timeline id="37" name="xmas-reindeer-santa-garland">
+            <timeline id="35" name="xmas-reindeer-santa-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="33" x="-69" y="371" angle="75.679076" a="0"/>
                 </key>
@@ -608,7 +580,7 @@
                     <object folder="1" file="33" x="-69" y="371" angle="75.679076"/>
                 </key>
             </timeline>
-            <timeline id="38" name="xmas-snowflake-tree-garland">
+            <timeline id="36" name="xmas-snowflake-tree-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="34" x="301" y="-301" angle="107.557514" a="0"/>
                 </key>
@@ -619,7 +591,7 @@
                     <object folder="1" file="34" x="301" y="-301" angle="107.557514"/>
                 </key>
             </timeline>
-            <timeline id="39" name="xmas-snowman-santa-garland">
+            <timeline id="37" name="xmas-snowman-santa-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="35" x="58" y="368" angle="110.444559" a="0"/>
                 </key>
@@ -630,7 +602,7 @@
                     <object folder="1" file="35" x="58" y="368" angle="110.444559"/>
                 </key>
             </timeline>
-            <timeline id="40" name="xmas-tree-snowman-garland">
+            <timeline id="38" name="xmas-tree-snowman-garland">
                 <key id="0" spin="0">
                     <object folder="1" file="36" x="184" y="28" angle="109.295277" a="0"/>
                 </key>

@@ -308,6 +308,8 @@ namespace XmasHell.Rendering
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            _game.CloudManager.Draw(_game.SpriteBatch);
+
             foreach (var animator in _backgroundSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
 

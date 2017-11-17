@@ -23,7 +23,7 @@ namespace XmasHell.Audio
         {
         }
 
-        public void Initialize()
+        public void LoadContent()
         {
             _currentState = MusicState.None;
 
