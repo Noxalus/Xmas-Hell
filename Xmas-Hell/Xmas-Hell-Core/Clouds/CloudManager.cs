@@ -66,7 +66,7 @@ namespace XmasHell.Entities
                 );
 
                 if (_direction == 1 && _sprite.Position.X > GameConfig.VirtualResolution.X + _sprite.BoundingRectangle.Width ||
-                    _direction == -1 && _sprite.Position.X < 0)
+                    _direction == -1 && _sprite.Position.X < -_sprite.BoundingRectangle.Width)
                 {
                     _sprite = null;
                     _cloudTimer = TimeSpan.FromSeconds(_game.GameManager.Random.NextDouble() * 20f);
