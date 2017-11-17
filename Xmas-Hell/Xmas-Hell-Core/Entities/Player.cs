@@ -21,6 +21,8 @@ namespace XmasHell.Entities
 {
     public class Player : IPhysicsEntity
     {
+        private bool _ready;
+        private bool _entranceAnimation;
         private bool _destroyed;
 
         private readonly XmasHell _game;
@@ -48,6 +50,11 @@ namespace XmasHell.Entities
             return CurrentAnimator.Position;
         }
 
+        public void Position(Vector2 value)
+        {
+            CurrentAnimator.Position = value;
+        }
+
         public virtual Vector2 LocalPosition()
         {
             return Vector2.Zero;
@@ -71,6 +78,11 @@ namespace XmasHell.Entities
         public bool Alive()
         {
             return !_destroyed;
+        }
+
+        public bool IsReady()
+        {
+            return _ready;
         }
 
         public Player(XmasHell game)
@@ -129,6 +141,11 @@ namespace XmasHell.Entities
 
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
+
+            _initialSpritePosition = new Vector2(
+                GameConfig.VirtualResolution.X / 2f,
+                GameConfig.VirtualResolution.Y - 150
+            );
         }
 
         public void Initialize()
@@ -145,19 +162,17 @@ namespace XmasHell.Entities
 
         public void Reset()
         {
+            _ready = false;
+            _entranceAnimation = true;
             _game.SpriteBatchManager.Player = this;
             _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
             _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
-            _initialSpritePosition = new Vector2(
-                GameConfig.VirtualResolution.X / 2f,
-                GameConfig.VirtualResolution.Y - 150
-            );
             _initialTouchPosition = _currentTouchPosition;
             _bulletFrequence = TimeSpan.Zero;
             _destroyed = false;
 
-            CurrentAnimator.Position = _initialSpritePosition;
+            Position(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y + 100));
         }
 
         public void Destroy()
@@ -202,35 +217,52 @@ namespace XmasHell.Entities
                 return;
             }
 
+            if (_entranceAnimation)
+            {
+                if (Position().EqualsWithTolerence(_initialSpritePosition, 1E-02f))
+                {
+                    Position(_initialSpritePosition);
+                    _ready = true;
+                    _entranceAnimation = false;
+                }
+                else
+                {
+                    Position(new Vector2(Position().X, Position().Y - (GameConfig.PlayerSpeed / 3f) * gameTime.GetElapsedSeconds()));
+                }
+            }
+
             if (_game.GameManager.CantMove())
                 return;
 
-            var keyboardState = Keyboard.GetState();
-
-            if (keyboardState.IsKeyDown(Keys.Enter))
-                _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
-
-            if (InputManager.KeyPressed(Keys.Z))
+            if (_ready)
             {
-                if (_game.Camera.Zoom == 1f)
-                    _game.Camera.ZoomTo(5f, 0.5, Position());
-                else
-                    _game.Camera.ZoomTo(1f, 0.5, Position());
-            }
+                var keyboardState = Keyboard.GetState();
+
+                if (keyboardState.IsKeyDown(Keys.Enter))
+                    _game.GameManager.ParticleManager.EmitPlayerDestroyedParticles(Position());
+
+                if (InputManager.KeyPressed(Keys.Z))
+                {
+                    if (_game.Camera.Zoom == 1f)
+                        _game.Camera.ZoomTo(5f, 0.5, Position());
+                    else
+                        _game.Camera.ZoomTo(1f, 0.5, Position());
+                }
 
 #if ANDROID
-            UpdatePositionFromTouch(gameTime);
-            //UpdateAnimationFromTouch();
+                UpdatePositionFromTouch(gameTime);
+                //UpdateAnimationFromTouch();
 #else
             UpdatePositionFromKeyboard(gameTime);
             //UpdateAnimationFromKeyboard();
 #endif
 
-            _hitboxSprite.Position = _hitbox.GetCenter();
+                UpdateShoot(gameTime);
+            }
 
             CheckOutOfBounds();
-            UpdateShoot(gameTime);
 
+            _hitboxSprite.Position = _hitbox.GetCenter();
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
 
