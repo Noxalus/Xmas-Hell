@@ -42,6 +42,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
 
             Boss.Acceleration = Vector2.One;
             Boss.CurrentAnimator.Rotation = 0f;
+            Boss.TargetingPosition = false;
         }
 
         public override void Update(GameTime gameTime)
