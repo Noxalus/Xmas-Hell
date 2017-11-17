@@ -147,8 +147,7 @@ namespace XmasHell.Particles
                         },
                         Modifiers = new IModifier[]
                         {
-                            new RotationModifier { RotationRate = -2.1f },
-                            new RectangleContainerModifier {  Width = 720, Height = 1280 },
+                            new RotationModifier { RotationRate = -2.1f }
                         }
                     }
                 }
@@ -194,10 +193,11 @@ namespace XmasHell.Particles
             //    _snowFallParticles.Update(1 / 60f);
             //}
 
-            _game.SpriteBatchManager.BackgroundParticles.Add(_snowFallParticles);
+            //_game.SpriteBatchManager.BackgroundParticles.Add(_snowFallParticles);
+            //_game.SpriteBatchManager.BackgroundParticles.Add(_bossHitParticles);
+
             _game.SpriteBatchManager.GameParticles.Add(_playerDestroyedParticles);
-            _game.SpriteBatchManager.BackgroundParticles.Add(_bossHitParticles);
-            _game.SpriteBatchManager.BackgroundParticles.Add(_bossDestroyedParticles);
+            _game.SpriteBatchManager.GameParticles.Add(_bossDestroyedParticles);
         }
 
         public void EmitBossHitParticles(Vector2 position)
