@@ -159,7 +159,7 @@ namespace XmasHell.Screens
                 _endGameTitleLabel.Text = "You died!";
 
                 _endGameDeathCounterLabel.Text =
-                    Game.PlayerData.BossAttempts(Game.GameManager.GetCurrentBoss().BossType) + " times already";
+                    Game.PlayerData.DeathCounter(Game.GameManager.GetCurrentBoss().BossType) + " times already";
 
                 var randomTaunt = GetRandomTauntString();
                 var tauntStrings = StringExtension.FormatBoxString(randomTaunt, 260, font);

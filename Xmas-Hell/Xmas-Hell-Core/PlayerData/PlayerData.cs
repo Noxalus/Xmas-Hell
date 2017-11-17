@@ -36,15 +36,15 @@ namespace XmasHell.PlayerData
             return _preferences.GetInt("BossBeatenCounter-" + type.ToString(), 0);
         }
 
-        public void BossAttempts(BossType type, int value)
+        public void DeathCounter(BossType type, int value)
         {
-            _preferences.Editor().PutInt("BossAttempts-" + type.ToString(), value);
+            _preferences.Editor().PutInt("DeathCounter-" + type.ToString(), value);
             _preferences.Editor().Apply();
         }
 
-        public int BossAttempts(BossType type)
+        public int DeathCounter(BossType type)
         {
-            return _preferences.GetInt("BossAttempts-" + type.ToString(), 0);
+            return _preferences.GetInt("DeathCounter-" + type.ToString(), 0);
         }
 
         public void BossBestTime(BossType type, TimeSpan value)

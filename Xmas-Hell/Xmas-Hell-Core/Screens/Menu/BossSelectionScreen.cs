@@ -213,7 +213,7 @@ namespace XmasHell.Screens.Menu
             _bestTimeLabel.Text = "Best time: ";
             _bestTimeLabel.Text += (bossDeath > 0) ? Game.PlayerData.BossBestTime(bossType).ToString("mm\\:ss") : "--:--";
             _playTimeLabel.Text = "Play time: " + Game.PlayerData.BossPlayTime(bossType).ToString("mm\\:ss");
-            _playerDeathLabel.Text = "Attempts: " + Game.PlayerData.BossAttempts(bossType);
+            _playerDeathLabel.Text = "Attempts: " + (Game.PlayerData.DeathCounter(bossType) + Game.PlayerData.BossBeatenCounter(bossType)).ToString("000");
             _bossDeathLabel.Text = "Boss deaths: " + bossDeath;
 
             DoOpenBossPanel();
@@ -283,8 +283,9 @@ namespace XmasHell.Screens.Menu
 
                 if (available)
                 {
-                    var beaten = Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(bossButton.Name)) > 0;
-                    var hidden = Game.PlayerData.BossAttempts(BossFactory.StringToBossType(bossButton.Name)) == 0;
+                    var bossType = BossFactory.StringToBossType(bossButton.Name);
+                    var beaten = Game.PlayerData.BossBeatenCounter(bossType) > 0;
+                    var hidden = Game.PlayerData.DeathCounter(bossType) == 0 && Game.PlayerData.BossBeatenCounter(bossType) == 0;
                     var buttonTextureSwapName = "xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button";
 
                     if (hasRelation && hidden)

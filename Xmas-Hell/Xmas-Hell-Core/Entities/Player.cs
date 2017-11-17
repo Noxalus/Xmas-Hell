@@ -171,6 +171,10 @@ namespace XmasHell.Entities
             _destroyed = true;
 
             _game.PlayerData.DeathCounter(_game.PlayerData.DeathCounter() + 1);
+
+            var currentBoss = _game.GameManager.GetCurrentBoss();
+            if (currentBoss != null)
+                _game.PlayerData.DeathCounter(currentBoss.BossType, _game.PlayerData.DeathCounter(currentBoss.BossType) + 1);
         }
 
         private void AnimationFinished(string animationName)

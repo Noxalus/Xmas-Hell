@@ -42,7 +42,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
 
                     Boss.TriggerPattern("XmasBell/pattern5", BulletML.BulletType.Type4, false, patternPosition);
                 }
-
             }
         }
 
