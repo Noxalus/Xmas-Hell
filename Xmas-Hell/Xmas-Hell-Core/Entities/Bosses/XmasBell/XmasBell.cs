@@ -33,7 +33,7 @@ namespace XmasHell.Entities.Bosses.XmasBell
             // Setup the physics
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper.png", Vector2.Zero, 1f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper-ball.png", Vector2.Zero, 1f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "clapper-ball.png", Vector2.Zero, 1f));
         }
 
         protected override void UpdateBehaviourIndex()
