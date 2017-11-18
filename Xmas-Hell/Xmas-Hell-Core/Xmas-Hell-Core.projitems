@@ -46,6 +46,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasCandy\XmasCandyBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\Gift.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
