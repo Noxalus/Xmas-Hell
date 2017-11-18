@@ -801,6 +801,12 @@ namespace XmasHell.Entities.Bosses
                 }
             }
 
+            if (!_destroyed && PhysicsEnabled)
+            {
+                PhysicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
+                SynchronizeGraphicsWithPhysics();
+            }
+
             UpdatePosition(gameTime);
             UpdateRotation(gameTime);
             UpdateBehaviour(gameTime);
@@ -839,12 +845,6 @@ namespace XmasHell.Entities.Bosses
                 _hitTimer -= gameTime.ElapsedGameTime;
 
             Tinted = _hitTimer.TotalMilliseconds > 0;
-
-            if (PhysicsEnabled)
-            {
-                PhysicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
-                SynchronizeGraphicsWithPhysics();
-            }
 
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
