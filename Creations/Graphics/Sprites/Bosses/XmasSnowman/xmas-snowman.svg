@@ -45,6 +45,29 @@
          offset="1"
          id="stop2226" />
     </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient821"
+       id="radialGradient823"
+       cx="123.95312"
+       cy="164.33035"
+       fx="123.95312"
+       fy="164.33035"
+       r="62.555061"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.08978197,-6.0578851,8.1617761,-0.12096339,-2287.8717,3332.9135)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient821">
+      <stop
+         style="stop-color:#d6d2d2;stop-opacity:1"
+         offset="0"
+         id="stop817" />
+      <stop
+         style="stop-color:#f9f6f6;stop-opacity:0"
+         offset="1"
+         id="stop819" />
+    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -53,9 +76,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497474"
-     inkscape:cx="-2234.5936"
-     inkscape:cy="976.96146"
+     inkscape:zoom="1.4"
+     inkscape:cx="-1242.0555"
+     inkscape:cy="1310.1657"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -72,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -472,7 +495,7 @@
        style="display:inline;opacity:1;fill:url(#radialGradient1460);fill-opacity:1;stroke:#000000;stroke-width:15.24892521;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
        id="g7035"
-       transform="translate(-8.0357144,4.0178576)">
+       transform="matrix(0.74480529,0,0,0.74480529,-271.32922,-113.00017)">
       <g
          id="g7010">
         <ellipse
@@ -530,27 +553,27 @@
          style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <ellipse
-       ry="18.283632"
-       rx="19.502542"
-       cy="-161.18863"
-       cx="-1236.4197"
+       ry="13.617746"
+       rx="14.525597"
+       cy="-236.04683"
+       cx="-1186.2361"
        id="ellipse6946"
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.99150276;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.99150276;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse6948"
-       cx="-1127.9368"
-       cy="-161.18863"
-       rx="19.502542"
-       ry="18.283632" />
+       cx="-1105.4374"
+       cy="-236.04683"
+       rx="14.525597"
+       ry="13.617746" />
     <path
        sodipodi:nodetypes="cac"
        inkscape:connector-curvature="0"
        id="path6950"
-       d="m -1194.012,-126.55129 c 0,0 3.61,16.91286 10.1865,16.89643 6.6874,-0.0167 10.2723,-17.23301 10.2723,-17.23301"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       d="m -1154.6506,-210.24876 c 0,0 2.6887,12.59679 7.5869,12.58455 4.9809,-0.0124 7.6509,-12.83524 7.6509,-12.83524"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5.99150276;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <g
-       transform="matrix(0.80443881,0,0,0.80443881,-1123.9565,-572.93012)"
+       transform="matrix(0.59915028,0,0,0.59915028,-1102.4729,-542.71408)"
        id="g6958">
       <path
          sodipodi:nodetypes="cccc"
@@ -572,7 +595,7 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
-       transform="matrix(0.80443881,0,0,0.80443881,-1680.7163,-533.5229)"
+       transform="matrix(0.59915028,0,0,0.59915028,-1517.1506,-513.36337)"
        id="g6968">
       <path
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -589,7 +612,7 @@
     </g>
     <g
        id="g6974"
-       transform="matrix(-0.80443881,0,0,0.80443881,-677.33478,-528.82341)">
+       transform="matrix(-0.59915028,0,0,0.59915028,-769.8267,-509.86317)">
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
@@ -604,7 +627,7 @@
          style="opacity:1;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       transform="matrix(0.69824436,0,0,0.68477232,-1442.7103,-505.65546)"
+       transform="matrix(0.52005609,0,0,0.51002205,-1339.8824,-492.60756)"
        id="g6986">
       <g
          id="g6982"
@@ -632,162 +655,173 @@
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccc" />
     </g>
+    <circle
+       style="opacity:1;fill:url(#radialGradient823);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:9.375;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path815"
+       cx="-1070.9425"
+       cy="2459.0171"
+       r="216.96429"
+       transform="rotate(56.806112)" />
     <g
-       id="g6998"
-       transform="matrix(0.69824436,0,0,0.68477232,-2277.0853,-485.56617)"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\hat.png"
-       inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100">
-      <g
-         style="fill:#323232;fill-opacity:1"
-         id="g6994">
-        <path
-           style="opacity:1;fill:#323232;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:9.47716904;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 557.57706,423.5765 c 2e-5,24.50087 -87.62721,38.64848 -190.43418,38.64848 -102.80697,0 -186.86277,-13.43332 -186.86275,-37.9342 0,-24.50087 83.34151,-64.36276 186.14847,-64.36276 102.80695,0 191.14845,39.1476 191.14846,63.64848 z"
-           id="path6988"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="sssss" />
-        <g
-           id="g6992"
-           style="fill:#323232;fill-opacity:1;stroke:#000000;stroke-opacity:1">
-          <path
-             style="fill:#323232;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="m 254.28571,408.79078 c -3.96419,-48.03558 -15.14552,-94.9886 -1.46447,-145.67097 82.82876,-27.53212 158.89781,-28.42298 234.32162,0.59174 9.85037,43.80767 1.83332,89.05256 -3.21429,145.07923 -80.88485,15.57607 -157.32102,12.01587 -229.64286,0 z"
-             id="path6990"
-             inkscape:connector-curvature="0" />
-        </g>
-      </g>
-      <path
-         sodipodi:nodetypes="ccccc"
-         inkscape:connector-curvature="0"
-         id="path6996"
-         d="m 256.20862,407.5846 -6.76228,-45.81408 c 67.29724,23.89068 135.07614,32.13807 238.45939,-1.14535 l -7.11818,46.19587 c -79.37853,16.39151 -151.82606,13.81671 -224.57893,0.76356 z"
-         style="fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.32135391;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
-    <g
-       id="g7055"
-       transform="translate(-841.07144,127.23215)"
+       id="g4387"
+       transform="translate(541.69431,102.27795)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\body.png"
        inkscape:export-xdpi="100"
        inkscape:export-ydpi="100">
       <g
-         id="g7049">
-        <ellipse
-           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:8.07538414;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="ellipse7037"
-           cx="-1177.9121"
-           cy="-14.106949"
-           rx="140.15903"
-           ry="100.74763" />
+         id="g4331"
+         transform="matrix(0.74480529,0,0,0.74480529,-1680.492,-234.21848)">
         <g
-           transform="matrix(0.80443881,0,0,0.80443881,-1478.1701,-560.81635)"
-           id="g7045"
-           style="fill:#c62816;fill-opacity:1">
-          <path
-             sodipodi:nodetypes="ccccc"
-             inkscape:connector-curvature="0"
-             id="path7039"
-             d="m 472.14286,624.14792 c 12.07052,11.40536 22.09036,13.3776 43.21428,66.42857 l -28.92857,15 c -6.20308,-31.26657 -17.84814,-52.55618 -29.64285,-73.57143 z"
-             style="fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+           id="g4325">
           <ellipse
-             ry="56.41011"
-             rx="131.41393"
-             cy="591.2276"
-             cx="371.98865"
-             id="ellipse7041"
-             style="opacity:1;fill:#c62816;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:11.49214077;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-          <path
-             sodipodi:nodetypes="ccccc"
-             inkscape:connector-curvature="0"
-             id="path7043"
-             d="m 423.57143,642.00506 c 0.80789,32.54748 1.00082,63.28777 13.21428,96.78572 26.21447,-2.80582 44.69847,-5.06043 58.57143,-10.71429 -7.04612,-31.78571 -16.12407,-63.57143 -38.21428,-95.35714 z"
-             style="opacity:1;fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+             ry="100.74763"
+             rx="140.15903"
+             cy="-14.106949"
+             cx="-1177.9121"
+             id="ellipse4313"
+             style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:8.07538414;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+          <g
+             style="fill:#c62816;fill-opacity:1"
+             id="g4321"
+             transform="matrix(0.80443881,0,0,0.80443881,-1478.1701,-560.81635)">
+            <path
+               style="fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 472.14286,624.14792 c 12.07052,11.40536 22.09036,13.3776 43.21428,66.42857 l -28.92857,15 c -6.20308,-31.26657 -17.84814,-52.55618 -29.64285,-73.57143 z"
+               id="path4315"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccccc" />
+            <ellipse
+               style="opacity:1;fill:#c62816;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:11.49214077;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               id="ellipse4317"
+               cx="371.98865"
+               cy="591.2276"
+               rx="131.41393"
+               ry="56.41011" />
+            <path
+               style="opacity:1;fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+               d="m 423.57143,642.00506 c 0.80789,32.54748 1.00082,63.28777 13.21428,96.78572 26.21447,-2.80582 44.69847,-5.06043 58.57143,-10.71429 -7.04612,-31.78571 -16.12407,-63.57143 -38.21428,-95.35714 z"
+               id="path4319"
+               inkscape:connector-curvature="0"
+               sodipodi:nodetypes="ccccc" />
+          </g>
+          <ellipse
+             ry="81.295105"
+             rx="103.43862"
+             cy="-158.34448"
+             cx="-1180.1467"
+             id="ellipse4323"
+             style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.17370987;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
         </g>
         <ellipse
-           style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.17370987;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="ellipse7047"
-           cx="-1180.1467"
-           cy="-158.34448"
-           rx="103.43862"
-           ry="81.295105" />
+           style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="ellipse4327"
+           cx="-1178.8038"
+           cy="-16.674873"
+           rx="11.779282"
+           ry="10.683536" />
+        <ellipse
+           ry="10.683536"
+           rx="11.779282"
+           cy="19.52487"
+           cx="-1179.3784"
+           id="ellipse4329"
+           style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
-      <ellipse
-         ry="10.683536"
-         rx="11.779282"
-         cy="-16.674873"
-         cx="-1178.8038"
-         id="ellipse7051"
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="ellipse7053"
-         cx="-1179.3784"
-         cy="19.52487"
-         rx="11.779282"
-         ry="10.683536" />
     </g>
-    <g
-       id="g7061"
-       transform="matrix(0.56882414,-0.56882414,0.56882414,0.56882414,-2851.4353,419.48454)"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\arm.png"
+    <ellipse
+       ry="13.617746"
+       rx="14.525597"
+       cy="36.694359"
+       cx="-2124.4287"
+       id="ellipse4335"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.99150276;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\eye.png"
        inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100">
-      <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path7057"
-         d="m 760.31086,593.33273 c 35.06315,-36.70193 64.09035,-51.85614 81.82235,-68.18531"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         sodipodi:nodetypes="ccc"
-         inkscape:connector-curvature="0"
-         id="path7059"
-         d="m 851.42857,546.46935 c -11.81578,-1.15 -16.43032,-0.0152 -26.96429,-7.58928 -3.62967,-10.50596 -1.68544,-15.40704 -0.62762,-26.00228"
-         style="opacity:1;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
+       inkscape:export-ydpi="100" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -1988.2084,288.62729 c 0,0 3.61,16.91286 10.1865,16.89643 6.6874,-0.0167 10.2723,-17.23301 10.2723,-17.23301"
-       id="path7063"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5.99150276;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -2046.7415,66.280503 c 0,0 2.6887,12.59679 7.5869,12.58455 4.9809,-0.0124 7.6509,-12.83524 7.6509,-12.83524"
+       id="path4337"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cac"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\mouth.png"
        inkscape:export-xdpi="100"
        inkscape:export-ydpi="100" />
     <g
-       id="g7071"
-       transform="matrix(0.80443881,0,0,0.80443881,-1883.3315,-61.322968)"
+       id="g4345"
+       transform="matrix(0.59915028,0,0,0.59915028,-1954.7891,-315.42976)"
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\nose.png"
        inkscape:export-xdpi="100"
        inkscape:export-ydpi="100">
       <path
          style="fill:#ffa200;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -69.389142,536.96033 c -19.69233,0.80809 -40.568548,-6.37852 -41.163708,-20.20306 0.39284,-10.26979 26.733248,-13.0417 40.406098,-13.13198 13.37489,0.45588 16.02026,27.40897 0.75761,33.33504 z"
-         id="path7065"
+         id="path4339"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
       <path
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -94.595919,506.04598 c 10.512937,15.65701 4.972045,20.48482 0,25.69634"
-         id="path7067"
+         id="path4341"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <path
          sodipodi:nodetypes="cc"
          inkscape:connector-curvature="0"
-         id="path7069"
+         id="path4343"
          d="m -82.620472,502.88768 c 15.4002,20.54234 7.28345,26.87653 0,33.71416"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
-    <ellipse
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:8.04438782;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse7073"
-       cx="-1873.9197"
-       cy="286.13281"
-       rx="19.502542"
-       ry="18.283632"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\eye.png"
+    <g
+       id="g4369"
+       transform="matrix(0.52005609,0,0,0.51002205,-2203.5628,-613.82587)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\hat.png"
        inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100" />
+       inkscape:export-ydpi="100">
+      <g
+         style="fill:#323232;fill-opacity:1"
+         id="g4365">
+        <path
+           style="opacity:1;fill:#323232;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:9.47716904;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 557.57706,423.5765 c 2e-5,24.50087 -87.62721,38.64848 -190.43418,38.64848 -102.80697,0 -186.86277,-13.43332 -186.86275,-37.9342 0,-24.50087 83.34151,-64.36276 186.14847,-64.36276 102.80695,0 191.14845,39.1476 191.14846,63.64848 z"
+           id="path4359"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="sssss" />
+        <g
+           id="g4363"
+           style="fill:#323232;fill-opacity:1;stroke:#000000;stroke-opacity:1">
+          <path
+             style="fill:#323232;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 254.28571,408.79078 c -3.96419,-48.03558 -15.14552,-94.9886 -1.46447,-145.67097 82.82876,-27.53212 158.89781,-28.42298 234.32162,0.59174 9.85037,43.80767 1.83332,89.05256 -3.21429,145.07923 -80.88485,15.57607 -157.32102,12.01587 -229.64286,0 z"
+             id="path4361"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path4367"
+         d="m 256.20862,407.5846 -6.76228,-45.81408 c 67.29724,23.89068 135.07614,32.13807 238.45939,-1.14535 l -7.11818,46.19587 c -79.37853,16.39151 -151.82606,13.81671 -224.57893,0.76356 z"
+         style="fill:#c62816;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:10.32135391;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.38180161,-0.46174516,0.46174516,0.38180161,-2557.659,312.31298)"
+       id="g4375"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowman\arm.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 760.31086,593.33273 c 35.06315,-36.70193 64.09035,-51.85614 81.82235,-68.18531"
+         id="path4371"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="opacity:1;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 851.42857,546.46935 c -11.81578,-1.15 -16.43032,-0.0152 -26.96429,-7.58928 -3.62967,-10.50596 -1.68544,-15.40704 -0.62762,-26.00228"
+         id="path4373"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccc" />
+    </g>
   </g>
 </svg>
