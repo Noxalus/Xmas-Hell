@@ -994,6 +994,9 @@ namespace XmasHell.Entities.Bosses
 
             CurrentAnimator.Draw(Game.SpriteBatch);
 
+            if (CurrentBehaviourIndex < Behaviours.Count)
+                Behaviours[CurrentBehaviourIndex].DrawAfter(Game.SpriteBatch);
+
             if (PhysicsEnabled && GameConfig.DebugPhysics)
             {
                 var view = Game.Camera.GetViewMatrix();

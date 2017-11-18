@@ -32,23 +32,28 @@ namespace XmasHell.Entities.Bosses.XmasGift
             Game.GameManager.CollisionWorld.AddBossHitBox(CreateBoundingBox(this));
         }
 
-        public CollisionElement CreateBoundingBox(ISpriterPhysicsEntity spriterPhysicsEntity)
+        public CollisionElement CreateBoundingBox(ISpriterPhysicsEntity spriterPhysicsEntity, float scale = 1f)
         {
-            var width = GetSpritePartWidth("body.png") * 0.9f;
-            var height = GetSpritePartHeight("body.png") * 0.95f;
-            var scale = 0.85f;
-            var relativePosition = new Vector2(
-                (1f - scale) / 2f * width,
-                height - (height * scale)
+            var width = (GetSpritePartWidth("body.png") * scale) * 0.9f ;
+            var height = (GetSpritePartHeight("body.png") * scale) * 0.95f;
+            var boxScale = 0.85f;
+
+            var offset = new Vector2(
+                ((1f - boxScale) / 2f) * width,
+                height - (height * boxScale)
             );
 
-            return new SpriterCollisionConvexPolygon(spriterPhysicsEntity, "body.png", relativePosition, scale);
+            var relativePosition = Vector2.Zero;
+
+            relativePosition += offset;
+
+            return new SpriterCollisionConvexPolygon(spriterPhysicsEntity, "body.png", relativePosition, boxScale * scale);
         }
 
-        public Body CreateGiftBody(Vector2 position)
+        public Body CreateGiftBody(Vector2 position, float scale = 1f)
         {
-            var width = GetSpritePartWidth("body.png") * 0.9f;
-            var height = GetSpritePartHeight("body.png") * 0.95f;
+            var width = GetSpritePartWidth("body.png") * 0.9f * scale;
+            var height = GetSpritePartHeight("body.png") * 0.95f * scale;
             var physicsPosition = ConvertUnits.ToSimUnits(position);
 
             var body = BodyFactory.CreateRectangle(

@@ -44,7 +44,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         private void ResetGiftTimer()
         {
-            _spawnGiftTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(0, 5));
+            _spawnGiftTimer = TimeSpan.FromSeconds(Boss.Game.GameManager.Random.Next(1, 1));
         }
 
         public override void Update(GameTime gameTime)
@@ -65,10 +65,15 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            base.Draw(spriteBatch);
+        }
+
+        public override void DrawAfter(SpriteBatch spriteBatch)
+        {
+            base.DrawAfter(spriteBatch);
+
             foreach (var gift in _gifts)
                 gift.Draw(spriteBatch);
-
-            base.Draw(spriteBatch);
         }
     }
 }

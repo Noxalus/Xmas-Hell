@@ -156,6 +156,18 @@ namespace XmasHell
                 // Candy bar
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasCandy/candy-bar"),
 
+                // Gift
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/body2"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/body3"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/body4"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/body5"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/body6"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon2"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon3"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon4"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon5"),
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon6"),
+
                 // Clouds
                 content.Load<Texture2D>("Graphics/GUI/cloud1"),
                 content.Load<Texture2D>("Graphics/GUI/cloud2")

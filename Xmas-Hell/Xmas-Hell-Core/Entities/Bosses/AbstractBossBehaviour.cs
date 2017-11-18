@@ -66,5 +66,9 @@ namespace XmasHell.Entities.Bosses
         public virtual void Draw(SpriteBatch spriteBatch)
         {
         }
+
+        public virtual void DrawAfter(SpriteBatch spriteBatch)
+        {
+        }
     }
 }

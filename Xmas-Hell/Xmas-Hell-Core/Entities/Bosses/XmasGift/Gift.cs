@@ -52,18 +52,31 @@ namespace XmasHell.Entities.Bosses.XmasGift
             _boss = boss;
             _animator = animator.Clone();
 
+            // TODO: Random scale
+            var randomScale = 1f;
+            _animator.Scale = new Vector2(randomScale);
+
             // Physics
-            _boundingBox = _boss.CreateBoundingBox(this);
+            _boundingBox = _boss.CreateBoundingBox(this, _animator.Scale.X);
             _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
 
             var randomSpawnBounds = new Rectangle(
-                100, 0,
-                GameConfig.VirtualResolution.X - 100, 300
+                (int)(270 * randomScale), 0,
+                (int)(GameConfig.VirtualResolution.X - (270 * randomScale)), 300
             );
 
-            _body = _boss.CreateGiftBody(_boss.Game.GameManager.GetRandomPosition(false, randomSpawnBounds));
+            _body = _boss.CreateGiftBody(_boss.Game.GameManager.GetRandomPosition(false, randomSpawnBounds), _animator.Scale.X);
 
             _animator.Play("NoAnimation");
+
+            // Swap body and ribbon with random textures
+            var randomIndex = _boss.Game.GameManager.Random.Next(1, 7);
+
+            if (randomIndex > 1)
+            { 
+                _animator.AddTextureSwap("Graphics/Sprites/Bosses/XmasGift/body", Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasGift/body" + randomIndex));
+                _animator.AddTextureSwap("Graphics/Sprites/Bosses/XmasGift/ribbon", Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasGift/ribbon" + randomIndex));
+            }
         }
 
         public void Dispose()
