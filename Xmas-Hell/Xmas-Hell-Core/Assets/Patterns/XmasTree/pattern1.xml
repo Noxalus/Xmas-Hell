@@ -4,10 +4,35 @@
   <action label="top">
     <fire>
       <bullet>
-        <direction type="aim">0</direction>
-        <speed>10</speed>
+        <direction type="absolute">($rand * 180) - 90</direction>
+        <speed>15</speed>
         <sprite>1</sprite>
+        <color>
+          <red>0</red>
+          <green>1</green>
+          <blue>0</blue>
+        </color>
+        <actionRef label="fall">
+          <param>$sign</param>
+          <param>40</param>
+        </actionRef>
       </bullet>
     </fire>
+  </action>
+
+  <action label="fall">
+    <changeSpeed>
+      <speed>0</speed>
+      <term>100</term>
+    </changeSpeed>
+    <wait>100</wait>
+    <changeDirection>
+      <direction type="absolute">$sign * (180)</direction>
+      <term>0</term>
+    </changeDirection>
+    <changeSpeed>
+      <speed>10</speed>
+      <term>100</term>
+    </changeSpeed>
   </action>
 </bulletml>

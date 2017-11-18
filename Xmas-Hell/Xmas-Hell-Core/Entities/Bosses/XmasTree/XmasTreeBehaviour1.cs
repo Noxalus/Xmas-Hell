@@ -7,8 +7,6 @@ namespace XmasHell.Entities.Bosses.XmasTree
 {
     class XmasTreeBehaviour1 : AbstractBossBehaviour
     {
-        private CountdownTimer _shootBulletTimer;
-
         public XmasTreeBehaviour1(Boss boss) : base(boss)
         {
             InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 0.5f;
@@ -20,15 +18,16 @@ namespace XmasHell.Entities.Bosses.XmasTree
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
 
-            _shootBulletTimer = new CountdownTimer(1);
-
-            _shootBulletTimer.Completed += (sender, args) =>
-            {
-                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasTree/pattern1", BulletType.Type2, false, Boss.Position());
-                _shootBulletTimer.Restart();
-            };
+            Boss.StartShootTimer = true;
+            Boss.ShootTimerTime = 0.001f;
+            Boss.ShootTimerFinished += ShootTimerFinished;
 
             Boss.CurrentAnimator.Play("Idle");
+        }
+
+        private void ShootTimerFinished(object sender, float e)
+        {
+            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasTree/pattern1", BulletType.Type2, false, Boss.Position());
         }
 
         public override void Stop()
@@ -40,14 +39,12 @@ namespace XmasHell.Entities.Bosses.XmasTree
         {
             base.Update(gameTime);
 
-            _shootBulletTimer.Update(gameTime);
+            //var newPosition = new Vector2(
+            //    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
+            //    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 50, (int)(Boss.Height() / 2f) + 150)
+            //);
 
-            var newPosition = new Vector2(
-                Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 50, (int)(Boss.Height() / 2f) + 150)
-            );
-
-            Boss.MoveTo(newPosition, 1.5f);
+            //Boss.MoveTo(newPosition, 1.5f);
         }
     }
 }
