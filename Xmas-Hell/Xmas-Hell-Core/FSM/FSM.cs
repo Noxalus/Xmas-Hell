@@ -23,7 +23,10 @@ namespace XmasHell.FSM
                 _currentBehaviour?.TriggerLeave();
 
                 _currentState = value;
-                _currentBehaviour = _behaviours[value];
+                _currentBehaviour = null;
+
+                if (_behaviours.ContainsKey(value))
+                    _currentBehaviour = _behaviours[value];
 
                 _currentBehaviour?.TriggerEnter();
             }
