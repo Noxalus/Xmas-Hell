@@ -65,7 +65,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             Position(_initialPosition);
 
-            _randomScale = (float)(1f + _boss.Game.GameManager.Random.NextDouble() * 2f);
+            _randomScale = (float)(1f + _boss.Game.GameManager.Random.NextDouble() * 1.75f);
             _animator.Scale = new Vector2(_randomScale);
 
             // Physics
@@ -74,6 +74,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _body = CreateBody(_animator.Scale.X);
 
             _body.IgnoreGravity = true;
+            _body.OnCollision += OnCollision;
 
             // Animations
             _animator.Play("Spawn");
@@ -90,11 +91,20 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _animator.AnimationFinished += AnimationFinishedHandler;
         }
 
+        private bool OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            if (Math.Abs(_body.LinearVelocity.X) > 10f || Math.Abs(_body.LinearVelocity.Y) > 5f)
+                _boss.Game.Camera.Shake(0.2f, 10f);
+
+            return true;
+        }
+
         public void Dispose()
         {
             _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(_boundingBox);
             Destroyed = true;
             _animator.AnimationFinished -= AnimationFinishedHandler;
+            _body.Dispose();
         }
 
         private void AnimationFinishedHandler(string animationName)
