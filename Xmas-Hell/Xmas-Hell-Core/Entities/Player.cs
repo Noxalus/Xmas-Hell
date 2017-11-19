@@ -1,22 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Timers;
 using MonoGame.Extended.Tweening;
-using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
 using SpriterDotNet.MonoGame.Content;
 using SpriterDotNet.Providers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using XmasHell.Controls;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
-using XmasHell.Controls;
+using Sprite = MonoGame.Extended.Sprites.Sprite;
 
 namespace XmasHell.Entities
 {
@@ -39,6 +39,7 @@ namespace XmasHell.Entities
         private Point _initialTouchPosition;
         private Point _currentTouchPosition;
         private Point _previousTouchPosition;
+        private Vector2 _entraceSpritePosition;
 
         private Vector2 _currentDirection;
 
@@ -149,8 +150,10 @@ namespace XmasHell.Entities
 
             _initialSpritePosition = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
-                GameConfig.VirtualResolution.Y - 150
+                GameConfig.VirtualResolution.Y - (GameConfig.VirtualResolution.Y / 10f) - (_spriteSize.Y / 2f)
             );
+
+            _entraceSpritePosition = _initialSpritePosition;
         }
 
         public void Initialize()
@@ -173,7 +176,7 @@ namespace XmasHell.Entities
             _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
             _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
-            _initialTouchPosition = _currentTouchPosition;
+            _initialTouchPosition = _initialSpritePosition.ToPoint();
             _bulletFrequence = TimeSpan.Zero;
             _destroyed = false;
 
@@ -191,7 +194,7 @@ namespace XmasHell.Entities
                     _ready = true;
                     _entranceAnimation = false;
                 })
-                .MoveTo(_initialSpritePosition, GameConfig.PlayerEntranceAnimationTime, EasingFunctions.ExponentialInOut)
+                .MoveTo(_entraceSpritePosition, GameConfig.PlayerEntranceAnimationTime, EasingFunctions.ExponentialInOut)
                 .ScaleTo(Vector2.One, GameConfig.PlayerEntranceAnimationTime, EasingFunctions.ExponentialInOut)
                 ;
         }
@@ -265,10 +268,8 @@ namespace XmasHell.Entities
 #endif
 
                 UpdateShoot(gameTime);
-            }
-
-            if (!_entranceAnimation)
                 CheckOutOfBounds();
+            }
 
             _hitboxSprite.Position = _hitbox.GetCenter();
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
