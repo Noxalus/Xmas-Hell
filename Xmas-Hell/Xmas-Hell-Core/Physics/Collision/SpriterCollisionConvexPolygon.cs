@@ -39,7 +39,7 @@ namespace XmasHell.Physics.Collision
                     return worldPosition;
 
                 var animationOffset = new Vector2(spriteData.X, -spriteData.Y);
-                var scale = new Vector2(spriteData.ScaleX, spriteData.ScaleY);
+                var scale = new Vector2(spriteData.ScaleX, spriteData.ScaleY) * currentAnimator.Scale;
                 var realPivotPosition = new Vector2(1 - spriteData.PivotX, 1 - spriteData.PivotY);
 
                 vertex *= scale;
