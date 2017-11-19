@@ -22,6 +22,7 @@ namespace XmasHell
         public static float PlayerMoveSensitivity = 1f;
         public static float PlayerBulletSpeed = 2000f;
         public static float PlayerHitboxRadius = 5f;
+        public static float PlayerEntranceAnimationTime = 2f; // seconds
 
         // Boss
         public static int BossDefaultBehaviourLife = 400;

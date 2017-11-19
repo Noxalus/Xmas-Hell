@@ -9,11 +9,12 @@ using System;
 using System.IO;
 using XmasHell.Rendering;
 using System.Diagnostics;
+using MonoGame.Extended;
 using XmasHell.Physics;
 
 namespace XmasHell.Spriter
 {
-    public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>, ISpriterPhysicsEntity
+    public class CustomSpriterAnimator : MonoGameAnimator, IComparable<CustomSpriterAnimator>, ISpriterPhysicsEntity, IMovable, IRotatable, IScalable
     {
         private readonly IProviderFactory<ISprite, SoundEffect> _providerFactory;
         private readonly Stack<SpriteDrawInfo> _drawInfoPool;

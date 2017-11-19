@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Timers;
+using MonoGame.Extended.Tweening;
 using Sprite = MonoGame.Extended.Sprites.Sprite;
 using SpriterDotNet;
 using SpriterDotNet.MonoGame;
@@ -28,6 +29,7 @@ namespace XmasHell.Entities
         private readonly XmasHell _game;
         private CollisionCircle _hitbox;
         private Sprite _hitboxSprite;
+        private Point _spriteSize;
 
         private IList<MonoGameAnimator> _animators = new List<MonoGameAnimator>();
         public MonoGameAnimator CurrentAnimator;
@@ -75,6 +77,11 @@ namespace XmasHell.Entities
             return CurrentAnimator.Scale;
         }
 
+        public void ScaleVector(Vector2 value)
+        {
+            CurrentAnimator.Scale = value;
+        }
+
         public bool Alive()
         {
             return !_destroyed;
@@ -94,7 +101,6 @@ namespace XmasHell.Entities
             _idleAnimationTimer.Stop();
             _idleAnimationTimer.Completed += (sender, args) =>
             {
-                Console.WriteLine("PLAY IDLE");
                 CurrentAnimator.Play("Idle");
             };
 
@@ -124,12 +130,11 @@ namespace XmasHell.Entities
             }
 
             CurrentAnimator = _animators.First();
-            var spriteSize = new Vector2(60, 82);
-            CurrentAnimator.Position = new Vector2(spriteSize.X / 2f, spriteSize.Y / 2f);
             CurrentAnimator.Play("Idle");
 
             CurrentAnimator.AnimationFinished += AnimationFinished;
 
+            _spriteSize = new Point(90, 142); // Hard to compute
             _hitboxSprite = new Sprite(playerHitboxTexture)
             {
                 //Scale = new Vector2(
@@ -172,7 +177,23 @@ namespace XmasHell.Entities
             _bulletFrequence = TimeSpan.Zero;
             _destroyed = false;
 
-            Position(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y + 100));
+            // Reset value for entrance animation
+            ScaleVector(new Vector2(3f));
+            Position(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y + _spriteSize.Y * ScaleVector().Y));
+
+            PlayEntranceAnimation();
+        }
+
+        private void PlayEntranceAnimation()
+        {
+            ((CustomSpriterAnimator) CurrentAnimator).CreateTweenGroup(() =>
+                {
+                    _ready = true;
+                    _entranceAnimation = false;
+                })
+                .MoveTo(_initialSpritePosition, GameConfig.PlayerEntranceAnimationTime, EasingFunctions.ExponentialInOut)
+                .ScaleTo(Vector2.One, GameConfig.PlayerEntranceAnimationTime, EasingFunctions.ExponentialInOut)
+                ;
         }
 
         public void Destroy()
@@ -217,20 +238,6 @@ namespace XmasHell.Entities
                 return;
             }
 
-            if (_entranceAnimation)
-            {
-                if (Position().EqualsWithTolerence(_initialSpritePosition, 1E-02f))
-                {
-                    Position(_initialSpritePosition);
-                    _ready = true;
-                    _entranceAnimation = false;
-                }
-                else
-                {
-                    Position(new Vector2(Position().X, Position().Y - (GameConfig.PlayerSpeed / 3f) * gameTime.GetElapsedSeconds()));
-                }
-            }
-
             if (_game.GameManager.CantMove())
                 return;
 
@@ -260,7 +267,8 @@ namespace XmasHell.Entities
                 UpdateShoot(gameTime);
             }
 
-            CheckOutOfBounds();
+            if (!_entranceAnimation)
+                CheckOutOfBounds();
 
             _hitboxSprite.Position = _hitbox.GetCenter();
             CurrentAnimator.Update(gameTime.ElapsedGameTime.Milliseconds);
