@@ -52,12 +52,11 @@ namespace XmasHell.Entities.Bosses.XmasGift
             _boss = boss;
             _animator = animator.Clone();
 
-            // TODO: Random scale
-            var randomScale = 1f;
+            var randomScale = (float)(0.42f + _boss.Game.GameManager.Random.NextDouble() * 1.15f);
             _animator.Scale = new Vector2(randomScale);
 
             // Physics
-            _boundingBox = _boss.CreateBoundingBox(this, _animator.Scale.X);
+            _boundingBox = _boss.CreateBoundingBox(this, randomScale);
             _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
 
             var randomSpawnBounds = new Rectangle(
