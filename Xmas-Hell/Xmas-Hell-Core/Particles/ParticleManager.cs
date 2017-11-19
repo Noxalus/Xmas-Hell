@@ -42,13 +42,8 @@ namespace XmasHell.Particles
 
         public void Clear()
         {
-            //foreach (var particleEffet in _particleEffects)
-            //{
-            //    foreach (var particleEmitter in particleEffet.Emitters)
-            //    {
-            //        particleEmitter.Dispose();
-            //    }
-            //}
+            foreach (var particleEffet in _particleEffects)
+                particleEffet.Clear();
         }
 
         private void InitializeParticleEffects()
