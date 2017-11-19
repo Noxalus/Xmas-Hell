@@ -65,12 +65,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             Position(_initialPosition);
 
-            // TODO: Random scale
-            _randomScale = 1f;
+            _randomScale = (float)(1f + _boss.Game.GameManager.Random.NextDouble() * 2f);
             _animator.Scale = new Vector2(_randomScale);
 
             // Physics
-            _boundingBox = CreateBoundingBox(_animator.Scale.X);
+            _boundingBox = CreateBoundingBox();
             _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
             _body = CreateBody(_animator.Scale.X);
 

@@ -106,7 +106,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             Boss.CurrentAnimator.Play("ThrowSnowball");
             _stateMachine.CurrentState = BehaviourState.ThrowingSnowball;
-            _currentSnowball.ThrowTo(Boss.GetPlayerDirection());
+            _currentSnowball.ThrowTo(Boss.GetPlayerDirection(), 750f);
         }
 
         public override void Start()
