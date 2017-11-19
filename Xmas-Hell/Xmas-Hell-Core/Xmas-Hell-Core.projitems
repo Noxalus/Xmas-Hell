@@ -76,6 +76,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\MathExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\RandomExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\StringExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FSM\FSM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FSM\FSMBehaviour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FSM\FSMStateData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />

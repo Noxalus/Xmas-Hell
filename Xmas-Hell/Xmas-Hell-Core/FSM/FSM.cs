@@ -29,11 +29,10 @@ namespace XmasHell.FSM
             }
         }
 
-        public FSMBehaviour<T> Add(T state)
+        public FSMBehaviour<T> Add(T state, FSMBehaviour<T> behaviour)
         {
-            var behaviour = new FSMBehaviour<T>(state);
-
             _behaviours.Add(state, behaviour);
+
             return behaviour;
         }
 
