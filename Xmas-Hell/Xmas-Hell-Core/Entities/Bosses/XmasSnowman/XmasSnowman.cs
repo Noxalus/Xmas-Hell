@@ -1,10 +1,14 @@
+using System.Linq;
 using BulletML;
 using XmasHell.Physics.Collision;
+using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
     class XmasSnowman : Boss
     {
+        public CustomSpriterAnimator SnowballAnimator;
+
         public XmasSnowman(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasSnowman, playerPositionDelegate)
         {
@@ -20,6 +24,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         protected override void LoadSpriterSprite()
         {
             base.LoadSpriterSprite();
+
+            SnowballAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "Snowball");
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)

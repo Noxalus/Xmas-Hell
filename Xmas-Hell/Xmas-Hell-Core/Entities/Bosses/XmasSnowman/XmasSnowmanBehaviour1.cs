@@ -1,8 +1,6 @@
-using System.Diagnostics;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MonoGame.Extended;
-using MonoGame.Extended.Timers;
-using XmasHell.BulletML;
+using Microsoft.Xna.Framework.Graphics;
 using XmasHell.FSM;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
@@ -20,6 +18,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         private readonly FSM<BehaviourState> _stateMachine;
         private readonly Vector2 _initialBehaviourPosition;
+        private readonly List<Snowball> _snowballs = new List<Snowball>();
 
         public XmasSnowmanBehaviour1(Boss boss) : base(boss)
         {
@@ -67,8 +66,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             switch (animationName)
             {
                 case "StartInvokeSnowball":
-                    Boss.CurrentAnimator.Play("InvokeSnowball");
-                    _stateMachine.CurrentState = BehaviourState.InvokingSnowball;
+                    InvokeSnowball();
                 break;
                 case "InvokeSnowball":
                     Boss.CurrentAnimator.Play("StopInvokeSnowball");
@@ -86,6 +84,17 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         }
 
         #endregion
+
+        private void InvokeSnowball()
+        {
+            Boss.CurrentAnimator.Play("InvokeSnowball");
+            _stateMachine.CurrentState = BehaviourState.InvokingSnowball;
+
+            var snowmanBoss = (XmasSnowman) Boss;
+            var snowballPosition = Boss.InitialPosition;
+
+            _snowballs.Add(new Snowball(snowmanBoss, snowmanBoss.SnowballAnimator, snowballPosition));
+        }
 
         public override void Start()
         {
@@ -114,6 +123,15 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             base.Update(gameTime);
 
             _stateMachine.Update(gameTime);
+
+            foreach (var snowball in _snowballs)
+                snowball.Update(gameTime);
+        }
+
+        public override void DrawAfter(SpriteBatch spriteBatch)
+        {
+            foreach (var snowball in _snowballs)
+                snowball.Draw(spriteBatch);
         }
     }
 }

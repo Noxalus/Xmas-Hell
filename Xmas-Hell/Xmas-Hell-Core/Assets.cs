@@ -168,6 +168,9 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon5"),
                 content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasGift/ribbon6"),
 
+                // Snowman
+                content.Load<Texture2D>("Graphics/Sprites/Bosses/XmasSnowman/snowball"),
+
                 // Clouds
                 content.Load<Texture2D>("Graphics/GUI/cloud1"),
                 content.Load<Texture2D>("Graphics/GUI/cloud2")

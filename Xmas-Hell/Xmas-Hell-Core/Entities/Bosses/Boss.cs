@@ -117,7 +117,7 @@ namespace XmasHell.Entities.Bosses
             SoundsEnabled = false
         };
 
-        private readonly IList<CustomSpriterAnimator> _animators = new List<CustomSpriterAnimator>();
+        protected readonly IList<CustomSpriterAnimator> Animators = new List<CustomSpriterAnimator>();
         public CustomSpriterAnimator CurrentAnimator;
 
         #region Getters
@@ -372,10 +372,10 @@ namespace XmasHell.Entities.Bosses
             foreach (var entity in loader.Spriter.Entities)
             {
                 var animator = new CustomSpriterAnimator(entity, factory);
-                _animators.Add(animator);
+                Animators.Add(animator);
             }
 
-            CurrentAnimator = _animators.First();
+            CurrentAnimator = Animators.First();
         }
 
         protected virtual void InitializePhysics(bool setupPhysicsWorld = false)
