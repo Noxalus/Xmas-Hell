@@ -63,13 +63,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _animator.Scale = new Vector2(randomScale);
 
             // Physics
-            //_boundingBox = _boss.CreateBoundingBox(this, _animator.Scale.X);
-            //_boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _boundingBox = CreateBoundingBox(_animator.Scale.X);
+            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
 
-            //var randomSpawnBounds = new Rectangle(
-            //    (int)(270 * randomScale), 0,
-            //    (int)(GameConfig.VirtualResolution.X - (270 * randomScale)), 300
-            //);
+            var randomSpawnBounds = new Rectangle(
+                (int)(270 * randomScale), 0,
+                (int)(GameConfig.VirtualResolution.X - (270 * randomScale)), 300
+            );
 
             //_body = _boss.CreateGiftBody(_boss.Game.GameManager.GetRandomPosition(false, randomSpawnBounds), _animator.Scale.X);
 
@@ -90,6 +90,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(_boundingBox);
             Destroyed = true;
+        }
+
+        private CollisionElement CreateBoundingBox(float scale = 1f)
+        {
+            return new SpriterCollisionCircle(_animator, "snowball.png", Vector2.Zero, scale);
         }
 
         public void Update(GameTime gameTime)
