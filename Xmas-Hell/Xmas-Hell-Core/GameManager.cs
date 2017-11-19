@@ -193,6 +193,8 @@ namespace XmasHell
             _boss?.Reset();
 
             _ready = true;
+
+            ParticleManager.Clear();
         }
 
         private void EndGameTimerCompleted(object sender, EventArgs e)
@@ -244,6 +246,8 @@ namespace XmasHell
 
                 foreach (var laser in _lasers)
                     laser.Update(gameTime);
+
+                ParticleManager.Update(gameTime);
             }
 
             if (GameIsFinished())
@@ -255,7 +259,6 @@ namespace XmasHell
                 _timer += gameTime.ElapsedGameTime;
 
             CollisionWorld.Update(gameTime);
-            ParticleManager.Update(gameTime);
 
             _player.Update(gameTime);
         }
