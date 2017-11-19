@@ -15,7 +15,8 @@ namespace XmasHell.Spriter
             if (animator.FrameData == null)
                 return null;
 
-            var spriterFile = GetSpriterFile(spritePartFileName, animator, out var folderId);
+            int folderId;
+            var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
             var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
 
@@ -30,7 +31,8 @@ namespace XmasHell.Spriter
             if (animator.FrameData == null)
                 return Vector2.Zero;
 
-            var spriterFile = GetSpriterFile(spritePartFileName, animator, out var folderId);
+            int folderId;
+            var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
             var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
 
