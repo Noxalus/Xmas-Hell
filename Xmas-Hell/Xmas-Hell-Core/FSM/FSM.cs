@@ -17,7 +17,7 @@ namespace XmasHell.FSM
 
         public T CurrentState
         {
-            get => _currentState;
+            get { return _currentState; }
             set
             {
                 _currentBehaviour?.TriggerLeave();
