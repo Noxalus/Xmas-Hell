@@ -851,6 +851,9 @@ namespace XmasHell.Entities.Bosses
 
         private void SynchronizeGraphicsWithPhysics()
         {
+            if (PhysicsBody == null)
+                return;
+
             Position(ConvertUnits.ToDisplayUnits(PhysicsBody.Position));
             Rotation(PhysicsBody.Rotation);
         }

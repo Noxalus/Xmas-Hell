@@ -19,6 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         private readonly FSM<BehaviourState> _stateMachine;
         private readonly Vector2 _initialBehaviourPosition;
         private readonly List<Snowball> _snowballs = new List<Snowball>();
+        private Snowball _currentSnowball;
 
         public XmasSnowmanBehaviour1(Boss boss) : base(boss)
         {
@@ -68,15 +69,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
                 case "StartInvokeSnowball":
                     InvokeSnowball();
                 break;
-                case "InvokeSnowball":
-                    Boss.CurrentAnimator.Play("StopInvokeSnowball");
-                    _stateMachine.CurrentState = BehaviourState.StopInvokingSnowball;
-                break;
                 case "StopInvokeSnowball":
-                    Boss.CurrentAnimator.Play("ThrowSnowball");
-                    _stateMachine.CurrentState = BehaviourState.ThrowingSnowball;
+                    ThrowCurrentSnowball();
                 break;
                 case "ThrowSnowball":
+                    // TODO: Add timer for the new snowball
                     Boss.CurrentAnimator.Play("StartInvokeSnowball");
                     _stateMachine.CurrentState = BehaviourState.ThrowingSnowball;
                 break;
@@ -93,11 +90,30 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             var snowmanBoss = (XmasSnowman) Boss;
             var snowballPosition = Boss.InitialPosition;
 
-            _snowballs.Add(new Snowball(snowmanBoss, snowmanBoss.SnowballAnimator, snowballPosition));
+            _currentSnowball = new Snowball(snowmanBoss, snowmanBoss.SnowballAnimator, snowballPosition);
+            _currentSnowball.SpawnAnimationFinished += SnowballSpawnAnimationFinished;
+            _snowballs.Add(_currentSnowball);
+        }
+
+        private void SnowballSpawnAnimationFinished(object sender, System.EventArgs e)
+        {
+            _currentSnowball.SpawnAnimationFinished -= SnowballSpawnAnimationFinished;
+            Boss.CurrentAnimator.Play("StopInvokeSnowball");
+            _stateMachine.CurrentState = BehaviourState.StopInvokingSnowball;
+        }
+
+        private void ThrowCurrentSnowball()
+        {
+            Boss.CurrentAnimator.Play("ThrowSnowball");
+            _stateMachine.CurrentState = BehaviourState.ThrowingSnowball;
+            _currentSnowball.ThrowTo(Boss.GetPlayerDirection());
         }
 
         public override void Start()
         {
+            Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
+            Boss.PhysicsEnabled = true;
+
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
@@ -116,6 +132,12 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             base.Stop();
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
+
+            foreach (var snowball in _snowballs)
+                snowball.Dispose();
+
+            _snowballs.Clear();
+            _currentSnowball = null;
         }
 
         public override void Update(GameTime gameTime)

@@ -30,7 +30,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
-            base.InitializePhysics();
+            base.InitializePhysics(true);
 
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png"));
         }

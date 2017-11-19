@@ -1,5 +1,7 @@
-﻿using FarseerPhysics;
+﻿using System;
+using FarseerPhysics;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
@@ -16,6 +18,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         private Vector2 _initialPosition;
         public bool Destroyed = false;
         private Body _body;
+        private float _randomScale;
+
+        public event EventHandler SpawnAnimationFinished = null;
 
         public CustomSpriterAnimator GetCurrentAnimator()
         {
@@ -58,22 +63,20 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _animator = animator.Clone();
             _initialPosition = position;
 
+            Position(_initialPosition);
+
             // TODO: Random scale
-            var randomScale = 1f;
-            _animator.Scale = new Vector2(randomScale);
+            _randomScale = 1f;
+            _animator.Scale = new Vector2(_randomScale);
 
             // Physics
             _boundingBox = CreateBoundingBox(_animator.Scale.X);
             _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _body = CreateBody(_animator.Scale.X);
 
-            var randomSpawnBounds = new Rectangle(
-                (int)(270 * randomScale), 0,
-                (int)(GameConfig.VirtualResolution.X - (270 * randomScale)), 300
-            );
+            _body.IgnoreGravity = true;
 
-            //_body = _boss.CreateGiftBody(_boss.Game.GameManager.GetRandomPosition(false, randomSpawnBounds), _animator.Scale.X);
-
-            Position(_initialPosition);
+            // Animations
             _animator.Play("Spawn");
 
             // Swap body and ribbon with random textures
@@ -84,12 +87,37 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
                 _animator.AddTextureSwap("Graphics/Sprites/Bosses/XmasGift/body", Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasGift/body" + randomIndex));
                 _animator.AddTextureSwap("Graphics/Sprites/Bosses/XmasGift/ribbon", Assets.GetTexture2D("Graphics/Sprites/Bosses/XmasGift/ribbon" + randomIndex));
             }
+
+            _animator.AnimationFinished += AnimationFinishedHandler;
         }
 
         public void Dispose()
         {
             _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(_boundingBox);
             Destroyed = true;
+            _animator.AnimationFinished -= AnimationFinishedHandler;
+        }
+
+        private void AnimationFinishedHandler(string animationName)
+        {
+            switch (animationName)
+            {
+                case "Spawn":
+                    SpawnAnimationStoped();
+                    break;
+            }
+        }
+
+        private void SpawnAnimationStoped()
+        {
+            SpawnAnimationFinished?.Invoke(this, EventArgs.Empty);
+            _animator.Play("Idle");
+        }
+
+        public void ThrowTo(Vector2 normalizedDirection, float strength = 500f)
+        {
+            _body.ApplyLinearImpulse(normalizedDirection * strength);
+            _body.IgnoreGravity = false;
         }
 
         private CollisionElement CreateBoundingBox(float scale = 1f)
@@ -97,10 +125,29 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             return new SpriterCollisionCircle(_animator, "snowball.png", Vector2.Zero, scale);
         }
 
+        private Body CreateBody(float scale = 1f)
+        {
+            var physicsPosition = ConvertUnits.ToSimUnits(Position());
+
+            var body = BodyFactory.CreateCircle(
+                _boss.PhysicsWorld,
+                _randomScale * 0.85f,
+                1f,
+                physicsPosition
+            );
+
+            body.BodyType = BodyType.Dynamic;
+            body.Restitution = 0.01f;
+            body.Friction = 0.5f;
+            body.Mass = 30f;
+
+            return body;
+        }
+
         public void Update(GameTime gameTime)
         {
-            //_animator.Position = ConvertUnits.ToDisplayUnits(_body.Position);
-            //_animator.Rotation = _body.Rotation;
+            _animator.Position = ConvertUnits.ToDisplayUnits(_body.Position);
+            _animator.Rotation = _body.Rotation;
 
             _animator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
