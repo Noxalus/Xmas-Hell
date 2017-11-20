@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using XmasHell.BulletML;
 
@@ -7,11 +6,12 @@ namespace XmasHell.Entities.Bosses.XmasBall
     class XmasBallBehaviour2 : AbstractBossBehaviour
     {
         private Vector2 _screenCenter;
-        //private TimeSpan _bulletFrequence;
         private bool _patternShot;
 
         public XmasBallBehaviour2(Boss boss) : base(boss)
         {
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 2f;
+
             _screenCenter = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y / 2f
