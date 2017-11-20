@@ -11,6 +11,8 @@ using XmasHell.Screens.Menu;
 using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 using XmasHell.Extensions;
 using XmasHell.Audio;
+using XmasHell.Background;
+using XmasHell.Entities.Bosses;
 
 namespace XmasHell.Screens
 {
@@ -211,6 +213,9 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
             Game.SpriteBatchManager.UISprites.Add(_hpBar);
 
+            var level = BossFactory.BossTypeToBackgroundLevel(Game.GameManager.GetCurrentBoss().BossType);
+            ((GradientBackground)Game.SpriteBatchManager.Background).ChangeGradientColors(GameConfig.BackgroundGradients[level].Item1, GameConfig.BackgroundGradients[level].Item2);
+
             Game.MusicManager.PlayGameMusic(true);
         }
 
@@ -223,6 +228,9 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
             Game.SpriteBatchManager.UILabels.Remove(_timerLabelShadow);
             Game.SpriteBatchManager.UISprites.Remove(_hpBar);
+
+            var level = BackgroundLevel.Level1;
+            ((GradientBackground)Game.SpriteBatchManager.Background).ChangeGradientColors(GameConfig.BackgroundGradients[level].Item1, GameConfig.BackgroundGradients[level].Item2);
         }
 
         public override void Update(GameTime gameTime)

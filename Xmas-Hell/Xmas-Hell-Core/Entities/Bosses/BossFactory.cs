@@ -1,5 +1,6 @@
 using System;
 using BulletML;
+using XmasHell.Background;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -80,6 +81,37 @@ namespace XmasHell.Entities.Bosses
                     return BossType.XmasSanta;
                 default:
                     return BossType.Unknown;
+            }
+        }
+
+        public static BackgroundLevel BossTypeToBackgroundLevel(BossType bossType)
+        {
+            switch (bossType)
+            {
+                case BossType.Debug:
+                    return BackgroundLevel.Level1;
+                case BossType.XmasBall:
+                    return BackgroundLevel.Level1;
+                case BossType.XmasBell:
+                    return BackgroundLevel.Level1;
+                case BossType.XmasCandy:
+                    return BackgroundLevel.Level1;
+                case BossType.XmasSnowflake:
+                    return BackgroundLevel.Level1;
+                case BossType.XmasLog:
+                    return BackgroundLevel.Level2;
+                case BossType.XmasTree:
+                    return BackgroundLevel.Level2;
+                case BossType.XmasGift:
+                    return BackgroundLevel.Level2;
+                case BossType.XmasReindeer:
+                    return BackgroundLevel.Level3;
+                case BossType.XmasSnowman:
+                    return BackgroundLevel.Level3;
+                case BossType.XmasSanta:
+                    return BackgroundLevel.Level4;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(bossType), bossType, null);
             }
         }
     }
