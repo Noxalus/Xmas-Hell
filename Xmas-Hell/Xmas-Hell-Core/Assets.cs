@@ -144,6 +144,7 @@ namespace XmasHell
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet2"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet3"),
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/bullet4"),
+                content.Load<Texture2D>("Graphics/Sprites/Bullets/carrot"),
 
                 content.Load<Texture2D>("Graphics/Sprites/Bullets/laser"),
 
@@ -239,6 +240,8 @@ namespace XmasHell
 
                 // Xmas Snowman
                 { "XmasSnowman/pattern1", OpenRawFile(BuildRawAssetPath("XmasSnowman/pattern1.xml")) },
+                { "XmasSnowman/pattern3_1", OpenRawFile(BuildRawAssetPath("XmasSnowman/pattern3_1.xml")) },
+                { "XmasSnowman/pattern3_2", OpenRawFile(BuildRawAssetPath("XmasSnowman/pattern3_2.xml")) },
 
                 // Xmas Santa
                 { "XmasSanta/pattern1", OpenRawFile(BuildRawAssetPath("XmasSanta/pattern1.xml")) },

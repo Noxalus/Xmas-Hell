@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <fire>
+      <bullet>
+        <actionRef label="rocket">
+          <param>50</param>
+        </actionRef>
+      </bullet>
+    </fire>
+  </action>
+
+  <action label="rocket">
+    <fire>
+      <bullet>
+        <direction type="relative">180 + ($rand * $1) - ($1 / 2)</direction>
+        <speed>1</speed>
+        <color>
+          <red>0.9 + $rand * 0.1</red>
+          <green>$rand * 1.0</green>
+          <blue>0.0</blue>
+        </color>
+        <scale>0.5 + ($rand * 2)</scale>
+        <action>
+          <changeScale>
+            <scale>10</scale>
+            <term>100</term>
+          </changeScale>
+          <changeSpeed>
+            <speed>100</speed>
+            <term>100</term>
+          </changeSpeed>
+        </action>
+      </bullet>
+    </fire>
+    <vanish />
+  </action>
+</bulletml>

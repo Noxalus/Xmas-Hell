@@ -136,7 +136,8 @@ namespace XmasHell
                 Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet1"),
                 Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet2"),
                 Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet3"),
-                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet4")
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/bullet4"),
+                Assets.GetTexture2D("Graphics/Sprites/Bullets/carrot")
             };
 
             MoverManager.BulletTextures = bulletTextures;

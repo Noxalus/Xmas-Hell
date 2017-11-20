@@ -65,6 +65,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowflake\XmasSnowflakeBranch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowman\Snowball.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowman\XmasSnowman.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowman\XmasSnowmanBehaviour3.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasSnowman\XmasSnowmanBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTreeBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasTree\XmasTree.cs" />

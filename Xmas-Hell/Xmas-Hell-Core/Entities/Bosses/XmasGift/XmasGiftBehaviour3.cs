@@ -31,6 +31,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
             Boss.CurrentAnimator.Play("Idle");
 
             ResetGiftTimer();
+            Boss.MoveToInitialPosition();
         }
 
         public override void Stop()
@@ -49,16 +50,19 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
         public override void Update(GameTime gameTime)
         {
-            if (_spawnGiftTimer.TotalSeconds < 0)
+            if (!Boss.TargetingPosition)
             {
-                _gifts.Add(new Gift((XmasGift)Boss, Boss.CurrentAnimator));
-                ResetGiftTimer();
-            }
-            else
-                _spawnGiftTimer -= gameTime.ElapsedGameTime;
+                if (_spawnGiftTimer.TotalSeconds < 0)
+                {
+                    _gifts.Add(new Gift((XmasGift) Boss, Boss.CurrentAnimator));
+                    ResetGiftTimer();
+                }
+                else
+                    _spawnGiftTimer -= gameTime.ElapsedGameTime;
 
-            foreach (var gift in _gifts)
-                gift.Update(gameTime);
+                foreach (var gift in _gifts)
+                    gift.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }

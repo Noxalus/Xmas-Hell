@@ -14,9 +14,12 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             // BulletML
             BulletPatternFiles.Add("XmasSnowman/pattern1");
+            BulletPatternFiles.Add("XmasSnowman/pattern3_1");
+            BulletPatternFiles.Add("XmasSnowman/pattern3_2");
 
             // Behaviours
             Behaviours.Add(new XmasSnowmanBehaviour1(this));
+            Behaviours.Add(new XmasSnowmanBehaviour3(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman";
         }
@@ -38,6 +41,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
+
+            CurrentBehaviourIndex = 1;
         }
     }
 }
