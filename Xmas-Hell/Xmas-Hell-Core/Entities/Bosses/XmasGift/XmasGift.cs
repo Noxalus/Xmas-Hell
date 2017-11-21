@@ -47,7 +47,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             relativePosition += offset;
 
-            return new SpriterCollisionConvexPolygon(spriterPhysicsEntity, "body.png", relativePosition, boxScale);
+            return new SpriterCollisionConvexPolygon(spriterPhysicsEntity, "body.png", relativePosition, new Vector2(boxScale));
         }
 
         public Body CreateGiftBody(Vector2 position, float scale = 1f)

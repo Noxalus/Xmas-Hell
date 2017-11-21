@@ -99,6 +99,9 @@ namespace XmasHell.Spriter
                 SpriteDrawInfo di = DrawInfos[i];
                 ISprite sprite = di.Drawable;
 
+                if (sprite == null || sprite.Texture() == null)
+                    continue;
+
                 var currentTextureName = Path.GetFileNameWithoutExtension(sprite.Texture().Name);
 
                 if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == currentTextureName) == null)

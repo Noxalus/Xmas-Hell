@@ -13,8 +13,13 @@ namespace XmasHell.Physics.Collision
         private Vector2 _relativePosition;
 
         public SpriterCollisionConvexPolygon(ISpriterPhysicsEntity entity, String spritePartName,
-            Vector2? relativePosition = null, float scale = 1f) : base(entity)
+            Vector2? relativePosition = null, Vector2? scaleVector = null) : base(entity)
         {
+            var scale = Vector2.One;
+
+            if (scaleVector.HasValue)
+                scale = scaleVector.Value;
+
             _spriterPhysicsEntity = entity;
             _spriterPartFile = SpriterUtils.GetSpriterFile(spritePartName, _spriterPhysicsEntity.GetCurrentAnimator());
             _relativePosition = relativePosition ?? Vector2.Zero;
