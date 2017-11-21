@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using XmasHell.BulletML;
 using XmasHell.FSM;
+using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
@@ -11,6 +9,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
     {
         private enum BehaviourState
         {
+            TargetingInitialPosition,
+            RemovingCarrot,
+            CarrotShot
         };
 
         private readonly FSM<BehaviourState> _stateMachine;
@@ -20,7 +21,59 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             // State machine
             _stateMachine = new FSM<BehaviourState>("xmas-snowman-behaviour3");
+
+            var targetingInitialPositionBehaviour =
+                new FSMBehaviour<BehaviourState>(BehaviourState.TargetingInitialPosition)
+                    .OnUpdate(TargetingInitialPositionTaskUpdate);
+
+            var carrotShotBehaviour =
+                new FSMBehaviour<BehaviourState>(BehaviourState.CarrotShot)
+                    .OnEnter(CarrotShotTaskEnter)
+                    .OnUpdate(CarrotShotTaskUpdate);
+
+            _stateMachine.Add(BehaviourState.TargetingInitialPosition, targetingInitialPositionBehaviour);
+            _stateMachine.Add(BehaviourState.CarrotShot, carrotShotBehaviour);
         }
+
+        #region Tasks
+
+        private void TargetingInitialPositionTaskUpdate(FSMStateData<BehaviourState> data)
+        {
+            if (!Boss.TargetingPosition)
+            {
+                Boss.CurrentAnimator.Play("RemoveCarrot");
+                _stateMachine.CurrentState = BehaviourState.RemovingCarrot;
+            }
+        }
+
+        private void CarrotShotTaskEnter()
+        {
+            Boss.CurrentAnimator.Play("IdleNoCarrot");
+            ShootCarrot();
+        }
+
+        private void CarrotShotTaskUpdate(FSMStateData<BehaviourState> data)
+        {
+            if (_carrot != null)
+                return;
+
+            var bossBullets = Boss.Game.GameManager.GetBossBullets();
+
+            if (_carrot == null && bossBullets.Count >= 1 && !bossBullets[0].TopBullet)
+                _carrot = bossBullets[0];
+
+            if (!Boss.TargetingPosition)
+            {
+                var newPosition = new Vector2(
+                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
+                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 150, 500 - (int)(Boss.Height() / 2f))
+                );
+
+                Boss.MoveTo(newPosition, 1.5f);
+            }
+        }
+
+        #endregion
 
         #region Animations
 
@@ -28,6 +81,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             switch (animationName)
             {
+                case "RemoveCarrot":
+                    _stateMachine.CurrentState = BehaviourState.CarrotShot;
+                    break;
             }
         }
 
@@ -46,9 +102,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Boss.CurrentAnimator.AnimationFinished += AnimationFinishedHandler;
             Boss.CurrentAnimator.Play("Idle");
 
-            Boss.MoveToInitialPosition();
+            _stateMachine.CurrentState = BehaviourState.TargetingInitialPosition;
 
-            ShootCarrot();
+            Boss.MoveToInitialPosition();
         }
 
         public override void Stop()
@@ -64,7 +120,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         private void ShootCarrot()
         {
-            Boss.TriggerPattern("XmasSnowman/pattern3_2", BulletType.Type2, true, Boss.ActionPointPosition());
+            var carrotPosition = SpriterUtils.GetWorldPosition("nose.png", Boss.CurrentAnimator);
+            Boss.TriggerPattern("XmasSnowman/pattern3_2", BulletType.Type2, true, carrotPosition);
 
             Boss.StartShootTimer = true;
             Boss.ShootTimerTime = 0.003f;
@@ -80,11 +137,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            var bossBullets = Boss.Game.GameManager.GetBossBullets();
-
-            if (_carrot == null && bossBullets.Count >= 1 && !bossBullets[0].TopBullet)
-                _carrot = bossBullets[0];
 
             _stateMachine.Update(gameTime);
         }
