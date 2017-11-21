@@ -1,20 +1,23 @@
 using Microsoft.Xna.Framework;
+using XmasHell.BulletML;
 using XmasHell.FSM;
+using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
-    class XmasSnowmanBehaviour2 : AbstractBossBehaviour
+    class XmasSnowmanBehaviour3 : AbstractBossBehaviour
     {
         private enum BehaviourState
         {
             TargetingInitialPosition,
-            RemovingArms,
-            BigArmsAttack
+            RemovingCarrot,
+            CarrotShot
         };
 
         private readonly FSM<BehaviourState> _stateMachine;
+        private Mover _carrot;
 
-        public XmasSnowmanBehaviour2(Boss boss) : base(boss)
+        public XmasSnowmanBehaviour3(Boss boss) : base(boss)
         {
             // State machine
             _stateMachine = new FSM<BehaviourState>("xmas-snowman-behaviour3");
@@ -23,13 +26,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
                 new FSMBehaviour<BehaviourState>(BehaviourState.TargetingInitialPosition)
                     .OnUpdate(TargetingInitialPositionTaskUpdate);
 
-            var bigArmsAttackBehaviour =
-                new FSMBehaviour<BehaviourState>(BehaviourState.BigArmsAttack)
-                    .OnEnter(BigArmsAttackTaskEnter)
-                    .OnUpdate(BigArmsAttackTaskUpdate);
+            var carrotShotBehaviour =
+                new FSMBehaviour<BehaviourState>(BehaviourState.CarrotShot)
+                    .OnEnter(CarrotShotTaskEnter)
+                    .OnUpdate(CarrotShotTaskUpdate);
 
             _stateMachine.Add(BehaviourState.TargetingInitialPosition, targetingInitialPositionBehaviour);
-            _stateMachine.Add(BehaviourState.BigArmsAttack, bigArmsAttackBehaviour);
+            _stateMachine.Add(BehaviourState.CarrotShot, carrotShotBehaviour);
         }
 
         #region Tasks
@@ -38,19 +41,27 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             if (!Boss.TargetingPosition)
             {
-                Boss.CurrentAnimator.Play("RemoveArms");
-                _stateMachine.CurrentState = BehaviourState.RemovingArms;
+                Boss.CurrentAnimator.Play("RemoveCarrot");
+                _stateMachine.CurrentState = BehaviourState.RemovingCarrot;
             }
         }
 
-        private void BigArmsAttackTaskEnter()
+        private void CarrotShotTaskEnter()
         {
-            Boss.CurrentAnimator.Play("IdleNoArm");
-            ShootPattern();
+            Boss.CurrentAnimator.Play("IdleNoCarrot");
+            ShootCarrot();
         }
 
-        private void BigArmsAttackTaskUpdate(FSMStateData<BehaviourState> data)
+        private void CarrotShotTaskUpdate(FSMStateData<BehaviourState> data)
         {
+            if (_carrot != null)
+                return;
+
+            var bossBullets = Boss.Game.GameManager.GetBossBullets();
+
+            if (_carrot == null && bossBullets.Count >= 1 && !bossBullets[0].TopBullet)
+                _carrot = bossBullets[0];
+
             if (!Boss.TargetingPosition)
             {
                 var newPosition = new Vector2(
@@ -70,8 +81,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             switch (animationName)
             {
-                case "RemoveArms":
-                    _stateMachine.CurrentState = BehaviourState.BigArmsAttack;
+                case "RemoveCarrot":
+                    _stateMachine.CurrentState = BehaviourState.CarrotShot;
                     break;
             }
         }
@@ -104,17 +115,23 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Boss.StartShootTimer = false;
             Boss.ShootTimerFinished -= ShootTimerFinished;
             Boss.TargetingPosition = false;
+            _carrot = null;
         }
 
-        private void ShootPattern()
+        private void ShootCarrot()
         {
+            var carrotPosition = SpriterUtils.GetWorldPosition("nose.png", Boss.CurrentAnimator);
+            Boss.TriggerPattern("XmasSnowman/pattern3_2", BulletType.Type2, true, carrotPosition);
+
             Boss.StartShootTimer = true;
-            Boss.ShootTimerTime = 0.3f;
+            Boss.ShootTimerTime = 0.003f;
             Boss.ShootTimerFinished += ShootTimerFinished;
         }
 
         private void ShootTimerFinished(object sender, float e)
         {
+            if (_carrot != null)
+                Boss.TriggerPattern("XmasSnowman/pattern3_1", BulletType.Type2, false, new Vector2(_carrot.X, _carrot.Y));
         }
 
         public override void Update(GameTime gameTime)

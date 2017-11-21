@@ -1,5 +1,6 @@
 using System.Linq;
 using BulletML;
+using Microsoft.Xna.Framework;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 
@@ -19,6 +20,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             // Behaviours
             Behaviours.Add(new XmasSnowmanBehaviour1(this));
+            Behaviours.Add(new XmasSnowmanBehaviour2(this));
             Behaviours.Add(new XmasSnowmanBehaviour3(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman";
@@ -35,7 +37,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             base.InitializePhysics(true);
 
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png"));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0, 30), 0.85f));
+            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0, -80), 0.65f));
         }
 
         protected override void UpdateBehaviourIndex()
