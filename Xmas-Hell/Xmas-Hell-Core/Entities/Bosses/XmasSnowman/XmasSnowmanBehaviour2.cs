@@ -52,13 +52,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             ShootPattern();
 
             var xmasSnowmanBoss = (XmasSnowman)Boss;
-            _leftArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator);
-            _rightArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator);
+            _leftArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator, false);
+            _rightArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator, true);
 
-            _rightArm.GetCurrentAnimator().Rotation = MathHelper.Pi;
-
-            _leftArm.Position(new Vector2(0, GameConfig.VirtualResolution.Y / 2f));
-            _rightArm.Position(new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y / 2f));
+            //_leftArm.Position(new Vector2(-200, GameConfig.VirtualResolution.Y / 2f));
+            //_rightArm.Position(new Vector2(GameConfig.VirtualResolution.X + 200, GameConfig.VirtualResolution.Y / 2f));
         }
 
         private void BigArmsAttackTaskUpdate(FSMStateData<BehaviourState> data)

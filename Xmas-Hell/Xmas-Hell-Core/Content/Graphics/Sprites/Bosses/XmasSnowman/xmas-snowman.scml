@@ -582,19 +582,19 @@
                     <bone x="134" y="-6" angle="90"/>
                 </key>
                 <key id="1" time="200">
-                    <bone x="135" y="48" angle="175.601295"/>
+                    <bone x="135" y="48" angle="175.601295" scale_x="1.2" scale_y="1.2"/>
                 </key>
                 <key id="2" time="400">
-                    <bone x="135" y="102" angle="279.283553"/>
+                    <bone x="135" y="102" angle="279.283553" scale_x="1.4" scale_y="1.4"/>
                 </key>
                 <key id="3" time="600">
-                    <bone x="136" y="155" angle="352.874984"/>
+                    <bone x="136" y="155" angle="352.874984" scale_x="1.6" scale_y="1.6"/>
                 </key>
                 <key id="4" time="799">
-                    <bone x="136" y="209" angle="90.307095"/>
+                    <bone x="136" y="209" angle="90.307095" scale_x="1.8" scale_y="1.8"/>
                 </key>
                 <key id="5" time="1000" spin="-1">
-                    <bone x="137" y="263" angle="181.101706"/>
+                    <bone x="137" y="263" angle="181.101706" scale_x="2" scale_y="2"/>
                 </key>
             </timeline>
         </animation>
