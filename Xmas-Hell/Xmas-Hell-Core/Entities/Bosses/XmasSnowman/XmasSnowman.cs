@@ -23,6 +23,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Behaviours.Add(new XmasSnowmanBehaviour1(this));
             Behaviours.Add(new XmasSnowmanBehaviour2(this));
             Behaviours.Add(new XmasSnowmanBehaviour3(this));
+            Behaviours.Add(new XmasSnowmanBehaviour4(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman";
         }
@@ -47,7 +48,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             base.UpdateBehaviourIndex();
 
-            CurrentBehaviourIndex = 1;
+            CurrentBehaviourIndex = 3;
         }
     }
 }
