@@ -10,6 +10,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
     {
         public CustomSpriterAnimator SnowballAnimator;
         public CustomSpriterAnimator BigArmsAnimator;
+        public CustomSpriterAnimator HatAnimator;
 
         public XmasSnowman(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasSnowman, playerPositionDelegate)
@@ -26,6 +27,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Behaviours.Add(new XmasSnowmanBehaviour4(this));
 
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman";
+
+            InitialPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y * 0.25f);
         }
 
         protected override void LoadSpriterSprite()
@@ -34,6 +37,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             SnowballAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "Snowball");
             BigArmsAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "BigArms");
+            HatAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "Hat");
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)

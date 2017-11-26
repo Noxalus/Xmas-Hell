@@ -566,6 +566,11 @@ namespace XmasHell.Entities.Bosses
             return Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualHeight);
         }
 
+        public float GetRandomHorizontalPosition()
+        {
+            return Game.GameManager.Random.Next(0, Game.ViewportAdapter.VirtualWidth);
+        }
+
         public Vector2 GetRandomOutsidePosition(ScreenSide? side = null)
         {
             var randomPosition = Vector2.Zero;

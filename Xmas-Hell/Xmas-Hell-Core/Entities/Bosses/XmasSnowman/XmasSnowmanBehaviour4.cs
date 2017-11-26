@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using XmasHell.BulletML;
 using XmasHell.FSM;
 using XmasHell.Spriter;
@@ -15,6 +16,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         };
 
         private readonly FSM<BehaviourState> _stateMachine;
+        private Hat _hat;
 
         public XmasSnowmanBehaviour4(Boss boss) : base(boss)
         {
@@ -48,6 +50,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         private void HatAttackTaskEnter()
         {
             Boss.CurrentAnimator.Play("IdleNoHat");
+
+            var xmasSnowmanBoss = (XmasSnowman) Boss;
+            _hat = new Hat(xmasSnowmanBoss, xmasSnowmanBoss.HatAnimator, new Vector2(Boss.Position().X, 100));
         }
 
         private void HatAttackTaskUpdate(FSMStateData<BehaviourState> data)
@@ -101,6 +106,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             base.Stop();
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
+            _hat?.Dispose();
+            _hat = null;
         }
 
         public override void Update(GameTime gameTime)
@@ -108,6 +115,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             base.Update(gameTime);
 
             _stateMachine.Update(gameTime);
+
+            _hat?.Update(gameTime);
+        }
+
+        public override void DrawAfter(SpriteBatch spriteBatch)
+        {
+            _hat?.Draw(spriteBatch);
         }
     }
 }

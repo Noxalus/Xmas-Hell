@@ -27,7 +27,7 @@ namespace XmasHell
         // Boss
         public static int BossDefaultBehaviourLife = 400;
         public static float BossDefaultSpeed = 200f;
-        public static Vector2 BossDefaultPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, VirtualResolution.Y * 0.15f);
+        public static Vector2 BossDefaultPosition = new Vector2(VirtualResolution.X / 2f, VirtualResolution.Y * 0.15f);
         public static float BossEntranceAnimationTime = 1; // seconds
 
         // Bullet manager
