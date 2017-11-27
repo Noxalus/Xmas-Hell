@@ -119,8 +119,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public void Dispose()
         {
             foreach (var boundingBox in _boundingBoxes)
-                _boss.Game.GameManager.CollisionWorld.RemoveBossBulletHitbox(boundingBox);
+                _boss.Game.GameManager.CollisionWorld.RemoveBossHitBox(boundingBox);
 
+            _boundingBoxes.Clear();
             Destroyed = true;
         }
 

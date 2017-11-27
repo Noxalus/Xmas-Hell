@@ -61,8 +61,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         protected override void UpdateBehaviourIndex()
         {
             base.UpdateBehaviourIndex();
-
-            CurrentBehaviourIndex = 3;
         }
     }
 }
