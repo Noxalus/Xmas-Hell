@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using XmasHell.BulletML;
 using XmasHell.FSM;
-using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
@@ -53,19 +51,12 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             var xmasSnowmanBoss = (XmasSnowman) Boss;
             _hat = new Hat(xmasSnowmanBoss, xmasSnowmanBoss.HatAnimator, new Vector2(Boss.Position().X, 100));
+
+            Boss.EnableRandomPosition(true);
         }
 
         private void HatAttackTaskUpdate(FSMStateData<BehaviourState> data)
         {
-            if (!Boss.TargetingPosition)
-            {
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 150, 500 - (int)(Boss.Height() / 2f))
-                );
-
-                Boss.MoveTo(newPosition, 1.5f);
-            }
         }
 
         #endregion
@@ -86,9 +77,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         public override void Start()
         {
-            Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
-            Boss.PhysicsEnabled = true;
-
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
@@ -108,6 +96,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
             _hat?.Dispose();
             _hat = null;
+            Boss.EnableRandomPosition(false);
         }
 
         public override void Update(GameTime gameTime)

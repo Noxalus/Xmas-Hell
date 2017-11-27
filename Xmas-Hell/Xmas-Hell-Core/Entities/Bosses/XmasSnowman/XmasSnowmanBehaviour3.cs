@@ -50,6 +50,8 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         {
             Boss.CurrentAnimator.Play("IdleNoCarrot");
             ShootCarrot();
+
+            Boss.EnableRandomPosition(true);
         }
 
         private void CarrotShotTaskUpdate(FSMStateData<BehaviourState> data)
@@ -61,16 +63,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             if (_carrot == null && bossBullets.Count >= 1 && !bossBullets[0].TopBullet)
                 _carrot = bossBullets[0];
-
-            if (!Boss.TargetingPosition)
-            {
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 150, 500 - (int)(Boss.Height() / 2f))
-                );
-
-                Boss.MoveTo(newPosition, 1.5f);
-            }
         }
 
         #endregion
@@ -91,9 +83,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         public override void Start()
         {
-            Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
-            Boss.PhysicsEnabled = true;
-
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
@@ -110,6 +99,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public override void Stop()
         {
             base.Stop();
+
+            Boss.EnableRandomPosition(false);
+
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
 
             Boss.StartShootTimer = false;

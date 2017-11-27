@@ -55,22 +55,11 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _leftArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator, false);
             _rightArm = new BigArms(xmasSnowmanBoss, xmasSnowmanBoss.BigArmsAnimator, true);
 
-            //_leftArm.Position(new Vector2(-200, GameConfig.VirtualResolution.Y / 2f));
-            //_rightArm.Position(new Vector2(GameConfig.VirtualResolution.X + 200, GameConfig.VirtualResolution.Y / 2f));
+            Boss.EnableRandomPosition(true);
         }
 
         private void BigArmsAttackTaskUpdate(FSMStateData<BehaviourState> data)
         {
-            if (!Boss.TargetingPosition)
-            {
-                var newPosition = new Vector2(
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-                    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 150, 500 - (int)(Boss.Height() / 2f))
-                );
-
-                Boss.MoveTo(newPosition, 1.5f);
-            }
-
             _leftArm?.Update(data.GameTime);
             _rightArm?.Update(data.GameTime);
         }
@@ -93,9 +82,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         public override void Start()
         {
-            Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
-            Boss.PhysicsEnabled = true;
-
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
@@ -112,6 +98,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public override void Stop()
         {
             base.Stop();
+
+            Boss.EnableRandomPosition(false);
+
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
 
             Boss.StartShootTimer = false;

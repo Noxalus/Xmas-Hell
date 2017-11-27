@@ -94,6 +94,9 @@ namespace XmasHell.Entities.Bosses
         public float NewPositionTimerTime = 0f;
         public event EventHandler<float> NewPositionTimerFinished = null;
 
+        private bool _randomPosition;
+        public Rectangle RandomMovingArea;
+
         // Shoot timer
         public bool StartShootTimer = false;
         private TimeSpan ShootTimer = TimeSpan.Zero;
@@ -230,6 +233,11 @@ namespace XmasHell.Entities.Bosses
             return _ready;
         }
 
+        public void EnableRandomPosition(bool value)
+        {
+            _randomPosition = value;
+        }
+
         #endregion
 
         #region Setters
@@ -318,6 +326,13 @@ namespace XmasHell.Entities.Bosses
 
             foreach (var behaviour in Behaviours)
                 behaviour.Reset();
+
+            _randomPosition = false;
+            RandomMovingArea = new Rectangle(
+                (int)(Width() / 2f), (int)(Height() / 2f),
+                GameConfig.VirtualResolution.X - (int)(Width() / 2f),
+                500 - (int)(Height() / 2f)
+            );
 
             _bossEntranceAnimation = true;
             _ready = false;
@@ -815,6 +830,16 @@ namespace XmasHell.Entities.Bosses
             {
                 PhysicsWorld.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
                 SynchronizeGraphicsWithPhysics();
+            }
+
+            if (_randomPosition && !TargetingPosition)
+            {
+                var newPosition = new Vector2(
+                    Game.GameManager.Random.Next(RandomMovingArea.X, RandomMovingArea.Width),
+                    Game.GameManager.Random.Next(RandomMovingArea.Y, RandomMovingArea.Height)
+                );
+
+                MoveTo(newPosition, 1.5f);
             }
 
             UpdatePosition(gameTime);

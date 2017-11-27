@@ -75,7 +75,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             Position(_initialPosition);
 
             // Physics
-            _boundingBox = new SpriterCollisionCircle(this, "hat.png", Vector2.Zero, 0.8f);
+            _boundingBox = new SpriterCollisionCircle(this, "hat.png", Vector2.Zero, 0.7f);
 
             _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
 

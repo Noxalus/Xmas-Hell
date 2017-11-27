@@ -131,6 +131,9 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public override void Stop()
         {
             base.Stop();
+
+            Boss.PhysicsEnabled = false;
+
             Boss.CurrentAnimator.AnimationFinished -= AnimationFinishedHandler;
 
             foreach (var snowball in _snowballs)
