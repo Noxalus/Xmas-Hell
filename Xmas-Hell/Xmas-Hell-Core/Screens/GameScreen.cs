@@ -33,12 +33,17 @@ namespace XmasHell.Screens
         private SpriterGuiLabel _endGameDeathCounterLabel;
         private List<SpriterGuiLabel> _endGameTauntLabels;
 
-        private static List<String> _tauntStrings = new List<string>()
-        {
-            "You suck!",
-            "Your goal is to avoid your opponent's bullet, not to collect them!",
-            "Drag your finger over the screen to move",
-            "Sorry, there is no in app-purchases to help you here"
+        private static List<String> _tauntStrings = new List<string>
+        { 
+            "I expected more from you...",
+            "Protip: drag your finger around the screen to move.",
+            "My granny could scrap better than that.",
+            "Sorry, no in app-purchases to help you here!",
+            "What about trying this one tomorrow?",
+            "Collect your opponent's bullet won't make your score better...",
+            "That was quick!",
+            "It's easier to play using your finger.",
+            "Please, stop hurting yourself."
         };
 
         private float GetRank()
