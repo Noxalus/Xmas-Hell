@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11" pixel_mode="1">
     <folder id="0">
         <file id="0" name="body.png" width="87" height="87" pivot_x="0.5" pivot_y="0.5"/>
         <file id="1" name="branch1.png" width="69" height="113" pivot_x="0.5" pivot_y="0"/>
-        <file id="2" name="mouth.png" width="28" height="17" pivot_x="0.5" pivot_y="1"/>
-        <file id="3" name="left_eye.png" width="26" height="25" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="4" name="right_eye.png" width="26" height="25" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="mouth.png" width="28" height="12" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="left_eye.png" width="18" height="18" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="4" name="right_eye.png" width="18" height="18" pivot_x="0.5" pivot_y="0.5"/>
         <file id="5" name="branch2.png" width="72" height="111" pivot_x="0.5" pivot_y="0"/>
     </folder>
     <entity id="0" name="Xmas Snowflake">
@@ -157,22 +157,22 @@
             </timeline>
             <timeline id="1" name="branch1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="24" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="24" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="branch1_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="0" y="24"/>
+                    <object folder="0" file="1" y="24"/>
                 </key>
             </timeline>
             <timeline id="3" name="branch1_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-24" y="0" angle="90"/>
+                    <object folder="0" file="1" x="-24" angle="90"/>
                 </key>
             </timeline>
             <timeline id="4" name="branch1_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-0" y="-24" angle="180"/>
+                    <object folder="0" file="1" y="-24" angle="180"/>
                 </key>
             </timeline>
             <timeline id="5" name="branch2">
@@ -213,7 +213,7 @@
             </timeline>
             <timeline id="11" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-5" y="0" angle="270"/>
+                    <object folder="0" file="2" x="-8" angle="270"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="main" object_type="bone">
@@ -257,22 +257,22 @@
             </timeline>
             <timeline id="15" name="action_point_1" object_type="point">
                 <key id="0" spin="0">
-                    <object x="80" y="-0"/>
+                    <object x="80"/>
                 </key>
             </timeline>
             <timeline id="16" name="action_point_2" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-80" y="0" angle="180"/>
+                    <object x="-80" angle="180"/>
                 </key>
             </timeline>
             <timeline id="17" name="action_point_3" object_type="point">
                 <key id="0" spin="0">
-                    <object x="0" y="80" angle="90"/>
+                    <object y="80" angle="90"/>
                 </key>
             </timeline>
             <timeline id="18" name="action_point_4" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-0" y="-80" angle="270"/>
+                    <object y="-80" angle="270"/>
                 </key>
             </timeline>
             <timeline id="19" name="action_point_5" object_type="point">
@@ -373,7 +373,7 @@
             </timeline>
             <timeline id="11" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-5" angle="270"/>
+                    <object folder="0" file="2" x="-8" angle="270"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="main" object_type="bone">
@@ -456,7 +456,7 @@
                     <object folder="0" file="1" x="24" angle="270" a="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="1" x="24" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="24" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="branch1_000">
@@ -539,7 +539,7 @@
             </timeline>
             <timeline id="11" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-5" y="0" angle="270"/>
+                    <object folder="0" file="2" x="-8" angle="270"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="main" object_type="bone">
@@ -614,7 +614,7 @@
             </timeline>
             <timeline id="3" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-5" y="0" angle="270"/>
+                    <object folder="0" file="2" x="-8" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" obj="0" name="main" object_type="bone">
@@ -752,42 +752,42 @@
             </timeline>
             <timeline id="1" name="branch1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-1" y="0" angle="270"/>
+                    <object folder="0" file="1" x="-1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="branch1_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-2" y="0" angle="270"/>
+                    <object folder="0" file="1" x="-2" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="branch1_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-2" y="0" angle="270"/>
+                    <object folder="0" file="1" x="-2" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="branch1_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-2" y="0" angle="270"/>
+                    <object folder="0" file="1" x="-2" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="branch2">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-0" y="-0" angle="270"/>
+                    <object folder="0" file="5" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="branch2_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-0" y="0" angle="270"/>
+                    <object folder="0" file="5" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="branch2_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-0" y="0" angle="270"/>
+                    <object folder="0" file="5" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" name="branch2_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="0" y="0" angle="270"/>
+                    <object folder="0" file="5" angle="270"/>
                 </key>
             </timeline>
             <timeline id="9" name="left_eye">
@@ -802,7 +802,7 @@
             </timeline>
             <timeline id="11" name="mouth">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-5" y="0" angle="270"/>
+                    <object folder="0" file="2" x="-8" angle="270"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="main" object_type="bone">
@@ -821,7 +821,7 @@
             </timeline>
             <timeline id="13" obj="3" name="bone_000" object_type="bone">
                 <key id="0">
-                    <bone x="25" y="-0"/>
+                    <bone x="25"/>
                 </key>
                 <key id="1" time="750">
                     <bone x="125" y="-42" angle="0"/>
@@ -829,7 +829,7 @@
             </timeline>
             <timeline id="14" obj="4" name="bone_001" object_type="bone">
                 <key id="0">
-                    <bone x="-0" y="-26" angle="270"/>
+                    <bone y="-26" angle="270"/>
                 </key>
                 <key id="1" time="750" spin="-1">
                     <bone x="89" y="-109" angle="0"/>
@@ -837,7 +837,7 @@
             </timeline>
             <timeline id="15" obj="5" name="bone_002" object_type="bone">
                 <key id="0" spin="-1">
-                    <bone x="-26" y="0" angle="180"/>
+                    <bone x="-26" angle="180"/>
                 </key>
                 <key id="1" time="750">
                     <bone x="85" y="91" angle="0"/>
@@ -845,7 +845,7 @@
             </timeline>
             <timeline id="16" obj="6" name="bone_003" object_type="bone">
                 <key id="0" spin="-1">
-                    <bone x="0" y="26" angle="90"/>
+                    <bone y="26" angle="90"/>
                 </key>
                 <key id="1" time="750">
                     <bone x="125" y="36" angle="0"/>
