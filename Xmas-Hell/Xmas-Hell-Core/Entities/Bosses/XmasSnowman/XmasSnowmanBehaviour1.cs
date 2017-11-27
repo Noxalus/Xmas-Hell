@@ -111,10 +111,10 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
         public override void Start()
         {
+            base.Start();
+
             Boss.PhysicsWorld.Gravity = GameConfig.DefaultGravity;
             Boss.PhysicsEnabled = true;
-
-            base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
 
