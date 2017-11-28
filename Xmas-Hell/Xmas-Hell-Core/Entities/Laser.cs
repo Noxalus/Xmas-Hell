@@ -25,6 +25,12 @@ namespace XmasHell.Entities
             return _line.First;
         }
 
+        public void Position(Vector2 value)
+        {
+            _line.First = value;
+            _line.Second.X = value.X;
+        }
+
         public float Rotation()
         {
             return MathExtension.LineToAngle(_line);
@@ -45,6 +51,25 @@ namespace XmasHell.Entities
             throw new NotImplementedException();
         }
 
+        public void SetStartPoint(Vector2 position)
+        {
+            _line.First = position;
+        }
+
+        public void SetEndPoint(Vector2 position)
+        {
+            _line.Second = position;
+
+            // Make sure to update the laser scale
+            if (_laserTexture != null)
+                _scale = new Vector2(_scale.X, _line.Distance() / _laserTexture.Height);
+        }
+
+        public void SetLine(Line line)
+        {
+            _line = line;
+        }
+
         public Laser(XmasHell game, Line line, float scale = 1f)
         {
             _game = game;
@@ -52,7 +77,6 @@ namespace XmasHell.Entities
             _used = true;
 
             LoadContent();
-            _scale = new Vector2(scale, line.Distance() / _laserTexture.Height);
 
             var vertices = new List<Vector2>
             {
@@ -64,6 +88,8 @@ namespace XmasHell.Entities
 
             _hitbox = new CollisionConvexPolygon(this, -_origin, vertices);
             _game.GameManager.CollisionWorld.AddBossBulletHitbox(_hitbox);
+
+            _scale = new Vector2(scale, line.Distance() / _laserTexture.Height);
         }
 
         public void Initialize()
@@ -78,24 +104,16 @@ namespace XmasHell.Entities
 
         public void Update(GameTime gameTime)
         {
-            var d = (100f + (float)gameTime.TotalGameTime.TotalMilliseconds / 10);
-
-            _line.Second = new Vector2(
-                _game.ViewportAdapter.Center.ToVector2().X + (float)Math.Cos(gameTime.TotalGameTime.TotalSeconds) * d,
-                _game.ViewportAdapter.Center.ToVector2().Y + (float)Math.Sin(gameTime.TotalGameTime.TotalSeconds) * d
-            );
-
-            _scale.X += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _scale.Y = (float)Math.Ceiling(_line.Distance() / _laserTexture.Height);
+            // TODO: Update UV
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            _game.SpriteBatch.Draw(
+            spriteBatch.Draw(
                 _laserTexture, Position(), null, Color.White, Rotation(), _origin, _scale, SpriteEffects.None, 1f
             );
 
-            _game.SpriteBatch.Draw(
+            spriteBatch.Draw(
                 Assets.GetTexture2D("pixel"),
                 new Rectangle(
                     _line.First.ToPoint() - new Point(10 / 2, 10 / 2),
@@ -104,7 +122,7 @@ namespace XmasHell.Entities
                 Color.Orange
             );
 
-            _game.SpriteBatch.Draw(
+            spriteBatch.Draw(
                 Assets.GetTexture2D("pixel"),
                 new Rectangle(
                     _line.Second.ToPoint() - new Point(10 / 2, 10 / 2),

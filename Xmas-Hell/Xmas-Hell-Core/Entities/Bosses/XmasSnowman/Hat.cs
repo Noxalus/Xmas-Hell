@@ -3,9 +3,9 @@ using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
+using XmasHell.Geometry;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
@@ -17,6 +17,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         private Vector2 _initialPosition;
         public bool Destroyed = false;
         private float _speed;
+        private Laser _laser;
 
         public CustomSpriterAnimator GetCurrentAnimator()
         {
@@ -83,12 +84,26 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _animator.Play("Idle");
 
             ChangeHorizontalPosition();
+            ShootLaser();
         }
 
         public void Dispose()
         {
             _boss.Game.GameManager.CollisionWorld.RemoveBossBulletHitbox(_boundingBox);
+
+            if (_laser != null)
+            {
+                _boss.Game.SpriteBatchManager.Lasers.Remove(_laser);
+                _laser = null;
+            }
+
             Destroyed = true;
+        }
+
+        private void ShootLaser()
+        {
+            _laser = new Laser(_boss.Game, new Line(Position(), Position() + Vector2.UnitY * GameConfig.VirtualResolution.Y), 4f);
+            _boss.Game.SpriteBatchManager.Lasers.Add(_laser);
         }
 
         private void ChangeHorizontalPosition()
@@ -101,6 +116,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public void Update(GameTime gameTime)
         {
             _animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            if (_laser != null)
+            {
+                _laser.SetStartPoint(Position());
+                _laser.SetEndPoint(Position() + Vector2.UnitY * GameConfig.VirtualResolution.Y);
+                _laser.Update(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -59,7 +59,7 @@ namespace XmasHell.Extensions
 
         public static float LineToAngle(Line line)
         {
-            return (float)Math.Atan2(line.Second.Y - line.First.Y, line.Second.X - line.First.X);
+            return (float)Math.Atan2(line.Second.Y - line.First.Y, line.Second.X - line.First.X) - MathHelper.PiOver2;
         }
 
         public static Vector2 ProjectOnto(Vector2 point, Line line)
