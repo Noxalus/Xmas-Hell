@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
 using XmasHell.Geometry;
+using XmasHell.Rendering;
 
 namespace XmasHell.Entities.Bosses.XmasSnowman
 {
@@ -18,6 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public bool Destroyed = false;
         private float _speed;
         private Laser _laser;
+        private bool _scaleDownLaser;
 
         public CustomSpriterAnimator GetCurrentAnimator()
         {
@@ -72,6 +74,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             _speed = 200;
 
             _initialPosition = position;
+            _scaleDownLaser = true;
 
             Position(_initialPosition);
 
@@ -85,10 +88,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             ChangeHorizontalPosition();
             ShootLaser();
+
+            _boss.Game.SpriteBatchManager.AddSpriterAnimator(_animator, Layer.FRONT);
         }
 
         public void Dispose()
         {
+            _boss.Game.SpriteBatchManager.RemoveSpriterAnimator(_animator, Layer.FRONT);
             _boss.Game.GameManager.CollisionWorld.RemoveBossBulletHitbox(_boundingBox);
 
             if (_laser != null)
@@ -121,13 +127,20 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             {
                 _laser.SetStartPoint(Position());
                 _laser.SetEndPoint(Position() + Vector2.UnitY * GameConfig.VirtualResolution.Y);
+
+                var scaleAmount = gameTime.GetElapsedSeconds() * 10f;
+                if (_scaleDownLaser)
+                    _laser.ScaleX(_laser.ScaleVector().X - scaleAmount);
+                else
+                    _laser.ScaleX(_laser.ScaleVector().X + scaleAmount);
+
+                if (_scaleDownLaser && _laser.ScaleVector().X < 3f)
+                    _scaleDownLaser = false;
+                else if (_laser.ScaleVector().X > 4f)
+                    _scaleDownLaser = true;
+
                 _laser.Update(gameTime);
             }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            _animator.Draw(spriteBatch);
         }
     }
 }

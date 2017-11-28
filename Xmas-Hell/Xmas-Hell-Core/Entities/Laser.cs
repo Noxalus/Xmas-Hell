@@ -41,6 +41,11 @@ namespace XmasHell.Entities
             return _scale;
         }
 
+        public void ScaleX(float value)
+        {
+            _scale.X = value;
+        }
+
         public Vector2 Origin()
         {
             return _origin;

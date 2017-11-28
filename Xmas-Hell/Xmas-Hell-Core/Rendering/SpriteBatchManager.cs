@@ -53,6 +53,8 @@ namespace XmasHell.Rendering
         private RenderTarget2D _renderTarget2;
 
         private List<CustomSpriterAnimator> _backgroundSpriterAnimators = new List<CustomSpriterAnimator>();
+        private List<CustomSpriterAnimator> _backSpriterAnimators = new List<CustomSpriterAnimator>();
+        private List<CustomSpriterAnimator> _frontSpriterAnimators = new List<CustomSpriterAnimator>();
         private List<CustomSpriterAnimator> _uiSpriterAnimators = new List<CustomSpriterAnimator>();
 
         // Use to delayed Spriter animator collection modification (to be able to easily call code in CustomSpriterAnimator callbacks)
@@ -87,6 +89,8 @@ namespace XmasHell.Rendering
                 return;
 
             _backgroundSpriterAnimators.Sort();
+            _backSpriterAnimators.Sort();
+            _frontSpriterAnimators.Sort();
             _uiSpriterAnimators.Sort();
 
             _sortSpriterAnimators = false;
@@ -137,9 +141,15 @@ namespace XmasHell.Rendering
                 {
                     case Layer.BACKGROUND:
                         if (!_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
-                        {
                             _backgroundSpriterAnimators.Add(animator);
-                        }
+                        break;
+                    case Layer.BACK:
+                        if (!_backSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _backSpriterAnimators.Add(animator);
+                        break;
+                    case Layer.FRONT:
+                        if (!_frontSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _frontSpriterAnimators.Add(animator);
                         break;
                     case Layer.UI:
                         _uiSpriterAnimators.Add(animator);
@@ -166,6 +176,14 @@ namespace XmasHell.Rendering
                     case Layer.BACKGROUND:
                         if (_backgroundSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
                             _backgroundSpriterAnimators.Remove(animator);
+                        break;
+                    case Layer.BACK:
+                        if (_backSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _backSpriterAnimators.Remove(animator);
+                        break;
+                    case Layer.FRONT:
+                        if (_frontSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
+                            _frontSpriterAnimators.Remove(animator);
                         break;
                     case Layer.UI:
                         if (_uiSpriterAnimators.Exists(a => a.Entity.Name == animator.Entity.Name))
@@ -201,6 +219,12 @@ namespace XmasHell.Rendering
             foreach (var animator in _backgroundSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
+            foreach (var animator in _backSpriterAnimators)
+                animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            foreach (var animator in _frontSpriterAnimators)
+                animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
             foreach (var animator in _uiSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
@@ -226,23 +250,23 @@ namespace XmasHell.Rendering
             );
         }
 
-        private void DrawBloomedElements(GameTime gameTime)
+        private void DrawBloomedElements(SpriteBatch spriteBatch)
         {
             BeginDrawCameraSpace();
 
-            PlayerHitbox?.Draw(_game.SpriteBatch);
+            PlayerHitbox?.Draw(spriteBatch);
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BossBulletDraw);
 
             foreach (var mover in BossBullets)
-                _game.SpriteBatch.Draw(mover.Sprite);
+                spriteBatch.Draw(mover.Sprite);
 
             foreach (var laser in Lasers)
-                laser.Draw(gameTime);
+                laser.Draw(spriteBatch);
 
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BossBulletDraw);
 
-            _game.SpriteBatch.End();
+            spriteBatch.End();
         }
 
         private void DrawBoss()
@@ -272,7 +296,7 @@ namespace XmasHell.Rendering
             _game.SpriteBatch.End();
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
             // Start by render the bloomed elements into a render target
             if (GameConfig.EnableBloom)
@@ -283,7 +307,7 @@ namespace XmasHell.Rendering
                 _game.GraphicsDevice.SetRenderTarget(_renderTarget1);
                 _game.GraphicsDevice.Clear(Color.Transparent);
 
-                DrawBloomedElements(gameTime);
+                DrawBloomedElements(spriteBatch);
 
                 // Apply bloom effect on the first render target and store the
                 // result into the second render target
@@ -323,6 +347,9 @@ namespace XmasHell.Rendering
             _game.SpriteBatch.End();
 
             BeginDrawCameraSpace();
+
+            foreach (var animator in _backSpriterAnimators)
+                animator.Draw(_game.SpriteBatch);
 
             // Draw player
             Player?.CurrentAnimator.Draw(_game.SpriteBatch);
@@ -367,8 +394,15 @@ namespace XmasHell.Rendering
             }
             else
             {
-                DrawBloomedElements(gameTime);
+                DrawBloomedElements(spriteBatch);
             }
+
+            BeginDrawCameraSpace();
+
+            foreach (var animator in _frontSpriterAnimators)
+                animator.Draw(_game.SpriteBatch);
+
+            _game.SpriteBatch.End();
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UIDraw);
 
