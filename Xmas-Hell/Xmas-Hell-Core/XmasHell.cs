@@ -284,7 +284,7 @@ namespace XmasHell
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.ClearColorDraw);
 
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
-            SpriteBatchManager.Draw(gameTime);
+            SpriteBatchManager.Draw(SpriteBatch);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.SpriteBatchManagerDraw);
 
             base.Draw(gameTime);
