@@ -107,10 +107,5 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             _hat?.Update(gameTime);
         }
-
-        public override void DrawAfter(SpriteBatch spriteBatch)
-        {
-            _hat?.Draw(spriteBatch);
-        }
     }
 }
