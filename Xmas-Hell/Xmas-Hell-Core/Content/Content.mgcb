@@ -2337,18 +2337,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasLog/hat.png
 
-#begin Graphics/Sprites/Bosses/XmasLog/holly.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Sprites/Bosses/XmasLog/holly.png
-
 #begin Graphics/Sprites/Bosses/XmasReindeer/head.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2384,4 +2372,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Graphics/Sprites/Bosses/XmasReindeer/nose_shining.png
+
+#begin Graphics/Sprites/Bosses/XmasLog/holly-balls.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasLog/holly-balls.png
+
+#begin Graphics/Sprites/Bosses/XmasLog/holly-leaf.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Graphics/Sprites/Bosses/XmasLog/holly-leaf.png
 
