@@ -25,12 +25,10 @@ namespace XmasHell.Entities.Bosses.XmasLog
 
             var shootingPatternBehaviour =
                 new FSMBehaviour<BehaviourState>(BehaviourState.ShootingPattern)
-                    .OnEnter(ShootingPatternTaskEnter)
-                    .OnUpdate(ShootingPatternTaskUpdate);
+                    .OnEnter(ShootingPatternTaskEnter);
 
             _stateMachine.Add(BehaviourState.TargetingInitialPosition, targetingInitialPositionBehaviour);
             _stateMachine.Add(BehaviourState.ShootingPattern, shootingPatternBehaviour);
-
         }
 
         private void ShootTimerFinished(object sender, float e)
@@ -48,10 +46,6 @@ namespace XmasHell.Entities.Bosses.XmasLog
         {
             Boss.ShootTimerTime = 0.05f;
             Boss.StartShootTimer = true;
-        }
-
-        private void ShootingPatternTaskUpdate(FSMStateData<BehaviourState> data)
-        {
         }
 
         public override void Start()

@@ -17,8 +17,16 @@ namespace XmasHell.Entities.Bosses.XmasLog
 
             // Behaviours
             Behaviours.Add(new XmasLogBehaviour1(this));
+            Behaviours.Add(new XmasLogBehaviour2(this));
 
             InitialPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y * 0.15f);
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            Speed = GameConfig.BossDefaultSpeed * 3f;
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
@@ -26,6 +34,13 @@ namespace XmasHell.Entities.Bosses.XmasLog
             base.InitializePhysics(setupPhysicsWorld);
 
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png"));
+        }
+
+        protected override void UpdateBehaviourIndex()
+        {
+            base.UpdateBehaviourIndex();
+
+            CurrentBehaviourIndex = 1;
         }
     }
 }

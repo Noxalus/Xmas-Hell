@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <action>
+      <fire>
+        <bullet>
+          <direction>$rand * 360</direction>
+          <speed>0</speed>
+          <actionRef label="test">
+            <param>100</param>
+          </actionRef>
+        </bullet>
+      </fire>
+    </action>
+  </action>
+
+  <action label="test">
+    <repeat>
+      <times>$1</times>
+      <action>
+        <fire>
+          <bullet>
+            <direction type="sequence">360 / $1</direction>
+            <speed>5</speed>
+            <sprite>1</sprite>
+            <action>
+              <changeSpeed>
+                <speed>0</speed>
+                <term>100</term>
+              </changeSpeed>
+              <wait>100</wait>
+              <changeSpeed>
+                <speed>2</speed>
+                <term>0</term>
+              </changeSpeed>
+              <changeDirection>
+                <direction type="relative">30 * $sign</direction>
+                <term>100</term>
+              </changeDirection>
+            </action>
+          </bullet>
+        </fire>
+      </action>
+    </repeat>
+    <wait>1</wait>
+  </action>
+</bulletml>

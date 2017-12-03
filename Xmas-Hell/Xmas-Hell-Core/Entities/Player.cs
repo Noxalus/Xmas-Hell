@@ -11,6 +11,7 @@ using SpriterDotNet.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XmasHell.Background;
 using XmasHell.Controls;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
@@ -40,6 +41,12 @@ namespace XmasHell.Entities
         private Point _currentTouchPosition;
         private Point _previousTouchPosition;
         private Vector2 _entraceSpritePosition;
+
+        // Debug only
+        private TimeSpan _hitTimer = TimeSpan.Zero;
+        private bool _backgroundColorChanged = false;
+        private Color _savedBackgroundBrightColor;
+        private Color _savedBackgroundDarkColor;
 
         private Vector2 _currentDirection;
 
@@ -184,6 +191,9 @@ namespace XmasHell.Entities
             ScaleVector(new Vector2(3f));
             Position(new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y + _spriteSize.Y * ScaleVector().Y));
 
+            // Debug
+            _backgroundColorChanged = false;
+
             PlayEntranceAnimation();
         }
 
@@ -201,6 +211,22 @@ namespace XmasHell.Entities
 
         public void Destroy()
         {
+            if (GameConfig.GodMode && !_backgroundColorChanged)
+            {
+                if (_game.SpriteBatchManager.Background != null)
+                {
+                    var gradientBackground = (GradientBackground)_game.SpriteBatchManager.Background;
+
+                    _savedBackgroundBrightColor = gradientBackground.BrightColor();
+                    _savedBackgroundDarkColor = gradientBackground.DarkColor();
+
+                    gradientBackground.ChangeGradientColors(Color.White, Color.Red);
+
+                    _backgroundColorChanged = true;
+                    _hitTimer = TimeSpan.FromSeconds(0.1);
+                }
+            }
+
             if (GameConfig.GodMode || _destroyed)
                 return;
 
@@ -257,6 +283,23 @@ namespace XmasHell.Entities
                         _game.Camera.ZoomTo(5f, 0.5, Position());
                     else
                         _game.Camera.ZoomTo(1f, 0.5, Position());
+                }
+
+                if (!_hitTimer.Equals(TimeSpan.Zero))
+                {
+                    if (_hitTimer.TotalMilliseconds <= 0)
+                    {
+                        if (_game.SpriteBatchManager.Background != null)
+                        {
+                            var gradientBackground = (GradientBackground) _game.SpriteBatchManager.Background;
+                            gradientBackground.ChangeGradientColors(_savedBackgroundBrightColor,
+                                _savedBackgroundDarkColor);
+
+                            _backgroundColorChanged = false;
+                        }
+                    }
+                    else
+                        _hitTimer -= gameTime.ElapsedGameTime;
                 }
 
 #if ANDROID
