@@ -1,6 +1,6 @@
 using BulletML;
+using Microsoft.Xna.Framework;
 using XmasHell.Physics.Collision;
-using XmasHell.Entities.Bosses.XmasLog;
 
 namespace XmasHell.Entities.Bosses.XmasLog
 {
@@ -10,18 +10,20 @@ namespace XmasHell.Entities.Bosses.XmasLog
             base(game, BossType.XmasLog, playerPositionDelegate)
         {
             // BulletML
-            BulletPatternFiles.Add("sample");
+            BulletPatternFiles.Add("XmasLog/pattern1");
 
             // Spriter
             SpriterFilename = "Graphics/Sprites/Bosses/XmasLog/xmas-log";
 
             // Behaviours
             Behaviours.Add(new XmasLogBehaviour1(this));
+
+            InitialPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y * 0.15f);
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
-            base.InitializePhysics();
+            base.InitializePhysics(setupPhysicsWorld);
 
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body.png"));
         }

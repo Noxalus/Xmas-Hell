@@ -232,6 +232,7 @@ namespace XmasHell
                 { "XmasGift/pattern1", OpenRawFile(BuildRawAssetPath("XmasGift/pattern1.xml")) },
 
                 // Xmas Log
+                { "XmasLog/pattern1", OpenRawFile(BuildRawAssetPath("XmasLog/pattern1.xml")) },
 
                 // Xmas Tree
                 { "XmasTree/pattern1", OpenRawFile(BuildRawAssetPath("XmasTree/pattern1.xml")) },

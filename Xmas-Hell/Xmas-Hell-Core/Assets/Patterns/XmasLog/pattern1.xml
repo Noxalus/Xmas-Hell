@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+      <fire>
+        <bullet>
+          <direction type="absolute">(180 + (60 * $rand)) - 30</direction>
+          <speed>50</speed>
+          <sprite>1</sprite>
+          <color>
+            <red>0.94</red>
+            <green>0.81</green>
+            <blue>0.62</blue>
+          </color>
+          <actionRef label="randomDirection">
+            <param>50</param>
+            <param>45</param>
+          </actionRef>
+        </bullet>
+      </fire>
+  </action>
+
+  <action label="randomDirection">
+    <changeSpeed>
+      <speed>0</speed>
+      <term>$1</term>
+    </changeSpeed>
+    <wait>$1</wait>
+    <changeDirection>
+      <direction type="relative">($2 * $rand) - ($2 / 2)</direction>
+      <term>0</term>
+    </changeDirection>
+    <changeSpeed>
+      <speed>2</speed>
+      <term>200</term>
+    </changeSpeed>
+  </action>
+</bulletml>
