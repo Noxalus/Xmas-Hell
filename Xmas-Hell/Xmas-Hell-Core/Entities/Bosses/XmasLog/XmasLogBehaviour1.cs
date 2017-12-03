@@ -15,9 +15,8 @@ namespace XmasHell.Entities.Bosses.XmasLog
         {
             base.Start();
 
-            Boss.CurrentAnimator.Play("Whirligig");
+            Boss.CurrentAnimator.Play("Idle");
             Boss.MoveToCenter();
-            //Boss.CurrentAnimator.Speed = 0.25f;
         }
 
         public override void Stop()
