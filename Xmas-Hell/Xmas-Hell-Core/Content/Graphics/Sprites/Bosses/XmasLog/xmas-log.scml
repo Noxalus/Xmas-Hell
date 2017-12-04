@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11" pixel_mode="1">
     <folder id="0">
         <file id="0" name="body.png" width="145" height="224" pivot_x="0.5" pivot_y="0.45"/>
         <file id="1" name="eye.png" width="25" height="25" pivot_x="0.5" pivot_y="0.5"/>
@@ -39,7 +39,7 @@
             </mainline>
             <timeline id="0" name="body_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="3" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="3" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="body_bottom">
@@ -54,7 +54,7 @@
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
@@ -69,12 +69,12 @@
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
@@ -104,7 +104,7 @@
             </timeline>
             <timeline id="13" obj="6" name="bone_006" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-3" y="0"/>
+                    <bone x="-3" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -188,20 +188,20 @@
             </mainline>
             <timeline id="0" name="body_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="3" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="3" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="body_bottom">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-100" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="-1000" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-1000" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="body_top">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="120" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="120" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
                     <object folder="0" file="5" x="1220" angle="270"/>
@@ -209,45 +209,45 @@
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="3" x="1238.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="1239" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="eye_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="47" y="-0"/>
+                    <bone x="47" angle="0"/>
                 </key>
             </timeline>
             <timeline id="9" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="-36"/>
+                    <bone x="59" y="-36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="36"/>
+                    <bone x="59" y="36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" obj="4" name="bone_004" object_type="bone">
@@ -263,87 +263,87 @@
             </timeline>
             <timeline id="12" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="91" y="57"/>
+                    <bone x="91" y="57" angle="0"/>
                 </key>
             </timeline>
             <timeline id="13" obj="6" name="bone_006" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-3" y="0"/>
+                    <bone x="-3" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <bone x="-3" y="0" scale_y="10"/>
+                    <bone x="-3" angle="0" scale_y="10"/>
                 </key>
             </timeline>
             <timeline id="14" name="action_point1" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="51" y="0" angle="297.397438"/>
+                <key id="0" time="250">
+                    <object x="51" angle="297.397438"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="141" y="-0" angle="357.397438"/>
+                    <object x="141" angle="357.397438"/>
                 </key>
             </timeline>
             <timeline id="15" name="action_point2" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="-38.666667" y="-0" angle="240"/>
+                <key id="0" time="250" spin="-1">
+                    <object x="-39" angle="240"/>
                 </key>
                 <key id="1">
-                    <object x="-128" y="0" angle="180"/>
+                    <object x="-128" angle="180"/>
                 </key>
             </timeline>
             <timeline id="16" name="action_point3" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="-26" y="-0" angle="237.797402"/>
+                <key id="0" time="250" spin="-1">
+                    <object x="-26" angle="237.797402"/>
                 </key>
                 <key id="1">
-                    <object x="-90" y="0" angle="177.797402"/>
+                    <object x="-90" angle="177.797402"/>
                 </key>
             </timeline>
             <timeline id="17" name="action_point4" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="-13.666667" y="-0" angle="124.398705"/>
+                <key id="0" time="250">
+                    <object x="-14" angle="124.398705"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="-53" y="0" angle="184.398705"/>
+                    <object x="-53" angle="184.398705"/>
                 </key>
             </timeline>
             <timeline id="18" name="action_point5" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="-2.333333" y="-0" angle="121.507436"/>
+                <key id="0" time="250">
+                    <object x="-2" angle="121.507436"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="-19" y="0" angle="181.507436"/>
+                    <object x="-19" angle="181.507436"/>
                 </key>
             </timeline>
             <timeline id="19" name="action_point6" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="5" y="-0" angle="240"/>
+                <key id="0" time="250" spin="-1">
+                    <object x="5" angle="240"/>
                 </key>
                 <key id="1">
-                    <object x="3" y="-0" angle="180"/>
+                    <object x="3" angle="180"/>
                 </key>
             </timeline>
             <timeline id="20" name="action_point7" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="41.666667" y="0" angle="300"/>
+                <key id="0" time="250">
+                    <object x="42" angle="300"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="113" y="-0"/>
+                    <object x="113" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="action_point8" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="28.333333" y="0" angle="300"/>
+                <key id="0" time="250">
+                    <object x="28" angle="300"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="73" y="-0"/>
+                    <object x="73" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="action_point9" object_type="point">
-                <key id="0" time="250" spin="0">
-                    <object x="14.333333" y="-0" angle="300"/>
+                <key id="0" time="250">
+                    <object x="14" angle="300"/>
                 </key>
                 <key id="1" spin="-1">
-                    <object x="31" y="-0"/>
+                    <object x="31" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -427,57 +427,57 @@
             </mainline>
             <timeline id="0" name="body_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="3" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="3" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="body_bottom">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-100" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="body_top">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="120" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="120" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="eye_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="47" y="-0"/>
+                    <bone x="47" angle="0"/>
                 </key>
             </timeline>
             <timeline id="9" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="-36"/>
+                    <bone x="59" y="-36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="36"/>
+                    <bone x="59" y="36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" obj="4" name="bone_004" object_type="bone">
@@ -493,57 +493,57 @@
             </timeline>
             <timeline id="12" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="91" y="57"/>
+                    <bone x="91" y="57" angle="0"/>
                 </key>
             </timeline>
             <timeline id="13" obj="6" name="bone_006" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-3" y="0"/>
+                    <bone x="-3" angle="0"/>
                 </key>
             </timeline>
             <timeline id="14" name="action_point1" object_type="point">
                 <key id="0" spin="0">
-                    <object x="141" y="-0" angle="357.397438"/>
+                    <object x="141" angle="357.397438"/>
                 </key>
             </timeline>
             <timeline id="15" name="action_point2" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-128" y="0" angle="180"/>
+                    <object x="-128" angle="180"/>
                 </key>
             </timeline>
             <timeline id="16" name="action_point3" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-90" y="0" angle="177.797402"/>
+                    <object x="-90" angle="177.797402"/>
                 </key>
             </timeline>
             <timeline id="17" name="action_point4" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-53" y="0" angle="184.398705"/>
+                    <object x="-53" angle="184.398705"/>
                 </key>
             </timeline>
             <timeline id="18" name="action_point5" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-19" y="0" angle="181.507436"/>
+                    <object x="-19" angle="181.507436"/>
                 </key>
             </timeline>
             <timeline id="19" name="action_point6" object_type="point">
                 <key id="0" spin="0">
-                    <object x="3" y="-0" angle="180"/>
+                    <object x="3" angle="180"/>
                 </key>
             </timeline>
             <timeline id="20" name="action_point7" object_type="point">
                 <key id="0" spin="0">
-                    <object x="113" y="-0"/>
+                    <object x="113" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="action_point8" object_type="point">
                 <key id="0" spin="0">
-                    <object x="73" y="-0"/>
+                    <object x="73" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="action_point9" object_type="point">
                 <key id="0" spin="0">
-                    <object x="31" y="-0"/>
+                    <object x="31" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -627,66 +627,66 @@
             </mainline>
             <timeline id="0" name="body_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="3" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="3" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="body_bottom">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-100" angle="270"/>
                 </key>
                 <key id="1" time="250" spin="0">
-                    <object folder="0" file="4" x="-400" y="-0" angle="270"/>
+                    <object folder="0" file="4" x="-400" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="body_top">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="120" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="120" angle="270"/>
                 </key>
                 <key id="1" time="250" spin="0">
-                    <object folder="0" file="5" x="489" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="489" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
                 <key id="1" time="250" spin="0">
-                    <object folder="0" file="3" x="507.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="508" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="eye_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="47" y="-0"/>
+                    <bone x="47" angle="0"/>
                 </key>
             </timeline>
             <timeline id="9" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="-36"/>
+                    <bone x="59" y="-36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="36"/>
+                    <bone x="59" y="36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" obj="4" name="bone_004" object_type="bone">
@@ -702,60 +702,60 @@
             </timeline>
             <timeline id="12" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="91" y="57"/>
+                    <bone x="91" y="57" angle="0"/>
                 </key>
             </timeline>
             <timeline id="13" obj="6" name="bone_006" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-3" y="0"/>
+                    <bone x="-3" angle="0"/>
                 </key>
                 <key id="1" time="250" spin="0">
-                    <bone x="-3" y="0" scale_y="4"/>
+                    <bone x="-3" angle="0" scale_y="4"/>
                 </key>
             </timeline>
             <timeline id="14" name="action_point1" object_type="point">
                 <key id="0" spin="0">
-                    <object x="141" y="-0" angle="357.397438"/>
+                    <object x="141" angle="357.397438"/>
                 </key>
             </timeline>
             <timeline id="15" name="action_point2" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-128" y="0" angle="180"/>
+                    <object x="-128" angle="180"/>
                 </key>
             </timeline>
             <timeline id="16" name="action_point3" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-90" y="0" angle="177.797402"/>
+                    <object x="-90" angle="177.797402"/>
                 </key>
             </timeline>
             <timeline id="17" name="action_point4" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-53" y="0" angle="184.398705"/>
+                    <object x="-53" angle="184.398705"/>
                 </key>
             </timeline>
             <timeline id="18" name="action_point5" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-19" y="0" angle="181.507436"/>
+                    <object x="-19" angle="181.507436"/>
                 </key>
             </timeline>
             <timeline id="19" name="action_point6" object_type="point">
                 <key id="0" spin="0">
-                    <object x="3" y="-0" angle="180"/>
+                    <object x="3" angle="180"/>
                 </key>
             </timeline>
             <timeline id="20" name="action_point7" object_type="point">
                 <key id="0" spin="0">
-                    <object x="113" y="-0"/>
+                    <object x="113" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="action_point8" object_type="point">
                 <key id="0" spin="0">
-                    <object x="73" y="-0"/>
+                    <object x="73" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="action_point9" object_type="point">
                 <key id="0" spin="0">
-                    <object x="31" y="-0"/>
+                    <object x="31" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -814,66 +814,66 @@
             </mainline>
             <timeline id="0" name="body_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="3" y="-0" angle="270"/>
+                    <object folder="0" file="0" x="3" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="body_bottom">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-100" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="4" x="-199.418605" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-199" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="body_top">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="120" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="120" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="5" x="237" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="237" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="3" x="255.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="256" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="eye_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="47" y="-0"/>
+                    <bone x="47" angle="0"/>
                 </key>
             </timeline>
             <timeline id="9" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="-36"/>
+                    <bone x="59" y="-36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="36"/>
+                    <bone x="59" y="36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" obj="4" name="bone_004" object_type="bone">
@@ -883,60 +883,60 @@
             </timeline>
             <timeline id="12" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="91" y="57"/>
+                    <bone x="91" y="57" angle="0"/>
                 </key>
             </timeline>
             <timeline id="13" obj="6" name="bone_006" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-3" y="0"/>
+                    <bone x="-3" angle="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <bone x="-3" y="0" scale_y="2"/>
+                    <bone x="-3" angle="0" scale_y="2"/>
                 </key>
             </timeline>
             <timeline id="14" name="action_point1" object_type="point">
                 <key id="0" spin="0">
-                    <object x="141" y="-0" angle="357.397438"/>
+                    <object x="141" angle="357.397438"/>
                 </key>
             </timeline>
             <timeline id="15" name="action_point2" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-128" y="0" angle="180"/>
+                    <object x="-128" angle="180"/>
                 </key>
             </timeline>
             <timeline id="16" name="action_point3" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-90" y="0" angle="177.797402"/>
+                    <object x="-90" angle="177.797402"/>
                 </key>
             </timeline>
             <timeline id="17" name="action_point4" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-53" y="0" angle="184.398705"/>
+                    <object x="-53" angle="184.398705"/>
                 </key>
             </timeline>
             <timeline id="18" name="action_point5" object_type="point">
                 <key id="0" spin="0">
-                    <object x="-19" y="0" angle="181.507436"/>
+                    <object x="-19" angle="181.507436"/>
                 </key>
             </timeline>
             <timeline id="19" name="action_point6" object_type="point">
                 <key id="0" spin="0">
-                    <object x="3" y="-0" angle="180"/>
+                    <object x="3" angle="180"/>
                 </key>
             </timeline>
             <timeline id="20" name="action_point7" object_type="point">
                 <key id="0" spin="0">
-                    <object x="113" y="-0"/>
+                    <object x="113" angle="0"/>
                 </key>
             </timeline>
             <timeline id="21" name="action_point8" object_type="point">
                 <key id="0" spin="0">
-                    <object x="73" y="-0"/>
+                    <object x="73" angle="0"/>
                 </key>
             </timeline>
             <timeline id="22" name="action_point9" object_type="point">
                 <key id="0" spin="0">
-                    <object x="31" y="-0"/>
+                    <object x="31" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -1070,52 +1070,52 @@
             </timeline>
             <timeline id="1" name="body_bottom">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100" y="0" angle="270"/>
+                    <object folder="0" file="4" x="-100" angle="270"/>
                 </key>
             </timeline>
             <timeline id="2" name="body_top">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="120" y="-0" angle="270"/>
+                    <object folder="0" file="5" x="120" angle="270"/>
                 </key>
             </timeline>
             <timeline id="3" name="hat">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="138.540541" y="-0" angle="270"/>
+                    <object folder="0" file="3" x="139" angle="270"/>
                 </key>
             </timeline>
             <timeline id="4" name="eye_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="5" name="eye_002">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="1" y="-0" angle="270"/>
+                    <object folder="0" file="1" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="6" name="mouth_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="7" y="0.086763" angle="270"/>
+                    <object folder="0" file="2" x="7" angle="270"/>
                 </key>
             </timeline>
             <timeline id="7" name="Holly" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="1" animation="0" t="0" x="0.919192" y="0.070707" angle="270"/>
+                    <object entity="1" animation="0" t="0" x="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="8" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="47" y="-0"/>
+                    <bone x="47" angle="0"/>
                 </key>
             </timeline>
             <timeline id="9" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="-36"/>
+                    <bone x="59" y="-36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="59" y="36"/>
+                    <bone x="59" y="36" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" obj="4" name="bone_004" object_type="bone">
@@ -1123,30 +1123,30 @@
                     <bone angle="90"/>
                 </key>
                 <key id="1" time="135">
-                    <bone y="-5.421687" angle="80"/>
+                    <bone y="-5" angle="80"/>
                 </key>
                 <key id="2" time="249">
                     <bone y="-10" angle="90"/>
                 </key>
                 <key id="3" time="375" spin="-1">
-                    <bone y="-4.96" angle="100"/>
+                    <bone y="-5" angle="100"/>
                 </key>
                 <key id="4" time="499" spin="-1">
                     <bone angle="90"/>
                 </key>
                 <key id="5" time="630">
-                    <bone y="5.24" angle="80"/>
+                    <bone y="5" angle="80"/>
                 </key>
                 <key id="6" time="749">
                     <bone y="10" angle="90"/>
                 </key>
                 <key id="7" time="866" spin="-1">
-                    <bone y="5.338645" angle="100"/>
+                    <bone y="5" angle="100"/>
                 </key>
             </timeline>
             <timeline id="12" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="91" y="57"/>
+                    <bone x="91" y="57" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -1394,42 +1394,42 @@
             </mainline>
             <timeline id="0" name="holly-balls">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="0.760456" y="0.901141" angle="270"/>
+                    <object folder="0" file="7" x="1" y="1" angle="270"/>
                 </key>
             </timeline>
             <timeline id="1" name="holly-leaf">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="23.129968" y="-4.544834" angle="186.442301"/>
+                    <object folder="0" file="6" x="23" y="-5" angle="186.442301"/>
                 </key>
             </timeline>
             <timeline id="2" name="holly-leaf_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="23.017806" y="-4.284745" angle="185.567891"/>
+                    <object folder="0" file="6" x="23" y="-4" angle="185.567891"/>
                 </key>
             </timeline>
             <timeline id="3" name="holly-leaf_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="24.120433" y="-5.829854" angle="186.780613"/>
+                    <object folder="0" file="6" x="24" y="-6" angle="186.780613"/>
                 </key>
             </timeline>
             <timeline id="4" obj="0" name="bone_000" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-0.760456" y="-0.901141" angle="0"/>
+                    <bone x="-1" y="-1" angle="0"/>
                 </key>
             </timeline>
             <timeline id="5" obj="1" name="bone_001" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="3.422053" y="7.984791" angle="23.242903"/>
+                    <bone x="3" y="8" angle="23.242903"/>
                 </key>
             </timeline>
             <timeline id="6" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="-9.125475" y="10.26616" angle="101.032473"/>
+                    <bone x="-9" y="10" angle="101.032473"/>
                 </key>
             </timeline>
             <timeline id="7" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="6.08365" y="-7.224335" angle="319.694914"/>
+                    <bone x="6" y="-7" angle="319.694914"/>
                 </key>
             </timeline>
             <timeline id="8" obj="4" name="main_bone" object_type="bone">
@@ -1440,6 +1440,56 @@
             <timeline id="9" obj="5" name="bone_004" object_type="bone">
                 <key id="0" spin="0">
                     <bone angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="BabyLog">
+        <animation id="0" name="NoAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                    <object_ref id="6" timeline="6" key="0" z_index="6"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="90"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="body_top">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-120" angle="90"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="body_bottom">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="90" angle="90"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="eye">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-74" y="26"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="eye_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="37" y="28"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="mouth">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-18" y="31"/>
+                </key>
+            </timeline>
+            <timeline id="6" name="hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-138" angle="90"/>
                 </key>
             </timeline>
         </animation>
