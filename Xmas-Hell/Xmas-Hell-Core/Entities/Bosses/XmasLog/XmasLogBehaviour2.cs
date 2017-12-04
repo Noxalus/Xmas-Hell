@@ -96,6 +96,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
 
             Boss.StartShootTimer = false;
             Boss.ShootTimerFinished -= ShootTimerFinished;
+            Boss.CurrentAnimator.AnimationFinished -= AnimationFinished;
         }
 
         public override void Update(GameTime gameTime)

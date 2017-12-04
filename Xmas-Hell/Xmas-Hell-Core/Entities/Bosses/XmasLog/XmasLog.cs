@@ -9,6 +9,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
     class XmasLog : Boss
     {
         public CustomSpriterAnimator BabyLogAnimator;
+        public CustomSpriterAnimator HollyAnimator;
 
         public XmasLog(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasLog, playerPositionDelegate)
@@ -23,6 +24,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
             Behaviours.Add(new XmasLogBehaviour1(this));
             Behaviours.Add(new XmasLogBehaviour2(this));
             Behaviours.Add(new XmasLogBehaviour3(this));
+            Behaviours.Add(new XmasLogBehaviour4(this));
 
             InitialPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y * 0.15f);
         }
@@ -39,6 +41,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
             base.LoadSpriterSprite();
 
             BabyLogAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "BabyLog");
+            HollyAnimator = Animators.First(a => a.Entity != null && a.Entity.Name == "Holly");
         }
 
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
@@ -52,7 +55,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
         {
             base.UpdateBehaviourIndex();
 
-            CurrentBehaviourIndex = 2;
+            CurrentBehaviourIndex = 3;
         }
     }
 }

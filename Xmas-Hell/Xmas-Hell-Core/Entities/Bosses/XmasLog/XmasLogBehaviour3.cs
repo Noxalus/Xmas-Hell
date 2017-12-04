@@ -22,7 +22,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
         public XmasLogBehaviour3(Boss boss) : base(boss)
         {
             // State machine
-            _stateMachine = new FSM<BehaviourState>("xmas-log-behaviour1");
+            _stateMachine = new FSM<BehaviourState>("xmas-log-behaviour3");
 
             var targetingInitialPositionBehaviour =
                 new FSMBehaviour<BehaviourState>(BehaviourState.TargetingInitialPosition)

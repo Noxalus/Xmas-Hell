@@ -51,9 +51,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGiftBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasGift\XmasGift.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\Holly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\BabyLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour4.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasLog\XmasLogBehaviour1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Bosses\XmasReindeer\XmasReindeer.cs" />
