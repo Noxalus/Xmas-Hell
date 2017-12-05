@@ -49,7 +49,6 @@ namespace XmasHell.Entities.Bosses.XmasLog
             switch (animationName)
             {
                 case "RemovingHolly":
-                    Boss.CurrentAnimator.Play("Whirligig");
                     _stateMachine.CurrentState = BehaviourState.HollyAttack;
                     break;
             }
@@ -65,7 +64,9 @@ namespace XmasHell.Entities.Bosses.XmasLog
         {
             var xmasLogBoss = (XmasLog)Boss;
             _holly = new Holly(xmasLogBoss, xmasLogBoss.HollyAnimator);
-            //Boss.CurrentAnimator.Play("IdleNoHolly");
+            Boss.CurrentAnimator.Play("IdleNoHolly");
+
+            _stateMachine.CurrentState = BehaviourState.HollyAttack;
         }
 
         private void HollyAttackTaskEnter()
@@ -112,7 +113,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
             _stateMachine.Update(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawAfter(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
 

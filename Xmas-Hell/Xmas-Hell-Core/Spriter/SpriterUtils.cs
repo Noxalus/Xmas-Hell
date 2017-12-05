@@ -167,7 +167,7 @@ namespace XmasHell.Spriter
 
         public static Vector2 GetWorldPosition(string spriterPartFilename, MonoGameAnimator animator, Vector2? optionalLocalPosition = null)
         {
-            var vertex = optionalLocalPosition.HasValue ? optionalLocalPosition.Value : Vector2.Zero;
+            var vertex = optionalLocalPosition ?? Vector2.Zero;
             var worldPosition = animator.Position + vertex;
 
             if (animator.FrameData != null)
@@ -187,7 +187,7 @@ namespace XmasHell.Spriter
                     spriterPartFile.Width * realPivotPosition.X,
                     spriterPartFile.Height * realPivotPosition.Y
                 );
-                var worldTopLeftCornerPosition = animator.Position - (spriteCenter * scale);
+                var worldTopLeftCornerPosition = animator.Position;// - (spriteCenter * scale);
 
                 worldPosition = worldTopLeftCornerPosition + vertex + animationOffset;
 
