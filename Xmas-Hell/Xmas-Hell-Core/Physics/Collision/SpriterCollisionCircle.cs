@@ -9,18 +9,20 @@ namespace XmasHell.Physics.Collision
     {
         private ISpriterPhysicsEntity _spriterPhysicsEntity;
         private string _spritePartName;
+        private string _timelineName;
         private SpriterFile _spriterPartFile;
         private int _spriterFileId;
         private Vector2 _relativePosition;
         private float _scale;
 
-        public SpriterCollisionCircle(ISpriterPhysicsEntity entity, string spritePartName, Vector2? relativePosition = null, float scale = 1f) : base(entity)
+        public SpriterCollisionCircle(ISpriterPhysicsEntity entity, string spritePartName, Vector2? relativePosition = null, float scale = 1f, string timelineName = null) : base(entity)
         {
             _spriterPhysicsEntity = entity;
             _spritePartName = spritePartName;
             _spriterPartFile = FindSpriterFile(spritePartName);
             _relativePosition = relativePosition ?? Vector2.Zero;
             _scale = scale;
+            _timelineName = timelineName;
         }
 
         private SpriterFile FindSpriterFile(String fileName)
@@ -80,7 +82,13 @@ namespace XmasHell.Physics.Collision
 
             if (currentAnimator.FrameData != null)
             {
-                var spriteData = currentAnimator.FrameData.SpriteData.Find((so) => so.FileId == _spriterFileId);
+                var spriteData = currentAnimator.FrameData.SpriteData.Find((so) =>
+                {
+                    if (_timelineName != null)
+                        return so.FileId == _spriterFileId && so.Name == _timelineName;
+                    else
+                        return so.FileId == _spriterFileId;
+                });
 
                 if (spriteData == null)
                     return currentAnimator.Position;
