@@ -8,7 +8,7 @@ using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasLog
 {
-    class Holly : ISpriterPhysicsEntity
+    class Holly : AbstractEntity, ISpriterPhysicsEntity
     {
         private readonly XmasLog _boss;
         private CollisionElement _boundingBox;
@@ -21,8 +21,9 @@ namespace XmasHell.Entities.Bosses.XmasLog
             return _animator.Position;
         }
 
-        public void Position(Vector2 position)
+        public override void Position(Vector2 position)
         {
+            base.Position(position);
             _animator.Position = position;
         }
 
@@ -66,12 +67,16 @@ namespace XmasHell.Entities.Bosses.XmasLog
             // Physics
             _boundingBoxes = new List<CollisionElement>
             {
-                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f),
+                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf_000"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf_001"),
                 new SpriterCollisionCircle(this, "holly-balls.png")
             };
 
             foreach (var boundingBox in _boundingBoxes)
                 _boss.Game.GameManager.CollisionWorld.AddBossHitBox(boundingBox);
+
+            MoveTo(_boss.Game.ViewportAdapter.Center.ToVector2());
         }
 
         private void AnimationFinished(string animationName)
@@ -90,8 +95,10 @@ namespace XmasHell.Entities.Bosses.XmasLog
             _boundingBoxes.Clear();
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+
             _animator.Rotation += _angularSpeed * gameTime.GetElapsedSeconds();
             _animator.Update(gameTime.ElapsedGameTime.Milliseconds);
         }
