@@ -18,5 +18,10 @@
     <direction type="relative">($rand * $1) - ($1/2)</direction>
     <speed>8 + ($rand * 3)</speed>
     <sprite>1</sprite>
+    <color>
+      <red>1</red>
+      <green>0.85</green>
+      <blue>0</blue>
+    </color>
   </bullet>
 </bulletml>

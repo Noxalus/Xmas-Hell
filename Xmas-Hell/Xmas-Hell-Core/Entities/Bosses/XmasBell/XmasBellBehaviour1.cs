@@ -32,6 +32,10 @@ namespace XmasHell.Entities.Bosses.XmasBell
         public override void Stop()
         {
             base.Stop();
+
+            Boss.EnableRandomPosition(false);
+            Boss.StartShootTimer = false;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
         }
 
         public override void Update(GameTime gameTime)

@@ -5,8 +5,13 @@
     <fire>
       <bullet>
         <direction type="absolute">180 + ($rand * 30) - 15</direction>
-        <speed>10 + $rand * 10</speed>
+        <speed>5 + $rand * 10</speed>
         <sprite>3</sprite>
+        <color>
+          <red>1</red>
+          <green>0.85</green>
+          <blue>0</blue>
+        </color>
         <action>
           <accel>
             <vertical>100</vertical>
