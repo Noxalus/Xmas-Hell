@@ -7,9 +7,15 @@
       <action>
         <fire>
           <bullet>
-            <direction type="sequence">188</direction>
-            <speed type="absolute">8</speed>
+            <direction type="sequence">62</direction>
+            <speed type="absolute">10</speed>
             <sprite>2</sprite>
+            <action>
+              <changeSpeed>
+                <speed>1</speed>
+                <term>300</term>
+              </changeSpeed>
+            </action>
           </bullet>
         </fire>
         <wait>1</wait>
