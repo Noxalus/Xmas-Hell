@@ -1,7 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
+using System.Diagnostics;
 using XmasHell.BulletML;
 using XmasHell.Physics.Collision;
+using XmasHell.Spriter;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
 {
@@ -86,11 +89,9 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         {
             base.Update(gameTime);
 
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (Boss.ScaleVector().X > _minScale && Boss.ScaleVector().Y > _minScale)
+            if (Boss.StartShootTimer && Boss.ScaleVector().X > _minScale && Boss.ScaleVector().Y > _minScale)
             {
-                var factor = 0.01f * dt;
+                var factor = 0.01f * gameTime.GetElapsedSeconds();
                 Boss.CurrentAnimator.Speed -= factor * 1.5f;
                 Boss.ShootTimerTime = MathHelper.Clamp(Boss.ShootTimerTime + factor, _maxShootTimeFrequence, _minShootTimeFrequence);
                 Boss.Scale(Boss.ScaleVector() - new Vector2(factor));
