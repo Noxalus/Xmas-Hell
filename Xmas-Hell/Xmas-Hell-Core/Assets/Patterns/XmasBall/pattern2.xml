@@ -7,8 +7,8 @@
       <action>
         <fire>
           <bullet>
-            <direction type="sequence">31</direction>
-            <speed type="absolute">4</speed>
+            <direction type="sequence">188</direction>
+            <speed type="absolute">8</speed>
             <sprite>2</sprite>
           </bullet>
         </fire>
