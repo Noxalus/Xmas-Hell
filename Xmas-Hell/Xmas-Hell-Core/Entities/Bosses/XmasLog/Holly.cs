@@ -5,6 +5,7 @@ using MonoGame.Extended;
 using XmasHell.Physics;
 using XmasHell.Physics.Collision;
 using XmasHell.Spriter;
+using System;
 
 namespace XmasHell.Entities.Bosses.XmasLog
 {
@@ -15,6 +16,8 @@ namespace XmasHell.Entities.Bosses.XmasLog
         private CustomSpriterAnimator _animator;
         private float _angularSpeed;
         private List<CollisionElement> _boundingBoxes;
+        private float _randomAnimationTime;
+        private TimeSpan _expandTimer;
 
         public Vector2 Position()
         {
@@ -55,22 +58,24 @@ namespace XmasHell.Entities.Bosses.XmasLog
         {
             _boss = boss;
             _animator = animator.Clone();
-            _angularSpeed = 20f;
+            _angularSpeed = 5f;
 
             var hollyLeafPosition = SpriterUtils.GetWorldPosition("holly-leaf.png", boss.CurrentAnimator);
             Position(hollyLeafPosition);
             _animator.Play("Growth");
-            _animator.Play("Idle");
 
             _animator.AnimationFinished += AnimationFinished;
 
             // Physics
             _boundingBoxes = new List<CollisionElement>
             {
-                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf"),
-                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf_000"),
-                new SpriterCollisionCircle(this, "holly-leaf.png", Vector2.Zero, 0.6f, "holly-leaf_001"),
-                new SpriterCollisionCircle(this, "holly-balls.png")
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(-30, 0), 0.4f, "holly-leaf"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(45, 10), 0.3f, "holly-leaf"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(-30, 0), 0.4f, "holly-leaf_000"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(45, 10), 0.3f, "holly-leaf_000"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(-30, 0), 0.4f, "holly-leaf_001"),
+                new SpriterCollisionCircle(this, "holly-leaf.png", new Vector2(45, 10), 0.3f, "holly-leaf_001"),
+                new SpriterCollisionCircle(this, "holly-balls.png", Vector2.Zero, 0.8f)
             };
 
             foreach (var boundingBox in _boundingBoxes)
@@ -82,9 +87,24 @@ namespace XmasHell.Entities.Bosses.XmasLog
         private void AnimationFinished(string animationName)
         {
             if (animationName == "Growth")
-            {
+                Expand();
+        }
+
+        private void Expand()
+        {
+            if (_animator.CurrentAnimation.Name != "Expand")
                 _animator.Play("Expand");
-            }
+
+            var animationTime = (int)_animator.Length;
+
+            _randomAnimationTime = _boss.Game.GameManager.Random.Next(animationTime / 10, animationTime);
+
+            _animator.Speed = 1;
+        }
+
+        private void RevertExpand()
+        {
+            _animator.Speed = -1;
         }
 
         public void Dispose()
@@ -98,6 +118,30 @@ namespace XmasHell.Entities.Bosses.XmasLog
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (_animator.CurrentAnimation.Name == "Expand")
+            {
+                if (_animator.Speed == 1)
+                {
+                    if ((_animator.Progress * _animator.Length) > _randomAnimationTime)
+                    {
+                        _animator.Speed = 0;
+                        _expandTimer = TimeSpan.FromSeconds(_boss.Game.GameManager.Random.Next(1, 5));
+                    }
+                }
+                else if (_animator.Speed == 0)
+                {
+                    _expandTimer -= gameTime.ElapsedGameTime;
+
+                    if (_expandTimer.TotalSeconds < 0)
+                        RevertExpand();
+                }
+                else if (_animator.Speed == -1)
+                {
+                    if (_animator.Progress == 0)
+                        Expand();
+                }
+            }
 
             _animator.Rotation += _angularSpeed * gameTime.GetElapsedSeconds();
             _animator.Update(gameTime.ElapsedGameTime.Milliseconds);
