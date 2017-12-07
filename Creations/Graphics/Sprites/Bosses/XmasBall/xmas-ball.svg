@@ -15,7 +15,7 @@
    viewBox="0 0 744.09448819 1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="xmas-ball.svg"
    inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasBall\eye.png"
    inkscape:export-xdpi="50"
@@ -56,6 +56,17 @@
        fx="171.41696"
        fy="242.14754"
        r="259.28571" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5452"
+       id="radialGradient2538"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3305787,1.1239671,-0.64530391,0.76392595,160.06904,-57.354043)"
+       cx="171.41696"
+       cy="242.14754"
+       fx="171.41696"
+       fy="242.14754"
+       r="259.28571" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -64,9 +75,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="259.98644"
-     inkscape:cy="565.6027"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="1214.2597"
+     inkscape:cy="870.42074"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -176,6 +187,38 @@
          style="opacity:0.77399998;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 247.47954,294.49301 c -28.44546,23.5163 -34.18277,54.65048 -45.33424,48.17611 -11.15146,-6.47434 2.86808,-30.78658 31.31354,-54.30288 28.44546,-23.51629 60.54511,-37.33152 71.6966,-30.85716 11.15147,6.47435 -29.23043,13.46763 -57.6759,36.98393 z"
          id="path5561"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sssss" />
+    </g>
+    <g
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       id="g2510"
+       transform="translate(960.27626,-136.37059)">
+      <ellipse
+         ry="39.901024"
+         rx="26.263966"
+         cy="203.18016"
+         cx="388.91068"
+         id="ellipse2502"
+         style="fill:#262626;fill-opacity:0.72033901;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:#ffffff;fill-opacity:0.72033901;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 379.69436,200.43399 c -0.70904,15.57368 0.81109,26.23363 -4.79692,26.71455 -5.60799,0.48088 -3.29966,-12.76562 -2.23466,-28.14356 1.0662,-15.3951 11.03715,-27.61849 16.64515,-25.77801 5.34796,1.75515 -8.91249,11.80816 -9.61357,27.20702 z"
+         id="path2504"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="sssss" />
+      <circle
+         r="254.28572"
+         cy="461.64536"
+         cx="379.83679"
+         id="circle2506"
+         style="fill:url(#radialGradient2538);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="opacity:0.77399998;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:20;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 247.47954,294.49301 c -28.44546,23.5163 -34.18277,54.65048 -45.33424,48.17611 -11.15146,-6.47434 2.86808,-30.78658 31.31354,-54.30288 28.44546,-23.51629 60.54511,-37.33152 71.6966,-30.85716 11.15147,6.47435 -29.23043,13.46763 -57.6759,36.98393 z"
+         id="path2508"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="sssss" />
     </g>
@@ -429,5 +472,86 @@
        cx="-242.92924"
        id="ellipse4195"
        style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       transform="matrix(0.73703335,0,0,0.73703335,1056.21,-50.106834)"
+       id="g2516">
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse2512"
+         cx="389.91888"
+         cy="559.91284"
+         rx="54.548237"
+         ry="64.144684" />
+      <ellipse
+         style="fill:#ff8080;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse2514"
+         cx="389.91888"
+         cy="587.18695"
+         rx="40.406101"
+         ry="25.75889" />
+    </g>
+    <g
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       id="g2522"
+       transform="translate(960.27626,-136.37059)">
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle2518"
+         cx="324.97327"
+         cy="402.32648"
+         r="37.375641" />
+      <ellipse
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse2520"
+         cx="324.30484"
+         cy="422.17676"
+         rx="15.861668"
+         ry="13.768468" />
+    </g>
+    <ellipse
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       ry="11.616755"
+       rx="27.274118"
+       cy="327.17163"
+       cx="1234.7419"
+       id="ellipse2524"
+       style="fill:#de8787;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       style="fill:#de8787;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse2526"
+       cx="1467.077"
+       cy="327.17163"
+       rx="27.274118"
+       ry="11.616755" />
+    <g
+       inkscape:export-ydpi="80.467728"
+       inkscape:export-xdpi="80.467728"
+       inkscape:export-filename="C:\Users\Noxalus\Desktop\icon-512x512.png"
+       transform="translate(1077.4191,-136.37059)"
+       id="g2532">
+      <circle
+         r="37.375641"
+         cy="402.32648"
+         cx="324.97327"
+         id="circle2528"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         ry="13.768468"
+         rx="15.861668"
+         cy="422.17676"
+         cx="324.30484"
+         id="ellipse2530"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

@@ -166,14 +166,5 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 }
             }
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            //spriteBatch.DrawLine(_bossPlayerLine.First, _bossPlayerLine.Second, Color.Red, 5f);
-            //spriteBatch.DrawLine(_leftWallLine.First, _leftWallLine.Second, Color.White, 5f);
-            //spriteBatch.DrawLine(_bottomWallLine.First, _bottomWallLine.Second, Color.Yellow, 5f);
-            //spriteBatch.DrawLine(_rightWallLine.First, _rightWallLine.Second, Color.Brown, 5f);
-            //spriteBatch.DrawLine(_upWallLine.First, _upWallLine.Second, Color.Green, 5f);
-        }
     }
 }

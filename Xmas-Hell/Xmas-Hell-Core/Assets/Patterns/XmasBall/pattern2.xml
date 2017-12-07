@@ -10,6 +10,11 @@
             <direction type="sequence">62</direction>
             <speed type="absolute">10</speed>
             <sprite>2</sprite>
+            <color>
+              <red>1</red>
+              <green>0</green>
+              <blue>0</blue>
+            </color>
             <action>
               <changeSpeed>
                 <speed>1</speed>
