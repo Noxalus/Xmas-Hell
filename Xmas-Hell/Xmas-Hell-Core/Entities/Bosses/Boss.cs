@@ -95,6 +95,7 @@ namespace XmasHell.Entities.Bosses
         public event EventHandler<float> NewPositionTimerFinished = null;
 
         private bool _randomPosition;
+        private bool _randomPositionLongDistance;
         public Rectangle RandomMovingArea;
 
         // Shoot timer
@@ -233,9 +234,10 @@ namespace XmasHell.Entities.Bosses
             return _ready;
         }
 
-        public void EnableRandomPosition(bool value)
+        public void EnableRandomPosition(bool value, bool longDistance = false)
         {
             _randomPosition = value;
+            _randomPositionLongDistance = longDistance;
         }
 
         #endregion
@@ -328,6 +330,7 @@ namespace XmasHell.Entities.Bosses
                 behaviour.Reset();
 
             _randomPosition = false;
+            _randomPositionLongDistance = false;
             RandomMovingArea = new Rectangle(
                 (int)(Width() / 2f), (int)(Height() / 2f),
                 GameConfig.VirtualResolution.X - (int)(Width() / 2f),
@@ -834,10 +837,61 @@ namespace XmasHell.Entities.Bosses
 
             if (_randomPosition && !TargetingPosition)
             {
-                var newPosition = new Vector2(
-                    Game.GameManager.Random.Next(RandomMovingArea.X, RandomMovingArea.Width),
-                    Game.GameManager.Random.Next(RandomMovingArea.Y, RandomMovingArea.Height)
-                );
+                var newPosition = Vector2.Zero;
+                if (_randomPositionLongDistance)
+                {
+                    var currentPosition = Position().ToPoint();
+                    var minDistance = (RandomMovingArea.Width - RandomMovingArea.X) / 2;
+
+                    // Choose a random long distance new X position
+                    var leftSpace = currentPosition.X - RandomMovingArea.X;
+                    var rightSpace = RandomMovingArea.Width - currentPosition.X;
+
+                    if (leftSpace > minDistance)
+                    {
+                        if (rightSpace > minDistance)
+                        {
+                            if (Game.GameManager.Random.NextDouble() > 0.5)
+                                newPosition.X = Game.GameManager.Random.Next(currentPosition.X + minDistance, RandomMovingArea.Width);
+                            else
+                                newPosition.X = Game.GameManager.Random.Next(RandomMovingArea.X, currentPosition.X - minDistance);
+                        }
+                        else
+                            newPosition.X = Game.GameManager.Random.Next(RandomMovingArea.X, currentPosition.X - minDistance);
+                    }
+                    else
+                        newPosition.X = Game.GameManager.Random.Next(currentPosition.X + minDistance, RandomMovingArea.Width);
+
+                    // minDistance only depends on the random area X and width
+                    if (RandomMovingArea.Height - RandomMovingArea.Y > minDistance)
+                    {
+                        // Choose a random long distance new Y position
+                        var topSpace = currentPosition.Y - RandomMovingArea.Y;
+                        var bottomSpace = RandomMovingArea.Height - currentPosition.Y;
+
+                        if (topSpace > minDistance)
+                        {
+                            if (bottomSpace > minDistance)
+                            {
+                                if (Game.GameManager.Random.NextDouble() > 0.5)
+                                    newPosition.Y = Game.GameManager.Random.Next(currentPosition.Y + minDistance, RandomMovingArea.Height);
+                                else
+                                    newPosition.Y = Game.GameManager.Random.Next(RandomMovingArea.Y, currentPosition.Y - minDistance);
+                            }
+                            else
+                                newPosition.Y = Game.GameManager.Random.Next(RandomMovingArea.Y, currentPosition.Y - minDistance);
+                        }
+                        else
+                            newPosition.Y = Game.GameManager.Random.Next(currentPosition.Y + minDistance, RandomMovingArea.Height);
+                    }
+                    else
+                        newPosition.Y = Game.GameManager.Random.Next(RandomMovingArea.Y, RandomMovingArea.Height);
+                }
+                else
+                {
+                    newPosition.X = Game.GameManager.Random.Next(RandomMovingArea.X, RandomMovingArea.Width);
+                    newPosition.Y = Game.GameManager.Random.Next(RandomMovingArea.Y, RandomMovingArea.Height);
+                }
 
                 MoveTo(newPosition, 1.5f);
             }

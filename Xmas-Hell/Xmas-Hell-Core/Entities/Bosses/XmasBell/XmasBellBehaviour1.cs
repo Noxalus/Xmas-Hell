@@ -17,10 +17,16 @@ namespace XmasHell.Entities.Bosses.XmasBell
             base.Start();
 
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
-
-            _bulletFrequence = TimeSpan.Zero;
-
             Boss.CurrentAnimator.Play("Idle");
+            Boss.EnableRandomPosition(true, true);
+            Boss.StartShootTimer = true;
+            Boss.ShootTimerFinished += ShootTimerFinished;
+            Boss.ShootTimerTime = 0.5f;
+        }
+
+        private void ShootTimerFinished(object sender, float e)
+        {
+            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
         }
 
         public override void Stop()
@@ -31,24 +37,6 @@ namespace XmasHell.Entities.Bosses.XmasBell
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            var newPosition = new Vector2(
-                Boss.Game.GameManager.Random.Next(
-                    (int)(Boss.Width() / 2f),
-                    (int)(Boss.Game.ViewportAdapter.VirtualWidth - (Boss.Width() / 2f))
-                ),
-                (int)(Boss.Height() / 1.25f)
-            );
-
-            Boss.MoveTo(newPosition, 1.5f);
-
-            if (_bulletFrequence.TotalMilliseconds > 0)
-                _bulletFrequence -= gameTime.ElapsedGameTime;
-            else
-            {
-                _bulletFrequence = TimeSpan.FromSeconds(0.5f);
-                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasBell/pattern1", BulletType.Type2, false, Boss.ActionPointPosition());
-            }
         }
     }
 }

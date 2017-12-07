@@ -26,6 +26,13 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Behaviours.Add(new XmasBellBehaviour5(this));
         }
 
+        public override void Reset()
+        {
+            base.Reset();
+
+            RandomMovingArea = new Rectangle(150, 225, Game.ViewportAdapter.VirtualWidth - 150, 225);
+        }
+
         protected override void InitializePhysics(bool setupPhysicsWorld = false)
         {
             base.InitializePhysics();

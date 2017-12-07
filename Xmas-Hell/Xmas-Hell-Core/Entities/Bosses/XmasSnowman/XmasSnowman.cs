@@ -12,8 +12,6 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
         public CustomSpriterAnimator BigArmsAnimator;
         public CustomSpriterAnimator HatAnimator;
 
-        private Rectangle _randomMovingRectangle;
-
         public XmasSnowman(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasSnowman, playerPositionDelegate)
         {
@@ -31,14 +29,13 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             SpriterFilename = "Graphics/Sprites/Bosses/XmasSnowman/xmas-snowman";
 
             InitialPosition = new Vector2(GameConfig.VirtualResolution.X / 2f, GameConfig.VirtualResolution.Y * 0.25f);
-            _randomMovingRectangle = new Rectangle(200, 350, GameConfig.VirtualResolution.X - 200, 650);
         }
 
         public override void Reset()
         {
             base.Reset();
 
-            RandomMovingArea = _randomMovingRectangle;
+            RandomMovingArea = new Rectangle(200, 350, GameConfig.VirtualResolution.X - 200, 650);
         }
 
         protected override void LoadSpriterSprite()
