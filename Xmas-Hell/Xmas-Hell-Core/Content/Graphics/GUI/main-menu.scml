@@ -571,4 +571,24 @@
             </timeline>
         </animation>
     </entity>
+    <entity id="8" name="HellTitle">
+        <animation id="0" name="Expand" length="1000" interval="100">
+            <mainline>
+                <key id="0" curve_type="cubic" c1="0" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="499" curve_type="cubic" c1="0" c2="0.995305">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="hell-title">
+                <key id="0" spin="0">
+                    <object folder="1" file="1"/>
+                </key>
+                <key id="1" time="499" spin="0">
+                    <object folder="1" file="1" y="25"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
 </spriter_data>

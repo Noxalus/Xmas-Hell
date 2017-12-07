@@ -83,6 +83,7 @@ namespace XmasHell.Screens.Menu
             _menuButtons.Add(_leaderboardsButton);
 
             SpriterFile["Main"].AddHiddenTexture("Graphics/GUI/MainMenu/xmas-title");
+            SpriterFile["Main"].AddHiddenTexture("Graphics/GUI/MainMenu/hell-title");
 
             ResetUI();
         }
@@ -121,6 +122,9 @@ namespace XmasHell.Screens.Menu
             if (SpriterFile["XmasTitle"] != null)
                 Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["XmasTitle"], Layer.BACKGROUND);
 
+            if (SpriterFile["HellTitle"] != null)
+                Game.SpriteBatchManager.AddSpriterAnimator(SpriterFile["HellTitle"], Layer.BACKGROUND);
+
             UIReseted = true;
         }
 
@@ -147,6 +151,7 @@ namespace XmasHell.Screens.Menu
             // GUI
             Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["Main"], Layer.BACKGROUND);
             Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["XmasTitle"], Layer.BACKGROUND);
+            Game.SpriteBatchManager.RemoveSpriterAnimator(SpriterFile["HellTitle"], Layer.BACKGROUND);
 
             foreach (var button in _menuButtons)
             {
@@ -161,6 +166,9 @@ namespace XmasHell.Screens.Menu
 
             var xmasTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("xmas-title.png", SpriterFile["Main"]);
             SpriterFile["XmasTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + xmasTitleDummyPosition;
+
+            var hellTitleDummyPosition = SpriterUtils.GetSpriterFilePosition("hell-title.png", SpriterFile["Main"]);
+            SpriterFile["HellTitle"].Position = Game.ViewportAdapter.Center.ToVector2() + hellTitleDummyPosition;
         }
     }
 }
