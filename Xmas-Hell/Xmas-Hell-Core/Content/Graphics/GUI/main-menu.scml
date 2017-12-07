@@ -55,7 +55,7 @@
             </timeline>
             <timeline id="2" name="settings-button">
                 <key id="0" spin="0">
-                    <object folder="1" file="5" y="-852" angle="0"/>
+                    <object folder="1" file="5" y="-852" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="3" name="leaderboard-button">
@@ -244,7 +244,7 @@
             </timeline>
             <timeline id="2" name="settings-button">
                 <key id="0" spin="0">
-                    <object folder="1" file="5" y="-852" angle="0"/>
+                    <object folder="1" file="5" y="-852" angle="0" a="0"/>
                 </key>
                 <key id="1" time="1000" spin="0">
                     <object folder="1" file="5" y="-852" angle="0" a="0"/>
