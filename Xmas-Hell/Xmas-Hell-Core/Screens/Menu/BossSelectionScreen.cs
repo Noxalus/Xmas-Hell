@@ -279,7 +279,10 @@ namespace XmasHell.Screens.Menu
                     Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item2)) > 0);
 
                 // TO REMOVE: Make all boss available from start to test easily
-                available = true;
+                //available = true;
+
+                // TO REMOVE: Only the first 4 bosses will be available
+                available = !hasRelation;
 
                 if (available)
                 {
