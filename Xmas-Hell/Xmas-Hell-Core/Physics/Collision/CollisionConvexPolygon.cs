@@ -87,15 +87,15 @@ namespace XmasHell.Physics.Collision
                             if (axis.X > 0)
                                 return false;
                         }
-                        else
-                            isInside = true;
+
+                        isInside = true;
                     }
                 }
 
                 if (distance < nearestDistance)
                 {
                     nearestDistance = distance;
-                    nearestIsInside = isInside;
+                    nearestIsInside = isInside;// || lastIsInside;
                     nearestVertex = i;
                 }
 
