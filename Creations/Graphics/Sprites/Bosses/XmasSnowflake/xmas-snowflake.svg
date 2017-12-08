@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-955.04438"
-     inkscape:cy="228.34112"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="-1253.8493"
+     inkscape:cy="494.73129"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -423,23 +423,19 @@
        inkscape:export-xdpi="45"
        inkscape:export-ydpi="45" />
     <g
-       id="g870"
-       transform="translate(-695.08928,301.33929)"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\left_eye.png"
-       inkscape:export-xdpi="45"
-       inkscape:export-ydpi="45">
+       id="g2929">
       <circle
          transform="scale(-1,1)"
          r="17.765646"
-         cy="759.03436"
-         cx="931.26239"
+         cy="1060.3737"
+         cx="1626.3517"
          id="circle6070"
          style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <circle
          transform="scale(-1,1)"
          r="5.4988909"
-         cy="771.19543"
-         cx="931.3681"
+         cy="1066.8427"
+         cx="1626.9596"
          id="circle6072"
          style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
@@ -452,27 +448,6 @@
        inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\mouth.png"
        inkscape:export-xdpi="45"
        inkscape:export-ydpi="45" />
-    <g
-       transform="translate(-643.82177,296.7936)"
-       id="g1530"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\right_eye.png"
-       inkscape:export-xdpi="45"
-       inkscape:export-ydpi="45">
-      <circle
-         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="circle1526"
-         cx="938.3335"
-         cy="763.58002"
-         r="17.765646"
-         transform="scale(-1,1)" />
-      <circle
-         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         id="circle1528"
-         cx="938.43921"
-         cy="775.74109"
-         r="5.4988909"
-         transform="scale(-1,1)" />
-    </g>
     <circle
        inkscape:export-ydpi="45"
        inkscape:export-xdpi="45"
@@ -595,6 +570,66 @@
          cx="938.43921"
          id="circle1244"
          style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g2935"
+       transform="translate(45.535715)">
+      <circle
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle2931"
+         cx="1626.3517"
+         cy="1060.3737"
+         r="17.765646"
+         transform="scale(-1,1)" />
+      <circle
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle2933"
+         cx="1626.9596"
+         cy="1066.8427"
+         r="5.4988909"
+         transform="scale(-1,1)" />
+    </g>
+    <g
+       transform="translate(1424.3939,-238.64854)"
+       id="g2941"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\left_eye.png"
+       inkscape:export-xdpi="45"
+       inkscape:export-ydpi="45">
+      <circle
+         transform="scale(-1,1)"
+         r="17.765646"
+         cy="1060.3737"
+         cx="1626.3517"
+         id="circle2937"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         transform="scale(-1,1)"
+         r="5.4988909"
+         cy="1066.8427"
+         cx="1626.9596"
+         id="circle2939"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       inkscape:export-ydpi="45"
+       inkscape:export-xdpi="45"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSnowflake\right_eye.png"
+       id="g2947"
+       transform="translate(1469.8508,-238.64854)">
+      <circle
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle2943"
+         cx="1626.3517"
+         cy="1060.3737"
+         r="17.765646"
+         transform="scale(-1,1)" />
+      <circle
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle2945"
+         cx="1626.9596"
+         cy="1066.8427"
+         r="5.4988909"
+         transform="scale(-1,1)" />
     </g>
   </g>
 </svg>
