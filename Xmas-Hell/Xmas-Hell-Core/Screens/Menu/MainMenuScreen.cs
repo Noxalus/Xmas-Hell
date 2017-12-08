@@ -67,7 +67,7 @@ namespace XmasHell.Screens.Menu
         {
             SpriterFile["Main"].AnimationFinished += MainMenuScreen_AnimationFinished;
 
-            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", SpriterFile["PlayButton"], SpriterFile["Main"]);
+            _playButton = new SpriterGuiButton(Game.ViewportAdapter, "PlayButton", "Graphics/GUI/MainMenu/play-button.png", SpriterFile["PlayButton"], SpriterFile["Main"], "Pulse", "Clicked");
             _settingsButton = new SpriterGuiButton(Game.ViewportAdapter, "SettingsButton", "Graphics/GUI/MainMenu/settings-button.png", SpriterFile["SettingsButton"], SpriterFile["Main"]);
             _achievementsButton = new SpriterGuiButton(Game.ViewportAdapter, "AchievementsButton", "Graphics/GUI/MainMenu/achievement-button.png", SpriterFile["AchievementsButton"], SpriterFile["Main"]);
             _leaderboardsButton = new SpriterGuiButton(Game.ViewportAdapter, "LeaderboardsButton", "Graphics/GUI/MainMenu/leaderboard-button.png", SpriterFile["LeaderboardsButton"], SpriterFile["Main"]);

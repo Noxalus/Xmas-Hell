@@ -16,6 +16,7 @@
         <file id="3" name="MainMenu/achievement-button.png" width="226" height="226" pivot_x="0.5" pivot_y="0.5"/>
         <file id="4" name="MainMenu/leaderboard-button.png" width="226" height="226" pivot_x="0.5" pivot_y="0.5"/>
         <file id="5" name="MainMenu/settings-button.png" width="149" height="149" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="6" name="MainMenu/play-button-clicked.png" width="423" height="423" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
     <entity id="0" name="Main">
         <obj_info name="bone_000" type="bone" w="114.503" h="10"/>
@@ -428,7 +429,31 @@
         </animation>
     </entity>
     <entity id="2" name="PlayButton">
-        <animation id="0" name="Pulse" length="1000" interval="100">
+        <animation id="0" name="Clicked" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="750">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="play-button-clicked">
+                <key id="0" spin="-1">
+                    <object folder="1" file="6"/>
+                </key>
+                <key id="1" time="500" spin="-1">
+                    <object folder="1" file="6" angle="180" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="2" time="750" spin="-1">
+                    <object folder="1" file="6" angle="90"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Pulse" length="1000" interval="100">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0.0329" c2="0.995305">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -583,10 +608,10 @@
             </mainline>
             <timeline id="0" name="hell-title">
                 <key id="0" spin="0">
-                    <object folder="1" file="1"/>
+                    <object folder="1" file="1" angle="0"/>
                 </key>
                 <key id="1" time="499" spin="0">
-                    <object folder="1" file="1" y="25"/>
+                    <object folder="1" file="1" y="25" angle="0"/>
                 </key>
             </timeline>
         </animation>

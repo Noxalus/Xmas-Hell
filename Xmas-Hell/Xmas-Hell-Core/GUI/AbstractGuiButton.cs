@@ -38,13 +38,14 @@ namespace XmasHell.GUI
             set { Scale(value); }
         }
 
+        protected bool InputDown;
+        private bool _previousInputDown;
+        protected bool InputDownStateChanged;
+
 #if ANDROID
-        private bool _touchedDown;
         public event EventHandler<Point> TouchStarted;
         public event EventHandler<Point> Tap;
 #else
-        private bool _mouseDown;
-
         public event EventHandler<Point> MouseDown;
         public event EventHandler<Point> Click;
 #endif
@@ -56,11 +57,8 @@ namespace XmasHell.GUI
             ViewportAdapter = viewportAdapter;
             Name = name;
 
-#if ANDROID
-            _touchedDown = false;
-#else
-            _mouseDown = false;
-#endif
+            InputDown = false;
+            _previousInputDown = false;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -68,11 +66,15 @@ namespace XmasHell.GUI
             if (!Enabled)
                 return;
 
+            _previousInputDown = InputDown;
+
 #if ANDROID
             UpdateTouchState();
 #else
             UpdateMouseState();
 #endif
+
+            InputDownStateChanged = _previousInputDown != InputDown;
         }
 
 #if ANDROID
@@ -84,19 +86,19 @@ namespace XmasHell.GUI
             {
                 if (InputManager.TouchDown())
                 {
-                    _touchedDown = true;
+                    InputDown = true;
                     TouchStarted?.Invoke(this, position);
                 }
-                else if (InputManager.TouchUp() && _touchedDown)
+                else if (InputManager.TouchUp() && InputDown)
                 {
-                    _touchedDown = false;
+                    InputDown = false;
                     Tap?.Invoke(this, position);
                     Action?.Invoke(this, position);
                 }
             }
             else
             {
-                _touchedDown = false;
+                InputDown = false;
             }
         }
 #else
@@ -109,12 +111,12 @@ namespace XmasHell.GUI
             {
                 if (InputManager.Clicked())
                 {
-                    _mouseDown = true;
+                    InputDown = true;
                     MouseDown?.Invoke(this, position);
                 }
-                else if (InputManager.LeftClickReleased() && _mouseDown)
+                else if (InputManager.LeftClickReleased() && InputDown)
                 {
-                    _mouseDown = false;
+                    InputDown = false;
 
                     Click?.Invoke(this, position);
                     Action?.Invoke(this, position);
@@ -122,7 +124,7 @@ namespace XmasHell.GUI
             }
             else
             {
-                _mouseDown = false;
+                InputDown = false;
             }
         }
 #endif

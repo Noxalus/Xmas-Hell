@@ -8,8 +8,8 @@
         <speed>10</speed>
         <color>
           <red>0.96</red>
-          <green>0.94</green>
-          <blue>0.42</blue>
+          <green>0.55</green>
+          <blue>0.19</blue>
         </color>
         <sprite>1</sprite>
       </bullet>

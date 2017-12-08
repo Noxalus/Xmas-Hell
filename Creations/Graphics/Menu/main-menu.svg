@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.24999999"
-     inkscape:cx="1573.5873"
-     inkscape:cy="1595.9854"
+     inkscape:cx="-878.06876"
+     inkscape:cy="1045.1784"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -801,7 +801,7 @@
     </g>
     <g
        id="g1050"
-       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\play-button.png"
+       inkscape:export-filename="..\..\..\..\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\play-button.png"
        inkscape:export-xdpi="100"
        inkscape:export-ydpi="100"
        transform="matrix(1.2405538,0,0,1.2405538,-29.512627,20.182558)">
@@ -1378,6 +1378,17 @@
          d="m -742.52611,353.07126 20.09236,-16.42587 13.49267,21.26562 13.19936,-21.85228 20.09237,20.09236 9.82619,-15.98588 -42.82459,-66.7301 z"
          style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.05323362;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
+    <circle
+       style="fill:#b30000;fill-opacity:1;stroke:#b30000;stroke-width:6.2027688;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="54.157928"
+       cy="137.31885"
+       cx="-257.22815"
+       id="circle1050" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path1052"
+       d="m -276.49575,168.63748 v -63.83377 l 58.57341,33.8174 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:5.192101;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      id="g4723"

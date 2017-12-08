@@ -10,6 +10,8 @@ namespace XmasHell.GUI
     public class SpriterGuiButton : AbstractGuiButton
     {
         public SpriterSubstituteEntity SubstituteEntity;
+        private string _animationName;
+        private string _clickAnimationName;
 
         public CustomSpriterAnimator Animator()
         {
@@ -66,15 +68,30 @@ namespace XmasHell.GUI
             String buttonName,
             String spritePartCompleteFilename,
             CustomSpriterAnimator animator,
-            CustomSpriterAnimator referenceAnimator) :
+            CustomSpriterAnimator referenceAnimator,
+            string animationName = null,
+            string clickAnimationName = null) :
             base(viewportAdapter, buttonName)
         {
             SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator);
+            _animationName = animationName;
+            _clickAnimationName = clickAnimationName;
+
+            if (_animationName != null)
+                SubstituteEntity.SubstituteAnimator.Play(_animationName);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (InputDownStateChanged)
+            {
+                if (InputDown && _clickAnimationName != null)
+                    SubstituteEntity.SubstituteAnimator.Play(_clickAnimationName);
+                else if (_animationName != null)
+                    SubstituteEntity.SubstituteAnimator.Play(_animationName);
+            }
 
             SubstituteEntity.Update(gameTime);
         }
