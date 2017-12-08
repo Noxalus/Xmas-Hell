@@ -2,10 +2,10 @@
 fileVersion=1
 
 # font settings
-fontName=Santas Big Secret BB
+fontName=Droid Serif
 fontFile=
 charSet=0
-fontSize=120
+fontSize=100
 aa=1
 scaleH=100
 useSmoothing=1
@@ -30,8 +30,8 @@ useFixedHeight=0
 forceZero=0
 
 # output file
-outWidth=1024
-outHeight=1024
+outWidth=512
+outHeight=512
 outBitDepth=32
 fontDescFormat=1
 fourChnlPacked=0
@@ -50,6 +50,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=32-90,92,95,97-122,210-213,217
+chars=32-34,39-41,48-59,63,65-126
 
 # imported icon images
