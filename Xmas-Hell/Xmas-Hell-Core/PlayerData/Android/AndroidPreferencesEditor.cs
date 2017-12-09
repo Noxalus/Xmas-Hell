@@ -9,6 +9,10 @@ namespace XmasHell.PlayerData.Android
     {
         private ISharedPreferencesEditor _editor;
 
+        public AndroidPreferencesEditor()
+        {
+        }
+
         public AndroidPreferencesEditor(ISharedPreferencesEditor androidPreferencesEditor)
         {
             _editor = androidPreferencesEditor;
@@ -19,7 +23,7 @@ namespace XmasHell.PlayerData.Android
         {
             get
             {
-                return _editor.Handle;
+                return (_editor != null) ? _editor.Handle : IntPtr.Zero;
             }
         }
 

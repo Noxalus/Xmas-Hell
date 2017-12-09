@@ -20,7 +20,7 @@ namespace XmasHell.PlayerData.Android
         {
             get
             {
-                return _preferences.Handle;
+                return (_preferences != null) ? _preferences.Handle : IntPtr.Zero;
             }
         }
 
@@ -31,7 +31,7 @@ namespace XmasHell.PlayerData.Android
 
         public void Dispose()
         {
-            _preferences.Dispose();
+            _preferences?.Dispose();
         }
 
         public ISharedPreferencesEditor Edit()
@@ -86,6 +86,10 @@ namespace XmasHell.PlayerData.Android
         public IPreferencesEditor Editor()
         {
             return _editor;
+        }
+
+        public AndroidPreferences()
+        {
         }
 
         public AndroidPreferences(ISharedPreferences androidPreferences)
