@@ -15,7 +15,10 @@
    version="1.1"
    id="svg2546"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="splashscreen.svg">
+   sodipodi:docname="splashscreen.svg"
+   inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Creations\Graphics\Menu\splashscreen.png"
+   inkscape:export-xdpi="39.714352"
+   inkscape:export-ydpi="39.714352">
   <defs
      id="defs2540" />
   <sodipodi:namedview
@@ -25,15 +28,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="553.34647"
-     inkscape:cy="975.28203"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="244.42852"
+     inkscape:cy="624.60693"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="-8"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      units="px" />
@@ -55,7 +58,7 @@
      id="layer1"
      transform="translate(0,211.00002)">
     <rect
-       style="opacity:1;fill:#f5efef;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.38600004;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#f5efef;fill-opacity:0;fill-rule:nonzero;stroke:#000000;stroke-width:1.38600004;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
        id="rect3091"
        width="288.01785"
        height="510.26785"
@@ -72,53 +75,15 @@
          x="-277.43451"
          y="-55.313686"
          style="stroke-width:0.26458332px;-inkscape-font-specification:'Mf Fine Again';font-family:'Mf Fine Again';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;" /></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.0532341px;line-height:125%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.44267723px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="57.729622"
-       y="110.37828"
-       id="text827"><tspan
-         sodipodi:role="line"
-         id="tspan825"
-         x="57.729622"
-         y="110.37828"
-         style="stroke-width:0.44267723px">Kawaii Games</tspan></text>
-    <circle
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.98175001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path829"
-       cx="97.419731"
-       cy="90.267006"
-       r="2.271791" />
-    <circle
-       r="2.271791"
-       cy="90.400642"
-       cx="105.70508"
-       id="circle831"
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.98175001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <circle
-       r="2.271791"
-       cy="114.58853"
-       cx="192.03314"
-       id="circle833"
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.98175001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <circle
-       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.98175001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle835"
-       cx="200.3185"
-       cy="114.72217"
-       r="2.271791" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.64113659;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 133.82972,92.711453 c 1.42794,1.329099 2.89471,1.881626 4.48318,0"
-       id="path837"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
     <g
-       id="g993"
-       transform="matrix(1.9331594,0,0,1.9331594,639.13865,-65.527017)">
+       id="g22556"
+       transform="matrix(1.2660272,0,0,1.2660272,-39.01413,-1.1828663)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Creations\Graphics\Splashscreen\gift.png"
+       inkscape:export-xdpi="31.77129"
+       inkscape:export-ydpi="31.77129">
       <g
          style="stroke-width:14.87612343;stroke-miterlimit:4;stroke-dasharray:none"
-         transform="matrix(0.17785772,0,0,0.17785772,-642.22742,40.627003)"
+         transform="matrix(0.34382732,0,0,0.34382732,-602.38932,13.011456)"
          id="g1502">
         <rect
            style="opacity:1;fill:#cd640a;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:14.87612343;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -155,28 +120,28 @@
         </g>
       </g>
       <rect
-         style="opacity:1;fill:#b25508;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.64583325;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="opacity:1;fill:#b25508;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.11481762;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect1504"
-         width="73.26384"
-         height="12.151927"
-         x="-291.22366"
-         y="13.286105" />
+         width="141.63068"
+         height="23.491611"
+         x="76.156891"
+         y="-39.842857" />
       <rect
-         y="13.649997"
-         x="-260.89374"
-         height="11.364948"
-         width="12.016415"
+         y="-39.139397"
+         x="134.78947"
+         height="21.970257"
+         width="23.229645"
          id="rect1506"
-         style="opacity:1;fill:#ffe86f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.64583325;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#ffe86f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:5.11481762;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <rect
-         y="13.286105"
-         x="-291.22366"
-         height="12.151927"
-         width="73.26384"
+         y="-39.842857"
+         x="76.156891"
+         height="23.491611"
+         width="141.63068"
          id="rect1508"
-         style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.64583325;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.11481762;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
-         transform="matrix(0.26097466,0,0,0.26097466,-341.95896,-95.377799)"
+         transform="matrix(0.50450562,0,0,0.50450562,-21.922528,-249.90751)"
          id="g1516">
         <circle
            style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -195,11 +160,11 @@
          sodipodi:nodetypes="cscsc"
          inkscape:connector-curvature="0"
          id="path1518"
-         d="m -261.22244,53.369983 c 0,0 0.94722,7.32497 3.25171,7.31159 1.56179,-0.009 3.60132,-3.73305 3.60132,-3.73305 0,0 2.23458,3.74363 4.04046,3.76195 2.3044,0.0234 2.86538,-7.43498 2.86538,-7.43498"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.22704864;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         d="m 134.15403,37.645667 c 0,0 1.83113,14.160335 6.28608,14.134469 3.01919,-0.0174 6.96192,-7.21658 6.96192,-7.21658 0,0 4.3198,7.237033 7.81086,7.272449 4.45477,0.04523 5.53923,-14.373002 5.53923,-14.373002"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.30524015;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          id="g1592"
-         transform="matrix(0.29027234,0,0,0.29027234,-1437.9177,29.743343)">
+         transform="matrix(0.5611427,0,0,0.5611427,-2140.5855,-8.0283939)">
         <g
            transform="matrix(0.93706702,0,0,0.93706702,1454.763,95.024343)"
            id="g1590">
@@ -426,7 +391,7 @@
       </g>
       <g
          id="g1598"
-         transform="matrix(0.26097466,0,0,0.26097466,-310.33403,-95.757399)">
+         transform="matrix(0.50450562,0,0,0.50450562,39.213503,-250.64133)">
         <circle
            r="25.253813"
            cy="541.22504"
@@ -441,5 +406,114 @@
            style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       </g>
     </g>
+    <g
+       id="g22501"
+       transform="matrix(1.5464023,0,0,1.5464023,-400.47217,3.2169372)">
+      <text
+         id="text827"
+         y="108.50739"
+         x="146.05695"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.0532341px;line-height:75%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           id="tspan22479"
+           style="line-height:75%;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#008000;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="108.50739"
+           x="146.05695"
+           sodipodi:role="line"><tspan
+   style="line-height:75%;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   id="tspan22475"><tspan
+     dy="0"
+     id="tspan22354"
+     style="line-height:75%;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#ff0000;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Ka<tspan
+   id="tspan22440"
+   style="line-height:75%;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#000000;stroke:none;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">w</tspan>aii</tspan></tspan></tspan><tspan
+           id="tspan22489"
+           style="line-height:75%;text-align:center;letter-spacing:0px;text-anchor:middle;fill:#008000;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="133.29732"
+           x="146.05695"
+           sodipodi:role="line">Games</tspan></text>
+      <ellipse
+         style="opacity:1;fill:#e37676;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.24636364;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse22438"
+         cx="160.02026"
+         cy="90.004631"
+         rx="2.5660386"
+         ry="1.0997308"
+         inkscape:export-filename="..\..\..\..\..\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSanta\cheek.png"
+         inkscape:export-xdpi="100"
+         inkscape:export-ydpi="100" />
+      <ellipse
+         inkscape:export-ydpi="100"
+         inkscape:export-xdpi="100"
+         inkscape:export-filename="..\..\..\..\..\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\Sprites\Bosses\XmasSanta\cheek.png"
+         ry="1.0997308"
+         rx="2.5660386"
+         cy="89.737358"
+         cx="135.29784"
+         id="ellipse22442"
+         style="opacity:1;fill:#e37676;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.24636364;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 150.78821,86.868138 c 0,-5.71016 6.19168,-5.683285 6.19168,0"
+         id="path22448"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path22450"
+         d="m 139.2288,86.868138 c 0,-5.71016 6.19168,-5.683285 6.19168,0"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.84607315px;line-height:125%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.50686711px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="86.594025"
+       y="268.5282"
+       id="text22560"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Creations\Graphics\Splashscreen\loading.png"
+       inkscape:export-xdpi="31"
+       inkscape:export-ydpi="31"><tspan
+         sodipodi:role="line"
+         id="tspan22558"
+         x="86.594025"
+         y="268.5282"
+         style="stroke-width:0.50686711px">Loading</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.27190781px;line-height:125%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.37864164px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="208.34348"
+       y="269.11737"
+       id="text22564"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Creations\Graphics\Splashscreen\dot.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50"><tspan
+         sodipodi:role="line"
+         id="tspan22562"
+         x="208.34348"
+         y="269.11737"
+         style="stroke-width:0.37864164px">.</tspan></text>
+    <text
+       id="text22568"
+       y="269.11737"
+       x="212.26511"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.27190781px;line-height:125%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.37864164px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.37864164px"
+         y="269.11737"
+         x="212.26511"
+         id="tspan22566"
+         sodipodi:role="line">.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.27190781px;line-height:125%;font-family:'Mf Fine Again';-inkscape-font-specification:'Mf Fine Again';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.37864164px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="216.32199"
+       y="269.11737"
+       id="text22572"><tspan
+         sodipodi:role="line"
+         id="tspan22570"
+         x="216.32199"
+         y="269.11737"
+         style="stroke-width:0.37864164px">.</tspan></text>
   </g>
 </svg>
