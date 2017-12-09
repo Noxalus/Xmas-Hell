@@ -288,7 +288,7 @@ namespace XmasHell.Controls
 
         public static bool TouchDown()
         {
-            return _touchState.Count > 0 && _lastTouchState.Count == 0 && _touchState[0].State == TouchLocationState.Pressed;
+            return _touchState.Count > 0 && _touchState.Count > _lastTouchState.Count && _touchState[_touchState.Count - 1].State == TouchLocationState.Pressed;
         }
 
         public static bool TouchIsDown()
@@ -298,7 +298,7 @@ namespace XmasHell.Controls
 
         public static Point TouchPosition()
         {
-            return (_touchState.Count > 0) ? _touchState[0].Position.ToPoint() : (_lastTouchState.Count > 0) ? _lastTouchState[0].Position.ToPoint() : Point.Zero;
+            return (_touchState.Count > 0) ? _touchState[_touchState.Count - 1].Position.ToPoint() : (_lastTouchState.Count > 0) ? _lastTouchState[_lastTouchState.Count - 1].Position.ToPoint() : Point.Zero;
         }
 
         #endregion Touch Region

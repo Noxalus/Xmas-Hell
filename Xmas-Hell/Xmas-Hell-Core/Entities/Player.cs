@@ -320,7 +320,7 @@ namespace XmasHell.Entities
 
         private void UpdatePositionFromTouch(GameTime gameTime)
         {
-            if (InputManager.TouchCount() == 1)
+            if (InputManager.TouchCount() >= 1)
             {
                 if (InputManager.TouchDown())
                 {
@@ -329,23 +329,12 @@ namespace XmasHell.Entities
                 }
 
                 _previousTouchPosition = _currentTouchPosition;
+                _previousPosition = CurrentAnimator.Position;
+
                 _currentTouchPosition = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
                 var globalTouchDelta = (_currentTouchPosition - _initialTouchPosition).ToVector2();
 
-                _previousPosition = CurrentAnimator.Position;
                 CurrentAnimator.Position = _initialSpritePosition + (globalTouchDelta * GameConfig.PlayerMoveSensitivity);
-            }
-            else
-            {
-                _initialSpritePosition = Vector2.Zero;
-                _initialTouchPosition = Point.Zero;
-                //CurrentAnimator.Play("Idle");
-            }
-
-            if (InputManager.TouchUp())
-            {
-                _initialSpritePosition = Vector2.Zero;
-                _initialTouchPosition = Point.Zero;
             }
         }
 
