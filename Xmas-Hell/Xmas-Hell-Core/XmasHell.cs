@@ -260,6 +260,28 @@ namespace XmasHell
                 }
             }
 
+            if (InputManager.KeyPressed(Keys.F10))
+            {
+                Graphics.IsFullScreen = !Graphics.IsFullScreen;
+
+                if (Graphics.IsFullScreen)
+                {
+                    Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.Y;
+                    Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.X;
+                    IsMouseVisible = true;
+                    Window.AllowUserResizing = false;
+                }
+                else
+                {
+                    Graphics.PreferredBackBufferWidth = 480;
+                    Graphics.PreferredBackBufferHeight = 853;
+                    IsMouseVisible = true;
+                    Window.AllowUserResizing = true;
+                }
+
+                Graphics.ApplyChanges();
+            }
+
             // Debug
             if (InputManager.KeyPressed(Keys.F1))
                 GameConfig.GodMode = !GameConfig.GodMode;
