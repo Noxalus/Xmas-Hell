@@ -283,7 +283,7 @@ namespace XmasHell.Controls
 
         public static bool TouchUp()
         {
-            return _lastTouchState.Count > 0 && _touchState.Count == 0 && _lastTouchState[0].State == TouchLocationState.Released;
+            return _lastTouchState.Count > _touchState.Count;
         }
 
         public static bool TouchDown()

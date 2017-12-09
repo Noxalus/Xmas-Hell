@@ -155,12 +155,10 @@ namespace XmasHell.Entities
             // Don't forget to set the player position delegate to the MoverManager
             _game.GameManager.MoverManager.SetPlayerPositionDelegate(Position);
 
-            _initialSpritePosition = new Vector2(
+            _entraceSpritePosition = new Vector2(
                 GameConfig.VirtualResolution.X / 2f,
                 GameConfig.VirtualResolution.Y - (GameConfig.VirtualResolution.Y / 10f) - (_spriteSize.Y / 2f)
             );
-
-            _entraceSpritePosition = _initialSpritePosition;
         }
 
         public void Initialize()
@@ -183,9 +181,9 @@ namespace XmasHell.Entities
             _game.SpriteBatchManager.PlayerHitbox = _hitboxSprite;
             _game.GameManager.CollisionWorld.PlayerHitbox = _hitbox;
 
-            _initialTouchPosition = _initialSpritePosition.ToPoint();
             _bulletFrequence = TimeSpan.Zero;
             _destroyed = false;
+            _initialTouchPosition = Point.Zero;
 
             // Reset value for entrance animation
             ScaleVector(new Vector2(3f));
@@ -322,7 +320,7 @@ namespace XmasHell.Entities
         {
             if (InputManager.TouchCount() >= 1)
             {
-                if (InputManager.TouchDown())
+                if (InputManager.TouchDown() || InputManager.TouchUp() || _initialTouchPosition == Point.Zero)
                 {
                     _initialSpritePosition = Position();
                     _initialTouchPosition = _game.ViewportAdapter.PointToScreen(InputManager.TouchPosition());
