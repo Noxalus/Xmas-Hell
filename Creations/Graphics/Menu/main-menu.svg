@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24999999"
-     inkscape:cx="-977.18087"
-     inkscape:cy="1299.8846"
+     inkscape:zoom="0.49999998"
+     inkscape:cx="-501.02572"
+     inkscape:cy="-6.7844229"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="svg8"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
@@ -1379,10 +1379,7 @@
          style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.05323362;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="g1065"
-       inkscape:export-filename="..\..\..\..\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\play-button-clicked.png"
-       inkscape:export-xdpi="100"
-       inkscape:export-ydpi="100">
+       id="g1098">
       <circle
          id="circle1050"
          cx="-257.22815"
@@ -1394,6 +1391,48 @@
          d="m -276.49575,168.63748 v -63.83377 l 58.57341,33.8174 z"
          id="path1052"
          inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g1094"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\achievement-button-clicked.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <circle
+         id="circle1053"
+         cx="-219.98247"
+         cy="326.08521"
+         r="28.989674"
+         style="fill:#b30000;fill-opacity:1;stroke:#b30000;stroke-width:3.32022023;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         style="fill:#d7d687;fill-opacity:1;stroke:#000000;stroke-width:2.05170989;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="circle1055"
+         cx="-220.08968"
+         cy="335.96832"
+         r="6.5346174" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:2.05170989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -219.7698,327.88002 11.46661,-14.84593 c 4.32854,-5.6042 -27.40588,-6.28408 -22.66553,0 z"
+         id="path1057"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cssc" />
+    </g>
+    <g
+       id="g1089"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\leaderboard-button-clicked.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <circle
+         style="fill:#b30000;fill-opacity:1;stroke:#b30000;stroke-width:3.32022023;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         r="28.989674"
+         cy="397.76965"
+         cx="-221.97945"
+         id="circle1061" />
+      <path
+         style="fill:#d5a44f;fill-opacity:1;stroke:#000000;stroke-width:2.05170989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -235.16729,405.64217 v -7.22007 h 9.04793 v -9.87047 h 10.60162 v 5.66639 h 8.95654 v 11.41955 z"
+         id="path1063"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccc" />
     </g>
   </g>
   <g
@@ -1412,5 +1451,22 @@
        id="path4347"
        d="m 156.0455,482.12685 c -0.76727,2.58467 -3.45138,3.38449 -5.55791,0.12897 -1.37652,0.17707 -2.4108,0.76451 -3.36021,1.45412 1.36818,4.19044 -2.22138,4.44571 -3.94229,3.97482 -1.09896,2.04479 -0.97317,2.37501 -1.29205,3.32768 1.79991,0.94452 3.63833,3.42974 0.032,5.4934 0.21421,0.99625 0.26852,1.91979 1.38962,3.32825 2.66052,-0.57937 4.91186,0.76042 3.94229,3.87725 0.5725,0.81388 1.78767,1.19962 3.39273,1.32512 1.98452,-3.25721 4.48144,-1.76877 5.52538,0 0.98098,-0.1881 1.8834,-0.24615 3.36021,-1.26063 -0.72911,-3.05762 0.3863,-4.53432 3.8778,-3.97425 0.86913,-1.1417 1.17,-2.28357 1.35709,-3.42528 -2.68457,-1.071 -2.85582,-3.93971 0.0645,-5.46032 -0.159,-0.89089 -0.27711,-1.74885 -1.35709,-3.39327 -2.14315,0.51398 -4.8021,0.40383 -4.1038,-3.84474 -0.79065,-0.72554 -1.61846,-1.1673 -3.32823,-1.55112 z m -2.7853,7.9419 a 3.8128623,3.8128622 0 0 1 3.81276,3.81277 3.8128623,3.8128622 0 0 1 -3.81276,3.81276 3.8128623,3.8128622 0 0 1 -3.81275,-3.81276 3.8128623,3.8128622 0 0 1 3.81275,-3.81277 z"
        style="fill:#909090;fill-opacity:1;stroke:#000000;stroke-width:2.05170989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+  <g
+     id="g1085"
+     inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\MainMenu\settings-button-clicked.png"
+     inkscape:export-xdpi="100"
+     inkscape:export-ydpi="100">
+    <circle
+       id="circle1068"
+       cx="-225.82713"
+       cy="709.89282"
+       r="19.147591"
+       style="fill:#b30000;fill-opacity:1;stroke:#b30000;stroke-width:2.19299531;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:#909090;fill-opacity:1;stroke:#000000;stroke-width:2.05170989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -222.69674,698.30908 c -0.76727,2.58467 -3.45138,3.38449 -5.55791,0.12897 -1.37652,0.17707 -2.4108,0.76451 -3.36021,1.45412 1.36818,4.19044 -2.22138,4.44571 -3.94229,3.97482 -1.09896,2.04479 -0.97317,2.37501 -1.29205,3.32768 1.79991,0.94452 3.63833,3.42974 0.032,5.4934 0.21421,0.99625 0.26852,1.91979 1.38962,3.32825 2.66052,-0.57937 4.91186,0.76042 3.94229,3.87725 0.5725,0.81388 1.78767,1.19962 3.39273,1.32512 1.98452,-3.25721 4.48144,-1.76877 5.52538,0 0.98098,-0.1881 1.8834,-0.24615 3.36021,-1.26063 -0.72911,-3.05762 0.3863,-4.53432 3.8778,-3.97425 0.86913,-1.1417 1.17,-2.28357 1.35709,-3.42528 -2.68457,-1.071 -2.85582,-3.93971 0.0645,-5.46032 -0.159,-0.89089 -0.27711,-1.74885 -1.35709,-3.39327 -2.14315,0.51398 -4.8021,0.40383 -4.1038,-3.84474 -0.79065,-0.72554 -1.61846,-1.1673 -3.32823,-1.55112 z m -2.7853,7.9419 a 3.8128623,3.8128622 0 0 1 3.81276,3.81277 3.8128623,3.8128622 0 0 1 -3.81276,3.81276 3.8128623,3.8128622 0 0 1 -3.81275,-3.81276 3.8128623,3.8128622 0 0 1 3.81275,-3.81277 z"
+       id="path1070"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
