@@ -5,7 +5,7 @@ using Android.Content;
 
 namespace XmasHell.PlayerData.Android
 {
-    class AndroidPreferencesEditor : IPreferencesEditor
+    class AndroidPreferencesEditor : Java.Lang.Object, IPreferencesEditor
     {
         private ISharedPreferencesEditor _editor;
 
@@ -14,7 +14,7 @@ namespace XmasHell.PlayerData.Android
             _editor = androidPreferencesEditor;
         }
 
-        #region Wrapper
+#region Wrapper
         public IntPtr Handle
         {
             get
@@ -77,7 +77,7 @@ namespace XmasHell.PlayerData.Android
         {
             return _editor.Remove(key);
         }
-        #endregion
+#endregion
     }
 }
 #endif

@@ -5,9 +5,9 @@ using Android.Content;
 
 namespace XmasHell.PlayerData.Android
 {
-    class AndroidPreferences : IPreferences
+    class AndroidPreferences : Java.Lang.Object, IPreferences
     {
-        #region Wrapper
+#region Wrapper
         public IDictionary<string, object> All
         {
             get
@@ -78,7 +78,7 @@ namespace XmasHell.PlayerData.Android
         {
             _preferences.UnregisterOnSharedPreferenceChangeListener(listener);
         }
-        #endregion
+#endregion
 
         private ISharedPreferences _preferences;
         private IPreferencesEditor _editor;
