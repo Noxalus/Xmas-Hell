@@ -3,6 +3,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 using System;
 using System.IO;
+using XmasHell.Audio;
 using XmasHell.Spriter;
 
 namespace XmasHell.GUI
@@ -12,6 +13,10 @@ namespace XmasHell.GUI
         public SpriterSubstituteEntity SubstituteEntity;
         private string _animationName;
         private string _clickAnimationName;
+        private string _inputDownSoundName;
+        private string _inputUpSoundName;
+        private bool _buttonClicked;
+        private bool _stopAnimationWhenClicked;
 
         public CustomSpriterAnimator Animator()
         {
@@ -70,15 +75,45 @@ namespace XmasHell.GUI
             CustomSpriterAnimator animator,
             CustomSpriterAnimator referenceAnimator,
             string animationName = null,
-            string clickAnimationName = null) :
+            string clickAnimationName = null,
+            string inputDownSoundName = null,
+            string inputUpSoundName = null,
+            bool stopAnimationWhenClicked = false) :
             base(viewportAdapter, buttonName)
         {
             SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator);
             _animationName = animationName;
             _clickAnimationName = clickAnimationName;
 
+            _inputDownSoundName = inputDownSoundName;
+            _inputUpSoundName = inputUpSoundName;
+            _stopAnimationWhenClicked = stopAnimationWhenClicked;
+
             if (_animationName != null)
                 SubstituteEntity.SubstituteAnimator.Play(_animationName);
+
+            Reset();
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            _buttonClicked = false;
+
+            if (_stopAnimationWhenClicked)
+                Action += ButtonAction;
+
+            SubstituteEntity.SubstituteAnimator.Speed = 1;
+
+            if (_animationName != null)
+                SubstituteEntity.SubstituteAnimator.Play(_animationName);
+        }
+
+        private void ButtonAction(object sender, Point e)
+        {
+            _buttonClicked = true;
+            Action -= ButtonAction;
         }
 
         public override void Update(GameTime gameTime)
@@ -87,10 +122,25 @@ namespace XmasHell.GUI
 
             if (InputDownStateChanged)
             {
-                if (InputDown && _clickAnimationName != null)
-                    SubstituteEntity.SubstituteAnimator.Play(_clickAnimationName);
-                else if (_animationName != null)
-                    SubstituteEntity.SubstituteAnimator.Play(_animationName);
+                if (InputDown)
+                {
+                    if (_clickAnimationName != null)
+                        SubstituteEntity.SubstituteAnimator.Play(_clickAnimationName);
+                    if (_inputDownSoundName != null)
+                        SoundManager.PlaySound(Assets.GetSound(_inputDownSoundName));
+                }
+                else
+                {
+                    if (_animationName != null)
+                    {
+                        if (_buttonClicked && _stopAnimationWhenClicked)
+                            SubstituteEntity.SubstituteAnimator.Speed = 0;
+                        else
+                            SubstituteEntity.SubstituteAnimator.Play(_animationName);
+                    }
+                    if (_inputUpSoundName != null)
+                        SoundManager.PlaySound(Assets.GetSound(_inputUpSoundName));
+                }
             }
 
             SubstituteEntity.Update(gameTime);

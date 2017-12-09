@@ -61,6 +61,11 @@ namespace XmasHell.GUI
             _previousInputDown = false;
         }
 
+        public virtual void Reset()
+        {
+            Enabled = true;
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             if (!Enabled)
