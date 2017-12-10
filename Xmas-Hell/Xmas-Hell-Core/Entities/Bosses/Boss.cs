@@ -466,13 +466,17 @@ namespace XmasHell.Entities.Bosses
             if (bestTime == TimeSpan.Zero || bestTime > currentTime)
                 Game.PlayerData.BossBestTime(BossType, currentTime);
 
-            Game.Camera.ZoomTo(3f, 0.25, CurrentAnimator.Position);
-            Game.GameManager.EndGame(true, true);
+            Game.GameManager.EndGame(true, true, 0);
 
             _destroyed = true;
 
             UnlockBossDefeatAchievement();
             SubmitScore();
+        }
+
+        protected virtual void PlayExplosionAnimation()
+        {
+            Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
         }
 
         private void UnlockBossDefeatAchievement()
@@ -809,9 +813,9 @@ namespace XmasHell.Entities.Bosses
         {
             if (_destroyed)
             {
-                if (Game.GameManager.TransitioningToEndGame())
+                if (Game.GameManager.TransitioningToEndGame() && Game.SpriteBatchManager.Boss != null)
                 {
-                    Game.GameManager.ParticleManager.EmitBossDestroyedParticles(CurrentAnimator.Position);
+                    PlayExplosionAnimation();
                     Dispose();
                 }
 

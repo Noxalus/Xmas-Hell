@@ -31,7 +31,8 @@ namespace XmasHell
         private TimeSpan _timer;
 
         private bool _endGame;
-        private CountdownTimer _endGameTimer;
+        private CountdownTimer _cameraZoomTimer;
+        private CountdownTimer _explosionTimer;
         private bool _endGameFirstTime;
         private bool _transitioningToEndGame;
         private bool _gameIsFinished;
@@ -91,13 +92,13 @@ namespace XmasHell
             return _won;
         }
 
-        public void EndGame(bool value, bool won)
+        public void EndGame(bool value, bool won, float zoomTimer = 1f)
         {
             _endGame = value;
-            _endGameTimer.Restart();
-            _endGameFirstTime = true;
             _won = won;
-            _cantMove = true;
+
+            _cameraZoomTimer.Interval = TimeSpan.FromSeconds(zoomTimer);
+            _cameraZoomTimer.Restart();
         }
 
         public bool TransitioningToEndGame()
@@ -120,10 +121,14 @@ namespace XmasHell
             //Random = new Random(GameConfig.RandomSeed);
             Random = new Random();
 
-            _endGameTimer = new CountdownTimer(1);
-            _endGameTimer.Stop();
-            _endGameTimer.Completed += EndGameTimerCompleted;
-            _endGameFirstTime = true;
+            _cameraZoomTimer = new CountdownTimer(5);
+            _cameraZoomTimer.Stop();
+            _cameraZoomTimer.Completed += CameraZoomTimerCompleted;
+
+            _explosionTimer = new CountdownTimer(1);
+            _explosionTimer.Stop();
+            _explosionTimer.Completed += ExplosionTimerCompleted;
+
             _transitioningToEndGame = false;
             _cantMove = false;
         }
@@ -172,8 +177,8 @@ namespace XmasHell
             _boss = null;
 
             _endGame = false;
-            _endGameFirstTime = true;
-            _endGameTimer.Stop();
+            _cameraZoomTimer.Stop();
+            _explosionTimer.Stop();
             _gameIsFinished = false;
             _ready = false;
             _game.Camera.Zoom = 1f;
@@ -185,6 +190,7 @@ namespace XmasHell
         {
             _playTime = TimeSpan.Zero;
             _timer = TimeSpan.Zero;
+            _endGame = false;
             _gameIsFinished = false;
             _transitioningToEndGame = false;
             _won = false;
@@ -198,26 +204,22 @@ namespace XmasHell
             ParticleManager.Clear();
         }
 
-        private void EndGameTimerCompleted(object sender, EventArgs e)
+        private void ExplosionTimerCompleted(object sender, EventArgs e)
         {
-            if (_endGameFirstTime)
-            {
-                _endGame = false;
-                _endGameFirstTime = false;
-                _endGameTimer.Restart();
-                SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
-                _transitioningToEndGame = true;
-            }
-            else
-            {
-                _endGameFirstTime = true;
-                _gameIsFinished = true;
+            _gameIsFinished = true;
+            _cantMove = true;
 
-                _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
+            _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
 
-                _endGameTimer.Stop();
-                _game.Camera.Zoom = 1f;
-            }
+            _cameraZoomTimer.Stop();
+            _game.Camera.Zoom = 1f;
+        }
+
+        private void CameraZoomTimerCompleted(object sender, EventArgs e)
+        {
+            _explosionTimer.Restart();
+            SoundManager.PlaySound(Assets.GetSound("Audio/SE/player-death"));
+            _transitioningToEndGame = true;
         }
 
         public void LoadBoss(BossType bossType)
@@ -227,18 +229,19 @@ namespace XmasHell
 
         public void Update(GameTime gameTime)
         {
-            if (!_endGame || GameIsFinished())
+            if (!EndGame() || GameIsFinished())
                 MoverManager.Update();
 
             if (!_ready)
                 return;
 
-            _endGameTimer.Update(gameTime);
+            _cameraZoomTimer.Update(gameTime);
+            _explosionTimer.Update(gameTime);
 
-            if (_boss != null && (!_endGame || GameIsFinished()))
+            if (_boss != null && (!EndGame() || (GameIsFinished() || TransitioningToEndGame())))
                 _boss.Update(gameTime);
 
-            if (!_endGame || GameIsFinished())
+            if (!EndGame() || (GameIsFinished() || TransitioningToEndGame()))
             {
                 foreach (var bullet in _bullets)
                     bullet.Update(gameTime);
@@ -256,7 +259,7 @@ namespace XmasHell
 
             _playTime += gameTime.ElapsedGameTime;
 
-            if (_boss != null && _boss.IsReady() && !GameIsFinished() && _endGameFirstTime)
+            if (_boss != null && _boss.IsReady() && !EndGame())
                 _timer += gameTime.ElapsedGameTime;
 
             CollisionWorld.Update(gameTime);
