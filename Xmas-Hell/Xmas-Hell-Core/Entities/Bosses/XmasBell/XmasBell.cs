@@ -1,11 +1,19 @@
 using BulletML;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
+using MonoGame.Extended.Particles;
+using MonoGame.Extended.Particles.Modifiers;
+using MonoGame.Extended.Particles.Profiles;
+using System;
+using XmasHell.Particles;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.XmasBell
 {
     class XmasBell : Boss
     {
+        private ParticleEffect _destroyedParticles;
+
         public XmasBell(XmasHell game, PositionDelegate playerPositionDelegate) :
             base(game, BossType.XmasBell, playerPositionDelegate)
         {
@@ -24,6 +32,8 @@ namespace XmasHell.Entities.Bosses.XmasBell
             //Behaviours.Add(new XmasBellBehaviour3(this));
             Behaviours.Add(new XmasBellBehaviour4(this));
             Behaviours.Add(new XmasBellBehaviour5(this));
+
+            InitializeDestroyedParticleEffect();
         }
 
         public override void Reset()
@@ -41,6 +51,43 @@ namespace XmasHell.Entities.Bosses.XmasBell
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(0f, 10f), 0.90f));
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "clapper.png"));
             Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "clapper-ball.png"));
+        }
+
+        private void InitializeDestroyedParticleEffect()
+        {
+            _destroyedParticles = new ParticleEffect
+            {
+                Name = "BossDestroyedParticles",
+
+                Emitters = new[]
+                {
+                    new ParticleEmitter(
+                        Game.GameManager.ParticleManager.Pixel(),
+                        500,
+                        TimeSpan.FromSeconds(2.5),
+                        Profile.Point(),
+                        false)
+                    {
+                        Parameters = new ParticleReleaseParameters
+                        {
+                            Speed = new Range<float>(10f, 500f),
+                            Quantity = 500,
+                            Rotation = new Range<float>(-1f, 1f),
+                            Scale = new Range<float>(3.0f, 6.0f),
+                            Color = Color.DarkGoldenrod.ToHsl()
+                        },
+                        Modifiers = new IModifier[]
+                        {
+                            new RotationModifier { RotationRate = -2.1f }
+                        }
+                    }
+                }
+            };
+        }
+
+        protected override void PlayExplosionAnimation()
+        {
+            Game.GameManager.ParticleManager.EmitParticles(_destroyedParticles, Position());
         }
 
         protected override void UpdateBehaviourIndex()

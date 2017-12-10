@@ -20,6 +20,8 @@ namespace XmasHell.Particles
         private ParticleEffect _bossDestroyedParticles;
         private ParticleEffect _snowFallParticles;
 
+        private TextureRegion2D _pixel;
+
         public int ActiveParticlesCount()
         {
             var counter = 0;
@@ -37,6 +39,8 @@ namespace XmasHell.Particles
 
         public void Initialize()
         {
+            _pixel = new TextureRegion2D(Assets.GetTexture2D("pixel"));
+
             InitializeParticleEffects();
         }
 
@@ -46,19 +50,22 @@ namespace XmasHell.Particles
                 particleEffet.Clear();
         }
 
+        public TextureRegion2D Pixel()
+        {
+           return _pixel;
+        }
+
         private void InitializeParticleEffects()
         {
             _particleEffects.Clear();
-
-            var pixelTextureRegion = new TextureRegion2D(Assets.GetTexture2D("pixel"));
-
+            
             _bossHitParticles = new ParticleEffect
             {
                 Name = "BossHitParticles",
                 Emitters = new[]
                 {
                     new ParticleEmitter(
-                        pixelTextureRegion,
+                        _pixel,
                         5000,
                         TimeSpan.FromSeconds(2.5),
                         Profile.Circle(30f, Profile.CircleRadiation.Out),
@@ -86,7 +93,7 @@ namespace XmasHell.Particles
                 Emitters = new[]
                 {
                     new ParticleEmitter(
-                        pixelTextureRegion,
+                        _pixel,
                         500,
                         TimeSpan.FromSeconds(2.5),
                         Profile.Point(),
@@ -126,7 +133,7 @@ namespace XmasHell.Particles
                 Emitters = new[]
                 {
                     new ParticleEmitter(
-                        pixelTextureRegion,
+                        _pixel,
                         500,
                         TimeSpan.FromSeconds(2.5),
                         Profile.Point(),
@@ -211,6 +218,16 @@ namespace XmasHell.Particles
         {
             if (!GameConfig.DisableParticles)
                 _bossDestroyedParticles.Trigger(position);
+        }
+
+        public void EmitParticles(ParticleEffect particleEffect, Vector2 position)
+        {
+            if (!GameConfig.DisableParticles)
+            {
+                particleEffect.Trigger(position);
+                _game.SpriteBatchManager.GameParticles.Add(particleEffect);
+                _particleEffects.Add(particleEffect);
+            }
         }
 
         public void Update(GameTime gameTime)
