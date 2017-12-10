@@ -91,12 +91,12 @@ namespace XmasHell.Screens
             // End game panel buttons
             var closePanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/GameScreen/game-panel-close-button.png",
-                _spriterFile["CloseButton"], _spriterFile["EndGamePanel"]
+                _spriterFile["CloseButton"], _spriterFile["EndGamePanel"], "Idle", null, "Audio/SE/select4"
             );
 
             var retryPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "StartBattleBossPanel", "Graphics/GUI/GameScreen/game-panel-retry-button.png",
-                _spriterFile["RetryButton"], _spriterFile["EndGamePanel"]
+                _spriterFile["RetryButton"], _spriterFile["EndGamePanel"], "Idle", null, "Audio/SE/select2"
             );
 
             closePanelButton.Action += EndGamePanelCloseButtonAction;
