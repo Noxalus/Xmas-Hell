@@ -4,9 +4,9 @@ namespace XmasHell.PlayerData
 {
     static class PlayerSettings
     {
-        public static float moveSensitivity = 1f;
-        public static float masterVolume = 1f;
-        public static float musicVolume = 1f;
-        public static float soundVolume = 1f;
+        public static float MoveSensitivity = 1f;
+        public static float MasterVolume = 1f;
+        public static float MusicVolume = 1f;
+        public static float SoundVolume = 1f;
     }
 }

@@ -2445,3 +2445,9 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/GUI/MainMenu/settings-button-clicked.png
 
+#begin Audio/SE/select4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/SE/select4.wav
+

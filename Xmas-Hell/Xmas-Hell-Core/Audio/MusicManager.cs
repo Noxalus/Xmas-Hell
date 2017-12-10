@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using System;
+using XmasHell.PlayerData;
 
 namespace XmasHell.Audio
 {
@@ -35,6 +36,11 @@ namespace XmasHell.Audio
             menuThemeInstance.IsLooped = true;
             bossIntroInstance.IsLooped = false;
             bossThemeInstance.IsLooped = true;
+
+            menuThemeInstance.Volume = PlayerSettings.MasterVolume * PlayerSettings.MusicVolume;
+            bossIntroInstance.Volume = PlayerSettings.MasterVolume * PlayerSettings.MusicVolume;
+            bossThemeInstance.Volume = PlayerSettings.MasterVolume * PlayerSettings.MusicVolume;
+
 
             _musics = new Dictionary<string, SoundEffectInstance>
             {
