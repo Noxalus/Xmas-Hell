@@ -187,7 +187,7 @@ namespace XmasHell.Spriter
                     spriterPartFile.Width * realPivotPosition.X,
                     spriterPartFile.Height * realPivotPosition.Y
                 );
-                var worldTopLeftCornerPosition = animator.Position;// - (spriteCenter * scale);
+                var worldTopLeftCornerPosition = animator.Position - (spriteCenter * scale);
 
                 worldPosition = worldTopLeftCornerPosition + vertex + animationOffset;
 
