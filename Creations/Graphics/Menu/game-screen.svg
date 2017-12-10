@@ -50,9 +50,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748737"
-     inkscape:cx="2089.8256"
-     inkscape:cy="1038.7271"
+     inkscape:zoom="0.35"
+     inkscape:cx="2965.1995"
+     inkscape:cy="1189.1062"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -61,7 +61,9 @@
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     units="px" />
+     units="px"
+     objecttolerance="1"
+     guidetolerance="1" />
   <metadata
      id="metadata3960">
     <rdf:RDF>
@@ -208,6 +210,32 @@
            id="path5085"
            inkscape:connector-curvature="0" />
       </g>
+    </g>
+    <g
+       id="g4198"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\GameScreen\game-panel-background.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <rect
+         style="opacity:1;fill:#a0612b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:7.73588753;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4184"
+         width="215.54665"
+         height="289.48569"
+         x="810.45312"
+         y="-106.68269"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-background.png"
+         inkscape:export-xdpi="100"
+         inkscape:export-ydpi="100" />
+      <rect
+         inkscape:export-ydpi="100"
+         inkscape:export-xdpi="100"
+         inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\BossSelection\boss-panel-background.png"
+         y="-99.288261"
+         x="817.93665"
+         height="277.93704"
+         width="200.57956"
+         id="rect4186"
+         style="opacity:1;fill:#bd7233;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:7.31210661;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>
