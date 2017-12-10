@@ -371,7 +371,7 @@
                     <object folder="1" file="16" x="8" y="-168" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="17" name="garland-forbidden-ball">
+            <timeline id="17" name="garland-forbidden-ball_009">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="9" y="-170" angle="0" a="0"/>
                 </key>
@@ -1004,6 +1004,20 @@
             <timeline id="0" name="cloud2">
                 <key id="0" spin="0">
                     <object folder="0" file="5" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="8" name="BallHook">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="garland-forbidden-ball">
+                <key id="0" spin="0">
+                    <object folder="1" file="14"/>
                 </key>
             </timeline>
         </animation>

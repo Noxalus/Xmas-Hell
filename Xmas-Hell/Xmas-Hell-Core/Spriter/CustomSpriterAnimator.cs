@@ -23,16 +23,16 @@ namespace XmasHell.Spriter
         private List<string> _hiddenTextures;
         private Dictionary<string, Texture2D> _textureSwapMap;
         public bool StretchOut = true;
-        private int _zIndex;
+        private int _ZIndex;
 
-        public int zIndex()
+        public int ZIndex()
         {
-            return _zIndex;
+            return _ZIndex;
         }
 
-        public void zIndex(int value, Layer? layer = null)
+        public void ZIndex(int value, Layer? layer = null)
         {
-            _zIndex = value;
+            _ZIndex = value;
             XmasHell.Instance().SpriteBatchManager.SortSpriterAnimator(layer);
         }
 
@@ -62,7 +62,7 @@ namespace XmasHell.Spriter
         public CustomSpriterAnimator Clone()
         {
             var clone = new CustomSpriterAnimator(Entity, _providerFactory, _drawInfoPool);
-            clone.zIndex(_zIndex);
+            clone.ZIndex(_ZIndex);
             return clone;
         }
 
@@ -116,7 +116,7 @@ namespace XmasHell.Spriter
 
         public int CompareTo(CustomSpriterAnimator other)
         {
-            return _zIndex.CompareTo(other.zIndex());
+            return _ZIndex.CompareTo(other.ZIndex());
         }
 
         public CustomSpriterAnimator GetCurrentAnimator()

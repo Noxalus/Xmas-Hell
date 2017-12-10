@@ -13,6 +13,7 @@ namespace XmasHell.Spriter
         private Size2 _replacedSpriterFileHalfSize;
         private bool _synchronize = true;
         private bool _firstFrame = true;
+        private string _timelineName;
 
         public BoundingRectangle BoundingRectangle()
         {
@@ -24,11 +25,12 @@ namespace XmasHell.Spriter
             _synchronize = value;
         }
 
-        public SpriterSubstituteEntity(string replacedPartFilename, CustomSpriterAnimator referenceAnimator, CustomSpriterAnimator substituteAnimator)
+        public SpriterSubstituteEntity(string replacedPartFilename, CustomSpriterAnimator referenceAnimator, CustomSpriterAnimator substituteAnimator, string timelineName = null)
         {
             _replacedPartFilename = replacedPartFilename;
             _referenceAnimator = referenceAnimator;
             SubstituteAnimator = substituteAnimator;
+            _timelineName = timelineName;
 
             _replacedSpriterFile = SpriterUtils.GetSpriterFileStaticData(_replacedPartFilename, SubstituteAnimator);
             _replacedSpriterFileHalfSize = new Size2(_replacedSpriterFile.Width / 2, _replacedSpriterFile.Height / 2);
@@ -52,7 +54,7 @@ namespace XmasHell.Spriter
         public void Synchronize()
         {
             // Synchronize current GUI button animator with the related dummy element from the Spriter file
-            var spriterDummyData = SpriterUtils.GetSpriterFileData(_replacedPartFilename, _referenceAnimator);
+            var spriterDummyData = SpriterUtils.GetSpriterFileData(_replacedPartFilename, _referenceAnimator, _timelineName);
 
             if (spriterDummyData != null && !_firstFrame)
             {

@@ -14,6 +14,7 @@ namespace XmasHell.Screens.Menu
         #region Fields
         private BossType _selectedBoss;
         private Dictionary<string, SpriterSubstituteEntity> _bossGarlands = new Dictionary<string, SpriterSubstituteEntity>();
+        private List<SpriterSubstituteEntity> _ballHooks = new List<SpriterSubstituteEntity>();
 
         private readonly List<string> _bossNames = new List<string>()
         {
@@ -66,9 +67,10 @@ namespace XmasHell.Screens.Menu
             SpriterFile["Main"].AnimationFinished += BossSelectionScreen_AnimationFinished;
             SpriterFile["BossPanel"].AnimationFinished += BossPanel_AnimationFinished;
 
-            SpriterFile["Ball"].zIndex(9);
-            SpriterFile["Garland"].zIndex(5);
-            SpriterFile["BossPanel"].zIndex(10);
+            SpriterFile["Garland"].ZIndex(5);
+            SpriterFile["BallHook"].ZIndex(6);
+            SpriterFile["Ball"].ZIndex(9);
+            SpriterFile["BossPanel"].ZIndex(10);
 
             // Christmas tree's balls
             foreach (var bossName in _bossNames)
@@ -79,6 +81,9 @@ namespace XmasHell.Screens.Menu
                 ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
 
                 var hasRelation = _bossRelations.ContainsKey(bossName);
+
+                for (int i = 0; i < 10; i++)
+                    _ballHooks.Add(new SpriterSubstituteEntity("garland-forbidden-ball.png", SpriterFile["Main"], SpriterFile["BallHook"].Clone(), "garland-forbidden-ball_00" + i));
 
                 if (hasRelation)
                 {
@@ -122,8 +127,8 @@ namespace XmasHell.Screens.Menu
             closeBossPanelButton.Action += BossPanelCloseButtonAction;
             startBattleBossPanelButton.Action += BossPanelStartBattleButtonAction;
 
-            closeBossPanelButton.Animator().zIndex(11);
-            startBattleBossPanelButton.Animator().zIndex(11);
+            closeBossPanelButton.Animator().ZIndex(11);
+            startBattleBossPanelButton.Animator().ZIndex(11);
 
             _bossPanelButtons.Add(closeBossPanelButton);
             _bossPanelButtons.Add(startBattleBossPanelButton);
@@ -201,7 +206,7 @@ namespace XmasHell.Screens.Menu
             ballPosition.Y -= 575;
             spriterGuiButton.Animator().Position = ballPosition;
             spriterGuiButton.Animator().Scale = new Vector2(2f);
-            spriterGuiButton.Animator().zIndex(11);
+            spriterGuiButton.Animator().ZIndex(11);
 
             foreach (var bossPanelButton in _bossPanelButtons)
                 Game.GuiManager.AddButton(bossPanelButton);
@@ -248,7 +253,7 @@ namespace XmasHell.Screens.Menu
             if (_bossButtons.ContainsKey(_selectedBoss))
             {
                 _bossButtons[_selectedBoss].SubstituteEntity.EnableSynchronization(true);
-                _bossButtons[_selectedBoss].Animator().zIndex(9);
+                _bossButtons[_selectedBoss].Animator().ZIndex(9);
             }
 
             if (hardClose)
@@ -343,6 +348,12 @@ namespace XmasHell.Screens.Menu
                 SpriterFile["Main"].CurrentAnimation.Looping = false;
             }
 
+            foreach (var ballHook in _ballHooks)
+            {
+                ballHook.Reset();
+                Game.SpriteBatchManager.AddSpriterAnimator(ballHook.SubstituteAnimator, Layer.UI);
+            }
+
             foreach (var garland in _bossGarlands)
             {
                 garland.Value.Reset();
@@ -386,6 +397,9 @@ namespace XmasHell.Screens.Menu
         {
             base.Hide();
 
+            foreach (var ballHook in _ballHooks)
+                Game.SpriteBatchManager.RemoveSpriterAnimator(ballHook.SubstituteAnimator, Layer.UI);
+
             foreach (var garland in _bossGarlands)
                 Game.SpriteBatchManager.RemoveSpriterAnimator(garland.Value.SubstituteAnimator, Layer.UI);
 
@@ -403,6 +417,9 @@ namespace XmasHell.Screens.Menu
 
             if (InputManager.PressedCancel())
                 Game.ScreenManager.GoTo<MainMenuScreen>();
+
+            foreach (var ballHook in _ballHooks)
+                ballHook.Update(gameTime);
 
             foreach (var garland in _bossGarlands)
                 garland.Value.Update(gameTime);

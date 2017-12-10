@@ -103,8 +103,8 @@ namespace XmasHell.Screens
             closePanelButton.Action += EndGamePanelCloseButtonAction;
             retryPanelButton.Action += EndGamePanelRetryButtonAction;
 
-            closePanelButton.Animator().zIndex(11);
-            retryPanelButton.Animator().zIndex(11);
+            closePanelButton.Animator().ZIndex(11);
+            retryPanelButton.Animator().ZIndex(11);
 
             _endGamePanelButtons.Add(closePanelButton);
             _endGamePanelButtons.Add(retryPanelButton);

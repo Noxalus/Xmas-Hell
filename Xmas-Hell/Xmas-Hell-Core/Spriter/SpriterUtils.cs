@@ -10,7 +10,7 @@ namespace XmasHell.Spriter
 {
     static class SpriterUtils
     {
-        public static SpriterObject GetSpriterFileData(string spritePartFileName, MonoGameAnimator animator)
+        public static SpriterObject GetSpriterFileData(string spritePartFileName, MonoGameAnimator animator, string timelineName = null)
         {
             if (animator.FrameData == null)
                 return null;
@@ -18,7 +18,13 @@ namespace XmasHell.Spriter
             int folderId;
             var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
-            var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
+            var fileSpriteDataFound = spriteData.FindAll((so) =>
+            {
+                if (timelineName != null)
+                    return so.FolderId == folderId && so.FileId == spriterFile.Id && so.Name == timelineName;
+                else
+                    return so.FolderId == folderId && so.FileId == spriterFile.Id;
+            });
 
             if (fileSpriteDataFound.Count == 0)
                 return null;
@@ -26,7 +32,7 @@ namespace XmasHell.Spriter
             return fileSpriteDataFound.First();
         }
 
-        public static Vector2 GetSpriterFilePosition(string spritePartFileName, MonoGameAnimator animator)
+        public static Vector2 GetSpriterFilePosition(string spritePartFileName, MonoGameAnimator animator, string timelineName = null)
         {
             if (animator.FrameData == null)
                 return Vector2.Zero;
@@ -34,7 +40,13 @@ namespace XmasHell.Spriter
             int folderId;
             var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
-            var fileSpriteDataFound = spriteData.FindAll(so => so.FolderId == folderId && so.FileId == spriterFile.Id);
+            var fileSpriteDataFound = spriteData.FindAll((so) =>
+            {
+                if (timelineName != null)
+                    return so.FolderId == folderId && so.FileId == spriterFile.Id && so.Name == timelineName;
+                else
+                    return so.FolderId == folderId && so.FileId == spriterFile.Id;
+            });
 
             if (fileSpriteDataFound.Count == 0)
                 return Vector2.Zero;
