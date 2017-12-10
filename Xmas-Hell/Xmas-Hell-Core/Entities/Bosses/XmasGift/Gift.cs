@@ -57,7 +57,7 @@ namespace XmasHell.Entities.Bosses.XmasGift
 
             // Physics
             _boundingBox = _boss.CreateBoundingBox(this, randomScale);
-            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _boss.AddHitBox(_boundingBox);
 
             var randomSpawnBounds = new Rectangle(
                 (int)(270 * randomScale), 0,

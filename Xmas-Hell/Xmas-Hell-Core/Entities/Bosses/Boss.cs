@@ -19,6 +19,7 @@ using FarseerPhysics;
 using FarseerPhysics.Factories;
 using XmasHell.Physics.DebugView;
 using XmasHell.Audio;
+using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses
 {
@@ -48,6 +49,7 @@ namespace XmasHell.Entities.Bosses
         public float AngularVelocity = 5f;
 
         // Physics World
+        protected List<CollisionElement> HitBoxes;
         public bool PhysicsEnabled = false;
         public World PhysicsWorld;
         public Body PhysicsBody;
@@ -277,6 +279,8 @@ namespace XmasHell.Entities.Bosses
 
             HitColor = Color.White * 0.5f;
 
+            HitBoxes = new List<CollisionElement>();
+
             // To compute line/wall intersection
             _bottomWallLine = new Line(
                 new Vector2(0f, GameConfig.VirtualResolution.Y),
@@ -400,6 +404,24 @@ namespace XmasHell.Entities.Bosses
         {
             if (setupPhysicsWorld)
                 SetupPhysicsWorld();
+        }
+
+        public void AddHitBox(CollisionElement hitBox)
+        {
+            Game.GameManager.CollisionWorld.AddBossHitBox(hitBox);
+            HitBoxes.Add(hitBox);
+        }
+
+        public void RemoveHitBox(CollisionElement hitBox)
+        {
+            Game.GameManager.CollisionWorld.RemoveBossHitBox(hitBox);
+            HitBoxes.Remove(hitBox);
+        }
+
+        public void ClearHitBoxes()
+        {
+            Game.GameManager.CollisionWorld.ClearBossHitboxes();
+            HitBoxes.Clear();
         }
 
         protected virtual void SetupPhysicsWorld()

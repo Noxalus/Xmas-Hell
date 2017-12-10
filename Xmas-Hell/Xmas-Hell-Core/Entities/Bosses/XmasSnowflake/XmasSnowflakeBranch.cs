@@ -97,7 +97,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             };
 
             _boundingBox = new CollisionConvexPolygon(this, bbLocalPosition, vertices);
-            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _boss.AddHitBox(_boundingBox);
 
             _branchPlayerLine = new Line(Position(), _boss.GetPlayerPosition());
 

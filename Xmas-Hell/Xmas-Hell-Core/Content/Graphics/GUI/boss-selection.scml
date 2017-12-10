@@ -622,7 +622,7 @@
             </mainline>
             <timeline id="0" name="BossSelection" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="0" animation="0" t="0.98" angle="0"/>
+                    <object entity="0" animation="0" t="0.98" y="1" angle="0"/>
                 </key>
             </timeline>
         </animation>

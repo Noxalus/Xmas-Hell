@@ -1,11 +1,10 @@
+using System;
 using BulletML;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using MonoGame.Extended.Particles;
 using MonoGame.Extended.Particles.Modifiers;
 using MonoGame.Extended.Particles.Profiles;
-using System;
-using XmasHell.Particles;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.XmasBell

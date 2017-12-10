@@ -1,5 +1,11 @@
+using System;
+using System.Collections.Generic;
 using BulletML;
 using Microsoft.Xna.Framework;
+using MonoGame.Extended;
+using MonoGame.Extended.Particles;
+using MonoGame.Extended.Particles.Modifiers;
+using MonoGame.Extended.Particles.Profiles;
 using XmasHell.Physics.Collision;
 
 namespace XmasHell.Entities.Bosses.XmasCandy
@@ -48,16 +54,56 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             base.InitializePhysics();
 
             // Top part
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-75, 20), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-65, -20), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-20, -50), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(20, -50), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(65, -20), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(75, 20), 0.3f));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(75, 60), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-75, 20), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-65, -20), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(-20, -50), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(20, -50), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(65, -20), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(75, 20), 0.3f));
+            AddHitBox(new SpriterCollisionCircle(this, "body.png", new Vector2(75, 60), 0.3f));
 
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionConvexPolygon(this, "body2.png"));
-            Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(this, "body3.png"));
+            AddHitBox(new SpriterCollisionConvexPolygon(this, "body2.png"));
+            AddHitBox(new SpriterCollisionCircle(this, "body3.png"));
+        }
+
+        protected override void PlayExplosionAnimation()
+        {
+            foreach (var hitbox in HitBoxes)
+            {
+                if (hitbox is SpriterCollisionCircle)
+                {
+                    var particleEffect = new ParticleEffect
+                    {
+                        Name = "BossDestroyedParticles",
+
+                        Emitters = new[]
+                        {
+                            new ParticleEmitter(
+                                Game.GameManager.ParticleManager.Pixel(),
+                                500 / HitBoxes.Count,
+                                TimeSpan.FromSeconds(2.5),
+                                Profile.Point(),
+                                false)
+                            {
+                                Parameters = new ParticleReleaseParameters
+                                {
+                                    Speed = new Range<float>(10f, 500f),
+                                    Quantity = 500 / HitBoxes.Count,
+                                    Rotation = new Range<float>(-1f, 1f),
+                                    Scale = new Range<float>(3.0f, 6.0f),
+                                    Color = Game.GameManager.Random.NextDouble() > 0.5f ? Color.White.ToHsl() : Color.Red.ToHsl()
+                                },
+                                Modifiers = new IModifier[]
+                                {
+                                    new RotationModifier { RotationRate = -2.1f }
+                                }
+                            }
+                        }
+                    };
+
+                    Game.GameManager.ParticleManager.EmitParticles(particleEffect, ((SpriterCollisionCircle)hitbox).GetCenter());
+                }
+            }
         }
 
         protected override void UpdateBehaviourIndex()

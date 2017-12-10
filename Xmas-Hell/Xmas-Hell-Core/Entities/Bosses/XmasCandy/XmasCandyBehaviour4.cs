@@ -24,26 +24,27 @@ namespace XmasHell.Entities.Bosses.XmasCandy
         public override void Start()
         {
             Boss.CurrentAnimator.StretchOut = true;
-            Boss.Game.GameManager.CollisionWorld.ClearBossHitboxes();
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, 800f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, 1400f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, 1800f), 0.2f));
+            Boss.ClearHitBoxes();
 
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, -800f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, -1400f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, -1800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, 800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, 1400f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, 1800f), 0.2f));
 
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, 800f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, 1400f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, 1800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1800f, 0f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1600f, -800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(1100f, -1400f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(400f, -1800f), 0.2f));
 
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, -800f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, -1400f), 0.2f));
-            Boss.Game.GameManager.CollisionWorld.AddBossHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, -1800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, 800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, 1400f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, 1800f), 0.2f));
+
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1800f, 0f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1600f, -800f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-1100f, -1400f), 0.2f));
+            Boss.AddHitBox(new SpriterCollisionCircle(Boss, "body4.png", new Vector2(-400f, -1800f), 0.2f));
 
             Boss.CurrentAnimator.Scale = new Vector2(1f);
 

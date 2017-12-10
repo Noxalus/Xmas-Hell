@@ -74,7 +74,7 @@ namespace XmasHell.Entities.Bosses.XmasCandy
             _animator.AnimationFinished += AnimationFinishedHandler;
 
             _boundingBox = new SpriterCollisionConvexPolygon(this, "body2.png");
-            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _boss.AddHitBox(_boundingBox);
 
             _animator.Play("StretchInBorderMoving");
         }

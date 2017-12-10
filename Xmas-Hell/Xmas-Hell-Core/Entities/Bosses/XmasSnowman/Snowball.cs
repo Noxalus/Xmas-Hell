@@ -70,7 +70,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
 
             // Physics
             _boundingBox = CreateBoundingBox();
-            _boss.Game.GameManager.CollisionWorld.AddBossHitBox(_boundingBox);
+            _boss.AddHitBox(_boundingBox);
             _body = CreateBody(_animator.Scale.X);
 
             _body.IgnoreGravity = true;

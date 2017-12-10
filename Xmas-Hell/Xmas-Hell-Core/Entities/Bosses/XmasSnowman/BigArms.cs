@@ -93,7 +93,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowman
             };
 
             foreach (var boundingBox in _boundingBoxes)
-                _boss.Game.GameManager.CollisionWorld.AddBossHitBox(boundingBox);
+                _boss.AddHitBox(boundingBox);
 
             // Animations
             _animator.Play("Idle");

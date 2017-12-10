@@ -79,7 +79,7 @@ namespace XmasHell.Entities.Bosses.XmasLog
             };
 
             foreach (var boundingBox in _boundingBoxes)
-                _boss.Game.GameManager.CollisionWorld.AddBossHitBox(boundingBox);
+                _boss.AddHitBox(boundingBox);
 
             MoveTo(_boss.Game.ViewportAdapter.Center.ToVector2());
         }
