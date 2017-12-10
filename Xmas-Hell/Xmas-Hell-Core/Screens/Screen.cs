@@ -10,8 +10,13 @@ namespace XmasHell.Screens
         protected bool IsVisible;
         private bool _neverShown;
         protected bool ShouldBeStackInHistory;
-
         protected bool UIReseted = false;
+        protected ScreenType Type;
+
+        public ScreenType GetScreenType()
+        {
+            return Type;
+        }
 
         public bool StackInHistory => ShouldBeStackInHistory;
 
@@ -21,6 +26,7 @@ namespace XmasHell.Screens
             _neverShown = true;
             ShouldBeStackInHistory = true;
             Name = GetType().Name;
+            Type = ScreenType.Unknown;
         }
 
         public virtual void Initialize()

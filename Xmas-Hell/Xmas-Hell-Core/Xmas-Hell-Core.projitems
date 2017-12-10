@@ -130,6 +130,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Menu\MenuScreen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\Screen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Screens\ScreenType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\Bloom.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\BloomSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shaders\IBloomService.cs" />

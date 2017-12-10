@@ -20,6 +20,7 @@ namespace XmasHell.Screens
         {
             GameManager.GameDifficulty = GetRank;
             _player = new Player(game);
+            Type = ScreenType.Game;
         }
 
         // TODO: This should be handled by the ScreenManager

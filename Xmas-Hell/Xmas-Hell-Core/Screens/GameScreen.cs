@@ -55,6 +55,7 @@ namespace XmasHell.Screens
         {
             ShouldBeStackInHistory = true;
             GameManager.GameDifficulty = GetRank;
+            Type = ScreenType.Game;
         }
 
         public override void Initialize()

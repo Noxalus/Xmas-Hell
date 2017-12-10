@@ -17,6 +17,7 @@ namespace XmasHell.Screens.Menu
 
         public MenuScreen(XmasHell game) : base(game)
         {
+            Type = ScreenType.Menu;
         }
 
         public override void Initialize()
@@ -44,6 +45,16 @@ namespace XmasHell.Screens.Menu
         public override void Show(bool reset)
         {
             base.Show(reset);
+
+            var previousScreen = Game.ScreenManager.GetPreviousScreen();
+            if (previousScreen == null || previousScreen.GetScreenType() != ScreenType.Menu)
+            {
+                for (int i = 0; i < 500; i++)
+                {
+                    UpdateSnowRain(new GameTime(TimeSpan.Zero, TimeSpan.FromSeconds(1f / 60f)));
+                    Game.GameManager.MoverManager.Update();
+                }
+            }
 
             Game.MusicManager.PlayMenuMusic();
         }
