@@ -148,6 +148,11 @@ namespace XmasHell.Screens.Menu
         private void OnBossButtonAction(object button, Point position)
         {
             var spriterGuiButton = button as SpriterGuiButton;
+
+            // Make sure the ball is entirely visible
+            spriterGuiButton.SubstituteEntity.SubstituteAnimator.Color = 
+                new Color(spriterGuiButton.SubstituteEntity.SubstituteAnimator.Color, 1f);
+
             var bossType = BossFactory.StringToBossType(spriterGuiButton.Name);
 
             if (bossType != BossType.Unknown)
