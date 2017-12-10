@@ -139,14 +139,11 @@ namespace XmasHell.Spriter
                 var scale = new Vector2(spriterObject.ScaleX, spriterObject.ScaleY);
                 var realPivotPosition = new Vector2(1 - spriterObject.PivotX, 1 - spriterObject.PivotY);
 
-                // TOFIX...
-                realPivotPosition = new Vector2(0f, 1f);
-
                 var spriterFile = GetSpriterFile(spriterObject, animator);
 
                 var spriteCenter = new Vector2(
-                    spriterFile.Width * realPivotPosition.X,
-                    spriterFile.Height * realPivotPosition.Y
+                    spriterFile.Width * (realPivotPosition.X - 0.5f),
+                    spriterFile.Height * (realPivotPosition.Y - 0.5f)
                 );
                 var worldTopLeftCornerPosition = animator.Position - (spriteCenter * scale);
 
