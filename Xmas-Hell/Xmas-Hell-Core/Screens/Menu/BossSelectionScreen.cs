@@ -101,7 +101,7 @@ namespace XmasHell.Screens.Menu
 
                 var bossButton = new SpriterGuiButton(
                     Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName + "-available-button.png",
-                    ballAnimator, SpriterFile["Main"]
+                    ballAnimator, SpriterFile["Main"], "Balance", null, "Audio/SE/select1"
                 );
 
                 bossButton.Action += OnBossButtonAction;
@@ -111,12 +111,12 @@ namespace XmasHell.Screens.Menu
             // Boss panel buttons
             var closeBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "CloseBossPanel", "Graphics/GUI/BossSelection/boss-panel-close-button.png",
-                SpriterFile["CloseButton"], SpriterFile["BossPanel"]
+                SpriterFile["CloseButton"], SpriterFile["BossPanel"], "Idle", null, "Audio/SE/select4"
             );
 
             var startBattleBossPanelButton = new SpriterGuiButton(
                 Game.ViewportAdapter, "StartBattleBossPanel", "Graphics/GUI/BossSelection/boss-panel-battle-button.png",
-                SpriterFile["BattleButton"], SpriterFile["BossPanel"]
+                SpriterFile["BattleButton"], SpriterFile["BossPanel"], "Idle", null, "Audio/SE/select2"
             );
 
             closeBossPanelButton.Action += BossPanelCloseButtonAction;
