@@ -87,11 +87,17 @@ namespace XmasHell.Screens.Menu
 
                 if (hasRelation)
                 {
+                    var garlandAnimator1 = SpriterFile["Garland"].Clone();
+                    var garlandAnimator2 = SpriterFile["Garland"].Clone();
+
+                    garlandAnimator1.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
+                    garlandAnimator2.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
+
                     _bossGarlands.Add(
                         _bossRelations[bossName].Item1 + "-" + bossName,
                         new SpriterSubstituteEntity(
                             "xmas-" + _bossRelations[bossName].Item1 + "-" + bossName + "-garland.png",
-                            SpriterFile["Main"], SpriterFile["Garland"].Clone()
+                            SpriterFile["Main"], garlandAnimator1
                         )
                     );
 
@@ -99,7 +105,7 @@ namespace XmasHell.Screens.Menu
                          _bossRelations[bossName].Item2 + "-" + bossName,
                          new SpriterSubstituteEntity(
                             "xmas-" + _bossRelations[bossName].Item2 + "-" + bossName + "-garland.png",
-                            SpriterFile["Main"], SpriterFile["Garland"].Clone()
+                            SpriterFile["Main"], garlandAnimator2
                         )
                     );
                 }
