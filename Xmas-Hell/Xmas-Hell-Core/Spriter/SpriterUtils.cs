@@ -5,11 +5,16 @@ using SpriterDotNet.MonoGame;
 using System.Linq;
 using System.IO;
 using XmasHell.Extensions;
+using System.Collections.Generic;
 
 namespace XmasHell.Spriter
 {
     static class SpriterUtils
     {
+        // Key = Tuple(SpritePartFilename, AnimatorEntityName)
+        // Value = Tuple(SpriterFile, FolderId)
+        private static Dictionary<Tuple<string, string>, Tuple<SpriterFile, int>> _spriterFilesCache = new Dictionary<Tuple<string, string>, Tuple<SpriterFile, int>>();
+
         public static SpriterObject GetSpriterFileData(string spritePartFileName, MonoGameAnimator animator, string timelineName = null)
         {
             if (animator.FrameData == null)
@@ -18,7 +23,7 @@ namespace XmasHell.Spriter
             int folderId;
             var spriterFile = GetSpriterFile(spritePartFileName, animator, out folderId);
             var spriteData = animator.FrameData.SpriteData;
-            var fileSpriteDataFound = spriteData.FindAll((so) =>
+            var fileSpriteDataFound = spriteData.Find((so) =>
             {
                 if (timelineName != null)
                     return so.FolderId == folderId && so.FileId == spriterFile.Id && so.Name == timelineName;
@@ -26,10 +31,7 @@ namespace XmasHell.Spriter
                     return so.FolderId == folderId && so.FileId == spriterFile.Id;
             });
 
-            if (fileSpriteDataFound.Count == 0)
-                return null;
-
-            return fileSpriteDataFound.First();
+            return fileSpriteDataFound;
         }
 
         public static Vector2 GetSpriterFilePosition(string spritePartFileName, MonoGameAnimator animator, string timelineName = null)
@@ -99,14 +101,23 @@ namespace XmasHell.Spriter
             if (animator == null)
                 throw new ArgumentException("Please make sure that a Spriter animator is linked to the given entity.");
 
+            var cacheKey = new Tuple<string, string>(spritePartFileName, animator.Entity.Name);
+            if (_spriterFilesCache.ContainsKey(cacheKey))
+            {
+                folderId = _spriterFilesCache[cacheKey].Item2;
+                return _spriterFilesCache[cacheKey].Item1;
+            }
+
             foreach (var folder in animator.Entity.Spriter.Folders)
             {
                 var spriterFileId = Array.FindIndex(folder.Files, (file) => Path.GetFileName(file.Name) == spritePartFileName);
 
-                folderId = folder.Id;
-
                 if (spriterFileId != -1)
+                {
+                    folderId = folder.Id;
+                    _spriterFilesCache.Add(new Tuple<string, string>(spritePartFileName, animator.Entity.Name), new Tuple<SpriterFile, int>(folder.Files[spriterFileId], folderId));
                     return folder.Files[spriterFileId];
+                }
             }
 
             throw new ArgumentException("Please make sure that the given Spriter entity has a sprite part named: " + spritePartFileName);
