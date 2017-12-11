@@ -141,7 +141,7 @@ namespace XmasHell.Entities.Bosses.XmasSnowflake
             base.Update(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawAfter(SpriteBatch spriteBatch)
         {
             foreach (var branch in _branches)
                 branch.Draw(spriteBatch);
