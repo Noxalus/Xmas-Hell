@@ -76,10 +76,6 @@ namespace XmasHell.Screens.Menu
             foreach (var bossName in _bossNames)
             {
                 var ballAnimator = SpriterFile["Ball"].Clone();
-                ballAnimator.Play("Balance");
-                ballAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
-                ballAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
-
                 var hasRelation = _bossRelations.ContainsKey(bossName);
 
                 for (int i = 0; i < 10; i++)
@@ -90,8 +86,12 @@ namespace XmasHell.Screens.Menu
                     var garlandAnimator1 = SpriterFile["Garland"].Clone();
                     var garlandAnimator2 = SpriterFile["Garland"].Clone();
 
+                    garlandAnimator1.Play("FlashForbidden");
+                    garlandAnimator2.Play("FlashForbidden");
                     garlandAnimator1.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
                     garlandAnimator2.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
+                    garlandAnimator1.Progress = (float)Game.GameManager.Random.NextDouble();
+                    garlandAnimator2.Progress = (float)Game.GameManager.Random.NextDouble();
 
                     _bossGarlands.Add(
                         _bossRelations[bossName].Item1 + "-" + bossName,
@@ -114,6 +114,9 @@ namespace XmasHell.Screens.Menu
                     Game.ViewportAdapter, bossName, "Graphics/GUI/BossSelection/xmas-" + bossName + "-available-button.png",
                     ballAnimator, SpriterFile["Main"], "Balance", null, "Audio/SE/select1"
                 );
+
+                bossButton.SubstituteEntity.SubstituteAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
+                bossButton.SubstituteEntity.SubstituteAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble();
 
                 bossButton.Action += OnBossButtonAction;
                 _bossButtons.Add(BossFactory.StringToBossType(bossName), bossButton);
@@ -318,6 +321,12 @@ namespace XmasHell.Screens.Menu
 
                         _bossGarlands[relation1 + "-" + bossButton.Name].SubstituteAnimator.Play(animationName);
                         _bossGarlands[relation2 + "-" + bossButton.Name].SubstituteAnimator.Play(animationName);
+
+                        _bossGarlands[relation1 + "-" + bossButton.Name].SubstituteAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
+                        _bossGarlands[relation2 + "-" + bossButton.Name].SubstituteAnimator.Speed = 0.5f + (float)Game.GameManager.Random.NextDouble() / 2f;
+
+                        _bossGarlands[relation1 + "-" + bossButton.Name].SubstituteAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
+                        _bossGarlands[relation2 + "-" + bossButton.Name].SubstituteAnimator.Progress = (float)Game.GameManager.Random.NextDouble();
                     }
 
                     bossButton.Animator().AddTextureSwap(
