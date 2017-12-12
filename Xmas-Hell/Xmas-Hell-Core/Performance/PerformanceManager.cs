@@ -11,6 +11,7 @@ namespace XmasHell.Performance
 {
     public enum PerformanceStopwatchType
     {
+        GlobalFrame,
         GlobalUpdate,
         BackgroundUpdate,
         ParticleUpdate,
@@ -21,11 +22,18 @@ namespace XmasHell.Performance
         BossBulletUpdate,
         PlayerBulletUpdate,
         BossBehaviourUpdate,
+        BackgroundSpriterAnimatorsUpdate,
+        BackSpriterAnimatorsUpdate,
+        FrontSpriterAnimatorsUpdate,
+        UISpriterAnimatorsUpdate,
+        UILabelsUpdate,
         PerformanceManagerUpdate,
         GlobalDraw,
         ClearColorDraw,
         BackgroundDraw,
+        CloudsDraw,
         SpriteBatchManagerDraw,
+        BackgroundSpriterAnimatorDraw,
         BackgroundParticleDraw,
         GameParticleDraw,
         BossBulletDraw,
@@ -33,6 +41,9 @@ namespace XmasHell.Performance
         BloomDraw,
         BloomRenderTargetDraw,
         UIDraw,
+        UISpritesDraw,
+        UISpriterAnimatorDraw,
+        UILabelsDraw,
         PerformanceManagerDraw
     }
 
@@ -63,6 +74,8 @@ namespace XmasHell.Performance
         private Queue<float> _fpsData;
         private Graph _fpsGraph;
         private Color _fpsGraphColor;
+
+        private SpriteFont _debugSpriteFont;
 
         public PerformanceManager(Game game)
         {
@@ -97,6 +110,12 @@ namespace XmasHell.Performance
             };
 
             _fpsGraphColor = Color.LightBlue;
+
+        }
+
+        public void LoadContent()
+        {
+            _debugSpriteFont = _game.Content.Load<SpriteFont>("Graphics/Fonts/debug");
         }
 
         public void StartStopwatch(PerformanceStopwatchType type)

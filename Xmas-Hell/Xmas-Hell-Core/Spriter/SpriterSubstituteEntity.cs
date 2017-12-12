@@ -71,7 +71,6 @@ namespace XmasHell.Spriter
                 // Workaround to avoid desync on the first frame
                 SubstituteAnimator.Scale = Vector2.Zero;
             }
-
         }
     }
 }

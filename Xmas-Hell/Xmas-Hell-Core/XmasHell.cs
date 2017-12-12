@@ -171,6 +171,7 @@ namespace XmasHell
             SpriteBatchManager.LoadContent();
             CloudManager.LoadContent();
             MusicManager.LoadContent();
+            PerformanceManager.LoadContent();
 
             var gradientBackground = new GradientBackground(this);
             var level = BackgroundLevel.Level1;
@@ -202,6 +203,8 @@ namespace XmasHell
 
         protected override void Update(GameTime gameTime)
         {
+            PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalFrame);
+
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.GlobalUpdate);
 
             HandleKeyboardInputs();
@@ -224,10 +227,10 @@ namespace XmasHell
             GameManager.Update(gameTime);
 
             PerformanceManager.StartStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
-            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
+            PerformanceManager.Update(gameTime);
             PerformanceManager.StopStopwatch(PerformanceStopwatchType.PerformanceManagerUpdate);
 
-            PerformanceManager.Update(gameTime);
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalUpdate);
         }
 
         private void HandleKeyboardInputs()
@@ -322,6 +325,8 @@ namespace XmasHell
 
             if (Pause)
                 _computeNextFrame = false;
+
+            PerformanceManager.StopStopwatch(PerformanceStopwatchType.GlobalFrame);
         }
     }
 }

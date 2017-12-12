@@ -216,20 +216,40 @@ namespace XmasHell.Rendering
             Background?.Update(gameTime);
             _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundUpdate);
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundSpriterAnimatorsUpdate);
+
             foreach (var animator in _backgroundSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundSpriterAnimatorsUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackSpriterAnimatorsUpdate);
 
             foreach (var animator in _backSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackSpriterAnimatorsUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.FrontSpriterAnimatorsUpdate);
+
             foreach (var animator in _frontSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.FrontSpriterAnimatorsUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UISpriterAnimatorsUpdate);
 
             foreach (var animator in _uiSpriterAnimators)
                 animator.Update(gameTime.ElapsedGameTime.Milliseconds);
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UISpriterAnimatorsUpdate);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UILabelsUpdate);
+
             foreach (var label in UILabels)
                 label.Update(gameTime);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UILabelsUpdate);
         }
 
         private void BeginDrawViewportSpace()
@@ -328,14 +348,23 @@ namespace XmasHell.Rendering
 
             BeginDrawViewportSpace();
 
+
             // Draw background sprites
             foreach (var sprite in BackgroundSprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.CloudsDraw);
+
             _game.CloudManager.Draw(_game.SpriteBatch);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.CloudsDraw);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundSpriterAnimatorDraw);
 
             foreach (var animator in _backgroundSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.BackgroundSpriterAnimatorDraw);
 
             _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.BackgroundParticleDraw);
 
@@ -408,16 +437,28 @@ namespace XmasHell.Rendering
 
             BeginDrawViewportSpace();
 
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UISpritesDraw);
+
             // Draw UI elements
             foreach (var sprite in UISprites)
                 sprite.Draw(_game.SpriteBatch);
 
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UISpritesDraw);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UISpriterAnimatorDraw);
+
             foreach (var animator in _uiSpriterAnimators)
                 animator.Draw(_game.SpriteBatch);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UISpriterAnimatorDraw);
+
+            _game.PerformanceManager.StartStopwatch(PerformanceStopwatchType.UILabelsDraw);
 
             // Draw strings
             foreach (var label in UILabels)
                 label.Draw(_game.SpriteBatch);
+
+            _game.PerformanceManager.StopStopwatch(PerformanceStopwatchType.UILabelsDraw);
 
             _game.SpriteBatch.End();
 
