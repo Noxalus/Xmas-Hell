@@ -229,7 +229,7 @@ namespace XmasHell
 
         public void Update(GameTime gameTime)
         {
-            if (!EndGame() || GameIsFinished())
+            if (!EndGame() || (GameIsFinished() || TransitioningToEndGame()))
                 MoverManager.Update();
 
             if (!_ready)
