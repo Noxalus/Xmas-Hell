@@ -203,7 +203,7 @@ namespace XmasHell.Rendering
 
             DoSortSpriterAnimator();
 
-            if (GameConfig.EnableBloom)
+            if (GameConfig.EnableBloom && GameConfig.EnableBloomPulsation)
             {
                 _bloomSaturationPulse += _bloomSaturationDirection;
                 if (_bloomSaturationPulse > 2.5f) _bloomSaturationDirection = -0.09f;

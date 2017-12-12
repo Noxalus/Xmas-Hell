@@ -36,7 +36,8 @@ namespace XmasHell
             BossType.XmasBall,
             BossType.XmasBell,
             BossType.XmasCandy,
-            BossType.XmasSnowflake
+            BossType.XmasSnowflake,
+            BossType.XmasTree
         };
 
         // Bullet manager
@@ -71,6 +72,7 @@ namespace XmasHell
         public static bool DisableParticles = false;
         public static bool DebugScreen = false;
         public static bool EnableBloom = true;
+        public static bool EnableBloomPulsation = false;
         public static bool ShowPerformanceInfo = false;
         public static bool ShowPerformanceGraph = false;
         public static float PerformanceInfoTextScale = 1.5f;
