@@ -5,6 +5,7 @@ using XmasHell.Performance;
 using System.Globalization;
 using XmasHell.Extensions;
 using XmasHell.Background;
+using XmasHell.Entities.Bosses;
 
 namespace XmasHell
 {
@@ -29,6 +30,14 @@ namespace XmasHell
         public static float BossDefaultSpeed = 200f;
         public static Vector2 BossDefaultPosition = new Vector2(VirtualResolution.X / 2f, VirtualResolution.Y * 0.15f);
         public static float BossEntranceAnimationTime = 1; // seconds
+        public static BossType[] EnabledBosses = new BossType[]
+        {
+            BossType.Debug,
+            BossType.XmasBall,
+            BossType.XmasBell,
+            BossType.XmasCandy,
+            BossType.XmasSnowflake
+        };
 
         // Bullet manager
         public static int MaximumBullets = 2500;

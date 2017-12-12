@@ -288,6 +288,7 @@ namespace XmasHell.Screens.Menu
             foreach (var bossButtonPair in _bossButtons)
             {
                 var bossButton = bossButtonPair.Value;
+                var bossType = BossFactory.StringToBossType(bossButton.Name);
 
                 bossButton.SubstituteEntity.EnableSynchronization(true);
 
@@ -297,15 +298,11 @@ namespace XmasHell.Screens.Menu
                     (Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item1)) > 0 &&
                     Game.PlayerData.BossBeatenCounter(BossFactory.StringToBossType(_bossRelations[bossButton.Name].Item2)) > 0);
 
-                // TO REMOVE: Make all boss available from start to test easily
-                //available = true;
-
-                // TO REMOVE: Only the first 4 bosses will be available
-                available = !hasRelation;
+                if (Array.IndexOf(GameConfig.EnabledBosses, bossType) == -1)
+                    available = false;
 
                 if (available)
                 {
-                    var bossType = BossFactory.StringToBossType(bossButton.Name);
                     var beaten = Game.PlayerData.BossBeatenCounter(bossType) > 0;
                     var hidden = Game.PlayerData.DeathCounter(bossType) == 0 && Game.PlayerData.BossBeatenCounter(bossType) == 0;
                     var buttonTextureSwapName = "xmas-" + bossButton.Name + "-" + ((beaten) ? "beaten" : "available") + "-button";
