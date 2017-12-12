@@ -68,7 +68,9 @@ namespace XmasHell.Spriter
 
         public void AddHiddenTexture(string hiddenTextureName)
         {
-            _hiddenTextures.Add(hiddenTextureName);
+            var textureName = Path.GetFileNameWithoutExtension(hiddenTextureName);
+            if (!_hiddenTextures.Contains(textureName))
+                _hiddenTextures.Add(textureName);
         }
 
         public void AddTextureSwap(string originalTextureName, Texture2D textureToUse)
@@ -104,7 +106,7 @@ namespace XmasHell.Spriter
 
                 var currentTextureName = Path.GetFileNameWithoutExtension(sprite.Texture().Name);
 
-                if (_hiddenTextures.Find(n => Path.GetFileNameWithoutExtension(n) == currentTextureName) == null)
+                if (_hiddenTextures.Find(n => n == currentTextureName) == null)
                 {
                     if (sprite.Texture().Name != null && _textureSwapMap.ContainsKey(sprite.Texture().Name) && _textureSwapMap[sprite.Texture().Name] != null)
                         sprite = new TextureSprite(_textureSwapMap[sprite.Texture().Name]);
