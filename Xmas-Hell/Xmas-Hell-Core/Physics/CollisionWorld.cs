@@ -134,6 +134,10 @@ namespace XmasHell.Physics
                 for (int index = 0; index < _bossBulletHitboxes.Count; index++)
                 {
                     var bossBulletHitbox = _bossBulletHitboxes[index];
+                    var mover = (Mover)bossBulletHitbox.Entity;
+
+                    if (!mover.IsVisible())
+                        continue;
 
                     if (PlayerHitbox.Intersects(bossBulletHitbox))
                     {

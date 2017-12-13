@@ -194,6 +194,12 @@ namespace XmasHell.BulletML
             }
         }
 
+        public bool IsVisible()
+        {
+            return !((X < -Sprite.TextureRegion.Width * Scale || X > _game.ViewportAdapter.VirtualWidth + Sprite.TextureRegion.Width * Scale ||
+                      Y < -Sprite.TextureRegion.Height * Scale || Y > _game.ViewportAdapter.VirtualHeight + Sprite.TextureRegion.Height * Scale));
+        }
+
         public void TakeDamage(float damage)
         {
             // Nothing
