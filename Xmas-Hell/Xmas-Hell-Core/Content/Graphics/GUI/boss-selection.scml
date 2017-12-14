@@ -22,9 +22,9 @@
         <file id="9" name="BossSelection/xmas-ball-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="10" name="BossSelection/xmas-snowman-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="11" name="BossSelection/xmas-tree-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="12" name="BossSelection/garland-available-ball.png" width="49" height="49" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="13" name="BossSelection/garland-beaten-ball.png" width="49" height="49" pivot_x="0.5" pivot_y="0.5"/>
-        <file id="14" name="BossSelection/garland-forbidden-ball.png" width="49" height="49" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="12" name="BossSelection/garland-available-ball.png" width="139" height="139" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="13" name="BossSelection/garland-beaten-ball.png" width="139" height="139" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="14" name="BossSelection/garland-forbidden-ball.png" width="139" height="139" pivot_x="0.5" pivot_y="0.5"/>
         <file id="15" name="BossSelection/xmas-gift-beaten-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="16" name="BossSelection/xmas-log-available-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
         <file id="17" name="BossSelection/xmas-log-beaten-button.png" width="153" height="153" pivot_x="0.5" pivot_y="0.5"/>
@@ -670,7 +670,7 @@
         </animation>
     </entity>
     <entity id="2" name="Garland">
-        <animation id="0" name="FlashForbidden" length="1000" interval="100">
+        <animation id="0" name="FlashForbidden" length="2000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -684,21 +684,45 @@
                     <object_ref id="2" timeline="2" key="0" z_index="2"/>
                     <object_ref id="3" timeline="3" key="0" z_index="3"/>
                 </key>
-                <key id="2" time="666">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
-                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
-                </key>
-                <key id="3" time="1000">
+                <key id="2" time="334">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                     <object_ref id="1" timeline="1" key="1" z_index="1"/>
                     <object_ref id="2" timeline="2" key="1" z_index="2"/>
                     <object_ref id="3" timeline="3" key="1" z_index="3"/>
                 </key>
+                <key id="3" time="666">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
+                </key>
+                <key id="4" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="3" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="3" z_index="3"/>
+                </key>
+                <key id="5" time="1336">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="4" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="4" z_index="3"/>
+                </key>
+                <key id="6" time="1664">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="5" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="5" z_index="3"/>
+                </key>
             </mainline>
             <timeline id="0" name="garland">
                 <key id="0" spin="0">
+                    <object folder="1" file="1" angle="0"/>
+                </key>
+                <key id="1" time="1336" spin="0">
+                    <object folder="1" file="1" angle="0"/>
+                </key>
+                <key id="2" time="1664" spin="0">
                     <object folder="1" file="1" angle="0"/>
                 </key>
             </timeline>
@@ -709,21 +733,54 @@
                 <key id="1" time="333" spin="0">
                     <object folder="1" file="14" x="-95" angle="0"/>
                 </key>
+                <key id="2" time="666" spin="0">
+                    <object folder="1" file="14" x="-95" angle="0" a="0"/>
+                </key>
+                <key id="3" time="1336" spin="0">
+                    <object folder="1" file="14" x="-95" angle="0" a="0"/>
+                </key>
+                <key id="4" time="1664" spin="0">
+                    <object folder="1" file="14" x="-95" angle="0"/>
+                </key>
             </timeline>
             <timeline id="2" name="garland-forbidden-ball_000">
                 <key id="0" spin="0">
                     <object folder="1" file="14" angle="0" a="0"/>
                 </key>
-                <key id="1" time="666" spin="0">
+                <key id="1" time="334" spin="0">
+                    <object folder="1" file="14" angle="0" a="0"/>
+                </key>
+                <key id="2" time="666" spin="0">
                     <object folder="1" file="14" angle="0"/>
+                </key>
+                <key id="3" time="1000" spin="0">
+                    <object folder="1" file="14" angle="0" a="0"/>
+                </key>
+                <key id="4" time="1336" spin="0">
+                    <object folder="1" file="14" angle="0"/>
+                </key>
+                <key id="5" time="1664" spin="0">
+                    <object folder="1" file="14" angle="0" a="0"/>
                 </key>
             </timeline>
             <timeline id="3" name="garland-forbidden-ball_001">
                 <key id="0" spin="0">
                     <object folder="1" file="14" x="95" angle="0" a="0"/>
                 </key>
-                <key id="1" time="1000" spin="0">
+                <key id="1" time="334" spin="0">
+                    <object folder="1" file="14" x="95" angle="0" a="0"/>
+                </key>
+                <key id="2" time="666" spin="0">
+                    <object folder="1" file="14" x="95" angle="0" a="0"/>
+                </key>
+                <key id="3" time="1000" spin="0">
                     <object folder="1" file="14" x="95" angle="0"/>
+                </key>
+                <key id="4" time="1336" spin="0">
+                    <object folder="1" file="14" x="95" angle="0" a="0"/>
+                </key>
+                <key id="5" time="1664" spin="0">
+                    <object folder="1" file="14" x="95" angle="0" a="0"/>
                 </key>
             </timeline>
         </animation>
@@ -1017,7 +1074,7 @@
             </mainline>
             <timeline id="0" name="garland-forbidden-ball">
                 <key id="0" spin="0">
-                    <object folder="1" file="14"/>
+                    <object folder="1" file="14" angle="0"/>
                 </key>
             </timeline>
         </animation>
