@@ -9,7 +9,7 @@ namespace XmasHell.Entities.Bosses.XmasTree
     {
         public XmasTreeBehaviour1(Boss boss) : base(boss)
         {
-            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 0.5f;
+            InitialBehaviourLife = GameConfig.BossDefaultBehaviourLife * 1.5f;
         }
 
         public override void Start()
@@ -19,7 +19,7 @@ namespace XmasHell.Entities.Bosses.XmasTree
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
 
             Boss.StartShootTimer = true;
-            Boss.ShootTimerTime = 0.001f;
+            Boss.ShootTimerTime = 0.01f;
             Boss.ShootTimerFinished += ShootTimerFinished;
 
             Boss.CurrentAnimator.Play("Idle");
@@ -33,18 +33,14 @@ namespace XmasHell.Entities.Bosses.XmasTree
         public override void Stop()
         {
             base.Stop();
+
+            Boss.StartShootTimer = false;
+            Boss.ShootTimerFinished -= ShootTimerFinished;
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            //var newPosition = new Vector2(
-            //    Boss.Game.GameManager.Random.Next((int)(Boss.Width() / 2f), GameConfig.VirtualResolution.X - (int)(Boss.Width() / 2f)),
-            //    Boss.Game.GameManager.Random.Next((int)(Boss.Height() / 2f) + 50, (int)(Boss.Height() / 2f) + 150)
-            //);
-
-            //Boss.MoveTo(newPosition, 1.5f);
         }
     }
 }

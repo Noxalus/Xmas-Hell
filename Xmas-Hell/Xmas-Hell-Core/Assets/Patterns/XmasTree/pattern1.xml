@@ -4,7 +4,7 @@
   <action label="top">
     <fire>
       <bullet>
-        <direction type="absolute">($rand * 180) - 90</direction>
+        <direction type="absolute">($rand * 90) - 45</direction>
         <speed>15</speed>
         <sprite>1</sprite>
         <color>
