@@ -235,7 +235,8 @@ namespace XmasHell
                 { "XmasLog/pattern1", OpenRawFile(BuildRawAssetPath("XmasLog/pattern1.xml")) },
 
                 // Xmas Tree
-                { "XmasTree/pattern1", OpenRawFile(BuildRawAssetPath("XmasTree/pattern1.xml")) },
+                { "XmasTree/pattern1.1", OpenRawFile(BuildRawAssetPath("XmasTree/pattern1.1.xml")) },
+                { "XmasTree/pattern1.2", OpenRawFile(BuildRawAssetPath("XmasTree/pattern1.2.xml")) },
 
                 // Xmas Reindeer
                 { "XmasReindeer/pattern1", OpenRawFile(BuildRawAssetPath("XmasReindeer/pattern1.xml")) },

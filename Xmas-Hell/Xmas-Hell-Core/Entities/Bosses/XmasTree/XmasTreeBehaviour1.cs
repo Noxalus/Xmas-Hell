@@ -27,7 +27,10 @@ namespace XmasHell.Entities.Bosses.XmasTree
 
         private void ShootTimerFinished(object sender, float e)
         {
-            Boss.Game.GameManager.MoverManager.TriggerPattern("XmasTree/pattern1", BulletType.Type2, false, Boss.Position());
+            if (CurrentBehaviourLife <= InitialBehaviourLife / 1.5f)
+                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasTree/pattern1.2", BulletType.Type2, false, Boss.Position());
+            else
+                Boss.Game.GameManager.MoverManager.TriggerPattern("XmasTree/pattern1.1", BulletType.Type2, false, Boss.Position());
         }
 
         public override void Stop()

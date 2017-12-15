@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE bulletml SYSTEM "bulletml.dtd">
+<bulletml>
+  <action label="top">
+    <fire>
+      <bullet>
+        <direction type="absolute">($rand * 90) - 45</direction>
+        <speed>15</speed>
+        <sprite>1</sprite>
+        <color>
+          <red>0</red>
+          <green>1</green>
+          <blue>0</blue>
+        </color>
+        <actionRef label="fall">
+          <param>$sign</param>
+          <param>40</param>
+        </actionRef>
+      </bullet>
+    </fire>
+  </action>
+
+  <action label="fall">
+    <changeSpeed>
+      <speed>0</speed>
+      <term>100</term>
+    </changeSpeed>
+    <wait>100</wait>
+    <changeDirection>
+      <direction type="absolute">$sign * 180 + ($rand * 10) - 5</direction>
+      <term>0</term>
+    </changeDirection>
+    <changeSpeed>
+      <speed>10</speed>
+      <term>100</term>
+    </changeSpeed>
+  </action>
+</bulletml>

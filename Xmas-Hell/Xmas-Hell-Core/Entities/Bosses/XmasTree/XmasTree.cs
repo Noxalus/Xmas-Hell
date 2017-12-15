@@ -9,7 +9,8 @@ namespace XmasHell.Entities.Bosses.XmasTree
             base(game, BossType.XmasTree, playerPositionDelegate)
         {
             // BulletML
-            BulletPatternFiles.Add("XmasTree/pattern1");
+            BulletPatternFiles.Add("XmasTree/pattern1.1");
+            BulletPatternFiles.Add("XmasTree/pattern1.2");
 
             // Behaviours
             Behaviours.Add(new XmasTreeBehaviour1(this));
