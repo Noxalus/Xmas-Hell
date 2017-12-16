@@ -95,6 +95,8 @@ namespace XmasHell
         {
             _endGame = value;
             _won = won;
+
+            _cameraZoomTimer.Interval = TimeSpan.FromSeconds(zoomTimer);
             _cameraZoomTimer.Restart();
         }
 

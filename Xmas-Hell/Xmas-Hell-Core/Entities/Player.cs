@@ -229,7 +229,7 @@ namespace XmasHell.Entities
                 return;
 
             _game.Camera.ZoomTo(3f, GameConfig.EndGameCameraZoomTime / 2f, Position());
-            _game.GameManager.EndGame(true, false);
+            _game.GameManager.EndGame(true, false, GameConfig.EndGameCameraZoomTime);
 
             _destroyed = true;
 

@@ -488,7 +488,7 @@ namespace XmasHell.Entities.Bosses
             if (bestTime == TimeSpan.Zero || bestTime > currentTime)
                 Game.PlayerData.BossBestTime(BossType, currentTime);
 
-            Game.GameManager.EndGame(true, true, 0);
+            Game.GameManager.EndGame(true, true, 0f);
 
             _destroyed = true;
 
