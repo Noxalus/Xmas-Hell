@@ -228,7 +228,7 @@ namespace XmasHell.Entities
             if (GameConfig.GodMode || _destroyed)
                 return;
 
-            _game.Camera.ZoomTo(3f, 0.25, Position());
+            _game.Camera.ZoomTo(3f, GameConfig.EndGameCameraZoomTime / 2f, Position());
             _game.GameManager.EndGame(true, false);
 
             _destroyed = true;

@@ -33,7 +33,6 @@ namespace XmasHell
         private bool _endGame;
         private CountdownTimer _cameraZoomTimer;
         private CountdownTimer _explosionTimer;
-        private bool _endGameFirstTime;
         private bool _transitioningToEndGame;
         private bool _gameIsFinished;
         private bool _won;
@@ -92,12 +91,10 @@ namespace XmasHell
             return _won;
         }
 
-        public void EndGame(bool value, bool won, float zoomTimer = 1f)
+        public void EndGame(bool value, bool won, float zoomTimer = 0f)
         {
             _endGame = value;
             _won = won;
-
-            _cameraZoomTimer.Interval = TimeSpan.FromSeconds(zoomTimer);
             _cameraZoomTimer.Restart();
         }
 
@@ -121,11 +118,11 @@ namespace XmasHell
             //Random = new Random(GameConfig.RandomSeed);
             Random = new Random();
 
-            _cameraZoomTimer = new CountdownTimer(5);
+            _cameraZoomTimer = new CountdownTimer(GameConfig.EndGameCameraZoomTime);
             _cameraZoomTimer.Stop();
             _cameraZoomTimer.Completed += CameraZoomTimerCompleted;
 
-            _explosionTimer = new CountdownTimer(1);
+            _explosionTimer = new CountdownTimer(GameConfig.EndGameExplosionTime);
             _explosionTimer.Stop();
             _explosionTimer.Completed += ExplosionTimerCompleted;
 

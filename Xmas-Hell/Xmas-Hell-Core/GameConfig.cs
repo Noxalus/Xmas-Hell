@@ -17,6 +17,9 @@ namespace XmasHell
         // Game
         public static int RandomSeed = 42;
 
+        public static float EndGameCameraZoomTime = 0.25f;
+        public static float EndGameExplosionTime = 0.3f;
+
         // Player
         public static float PlayerSpeed = 1500f;
         public static readonly TimeSpan PlayerShootFrequency = TimeSpan.FromMilliseconds(100);
