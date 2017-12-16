@@ -6,8 +6,12 @@ namespace XmasHell.Entities.Bosses.XmasBall
 {
     class XmasBallBehaviour4 : AbstractBossBehaviour
     {
+        private float _initialAcceleration;
+        private readonly float _maxAcceleration;
+
         public XmasBallBehaviour4(Boss boss) : base(boss)
         {
+            _maxAcceleration = 3.5f;
         }
 
         public override void Start()
@@ -21,6 +25,7 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 MathHelper.ToRadians(possibleAngle[Boss.Game.GameManager.Random.Next(possibleAngle.Length - 1)])
             );
 
+            _initialAcceleration = 1f;
             Boss.Speed = GameConfig.BossDefaultSpeed * 2.5f;
         }
 
@@ -58,13 +63,10 @@ namespace XmasHell.Entities.Bosses.XmasBall
                 GameConfig.VirtualResolution.Y - Boss.Height() / 2f)
             );
 
-            if (collision)
-            {
-                Boss.Acceleration.X = MathHelper.Clamp(Boss.Acceleration.X + 0.1f, 0f, 5f);
-                Boss.Acceleration.Y = MathHelper.Clamp(Boss.Acceleration.Y + 0.1f, 0f, 5f);
+            Boss.Acceleration = new Vector2(_initialAcceleration + (1 - (CurrentBehaviourLife / InitialBehaviourLife)) * (_maxAcceleration - _initialAcceleration));
 
+            if (collision)
                 Boss.Game.Camera.Shake(0.25f, 30f);
-            }
         }
     }
 }
