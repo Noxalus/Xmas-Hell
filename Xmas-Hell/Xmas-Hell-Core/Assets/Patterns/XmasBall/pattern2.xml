@@ -11,7 +11,7 @@
             <speed type="absolute">10</speed>
             <sprite>2</sprite>
             <color>
-              <red>1</red>
+              <red>0.78</red>
               <green>0</green>
               <blue>0</blue>
             </color>
