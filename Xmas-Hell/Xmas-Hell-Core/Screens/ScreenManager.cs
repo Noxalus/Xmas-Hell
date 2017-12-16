@@ -57,7 +57,7 @@ namespace XmasHell.Screens
 
         public void Back()
         {
-            if (_screenHistory.Count > 0 && _currentScreen.GetScreenType() != ScreenType.Game)
+            if (_screenHistory.Count > 0)
                 GoTo(_screenHistory.Pop());
         }
 

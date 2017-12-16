@@ -243,9 +243,6 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            if (InputManager.PressedCancel())
-                Game.ScreenManager.GoTo<BossSelectionScreen>();
-
             if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
                 OpenEndGamePopup(Game.GameManager.Won());
 
