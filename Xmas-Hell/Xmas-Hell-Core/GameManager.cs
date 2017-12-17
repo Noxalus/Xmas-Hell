@@ -208,8 +208,6 @@ namespace XmasHell
             _gameIsFinished = true;
             _cantMove = true;
 
-            _game.PlayerData.BossPlayTime(_boss.BossType, _game.PlayerData.BossPlayTime(_boss.BossType) + _playTime);
-
             _cameraZoomTimer.Stop();
             _game.Camera.Zoom = 1f;
         }
