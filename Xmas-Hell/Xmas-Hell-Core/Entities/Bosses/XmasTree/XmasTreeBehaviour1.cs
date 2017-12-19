@@ -23,6 +23,8 @@ namespace XmasHell.Entities.Bosses.XmasTree
             Boss.ShootTimerFinished += ShootTimerFinished;
 
             Boss.CurrentAnimator.Play("Idle");
+
+            Boss.EnableRandomPosition(true);
         }
 
         private void ShootTimerFinished(object sender, float e)
