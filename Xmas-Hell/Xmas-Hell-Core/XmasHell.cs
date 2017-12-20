@@ -269,8 +269,8 @@ namespace XmasHell
 
                 if (Graphics.IsFullScreen)
                 {
-                    Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.Y;
-                    Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.X;
+                    Graphics.PreferredBackBufferWidth = GameConfig.VirtualResolution.X;
+                    Graphics.PreferredBackBufferHeight = GameConfig.VirtualResolution.Y;
                     IsMouseVisible = true;
                     Window.AllowUserResizing = false;
                 }

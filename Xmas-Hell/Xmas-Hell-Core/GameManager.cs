@@ -81,6 +81,16 @@ namespace XmasHell
             return _endGame;
         }
 
+        public void SkipEndGameAnimations()
+        {
+            _cameraZoomTimer.Stop();
+            _explosionTimer.Stop();
+
+            _gameIsFinished = true;
+            _cantMove = true;
+            _game.Camera.SetZoom(1f);
+        }
+
         public bool CantMove()
         {
             return _cantMove;

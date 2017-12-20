@@ -25,6 +25,12 @@ namespace XmasHell
         private PositionDelegate _followPositionDelegate;
         private bool _followingPosition;
 
+        public void SetZoom(float value)
+        {
+            Zoom = value;
+            _targetingZoom = false;
+        }
+
         public Camera(XmasHell game, GraphicsDevice graphicsDevice) : base(graphicsDevice)
         {
             _game = game;

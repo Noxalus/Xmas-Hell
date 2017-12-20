@@ -7,8 +7,32 @@
         <file id="3" name="GameScreen/end-game-panel-title-label.png" width="567" height="125" pivot_x="0.5" pivot_y="0.5"/>
         <file id="4" name="GameScreen/end-game-panel-player-deaths-label.png" width="729" height="92" pivot_x="0.5" pivot_y="0.5"/>
         <file id="5" name="GameScreen/end-game-panel-taunt-label.png" width="683" height="323" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="6" name="GameScreen/skip-button.png" width="111" height="111" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
-    <entity id="0" name="EndGamePanel">
+    <folder id="1">
+        <file id="0" name="game-area.png" width="1080" height="1920" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <entity id="0" name="GameScreen">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="game-area">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" y="2.777778" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="skip-button" object_type="entity">
+                <key id="0" spin="0">
+                    <object entity="4" animation="0" t="0" x="450" y="-878" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="EndGamePanel">
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -62,10 +86,10 @@
             </mainline>
             <timeline id="0" name="EndGamePanel" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="0" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
+                    <object entity="1" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object entity="0" animation="0" t="0" angle="0"/>
+                    <object entity="1" animation="0" t="0" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -80,15 +104,15 @@
             </mainline>
             <timeline id="0" name="EndGamePanel" object_type="entity">
                 <key id="0" spin="0">
-                    <object entity="0" animation="0" t="0" angle="0"/>
+                    <object entity="1" animation="0" t="0" angle="0"/>
                 </key>
                 <key id="1" time="500" spin="0">
-                    <object entity="0" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
+                    <object entity="1" animation="0" t="0" angle="0" scale_x="0.00001" scale_y="0.00001"/>
                 </key>
             </timeline>
         </animation>
     </entity>
-    <entity id="1" name="CloseButton">
+    <entity id="2" name="CloseButton">
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -102,7 +126,7 @@
             </timeline>
         </animation>
     </entity>
-    <entity id="2" name="RetryButton">
+    <entity id="3" name="RetryButton">
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -112,6 +136,20 @@
             <timeline id="0" name="game-panel-retry-button">
                 <key id="0" spin="0">
                     <object folder="0" file="2" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="4" name="SkipButton">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="skip-button">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" angle="0"/>
                 </key>
             </timeline>
         </animation>

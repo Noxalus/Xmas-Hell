@@ -51,14 +51,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="2965.1995"
-     inkscape:cy="1189.1062"
+     inkscape:cx="1982.651"
+     inkscape:cy="640.18084"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="1912"
+     inkscape:window-x="1072"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      units="px"
@@ -72,7 +72,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -236,6 +236,53 @@
          width="200.57956"
          id="rect4186"
          style="opacity:1;fill:#bd7233;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:7.31210661;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       transform="matrix(-0.92661576,0.37600962,-0.37354289,-0.92761291,0,0)"
+       d="m -376.08386,-561.54066 a 17.794821,17.84388 0 0 1 -9.21271,20.07635 17.794821,17.84388 0 0 1 -21.61687,-4.30503 17.794821,17.84388 0 0 1 -0.86274,-22.0829 17.794821,17.84388 0 0 1 21.21477,-5.98761"
+       sodipodi:open="true"
+       sodipodi:end="5.1058188"
+       sodipodi:start="6.046653"
+       sodipodi:ry="17.84388"
+       sodipodi:rx="17.794821"
+       sodipodi:cy="-557.35925"
+       sodipodi:cx="-393.38321"
+       sodipodi:type="arc"
+       id="path1762"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.61459494;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g1791"
+       transform="translate(-20.78869,-57.074404)"
+       inkscape:export-filename="D:\Projets\Xmas-Hell\Xmas-Hell\Xmas-Hell\Xmas-Hell-Core\Content\Graphics\GUI\GameScreen\skip-button.png"
+       inkscape:export-xdpi="100"
+       inkscape:export-ydpi="100">
+      <g
+         style="fill:#0e7619;fill-opacity:0.64705882"
+         transform="matrix(0.38323032,0,0,0.38323032,398.04271,204.30092)"
+         id="g1784">
+        <circle
+           r="32.892563"
+           cy="274.55649"
+           cx="761.80493"
+           id="circle1756"
+           style="opacity:1;fill:#0e7619;fill-opacity:0.64705882;fill-rule:nonzero;stroke:#000000;stroke-width:7.75471258;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           style="opacity:1;fill:#0e7619;fill-opacity:0.64705882;fill-rule:nonzero;stroke:none;stroke-width:7.75471258;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 787.92493,261.26361 c 1.66115,3.38404 -14.78934,-4.00179 -26.03074,-4.00179 -11.24142,0 -28.54961,9.64646 -26.62809,4.99285 4.23347,-10.25274 15.76646,-16.86243 27.00788,-16.86243 11.2414,0 21.6854,7.7929 25.65095,15.87137 z"
+           id="path1758"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="sssss" />
+      </g>
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.64583325;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 692.29524,309.02189 -6.79013,-5.94629 v 11.99689 z"
+         id="path1764"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path1780"
+         d="m 698.17517,309.02189 -6.79013,-5.94629 v 11.99689 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.64583325;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>

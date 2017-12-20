@@ -23,6 +23,9 @@ namespace XmasHell.Screens
         // GUI
         private Dictionary<string, CustomSpriterAnimator> _spriterFile;
         private List<SpriterGuiButton> _endGamePanelButtons = new List<SpriterGuiButton>();
+        private SpriterGuiButton _skipButton;
+        private bool _skipButtonVisible;
+        private bool _skippedEndGameAnimations;
         private AbstractGuiLabel _timerLabel;
         private AbstractGuiLabel _timerLabelShadow;
         private Sprite _hpBar;
@@ -56,6 +59,8 @@ namespace XmasHell.Screens
             ShouldBeStackInHistory = true;
             GameManager.GameDifficulty = GetRank;
             Type = ScreenType.Game;
+            _skipButtonVisible = false;
+            _skippedEndGameAnimations = false;
         }
 
         public override void Initialize()
@@ -109,6 +114,13 @@ namespace XmasHell.Screens
             _endGamePanelButtons.Add(closePanelButton);
             _endGamePanelButtons.Add(retryPanelButton);
 
+            _skipButton = new SpriterGuiButton(
+                Game.ViewportAdapter, "SkipButton", "Graphics/GUI/GameScreen/skip-button.png",
+                _spriterFile["SkipButton"], _spriterFile["GameScreen"], "Idle", null, "Audio/SE/select2", null, false, "skip-button"
+            );
+
+            _skipButton.Action += SkipButtonAction;
+
             // GUI
             _endGameTitleLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui-title"), "end-game-panel-title-label.png", _spriterFile["EndGamePanel"], Vector2.Zero, true);
             _endGameDeathCounterLabel = new SpriterGuiLabel("", Assets.GetFont("Graphics/Fonts/ui"), "end-game-panel-player-deaths-label.png", _spriterFile["EndGamePanel"], Vector2.Zero, true);
@@ -116,6 +128,16 @@ namespace XmasHell.Screens
 
             _endGamePanelLabels.Add(_endGameTitleLabel);
             _endGamePanelLabels.Add(_endGameDeathCounterLabel);
+        }
+
+        private void Reset()
+        {
+            // Reset game
+            Game.GameManager.Reset();
+
+            CloseEndGamePopup();
+            _skipButtonVisible = false;
+            _skippedEndGameAnimations = false;
         }
 
         #region Animations finished
@@ -136,10 +158,16 @@ namespace XmasHell.Screens
 
         private void EndGamePanelRetryButtonAction(object button, Point e)
         {
-            // Reset game
-            Game.GameManager.Reset();
+            Reset();
+        }
 
-            CloseEndGamePopup();
+        private void SkipButtonAction(object sender, Point e)
+        {
+            if (_skippedEndGameAnimations)
+                return;
+
+            _skippedEndGameAnimations = true;
+            Game.GameManager.SkipEndGameAnimations();
         }
         #endregion
 
@@ -150,7 +178,11 @@ namespace XmasHell.Screens
 
             _endGamePopupOpened = true;
             Game.SpriteBatchManager.AddSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
-            _spriterFile["EndGamePanel"].Play("Show");
+
+            if (_skippedEndGameAnimations)
+                _spriterFile["EndGamePanel"].Play("Idle");
+            else
+                _spriterFile["EndGamePanel"].Play("Show");
 
             var font = Assets.GetFont("Graphics/Fonts/ui");
 
@@ -188,6 +220,8 @@ namespace XmasHell.Screens
 
             foreach (var label in _endGamePanelLabels)
                 Game.GuiManager.AddLabel(label);
+
+            Game.GuiManager.RemoveButton(_skipButton);
         }
 
         private void CloseEndGamePopup()
@@ -209,11 +243,28 @@ namespace XmasHell.Screens
             Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["EndGamePanel"], Layer.UI);
         }
 
+        private void ShowSkipButton()
+        {
+            if (_skipButtonVisible)
+                return;
+
+            _skipButtonVisible = true;
+            Game.GuiManager.AddButton(_skipButton);
+        }
+
+        private void HideSkipButton()
+        {
+            _skipButtonVisible = false;
+            Game.GuiManager.RemoveButton(_skipButton);
+        }
+
         public override void Show(bool reset = false)
         {
             base.Show(reset);
 
             Game.GameManager.StartNewGame();
+
+            Game.SpriteBatchManager.AddSpriterAnimator(_spriterFile["GameScreen"], Layer.UI);
 
             Game.SpriteBatchManager.UILabels.Add(_timerLabelShadow);
             Game.SpriteBatchManager.UILabels.Add(_timerLabel);
@@ -230,7 +281,10 @@ namespace XmasHell.Screens
             base.Hide();
 
             Game.GameManager.Dispose();
+
+            Game.SpriteBatchManager.RemoveSpriterAnimator(_spriterFile["GameScreen"], Layer.UI);
             CloseEndGamePopup();
+            HideSkipButton();
             Game.SpriteBatchManager.UILabels.Remove(_timerLabel);
             Game.SpriteBatchManager.UILabels.Remove(_timerLabelShadow);
             Game.SpriteBatchManager.UISprites.Remove(_hpBar);
@@ -242,6 +296,9 @@ namespace XmasHell.Screens
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Game.GameManager.EndGame() && !_skipButtonVisible)
+                ShowSkipButton();
 
             if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
                 OpenEndGamePopup(Game.GameManager.Won());

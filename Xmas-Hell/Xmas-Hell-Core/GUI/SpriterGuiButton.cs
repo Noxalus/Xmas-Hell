@@ -78,10 +78,11 @@ namespace XmasHell.GUI
             string clickAnimationName = null,
             string inputDownSoundName = null,
             string inputUpSoundName = null,
-            bool stopAnimationWhenClicked = false) :
+            bool stopAnimationWhenClicked = false,
+            string timelineName = null) :
             base(viewportAdapter, buttonName)
         {
-            SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator);
+            SubstituteEntity = new SpriterSubstituteEntity(Path.GetFileName(spritePartCompleteFilename), referenceAnimator, animator, timelineName);
             _animationName = animationName;
             _clickAnimationName = clickAnimationName;
 

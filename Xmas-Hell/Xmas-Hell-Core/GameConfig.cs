@@ -17,7 +17,7 @@ namespace XmasHell
         // Game
         public static int RandomSeed = 42;
 
-        public static float EndGameCameraZoomTime = 0.25f;
+        public static float EndGameCameraZoomTime = 5f;
         public static float EndGameExplosionTime = 0.3f;
 
         // Player
@@ -75,7 +75,7 @@ namespace XmasHell
         public static bool DisableParticles = false;
         public static bool DebugScreen = false;
         public static bool EnableBloom = true;
-        public static bool EnableBloomPulsation = false;
+        public static bool EnableBloomPulsation = true;
         public static bool ShowPerformanceInfo = false;
         public static bool ShowPerformanceGraph = false;
         public static float PerformanceInfoTextScale = 1.5f;
