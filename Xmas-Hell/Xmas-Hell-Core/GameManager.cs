@@ -190,7 +190,7 @@ namespace XmasHell
             _explosionTimer.Stop();
             _gameIsFinished = false;
             _ready = false;
-            _game.Camera.Zoom = 1f;
+            _game.Camera.SetZoom(1f);
             _transitioningToEndGame = false;
             _cantMove = false;
         }
@@ -204,6 +204,9 @@ namespace XmasHell
             _transitioningToEndGame = false;
             _won = false;
             _cantMove = false;
+            _game.Camera.SetZoom(1f);
+            _cameraZoomTimer.Stop();
+            _explosionTimer.Stop();
 
             _player.Reset();
             _boss?.Reset();

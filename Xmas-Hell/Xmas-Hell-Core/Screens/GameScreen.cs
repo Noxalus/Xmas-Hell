@@ -136,6 +136,7 @@ namespace XmasHell.Screens
             Game.GameManager.Reset();
 
             CloseEndGamePopup();
+            HideSkipButton();
             _skipButtonVisible = false;
             _skippedEndGameAnimations = false;
         }
@@ -167,7 +168,7 @@ namespace XmasHell.Screens
                 return;
 
             _skippedEndGameAnimations = true;
-            Game.GameManager.SkipEndGameAnimations();
+            Reset();
         }
         #endregion
 
@@ -221,7 +222,7 @@ namespace XmasHell.Screens
             foreach (var label in _endGamePanelLabels)
                 Game.GuiManager.AddLabel(label);
 
-            Game.GuiManager.RemoveButton(_skipButton);
+            HideSkipButton();
         }
 
         private void CloseEndGamePopup()
@@ -297,7 +298,7 @@ namespace XmasHell.Screens
         {
             base.Update(gameTime);
 
-            if (Game.GameManager.EndGame() && !_skipButtonVisible)
+            if (Game.GameManager.EndGame() && !_skipButtonVisible && !_endGamePopupOpened)
                 ShowSkipButton();
 
             if (Game.GameManager.GameIsFinished() && !_endGamePopupOpened)
