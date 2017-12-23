@@ -17,8 +17,8 @@ namespace XmasHell
         // Game
         public static int RandomSeed = 42;
 
-        public static float EndGameCameraZoomTime = 5f;
-        public static float EndGameExplosionTime = 0.3f;
+        public static float EndGameCameraZoomTime = 0.5f;
+        public static float EndGameExplosionTime = 1f;
 
         // Player
         public static float PlayerSpeed = 1500f;
