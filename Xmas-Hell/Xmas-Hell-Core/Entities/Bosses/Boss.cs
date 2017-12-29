@@ -18,8 +18,8 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics;
 using FarseerPhysics.Factories;
 using XmasHell.Physics.DebugView;
-using XmasHell.Audio;
 using XmasHell.Physics.Collision;
+using XmasHell.Audio;
 
 namespace XmasHell.Entities.Bosses
 {

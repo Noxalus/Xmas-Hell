@@ -1,60 +1,66 @@
 using System;
 using Microsoft.Xna.Framework;
-using MonoGame.Extended.Screens;
-using XmasHell.Entities;
 using XmasHell.Entities.Bosses;
+using MonoGame.Extended.Particles;
+using MonoGame.Extended.Particles.Modifiers;
+using MonoGame.Extended;
+using MonoGame.Extended.Particles.Profiles;
 
 namespace XmasHell.Screens
 {
-    public class DebugScreen : Screen
+    public class DebugScreen : GameScreen
     {
-        private Player _player;
-        private Boss _boss;
-
-        private float GetRank()
-        {
-            return 1f;
-        }
-
         public DebugScreen(XmasHell game) : base(game)
         {
-            GameManager.GameDifficulty = GetRank;
-            _player = new Player(game);
             Type = ScreenType.Game;
+
+            var particleEffect = new ParticleEffect
+            {
+                Name = "StartLaser",
+
+                Emitters = new[]
+                {
+                    new ParticleEmitter(
+                        Game.GameManager.ParticleManager.Pixel(),
+                        500,
+                        TimeSpan.FromSeconds(10.5),
+                        Profile.Point(),
+                        true)
+                    {
+                        Parameters = new ParticleReleaseParameters
+                        {
+                            Speed = new Range<float>(10f, 500f),
+                            Quantity = 500,
+                            Rotation = new Range<float>(-1f, 1f),
+                            Scale = new Range<float>(3.0f, 6.0f),
+                            Color = Color.DarkGoldenrod.ToHsl()
+                        },
+                        Modifiers = new IModifier[]
+                        {
+                            new RotationModifier { RotationRate = -2.1f }
+                        }
+                    }
+                }
+            };
+
+            game.GameManager.ParticleManager.EmitParticles(particleEffect, new Vector2(GameConfig.VirtualResolution.X, GameConfig.VirtualResolution.Y));
         }
 
-        // TODO: This should be handled by the ScreenManager
         public override void Show(bool reset = false)
         {
-            base.Show(reset);
+            Game.GameManager.LoadBoss(BossType.Debug);
 
-            _player.Initialize();
-            _boss = BossFactory.CreateBoss(BossType.Debug, Game, _player.Position);
-            _boss.Initialize();
+            base.Show(reset);
         }
 
         public override void Hide()
         {
             base.Hide();
-
-            _boss.Dispose();
-            _player.Dispose();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (Game.Pause)
-                return;
-
-            if (!Game.GameManager.GameIsFinished())
-            {
-                if (_player.Alive())
-                    _player.Update(gameTime);
-
-                _boss.Update(gameTime);
-            }
         }
     }
 }

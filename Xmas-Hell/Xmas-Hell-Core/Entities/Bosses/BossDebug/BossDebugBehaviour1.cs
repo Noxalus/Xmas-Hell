@@ -30,9 +30,8 @@ namespace XmasHell.Entities.Bosses.DebugBoss
             Boss.CurrentAnimator.Play("Idle");
             Boss.MoveToCenter();
 
-            _laser = new Laser(Boss.Game, new Line(Boss.Game.ViewportAdapter.Center.ToVector2(), Boss.Game.ViewportAdapter.Center.ToVector2() + new Vector2(100f, 0f)));
-
-            Boss.Game.GameManager.AddLaser(_laser);
+            //_laser = new Laser(Boss.Game, new Line(Boss.Game.ViewportAdapter.Center.ToVector2(), Boss.Game.ViewportAdapter.Center.ToVector2() + new Vector2(100f, 0f)));
+            //Boss.Game.GameManager.AddLaser(_laser);
         }
 
         public override void Stop()
@@ -44,15 +43,15 @@ namespace XmasHell.Entities.Bosses.DebugBoss
         {
             base.Update(gameTime);
 
-            if (!_triggeredPattern &&
-                Boss.Position().X == GameConfig.VirtualResolution.X / 2f &&
-                Boss.Position().Y == GameConfig.VirtualResolution.Y / 2f)
-            {
-                TriggerPattern();
-                _triggeredPattern = true;
-            }
+            //if (!_triggeredPattern &&
+            //    Boss.Position().X == GameConfig.VirtualResolution.X / 2f &&
+            //    Boss.Position().Y == GameConfig.VirtualResolution.Y / 2f)
+            //{
+            //    TriggerPattern();
+            //    _triggeredPattern = true;
+            //}
 
-            _laser.Update(gameTime);
+            //_laser.Update(gameTime);
         }
 
         private void TriggerPattern()

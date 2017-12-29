@@ -7,12 +7,10 @@ using MonoGame.Extended.TextureAtlases;
 using XmasHell.Spriter;
 using XmasHell.Rendering;
 using XmasHell.GUI;
-using XmasHell.Screens.Menu;
-using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 using XmasHell.Extensions;
-using XmasHell.Audio;
 using XmasHell.Background;
 using XmasHell.Entities.Bosses;
+using XmasHell.Screens.Menu;
 
 namespace XmasHell.Screens
 {
